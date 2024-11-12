@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>String Templates - Network Analysis and Data Integration (NADI)</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Network Analysis and Data Integration (NADI)</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="string-templates"><a class="header" href="#string-templates">String Templates</a></h1>
+<p>The templating system will be used by an external library developed by
+me. The library can be modified if there are specific needs for this
+project.</p>
+<p>The template system is feature rich, allowing for formatting, simple
+string transformations, and airthmatic calculations based on the
+variables (node attributes in this case). This can be used to generate
+file paths, and similar strings based on node attributes, as well as
+to format the cell values for exported table, figures, etc.</p>
+<p>The template library is also available for <code>Rust</code>, <code>C</code> and <code>C++</code>, but
+all the interactions with the templates will be done through the
+<code>nadi</code> interface, so that is not required.</p>
+<p>Documentations on the template system, can be redirected to
+<a href="https://docs.rs/string-template-plus/latest/string_template_plus/">the <code>string_template_plus</code> library page</a>.</p>
+<p>Brief explanation on the template system is given below.</p>
+<h2 id="template-parts"><a class="header" href="#template-parts">Template Parts</a></h2>
+<p>Templates have variables, time formats, expressions, and commands (disabled by default);</p>
+<pre><code class="language-stp run name=John; address=123 Road  USA">Hi, my name is {name}, my address is {address?"N/A"}.
+Current time is {%H} hour  {%M} minutes.
+</code></pre>
+<p>Results (with:  name=John; address=123 Road, USA):</p>
+<pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
+Current time is 17 hour  49 minutes.
+</code></pre>
+<h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
+<p>Variables can be chained in an optional way, so the first one that’s
+found will be used (e.g. <code>{nickname?name}</code> will render nickname if
+it’s present, else name);</p>
+<pre><code class="language-stp run name=John; nickname=J; address=123 Road  USA">Hi, I am {nickname?name}, my address is {address?"N/A"}.
+</code></pre>
+<p>Results (with:  name=John; nickname=J; address=123 Road, USA):</p>
+<pre><code class="language-output">Hi, I am J, my address is 123 Road, USA.
+</code></pre>
+<h2 id="string-literal"><a class="header" href="#string-literal">String Literal</a></h2>
+<p>Variables when replaced with literal strings (quoted strings), they
+will be used directly <code>{address?"N/A"}</code> will render <code>N/A</code> is
+<code>address</code> is not present;</p>
+<pre><code class="language-stp run name=John">Hi, I am {nickname?name}, my address is {address?"N/A"}.
+</code></pre>
+<p>Results (with:  name=John):</p>
+<pre><code class="language-output">Hi, I am John, my address is N/A.
+</code></pre>
+<h2 id="transformers"><a class="header" href="#transformers">Transformers</a></h2>
+<p>Variables can have optional transformers which transform the string
+based on their rules, (e.g. float transformer will truncate the
+float, upcase will make the string UPPERCASE, etc.);</p>
+<pre><code class="language-stp run name=Joe">Hi, I am {nickname?name:case(up)}, my address is {address?"N/A"}.
+</code></pre>
+<p>Results (with:  name=Joe):</p>
+<pre><code class="language-output">Hi, I am JOE, my address is N/A.
+</code></pre>
+<h2 id="time-formats"><a class="header" href="#time-formats">Time formats</a></h2>
+<p>time formats are formatted current time (e.g. <code>{%Y}</code> will become
+<code>2024</code> as of now);</p>
+<pre><code class="language-stp run name=John">Today is {%B %d} of the year {%Y}.
+</code></pre>
+<p>Results (with:  name=John):</p>
+<pre><code class="language-output">Today is November 12 of the year 2024.
+</code></pre>
+<h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
+<p>expressions are lisp expressions that will be evaluated and the
+results will be used. The lisp expression can also access any
+variables and do any supported programming. (e.g. <code>(+ 1 1)</code> in lisp
+will become <code>2</code>);</p>
+<pre><code class="language-stp run age=20">guess my age(x) if: (x + 21) * 4 = =(* (+ (st+num 'age) 21) 4).
+</code></pre>
+<p>Results (with:  age=20):</p>
+<pre><code class="language-output">guess my age(x) if: (x + 21) * 4 = 164.
+</code></pre>
+<h2 id="nadi-specific-options"><a class="header" href="#nadi-specific-options">NADI Specific options</a></h2>
+<p>Besides the above points, specific to nadi system, any node template
+will have all the variables from node attributes available as strings
+for template. For string variables, their name can be used to access
+quoted string format, while their name with underscore prefix will be
+unquoted raw string. (e.g. if we have attribute <code>name="smithland"</code>,
+then <code>{name}</code> will render to <code>"smithland"</code>, while <code>{_name}</code> will
+render to <code>smithland</code>).</p>
+<p>Nadi system uses templates in a variety of place, and plugin functions
+also sometimes take templates for file path, or strings, and such
+things. Look at the help string of the function to see if it takes
+<code>String</code> or <code>Template</code> type.</p>
+<p>For example <code>render</code> is a function that takes a template and prints it
+after rendering it for each node.</p>
+<pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
+</span><span class="boring">node[ohio] set_attrs(river="the Ohio River", streamflow=45334.12424343)
+</span>node[ohio,red] render(
+	"(=(+ 1 (st+num 'INDEX))th node) {_NAME:case(title)}
+	River Flow = {streamflow:calc(/10000):f(3)?\"NA\"} x 10^4"
+)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">(6th node) Ohio
+	River Flow = 4.533 x 10^4
+(5th node) Red
+	River Flow = NA x 10^4
+</code></pre>
+<p>As seen in above example, you can render variables, transform them, use basic calculations.</p>
+<p>Or you can use <code>lisp</code> syntax to do more complex calculations. Refer to
+<a href="../system/extensions.html">Nadi Extension Capabilities</a> section for more
+info on how to use <code>lisp</code> on string template.</p>
+<pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
+</span><span class="boring">node[ohio] set_attrs(river="the Ohio River", streamflow=45334.12424343)
+</span>node[ohio] render(
+	"{_river:case(title)} Streamflow
+	from lisp = {=(/ (st+num 'streamflow) 1000):f(2)} x 10^3 cfs"
+)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">The Ohio River Streamflow
+	from lisp = 45.33 x 10^3 cfs
+</code></pre>
+<h2 id="some-complex-examples"><a class="header" href="#some-complex-examples">Some Complex Examples</a></h2>
+<p>Optional variables and a command; note that commands can have variables inside them:</p>
+<pre><code class="language-stp run might=may">hi there, this {is?a?"test"} for $(echo a simple case {that?} {might} be "possible")
+</code></pre>
+<p>Results (with:  might=may):</p>
+<pre><code class="language-output">hi there, this test for $(echo a simple case  may be possible)
+</code></pre>
+<p>Optional variables with transformers inside command.</p>
+<pre><code class="language-stp run work=Fantastic Job">Hi {like?a?"test"} for $(this does {work:case(up)} now) (yay)
+</code></pre>
+<p>Results (with:  work=Fantastic Job):</p>
+<pre><code class="language-output">Hi test for $(this does FANTASTIC JOB now) (yay)
+</code></pre>
+<p>If you need to use <code>{</code> and <code>}</code> in a template, you can escape them. Following template shows how LaTeX commands can be generated from templates.</p>
+<pre><code class="language-stp run command=Error;variable=Var">more {formatting?} options on {%F} and
+\\latex\{command\}\{with {variable}\}, should work.
+</code></pre>
+<p>Results (with:  command=Error;variable=Var):</p>
+<pre><code class="language-output">more  options on 2024-11-12 and
+\latex{command}{with Var}, should work.
+</code></pre>
+<p>This just combined a lot of different things from above:</p>
+<pre><code class="language-stp run">let's try {every:f(2)?and?"everything"}
+for $(a complex case {that?%F?} {might?be?not?found} be "possible")
+
+see $(some-command --flag "and the value" {problem})
+=(+ 1 2 (st+num 'hithere) (st+num "otherhi"))
+{otherhi?=(1+ pi):f(4)}
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-output">None of the variables ["might", "be", "not", "found"] found
+</code></pre>
+<p>This shows the error for the first template part that errors out, even
+if <code>{problem}</code> will also error later, so while solving for problems in
+string templates, you might have to give it multiple tries.</p>
+<h2 id="advanced-string-template-with-lisp"><a class="header" href="#advanced-string-template-with-lisp">Advanced String Template with LISP</a></h2>
+<p>Nadi Template string is useful when you want to represent node
+specific string, or file path in a network. This is not as advanced as
+the formatted strings in python. But it can be used for complex
+situations based on the current functionality.</p>
+<p>The most important extension capability of the string template is the
+embedded lisp system.</p>
+<p>As we know, templates can render variables, and have some capacity of transforming them:</p>
+<pre><code class="language-stp run name=Ohio; streamflow=12000">{name:case(title):repl(-, )} River Streamflow = {streamflow} cfs
+</code></pre>
+<p>Results (with:  name=Ohio; streamflow=12000):</p>
+<pre><code class="language-output">Ohio River Streamflow = 12000 cfs
+</code></pre>
+<p>But for numerical operation, the transformers capabilities are limited as they are made for strings.</p>
+<p>With lisp, we can add more logic to our templates.</p>
+<pre><code class="language-stp run name=Ohio; streamflow=12000">{name:case(title):repl(-, )} River Streamflow is =(
+	if (&gt; (st+num 'streamflow) 10000)
+	'Higher 'Lower
+) than the threshold of 10^5 cfs.
+</code></pre>
+<p>Results (with:  name=Ohio; streamflow=12000):</p>
+<pre><code class="language-output">Ohio River Streamflow is Higher than the threshold of 10^5 cfs.
+</code></pre>
+<p>The available lisp functions are also limited, but the syntax itself
+gives us better airthmetic and logical calculations.</p>
+<h1 id="note"><a class="header" href="#note">Note</a></h1>
+<p>As the template string can get complicated, and the parsing is done
+through <code>Regex</code>, it is not perfect. If you come across any parsing
+problems, please raise an issue at <a href="https://github.com/Atreyagaurav/string-template-plus">string template
+plus</a> github
+repo.</p>
+<h1 id="commands"><a class="header" href="#commands">Commands</a></h1>
+<p>Note that running commands within the templates is disabled for
+now.</p>
+<pre><code class="language-stp run">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
+</code></pre>
+<p>Results (with: ):</p>
+<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2024-11-12
+</code></pre>
+<p>But if you are writing a command template to run in bash, then
+it’ll be executed as the syntax is similar.</p>
+<pre><code class="language-task run">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2024-11-12
+</code></pre>
+<p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../devref/timeseries.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../devref/tables.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../devref/timeseries.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../devref/tables.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/syntax-highlight.js"></script>
+
+
+    </div>
+    </body>
+</html>

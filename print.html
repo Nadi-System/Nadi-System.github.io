@@ -1,0 +1,2223 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Network Analysis and Data Integration (NADI)</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Network Analysis and Data Integration (NADI)</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
+<div class="warning">
+NADI is currently under active development. As such does not have stable API
+yet, and many of the concepts explained in this book might not work
+yet.
+<p>If you still want to use it for your projects, please do them with the
+knowledge that the API might change in next versions, and you might
+have to keep it updated until the system is stable. If you have any
+problems with the program, or would like some new features, please
+make an github issue, we will try to accomodate it if it fits within
+the scope of the program.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="who-this-book-is-for"><a class="header" href="#who-this-book-is-for">Who this book is for</a></h1>
+<p>This book has sections explaining the concepts of the NADI system, its developmental notes, user guide and developer guide.</p>
+<p>Hence it can be useful for people who:</p>
+<ul>
+<li>Want to understand the concepts used in NADI,</li>
+<li>Want to use NADI system for their use case,</li>
+<li>Want to develop plugin system for NADI,</li>
+<li>Want to contribute to the NADI system packages, etc.</li>
+</ul>
+<p>Although not intended, it might include resources and links to other materials related to Rust concepts, Geographical Information System (GIS) concepts, Hydrology concepts, etc. that people could potentially benefit from.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-use-this-book"><a class="header" href="#how-to-use-this-book">How to use this book</a></h1>
+<p>You can read this book sequentially to understand the concepts used in the NADI system. And then go through the references sections for a specific use cases you want to get into the details of.</p>
+<p>If you are in a hurry, but this is your first time reading this book,
+at least read the <a href="./intro.html">Core Concepts</a>, then refer to the
+section you are interested in.</p>
+<h2 id="code-blocks"><a class="header" href="#code-blocks">Code Blocks</a></h2>
+<p>The code blocks will have example codes for various languages, most common will be <code>string template</code>, <code>task</code>, and <code>rust</code> codes.</p>
+<p>String template and task have custom syntax highlights that is
+intended to make it easier for the reader to understand different
+semantic blocks.</p>
+<p>For <code>task</code> scripts/functions, if relevant to the topic, they might
+have <code>Results</code> block following immediately showing the results of the
+execution.</p>
+<p>For example:</p>
+<pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
+</span>node[ohio] render("{_NAME:case(title)} River")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">Ohio River
+</code></pre>
+<p>Task and Rust code block might also include lines that are needed to
+get the results, but hidden due to being irrelevant to the
+discussion. In those cases you can use the eye icon on the top right
+side of the code blocks to make them visible. Similarly use the copy
+icon to copy the visible code into clipboard.</p>
+<h2 id="string-template-syntax-highlight"><a class="header" href="#string-template-syntax-highlight">String Template Syntax Highlight</a></h2>
+<p>The syntax highlight here in this book makes it so that any unknown
+transformers will be marked for easy detection to mistakes.</p>
+<pre><code class="language-stp">This shows var = {var:unknown()}, {_var:case(title)}
+</code></pre>
+<p>Besides this, the syntax highlight can help you detect the variables
+part (within <code>{}</code>), lisp expression (within <code>=()</code>), or commands
+(within <code>$()</code>) in the template.</p>
+<p>Note: commands are disabled, so they won’t run during template
+rendering process. But if you are rendering a template to run as a
+command, then they will be executed during that process.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-analysis-and-data-integration-nadi"><a class="header" href="#network-analysis-and-data-integration-nadi">Network Analysis and Data Integration (NADI)</a></h1>
+<p>NADI is group of software packages that facilitate network analysis and do data analysis on data related to network/nodes.</p>
+<h1 id="trivia"><a class="header" href="#trivia">Trivia</a></h1>
+<ul>
+<li>Nadi means River in Nepali (and probably in many south asian languages).</li>
+<li>First prototype of NADI was Not Available Data Integration, as it
+was meant to be an algorithm to fill data gaps using network
+information, but it was modified to be more generic for many network
+related analysis.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<p>Nadi System is a suite of software packages each have different installation methods.</p>
+<h2 id="nadi-cli"><a class="header" href="#nadi-cli">NADI CLI</a></h2>
+<h3 id="through-rust-any-os"><a class="header" href="#through-rust-any-os">Through Rust (Any OS)</a></h3>
+<p>Assuming you have <code>rust</code> and <code>cargo</code> setup in your system.</p>
+<pre><code class="language-bash">cargo install nadi-cli
+</code></pre>
+<h3 id="linux"><a class="header" href="#linux">Linux</a></h3>
+<h3 id="osx-mac"><a class="header" href="#osx-mac">OSX (Mac)</a></h3>
+<h3 id="windows"><a class="header" href="#windows">Windows</a></h3>
+<h2 id="nadi-gui"><a class="header" href="#nadi-gui">NADI GUI</a></h2>
+<h3 id="through-rust-any-os-1"><a class="header" href="#through-rust-any-os-1">Through Rust (Any OS)</a></h3>
+<p>Assuming you have <code>rust</code> and <code>cargo</code> setup in your system.</p>
+<pre><code class="language-bash">cargo install nadi-gui
+</code></pre>
+<h3 id="linux-1"><a class="header" href="#linux-1">Linux</a></h3>
+<h3 id="osx-mac-1"><a class="header" href="#osx-mac-1">OSX (Mac)</a></h3>
+<h3 id="windows-1"><a class="header" href="#windows-1">Windows</a></h3>
+<h2 id="nadi-python-library"><a class="header" href="#nadi-python-library">NADI Python Library</a></h2>
+<p>Assuming you have <code>python</code> and <code>pip</code> setup in your system.</p>
+<pre><code class="language-bash">pip install nadi-py # (TODO) publish to pip
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="core-concepts"><a class="header" href="#core-concepts">Core Concepts</a></h1>
+<p>This section contains a brief explanation of core concepts. Refer to
+the Reference section for the full details on each.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node"><a class="header" href="#node">Node</a></h1>
+<p>A Node is a point in network. A Node can have multiple input nodes and
+only one output node. And a Node can also have multiple attributes
+identifiable with their unique name, along with timeseries values also
+identifiable with their names.</p>
+<p>If you understand graph theory, then node in nadi network is the same
+as a node in a graph.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network"><a class="header" href="#network">Network</a></h1>
+<p>A Network is a collection of nodes. The network can also have
+attributes associated with it. The connection information is stored
+within the nodes itself. But Network will have nodes ordered based on
+their connection information. So that when you loop from node from
+first to last, you will always find output node before its input
+nodes.</p>
+<p>A condition a nadi network is that it can only be a directed graph
+with tree structure.</p>
+<p>Example Network file:</p>
+<pre><code class="language-net"># network consists of edges where input node goes to output node
+# each line is of the format: input -&gt; output
+tenessee -&gt; ohio
+# if your node name has characters outside of a-zA-Z_, you need to
+# quote them as strings
+ohio -&gt; "lower-mississippi"
+"upper-mississippi" -&gt; "lower-mississippi"
+missouri -&gt; "lower-mississippi"
+arkansas -&gt; "lower-mississippi"
+red -&gt; "lower-mississippi"
+</code></pre>
+<p>The given network can be visualized as follows:</p>
+<pre><code class="language-task run image"><span class="boring">network load_file("./data/mississippi.net")
+</span>network export_svg(
+   "./output/mississippi.svg",
+	label="[{INDEX}] {_NAME:repl(-, ):case(title)}"
+)
+<span class="boring">network clip()
+</span><span class="boring"># the link path needs to be relative to this file
+</span><span class="boring">network echo("../output/mississippi.svg")
+</span></code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="intro/../output/mississippi.svg" alt="" /></p>
+</center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="attributes"><a class="header" href="#attributes">Attributes</a></h1>
+<p>Attributes are TOML like values. They can be one of the following types:</p>
+<div class="table-wrapper"><table><thead><tr><th>Type Name</th><th>Rust Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>Bool</td><td><code>bool</code></td><td>Boolean values (<code>true</code> or <code>false</code>)</td></tr>
+<tr><td>String</td><td><code>RString</code></td><td>Quoted String Values</td></tr>
+<tr><td>Integer</td><td><code>i64</code></td><td>Integer values (numbers)</td></tr>
+<tr><td>Float</td><td><code>f64</code></td><td>Float values (numbers with decimals)</td></tr>
+<tr><td>Date</td><td><code>Date</code></td><td>Date (<code>yyyy-mm-dd</code> formatted)</td></tr>
+<tr><td>Time</td><td><code>Time</code></td><td>Time (<code>HH:MM</code>, <code>HH:MM:SS</code> formatted)</td></tr>
+<tr><td>DateTime</td><td><code>DateTime</code></td><td>Date and Time separed by <code> </code> or <code>T</code></td></tr>
+<tr><td>Array</td><td><code>RVec&lt;Attribute&gt;</code></td><td>List of any attribute values</td></tr>
+<tr><td>Table</td><td><code>AttrMap</code></td><td>Key Value pairs of any attribute values</td></tr>
+</tbody></table>
+</div>
+<p>Example Attribute File:</p>
+<pre><code class="language-toml">river = "Ohio River"
+outlet = "Smithland Lock and Dam"
+outlet_is_gage = true
+outlet_site_no = ""
+streamflow_start = 1930-06-07
+mean_streamflow = 123456.0
+obs_7q10 = 19405.3
+nat_7q10 = 12335.9
+num_dams_gages = 2348
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="string-template"><a class="header" href="#string-template">String Template</a></h1>
+<p>String templates are strings with dynamic components that can be
+rendered for each node based on the node attributes.</p>
+<p>A simple template can be like below:</p>
+<pre><code class="language-stp run name=John; address=123 Road  USA">Hi, my name is {name}, my address is {address?"N/A"}.
+I wrote this document on {%A}, exact date: {%Y-%m-%d}.
+</code></pre>
+<p>Results (with:  name=John; address=123 Road, USA):</p>
+<pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
+I wrote this document on Tuesday, exact date: 2024-11-12.
+</code></pre>
+<p>With more complicated templates, we would be able to generate
+documents with text and images based on the node attributes as well.</p>
+<p>For example the following template can be used to generate a table.</p>
+<pre><code class="language-markdown">| Name             | Index   |
+|------------------|---------|
+&lt;!-- ---8&lt;--- --&gt;
+| {_NAME:case(up)} | {INDEX} |
+&lt;!-- ---8&lt;--- --&gt;
+</code></pre>
+<pre><code class="language-task run markdown"><span class="boring">network load_file("./data/mississippi.net")
+</span>network render("./data/example.template")
+</code></pre>
+<p>Results:</p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Index</th></tr></thead><tbody>
+<tr><td>LOWER-MISSISSIPPI</td><td>0</td></tr>
+<tr><td>UPPER-MISSISSIPPI</td><td>1</td></tr>
+<tr><td>MISSOURI</td><td>2</td></tr>
+<tr><td>ARKANSAS</td><td>3</td></tr>
+<tr><td>RED</td><td>4</td></tr>
+<tr><td>OHIO</td><td>5</td></tr>
+<tr><td>TENESSEE</td><td>6</td></tr>
+</tbody></table>
+</div>
+<p>Of course, there are better ways to generate table than this, but this
+shows how flexible the template system is.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-function"><a class="header" href="#node-function">Node Function</a></h1>
+<p>Node function runs on each node. It takes arguments and keyword arguments.</p>
+<p>For example following node function takes multiple attribute names and prints them. The signature of the node function is <code>print_attrs(*args)</code>.</p>
+<pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
+</span>node print_attrs("NAME", "INDEX")
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-output">** Running 2 Script **
+Error: Argument 2 (name [bool]): Incorrect Type: got String instead of bool
+</code></pre>
+<p>Only the <code>NAME</code> is printed as they do not have any other attributes.</p>
+<h2 id="selective-execution"><a class="header" href="#selective-execution">Selective Execution</a></h2>
+<p>You can selectively run only a few nodes, or change the order the
+nodes are executed.</p>
+<p>Given this network:</p>
+<center>
+<p><img src="intro/../data/mississippi.svg" alt="Network Diagram" /></p>
+</center>
+<h3 id="inverse-order"><a class="header" href="#inverse-order">Inverse Order</a></h3>
+<pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
+</span>node.inverse print_attrs("NAME")
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-output">** Running 2 Script **
+Error: Argument 2 (name [bool]) is required
+</code></pre>
+<h2 id="list-of-nodes"><a class="header" href="#list-of-nodes">List of Nodes</a></h2>
+<pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
+</span>node[tenessee,"lower-mississippi"] print_attrs("NAME")
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-output">** Running 2 Script **
+Error: Argument 2 (name [bool]) is required
+</code></pre>
+<h2 id="path-of-nodes"><a class="header" href="#path-of-nodes">Path of Nodes</a></h2>
+<pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
+</span>node[tenessee -&gt; "lower-mississippi"] print_attrs("NAME")
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-output">** Running 2 Script **
+Error: Argument 2 (name [bool]) is required
+</code></pre>
+<p>As we can see in the diagram, the path from tenessee to lower
+mississippi includes the ohio node.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-function"><a class="header" href="#network-function">Network Function</a></h1>
+<p>Network function runs on the network as a whole. It takes arguments and keyword arguments.</p>
+<p>For example following network function takes file path as input to save the network in graphviz format:</p>
+<pre><code class="language-sig">save_graphviz(
+	outfile [PathBuf],
+	name [String] = "network",
+	global_attrs [String] = "",
+	node_attr [Option &lt; Template &gt;],
+	edge_attr [Option &lt; Template &gt;]
+)
+</code></pre>
+<p>Note that, if the arguments have default values, or are optional, then you do not need to provide them.</p>
+<p>For example, you can simply call the above function like this.</p>
+<pre><code class="language-task run file"><span class="boring">network load_file("./data/mississippi.net")
+</span>network save_graphviz("./output/test.gv")
+<span class="boring">network clip()
+</span><span class="boring"># the path link are relative to /src
+</span><span class="boring">network echo("./output/test.gv")
+</span></code></pre>
+<p>Results:</p>
+<pre><code class="language-output">digraph network {
+
+"upper-mississippi" -&gt; "lower-mississippi"
+"missouri" -&gt; "lower-mississippi"
+"arkansas" -&gt; "lower-mississippi"
+"red" -&gt; "lower-mississippi"
+"ohio" -&gt; "lower-mississippi"
+"tenessee" -&gt; "ohio"
+}
+</code></pre>
+<p>With extra commands you can also convert it into an image</p>
+<pre><code class="language-task run image"><span class="boring">network load_file("./data/mississippi.net")
+</span><span class="boring">network save_graphviz("./output/test.gv")
+</span>network command("dot -Tsvg ./output/test.gv -o ./output/test.svg")
+<span class="boring">network clip()
+</span><span class="boring"># the link path needs to be relative to this file
+</span><span class="boring">network echo("../output/test.svg")
+</span></code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="intro/../output/test.svg" alt="" /></p>
+</center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="task"><a class="header" href="#task">Task</a></h1>
+<p>Tasks system acts like a pseudo scripting language for nadi system. A
+Task is a function call that can either be a node function or a
+network function. Functions are unique based on their names, and can
+have.</p>
+<p>The code examples throughout this book, that are being used to
+generate network diagrams, tables, etc are run using the task system.</p>
+<p>Here is an example contents of a task file:</p>
+<pre><code class="language-task"># sample .tasks file which is like a script with functions
+node print_attrs("uniqueID")
+node show_node()
+network save_graphviz("/tmp/test.gv")
+
+node[WV04113,WV04112,WV04112] print_attr_toml("testattr2")
+node render("{NAME} {uniqueID} {_Dam_Height_(Ft)?}")
+node list_attr("; ")
+# some functions can take variable number of inputs
+network calc_attr_errors(
+    "Dam_Height_(Ft)",
+    "Hydraulic_Height_(Ft)",
+    "rmse", "nse", "abserr"
+)
+node sum_safe("Latitude")
+node.inputsfirst render("Hi {SUM_ATTR}")
+# multiple line for function arguments
+network save_table(
+	"test.table",
+	"/tmp/test.tex",
+	true,
+	radius=0.2,
+	start = 2012-19-20,
+	end = 2012-19-23 12:04
+	)
+node set_attrs(testattr = 2)
+node set_attrs_render(testattr2 = "{testattr:calc(+2)}")
+node[WV04112] render("{testattr} {testattr2}")
+
+# here we use a complicated template that can do basic logic handling
+node set_attrs_render(
+    testattr2 = "=(if (and (st+has 'Latitude) (&gt; (st+num 'Latitude) 39)) 'true 'false)"
+)
+# same thing can be done if you need more flexibility in variable names
+node load_toml_string(
+    "testattr2 = =(if (and (st+has 'Latitude) (&gt; (st+num 'Latitude) 39)) 'true 'false)"
+)
+# selecting a list of nodes to run a function
+node[
+	# comment here?
+    WV04113,
+    WV04112
+] print_attr_toml("testattr2")
+# selecting a path
+node[WV04112 -&gt; WV04113] render("=(&gt; 2 3)")
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h1>
+<p>If you need help on any functions. Use the <code>help</code> as a <code>task</code>. You can use <code>help.node</code> or <code>help.network</code> for specific help.</p>
+<pre><code class="language-task run">help.node render()
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">== Node Function: render
+Render the template based on the node attributes
+
+For more details on the template system. Refer to the String
+Template section of the NADI book.
+
+# Arguments
+- `template` - String template to render
+- `safe` - if render fails keep it as it is instead of exiting
+</code></pre>
+<p>Or you can use <code>nadi --fnhelp &lt;function&gt;</code> using the <code>nadi-cli</code>.</p>
+<p>Now that you have the overview of the nadi system’s data
+structures. We’ll jump into the software structure and how to setup
+and use the system.</p>
+<p>If you want more details on any of the data structures refer the
+Developer’s references, or the library documentation.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-extension-capabilities"><a class="header" href="#nadi-extension-capabilities">Nadi Extension Capabilities</a></h1>
+<p>Nadi System can be extended for custom use cases with the following ways:</p>
+<ul>
+<li><a href="system/../devref/string-templates.html#advanced-string-template-with-lisp">LISP on String Template</a></li>
+<li>Task System</li>
+<li>Rust Library</li>
+<li>Python Library</li>
+<li>Plugin System</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="all-plugin-functions"><a class="header" href="#all-plugin-functions">All Plugin Functions</a></h1>
+<p>All the functions available on this instance of nadi, are listed here.</p>
+<h2 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Plugin</th><th style="text-align: left">Function</th><th style="text-align: left">Help</th></tr></thead><tbody>
+<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#network.command"><code>command</code></a></td><td style="text-align: left">Run the given template as a shell command.</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.load_attrs"><code>load_attrs</code></a></td><td style="text-align: left">Loads attrs from file for all nodes based on the given template</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.print_all_attrs"><code>print_all_attrs</code></a></td><td style="text-align: left">Print all attrs in a node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/render.html"><code>render</code></a></td><td style="text-align: left"><a href="plugins/render.html#network.render"><code>render</code></a></td><td style="text-align: left">Render the template based on the node attributes</td></tr>
+<tr><td style="text-align: left"><a href="plugins/errors.html"><code>errors</code></a></td><td style="text-align: left"><a href="plugins/errors.html#network.calc_ts_errors"><code>calc_ts_errors</code></a></td><td style="text-align: left">Calculate Error from two timeseries values in the node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/streamflow.html"><code>streamflow</code></a></td><td style="text-align: left"><a href="plugins/streamflow.html#network.check_negative"><code>check_negative</code></a></td><td style="text-align: left">Check the given streamflow timeseries for negative values</td></tr>
+<tr><td style="text-align: left"><a href="plugins/print_node.html"><code>print_node</code></a></td><td style="text-align: left"><a href="plugins/print_node.html#network.print_node"><code>print_node</code></a></td><td style="text-align: left">Print the node with its inputs and outputs</td></tr>
+<tr><td style="text-align: left"><a href="plugins/dams.html"><code>dams</code></a></td><td style="text-align: left"><a href="plugins/dams.html#network.min_year"><code>min_year</code></a></td><td style="text-align: left">Propagage the minimum year downstream</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.set_attrs"><code>set_attrs</code></a></td><td style="text-align: left">Set node attributes</td></tr>
+<tr><td style="text-align: left"><a href="plugins/timeseries.html"><code>timeseries</code></a></td><td style="text-align: left"><a href="plugins/timeseries.html#network.show_ts"><code>show_ts</code></a></td><td style="text-align: left">Print the given timeseries values in csv format</td></tr>
+<tr><td style="text-align: left"><a href="plugins/errors.html"><code>errors</code></a></td><td style="text-align: left"><a href="plugins/errors.html#network.calc_ts_error"><code>calc_ts_error</code></a></td><td style="text-align: left">Calculate Error from two timeseries values in the node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/timeseries.html"><code>timeseries</code></a></td><td style="text-align: left"><a href="plugins/timeseries.html#network.list_ts"><code>list_ts</code></a></td><td style="text-align: left">Print the list of available timeseries for the node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/dams.html"><code>dams</code></a></td><td style="text-align: left"><a href="plugins/dams.html#network.count_dams"><code>count_dams</code></a></td><td style="text-align: left">Count the number of dams upstream at each point</td></tr>
+<tr><td style="text-align: left"><a href="plugins/dams.html"><code>dams</code></a></td><td style="text-align: left"><a href="plugins/dams.html#network.count_gages"><code>count_gages</code></a></td><td style="text-align: left">Count the number of gages upstream at each point</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.print_attrs"><code>print_attrs</code></a></td><td style="text-align: left">Print the given node attributes if present</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.set_attrs_render"><code>set_attrs_render</code></a></td><td style="text-align: left">Set node attributes based on string templates</td></tr>
+</tbody></table>
+</div>
+<h2 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Plugin</th><th style="text-align: left">Function</th><th style="text-align: left">Help</th></tr></thead><tbody>
+<tr><td style="text-align: left"><a href="plugins/nadi_gis.html"><code>nadi_gis</code></a></td><td style="text-align: left"><a href="plugins/nadi_gis.html#node.gis_load_attrs"><code>gis_load_attrs</code></a></td><td style="text-align: left">Load node attributes from a GIS file</td></tr>
+<tr><td style="text-align: left"><a href="plugins/nadi_gis.html"><code>nadi_gis</code></a></td><td style="text-align: left"><a href="plugins/nadi_gis.html#node.gis_save_connections"><code>gis_save_connections</code></a></td><td style="text-align: left">Save GIS file of the connections</td></tr>
+<tr><td style="text-align: left"><a href="plugins/connections.html"><code>connections</code></a></td><td style="text-align: left"><a href="plugins/connections.html#node.load_file"><code>load_file</code></a></td><td style="text-align: left">Load the given file into the network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/debug.html"><code>debug</code></a></td><td style="text-align: left"><a href="plugins/debug.html#node.clip"><code>clip</code></a></td><td style="text-align: left">Echo the ––8&lt;–– line for clipping sytax</td></tr>
+<tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.csv_count_na"><code>csv_count_na</code></a></td><td style="text-align: left">Count the number of na values in CSV file for each nodes in a network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/debug.html"><code>debug</code></a></td><td style="text-align: left"><a href="plugins/debug.html#node.echo"><code>echo</code></a></td><td style="text-align: left">Echo the string to stdout or stderr</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#node.set_attrs"><code>set_attrs</code></a></td><td style="text-align: left">Set network attributes</td></tr>
+<tr><td style="text-align: left"><a href="plugins/nadi_gis.html"><code>nadi_gis</code></a></td><td style="text-align: left"><a href="plugins/nadi_gis.html#node.gis_save_nodes"><code>gis_save_nodes</code></a></td><td style="text-align: left">Save GIS file of the nodes</td></tr>
+<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#node.parallel"><code>parallel</code></a></td><td style="text-align: left">Run the given template as a shell command for each nodes in the network in parallel.</td></tr>
+<tr><td style="text-align: left"><a href="plugins/print_node.html"><code>print_node</code></a></td><td style="text-align: left"><a href="plugins/print_node.html#node.print_attr_csv"><code>print_attr_csv</code></a></td><td style="text-align: left">Print the given attributes in csv format with first column with node name</td></tr>
+<tr><td style="text-align: left"><a href="plugins/gnuplot.html"><code>gnuplot</code></a></td><td style="text-align: left"><a href="plugins/gnuplot.html#node.plot_timeseries"><code>plot_timeseries</code></a></td><td style="text-align: left">Generate a gnuplot file that plots the timeseries data in the network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#node.set_attrs_render"><code>set_attrs_render</code></a></td><td style="text-align: left">Set network attributes based on string templates</td></tr>
+<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#node.command"><code>command</code></a></td><td style="text-align: left">Run the given template as a shell command.</td></tr>
+<tr><td style="text-align: left"><a href="plugins/render.html"><code>render</code></a></td><td style="text-align: left"><a href="plugins/render.html#node.render"><code>render</code></a></td><td style="text-align: left">Render a File template for the nodes in the whole network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/graphviz.html"><code>graphviz</code></a></td><td style="text-align: left"><a href="plugins/graphviz.html#node.save_graphviz"><code>save_graphviz</code></a></td><td style="text-align: left">Save the network as a graphviz file</td></tr>
+<tr><td style="text-align: left"><a href="plugins/errors.html"><code>errors</code></a></td><td style="text-align: left"><a href="plugins/errors.html#node.calc_attr_error"><code>calc_attr_error</code></a></td><td style="text-align: left">Calculate Error from two attribute values in the network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/fancy_print.html"><code>fancy_print</code></a></td><td style="text-align: left"><a href="plugins/fancy_print.html#node.fancy_print"><code>fancy_print</code></a></td><td style="text-align: left">Fancy print a network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.csv_load_ts"><code>csv_load_ts</code></a></td><td style="text-align: left">Count the number of na values in CSV file for each nodes in a network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/table.html"><code>table</code></a></td><td style="text-align: left"><a href="plugins/table.html#node.table_to_markdown"><code>table_to_markdown</code></a></td><td style="text-align: left">Render the Table as a rendered markdown</td></tr>
+<tr><td style="text-align: left"><a href="plugins/connections.html"><code>connections</code></a></td><td style="text-align: left"><a href="plugins/connections.html#node.save_file"><code>save_file</code></a></td><td style="text-align: left">Save the network into the given file</td></tr>
+<tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.csv_data_blocks_svg"><code>csv_data_blocks_svg</code></a></td><td style="text-align: left">Draw the data blocks with arrows in timeline</td></tr>
+<tr><td style="text-align: left"><a href="plugins/debug.html"><code>debug</code></a></td><td style="text-align: left"><a href="plugins/debug.html#node.debug"><code>debug</code></a></td><td style="text-align: left">Print the args and kwargs on this function</td></tr>
+<tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.export_svg"><code>export_svg</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
+<tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.table_to_svg"><code>table_to_svg</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="plugin-development"><a class="header" href="#plugin-development">Plugin Development</a></h1>
+<p>As it is not possible to forsee all the use cases in advance, the nadi
+software can be easily extended (easy being an relative term) to
+account for different use cases.</p>
+<p>The program can load compiled shared libraries (<code>.dll</code> in windows,
+<code>.so</code> in linux, and <code>.dylib</code> on mac). Since they are shared libraries
+compiled into binaries, any programming languages can be used to
+generate those. So far, the <code>nadi_core</code> library is available for
+<code>Rust</code> only. Using that, plugins can be written and those functions
+can be made available from the system.</p>
+<p>The syntax for functions in plugins are same for internal and external
+plugins. While the way to register the plugin differ slightly.</p>
+<p>We will go through them very briefly here, and more details on them on their own pages.</p>
+<h2 id="exporting-plugins"><a class="header" href="#exporting-plugins">Exporting Plugins</a></h2>
+<p>To export plugins, use [<code>nadi_core::nadi_plugin::nadi_plugin</code>] macro
+for external plugins while use
+[<code>nadi_core::nadi_plugin::nadi_internal_plugin</code>] for internal ones.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example-usage"><a class="header" href="#example-usage">Example Usage</a></h1>
+<h2 id="ohio-river-streamflow-routing-project"><a class="header" href="#ohio-river-streamflow-routing-project">Ohio River Streamflow Routing Project</a></h2>
+<p>The Network for the flow routing is as follows:</p>
+<pre><code class="language-task run svg"><span class="boring">network load_file("./data/ohio.network")
+</span>network export_svg(label="{_NAME}", outfile = "./output/ohio.svg")
+<span class="boring">network echo("../output/ohio.svg")
+</span></code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="../output/ohio.svg" alt="" /></p>
+</center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="making-tables"><a class="header" href="#making-tables">Making Tables</a></h1>
+<pre><code class="language-table run markdown"><span class="boring">network load_file("./data/ohio.network")
+</span><span class="boring">node load_attrs("./data/attrs/{_NAME}.toml")
+</span><span class="boring">network clip()
+</span><span class="boring"># ^Ind =&gt; =(+ (st+num 'INDEX) 1)
+</span>&lt;Node ID =&gt; {_NAME}
+&lt;Title =&gt; {_description:case(title):repl(Ky,KY):repl(In,IN):repl(Wv,WV):repl(Oh,OH)?}
+&gt;Latitude =&gt; {lat:f(4)}
+&gt;Longitude =&gt; {lon:f(4)}
+</code></pre>
+<p>Results:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Node ID</th><th style="text-align: left">Title</th><th style="text-align: right">Latitude</th><th style="text-align: right">Longitude</th></tr></thead><tbody>
+<tr><td style="text-align: left">smithland</td><td style="text-align: left">OHio River at Smithland Dam Smithland KY</td><td style="text-align: right">37.1584</td><td style="text-align: right">-88.4262</td></tr>
+<tr><td style="text-align: left">golconda</td><td style="text-align: left">OHio River at Dam 51 at Golconda, Il</td><td style="text-align: right">37.3578</td><td style="text-align: right">-88.4825</td></tr>
+<tr><td style="text-align: left">old-shawneetown</td><td style="text-align: left">OHio River at Old Shawneetown, Il-KY</td><td style="text-align: right">37.6919</td><td style="text-align: right">-88.1333</td></tr>
+<tr><td style="text-align: left">mountcarmel</td><td style="text-align: left">Wabash River at Mt. Carmel, Il</td><td style="text-align: right">38.3983</td><td style="text-align: right">-87.7564</td></tr>
+<tr><td style="text-align: left">jt-myers</td><td style="text-align: left">OHio River at Uniontown Dam, KY</td><td style="text-align: right">37.7972</td><td style="text-align: right">-87.9983</td></tr>
+<tr><td style="text-align: left">evansville</td><td style="text-align: left">OHio River at Evansville, IN</td><td style="text-align: right">37.9723</td><td style="text-align: right">-87.5764</td></tr>
+<tr><td style="text-align: left">calhoun</td><td style="text-align: left">Green River at Lock 2 at Calhoun, KY</td><td style="text-align: right">37.5339</td><td style="text-align: right">-87.2639</td></tr>
+<tr><td style="text-align: left">newburgh</td><td style="text-align: left">Newburgh</td><td style="text-align: right">37.9309</td><td style="text-align: right">-87.3722</td></tr>
+<tr><td style="text-align: left">cannelton</td><td style="text-align: left">OHio River at Cannelton Dam at Cannelton, IN</td><td style="text-align: right">37.8995</td><td style="text-align: right">-86.7055</td></tr>
+<tr><td style="text-align: left">shepherdsville</td><td style="text-align: left">Salt River at Shepherdsville, KY</td><td style="text-align: right">37.9851</td><td style="text-align: right">-85.7175</td></tr>
+<tr><td style="text-align: left">mcalpine</td><td style="text-align: left">OHio River at Louisville, KY</td><td style="text-align: right">38.2803</td><td style="text-align: right">-85.7991</td></tr>
+<tr><td style="text-align: left">lockport</td><td style="text-align: left">Kentucky River at Lock 2 at Lockport, KY</td><td style="text-align: right">38.4390</td><td style="text-align: right">-84.9633</td></tr>
+<tr><td style="text-align: left">markland</td><td style="text-align: left">OHio River at Markland Dam Near Warsaw, KY</td><td style="text-align: right">38.7748</td><td style="text-align: right">-84.9644</td></tr>
+<tr><td style="text-align: left">milford</td><td style="text-align: left">Little Miami River at Milford OH</td><td style="text-align: right">39.1714</td><td style="text-align: right">-84.2980</td></tr>
+<tr><td style="text-align: left">catawba</td><td style="text-align: left">Licking River at Catawba, KY</td><td style="text-align: right">38.7103</td><td style="text-align: right">-84.3108</td></tr>
+<tr><td style="text-align: left">hamilton</td><td style="text-align: left">Great Miami River at Hamilton OH</td><td style="text-align: right">39.3912</td><td style="text-align: right">-84.5722</td></tr>
+<tr><td style="text-align: left">perintown</td><td style="text-align: left">East Fork Little Miami River at Perintown OH</td><td style="text-align: right">39.1370</td><td style="text-align: right">-84.2380</td></tr>
+<tr><td style="text-align: left">brookville</td><td style="text-align: left">Whitewater River at Brookville, IN</td><td style="text-align: right">39.4075</td><td style="text-align: right">-85.0129</td></tr>
+<tr><td style="text-align: left">meldahl</td><td style="text-align: left">Meldahl</td><td style="text-align: right">38.7972</td><td style="text-align: right">-84.1705</td></tr>
+<tr><td style="text-align: left">higby</td><td style="text-align: left">Scioto River at Higby OH</td><td style="text-align: right">39.2123</td><td style="text-align: right">-82.8638</td></tr>
+<tr><td style="text-align: left">greenup</td><td style="text-align: left">Greenup</td><td style="text-align: right">38.6468</td><td style="text-align: right">-82.8608</td></tr>
+<tr><td style="text-align: left">grayson</td><td style="text-align: left">Little Sandy River at Grayson, KY</td><td style="text-align: right">38.3301</td><td style="text-align: right">-82.9393</td></tr>
+<tr><td style="text-align: left">ashland</td><td style="text-align: left">OHio River at Ashland, KY</td><td style="text-align: right">38.4812</td><td style="text-align: right">-82.6365</td></tr>
+<tr><td style="text-align: left">branchland</td><td style="text-align: left">Guyandotte River at Branchland, WV</td><td style="text-align: right">38.2209</td><td style="text-align: right">-82.2026</td></tr>
+<tr><td style="text-align: left">rc-byrd</td><td style="text-align: left">Rc-Byrd</td><td style="text-align: right">38.6816</td><td style="text-align: right">-82.1883</td></tr>
+<tr><td style="text-align: left">charleston</td><td style="text-align: left">Kanawha River at Charleston, WV</td><td style="text-align: right">38.3715</td><td style="text-align: right">-81.7021</td></tr>
+<tr><td style="text-align: left">racine</td><td style="text-align: left">OHio River at Racine Dam, WV</td><td style="text-align: right">38.9167</td><td style="text-align: right">-81.9121</td></tr>
+<tr><td style="text-align: left">belleville</td><td style="text-align: left">OHio River at Belleville Dam, WV</td><td style="text-align: right">39.1190</td><td style="text-align: right">-81.7424</td></tr>
+<tr><td style="text-align: left">mcconnelsville</td><td style="text-align: left">Muskingum River at McConnelsville OH</td><td style="text-align: right">39.6451</td><td style="text-align: right">-81.8499</td></tr>
+<tr><td style="text-align: left">athens</td><td style="text-align: left">Hocking River at Athens OH</td><td style="text-align: right">39.3290</td><td style="text-align: right">-82.0876</td></tr>
+<tr><td style="text-align: left">elizabeth</td><td style="text-align: left">Little Kanawha River at Palestine, WV</td><td style="text-align: right">39.0590</td><td style="text-align: right">-81.3896</td></tr>
+<tr><td style="text-align: left">willow-island</td><td style="text-align: left">Willow-Island</td><td style="text-align: right">39.3605</td><td style="text-align: right">-81.3204</td></tr>
+<tr><td style="text-align: left">hannibal</td><td style="text-align: left">Hannibal</td><td style="text-align: right">39.6671</td><td style="text-align: right">-80.8653</td></tr>
+<tr><td style="text-align: left">pike-island</td><td style="text-align: left">OHio River at Martins Ferry, OH</td><td style="text-align: right">40.1051</td><td style="text-align: right">-80.7084</td></tr>
+<tr><td style="text-align: left">new-cumberland</td><td style="text-align: left">New-Cumberland</td><td style="text-align: right">40.5277</td><td style="text-align: right">-80.6276</td></tr>
+<tr><td style="text-align: left">montgomery</td><td style="text-align: left">Montgomery</td><td style="text-align: right">40.6486</td><td style="text-align: right">-80.3855</td></tr>
+<tr><td style="text-align: left">beaverfalls</td><td style="text-align: left">Beaver River at Beaver Falls, PA</td><td style="text-align: right">40.7634</td><td style="text-align: right">-80.3151</td></tr>
+<tr><td style="text-align: left">dashields</td><td style="text-align: left">OHio River at Sewickley, PA</td><td style="text-align: right">40.5492</td><td style="text-align: right">-80.2056</td></tr>
+<tr><td style="text-align: left">emsworth</td><td style="text-align: left">Emsworth</td><td style="text-align: right">40.5043</td><td style="text-align: right">-80.0889</td></tr>
+<tr><td style="text-align: left">natrona</td><td style="text-align: left">Allegheny River at Natrona, PA</td><td style="text-align: right">40.6153</td><td style="text-align: right">-79.7184</td></tr>
+<tr><td style="text-align: left">elizabeth2</td><td style="text-align: left">Monongahela River at Elizabeth, PA</td><td style="text-align: right">40.2623</td><td style="text-align: right">-79.9012</td></tr>
+<tr><td style="text-align: left">sutersville</td><td style="text-align: left">Youghiogheny River at Sutersville, PA</td><td style="text-align: right">40.2402</td><td style="text-align: right">-79.8067</td></tr>
+</tbody></table>
+</div>
+<p>Nadi style table with network information:</p>
+<pre><code class="language-table run svg outfile=&quot;./output/ohio-table.svg&quot;"><span class="boring">network load_file("./data/ohio.network")
+</span><span class="boring">node load_attrs("./data/attrs/{_NAME}.toml")
+</span><span class="boring">network clip()
+</span><span class="boring">network echo("../output/ohio-table.svg")
+</span><span class="boring"># ^Ind =&gt; =(+ (st+num 'INDEX) 1)
+</span>&lt;Node ID =&gt; {_NAME}
+&lt;Title =&gt; {_description:case(title):repl(Ky,KY):repl(In,IN):repl(Wv,WV):repl(Oh,OH)?}
+&gt;Latitude =&gt; {lat:f(4)}
+&gt;Longitude =&gt; {lon:f(4)}
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="example/../output/ohio-table.svg" alt="" /></p>
+</center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generating-reports"><a class="header" href="#generating-reports">Generating Reports</a></h1>
+<p>So we write this template:</p>
+<pre><code class="language-stp-md">
+## Ohio River Routing Project
+
+&lt;!-- ---8&lt;---:[smithland] --&gt;
+Our basin Outlet is at {_description:case(title):repl(Ky,KY)} with the total basin area {basin_area:f(1)} acre-ft.
+&lt;!-- ---8&lt;--- --&gt;
+
+The lower part of the Ohio basin are specifically important to us. Those are:
+| ID      | Basin Area   | Length to Outlet |
+|---------|-------------:|-----------------:|
+&lt;!-- ---8&lt;---:[greenup -&gt; smithland] --&gt;
+| {_NAME} | {basin_area:f(1)} | {length:f(2)}  |
+&lt;!-- ---8&lt;--- --&gt;
+
+
+We used 4 locks and dams in the ohio river as representative locks and dams as below:
+
+&lt;!-- ---8&lt;---:["willow-island",racine,markland,smithland] --&gt;
+- {_NAME:repl(-, ):case(title)?}
+
+  ![](../data/{_NAME}.svg)
+&lt;!-- ---8&lt;--- --&gt;
+</code></pre>
+<p>Which makes the table only for the main-stem ohio:</p>
+<pre><code class="language-task run markdown"><span class="boring">network load_file("./data/ohio.network")
+</span><span class="boring">node load_attrs("./data/attrs/{_NAME}.toml")
+</span><span class="boring">network clip()
+</span>network render("./data/ohio-report.template")
+</code></pre>
+<p>Results:</p>
+<h2 id="ohio-river-routing-project"><a class="header" href="#ohio-river-routing-project">Ohio River Routing Project</a></h2>
+<p>Our basin Outlet is at Ohio River at Smithland Dam Smithland KY with the total basin area 371802.2 acre-ft.</p>
+<p>The lower part of the Ohio basin are specifically important to us. Those are:</p>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th style="text-align: right">Basin Area</th><th style="text-align: right">Length to Outlet</th></tr></thead><tbody>
+<tr><td>greenup</td><td style="text-align: right">159430.2</td><td style="text-align: right">2603.80</td></tr>
+<tr><td>meldahl</td><td style="text-align: right">183215.2</td><td style="text-align: right">2450.59</td></tr>
+<tr><td>markland</td><td style="text-align: right">214850.9</td><td style="text-align: right">2293.44</td></tr>
+<tr><td>mcalpine</td><td style="text-align: right">236250.2</td><td style="text-align: right">2172.82</td></tr>
+<tr><td>cannelton</td><td style="text-align: right">249382.5</td><td style="text-align: right">1993.72</td></tr>
+<tr><td>newburgh</td><td style="text-align: right">253065.6</td><td style="text-align: right">1903.58</td></tr>
+<tr><td>evansville</td><td style="text-align: right">275482.9</td><td style="text-align: right">1878.29</td></tr>
+<tr><td>jt-myers</td><td style="text-align: right">277962.5</td><td style="text-align: right">1791.07</td></tr>
+<tr><td>old-shawneetown</td><td style="text-align: right">363656.8</td><td style="text-align: right">1772.27</td></tr>
+<tr><td>golconda</td><td style="text-align: right">370942.3</td><td style="text-align: right">1701.32</td></tr>
+<tr><td>smithland</td><td style="text-align: right">371802.2</td><td style="text-align: right">1675.95</td></tr>
+</tbody></table>
+</div>
+<p>We used 4 locks and dams in the ohio river as representative locks and dams as below:</p>
+<ul>
+<li>
+<p>Willow Island</p>
+<p><img src="example/../data/willow-island.svg" alt="" /></p>
+</li>
+<li>
+<p>Racine</p>
+<p><img src="example/../data/racine.svg" alt="" /></p>
+</li>
+<li>
+<p>Markland</p>
+<p><img src="example/../data/markland.svg" alt="" /></p>
+</li>
+<li>
+<p>Smithland</p>
+<p><img src="example/../data/smithland.svg" alt="" /></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="analysing-timeseries"><a class="header" href="#analysing-timeseries">Analysing Timeseries</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="looking-at-data-gaps"><a class="header" href="#looking-at-data-gaps">Looking at Data Gaps</a></h1>
+<p>Couting the gaps in a csv data with all the nodes is easy. Let’s look
+at the top 5 nodes with data gaps.</p>
+<pre><code class="language-task run markdown"><span class="boring">network load_file("./data/ohio.network")
+</span><span class="boring">network clip()
+</span>network csv_count_na(
+	"./data/ts/observed.csv",
+	sort=true,
+	head = 5
+)
+</code></pre>
+<p>Results:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Node</th><th style="text-align: right">NAs</th></tr></thead><tbody>
+<tr><td style="text-align: left">branchland</td><td style="text-align: right">33</td></tr>
+<tr><td style="text-align: left">grayson</td><td style="text-align: right">3</td></tr>
+<tr><td style="text-align: left">smithland</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">golconda</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">old-shawneetown</td><td style="text-align: right">1</td></tr>
+</tbody></table>
+</div>
+<p>Running it for two timeseries, and comparing them base don network
+information. We can see the downstream part have more missing data on
+natural timeseries.</p>
+<pre><code class="language-task run markdown"><span class="boring">network load_file("./data/ohio.network")
+</span>network csv_count_na("./data/ts/observed.csv", outattr = "observed_missing")
+network csv_count_na("./data/ts/natural.csv", outattr = "natural_missing")
+<span class="boring">network table_to_svg(
+</span><span class="boring">	template="
+</span><span class="boring">&lt;Node=&gt; {_NAME}
+</span><span class="boring">&gt;Observed =&gt; {observed_missing}
+</span><span class="boring">&gt;Natural =&gt; {natural_missing}
+</span><span class="boring">",
+</span><span class="boring">	outfile="./output/natural-gaps.svg"
+</span><span class="boring">)
+</span><span class="boring">network clip()
+</span><span class="boring">network echo("
+</span><span class="boring">&lt;center&gt;
+</span><span class="boring">Number of Missing Days in Timeseries Data
+</span><span class="boring">
+</span><span class="boring"> ![](../output/natural-gaps.svg)
+</span><span class="boring">&lt;center&gt;
+</span><span class="boring">")
+</span></code></pre>
+<p>Results:</p>
+<center>
+Number of Missing Days in Timeseries Data
+<p><img src="example/../output/natural-gaps.svg" alt="" /></p>
+<center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="visualizing-data-gaps"><a class="header" href="#visualizing-data-gaps">Visualizing Data Gaps</a></h1>
+<p>To look at the temporal distribution of the gaps, we can use this function.</p>
+<pre><code class="language-task run svg"><span class="boring">network load_file("./data/ohio.network")
+</span>network csv_count_na("./data/ts/natural.csv", outattr = "nat_na")
+network csv_data_blocks_svg(
+	csvfile="./data/ts/natural.csv",
+	outfile="./output/natural-blocks.svg",
+	label="{_NAME} ({=(/ (st+num 'nat_na) 365.0):f(1)} yr)"
+)
+<span class="boring">network clip()
+</span><span class="boring">network echo("../output/natural-blocks.svg")
+</span></code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="example/../output/natural-blocks.svg" alt="" /></p>
+</center>  
+<pre><code class="language-task run svg"><span class="boring">network load_file("./data/ohio.network")
+</span>network csv_count_na("./data/ts/observed.csv", outattr = "obs_na")
+network csv_data_blocks_svg(
+	csvfile="./data/ts/observed.csv",
+	outfile="./output/observed-blocks.svg",
+	label="{_NAME} ({obs_na})"
+)
+<span class="boring">network clip()
+</span><span class="boring">network echo("../output/observed-blocks.svg")
+</span></code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="example/../output/observed-blocks.svg" alt="" /></p>
+</center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="internal-plugins"><a class="header" href="#internal-plugins">Internal Plugins</a></h1>
+<p>There are some plugins that are provided with the <code>nadi_core</code>
+library. They are part of the library, so users can directly use them.</p>
+<p>For example in the following tasks file, the functions that are
+highlighted are functions available from the core plugins. Other
+functions need to be loaded from plugins.</p>
+<pre><code class="language-task"># sample .tasks file which is like a script with functions
+node print_attrs("uniqueID")
+node show_node()
+network save_graphviz("/tmp/test.gv")
+
+node[WV04113,WV04112,WV04112] print_attr_toml("testattr2")
+node render("{NAME} {uniqueID} {_Dam_Height_(Ft)?}")
+node list_attr("; ")
+# some functions can take variable number of inputs
+network calc_attr_errors(
+    "Dam_Height_(Ft)",
+    "Hydraulic_Height_(Ft)",
+    "rmse", "nse", "abserr"
+)
+node sum_safe("Latitude")
+node.inputsfirst render("Hi {SUM_ATTR}")
+# multiple line for function arguments
+network save_table(
+	"test.table",
+	"/tmp/test.tex",
+	true,
+	radius=0.2,
+	start = 2012-19-20,
+	end = 2012-19-23 12:04
+	)
+node set_attrs(testattr = 2)
+node set_attrs_render(testattr2 = "{testattr:calc(+2)}")
+node[WV04112] render("{testattr} {testattr2}")
+
+# here we use a complicated template that can do basic logic handling
+node set_attrs_render(
+    testattr2 = "=(if (and (st+has 'Latitude) (&gt; (st+num 'Latitude) 39)) 'true 'false)"
+)
+# same thing can be done if you need more flexibility in variable names
+node load_toml_string(
+    "testattr2 = =(if (and (st+has 'Latitude) (&gt; (st+num 'Latitude) 39)) 'true 'false)"
+)
+# selecting a list of nodes to run a function
+node[
+	# comment here?
+    WV04113,
+    WV04112
+] print_attr_toml("testattr2")
+# selecting a path
+node[WV04112 -&gt; WV04113] render("=(&gt; 2 3)")
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-1"><a class="header" href="#node-functions-1">Node Functions</a></h1>
+<h2 id="node.load_attrs"><a class="header" href="#node.load_attrs">load_attrs</a></h2>
+<pre><code class="language-sig">node attrs.load_attrs(filename)
+</code></pre>
+<p>Loads attrs from file for all nodes based on the given template</p>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>filename</code>: Template for the filename to load node attributes from</li>
+</ul>
+<p>The template will be rendered for each node, and that filename from the
+rendered template will be used to load the attributes.</p>
+<h3 id="errors"><a class="header" href="#errors">Errors</a></h3>
+<p>The function will error out in following conditions:</p>
+<ul>
+<li>Template for filename is not given,</li>
+<li>The template couldn’t be rendered,</li>
+<li>There was error loading attributes from the file.</li>
+</ul>
+<h2 id="node.print_all_attrs"><a class="header" href="#node.print_all_attrs">print_all_attrs</a></h2>
+<pre><code class="language-sig">node attrs.print_all_attrs()
+</code></pre>
+<p>Print all attrs in a node</p>
+<p>No arguments and no errors, it’ll just print all the attributes in a node with
+<code>node::attr=val</code> format, where,</p>
+<ul>
+<li>node is node name</li>
+<li>attr is attribute name</li>
+<li>val is attribute value (string representation)</li>
+</ul>
+<h2 id="node.print_attrs"><a class="header" href="#node.print_attrs">print_attrs</a></h2>
+<pre><code class="language-sig">node attrs.print_attrs(*args, name: 'bool')
+</code></pre>
+<p>Print the given node attributes if present</p>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li>attrs,… : list of attributes to print</li>
+<li>name: Bool for whether to show the node name or not</li>
+</ul>
+<h3 id="error"><a class="header" href="#error">Error</a></h3>
+<p>The function will error if</p>
+<ul>
+<li>list of arguments are not <code>String</code></li>
+<li>the <code>name</code> argument is not Boolean</li>
+</ul>
+<p>The attributes will be printed in <code>key=val</code> format.</p>
+<h2 id="node.set_attrs"><a class="header" href="#node.set_attrs">set_attrs</a></h2>
+<pre><code class="language-sig">node attrs.set_attrs(**kwargs)
+</code></pre>
+<p>Set node attributes</p>
+<p>Use this function to set the node attributes of all nodes, or
+a select few nodes using the node selection methods (path or
+list of nodes)</p>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>key=value</code> - Kwargs of attr = value</li>
+</ul>
+<h3 id="error-1"><a class="header" href="#error-1">Error</a></h3>
+<p>The function should not error.</p>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<p>Following will set the attribute <code>a2d</code> to <code>true</code> for all nodes
+from <code>A</code> to <code>D</code></p>
+<pre><code class="language-task">node[A -&gt; D] set_attrs(a2d = true)
+</code></pre>
+<h2 id="node.set_attrs_render"><a class="header" href="#node.set_attrs_render">set_attrs_render</a></h2>
+<pre><code class="language-sig">node attrs.set_attrs_render(**kwargs)
+</code></pre>
+<p>Set node attributes based on string templates</p>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
+<li><code>attr=template</code> - Kwargs of attr = String template to render</li>
+</ul>
+<h1 id="network-functions-1"><a class="header" href="#network-functions-1">Network Functions</a></h1>
+<h2 id="network.set_attrs"><a class="header" href="#network.set_attrs">set_attrs</a></h2>
+<pre><code class="language-sig">network attrs.set_attrs(**kwargs)
+</code></pre>
+<p>Set network attributes</p>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
+<ul>
+<li><code>key=value</code> - Kwargs of attr = value</li>
+</ul>
+<h2 id="network.set_attrs_render"><a class="header" href="#network.set_attrs_render">set_attrs_render</a></h2>
+<pre><code class="language-sig">network attrs.set_attrs_render(**kwargs)
+</code></pre>
+<p>Set network attributes based on string templates</p>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<ul>
+<li><code>attr=template</code> - Kwargs of attr = String template to render</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-2"><a class="header" href="#node-functions-2">Node Functions</a></h1>
+<h2 id="node.command"><a class="header" href="#node.command">command</a></h2>
+<pre><code class="language-sig">node command.command(
+    cmd: '&amp; Template',
+    verbose: 'bool' = true,
+    echo: 'bool' = false
+)
+</code></pre>
+<p>Run the given template as a shell command.</p>
+<p>Run any command in the shell. The standard output of the command
+will be consumed and if there are lines starting with <code>nadi:var:</code>
+and followed by <code>key=val</code> pairs, it’ll be read as new attributes
+to that node.</p>
+<p>For example if a command writes <code>nadi:var:name="Joe"</code> to stdout,
+then the for the current node the command is being run for, <code>name</code>
+attribute will be set to <code>Joe</code>. This way, you can write your
+scripts in any language and pass the values back to the NADI
+system.</p>
+<p>It will also print out the new values or changes from old values,
+if <code>verbose</code> is true.</p>
+<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
+<ul>
+<li><code>cmd</code>: String Command template to run</li>
+<li><code>verbose</code>: bool Show the rendered version of command</li>
+<li><code>echo</code>: bool Echo the stdin from the command</li>
+</ul>
+<h3 id="errors-1"><a class="header" href="#errors-1">Errors</a></h3>
+<p>The function will error if,</p>
+<ul>
+<li>The command template cannot be rendered,</li>
+<li>The command cannot be executed,</li>
+<li>The attributes from command’s stdout cannot be parsed properly</li>
+</ul>
+<h1 id="network-functions-2"><a class="header" href="#network-functions-2">Network Functions</a></h1>
+<h2 id="network.parallel"><a class="header" href="#network.parallel">parallel</a></h2>
+<pre><code class="language-sig">network command.parallel(
+    cmd: '&amp; Template',
+    _workers: 'i64' = 4,
+    verbose: 'bool' = true,
+    echo: 'bool' = false
+)
+</code></pre>
+<p>Run the given template as a shell command for each nodes in the network in parallel.</p>
+<h3 id="warning"><a class="header" href="#warning">Warning</a></h3>
+<p>Currently there is no way to limit the number of parallel
+processes, so please be careful with this command if you have very
+large number of nodes.</p>
+<h3 id="arguments-7"><a class="header" href="#arguments-7">Arguments</a></h3>
+<ul>
+<li><code>cmd</code>: String Command template to run</li>
+<li><code>workers</code>: Integer Number of workers to run in parallel</li>
+<li><code>verbose</code>: bool Show the rendered version of command and variable changes</li>
+<li><code>echo</code>: bool Echo the stdin from the command</li>
+</ul>
+<h2 id="network.command"><a class="header" href="#network.command">command</a></h2>
+<pre><code class="language-sig">network command.command(
+    cmd: 'Template',
+    verbose: 'bool' = true,
+    echo: 'bool' = false
+)
+</code></pre>
+<p>Run the given template as a shell command.</p>
+<p>Run any command in the shell. The standard output of the command
+will be consumed and if there are lines starting with <code>nadi:var:</code>
+and followed by <code>key=val</code> pairs, it’ll be read as new attributes
+to that node.</p>
+<p>See <code>node command.command</code> for more details as they have
+the same implementation</p>
+<h3 id="arguments-8"><a class="header" href="#arguments-8">Arguments</a></h3>
+<ul>
+<li><code>cmd</code>: String Command template to run</li>
+<li><code>verbose</code>: bool Show the rendered version of command</li>
+<li><code>echo</code>: bool Echo the stdin from the command</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-3"><a class="header" href="#network-functions-3">Network Functions</a></h1>
+<h2 id="network.load_file"><a class="header" href="#network.load_file">load_file</a></h2>
+<pre><code class="language-sig">network connections.load_file(file: 'PathBuf')
+</code></pre>
+<p>Load the given file into the network</p>
+<p>This replaces the current network with the one loaded from the
+file.</p>
+<h2 id="network.save_file"><a class="header" href="#network.save_file">save_file</a></h2>
+<pre><code class="language-sig">network connections.save_file(
+    file: 'PathBuf',
+    quote_all: 'bool' = true,
+    graphviz: 'bool' = false
+)
+</code></pre>
+<p>Save the network into the given file</p>
+<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
+<ul>
+<li><code>file</code>: Path to the output file</li>
+<li><code>quote_all</code> [default: true]: quote all node names.
+if false, doesn’t quote valid identifier names</li>
+<li><code>graphviz</code> [default: false]: wrap the network into
+a valid graphviz file. For more control on file
+<code>save_graphviz</code> from <code>graphviz</code> plugin instead.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-4"><a class="header" href="#network-functions-4">Network Functions</a></h1>
+<h2 id="network.debug"><a class="header" href="#network.debug">debug</a></h2>
+<pre><code class="language-sig">network debug.debug(*args, **kwargs)
+</code></pre>
+<p>Print the args and kwargs on this function</p>
+<p>This function will just print out the args and kwargs the
+function is called with. This is for debugging purposes to see
+if the args/kwargs are identified properly. And can also be
+used to see how the nadi system takes the input from the
+function call.</p>
+<h2 id="network.echo"><a class="header" href="#network.echo">echo</a></h2>
+<pre><code class="language-sig">network debug.echo(
+    line: 'String',
+    error: 'bool' = false,
+    newline: 'bool' = true
+)
+</code></pre>
+<p>Echo the string to stdout or stderr</p>
+<p>This simply echoes anything given to it. This can be used in
+combination with nadi tasks that create files (image, text,
+etc). The <code>echo</code> function can be called to get the link to
+those files back to the stdout.</p>
+<p>Also useful for nadi preprocessor.</p>
+<h2 id="network.clip"><a class="header" href="#network.clip">clip</a></h2>
+<pre><code class="language-sig">network debug.clip(error: 'bool' = false)
+</code></pre>
+<p>Echo the ––8&lt;–– line for clipping sytax</p>
+<p>This function is a utility function for the generation of nadi
+book. This prints out the <code>----8&lt;----</code> line when called, so
+that <code>mdbook</code> preprocessor for <code>nadi</code> knows where to clip the
+output for displaying it in the book.</p>
+<p>This makes it easier to only show the relevant parts of the
+output in the documentation instead of having the user see
+output of other unrelated parts which are necessary for
+generating the results.</p>
+<h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
+<p>Given the following tasks file:</p>
+<pre><code class="language-task">net load_file("...")
+net load_attrs("...")
+net clip()
+net render("{_NAME} {attr1}")
+</code></pre>
+<p>The clip function’s output will let the preprocessor know that
+only the parts after that are relevant to the user. Hence,
+it’ll discard outputs before that during documentation
+generation.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-3"><a class="header" href="#node-functions-3">Node Functions</a></h1>
+<h2 id="node.render"><a class="header" href="#node.render">render</a></h2>
+<pre><code class="language-sig">node render.render(template: '&amp; Template', safe: 'bool' = false)
+</code></pre>
+<p>Render the template based on the node attributes</p>
+<p>For more details on the template system. Refer to the String
+Template section of the NADI book.</p>
+<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
+<ul>
+<li><code>template</code> - String template to render</li>
+<li><code>safe</code> - if render fails keep it as it is instead of exiting</li>
+</ul>
+<h1 id="network-functions-5"><a class="header" href="#network-functions-5">Network Functions</a></h1>
+<h2 id="network.render"><a class="header" href="#network.render">render</a></h2>
+<pre><code class="language-sig">network render.render(template: 'PathBuf', outfile: 'Option &lt; PathBuf &gt;')
+</code></pre>
+<p>Render a File template for the nodes in the whole network</p>
+<p>Write the file with templates for input variables in the same
+way you write string templates. It’s useful for markdown
+files, as the curly braces syntax won’t be used for anything
+else that way. Do be careful about that. And the program will
+replace those templates with their values when you run it with
+inputs.</p>
+<p>It’ll repeat the same template for each node and render them.
+If you want only a portion of the file repeated for nodes
+inclose them with lines with <code>---8&lt;---</code> on both start and the
+end. The lines containing the clip syntax will be ignored,
+ideally you can put them in comments.</p>
+<p>You can also use <code>---include:&lt;filename&gt;[::line_range]</code> syntax to
+include a file, the line_range syntax, if present, should be
+in the form of <code>start[:increment]:end</code>, you can exclude start
+or end to denote the line 1 or last line (e.g. <code>:5</code> is 1:5,
+and <code>3:</code> is from line 3 to the end)</p>
+<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
+<ul>
+<li><code>template</code>: Path to the template file</li>
+<li><code>outfile</code> [Optional]: Path to save the template file, if none it’ll be printed in stdout</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-6"><a class="header" href="#network-functions-6">Network Functions</a></h1>
+<h2 id="network.table_to_markdown"><a class="header" href="#network.table_to_markdown">table_to_markdown</a></h2>
+<pre><code class="language-sig">network table.table_to_markdown(
+    table: 'Option &lt; PathBuf &gt;',
+    template: 'Option &lt; String &gt;',
+    outfile: 'Option &lt; PathBuf &gt;',
+    connections: 'Option &lt; String &gt;'
+)
+</code></pre>
+<p>Render the Table as a rendered markdown</p>
+<h3 id="arguments-12"><a class="header" href="#arguments-12">Arguments</a></h3>
+<ul>
+<li><code>table</code>: Path to the table file</li>
+<li><code>template</code>: String template for table</li>
+<li><code>outfile</code>: Path to the output file</li>
+<li><code>connetions</code>: Show connections column or not</li>
+</ul>
+<h3 id="error-2"><a class="header" href="#error-2">Error</a></h3>
+<p>The function will error out if,</p>
+<ul>
+<li>error reading the table file,</li>
+<li>error parsing table template,</li>
+<li>neither one of table file or table template is provided,</li>
+<li>error while rendering markdown
+(caused by error on rendering cell values from templates)</li>
+<li>error while writing to the output file</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-4"><a class="header" href="#node-functions-4">Node Functions</a></h1>
+<h2 id="node.list_ts"><a class="header" href="#node.list_ts">list_ts</a></h2>
+<pre><code class="language-sig">node timeseries.list_ts(label: 'bool' = true)
+</code></pre>
+<p>Print the list of available timeseries for the node</p>
+<h3 id="arguments-13"><a class="header" href="#arguments-13">Arguments</a></h3>
+<ul>
+<li><code>label</code>: Label the line with node name</li>
+</ul>
+<h2 id="node.show_ts"><a class="header" href="#node.show_ts">show_ts</a></h2>
+<pre><code class="language-sig">node timeseries.show_ts(
+    name: '&amp; String',
+    header: 'bool' = true,
+    head: 'Option &lt; i64 &gt;'
+)
+</code></pre>
+<p>Print the given timeseries values in csv format</p>
+<h3 id="arguments-14"><a class="header" href="#arguments-14">Arguments</a></h3>
+<ul>
+<li><code>name</code>: name of the timeseries</li>
+<li><code>header</code>: whether to show header or not</li>
+<li><code>head</code>: number of head rows to show (all by default)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="external-plugins"><a class="header" href="#external-plugins">External Plugins</a></h1>
+<p>This section showcases the functions from external plugins developed
+along side the NADI project due to various reasons.</p>
+<p>The plugins listed here can be installed with following steps:</p>
+<ul>
+<li>clone the repository of external plugins,</li>
+<li>compile it locally with cargo,</li>
+<li>move all generated dynamic libraries to the nadi plugin directory.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-5"><a class="header" href="#node-functions-5">Node Functions</a></h1>
+<h2 id="node.count_dams"><a class="header" href="#node.count_dams">count_dams</a></h2>
+<pre><code class="language-sig">node dams.count_dams(outvar: '&amp; str' = "DAMS_COUNT")
+</code></pre>
+<p>Count the number of dams upstream at each point</p>
+<h2 id="node.count_gages"><a class="header" href="#node.count_gages">count_gages</a></h2>
+<pre><code class="language-sig">node dams.count_gages(outvar: '&amp; str' = "GAGES_COUNT")
+</code></pre>
+<p>Count the number of gages upstream at each point</p>
+<h2 id="node.min_year"><a class="header" href="#node.min_year">min_year</a></h2>
+<pre><code class="language-sig">node dams.min_year(yearattr: '&amp; str', write_var: '&amp; str' = "MIN_YEAR")
+</code></pre>
+<p>Propagage the minimum year downstream</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-6"><a class="header" href="#node-functions-6">Node Functions</a></h1>
+<h2 id="node.calc_ts_error"><a class="header" href="#node.calc_ts_error">calc_ts_error</a></h2>
+<pre><code class="language-sig">node errors.calc_ts_error(
+    ts1: '&amp; str',
+    ts2: '&amp; str',
+    error: '&amp; str' = "rmse",
+    outattr: 'Option &lt; &amp; str &gt;',
+    print: 'bool' = true
+)
+</code></pre>
+<p>Calculate Error from two timeseries values in the node</p>
+<p>It calculates the error between two timeseries values from the node</p>
+<h3 id="arguments-15"><a class="header" href="#arguments-15">Arguments:</a></h3>
+<ul>
+<li>ts1: String      Timeseries value to use as actual value</li>
+<li>ts2: String      Timeseries value to be used to calculate the error</li>
+<li>error: String    Error type: rmse/nrmse/abserr/nse [default: rmse]</li>
+<li>outattr: String  Attribute to save the output on [default: ERROR]</li>
+<li>print: bool      Print the output to stdout [default: false]</li>
+</ul>
+<h2 id="node.calc_ts_errors"><a class="header" href="#node.calc_ts_errors">calc_ts_errors</a></h2>
+<pre><code class="language-sig">node errors.calc_ts_errors(
+    ts1: '&amp; String',
+    ts2: '&amp; String',
+    errors: '&amp; [String]' = ["rmse"],
+    outattr: '&amp; String' = "ERROR",
+    print: 'bool' = false
+)
+</code></pre>
+<p>Calculate Error from two timeseries values in the node</p>
+<p>It calculates the error between two timeseries values from the node.</p>
+<p>Arguments:</p>
+<ul>
+<li>ts1: String      Timeseries value to use as actual value</li>
+<li>ts2: String      Timeseries value to be used to calculate the error</li>
+<li>error: String    Error type: rmse/nrmse/abserr/nse [default: rmse]</li>
+<li>outattr: String  Attribute to save the output on [default: ERROR]</li>
+<li>print: bool      Print the output to stdout [default: false]</li>
+</ul>
+<h1 id="network-functions-7"><a class="header" href="#network-functions-7">Network Functions</a></h1>
+<h2 id="network.calc_attr_error"><a class="header" href="#network.calc_attr_error">calc_attr_error</a></h2>
+<pre><code class="language-sig">network errors.calc_attr_error(
+    attr1: 'String',
+    attr2: 'String',
+    error: 'String' = "rmse"
+)
+</code></pre>
+<p>Calculate Error from two attribute values in the network</p>
+<p>It calculates the error using two attribute values from all the nodes.</p>
+<p>Arguments:</p>
+<ul>
+<li>attr1: String    Attribute value to use as actual value</li>
+<li>attr2: String    Attribute value to be used to calculate the error</li>
+<li>error: String    Error type: rmse/nrmse/abserr/nse [default: rmse]</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-8"><a class="header" href="#network-functions-8">Network Functions</a></h1>
+<h2 id="network.fancy_print"><a class="header" href="#network.fancy_print">fancy_print</a></h2>
+<pre><code class="language-sig">network fancy_print.fancy_print()
+</code></pre>
+<p>Fancy print a network</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-9"><a class="header" href="#network-functions-9">Network Functions</a></h1>
+<h2 id="network.plot_timeseries"><a class="header" href="#network.plot_timeseries">plot_timeseries</a></h2>
+<pre><code class="language-sig">network gnuplot.plot_timeseries(
+    csvfile: 'Template',
+    datecol: '&amp; str',
+    datacol: '&amp; str',
+    outfile: '&amp; Path',
+    timefmt: '&amp; str' = "%Y-%m-%d",
+    config: '&amp; GnuplotConfig' = GnuplotConfig { outfile: None,
+    terminal: None,
+    csv: false,
+    preamble: "" },
+    skip_missing: 'bool' = false
+)
+</code></pre>
+<p>Generate a gnuplot file that plots the timeseries data in the network</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-10"><a class="header" href="#network-functions-10">Network Functions</a></h1>
+<h2 id="network.csv_load_ts"><a class="header" href="#network.csv_load_ts">csv_load_ts</a></h2>
+<pre><code class="language-sig">network graphics.csv_load_ts(
+    file: 'PathBuf',
+    name: 'String',
+    date_col: 'String' = "date",
+    timefmt: 'String' = "%Y-%m-%d",
+    data_type: 'String' = "Floats"
+)
+</code></pre>
+<p>Count the number of na values in CSV file for each nodes in a network</p>
+<h3 id="arguments-16"><a class="header" href="#arguments-16">Arguments</a></h3>
+<ul>
+<li><code>file</code>: Input CSV file path to read (should have column with
+node names for all nodes)</li>
+<li><code>name</code>: Name of the timeseries</li>
+<li><code>date_col</code>: Date Column name</li>
+<li><code>timefmt</code>: date time format, if you only have date, but have time on format string, it will panic</li>
+<li><code>data_type</code>: Type of the data to cast into</li>
+</ul>
+<h2 id="network.csv_count_na"><a class="header" href="#network.csv_count_na">csv_count_na</a></h2>
+<pre><code class="language-sig">network graphics.csv_count_na(
+    file: 'PathBuf',
+    outattr: 'Option &lt; String &gt;',
+    sort: 'bool' = false,
+    skip_zero: 'bool' = false,
+    head: 'Option &lt; i64 &gt;'
+)
+</code></pre>
+<p>Count the number of na values in CSV file for each nodes in a network</p>
+<h3 id="arguments-17"><a class="header" href="#arguments-17">Arguments</a></h3>
+<ul>
+<li><code>file</code>: Input CSV file path to read (should have column with node names for all nodes)</li>
+<li><code>outattr</code>: Output attribute to save the count of NA to. If empty print to stdout</li>
+<li><code>sort</code>: show the nodes with larger gaps on top, only applicable while printing</li>
+<li><code>head</code>: at max show only this number of nodes</li>
+<li><code>skip_zero</code>: skip nodes with zero missing numbers</li>
+</ul>
+<h2 id="network.csv_data_blocks_svg"><a class="header" href="#network.csv_data_blocks_svg">csv_data_blocks_svg</a></h2>
+<pre><code class="language-sig">network graphics.csv_data_blocks_svg(
+    csvfile: 'PathBuf',
+    outfile: 'PathBuf',
+    label: 'Template',
+    date_col: 'String' = "date",
+    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0,
+    height: 300.0,
+    delta_x: 20.0,
+    delta_y: 20.0,
+    offset: 30.0,
+    radius: 3.0,
+    fontsize: 16.0,
+    fontface: FontFace { inner: Shared { inner: 0x58f60f720320 } } },
+    blocks_width: 'f64' = 500.0,
+    fit: 'bool' = false
+)
+</code></pre>
+<p>Draw the data blocks with arrows in timeline</p>
+<h2 id="network.export_svg"><a class="header" href="#network.export_svg">export_svg</a></h2>
+<pre><code class="language-sig">network graphics.export_svg(
+    outfile: 'PathBuf',
+    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0,
+    height: 300.0,
+    delta_x: 20.0,
+    delta_y: 20.0,
+    offset: 30.0,
+    radius: 3.0,
+    fontsize: 16.0,
+    fontface: FontFace { inner: Shared { inner: 0x58f60f720320 } } },
+    fit: 'bool' = false,
+    label: 'Option &lt; Template &gt;'
+)
+</code></pre>
+<p>Create a SVG file with the given network structure</p>
+<h2 id="network.table_to_svg"><a class="header" href="#network.table_to_svg">table_to_svg</a></h2>
+<pre><code class="language-sig">network graphics.table_to_svg(
+    outfile: 'PathBuf',
+    table: 'Option &lt; PathBuf &gt;',
+    template: 'Option &lt; String &gt;',
+    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0,
+    height: 300.0,
+    delta_x: 20.0,
+    delta_y: 20.0,
+    offset: 30.0,
+    radius: 3.0,
+    fontsize: 16.0,
+    fontface: FontFace { inner: Shared { inner: 0x58f60f720320 } } },
+    fit: 'bool' = false
+)
+</code></pre>
+<p>Create a SVG file with the given network structure</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-11"><a class="header" href="#network-functions-11">Network Functions</a></h1>
+<h2 id="network.save_graphviz"><a class="header" href="#network.save_graphviz">save_graphviz</a></h2>
+<pre><code class="language-sig">network graphviz.save_graphviz(
+    outfile: '&amp; Path',
+    name: '&amp; str' = "network",
+    global_attrs: '&amp; str' = "",
+    node_attr: 'Option &lt; &amp; Template &gt;',
+    edge_attr: 'Option &lt; &amp; Template &gt;'
+)
+</code></pre>
+<p>Save the network as a graphviz file</p>
+<h3 id="arguments-18"><a class="header" href="#arguments-18">Arguments:</a></h3>
+<ul>
+<li><code>outfile</code> - Path to the output file</li>
+<li><code>name</code> - Name of the graph</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-12"><a class="header" href="#network-functions-12">Network Functions</a></h1>
+<h2 id="network.gis_load_attrs"><a class="header" href="#network.gis_load_attrs">gis_load_attrs</a></h2>
+<pre><code class="language-sig">network nadi_gis.gis_load_attrs(
+    file: 'PathBuf',
+    node: 'String',
+    layer: 'Option &lt; String &gt;',
+    geometry: 'String' = "GEOM",
+    ignore: 'String' = "",
+    sanitize: 'bool' = true,
+    err_no_node: 'bool' = false
+)
+</code></pre>
+<p>Load node attributes from a GIS file</p>
+<h2 id="network.gis_save_connections"><a class="header" href="#network.gis_save_connections">gis_save_connections</a></h2>
+<pre><code class="language-sig">network nadi_gis.gis_save_connections(
+    file: 'PathBuf',
+    geometry: 'String',
+    driver: 'Option &lt; String &gt;',
+    layer: 'String' = "network"
+)
+</code></pre>
+<p>Save GIS file of the connections</p>
+<h2 id="network.gis_save_nodes"><a class="header" href="#network.gis_save_nodes">gis_save_nodes</a></h2>
+<pre><code class="language-sig">network nadi_gis.gis_save_nodes(
+    file: 'PathBuf',
+    geometry: 'String',
+    attrs: 'HashMap &lt; String,
+    String &gt;' = {},
+    driver: 'Option &lt; String &gt;',
+    layer: 'String' = "nodes"
+)
+</code></pre>
+<p>Save GIS file of the nodes</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-7"><a class="header" href="#node-functions-7">Node Functions</a></h1>
+<h2 id="node.print_node"><a class="header" href="#node.print_node">print_node</a></h2>
+<pre><code class="language-sig">node print_node.print_node()
+</code></pre>
+<p>Print the node with its inputs and outputs</p>
+<h1 id="network-functions-13"><a class="header" href="#network-functions-13">Network Functions</a></h1>
+<h2 id="network.print_attr_csv"><a class="header" href="#network.print_attr_csv">print_attr_csv</a></h2>
+<pre><code class="language-sig">network print_node.print_attr_csv(*args)
+</code></pre>
+<p>Print the given attributes in csv format with first column with node name</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-8"><a class="header" href="#node-functions-8">Node Functions</a></h1>
+<h2 id="node.check_negative"><a class="header" href="#node.check_negative">check_negative</a></h2>
+<pre><code class="language-sig">node streamflow.check_negative(ts_name: '&amp; str')
+</code></pre>
+<p>Check the given streamflow timeseries for negative values</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="data-structure"><a class="header" href="#data-structure">Data Structure</a></h1>
+<p>This section will describe the data structures associated with NADI system in brief.</p>
+<p>For more accurate and upto date details on the data structures and their available methods. Look at the API reference of <a href="https://docs.rs/nadi_core/latest/nadi_core/"><code>nadi_core</code> on docs.rs</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-1"><a class="header" href="#node-1">Node</a></h1>
+<p>Points with attributes and timeseries. These can be any point as long
+as they’ll be on the network and connection to each other.</p>
+<p>The attributes can be any format. There is a special type of attribute
+timeseries to deal with timeseries data that has been provided by the
+system. But users are free to make their own attributes and plugins +
+functions that can work with those attributes.</p>
+<p>Since attributes are loaded using TOML file, simple attributes can be
+stored and parsed from strings, moderately complex ones can be saved
+as a combination of array and tables, and more complex ones can be
+saved in different files and their path can be stored as node
+attributes.</p>
+<p>Here is an example node attribute file. Here we have string, float, int and boolean values, as well as a example csv timeseries</p>
+<pre><code class="language-toml">stn="smithland"
+nat_7q10=12335.94850131619
+orsanco_7q10=16900
+lock=true
+
+[ts.csv]
+streamflow = {path="data/smithland.csv", datetime="date", data="flow"}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-1"><a class="header" href="#network-1">Network</a></h1>
+<p>Collection of Nodes, with Connection information. The connection
+information is saved in the nodes itself (=inputs= and =output=
+variables), but they are assigned from the network.</p>
+<p>The nadi system (lit, river system), is designed for the connections
+between points along a river. Out of different types of river networks
+possible, it can only handle non-branching tributaries system, where
+each point can have zero to multiple inputs, but can only have one
+output. Overall the system should have a single output point. There
+can be branches in the river itself in the physical sense as long as
+they converse before the next point of interests. There cannot be node
+points that have more than one path to reach another node in the
+representative system.</p>
+<p>Network file are simple text files with each edge on one line. Node
+names can be words with alphanumeric characters with the additional
+character <code>_</code>, similar to how rust identifiers work. The Node names
+can also be quoted strings, in those cases any characters are
+supported inside the quotes.</p>
+<p>Here is an example network file,</p>
+<pre><code class="language-network">cannelton -&gt; newburgh
+newburgh -&gt; evansville
+evansville -&gt; "jt-myers"
+# comments are supported
+"jt-myers" -&gt; "old-shawneetown"
+"old-shawneetown" -&gt; golconda
+markland -&gt; mcalpine
+golconda -&gt; smithland
+</code></pre>
+<p>Drawing it out:</p>
+<pre><code class="language-task run image"><span class="boring">network load_file("./data/mississippi.net")
+</span>network export_svg(
+   "./output/mississippi.svg",
+	label="[{INDEX}] {_NAME:repl(-, ):case(title)}"
+)
+<span class="boring">network clip()
+</span><span class="boring"># the link path needs to be relative to this file
+</span><span class="boring">network echo("../output/mississippi.svg")
+</span></code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="devref/../output/mississippi.svg" alt="" /></p>
+</center>  
+<p>The program also plans to support the connection import from the <a href="https://graphviz.org/doc/info/lang.html">DOT
+format (graphviz package)</a>.</p>
+<p>Network file without any connection format can
+be written as a node per line, but those network can only call
+sequential functions, and not input dependent ones.</p>
+<p>Depending on the use cases, it can probably be applied to other
+systems that are similar to a river system. Or even without the
+connection information, the functions that are independent to each
+other can be run in sequential order.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="timeseries"><a class="header" href="#timeseries">Timeseries</a></h1>
+<p>Timeseries of values, at regular interval. Can support integers,
+floats, booleans, strings, Arrays and Tables.</p>
+<p>For timeseries that are not in a format that NADI can understand. The
+path to the timeseries can be provided as a node attribute and plugin
+functions can be written to use that path to load the timeseries for
+the node.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="string-templates"><a class="header" href="#string-templates">String Templates</a></h1>
+<p>The templating system will be used by an external library developed by
+me. The library can be modified if there are specific needs for this
+project.</p>
+<p>The template system is feature rich, allowing for formatting, simple
+string transformations, and airthmatic calculations based on the
+variables (node attributes in this case). This can be used to generate
+file paths, and similar strings based on node attributes, as well as
+to format the cell values for exported table, figures, etc.</p>
+<p>The template library is also available for <code>Rust</code>, <code>C</code> and <code>C++</code>, but
+all the interactions with the templates will be done through the
+<code>nadi</code> interface, so that is not required.</p>
+<p>Documentations on the template system, can be redirected to
+<a href="https://docs.rs/string-template-plus/latest/string_template_plus/">the <code>string_template_plus</code> library page</a>.</p>
+<p>Brief explanation on the template system is given below.</p>
+<h2 id="template-parts"><a class="header" href="#template-parts">Template Parts</a></h2>
+<p>Templates have variables, time formats, expressions, and commands (disabled by default);</p>
+<pre><code class="language-stp run name=John; address=123 Road  USA">Hi, my name is {name}, my address is {address?"N/A"}.
+Current time is {%H} hour  {%M} minutes.
+</code></pre>
+<p>Results (with:  name=John; address=123 Road, USA):</p>
+<pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
+Current time is 17 hour  49 minutes.
+</code></pre>
+<h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
+<p>Variables can be chained in an optional way, so the first one that’s
+found will be used (e.g. <code>{nickname?name}</code> will render nickname if
+it’s present, else name);</p>
+<pre><code class="language-stp run name=John; nickname=J; address=123 Road  USA">Hi, I am {nickname?name}, my address is {address?"N/A"}.
+</code></pre>
+<p>Results (with:  name=John; nickname=J; address=123 Road, USA):</p>
+<pre><code class="language-output">Hi, I am J, my address is 123 Road, USA.
+</code></pre>
+<h2 id="string-literal"><a class="header" href="#string-literal">String Literal</a></h2>
+<p>Variables when replaced with literal strings (quoted strings), they
+will be used directly <code>{address?"N/A"}</code> will render <code>N/A</code> is
+<code>address</code> is not present;</p>
+<pre><code class="language-stp run name=John">Hi, I am {nickname?name}, my address is {address?"N/A"}.
+</code></pre>
+<p>Results (with:  name=John):</p>
+<pre><code class="language-output">Hi, I am John, my address is N/A.
+</code></pre>
+<h2 id="transformers"><a class="header" href="#transformers">Transformers</a></h2>
+<p>Variables can have optional transformers which transform the string
+based on their rules, (e.g. float transformer will truncate the
+float, upcase will make the string UPPERCASE, etc.);</p>
+<pre><code class="language-stp run name=Joe">Hi, I am {nickname?name:case(up)}, my address is {address?"N/A"}.
+</code></pre>
+<p>Results (with:  name=Joe):</p>
+<pre><code class="language-output">Hi, I am JOE, my address is N/A.
+</code></pre>
+<h2 id="time-formats"><a class="header" href="#time-formats">Time formats</a></h2>
+<p>time formats are formatted current time (e.g. <code>{%Y}</code> will become
+<code>2024</code> as of now);</p>
+<pre><code class="language-stp run name=John">Today is {%B %d} of the year {%Y}.
+</code></pre>
+<p>Results (with:  name=John):</p>
+<pre><code class="language-output">Today is November 12 of the year 2024.
+</code></pre>
+<h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
+<p>expressions are lisp expressions that will be evaluated and the
+results will be used. The lisp expression can also access any
+variables and do any supported programming. (e.g. <code>(+ 1 1)</code> in lisp
+will become <code>2</code>);</p>
+<pre><code class="language-stp run age=20">guess my age(x) if: (x + 21) * 4 = =(* (+ (st+num 'age) 21) 4).
+</code></pre>
+<p>Results (with:  age=20):</p>
+<pre><code class="language-output">guess my age(x) if: (x + 21) * 4 = 164.
+</code></pre>
+<h2 id="nadi-specific-options"><a class="header" href="#nadi-specific-options">NADI Specific options</a></h2>
+<p>Besides the above points, specific to nadi system, any node template
+will have all the variables from node attributes available as strings
+for template. For string variables, their name can be used to access
+quoted string format, while their name with underscore prefix will be
+unquoted raw string. (e.g. if we have attribute <code>name="smithland"</code>,
+then <code>{name}</code> will render to <code>"smithland"</code>, while <code>{_name}</code> will
+render to <code>smithland</code>).</p>
+<p>Nadi system uses templates in a variety of place, and plugin functions
+also sometimes take templates for file path, or strings, and such
+things. Look at the help string of the function to see if it takes
+<code>String</code> or <code>Template</code> type.</p>
+<p>For example <code>render</code> is a function that takes a template and prints it
+after rendering it for each node.</p>
+<pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
+</span><span class="boring">node[ohio] set_attrs(river="the Ohio River", streamflow=45334.12424343)
+</span>node[ohio,red] render(
+	"(=(+ 1 (st+num 'INDEX))th node) {_NAME:case(title)}
+	River Flow = {streamflow:calc(/10000):f(3)?\"NA\"} x 10^4"
+)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">(6th node) Ohio
+	River Flow = 4.533 x 10^4
+(5th node) Red
+	River Flow = NA x 10^4
+</code></pre>
+<p>As seen in above example, you can render variables, transform them, use basic calculations.</p>
+<p>Or you can use <code>lisp</code> syntax to do more complex calculations. Refer to
+<a href="devref/../system/extensions.html">Nadi Extension Capabilities</a> section for more
+info on how to use <code>lisp</code> on string template.</p>
+<pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
+</span><span class="boring">node[ohio] set_attrs(river="the Ohio River", streamflow=45334.12424343)
+</span>node[ohio] render(
+	"{_river:case(title)} Streamflow
+	from lisp = {=(/ (st+num 'streamflow) 1000):f(2)} x 10^3 cfs"
+)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">The Ohio River Streamflow
+	from lisp = 45.33 x 10^3 cfs
+</code></pre>
+<h2 id="some-complex-examples"><a class="header" href="#some-complex-examples">Some Complex Examples</a></h2>
+<p>Optional variables and a command; note that commands can have variables inside them:</p>
+<pre><code class="language-stp run might=may">hi there, this {is?a?"test"} for $(echo a simple case {that?} {might} be "possible")
+</code></pre>
+<p>Results (with:  might=may):</p>
+<pre><code class="language-output">hi there, this test for $(echo a simple case  may be possible)
+</code></pre>
+<p>Optional variables with transformers inside command.</p>
+<pre><code class="language-stp run work=Fantastic Job">Hi {like?a?"test"} for $(this does {work:case(up)} now) (yay)
+</code></pre>
+<p>Results (with:  work=Fantastic Job):</p>
+<pre><code class="language-output">Hi test for $(this does FANTASTIC JOB now) (yay)
+</code></pre>
+<p>If you need to use <code>{</code> and <code>}</code> in a template, you can escape them. Following template shows how LaTeX commands can be generated from templates.</p>
+<pre><code class="language-stp run command=Error;variable=Var">more {formatting?} options on {%F} and
+\\latex\{command\}\{with {variable}\}, should work.
+</code></pre>
+<p>Results (with:  command=Error;variable=Var):</p>
+<pre><code class="language-output">more  options on 2024-11-12 and
+\latex{command}{with Var}, should work.
+</code></pre>
+<p>This just combined a lot of different things from above:</p>
+<pre><code class="language-stp run">let's try {every:f(2)?and?"everything"}
+for $(a complex case {that?%F?} {might?be?not?found} be "possible")
+
+see $(some-command --flag "and the value" {problem})
+=(+ 1 2 (st+num 'hithere) (st+num "otherhi"))
+{otherhi?=(1+ pi):f(4)}
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-output">None of the variables ["might", "be", "not", "found"] found
+</code></pre>
+<p>This shows the error for the first template part that errors out, even
+if <code>{problem}</code> will also error later, so while solving for problems in
+string templates, you might have to give it multiple tries.</p>
+<h2 id="advanced-string-template-with-lisp"><a class="header" href="#advanced-string-template-with-lisp">Advanced String Template with LISP</a></h2>
+<p>Nadi Template string is useful when you want to represent node
+specific string, or file path in a network. This is not as advanced as
+the formatted strings in python. But it can be used for complex
+situations based on the current functionality.</p>
+<p>The most important extension capability of the string template is the
+embedded lisp system.</p>
+<p>As we know, templates can render variables, and have some capacity of transforming them:</p>
+<pre><code class="language-stp run name=Ohio; streamflow=12000">{name:case(title):repl(-, )} River Streamflow = {streamflow} cfs
+</code></pre>
+<p>Results (with:  name=Ohio; streamflow=12000):</p>
+<pre><code class="language-output">Ohio River Streamflow = 12000 cfs
+</code></pre>
+<p>But for numerical operation, the transformers capabilities are limited as they are made for strings.</p>
+<p>With lisp, we can add more logic to our templates.</p>
+<pre><code class="language-stp run name=Ohio; streamflow=12000">{name:case(title):repl(-, )} River Streamflow is =(
+	if (&gt; (st+num 'streamflow) 10000)
+	'Higher 'Lower
+) than the threshold of 10^5 cfs.
+</code></pre>
+<p>Results (with:  name=Ohio; streamflow=12000):</p>
+<pre><code class="language-output">Ohio River Streamflow is Higher than the threshold of 10^5 cfs.
+</code></pre>
+<p>The available lisp functions are also limited, but the syntax itself
+gives us better airthmetic and logical calculations.</p>
+<h1 id="note"><a class="header" href="#note">Note</a></h1>
+<p>As the template string can get complicated, and the parsing is done
+through <code>Regex</code>, it is not perfect. If you come across any parsing
+problems, please raise an issue at <a href="https://github.com/Atreyagaurav/string-template-plus">string template
+plus</a> github
+repo.</p>
+<h1 id="commands"><a class="header" href="#commands">Commands</a></h1>
+<p>Note that running commands within the templates is disabled for
+now.</p>
+<pre><code class="language-stp run">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
+</code></pre>
+<p>Results (with: ):</p>
+<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2024-11-12
+</code></pre>
+<p>But if you are writing a command template to run in bash, then
+it’ll be executed as the syntax is similar.</p>
+<pre><code class="language-task run">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2024-11-12
+</code></pre>
+<p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tables"><a class="header" href="#tables">Tables</a></h1>
+<p>Tables are data types with headers and the value template. Tables can
+be rendered/exported into CSV, JSON, and LaTeX format. Other formats
+can be added later. Although tables are not exposed to the plugin
+system, functions to export different table formats can be written as
+a network function.</p>
+<p>A sample Table file showing two columns, left aligned name for station
+in title case, and right aligned columns for latitude and longitude
+with float value of 4 digits after decimal:</p>
+<pre><code class="language-table run markdown"><span class="boring">network load_file("./data/mississippi.net")
+</span>&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&gt;Order =&gt; {ORDER}
+^Level =&gt; {LEVEL}
+# something is wrong with the set_level algorithm
+# Ohio - tenessee should be level 1, and missouri/yellowstone should be 0
+</code></pre>
+<p>Results:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th><th style="text-align: center">Level</th></tr></thead><tbody>
+<tr><td style="text-align: left">Lower Mississippi</td><td style="text-align: center">1</td><td style="text-align: right">7</td><td style="text-align: center">0</td></tr>
+<tr><td style="text-align: left">Upper Mississippi</td><td style="text-align: center">2</td><td style="text-align: right">1</td><td style="text-align: center">1</td></tr>
+<tr><td style="text-align: left">Missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td><td style="text-align: center">1</td></tr>
+<tr><td style="text-align: left">Arkansas</td><td style="text-align: center">4</td><td style="text-align: right">1</td><td style="text-align: center">1</td></tr>
+<tr><td style="text-align: left">Red</td><td style="text-align: center">5</td><td style="text-align: right">1</td><td style="text-align: center">1</td></tr>
+<tr><td style="text-align: left">Ohio</td><td style="text-align: center">6</td><td style="text-align: right">2</td><td style="text-align: center">0</td></tr>
+<tr><td style="text-align: left">Tenessee</td><td style="text-align: center">7</td><td style="text-align: right">1</td><td style="text-align: center">0</td></tr>
+</tbody></table>
+</div>
+<p>Here the part before <code>=&gt;</code> is the column header and the part after is the template. Presence of <code>&lt;</code> or <code>&gt;</code> in the beginning of the line makes the column left or right aligned, with center aligned (<code>^</code>) by default.</p>
+<!-- NOTE -->
+<!-- Currently, the table template is run as a task internally. -->
+<!-- ```task -->
+<!-- !network load_file("./data/mississippi.net") -->
+<!-- !network table_to_markdown(template=" -->
+<!-- <Name => {_NAME:repl(-, ):case(title)} -->
+<!-- >Ind => {INDEX} -->
+<!-- ^Index +1 => =(+ (st+num 'INDEX) 1) -->
+<!-- !") -->
+<!-- ``` -->
+<p>Exporting the table in svg instead of markdown allows us better
+network diagram.</p>
+<pre><code class="language-table run svg outfile=&quot;./output/example-table2.svg&quot;"><span class="boring">network load_file("./data/mississippi.net")
+</span><span class="boring">network echo("../output/example-table2.svg")
+</span>&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&gt;Order =&gt; {ORDER}
+^Level =&gt; {LEVEL}
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="devref/../output/example-table2.svg" alt="" /></p>
+</center>  
+<p>A SVG Table can also be generated using the table file, using the task system like this:</p>
+<pre><code class="language-task run image"><span class="boring">network load_file("./data/mississippi.net")
+</span>network table_to_svg(
+	table = "./data/sample.table",
+	# either table = "path/to/table", or template = "table template"
+	outfile = "./output/example-table.svg",
+	config = {fontsize = 16, delta_y = 20, fontface="Noto Serif"}
+)
+<span class="boring">network clip()
+</span><span class="boring"># the link path needs to be relative to this file
+</span><span class="boring">network echo("../output/example-table.svg")
+</span>
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="devref/../output/example-table.svg" alt="" /></p>
+</center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="file-templates"><a class="header" href="#file-templates">File Templates</a></h1>
+<p>File templates are templates that use string templates, but they are a whole file that can be used to generate rendered text files.</p>
+<p>File templates also have sections which can be repeated for different nodes, with corresponding syntax.</p>
+<p>Following template will render a markdown table with headers and all the name and index of the nodes.</p>
+<pre><code class="language-stp">| Node | Index |
+|------|-------|
+&lt;!-- ---8&lt;--- --&gt;
+| {_NAME} | {INDEX} |
+&lt;!-- ---8&lt;--- --&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tasks"><a class="header" href="#tasks">Tasks</a></h1>
+<p>Task is a function call that the system performs. The function call
+can be a node function or a network function. The function can have
+arguments and keyword arguments that can determine its
+functionality. Node functions will be called on a node at a time,
+while the network function will be called with the whole network at
+once.</p>
+<p>Currently tasks are performed one after another. The functions that
+any task can use can be internal functions provided by the library or
+the external functions provided by the plugins.</p>
+<p>A sample tasks file is shown below:</p>
+<pre><code class="language-task">node print_attrs()
+network save_graphviz("/tmp/test.gv", offset=1.3, url="{_NAME}")
+node savedss(
+	"natural",
+	"test.dss",
+	"/OHIO-RIVER/{_NAME}/01Jan1994/01Jan2012/1Day/NATURAL/"
+	)
+node check_sf("sf")
+node.inputsfirst route_sf("observed")
+node render("Node {NAME} at index {INDEX}")
+</code></pre>
+<p>Here each line corresponds to one task. And if it’s a node task, then
+it’ll be called for each node (in sequential order by default). The
+last line <code>node.inputsfirst</code> will call that function in input node
+before the current node. Those functions can only be called for
+network with an output node.</p>
+<div class="warning">
+<p>Please note that although the string in the examples are highlighted
+as if they are string templates for readability. Those are just normal
+strings that functions take as inputs. Whether they are used as
+template or not depends on the individual function, refer to their
+help to see if they take <code>Template</code> type or <code>String</code> type.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-9"><a class="header" href="#node-functions-9">Node Functions</a></h1>
+<p>Node functions are functions that take a node, and the function
+context to do some operations on it. They take mutable reference to
+the node, hence can read all node attributes, inputs, outputs, their
+attributes and timeseries.</p>
+<p>Node functions can be run from the system for all the nodes in the
+network in different orders.</p>
+<p>Currently the task system only supports running node functions for all
+nodes in the following 6 ways,</p>
+<ul>
+<li>Sequential order,</li>
+<li>Reverse order,</li>
+<li>Run input nodes before the current node (recursively),</li>
+<li>Run output node before the current node (recursively),</li>
+<li>Run a list of nodes, and</li>
+<li>Run on a path between two nodes (inclusive).</li>
+</ul>
+<p>Depending on the way the function works, it might be required to be
+run in a particular order. For example, a function that counts the
+number of dams upstream of each point, might have to be run inputs
+first, so that you can cumulate the number as you move downstream.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-14"><a class="header" href="#network-functions-14">Network Functions</a></h1>
+<p>Network functions are functions that take the network as a mutable
+reference and run on it.</p>
+<p>Some examples of network functions:</p>
+<ul>
+<li>List all the networks with their inputs/outputs,</li>
+<li>Checks if any nodes have some attribute larger than their output,</li>
+<li>Export the node attributes as a single CSV file,</li>
+<li>Export the nodes in LaTeX file using Tikz to draw the network,</li>
+<li>Calculate rmse,mse,etc errors between two attribute values for all nodes,</li>
+<li>Generate an interactive HTML/PDF with network information and some other template, etc.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="developer-notes"><a class="header" href="#developer-notes">Developer Notes</a></h1>
+<p>This section contains my notes as I develop the NADI system. Kind of
+like a dev blog.</p>
+<p>The software package will consists of multiple components. It is
+planned to be designed in such a way that users can add their
+functionality and extend it with ease.</p>
+<p>Along with the Free and Open Source Software (FOSS) principles, the
+plugin system will make extension of the software functionality and
+sharing between users. As well as a way to develop in-house
+functionality for niche use cases.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="motivation"><a class="header" href="#motivation">Motivation</a></h1>
+<p>As Hydrologist, we often deal with the data related to the points in
+the river. Since most of the analysis requires doing the same things
+in multiple points, the initial phase of data cleaning process can be
+automated.</p>
+<p>We spend a beginning phases of all projects preparing the data for
+analysis. And combining the time spent on visualizing the data, it’s a
+significant chunk of our time.</p>
+<p>Data visualization influences the decision making from the
+stakeholders. And can save time by making any problems obvious from
+the very beginning. For examples, things like showing the quality of
+data (continuity for time series), interactive plots to compare data
+in different locations/formats, etc can help people understand their
+data better.</p>
+<p>Besides plot, the example below shows how simply adding a column with
+connection visual can immediately make it easier to understand the
+relationship between the data points in a river. Without it people
+need to be familiar with the names of the data points and their
+location, or consult a different image/map to understand the
+relationship.</p>
+<p><img src="notes/../images/ohio-low.svg" alt="Table with Connection Information" title="The table shows how a simple addition of the connection information can increase the readability of the table" /></p>
+<p>The inspiration on making this software package comes from many years
+of struggle with doing the same thing again and again in different
+projects like these. And the motivation to make something generic that
+can be used for plethora of projects in the future.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="why-rust"><a class="header" href="#why-rust">Why Rust?</a></h1>
+<p>Rust<sup class="footnote-reference"><a href="#fn1">1</a></sup> is an open source programming language that claims to be fast and memory efficient to power performance critical services. Rust is also able to integrate with other programming languages.</p>
+<p>Rust provides a memory safe way to do modern programming. The White
+House has a recent press
+release<sup class="footnote-reference"><a href="#fn2">2</a></sup>
+about the need to have memory safe language in future softwares. The
+report<sup class="footnote-reference"><a href="#fn3">3</a></sup>
+has following sentense about the Rust language.</p>
+<div class="right">
+At this time, the most widely used languages that meet all three
+properties are C and C++, which are not memory safe programming
+languages. Rust, one example of a memory safe programming language,
+has the three requisite properties above, but has not yet been proven
+in space systems.
+</div>
+<p>The results of the survey from
+stackoverflow<sup class="footnote-reference"><a href="#fn4">4</a></sup>
+shows Rust has been a top choice for developers who want to use a new
+technology for the past 8 years, and the analysis also shows Rust is a
+language that generates for desire to use it once you get to know.</p>
+<div class="footnote-definition" id="fn1"><sup class="footnote-definition-label">1</sup>
+<p>https://www.rust-lang.org/</p>
+</div>
+<div class="footnote-definition" id="fn2"><sup class="footnote-definition-label">2</sup>
+<p>https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/</p>
+</div>
+<div class="footnote-definition" id="fn3"><sup class="footnote-definition-label">3</sup>
+<p>https://www.whitehouse.gov/wp-content/uploads/2024/02/Final-ONCD-Technical-Report.pdf</p>
+</div>
+<div class="footnote-definition" id="fn4"><sup class="footnote-definition-label">4</sup>
+<p>https://survey.stackoverflow.co/2023/#technology-admired-and-desired</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="writing-this-book"><a class="header" href="#writing-this-book">Writing this Book</a></h1>
+<p>I’m used to <code>emacs</code>’s <code>org-mode</code>, where you can evaluate code and show
+output and all those things. Like <code>markdown</code> in steroids.</p>
+<p><code>mdbook</code> seems to have some of those functionality in it as
+well. Though I think <code>emacs</code>’s extension through <code>elisp</code> is lot more
+flexible and easier to extend. <code>mdbook</code> supporting custom
+preprocessors and renderer means we can extend it as well.</p>
+<p>In the process of writing this book. I made the following things.</p>
+<h2 id="syntax-highlight-for-nadi-specific-syntax"><a class="header" href="#syntax-highlight-for-nadi-specific-syntax">Syntax Highlight for NADI specific syntax</a></h2>
+<p><code>mdbook</code> uses <code>highlight.js</code> to syntax highlight the code blocks in
+it. And since nadi system has a lot of its own syntax for string
+templates, task system, table system, network system etc. I wanted
+syntax highlight for those things. Although the attribute files are
+subset of <code>TOML</code> format, so we have syntax highlight for
+it. Everything else needed a custom code.</p>
+<p>Following the comments in this <a href="https://github.com/rust-lang/mdBook/issues/657">github
+issue</a> led me to find
+a workaround for the custom syntax hightlight. I don’t know for how
+long it will work, but this works well for now.</p>
+<p>Basically I am using the custom JS feature of <code>mdbook</code> like:</p>
+<pre><code class="language-toml">[output.html]
+additional-js = ["theme/syntax-highlight.js"]
+</code></pre>
+<p>To insert custom highlight syntax. For example adding the syntax
+highlight for network text is:</p>
+<pre><code class="language-js">// network connections comments and node -&gt; node syntax
+hljs.registerLanguage("network", (hljs) =&gt; ({
+    name: "Network",
+    aliases: [ 'net' ],
+    contains: [
+	hljs.QUOTE_STRING_MODE,
+	hljs.HASH_COMMENT_MODE,
+	{
+	    scope: "meta",
+	    begin: '-&gt;',
+	    className:"built_in",
+	},
+    ]
+}));
+</code></pre>
+<p>The syntax for network is really simple, for others (<code>task</code>, <code>table</code>,
+<code>string-template</code>, etc) refer to the <code>theme/syntax-highlight.js</code> file
+in the repository for this book.  <!-- TODO add link --></p>
+<p>After registering all the languages, you re-initialize the <code>highlight.js</code>:</p>
+<pre><code class="language-js">hljs.initHighlightingOnLoad();
+</code></pre>
+<h2 id="mdbook-nadi-preprocessor"><a class="header" href="#mdbook-nadi-preprocessor"><code>mdbook-nadi</code> preprocessor</a></h2>
+<p>Instead of just showing the syntax of how to use the task system, I
+wanted to also show the output of the examples for readers. So I
+started this with writing some <code>elisp</code> code to run the text in
+selection and then copying the output to clipboard that I could paste
+in output block. It was really easy in emacs.</p>
+<p>Following code takes the selection, saves them in temporary tasks file, runs them and then puts the output in the clipboard that I can paste manually.</p>
+<pre><code class="language-elisp">(defun nadi-run-tasks (BEG END)
+  (interactive "r")
+  (let ((tasks-file (make-temp-file "tasks-")))
+    (write-region BEG END tasks-file)
+    (let ((output '(shell-command-to-string (format "nadi %s" tasks-file))))
+	  (message output)
+	  (kill-new output)
+	  (delete-file tasks-file))))
+</code></pre>
+<p>But this is manual process with a bit of automation. So I wanted a
+better solution, and that’s where the <code>mdbook</code> preprocessor comes in.</p>
+<p>With the <code>mdbook-nadi</code> preprocessor, I can extract the code blocks,
+run it, and insert the contents just below the code block as output.</p>
+<p>Once I had a working prototype for this, I also started adding support
+for rendering string templates, and generating tables along with the
+task system.</p>
+<h3 id="string-templates-1"><a class="header" href="#string-templates-1">String templates</a></h3>
+<p>For string templates, write the templates in <code>stp</code> blocks like below that will have the syntax hightlight.</p>
+<pre><code class="language-stp">Hi my name is {name}.
+</code></pre>
+<p>If you add <code>run</code> into it, it’ll run the template with any <code>key=val</code> pairs provided after run.</p>
+<p>Basically writing the following in the <code>mdbook</code> markdown:</p>
+<pre><code>```stp run name=John
+Hi my name is {name}.
+```
+</code></pre>
+<p>Will become:</p>
+<hr />
+<pre><code class="language-stp run name=John">Hi my name is {name}.
+</code></pre>
+<p>Results (with:  name=John):</p>
+<pre><code class="language-output">Hi my name is John.
+</code></pre>
+<hr />
+<h3 id="tasks-1"><a class="header" href="#tasks-1">Tasks</a></h3>
+<p>For tasks, similary write a block with <code>task</code> as language. You can use
+<code>!</code> character at the start of the line to hide it in the view. Use
+them for essential code that are needed for results but are not the
+current focus. And when you add <code>run</code> it’ll run and show the output.</p>
+<pre><code>```task run
+!network load_file("data/mississippi.net")
+node render("Node {NAME}")
+```
+</code></pre>
+<hr />
+<pre><code class="language-task run"><span class="boring">network load_file("data/mississippi.net")
+</span>node render("Node {NAME}")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">Node "lower-mississippi"
+Node "upper-mississippi"
+Node "missouri"
+Node "arkansas"
+Node "red"
+Node "ohio"
+Node "tenessee"
+</code></pre>
+<hr />
+<h3 id="tables-1"><a class="header" href="#tables-1">Tables</a></h3>
+<p>The implementation for tables are little weird right now, but it works. Since we need to be able to load network, and perform actions before showing a table.</p>
+<p>So the current implementation takes the hidden lines using <code>!</code>and runs them as task system, with additional task of rendering the table at the end.</p>
+<p>Example:</p>
+<pre><code>```table run markdown
+!network load_file("./data/mississippi.net")
+&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&gt;Order =&gt; {ORDER}
+```
+</code></pre>
+<p>Becomes:</p>
+<hr />
+<pre><code class="language-table run markdown"><span class="boring">network load_file("./data/mississippi.net")
+</span>&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&gt;Order =&gt; {ORDER}
+</code></pre>
+<p>Results:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th></tr></thead><tbody>
+<tr><td style="text-align: left">Lower Mississippi</td><td style="text-align: center">1</td><td style="text-align: right">7</td></tr>
+<tr><td style="text-align: left">Upper Mississippi</td><td style="text-align: center">2</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Arkansas</td><td style="text-align: center">4</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Red</td><td style="text-align: center">5</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Ohio</td><td style="text-align: center">6</td><td style="text-align: right">2</td></tr>
+<tr><td style="text-align: left">Tenessee</td><td style="text-align: center">7</td><td style="text-align: right">1</td></tr>
+</tbody></table>
+</div>
+<hr />
+<p>I’d like to refine this further.</p>
+<p>Task can be used to generate markdown in the same way as the tables
+can:</p>
+<p>For example <code>task run</code> of this:</p>
+<pre><code class="language-task run">network load_file("./data/mississippi.net")
+network table_to_markdown(template="
+&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&gt;Order =&gt; {ORDER}
+")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">| Name              | Ind | Order |
+|:------------------|:---:|------:|
+| Lower Mississippi |  1  |     7 |
+| Upper Mississippi |  2  |     1 |
+| Missouri          |  3  |     1 |
+| Arkansas          |  4  |     1 |
+| Red               |  5  |     1 |
+| Ohio              |  6  |     2 |
+| Tenessee          |  7  |     1 |
+</code></pre>
+<p>If you do <code>task run markdown</code> then:</p>
+<pre><code class="language-task run markdown">network load_file("./data/mississippi.net")
+network table_to_markdown(template="
+&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&gt;Order =&gt; {ORDER}
+")
+</code></pre>
+<p>Results:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th></tr></thead><tbody>
+<tr><td style="text-align: left">Lower Mississippi</td><td style="text-align: center">1</td><td style="text-align: right">7</td></tr>
+<tr><td style="text-align: left">Upper Mississippi</td><td style="text-align: center">2</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Arkansas</td><td style="text-align: center">4</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Red</td><td style="text-align: center">5</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Ohio</td><td style="text-align: center">6</td><td style="text-align: right">2</td></tr>
+<tr><td style="text-align: left">Tenessee</td><td style="text-align: center">7</td><td style="text-align: right">1</td></tr>
+</tbody></table>
+</div>
+<p>Which means it can be used for other things:</p>
+<pre><code class="language-task run markdown">network load_file("./data/mississippi.net")
+network echo("**Details about the Nodes:**")
+node render("
+=(+ (st+num 'INDEX) 1). {_NAME:repl(-, ):case(title)} River
+")
+</code></pre>
+<p>Results:<br />
+<strong>Details about the Nodes:</strong></p>
+<ol>
+<li>
+<p>Lower Mississippi River</p>
+</li>
+<li>
+<p>Upper Mississippi River</p>
+</li>
+<li>
+<p>Missouri River</p>
+</li>
+<li>
+<p>Arkansas River</p>
+</li>
+<li>
+<p>Red River</p>
+</li>
+<li>
+<p>Ohio River</p>
+</li>
+<li>
+<p>Tenessee River</p>
+</li>
+</ol>
+<p>You can also use the same method to insert images like this, at the end of your tasks, so that the image generated by the tasks can be inserted here.</p>
+<pre><code class="language-task run image"># do some tasks
+network echo("Some other output form your tasks")
+network clip()
+network echo("../images/ohio-low.svg")
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="notes/../images/ohio-low.svg" alt="" /></p>
+</center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="optimization-algorithms"><a class="header" href="#optimization-algorithms">Optimization Algorithms</a></h1>
+<p>We can have input variables to change, and output variables to
+optimize, but how do we take what function to run to calculate the
+output variable…</p>
+<p>One simple idea can be to take a command template to run. So we will
+change the input variables, run the command for each node or network,
+and then that command will update the output variable that we can
+optimize for.</p>
+<p>We might require an option to call other functions in
+this case. Then maybe we can just pass the name of the function.</p>
+<p>Complex idea could be to add the support for loop syntax in task system.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="interactive-plots"><a class="header" href="#interactive-plots">Interactive Plots</a></h1>
+<p>An experiment using the <code>cairo</code> graphics library shows that a PDF can
+be directly produced without using LaTeX as intermediate using the
+network information. This functionality — although not as complete
+as the one in the example — has been exposed as an internal network
+function for now. Further functionality related to this idea can be
+embedding network information in simple plots, or generate the whole
+plot along side the network information.</p>
+<p>It might be a good idea to make several functions that can export the interactive plots in LaTeX, PDF, PNG, SVG, HTML, etc. separately instead of single format.</p>
+<p>LaTeX and HTML will be easier due to text nature, for others I might have to spend time with some more experimentation on cairo.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/syntax-highlight.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

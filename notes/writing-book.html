@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Writing this Book - Network Analysis and Data Integration (NADI)</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Network Analysis and Data Integration (NADI)</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="writing-this-book"><a class="header" href="#writing-this-book">Writing this Book</a></h1>
+<p>I’m used to <code>emacs</code>’s <code>org-mode</code>, where you can evaluate code and show
+output and all those things. Like <code>markdown</code> in steroids.</p>
+<p><code>mdbook</code> seems to have some of those functionality in it as
+well. Though I think <code>emacs</code>’s extension through <code>elisp</code> is lot more
+flexible and easier to extend. <code>mdbook</code> supporting custom
+preprocessors and renderer means we can extend it as well.</p>
+<p>In the process of writing this book. I made the following things.</p>
+<h2 id="syntax-highlight-for-nadi-specific-syntax"><a class="header" href="#syntax-highlight-for-nadi-specific-syntax">Syntax Highlight for NADI specific syntax</a></h2>
+<p><code>mdbook</code> uses <code>highlight.js</code> to syntax highlight the code blocks in
+it. And since nadi system has a lot of its own syntax for string
+templates, task system, table system, network system etc. I wanted
+syntax highlight for those things. Although the attribute files are
+subset of <code>TOML</code> format, so we have syntax highlight for
+it. Everything else needed a custom code.</p>
+<p>Following the comments in this <a href="https://github.com/rust-lang/mdBook/issues/657">github
+issue</a> led me to find
+a workaround for the custom syntax hightlight. I don’t know for how
+long it will work, but this works well for now.</p>
+<p>Basically I am using the custom JS feature of <code>mdbook</code> like:</p>
+<pre><code class="language-toml">[output.html]
+additional-js = ["theme/syntax-highlight.js"]
+</code></pre>
+<p>To insert custom highlight syntax. For example adding the syntax
+highlight for network text is:</p>
+<pre><code class="language-js">// network connections comments and node -&gt; node syntax
+hljs.registerLanguage("network", (hljs) =&gt; ({
+    name: "Network",
+    aliases: [ 'net' ],
+    contains: [
+	hljs.QUOTE_STRING_MODE,
+	hljs.HASH_COMMENT_MODE,
+	{
+	    scope: "meta",
+	    begin: '-&gt;',
+	    className:"built_in",
+	},
+    ]
+}));
+</code></pre>
+<p>The syntax for network is really simple, for others (<code>task</code>, <code>table</code>,
+<code>string-template</code>, etc) refer to the <code>theme/syntax-highlight.js</code> file
+in the repository for this book.  <!-- TODO add link --></p>
+<p>After registering all the languages, you re-initialize the <code>highlight.js</code>:</p>
+<pre><code class="language-js">hljs.initHighlightingOnLoad();
+</code></pre>
+<h2 id="mdbook-nadi-preprocessor"><a class="header" href="#mdbook-nadi-preprocessor"><code>mdbook-nadi</code> preprocessor</a></h2>
+<p>Instead of just showing the syntax of how to use the task system, I
+wanted to also show the output of the examples for readers. So I
+started this with writing some <code>elisp</code> code to run the text in
+selection and then copying the output to clipboard that I could paste
+in output block. It was really easy in emacs.</p>
+<p>Following code takes the selection, saves them in temporary tasks file, runs them and then puts the output in the clipboard that I can paste manually.</p>
+<pre><code class="language-elisp">(defun nadi-run-tasks (BEG END)
+  (interactive "r")
+  (let ((tasks-file (make-temp-file "tasks-")))
+    (write-region BEG END tasks-file)
+    (let ((output '(shell-command-to-string (format "nadi %s" tasks-file))))
+	  (message output)
+	  (kill-new output)
+	  (delete-file tasks-file))))
+</code></pre>
+<p>But this is manual process with a bit of automation. So I wanted a
+better solution, and that’s where the <code>mdbook</code> preprocessor comes in.</p>
+<p>With the <code>mdbook-nadi</code> preprocessor, I can extract the code blocks,
+run it, and insert the contents just below the code block as output.</p>
+<p>Once I had a working prototype for this, I also started adding support
+for rendering string templates, and generating tables along with the
+task system.</p>
+<h3 id="string-templates"><a class="header" href="#string-templates">String templates</a></h3>
+<p>For string templates, write the templates in <code>stp</code> blocks like below that will have the syntax hightlight.</p>
+<pre><code class="language-stp">Hi my name is {name}.
+</code></pre>
+<p>If you add <code>run</code> into it, it’ll run the template with any <code>key=val</code> pairs provided after run.</p>
+<p>Basically writing the following in the <code>mdbook</code> markdown:</p>
+<pre><code>```stp run name=John
+Hi my name is {name}.
+```
+</code></pre>
+<p>Will become:</p>
+<hr />
+<pre><code class="language-stp run name=John">Hi my name is {name}.
+</code></pre>
+<p>Results (with:  name=John):</p>
+<pre><code class="language-output">Hi my name is John.
+</code></pre>
+<hr />
+<h3 id="tasks"><a class="header" href="#tasks">Tasks</a></h3>
+<p>For tasks, similary write a block with <code>task</code> as language. You can use
+<code>!</code> character at the start of the line to hide it in the view. Use
+them for essential code that are needed for results but are not the
+current focus. And when you add <code>run</code> it’ll run and show the output.</p>
+<pre><code>```task run
+!network load_file("data/mississippi.net")
+node render("Node {NAME}")
+```
+</code></pre>
+<hr />
+<pre><code class="language-task run"><span class="boring">network load_file("data/mississippi.net")
+</span>node render("Node {NAME}")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">Node "lower-mississippi"
+Node "upper-mississippi"
+Node "missouri"
+Node "arkansas"
+Node "red"
+Node "ohio"
+Node "tenessee"
+</code></pre>
+<hr />
+<h3 id="tables"><a class="header" href="#tables">Tables</a></h3>
+<p>The implementation for tables are little weird right now, but it works. Since we need to be able to load network, and perform actions before showing a table.</p>
+<p>So the current implementation takes the hidden lines using <code>!</code>and runs them as task system, with additional task of rendering the table at the end.</p>
+<p>Example:</p>
+<pre><code>```table run markdown
+!network load_file("./data/mississippi.net")
+&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&gt;Order =&gt; {ORDER}
+```
+</code></pre>
+<p>Becomes:</p>
+<hr />
+<pre><code class="language-table run markdown"><span class="boring">network load_file("./data/mississippi.net")
+</span>&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&gt;Order =&gt; {ORDER}
+</code></pre>
+<p>Results:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th></tr></thead><tbody>
+<tr><td style="text-align: left">Lower Mississippi</td><td style="text-align: center">1</td><td style="text-align: right">7</td></tr>
+<tr><td style="text-align: left">Upper Mississippi</td><td style="text-align: center">2</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Arkansas</td><td style="text-align: center">4</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Red</td><td style="text-align: center">5</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Ohio</td><td style="text-align: center">6</td><td style="text-align: right">2</td></tr>
+<tr><td style="text-align: left">Tenessee</td><td style="text-align: center">7</td><td style="text-align: right">1</td></tr>
+</tbody></table>
+</div>
+<hr />
+<p>I’d like to refine this further.</p>
+<p>Task can be used to generate markdown in the same way as the tables
+can:</p>
+<p>For example <code>task run</code> of this:</p>
+<pre><code class="language-task run">network load_file("./data/mississippi.net")
+network table_to_markdown(template="
+&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&gt;Order =&gt; {ORDER}
+")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">| Name              | Ind | Order |
+|:------------------|:---:|------:|
+| Lower Mississippi |  1  |     7 |
+| Upper Mississippi |  2  |     1 |
+| Missouri          |  3  |     1 |
+| Arkansas          |  4  |     1 |
+| Red               |  5  |     1 |
+| Ohio              |  6  |     2 |
+| Tenessee          |  7  |     1 |
+</code></pre>
+<p>If you do <code>task run markdown</code> then:</p>
+<pre><code class="language-task run markdown">network load_file("./data/mississippi.net")
+network table_to_markdown(template="
+&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&gt;Order =&gt; {ORDER}
+")
+</code></pre>
+<p>Results:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th></tr></thead><tbody>
+<tr><td style="text-align: left">Lower Mississippi</td><td style="text-align: center">1</td><td style="text-align: right">7</td></tr>
+<tr><td style="text-align: left">Upper Mississippi</td><td style="text-align: center">2</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Arkansas</td><td style="text-align: center">4</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Red</td><td style="text-align: center">5</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">Ohio</td><td style="text-align: center">6</td><td style="text-align: right">2</td></tr>
+<tr><td style="text-align: left">Tenessee</td><td style="text-align: center">7</td><td style="text-align: right">1</td></tr>
+</tbody></table>
+</div>
+<p>Which means it can be used for other things:</p>
+<pre><code class="language-task run markdown">network load_file("./data/mississippi.net")
+network echo("**Details about the Nodes:**")
+node render("
+=(+ (st+num 'INDEX) 1). {_NAME:repl(-, ):case(title)} River
+")
+</code></pre>
+<p>Results:<br />
+<strong>Details about the Nodes:</strong></p>
+<ol>
+<li>
+<p>Lower Mississippi River</p>
+</li>
+<li>
+<p>Upper Mississippi River</p>
+</li>
+<li>
+<p>Missouri River</p>
+</li>
+<li>
+<p>Arkansas River</p>
+</li>
+<li>
+<p>Red River</p>
+</li>
+<li>
+<p>Ohio River</p>
+</li>
+<li>
+<p>Tenessee River</p>
+</li>
+</ol>
+<p>You can also use the same method to insert images like this, at the end of your tasks, so that the image generated by the tasks can be inserted here.</p>
+<pre><code class="language-task run image"># do some tasks
+network echo("Some other output form your tasks")
+network clip()
+network echo("../images/ohio-low.svg")
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="../images/ohio-low.svg" alt="" /></p>
+</center>  
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../notes/rust.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../future/optimization.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../notes/rust.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../future/optimization.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/syntax-highlight.js"></script>
+
+
+    </div>
+    </body>
+</html>
