@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>External Plugins - Network Analysis and Data Integration (NADI)</title>
+        <title>Series - Network Analysis and Data Integration (NADI)</title>
 
 
         <!-- Custom HTML head -->
@@ -154,25 +154,84 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="external-plugins"><a class="header" href="#external-plugins">External Plugins</a></h1>
-<p>This section showcases the functions from external plugins developed
-along side the NADI project due to various reasons.</p>
-<p>The plugins listed here can be installed with following steps:</p>
+                        <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
+<h2 id="node.sr_count"><a class="header" href="#node.sr_count">sr_count</a></h2>
+<pre><code class="language-sig">node series.sr_count()
+</code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<p>Number of series in the node</p>
+<h2 id="node.sr_list"><a class="header" href="#node.sr_list">sr_list</a></h2>
+<pre><code class="language-sig">node series.sr_list()
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<p>List all series in the node</p>
+<h2 id="node.sr_dtype"><a class="header" href="#node.sr_dtype">sr_dtype</a></h2>
+<pre><code class="language-sig">node series.sr_dtype(name: '&amp; str', safe: 'bool' = false)
+</code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
 <ul>
-<li>clone the repository of external plugins,</li>
-<li>compile it locally with cargo,</li>
-<li>move all generated dynamic libraries to the nadi plugin directory.</li>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series</li>
+<li><code>safe: 'bool' = false</code> =&gt; Do not error if series does’t exist</li>
 </ul>
+<p>Type name of the series</p>
+<h2 id="node.sr_len"><a class="header" href="#node.sr_len">sr_len</a></h2>
+<pre><code class="language-sig">node series.sr_len(name: '&amp; str', safe: 'bool' = false)
+</code></pre>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series</li>
+<li><code>safe: 'bool' = false</code> =&gt; Do not error if series does’t exist</li>
+</ul>
+<p>Length of the series</p>
+<h2 id="node.sr_mean"><a class="header" href="#node.sr_mean">sr_mean</a></h2>
+<pre><code class="language-sig">node series.sr_mean(name: '&amp; str')
+</code></pre>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series</li>
+</ul>
+<p>Type name of the series</p>
+<h2 id="node.sr_sum"><a class="header" href="#node.sr_sum">sr_sum</a></h2>
+<pre><code class="language-sig">node series.sr_sum(name: '&amp; str')
+</code></pre>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series</li>
+</ul>
+<p>Sum of the series</p>
+<h2 id="node.set_series"><a class="header" href="#node.set_series">set_series</a></h2>
+<pre><code class="language-sig">node series.set_series(
+    name: '&amp; str',
+    value: 'Attribute',
+    dtype: '&amp; str'
+)
+</code></pre>
+<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series to save as</li>
+<li><code>value: 'Attribute'</code> =&gt; Argument to convert to series</li>
+<li><code>dtype: '&amp; str'</code> =&gt; type</li>
+</ul>
+<p>set the following series to the node</p>
+<h2 id="node.sr_to_array"><a class="header" href="#node.sr_to_array">sr_to_array</a></h2>
+<pre><code class="language-sig">node series.sr_to_array(name: '&amp; str', safe: 'bool' = false)
+</code></pre>
+<h3 id="arguments-7"><a class="header" href="#arguments-7">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series</li>
+<li><code>safe: 'bool' = false</code> =&gt; Do not error if series does’t exist</li>
+</ul>
+<p>Make an array from the series</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../plugins/visuals.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plugins/render.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../plugins/dams.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../plugins/table.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -182,11 +241,11 @@ along side the NADI project due to various reasons.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../plugins/visuals.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plugins/render.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../plugins/dams.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../plugins/table.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -156,11 +156,24 @@
                     <main>
                         <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.load_file"><a class="header" href="#network.load_file">load_file</a></h2>
-<pre><code class="language-sig">network connections.load_file(file: 'PathBuf')
+<pre><code class="language-sig">network connections.load_file(file: 'PathBuf', append: 'bool' = false)
 </code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt; File to load the network connections from</li>
+<li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
+</ul>
 <p>Load the given file into the network</p>
 <p>This replaces the current network with the one loaded from the
 file.</p>
+<h2 id="network.subset"><a class="header" href="#network.subset">subset</a></h2>
+<pre><code class="language-sig">network connections.subset(keep: 'bool' = true)
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>keep: 'bool' = true</code> =&gt; Keep the selected nodes (false = removes the selected)</li>
+</ul>
+<p>Take a subset of network by only including the selected nodes</p>
 <h2 id="network.save_file"><a class="header" href="#network.save_file">save_file</a></h2>
 <pre><code class="language-sig">network connections.save_file(
     file: 'PathBuf',
@@ -168,16 +181,15 @@ file.</p>
     graphviz: 'bool' = false
 )
 </code></pre>
-<p>Save the network into the given file</p>
-<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
 <ul>
-<li><code>file</code>: Path to the output file</li>
-<li><code>quote_all</code> [default: true]: quote all node names.
-if false, doesn’t quote valid identifier names</li>
-<li><code>graphviz</code> [default: false]: wrap the network into
-a valid graphviz file. For more control on file
-<code>save_graphviz</code> from <code>graphviz</code> plugin instead.</li>
+<li><code>file: 'PathBuf'</code> =&gt; Path to the output file</li>
+<li><code>quote_all: 'bool' = true</code> =&gt; quote all node names; if false, doesn’t quote valid identifier names</li>
+<li><code>graphviz: 'bool' = false</code> =&gt; wrap the network into a valid graphviz file</li>
 </ul>
+<p>Save the network into the given file</p>
+<p>For more control on graphviz file writing use
+<code>save_graphviz</code> from <code>graphviz</code> plugin instead.</p>
 
                     </main>
 
@@ -187,7 +199,7 @@ a valid graphviz file. For more control on file
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../plugins/debug.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../plugins/core.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -201,7 +213,7 @@ a valid graphviz file. For more control on file
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../plugins/debug.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../plugins/core.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

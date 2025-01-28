@@ -195,7 +195,9 @@ execution.</p>
 </span>node[ohio] render("{_NAME:case(title)} River")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">Ohio River
+<pre><code class="language-output">{
+  ohio = "Ohio River"
+}
 </code></pre>
 <p>Task and Rust code block might also include lines that are needed to
 get the results, but hidden due to being irrelevant to the
@@ -324,7 +326,7 @@ I wrote this document on {%A}, exact date: {%Y-%m-%d}.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-I wrote this document on Tuesday, exact date: 2024-11-12.
+I wrote this document on Monday, exact date: 2025-01-27.
 </code></pre>
 <p>With more complicated templates, we would be able to generate
 documents with text and images based on the node attributes as well.</p>
@@ -355,11 +357,16 @@ shows how flexible the template system is.</p>
 <p>Node function runs on each node. It takes arguments and keyword arguments.</p>
 <p>For example following node function takes multiple attribute names and prints them. The signature of the node function is <code>print_attrs(*args)</code>.</p>
 <pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
-</span>node print_attrs("NAME", "INDEX")
+</span>node print_attrs("INDEX", name=false)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-output">** Running 2 Script **
-Error: Argument 2 (name [bool]): Incorrect Type: got String instead of bool
+<p>Results:</p>
+<pre><code class="language-output">INDEX = 0
+INDEX = 1
+INDEX = 2
+INDEX = 3
+INDEX = 4
+INDEX = 5
+INDEX = 6
 </code></pre>
 <p>Only the <code>NAME</code> is printed as they do not have any other attributes.</p>
 <h2 id="selective-execution"><a class="header" href="#selective-execution">Selective Execution</a></h2>
@@ -371,27 +378,33 @@ nodes are executed.</p>
 </center>
 <h3 id="inverse-order"><a class="header" href="#inverse-order">Inverse Order</a></h3>
 <pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
-</span>node.inverse print_attrs("NAME")
+</span>node&lt;inverse&gt; print_attrs("NAME")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-output">** Running 2 Script **
-Error: Argument 2 (name [bool]) is required
+<p>Results:</p>
+<pre><code class="language-output">NAME = "tenessee"
+NAME = "ohio"
+NAME = "red"
+NAME = "arkansas"
+NAME = "missouri"
+NAME = "upper-mississippi"
+NAME = "lower-mississippi"
 </code></pre>
 <h2 id="list-of-nodes"><a class="header" href="#list-of-nodes">List of Nodes</a></h2>
 <pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
 </span>node[tenessee,"lower-mississippi"] print_attrs("NAME")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-output">** Running 2 Script **
-Error: Argument 2 (name [bool]) is required
+<p>Results:</p>
+<pre><code class="language-output">NAME = "tenessee"
+NAME = "lower-mississippi"
 </code></pre>
 <h2 id="path-of-nodes"><a class="header" href="#path-of-nodes">Path of Nodes</a></h2>
 <pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
 </span>node[tenessee -&gt; "lower-mississippi"] print_attrs("NAME")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-output">** Running 2 Script **
-Error: Argument 2 (name [bool]) is required
+<p>Results:</p>
+<pre><code class="language-output">NAME = "tenessee"
+NAME = "ohio"
+NAME = "lower-mississippi"
 </code></pre>
 <p>As we can see in the diagram, the path from tenessee to lower
 mississippi includes the ohio node.</p>
@@ -492,19 +505,19 @@ node[
 node[WV04112 -&gt; WV04113] render("=(&gt; 2 3)")
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h1>
-<p>If you need help on any functions. Use the <code>help</code> as a <code>task</code>. You can use <code>help.node</code> or <code>help.network</code> for specific help.</p>
-<pre><code class="language-task run">help.node render()
+<p>If you need help on any functions. Use the <code>help</code> as a <code>task</code>. You can use <code>help node</code> or <code>help network</code> for specific help.</p>
+<pre><code class="language-task run">help node render
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">== Node Function: render
+<pre><code class="language-output">node render (template: '&amp; Template', safe: 'bool' = false)
 Render the template based on the node attributes
+Arguments
+- template: &amp; Template String template to render
+- safe: bool [def = false] if render fails keep it as it is instead of exiting
+
 
 For more details on the template system. Refer to the String
 Template section of the NADI book.
-
-# Arguments
-- `template` - String template to render
-- `safe` - if render fails keep it as it is instead of exiting
 </code></pre>
 <p>Or you can use <code>nadi --fnhelp &lt;function&gt;</code> using the <code>nadi-cli</code>.</p>
 <p>Now that you have the overview of the nadi system’s data
@@ -523,52 +536,102 @@ Developer’s references, or the library documentation.</p>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="all-plugin-functions"><a class="header" href="#all-plugin-functions">All Plugin Functions</a></h1>
 <p>All the functions available on this instance of nadi, are listed here.</p>
+<h2 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Plugin</th><th style="text-align: left">Function</th><th style="text-align: left">Help</th></tr></thead><tbody>
+<tr><td style="text-align: left"><a href="plugins/logic.html"><code>logic</code></a></td><td style="text-align: left"><a href="plugins/logic.html#env.eq"><code>eq</code></a></td><td style="text-align: left">Greater than check</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#env.float_transform"><code>float_transform</code></a></td><td style="text-align: left">map values from the attribute based on the given table</td></tr>
+<tr><td style="text-align: left"><a href="plugins/core.html"><code>core</code></a></td><td style="text-align: left"><a href="plugins/core.html#env.float"><code>float</code></a></td><td style="text-align: left">make a float from value</td></tr>
+<tr><td style="text-align: left"><a href="plugins/regex.html"><code>regex</code></a></td><td style="text-align: left"><a href="plugins/regex.html#env.str_replace"><code>str_replace</code></a></td><td style="text-align: left">Replace the occurances of the given match</td></tr>
+<tr><td style="text-align: left"><a href="plugins/logic.html"><code>logic</code></a></td><td style="text-align: left"><a href="plugins/logic.html#env.lt"><code>lt</code></a></td><td style="text-align: left">Greater than check</td></tr>
+<tr><td style="text-align: left"><a href="plugins/core.html"><code>core</code></a></td><td style="text-align: left"><a href="plugins/core.html#env.str"><code>str</code></a></td><td style="text-align: left">make a string from value</td></tr>
+<tr><td style="text-align: left"><a href="plugins/core.html"><code>core</code></a></td><td style="text-align: left"><a href="plugins/core.html#env.int"><code>int</code></a></td><td style="text-align: left">make an int from the value</td></tr>
+<tr><td style="text-align: left"><a href="plugins/regex.html"><code>regex</code></a></td><td style="text-align: left"><a href="plugins/regex.html#env.str_match"><code>str_match</code></a></td><td style="text-align: left">Check if the given pattern matches the value or not</td></tr>
+<tr><td style="text-align: left"><a href="plugins/regex.html"><code>regex</code></a></td><td style="text-align: left"><a href="plugins/regex.html#env.str_count"><code>str_count</code></a></td><td style="text-align: left">Count the number of matches of given pattern in the value</td></tr>
+<tr><td style="text-align: left"><a href="plugins/logic.html"><code>logic</code></a></td><td style="text-align: left"><a href="plugins/logic.html#env.ifelse"><code>ifelse</code></a></td><td style="text-align: left">Simple if else condition</td></tr>
+<tr><td style="text-align: left"><a href="plugins/regex.html"><code>regex</code></a></td><td style="text-align: left"><a href="plugins/regex.html#env.str_find"><code>str_find</code></a></td><td style="text-align: left">Find the given pattern in the value</td></tr>
+<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#env.exists"><code>exists</code></a></td><td style="text-align: left">Checks if the given path exists</td></tr>
+<tr><td style="text-align: left"><a href="plugins/core.html"><code>core</code></a></td><td style="text-align: left"><a href="plugins/core.html#env.attrmap"><code>attrmap</code></a></td><td style="text-align: left">make an array from the arguments</td></tr>
+<tr><td style="text-align: left"><a href="plugins/logic.html"><code>logic</code></a></td><td style="text-align: left"><a href="plugins/logic.html#env.or"><code>or</code></a></td><td style="text-align: left">boolean or</td></tr>
+<tr><td style="text-align: left"><a href="plugins/logic.html"><code>logic</code></a></td><td style="text-align: left"><a href="plugins/logic.html#env.not"><code>not</code></a></td><td style="text-align: left">boolean not</td></tr>
+<tr><td style="text-align: left"><a href="plugins/regex.html"><code>regex</code></a></td><td style="text-align: left"><a href="plugins/regex.html#env.str_find_all"><code>str_find_all</code></a></td><td style="text-align: left">Find all the matches of the given pattern in the value</td></tr>
+<tr><td style="text-align: left"><a href="plugins/logic.html"><code>logic</code></a></td><td style="text-align: left"><a href="plugins/logic.html#env.and"><code>and</code></a></td><td style="text-align: left">Boolean and</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#env.strmap"><code>strmap</code></a></td><td style="text-align: left">map values from the attribute based on the given table</td></tr>
+<tr><td style="text-align: left"><a href="plugins/core.html"><code>core</code></a></td><td style="text-align: left"><a href="plugins/core.html#env.array"><code>array</code></a></td><td style="text-align: left">make an array from the arguments</td></tr>
+<tr><td style="text-align: left"><a href="plugins/logic.html"><code>logic</code></a></td><td style="text-align: left"><a href="plugins/logic.html#env.gt"><code>gt</code></a></td><td style="text-align: left">Greater than check</td></tr>
+<tr><td style="text-align: left"><a href="plugins/core.html"><code>core</code></a></td><td style="text-align: left"><a href="plugins/core.html#env.type_name"><code>type_name</code></a></td><td style="text-align: left">Type name of the arguments</td></tr>
+</tbody></table>
+</div>
 <h2 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Plugin</th><th style="text-align: left">Function</th><th style="text-align: left">Help</th></tr></thead><tbody>
-<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#network.command"><code>command</code></a></td><td style="text-align: left">Run the given template as a shell command.</td></tr>
-<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.load_attrs"><code>load_attrs</code></a></td><td style="text-align: left">Loads attrs from file for all nodes based on the given template</td></tr>
+<tr><td style="text-align: left"><a href="plugins/errors.html"><code>errors</code></a></td><td style="text-align: left"><a href="plugins/errors.html#network.calc_ts_error"><code>calc_ts_error</code></a></td><td style="text-align: left">Calculate Error from two timeseries values in the node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/datafill.html"><code>datafill</code></a></td><td style="text-align: left"><a href="plugins/datafill.html#network.load_csv_fill"><code>load_csv_fill</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="plugins/timeseries.html"><code>timeseries</code></a></td><td style="text-align: left"><a href="plugins/timeseries.html#network.ts_len"><code>ts_len</code></a></td><td style="text-align: left">Length of the timeseries</td></tr>
+<tr><td style="text-align: left"><a href="plugins/print_node.html"><code>print_node</code></a></td><td style="text-align: left"><a href="plugins/print_node.html#network.print_node"><code>print_node</code></a></td><td style="text-align: left">Print the node with its inputs and outputs</td></tr>
+<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#network.exists"><code>exists</code></a></td><td style="text-align: left">Checks if the given path exists when rendering the template</td></tr>
+<tr><td style="text-align: left"><a href="plugins/series.html"><code>series</code></a></td><td style="text-align: left"><a href="plugins/series.html#network.sr_mean"><code>sr_mean</code></a></td><td style="text-align: left">Type name of the series</td></tr>
 <tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.print_all_attrs"><code>print_all_attrs</code></a></td><td style="text-align: left">Print all attrs in a node</td></tr>
 <tr><td style="text-align: left"><a href="plugins/render.html"><code>render</code></a></td><td style="text-align: left"><a href="plugins/render.html#network.render"><code>render</code></a></td><td style="text-align: left">Render the template based on the node attributes</td></tr>
-<tr><td style="text-align: left"><a href="plugins/errors.html"><code>errors</code></a></td><td style="text-align: left"><a href="plugins/errors.html#network.calc_ts_errors"><code>calc_ts_errors</code></a></td><td style="text-align: left">Calculate Error from two timeseries values in the node</td></tr>
-<tr><td style="text-align: left"><a href="plugins/streamflow.html"><code>streamflow</code></a></td><td style="text-align: left"><a href="plugins/streamflow.html#network.check_negative"><code>check_negative</code></a></td><td style="text-align: left">Check the given streamflow timeseries for negative values</td></tr>
-<tr><td style="text-align: left"><a href="plugins/print_node.html"><code>print_node</code></a></td><td style="text-align: left"><a href="plugins/print_node.html#network.print_node"><code>print_node</code></a></td><td style="text-align: left">Print the node with its inputs and outputs</td></tr>
-<tr><td style="text-align: left"><a href="plugins/dams.html"><code>dams</code></a></td><td style="text-align: left"><a href="plugins/dams.html#network.min_year"><code>min_year</code></a></td><td style="text-align: left">Propagage the minimum year downstream</td></tr>
-<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.set_attrs"><code>set_attrs</code></a></td><td style="text-align: left">Set node attributes</td></tr>
-<tr><td style="text-align: left"><a href="plugins/timeseries.html"><code>timeseries</code></a></td><td style="text-align: left"><a href="plugins/timeseries.html#network.show_ts"><code>show_ts</code></a></td><td style="text-align: left">Print the given timeseries values in csv format</td></tr>
-<tr><td style="text-align: left"><a href="plugins/errors.html"><code>errors</code></a></td><td style="text-align: left"><a href="plugins/errors.html#network.calc_ts_error"><code>calc_ts_error</code></a></td><td style="text-align: left">Calculate Error from two timeseries values in the node</td></tr>
-<tr><td style="text-align: left"><a href="plugins/timeseries.html"><code>timeseries</code></a></td><td style="text-align: left"><a href="plugins/timeseries.html#network.list_ts"><code>list_ts</code></a></td><td style="text-align: left">Print the list of available timeseries for the node</td></tr>
-<tr><td style="text-align: left"><a href="plugins/dams.html"><code>dams</code></a></td><td style="text-align: left"><a href="plugins/dams.html#network.count_dams"><code>count_dams</code></a></td><td style="text-align: left">Count the number of dams upstream at each point</td></tr>
-<tr><td style="text-align: left"><a href="plugins/dams.html"><code>dams</code></a></td><td style="text-align: left"><a href="plugins/dams.html#network.count_gages"><code>count_gages</code></a></td><td style="text-align: left">Count the number of gages upstream at each point</td></tr>
+<tr><td style="text-align: left"><a href="plugins/timeseries.html"><code>timeseries</code></a></td><td style="text-align: left"><a href="plugins/timeseries.html#network.ts_dtype"><code>ts_dtype</code></a></td><td style="text-align: left">Type name of the timeseries</td></tr>
 <tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.print_attrs"><code>print_attrs</code></a></td><td style="text-align: left">Print the given node attributes if present</td></tr>
+<tr><td style="text-align: left"><a href="plugins/timeseries.html"><code>timeseries</code></a></td><td style="text-align: left"><a href="plugins/timeseries.html#network.ts_list"><code>ts_list</code></a></td><td style="text-align: left">List all timeseries in the node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#network.run"><code>run</code></a></td><td style="text-align: left">Run the node as if it’s a command if inputs are changed</td></tr>
+<tr><td style="text-align: left"><a href="plugins/series.html"><code>series</code></a></td><td style="text-align: left"><a href="plugins/series.html#network.set_series"><code>set_series</code></a></td><td style="text-align: left">set the following series to the node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/series.html"><code>series</code></a></td><td style="text-align: left"><a href="plugins/series.html#network.sr_to_array"><code>sr_to_array</code></a></td><td style="text-align: left">Make an array from the series</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.has_attr"><code>has_attr</code></a></td><td style="text-align: left">Check if the attribute is present</td></tr>
+<tr><td style="text-align: left"><a href="plugins/series.html"><code>series</code></a></td><td style="text-align: left"><a href="plugins/series.html#network.sr_count"><code>sr_count</code></a></td><td style="text-align: left">Number of series in the node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/series.html"><code>series</code></a></td><td style="text-align: left"><a href="plugins/series.html#network.sr_sum"><code>sr_sum</code></a></td><td style="text-align: left">Sum of the series</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.set_attrs_ifelse"><code>set_attrs_ifelse</code></a></td><td style="text-align: left">if else condition with multiple attributes</td></tr>
+<tr><td style="text-align: left"><a href="plugins/errors.html"><code>errors</code></a></td><td style="text-align: left"><a href="plugins/errors.html#network.calc_ts_errors"><code>calc_ts_errors</code></a></td><td style="text-align: left">Calculate Error from two timeseries values in the node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.get_attr"><code>get_attr</code></a></td><td style="text-align: left">Retrive attribute</td></tr>
+<tr><td style="text-align: left"><a href="plugins/series.html"><code>series</code></a></td><td style="text-align: left"><a href="plugins/series.html#network.sr_dtype"><code>sr_dtype</code></a></td><td style="text-align: left">Type name of the series</td></tr>
+<tr><td style="text-align: left"><a href="plugins/streamflow.html"><code>streamflow</code></a></td><td style="text-align: left"><a href="plugins/streamflow.html#network.check_negative"><code>check_negative</code></a></td><td style="text-align: left">Check the given streamflow timeseries for negative values</td></tr>
+<tr><td style="text-align: left"><a href="plugins/series.html"><code>series</code></a></td><td style="text-align: left"><a href="plugins/series.html#network.sr_len"><code>sr_len</code></a></td><td style="text-align: left">Length of the series</td></tr>
+<tr><td style="text-align: left"><a href="plugins/series.html"><code>series</code></a></td><td style="text-align: left"><a href="plugins/series.html#network.sr_list"><code>sr_list</code></a></td><td style="text-align: left">List all series in the node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/timeseries.html"><code>timeseries</code></a></td><td style="text-align: left"><a href="plugins/timeseries.html#network.ts_count"><code>ts_count</code></a></td><td style="text-align: left">Number of timeseries in the node</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.first_attr"><code>first_attr</code></a></td><td style="text-align: left">Return the first Attribute that exists</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.set_attrs"><code>set_attrs</code></a></td><td style="text-align: left">Set node attributes</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.load_attrs"><code>load_attrs</code></a></td><td style="text-align: left">Loads attrs from file for all nodes based on the given template</td></tr>
+<tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#network.attr_fraction_svg"><code>attr_fraction_svg</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
+<tr><td style="text-align: left"><a href="plugins/dams.html"><code>dams</code></a></td><td style="text-align: left"><a href="plugins/dams.html#network.count_node_if"><code>count_node_if</code></a></td><td style="text-align: left">Count the number of nodes upstream at each point that satisfies a certain condition</td></tr>
+<tr><td style="text-align: left"><a href="plugins/dams.html"><code>dams</code></a></td><td style="text-align: left"><a href="plugins/dams.html#network.min_year"><code>min_year</code></a></td><td style="text-align: left">Propagate the minimum year downstream</td></tr>
+<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#network.command"><code>command</code></a></td><td style="text-align: left">Run the given template as a shell command.</td></tr>
 <tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.set_attrs_render"><code>set_attrs_render</code></a></td><td style="text-align: left">Set node attributes based on string templates</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#network.load_toml_render"><code>load_toml_render</code></a></td><td style="text-align: left">Set node attributes based on string templates</td></tr>
+<tr><td style="text-align: left"><a href="plugins/timeseries.html"><code>timeseries</code></a></td><td style="text-align: left"><a href="plugins/timeseries.html#network.ts_print"><code>ts_print</code></a></td><td style="text-align: left">Print the given timeseries values in csv format</td></tr>
 </tbody></table>
 </div>
 <h2 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h2>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Plugin</th><th style="text-align: left">Function</th><th style="text-align: left">Help</th></tr></thead><tbody>
-<tr><td style="text-align: left"><a href="plugins/nadi_gis.html"><code>nadi_gis</code></a></td><td style="text-align: left"><a href="plugins/nadi_gis.html#node.gis_load_attrs"><code>gis_load_attrs</code></a></td><td style="text-align: left">Load node attributes from a GIS file</td></tr>
-<tr><td style="text-align: left"><a href="plugins/nadi_gis.html"><code>nadi_gis</code></a></td><td style="text-align: left"><a href="plugins/nadi_gis.html#node.gis_save_connections"><code>gis_save_connections</code></a></td><td style="text-align: left">Save GIS file of the connections</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#node.set_attrs_render"><code>set_attrs_render</code></a></td><td style="text-align: left">Set network attributes based on string templates</td></tr>
+<tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.table_to_svg"><code>table_to_svg</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
+<tr><td style="text-align: left"><a href="plugins/errors.html"><code>errors</code></a></td><td style="text-align: left"><a href="plugins/errors.html#node.calc_attr_error"><code>calc_attr_error</code></a></td><td style="text-align: left">Calculate Error from two attribute values in the network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/core.html"><code>core</code></a></td><td style="text-align: left"><a href="plugins/core.html#node.count"><code>count</code></a></td><td style="text-align: left">Count the number of nodes in the network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#node.command"><code>command</code></a></td><td style="text-align: left">Run the given template as a shell command.</td></tr>
+<tr><td style="text-align: left"><a href="plugins/graphviz.html"><code>graphviz</code></a></td><td style="text-align: left"><a href="plugins/graphviz.html#node.save_graphviz"><code>save_graphviz</code></a></td><td style="text-align: left">Save the network as a graphviz file</td></tr>
+<tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.export_svg"><code>export_svg</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
+<tr><td style="text-align: left"><a href="plugins/table.html"><code>table</code></a></td><td style="text-align: left"><a href="plugins/table.html#node.save_csv"><code>save_csv</code></a></td><td style="text-align: left">Save CSV</td></tr>
 <tr><td style="text-align: left"><a href="plugins/connections.html"><code>connections</code></a></td><td style="text-align: left"><a href="plugins/connections.html#node.load_file"><code>load_file</code></a></td><td style="text-align: left">Load the given file into the network</td></tr>
-<tr><td style="text-align: left"><a href="plugins/debug.html"><code>debug</code></a></td><td style="text-align: left"><a href="plugins/debug.html#node.clip"><code>clip</code></a></td><td style="text-align: left">Echo the ––8&lt;–– line for clipping sytax</td></tr>
+<tr><td style="text-align: left"><a href="plugins/gnuplot.html"><code>gnuplot</code></a></td><td style="text-align: left"><a href="plugins/gnuplot.html#node.plot_timeseries"><code>plot_timeseries</code></a></td><td style="text-align: left">Generate a gnuplot file that plots the timeseries data in the network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/debug.html"><code>debug</code></a></td><td style="text-align: left"><a href="plugins/debug.html#node.debug"><code>debug</code></a></td><td style="text-align: left">Print the args and kwargs on this function</td></tr>
+<tr><td style="text-align: left"><a href="plugins/fancy_print.html"><code>fancy_print</code></a></td><td style="text-align: left"><a href="plugins/fancy_print.html#node.fancy_print"><code>fancy_print</code></a></td><td style="text-align: left">Fancy print a network</td></tr>
 <tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.csv_count_na"><code>csv_count_na</code></a></td><td style="text-align: left">Count the number of na values in CSV file for each nodes in a network</td></tr>
 <tr><td style="text-align: left"><a href="plugins/debug.html"><code>debug</code></a></td><td style="text-align: left"><a href="plugins/debug.html#node.echo"><code>echo</code></a></td><td style="text-align: left">Echo the string to stdout or stderr</td></tr>
-<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#node.set_attrs"><code>set_attrs</code></a></td><td style="text-align: left">Set network attributes</td></tr>
-<tr><td style="text-align: left"><a href="plugins/nadi_gis.html"><code>nadi_gis</code></a></td><td style="text-align: left"><a href="plugins/nadi_gis.html#node.gis_save_nodes"><code>gis_save_nodes</code></a></td><td style="text-align: left">Save GIS file of the nodes</td></tr>
-<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#node.parallel"><code>parallel</code></a></td><td style="text-align: left">Run the given template as a shell command for each nodes in the network in parallel.</td></tr>
+<tr><td style="text-align: left"><a href="plugins/nadi_gis.html"><code>nadi_gis</code></a></td><td style="text-align: left"><a href="plugins/nadi_gis.html#node.gis_load_attrs"><code>gis_load_attrs</code></a></td><td style="text-align: left">Load node attributes from a GIS file</td></tr>
 <tr><td style="text-align: left"><a href="plugins/print_node.html"><code>print_node</code></a></td><td style="text-align: left"><a href="plugins/print_node.html#node.print_attr_csv"><code>print_attr_csv</code></a></td><td style="text-align: left">Print the given attributes in csv format with first column with node name</td></tr>
-<tr><td style="text-align: left"><a href="plugins/gnuplot.html"><code>gnuplot</code></a></td><td style="text-align: left"><a href="plugins/gnuplot.html#node.plot_timeseries"><code>plot_timeseries</code></a></td><td style="text-align: left">Generate a gnuplot file that plots the timeseries data in the network</td></tr>
-<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#node.set_attrs_render"><code>set_attrs_render</code></a></td><td style="text-align: left">Set network attributes based on string templates</td></tr>
-<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#node.command"><code>command</code></a></td><td style="text-align: left">Run the given template as a shell command.</td></tr>
 <tr><td style="text-align: left"><a href="plugins/render.html"><code>render</code></a></td><td style="text-align: left"><a href="plugins/render.html#node.render"><code>render</code></a></td><td style="text-align: left">Render a File template for the nodes in the whole network</td></tr>
-<tr><td style="text-align: left"><a href="plugins/graphviz.html"><code>graphviz</code></a></td><td style="text-align: left"><a href="plugins/graphviz.html#node.save_graphviz"><code>save_graphviz</code></a></td><td style="text-align: left">Save the network as a graphviz file</td></tr>
-<tr><td style="text-align: left"><a href="plugins/errors.html"><code>errors</code></a></td><td style="text-align: left"><a href="plugins/errors.html#node.calc_attr_error"><code>calc_attr_error</code></a></td><td style="text-align: left">Calculate Error from two attribute values in the network</td></tr>
-<tr><td style="text-align: left"><a href="plugins/fancy_print.html"><code>fancy_print</code></a></td><td style="text-align: left"><a href="plugins/fancy_print.html#node.fancy_print"><code>fancy_print</code></a></td><td style="text-align: left">Fancy print a network</td></tr>
+<tr><td style="text-align: left"><a href="plugins/debug.html"><code>debug</code></a></td><td style="text-align: left"><a href="plugins/debug.html#node.clip"><code>clip</code></a></td><td style="text-align: left">Echo the ––8&lt;–– line for clipping syntax</td></tr>
 <tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.csv_load_ts"><code>csv_load_ts</code></a></td><td style="text-align: left">Count the number of na values in CSV file for each nodes in a network</td></tr>
-<tr><td style="text-align: left"><a href="plugins/table.html"><code>table</code></a></td><td style="text-align: left"><a href="plugins/table.html#node.table_to_markdown"><code>table_to_markdown</code></a></td><td style="text-align: left">Render the Table as a rendered markdown</td></tr>
+<tr><td style="text-align: left"><a href="plugins/attrs.html"><code>attrs</code></a></td><td style="text-align: left"><a href="plugins/attrs.html#node.set_attrs"><code>set_attrs</code></a></td><td style="text-align: left">Set network attributes</td></tr>
+<tr><td style="text-align: left"><a href="plugins/command.html"><code>command</code></a></td><td style="text-align: left"><a href="plugins/command.html#node.parallel"><code>parallel</code></a></td><td style="text-align: left">Run the given template as a shell command for each nodes in the network in parallel.</td></tr>
+<tr><td style="text-align: left"><a href="plugins/timeseries.html"><code>timeseries</code></a></td><td style="text-align: left"><a href="plugins/timeseries.html#node.ts_print_csv"><code>ts_print_csv</code></a></td><td style="text-align: left">Save timeseries from all nodes into a single csv file</td></tr>
+<tr><td style="text-align: left"><a href="plugins/connections.html"><code>connections</code></a></td><td style="text-align: left"><a href="plugins/connections.html#node.subset"><code>subset</code></a></td><td style="text-align: left">Take a subset of network by only including the selected nodes</td></tr>
+<tr><td style="text-align: left"><a href="plugins/visuals.html"><code>visuals</code></a></td><td style="text-align: left"><a href="plugins/visuals.html#node.set_nodesize_attrs"><code>set_nodesize_attrs</code></a></td><td style="text-align: left">Set the node size of the nodes based on the attribute value</td></tr>
+<tr><td style="text-align: left"><a href="plugins/nadi_gis.html"><code>nadi_gis</code></a></td><td style="text-align: left"><a href="plugins/nadi_gis.html#node.gis_save_connections"><code>gis_save_connections</code></a></td><td style="text-align: left">Save GIS file of the connections</td></tr>
 <tr><td style="text-align: left"><a href="plugins/connections.html"><code>connections</code></a></td><td style="text-align: left"><a href="plugins/connections.html#node.save_file"><code>save_file</code></a></td><td style="text-align: left">Save the network into the given file</td></tr>
+<tr><td style="text-align: left"><a href="plugins/html.html"><code>html</code></a></td><td style="text-align: left"><a href="plugins/html.html#node.export_map"><code>export_map</code></a></td><td style="text-align: left">Exports the network as a HTML map</td></tr>
 <tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.csv_data_blocks_svg"><code>csv_data_blocks_svg</code></a></td><td style="text-align: left">Draw the data blocks with arrows in timeline</td></tr>
-<tr><td style="text-align: left"><a href="plugins/debug.html"><code>debug</code></a></td><td style="text-align: left"><a href="plugins/debug.html#node.debug"><code>debug</code></a></td><td style="text-align: left">Print the args and kwargs on this function</td></tr>
-<tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.export_svg"><code>export_svg</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
-<tr><td style="text-align: left"><a href="plugins/graphics.html"><code>graphics</code></a></td><td style="text-align: left"><a href="plugins/graphics.html#node.table_to_svg"><code>table_to_svg</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
+<tr><td style="text-align: left"><a href="plugins/table.html"><code>table</code></a></td><td style="text-align: left"><a href="plugins/table.html#node.table_to_markdown"><code>table_to_markdown</code></a></td><td style="text-align: left">Render the Table as a rendered markdown</td></tr>
+<tr><td style="text-align: left"><a href="plugins/nadi_gis.html"><code>nadi_gis</code></a></td><td style="text-align: left"><a href="plugins/nadi_gis.html#node.gis_save_nodes"><code>gis_save_nodes</code></a></td><td style="text-align: left">Save GIS file of the nodes</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="plugin-development"><a class="header" href="#plugin-development">Plugin Development</a></h1>
 <p>As it is not possible to forsee all the use cases in advance, the nadi
@@ -674,21 +737,21 @@ for external plugins while use
 <pre><code class="language-stp-md">
 ## Ohio River Routing Project
 
-&lt;!-- ---8&lt;---:[smithland] --&gt;
+&lt;!-- ---8&lt;---:[smithland]: --&gt;
 Our basin Outlet is at {_description:case(title):repl(Ky,KY)} with the total basin area {basin_area:f(1)} acre-ft.
 &lt;!-- ---8&lt;--- --&gt;
 
 The lower part of the Ohio basin are specifically important to us. Those are:
 | ID      | Basin Area   | Length to Outlet |
 |---------|-------------:|-----------------:|
-&lt;!-- ---8&lt;---:[greenup -&gt; smithland] --&gt;
+&lt;!-- ---8&lt;---:[greenup -&gt; smithland]: --&gt;
 | {_NAME} | {basin_area:f(1)} | {length:f(2)}  |
 &lt;!-- ---8&lt;--- --&gt;
 
 
 We used 4 locks and dams in the ohio river as representative locks and dams as below:
 
-&lt;!-- ---8&lt;---:["willow-island",racine,markland,smithland] --&gt;
+&lt;!-- ---8&lt;---:["willow-island",racine,markland,smithland]: --&gt;
 - {_NAME:repl(-, ):case(title)?}
 
   ![](../data/{_NAME}.svg)
@@ -868,14 +931,43 @@ node[
 # selecting a path
 node[WV04112 -&gt; WV04113] render("=(&gt; 2 3)")
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-1"><a class="header" href="#node-functions-1">Node Functions</a></h1>
-<h2 id="node.load_attrs"><a class="header" href="#node.load_attrs">load_attrs</a></h2>
-<pre><code class="language-sig">node attrs.load_attrs(filename)
+<div style="break-before: page; page-break-before: always;"></div><h1 id="env-functions-1"><a class="header" href="#env-functions-1">Env Functions</a></h1>
+<h2 id="env.strmap"><a class="header" href="#env.strmap">strmap</a></h2>
+<pre><code class="language-sig">env attrs.strmap(
+    attr: '&amp; str',
+    attrmap: '&amp; AttrMap',
+    default: 'Option &lt; Attribute &gt;'
+)
 </code></pre>
-<p>Loads attrs from file for all nodes based on the given template</p>
 <h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
 <ul>
+<li><code>attr: '&amp; str'</code> =&gt; Value to transform the attribute</li>
+<li><code>attrmap: '&amp; AttrMap'</code> =&gt; Dictionary of key=value to map the data to</li>
+<li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if key not found in <code>attrmap</code></li>
+</ul>
+<p>map values from the attribute based on the given table</p>
+<h2 id="env.float_transform"><a class="header" href="#env.float_transform">float_transform</a></h2>
+<pre><code class="language-sig">env attrs.float_transform(value: 'f64', transformation: '&amp; str')
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>value: 'f64'</code> =&gt; value to transform</li>
+<li><code>transformation: '&amp; str'</code> =&gt; transformation function, can be one of log/log10/sqrt</li>
+</ul>
+<p>map values from the attribute based on the given table</p>
+<h1 id="node-functions-1"><a class="header" href="#node-functions-1">Node Functions</a></h1>
+<h2 id="node.load_attrs"><a class="header" href="#node.load_attrs">load_attrs</a></h2>
+<pre><code class="language-sig">node attrs.load_attrs(filename: 'PathBuf')
+</code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>filename: 'PathBuf'</code> =&gt; Template for the filename to load node attributes from</li>
+</ul>
+<p>Loads attrs from file for all nodes based on the given template</p>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
 <li><code>filename</code>: Template for the filename to load node attributes from</li>
+<li><code>verbose</code>: print verbose message</li>
 </ul>
 <p>The template will be rendered for each node, and that filename from the
 rendered template will be used to load the attributes.</p>
@@ -889,6 +981,7 @@ rendered template will be used to load the attributes.</p>
 <h2 id="node.print_all_attrs"><a class="header" href="#node.print_all_attrs">print_all_attrs</a></h2>
 <pre><code class="language-sig">node attrs.print_all_attrs()
 </code></pre>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
 <p>Print all attrs in a node</p>
 <p>No arguments and no errors, it’ll just print all the attributes in a node with
 <code>node::attr=val</code> format, where,</p>
@@ -898,10 +991,15 @@ rendered template will be used to load the attributes.</p>
 <li>val is attribute value (string representation)</li>
 </ul>
 <h2 id="node.print_attrs"><a class="header" href="#node.print_attrs">print_attrs</a></h2>
-<pre><code class="language-sig">node attrs.print_attrs(*args, name: 'bool')
+<pre><code class="language-sig">node attrs.print_attrs(*attrs, name: 'bool')
 </code></pre>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<ul>
+<li><code>*attrs</code> =&gt;</li>
+<li><code>name: 'bool'</code> =&gt;</li>
+</ul>
 <p>Print the given node attributes if present</p>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
 <ul>
 <li>attrs,… : list of attributes to print</li>
 <li>name: Bool for whether to show the node name or not</li>
@@ -914,16 +1012,16 @@ rendered template will be used to load the attributes.</p>
 </ul>
 <p>The attributes will be printed in <code>key=val</code> format.</p>
 <h2 id="node.set_attrs"><a class="header" href="#node.set_attrs">set_attrs</a></h2>
-<pre><code class="language-sig">node attrs.set_attrs(**kwargs)
+<pre><code class="language-sig">node attrs.set_attrs(**attrs)
 </code></pre>
+<h3 id="arguments-7"><a class="header" href="#arguments-7">Arguments</a></h3>
+<ul>
+<li><code>**attrs</code> =&gt; Key value pairs of the attributes to set</li>
+</ul>
 <p>Set node attributes</p>
 <p>Use this function to set the node attributes of all nodes, or
 a select few nodes using the node selection methods (path or
 list of nodes)</p>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
-<ul>
-<li><code>key=value</code> - Kwargs of attr = value</li>
-</ul>
 <h3 id="error-1"><a class="header" href="#error-1">Error</a></h3>
 <p>The function should not error.</p>
 <h3 id="example"><a class="header" href="#example">Example</a></h3>
@@ -931,32 +1029,99 @@ list of nodes)</p>
 from <code>A</code> to <code>D</code></p>
 <pre><code class="language-task">node[A -&gt; D] set_attrs(a2d = true)
 </code></pre>
+<h2 id="node.get_attr"><a class="header" href="#node.get_attr">get_attr</a></h2>
+<pre><code class="language-sig">node attrs.get_attr(attr: '&amp; str', default: 'Option &lt; Attribute &gt;')
+</code></pre>
+<h3 id="arguments-8"><a class="header" href="#arguments-8">Arguments</a></h3>
+<ul>
+<li><code>attr: '&amp; str'</code> =&gt; Name of the attribute to get</li>
+<li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if the attribute is not found</li>
+</ul>
+<p>Retrive attribute</p>
+<h2 id="node.has_attr"><a class="header" href="#node.has_attr">has_attr</a></h2>
+<pre><code class="language-sig">node attrs.has_attr(attr: '&amp; str')
+</code></pre>
+<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
+<ul>
+<li><code>attr: '&amp; str'</code> =&gt; Name of the attribute to check</li>
+</ul>
+<p>Check if the attribute is present</p>
+<h2 id="node.first_attr"><a class="header" href="#node.first_attr">first_attr</a></h2>
+<pre><code class="language-sig">node attrs.first_attr(attrs: '&amp; [String]', default: 'Option &lt; Attribute &gt;')
+</code></pre>
+<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
+<ul>
+<li><code>attrs: '&amp; [String]'</code> =&gt; attribute names</li>
+<li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if not found</li>
+</ul>
+<p>Return the first Attribute that exists</p>
+<h2 id="node.set_attrs_ifelse"><a class="header" href="#node.set_attrs_ifelse">set_attrs_ifelse</a></h2>
+<pre><code class="language-sig">node attrs.set_attrs_ifelse(cond: 'bool', **values)
+</code></pre>
+<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
+<ul>
+<li><code>cond: 'bool'</code> =&gt; Condition to check</li>
+<li><code>**values</code> =&gt; key = [val1, val2] where key is set as first if <code>cond</code> is true else second</li>
+</ul>
+<p>if else condition with multiple attributes</p>
 <h2 id="node.set_attrs_render"><a class="header" href="#node.set_attrs_render">set_attrs_render</a></h2>
 <pre><code class="language-sig">node attrs.set_attrs_render(**kwargs)
 </code></pre>
-<p>Set node attributes based on string templates</p>
-<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<h3 id="arguments-12"><a class="header" href="#arguments-12">Arguments</a></h3>
 <ul>
-<li><code>attr=template</code> - Kwargs of attr = String template to render</li>
+<li><code>**kwargs</code> =&gt; key value pair of attribute to set and the Template to render</li>
 </ul>
+<p>Set node attributes based on string templates</p>
+<h2 id="node.load_toml_render"><a class="header" href="#node.load_toml_render">load_toml_render</a></h2>
+<pre><code class="language-sig">node attrs.load_toml_render(toml: '&amp; Template', echo: 'bool' = false)
+</code></pre>
+<h3 id="arguments-13"><a class="header" href="#arguments-13">Arguments</a></h3>
+<ul>
+<li><code>toml: '&amp; Template'</code> =&gt; String template to render and load as TOML string</li>
+<li><code>echo: 'bool' = false</code> =&gt; Print the rendered toml or not</li>
+</ul>
+<p>Set node attributes based on string templates</p>
 <h1 id="network-functions-1"><a class="header" href="#network-functions-1">Network Functions</a></h1>
 <h2 id="network.set_attrs"><a class="header" href="#network.set_attrs">set_attrs</a></h2>
-<pre><code class="language-sig">network attrs.set_attrs(**kwargs)
+<pre><code class="language-sig">network attrs.set_attrs(**attrs)
 </code></pre>
+<h3 id="arguments-14"><a class="header" href="#arguments-14">Arguments</a></h3>
+<ul>
+<li><code>**attrs</code> =&gt; key value pair of attributes to set</li>
+</ul>
 <p>Set network attributes</p>
-<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
+<h3 id="arguments-15"><a class="header" href="#arguments-15">Arguments</a></h3>
 <ul>
 <li><code>key=value</code> - Kwargs of attr = value</li>
 </ul>
 <h2 id="network.set_attrs_render"><a class="header" href="#network.set_attrs_render">set_attrs_render</a></h2>
 <pre><code class="language-sig">network attrs.set_attrs_render(**kwargs)
 </code></pre>
-<p>Set network attributes based on string templates</p>
-<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<h3 id="arguments-16"><a class="header" href="#arguments-16">Arguments</a></h3>
 <ul>
-<li><code>attr=template</code> - Kwargs of attr = String template to render</li>
+<li><code>**kwargs</code> =&gt; Kwargs of attr = String template to render</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-2"><a class="header" href="#node-functions-2">Node Functions</a></h1>
+<p>Set network attributes based on string templates</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="env-functions-2"><a class="header" href="#env-functions-2">Env Functions</a></h1>
+<h2 id="env.exists"><a class="header" href="#env.exists">exists</a></h2>
+<pre><code class="language-sig">env command.exists(path: 'PathBuf', min_lines: 'Option &lt; usize &gt;')
+</code></pre>
+<h3 id="arguments-17"><a class="header" href="#arguments-17">Arguments</a></h3>
+<ul>
+<li><code>path: 'PathBuf'</code> =&gt; Path to check</li>
+<li><code>min_lines: 'Option &lt; usize &gt;'</code> =&gt; Minimum number of lines the file should have</li>
+</ul>
+<p>Checks if the given path exists</p>
+<h1 id="node-functions-2"><a class="header" href="#node-functions-2">Node Functions</a></h1>
+<h2 id="node.exists"><a class="header" href="#node.exists">exists</a></h2>
+<pre><code class="language-sig">node command.exists(path: 'Template', min_lines: 'Option &lt; usize &gt;')
+</code></pre>
+<h3 id="arguments-18"><a class="header" href="#arguments-18">Arguments</a></h3>
+<ul>
+<li><code>path: 'Template'</code> =&gt; Path to check</li>
+<li><code>min_lines: 'Option &lt; usize &gt;'</code> =&gt; Minimum number of lines the file should have</li>
+</ul>
+<p>Checks if the given path exists when rendering the template</p>
 <h2 id="node.command"><a class="header" href="#node.command">command</a></h2>
 <pre><code class="language-sig">node command.command(
     cmd: '&amp; Template',
@@ -964,6 +1129,12 @@ from <code>A</code> to <code>D</code></p>
     echo: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments-19"><a class="header" href="#arguments-19">Arguments</a></h3>
+<ul>
+<li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
+<li><code>verbose: 'bool' = true</code> =&gt; Show the rendered version of command, and other messages</li>
+<li><code>echo: 'bool' = false</code> =&gt; Echo the stdout from the command</li>
+</ul>
 <p>Run the given template as a shell command.</p>
 <p>Run any command in the shell. The standard output of the command
 will be consumed and if there are lines starting with <code>nadi:var:</code>
@@ -976,12 +1147,6 @@ scripts in any language and pass the values back to the NADI
 system.</p>
 <p>It will also print out the new values or changes from old values,
 if <code>verbose</code> is true.</p>
-<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
-<ul>
-<li><code>cmd</code>: String Command template to run</li>
-<li><code>verbose</code>: bool Show the rendered version of command</li>
-<li><code>echo</code>: bool Echo the stdin from the command</li>
-</ul>
 <h3 id="errors-1"><a class="header" href="#errors-1">Errors</a></h3>
 <p>The function will error if,</p>
 <ul>
@@ -989,6 +1154,27 @@ if <code>verbose</code> is true.</p>
 <li>The command cannot be executed,</li>
 <li>The attributes from command’s stdout cannot be parsed properly</li>
 </ul>
+<h2 id="node.run"><a class="header" href="#node.run">run</a></h2>
+<pre><code class="language-sig">node command.run(
+    command: '&amp; str',
+    inputs: '&amp; str',
+    outputs: '&amp; str',
+    verbose: 'bool' = true,
+    echo: 'bool' = false
+)
+</code></pre>
+<h3 id="arguments-20"><a class="header" href="#arguments-20">Arguments</a></h3>
+<ul>
+<li><code>command: '&amp; str'</code> =&gt; Node Attribute with the command to run</li>
+<li><code>inputs: '&amp; str'</code> =&gt; Node attribute with list of input files</li>
+<li><code>outputs: '&amp; str'</code> =&gt; Node attribute with list of output files</li>
+<li><code>verbose: 'bool' = true</code> =&gt; Print the command being run</li>
+<li><code>echo: 'bool' = false</code> =&gt; Show the output of the command</li>
+</ul>
+<p>Run the node as if it’s a command if inputs are changed</p>
+<p>This function will not run a command node if all outputs are older
+than all inputs. This is useful to networks where each nodes are
+tasks with input files and output files.</p>
 <h1 id="network-functions-2"><a class="header" href="#network-functions-2">Network Functions</a></h1>
 <h2 id="network.parallel"><a class="header" href="#network.parallel">parallel</a></h2>
 <pre><code class="language-sig">network command.parallel(
@@ -998,18 +1184,18 @@ if <code>verbose</code> is true.</p>
     echo: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments-21"><a class="header" href="#arguments-21">Arguments</a></h3>
+<ul>
+<li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
+<li><code>_workers: 'i64' = 4</code> =&gt; Number of workers to run in parallel</li>
+<li><code>verbose: 'bool' = true</code> =&gt; Print the command being run</li>
+<li><code>echo: 'bool' = false</code> =&gt; Show the output of the command</li>
+</ul>
 <p>Run the given template as a shell command for each nodes in the network in parallel.</p>
 <h3 id="warning"><a class="header" href="#warning">Warning</a></h3>
 <p>Currently there is no way to limit the number of parallel
 processes, so please be careful with this command if you have very
 large number of nodes.</p>
-<h3 id="arguments-7"><a class="header" href="#arguments-7">Arguments</a></h3>
-<ul>
-<li><code>cmd</code>: String Command template to run</li>
-<li><code>workers</code>: Integer Number of workers to run in parallel</li>
-<li><code>verbose</code>: bool Show the rendered version of command and variable changes</li>
-<li><code>echo</code>: bool Echo the stdin from the command</li>
-</ul>
 <h2 id="network.command"><a class="header" href="#network.command">command</a></h2>
 <pre><code class="language-sig">network command.command(
     cmd: 'Template',
@@ -1017,6 +1203,12 @@ large number of nodes.</p>
     echo: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments-22"><a class="header" href="#arguments-22">Arguments</a></h3>
+<ul>
+<li><code>cmd: 'Template'</code> =&gt; String Command template to run</li>
+<li><code>verbose: 'bool' = true</code> =&gt; Print the command being run</li>
+<li><code>echo: 'bool' = false</code> =&gt; Show the output of the command</li>
+</ul>
 <p>Run the given template as a shell command.</p>
 <p>Run any command in the shell. The standard output of the command
 will be consumed and if there are lines starting with <code>nadi:var:</code>
@@ -1024,19 +1216,26 @@ and followed by <code>key=val</code> pairs, it’ll be read as new attributes
 to that node.</p>
 <p>See <code>node command.command</code> for more details as they have
 the same implementation</p>
-<h3 id="arguments-8"><a class="header" href="#arguments-8">Arguments</a></h3>
-<ul>
-<li><code>cmd</code>: String Command template to run</li>
-<li><code>verbose</code>: bool Show the rendered version of command</li>
-<li><code>echo</code>: bool Echo the stdin from the command</li>
-</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-3"><a class="header" href="#network-functions-3">Network Functions</a></h1>
 <h2 id="network.load_file"><a class="header" href="#network.load_file">load_file</a></h2>
-<pre><code class="language-sig">network connections.load_file(file: 'PathBuf')
+<pre><code class="language-sig">network connections.load_file(file: 'PathBuf', append: 'bool' = false)
 </code></pre>
+<h3 id="arguments-23"><a class="header" href="#arguments-23">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt; File to load the network connections from</li>
+<li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
+</ul>
 <p>Load the given file into the network</p>
 <p>This replaces the current network with the one loaded from the
 file.</p>
+<h2 id="network.subset"><a class="header" href="#network.subset">subset</a></h2>
+<pre><code class="language-sig">network connections.subset(keep: 'bool' = true)
+</code></pre>
+<h3 id="arguments-24"><a class="header" href="#arguments-24">Arguments</a></h3>
+<ul>
+<li><code>keep: 'bool' = true</code> =&gt; Keep the selected nodes (false = removes the selected)</li>
+</ul>
+<p>Take a subset of network by only including the selected nodes</p>
 <h2 id="network.save_file"><a class="header" href="#network.save_file">save_file</a></h2>
 <pre><code class="language-sig">network connections.save_file(
     file: 'PathBuf',
@@ -1044,20 +1243,91 @@ file.</p>
     graphviz: 'bool' = false
 )
 </code></pre>
-<p>Save the network into the given file</p>
-<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
+<h3 id="arguments-25"><a class="header" href="#arguments-25">Arguments</a></h3>
 <ul>
-<li><code>file</code>: Path to the output file</li>
-<li><code>quote_all</code> [default: true]: quote all node names.
-if false, doesn’t quote valid identifier names</li>
-<li><code>graphviz</code> [default: false]: wrap the network into
-a valid graphviz file. For more control on file
-<code>save_graphviz</code> from <code>graphviz</code> plugin instead.</li>
+<li><code>file: 'PathBuf'</code> =&gt; Path to the output file</li>
+<li><code>quote_all: 'bool' = true</code> =&gt; quote all node names; if false, doesn’t quote valid identifier names</li>
+<li><code>graphviz: 'bool' = false</code> =&gt; wrap the network into a valid graphviz file</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-4"><a class="header" href="#network-functions-4">Network Functions</a></h1>
+<p>Save the network into the given file</p>
+<p>For more control on graphviz file writing use
+<code>save_graphviz</code> from <code>graphviz</code> plugin instead.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="env-functions-3"><a class="header" href="#env-functions-3">Env Functions</a></h1>
+<h2 id="env.type_name"><a class="header" href="#env.type_name">type_name</a></h2>
+<pre><code class="language-sig">env core.type_name(value: 'Attribute', recursive: 'bool' = false)
+</code></pre>
+<h3 id="arguments-26"><a class="header" href="#arguments-26">Arguments</a></h3>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Argument to get type</li>
+<li><code>recursive: 'bool' = false</code> =&gt; Recursively check types for array and table</li>
+</ul>
+<p>Type name of the arguments</p>
+<h2 id="env.float"><a class="header" href="#env.float">float</a></h2>
+<pre><code class="language-sig">env core.float(value: 'Attribute', parse: 'bool' = true)
+</code></pre>
+<h3 id="arguments-27"><a class="header" href="#arguments-27">Arguments</a></h3>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Argument to convert to float</li>
+<li><code>parse: 'bool' = true</code> =&gt; parse string to float</li>
+</ul>
+<p>make a float from value</p>
+<h2 id="env.str"><a class="header" href="#env.str">str</a></h2>
+<pre><code class="language-sig">env core.str(value: 'Attribute', quote: 'bool' = false)
+</code></pre>
+<h3 id="arguments-28"><a class="header" href="#arguments-28">Arguments</a></h3>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Argument to convert to float</li>
+<li><code>quote: 'bool' = false</code> =&gt; quote it if it’s literal string</li>
+</ul>
+<p>make a string from value</p>
+<h2 id="env.int"><a class="header" href="#env.int">int</a></h2>
+<pre><code class="language-sig">env core.int(
+    value: 'Attribute',
+    parse: 'bool' = true,
+    round: 'bool' = true,
+    strfloat: 'bool' = false
+)
+</code></pre>
+<h3 id="arguments-29"><a class="header" href="#arguments-29">Arguments</a></h3>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Argument to convert to int</li>
+<li><code>parse: 'bool' = true</code> =&gt; parse string to int</li>
+<li><code>round: 'bool' = true</code> =&gt; round float into integer</li>
+<li><code>strfloat: 'bool' = false</code> =&gt; parse string first as float before converting to int</li>
+</ul>
+<p>make an int from the value</p>
+<h2 id="env.array"><a class="header" href="#env.array">array</a></h2>
+<pre><code class="language-sig">env core.array(*attributes)
+</code></pre>
+<h3 id="arguments-30"><a class="header" href="#arguments-30">Arguments</a></h3>
+<ul>
+<li><code>*attributes</code> =&gt; List of attributes</li>
+</ul>
+<p>make an array from the arguments</p>
+<h2 id="env.attrmap"><a class="header" href="#env.attrmap">attrmap</a></h2>
+<pre><code class="language-sig">env core.attrmap(**attributes)
+</code></pre>
+<h3 id="arguments-31"><a class="header" href="#arguments-31">Arguments</a></h3>
+<ul>
+<li><code>**attributes</code> =&gt; name and values of attributes</li>
+</ul>
+<p>make an array from the arguments</p>
+<h1 id="network-functions-4"><a class="header" href="#network-functions-4">Network Functions</a></h1>
+<h2 id="network.count"><a class="header" href="#network.count">count</a></h2>
+<pre><code class="language-sig">network core.count()
+</code></pre>
+<h3 id="arguments-32"><a class="header" href="#arguments-32">Arguments</a></h3>
+<p>Count the number of nodes in the network</p>
+<p>If propagation is present, only counts those nodes</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-5"><a class="header" href="#network-functions-5">Network Functions</a></h1>
 <h2 id="network.debug"><a class="header" href="#network.debug">debug</a></h2>
 <pre><code class="language-sig">network debug.debug(*args, **kwargs)
 </code></pre>
+<h3 id="arguments-33"><a class="header" href="#arguments-33">Arguments</a></h3>
+<ul>
+<li><code>*args</code> =&gt; Function arguments</li>
+<li><code>**kwargs</code> =&gt; Function Keyword arguments</li>
+</ul>
 <p>Print the args and kwargs on this function</p>
 <p>This function will just print out the args and kwargs the
 function is called with. This is for debugging purposes to see
@@ -1071,6 +1341,12 @@ function call.</p>
     newline: 'bool' = true
 )
 </code></pre>
+<h3 id="arguments-34"><a class="header" href="#arguments-34">Arguments</a></h3>
+<ul>
+<li><code>line: 'String'</code> =&gt; line to print</li>
+<li><code>error: 'bool' = false</code> =&gt; print to stderr instead of stdout</li>
+<li><code>newline: 'bool' = true</code> =&gt; print newline at the end</li>
+</ul>
 <p>Echo the string to stdout or stderr</p>
 <p>This simply echoes anything given to it. This can be used in
 combination with nadi tasks that create files (image, text,
@@ -1080,7 +1356,11 @@ those files back to the stdout.</p>
 <h2 id="network.clip"><a class="header" href="#network.clip">clip</a></h2>
 <pre><code class="language-sig">network debug.clip(error: 'bool' = false)
 </code></pre>
-<p>Echo the ––8&lt;–– line for clipping sytax</p>
+<h3 id="arguments-35"><a class="header" href="#arguments-35">Arguments</a></h3>
+<ul>
+<li><code>error: 'bool' = false</code> =&gt; print in stderr instead of in stdout</li>
+</ul>
+<p>Echo the ––8&lt;–– line for clipping syntax</p>
 <p>This function is a utility function for the generation of nadi
 book. This prints out the <code>----8&lt;----</code> line when called, so
 that <code>mdbook</code> preprocessor for <code>nadi</code> knows where to clip the
@@ -1100,22 +1380,144 @@ net render("{_NAME} {attr1}")
 only the parts after that are relevant to the user. Hence,
 it’ll discard outputs before that during documentation
 generation.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="env-functions-4"><a class="header" href="#env-functions-4">Env Functions</a></h1>
+<h2 id="env.ifelse"><a class="header" href="#env.ifelse">ifelse</a></h2>
+<pre><code class="language-sig">env logic.ifelse(
+    cond: 'bool',
+    iftrue: 'Attribute',
+    iffalse: 'Attribute'
+)
+</code></pre>
+<h3 id="arguments-36"><a class="header" href="#arguments-36">Arguments</a></h3>
+<ul>
+<li><code>cond: 'bool'</code> =&gt; Attribute that can be cast to bool value</li>
+<li><code>iftrue: 'Attribute'</code> =&gt; Output if <code>cond</code> is true</li>
+<li><code>iffalse: 'Attribute'</code> =&gt; Output if <code>cond</code> is false</li>
+</ul>
+<p>Simple if else condition</p>
+<h2 id="env.gt"><a class="header" href="#env.gt">gt</a></h2>
+<pre><code class="language-sig">env logic.gt(a: '&amp; Attribute', b: '&amp; Attribute')
+</code></pre>
+<h3 id="arguments-37"><a class="header" href="#arguments-37">Arguments</a></h3>
+<ul>
+<li><code>a: '&amp; Attribute'</code> =&gt; first attribute</li>
+<li><code>b: '&amp; Attribute'</code> =&gt; second attribute</li>
+</ul>
+<p>Greater than check</p>
+<h2 id="env.lt"><a class="header" href="#env.lt">lt</a></h2>
+<pre><code class="language-sig">env logic.lt(a: '&amp; Attribute', b: '&amp; Attribute')
+</code></pre>
+<h3 id="arguments-38"><a class="header" href="#arguments-38">Arguments</a></h3>
+<ul>
+<li><code>a: '&amp; Attribute'</code> =&gt; first attribute</li>
+<li><code>b: '&amp; Attribute'</code> =&gt; second attribute</li>
+</ul>
+<p>Greater than check</p>
+<h2 id="env.eq"><a class="header" href="#env.eq">eq</a></h2>
+<pre><code class="language-sig">env logic.eq(a: '&amp; Attribute', b: '&amp; Attribute')
+</code></pre>
+<h3 id="arguments-39"><a class="header" href="#arguments-39">Arguments</a></h3>
+<ul>
+<li><code>a: '&amp; Attribute'</code> =&gt; first attribute</li>
+<li><code>b: '&amp; Attribute'</code> =&gt; second attribute</li>
+</ul>
+<p>Greater than check</p>
+<h2 id="env.and"><a class="header" href="#env.and">and</a></h2>
+<pre><code class="language-sig">env logic.and(*conds)
+</code></pre>
+<h3 id="arguments-40"><a class="header" href="#arguments-40">Arguments</a></h3>
+<ul>
+<li><code>*conds</code> =&gt; List of attributes that can be cast to bool</li>
+</ul>
+<p>Boolean and</p>
+<h2 id="env.or"><a class="header" href="#env.or">or</a></h2>
+<pre><code class="language-sig">env logic.or(*conds)
+</code></pre>
+<h3 id="arguments-41"><a class="header" href="#arguments-41">Arguments</a></h3>
+<ul>
+<li><code>*conds</code> =&gt; List of attributes that can be cast to bool</li>
+</ul>
+<p>boolean or</p>
+<h2 id="env.not"><a class="header" href="#env.not">not</a></h2>
+<pre><code class="language-sig">env logic.not(cond: 'bool')
+</code></pre>
+<h3 id="arguments-42"><a class="header" href="#arguments-42">Arguments</a></h3>
+<ul>
+<li><code>cond: 'bool'</code> =&gt; attribute that can be cast to bool</li>
+</ul>
+<p>boolean not</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="env-functions-5"><a class="header" href="#env-functions-5">Env Functions</a></h1>
+<h2 id="env.str_match"><a class="header" href="#env.str_match">str_match</a></h2>
+<pre><code class="language-sig">env regex.str_match(pattern: 'Regex', attr: '&amp; str')
+</code></pre>
+<h3 id="arguments-43"><a class="header" href="#arguments-43">Arguments</a></h3>
+<ul>
+<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+</ul>
+<p>Check if the given pattern matches the value or not</p>
+<h2 id="env.str_replace"><a class="header" href="#env.str_replace">str_replace</a></h2>
+<pre><code class="language-sig">env regex.str_replace(
+    pattern: 'Regex',
+    attr: '&amp; str',
+    rep: '&amp; str'
+)
+</code></pre>
+<h3 id="arguments-44"><a class="header" href="#arguments-44">Arguments</a></h3>
+<ul>
+<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to replace</li>
+<li><code>rep: '&amp; str'</code> =&gt; replacement string</li>
+</ul>
+<p>Replace the occurances of the given match</p>
+<h2 id="env.str_find"><a class="header" href="#env.str_find">str_find</a></h2>
+<pre><code class="language-sig">env regex.str_find(pattern: 'Regex', attr: '&amp; str')
+</code></pre>
+<h3 id="arguments-45"><a class="header" href="#arguments-45">Arguments</a></h3>
+<ul>
+<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+</ul>
+<p>Find the given pattern in the value</p>
+<h2 id="env.str_find_all"><a class="header" href="#env.str_find_all">str_find_all</a></h2>
+<pre><code class="language-sig">env regex.str_find_all(pattern: 'Regex', attr: '&amp; str')
+</code></pre>
+<h3 id="arguments-46"><a class="header" href="#arguments-46">Arguments</a></h3>
+<ul>
+<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+</ul>
+<p>Find all the matches of the given pattern in the value</p>
+<h2 id="env.str_count"><a class="header" href="#env.str_count">str_count</a></h2>
+<pre><code class="language-sig">env regex.str_count(pattern: 'Regex', attr: '&amp; str')
+</code></pre>
+<h3 id="arguments-47"><a class="header" href="#arguments-47">Arguments</a></h3>
+<ul>
+<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+</ul>
+<p>Count the number of matches of given pattern in the value</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-3"><a class="header" href="#node-functions-3">Node Functions</a></h1>
 <h2 id="node.render"><a class="header" href="#node.render">render</a></h2>
 <pre><code class="language-sig">node render.render(template: '&amp; Template', safe: 'bool' = false)
 </code></pre>
+<h3 id="arguments-48"><a class="header" href="#arguments-48">Arguments</a></h3>
+<ul>
+<li><code>template: '&amp; Template'</code> =&gt; String template to render</li>
+<li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
+</ul>
 <p>Render the template based on the node attributes</p>
 <p>For more details on the template system. Refer to the String
 Template section of the NADI book.</p>
-<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
-<ul>
-<li><code>template</code> - String template to render</li>
-<li><code>safe</code> - if render fails keep it as it is instead of exiting</li>
-</ul>
-<h1 id="network-functions-5"><a class="header" href="#network-functions-5">Network Functions</a></h1>
+<h1 id="network-functions-6"><a class="header" href="#network-functions-6">Network Functions</a></h1>
 <h2 id="network.render"><a class="header" href="#network.render">render</a></h2>
 <pre><code class="language-sig">network render.render(template: 'PathBuf', outfile: 'Option &lt; PathBuf &gt;')
 </code></pre>
+<h3 id="arguments-49"><a class="header" href="#arguments-49">Arguments</a></h3>
+<ul>
+<li><code>template: 'PathBuf'</code> =&gt; Path to the template file</li>
+<li><code>outfile: 'Option &lt; PathBuf &gt;'</code> =&gt; output file</li>
+</ul>
 <p>Render a File template for the nodes in the whole network</p>
 <p>Write the file with templates for input variables in the same
 way you write string templates. It’s useful for markdown
@@ -1133,12 +1535,89 @@ include a file, the line_range syntax, if present, should be
 in the form of <code>start[:increment]:end</code>, you can exclude start
 or end to denote the line 1 or last line (e.g. <code>:5</code> is 1:5,
 and <code>3:</code> is from line 3 to the end)</p>
-<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
+<h3 id="arguments-50"><a class="header" href="#arguments-50">Arguments</a></h3>
 <ul>
 <li><code>template</code>: Path to the template file</li>
 <li><code>outfile</code> [Optional]: Path to save the template file, if none it’ll be printed in stdout</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-6"><a class="header" href="#network-functions-6">Network Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-4"><a class="header" href="#node-functions-4">Node Functions</a></h1>
+<h2 id="node.sr_count"><a class="header" href="#node.sr_count">sr_count</a></h2>
+<pre><code class="language-sig">node series.sr_count()
+</code></pre>
+<h3 id="arguments-51"><a class="header" href="#arguments-51">Arguments</a></h3>
+<p>Number of series in the node</p>
+<h2 id="node.sr_list"><a class="header" href="#node.sr_list">sr_list</a></h2>
+<pre><code class="language-sig">node series.sr_list()
+</code></pre>
+<h3 id="arguments-52"><a class="header" href="#arguments-52">Arguments</a></h3>
+<p>List all series in the node</p>
+<h2 id="node.sr_dtype"><a class="header" href="#node.sr_dtype">sr_dtype</a></h2>
+<pre><code class="language-sig">node series.sr_dtype(name: '&amp; str', safe: 'bool' = false)
+</code></pre>
+<h3 id="arguments-53"><a class="header" href="#arguments-53">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series</li>
+<li><code>safe: 'bool' = false</code> =&gt; Do not error if series does’t exist</li>
+</ul>
+<p>Type name of the series</p>
+<h2 id="node.sr_len"><a class="header" href="#node.sr_len">sr_len</a></h2>
+<pre><code class="language-sig">node series.sr_len(name: '&amp; str', safe: 'bool' = false)
+</code></pre>
+<h3 id="arguments-54"><a class="header" href="#arguments-54">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series</li>
+<li><code>safe: 'bool' = false</code> =&gt; Do not error if series does’t exist</li>
+</ul>
+<p>Length of the series</p>
+<h2 id="node.sr_mean"><a class="header" href="#node.sr_mean">sr_mean</a></h2>
+<pre><code class="language-sig">node series.sr_mean(name: '&amp; str')
+</code></pre>
+<h3 id="arguments-55"><a class="header" href="#arguments-55">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series</li>
+</ul>
+<p>Type name of the series</p>
+<h2 id="node.sr_sum"><a class="header" href="#node.sr_sum">sr_sum</a></h2>
+<pre><code class="language-sig">node series.sr_sum(name: '&amp; str')
+</code></pre>
+<h3 id="arguments-56"><a class="header" href="#arguments-56">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series</li>
+</ul>
+<p>Sum of the series</p>
+<h2 id="node.set_series"><a class="header" href="#node.set_series">set_series</a></h2>
+<pre><code class="language-sig">node series.set_series(
+    name: '&amp; str',
+    value: 'Attribute',
+    dtype: '&amp; str'
+)
+</code></pre>
+<h3 id="arguments-57"><a class="header" href="#arguments-57">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series to save as</li>
+<li><code>value: 'Attribute'</code> =&gt; Argument to convert to series</li>
+<li><code>dtype: '&amp; str'</code> =&gt; type</li>
+</ul>
+<p>set the following series to the node</p>
+<h2 id="node.sr_to_array"><a class="header" href="#node.sr_to_array">sr_to_array</a></h2>
+<pre><code class="language-sig">node series.sr_to_array(name: '&amp; str', safe: 'bool' = false)
+</code></pre>
+<h3 id="arguments-58"><a class="header" href="#arguments-58">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the series</li>
+<li><code>safe: 'bool' = false</code> =&gt; Do not error if series does’t exist</li>
+</ul>
+<p>Make an array from the series</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-7"><a class="header" href="#network-functions-7">Network Functions</a></h1>
+<h2 id="network.save_csv"><a class="header" href="#network.save_csv">save_csv</a></h2>
+<pre><code class="language-sig">network table.save_csv(path: '&amp; Path', *fields)
+</code></pre>
+<h3 id="arguments-59"><a class="header" href="#arguments-59">Arguments</a></h3>
+<ul>
+<li><code>path: '&amp; Path'</code> =&gt;</li>
+<li><code>*fields</code> =&gt;</li>
+</ul>
+<p>Save CSV</p>
 <h2 id="network.table_to_markdown"><a class="header" href="#network.table_to_markdown">table_to_markdown</a></h2>
 <pre><code class="language-sig">network table.table_to_markdown(
     table: 'Option &lt; PathBuf &gt;',
@@ -1147,14 +1626,14 @@ and <code>3:</code> is from line 3 to the end)</p>
     connections: 'Option &lt; String &gt;'
 )
 </code></pre>
-<p>Render the Table as a rendered markdown</p>
-<h3 id="arguments-12"><a class="header" href="#arguments-12">Arguments</a></h3>
+<h3 id="arguments-60"><a class="header" href="#arguments-60">Arguments</a></h3>
 <ul>
-<li><code>table</code>: Path to the table file</li>
-<li><code>template</code>: String template for table</li>
-<li><code>outfile</code>: Path to the output file</li>
-<li><code>connetions</code>: Show connections column or not</li>
+<li><code>table: 'Option &lt; PathBuf &gt;'</code> =&gt; Path to the table file</li>
+<li><code>template: 'Option &lt; String &gt;'</code> =&gt; String template for table</li>
+<li><code>outfile: 'Option &lt; PathBuf &gt;'</code> =&gt; Path to the output file</li>
+<li><code>connections: 'Option &lt; String &gt;'</code> =&gt; Show connections column or not</li>
 </ul>
+<p>Render the Table as a rendered markdown</p>
 <h3 id="error-2"><a class="header" href="#error-2">Error</a></h3>
 <p>The function will error out if,</p>
 <ul>
@@ -1165,29 +1644,88 @@ and <code>3:</code> is from line 3 to the end)</p>
 (caused by error on rendering cell values from templates)</li>
 <li>error while writing to the output file</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-4"><a class="header" href="#node-functions-4">Node Functions</a></h1>
-<h2 id="node.list_ts"><a class="header" href="#node.list_ts">list_ts</a></h2>
-<pre><code class="language-sig">node timeseries.list_ts(label: 'bool' = true)
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-5"><a class="header" href="#node-functions-5">Node Functions</a></h1>
+<h2 id="node.ts_count"><a class="header" href="#node.ts_count">ts_count</a></h2>
+<pre><code class="language-sig">node timeseries.ts_count()
 </code></pre>
-<p>Print the list of available timeseries for the node</p>
-<h3 id="arguments-13"><a class="header" href="#arguments-13">Arguments</a></h3>
+<h3 id="arguments-61"><a class="header" href="#arguments-61">Arguments</a></h3>
+<p>Number of timeseries in the node</p>
+<h2 id="node.ts_list"><a class="header" href="#node.ts_list">ts_list</a></h2>
+<pre><code class="language-sig">node timeseries.ts_list()
+</code></pre>
+<h3 id="arguments-62"><a class="header" href="#arguments-62">Arguments</a></h3>
+<p>List all timeseries in the node</p>
+<h2 id="node.ts_dtype"><a class="header" href="#node.ts_dtype">ts_dtype</a></h2>
+<pre><code class="language-sig">node timeseries.ts_dtype(name: '&amp; str', safe: 'bool' = false)
+</code></pre>
+<h3 id="arguments-63"><a class="header" href="#arguments-63">Arguments</a></h3>
 <ul>
-<li><code>label</code>: Label the line with node name</li>
+<li><code>name: '&amp; str'</code> =&gt; Name of the timeseries</li>
+<li><code>safe: 'bool' = false</code> =&gt; Do not error if timeseries does’t exist</li>
 </ul>
-<h2 id="node.show_ts"><a class="header" href="#node.show_ts">show_ts</a></h2>
-<pre><code class="language-sig">node timeseries.show_ts(
+<p>Type name of the timeseries</p>
+<h2 id="node.ts_len"><a class="header" href="#node.ts_len">ts_len</a></h2>
+<pre><code class="language-sig">node timeseries.ts_len(name: '&amp; str', safe: 'bool' = false)
+</code></pre>
+<h3 id="arguments-64"><a class="header" href="#arguments-64">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the timeseries</li>
+<li><code>safe: 'bool' = false</code> =&gt; Do not error if timeseries does’t exist</li>
+</ul>
+<p>Length of the timeseries</p>
+<h2 id="node.ts_print"><a class="header" href="#node.ts_print">ts_print</a></h2>
+<pre><code class="language-sig">node timeseries.ts_print(
     name: '&amp; String',
     header: 'bool' = true,
     head: 'Option &lt; i64 &gt;'
 )
 </code></pre>
-<p>Print the given timeseries values in csv format</p>
-<h3 id="arguments-14"><a class="header" href="#arguments-14">Arguments</a></h3>
+<h3 id="arguments-65"><a class="header" href="#arguments-65">Arguments</a></h3>
 <ul>
-<li><code>name</code>: name of the timeseries</li>
-<li><code>header</code>: whether to show header or not</li>
-<li><code>head</code>: number of head rows to show (all by default)</li>
+<li><code>name: '&amp; String'</code> =&gt; name of the timeseries</li>
+<li><code>header: 'bool' = true</code> =&gt; show header</li>
+<li><code>head: 'Option &lt; i64 &gt;'</code> =&gt; number of head rows to show (all by default)</li>
 </ul>
+<p>Print the given timeseries values in csv format</p>
+<h3 id="todo"><a class="header" href="#todo">TODO</a></h3>
+<ul>
+<li>save to file instead of showing with <code>outfile: Option&lt;PathBuf&gt;</code></li>
+</ul>
+<h1 id="network-functions-8"><a class="header" href="#network-functions-8">Network Functions</a></h1>
+<h2 id="network.ts_print_csv"><a class="header" href="#network.ts_print_csv">ts_print_csv</a></h2>
+<pre><code class="language-sig">network timeseries.ts_print_csv(
+    name: 'String',
+    head: 'Option &lt; usize &gt;',
+    nodes: 'Option &lt; HashSet &lt; String &gt; &gt;'
+)
+</code></pre>
+<h3 id="arguments-66"><a class="header" href="#arguments-66">Arguments</a></h3>
+<ul>
+<li><code>name: 'String'</code> =&gt; Name of the timeseries to save</li>
+<li><code>head: 'Option &lt; usize &gt;'</code> =&gt; number of head rows to show (all by default)</li>
+<li><code>nodes: 'Option &lt; HashSet &lt; String &gt; &gt;'</code> =&gt; Include only these nodes (all by default)</li>
+</ul>
+<p>Save timeseries from all nodes into a single csv file</p>
+<p>TODO: error/not on unqual length
+TODO: error/not on no timeseries, etc…
+TODO: output to <code>file: PathBuf</code></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-9"><a class="header" href="#network-functions-9">Network Functions</a></h1>
+<h2 id="network.set_nodesize_attrs"><a class="header" href="#network.set_nodesize_attrs">set_nodesize_attrs</a></h2>
+<pre><code class="language-sig">network visuals.set_nodesize_attrs(
+    attr: 'String',
+    default: 'Option &lt; f64 &gt;',
+    minsize: 'f64' = 4.0,
+    maxsize: 'f64' = 12.0
+)
+</code></pre>
+<h3 id="arguments-67"><a class="header" href="#arguments-67">Arguments</a></h3>
+<ul>
+<li><code>attr: 'String'</code> =&gt; Attribute to use for size scaling</li>
+<li><code>default: 'Option &lt; f64 &gt;'</code> =&gt; default value of the attribute if not found</li>
+<li><code>minsize: 'f64' = 4.0</code> =&gt; minimum size of the node</li>
+<li><code>maxsize: 'f64' = 12.0</code> =&gt; maximum size of the node</li>
+</ul>
+<p>Set the node size of the nodes based on the attribute value</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="external-plugins"><a class="header" href="#external-plugins">External Plugins</a></h1>
 <p>This section showcases the functions from external plugins developed
 along side the NADI project due to various reasons.</p>
@@ -1197,59 +1735,77 @@ along side the NADI project due to various reasons.</p>
 <li>compile it locally with cargo,</li>
 <li>move all generated dynamic libraries to the nadi plugin directory.</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-5"><a class="header" href="#node-functions-5">Node Functions</a></h1>
-<h2 id="node.count_dams"><a class="header" href="#node.count_dams">count_dams</a></h2>
-<pre><code class="language-sig">node dams.count_dams(outvar: '&amp; str' = "DAMS_COUNT")
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-6"><a class="header" href="#node-functions-6">Node Functions</a></h1>
+<h2 id="node.count_node_if"><a class="header" href="#node.count_node_if">count_node_if</a></h2>
+<pre><code class="language-sig">node dams.count_node_if(count_attr: '&amp; str', cond: 'bool')
 </code></pre>
-<p>Count the number of dams upstream at each point</p>
-<h2 id="node.count_gages"><a class="header" href="#node.count_gages">count_gages</a></h2>
-<pre><code class="language-sig">node dams.count_gages(outvar: '&amp; str' = "GAGES_COUNT")
-</code></pre>
-<p>Count the number of gages upstream at each point</p>
+<h3 id="arguments-68"><a class="header" href="#arguments-68">Arguments</a></h3>
+<ul>
+<li><code>count_attr: '&amp; str'</code> =&gt;</li>
+<li><code>cond: 'bool'</code> =&gt;</li>
+</ul>
+<p>Count the number of nodes upstream at each point that satisfies a certain condition</p>
 <h2 id="node.min_year"><a class="header" href="#node.min_year">min_year</a></h2>
 <pre><code class="language-sig">node dams.min_year(yearattr: '&amp; str', write_var: '&amp; str' = "MIN_YEAR")
 </code></pre>
-<p>Propagage the minimum year downstream</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-6"><a class="header" href="#node-functions-6">Node Functions</a></h1>
+<h3 id="arguments-69"><a class="header" href="#arguments-69">Arguments</a></h3>
+<ul>
+<li><code>yearattr: '&amp; str'</code> =&gt;</li>
+<li><code>write_var: '&amp; str' = "MIN_YEAR"</code> =&gt;</li>
+</ul>
+<p>Propagate the minimum year downstream</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-7"><a class="header" href="#node-functions-7">Node Functions</a></h1>
+<h2 id="node.load_csv_fill"><a class="header" href="#node.load_csv_fill">load_csv_fill</a></h2>
+<pre><code class="language-sig">node datafill.load_csv_fill(
+    name: 'String',
+    file: 'Template',
+    columns: '(String, String)',
+    timefmt: 'String',
+    method: 'DataFillMethod' = Linear,
+    dtype: 'String' = "Floats"
+)
+</code></pre>
+<h3 id="arguments-70"><a class="header" href="#arguments-70">Arguments</a></h3>
+<ul>
+<li><code>name: 'String'</code> =&gt; Name of the timeseries</li>
+<li><code>file: 'Template'</code> =&gt; Template of the CSV file for the nodes</li>
+<li><code>columns: '(String, String)'</code> =&gt; Names of date column and value column</li>
+<li><code>timefmt: 'String'</code> =&gt; date time format, if you only have date, but have time on format string, it will panic</li>
+<li><code>method: 'DataFillMethod' = Linear</code> =&gt; Method to use for data filling: forward/backward/linear</li>
+<li><code>dtype: 'String' = "Floats"</code> =&gt; DataType to load into timeseries</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-8"><a class="header" href="#node-functions-8">Node Functions</a></h1>
 <h2 id="node.calc_ts_error"><a class="header" href="#node.calc_ts_error">calc_ts_error</a></h2>
 <pre><code class="language-sig">node errors.calc_ts_error(
     ts1: '&amp; str',
     ts2: '&amp; str',
-    error: '&amp; str' = "rmse",
-    outattr: 'Option &lt; &amp; str &gt;',
-    print: 'bool' = true
+    error: '&amp; str' = "rmse"
 )
 </code></pre>
+<h3 id="arguments-71"><a class="header" href="#arguments-71">Arguments</a></h3>
+<ul>
+<li><code>ts1: '&amp; str'</code> =&gt; Timeseries value to use as actual value</li>
+<li><code>ts2: '&amp; str'</code> =&gt; Timeseries value to be used to calculate the error</li>
+<li><code>error: '&amp; str' = "rmse"</code> =&gt; Error type, one of rmse/nrmse/abserr/nse</li>
+</ul>
 <p>Calculate Error from two timeseries values in the node</p>
 <p>It calculates the error between two timeseries values from the node</p>
-<h3 id="arguments-15"><a class="header" href="#arguments-15">Arguments:</a></h3>
-<ul>
-<li>ts1: String      Timeseries value to use as actual value</li>
-<li>ts2: String      Timeseries value to be used to calculate the error</li>
-<li>error: String    Error type: rmse/nrmse/abserr/nse [default: rmse]</li>
-<li>outattr: String  Attribute to save the output on [default: ERROR]</li>
-<li>print: bool      Print the output to stdout [default: false]</li>
-</ul>
 <h2 id="node.calc_ts_errors"><a class="header" href="#node.calc_ts_errors">calc_ts_errors</a></h2>
 <pre><code class="language-sig">node errors.calc_ts_errors(
     ts1: '&amp; String',
     ts2: '&amp; String',
-    errors: '&amp; [String]' = ["rmse"],
-    outattr: '&amp; String' = "ERROR",
-    print: 'bool' = false
+    errors: '&amp; [String]'
 )
 </code></pre>
+<h3 id="arguments-72"><a class="header" href="#arguments-72">Arguments</a></h3>
+<ul>
+<li><code>ts1: '&amp; String'</code> =&gt; Timeseries value to use as actual value</li>
+<li><code>ts2: '&amp; String'</code> =&gt; Timeseries value to be used to calculate the error</li>
+<li><code>errors: '&amp; [String]'</code> =&gt; Error types to calculate, one of rmse/nrmse/abserr/nse</li>
+</ul>
 <p>Calculate Error from two timeseries values in the node</p>
 <p>It calculates the error between two timeseries values from the node.</p>
-<p>Arguments:</p>
-<ul>
-<li>ts1: String      Timeseries value to use as actual value</li>
-<li>ts2: String      Timeseries value to be used to calculate the error</li>
-<li>error: String    Error type: rmse/nrmse/abserr/nse [default: rmse]</li>
-<li>outattr: String  Attribute to save the output on [default: ERROR]</li>
-<li>print: bool      Print the output to stdout [default: false]</li>
-</ul>
-<h1 id="network-functions-7"><a class="header" href="#network-functions-7">Network Functions</a></h1>
+<h1 id="network-functions-10"><a class="header" href="#network-functions-10">Network Functions</a></h1>
 <h2 id="network.calc_attr_error"><a class="header" href="#network.calc_attr_error">calc_attr_error</a></h2>
 <pre><code class="language-sig">network errors.calc_attr_error(
     attr1: 'String',
@@ -1257,20 +1813,21 @@ along side the NADI project due to various reasons.</p>
     error: 'String' = "rmse"
 )
 </code></pre>
+<h3 id="arguments-73"><a class="header" href="#arguments-73">Arguments</a></h3>
+<ul>
+<li><code>attr1: 'String'</code> =&gt; Attribute value to use as actual value</li>
+<li><code>attr2: 'String'</code> =&gt; Attribute value to be used to calculate the error</li>
+<li><code>error: 'String' = "rmse"</code> =&gt; Error type, one of rmse/nrmse/abserr/nse</li>
+</ul>
 <p>Calculate Error from two attribute values in the network</p>
 <p>It calculates the error using two attribute values from all the nodes.</p>
-<p>Arguments:</p>
-<ul>
-<li>attr1: String    Attribute value to use as actual value</li>
-<li>attr2: String    Attribute value to be used to calculate the error</li>
-<li>error: String    Error type: rmse/nrmse/abserr/nse [default: rmse]</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-8"><a class="header" href="#network-functions-8">Network Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-11"><a class="header" href="#network-functions-11">Network Functions</a></h1>
 <h2 id="network.fancy_print"><a class="header" href="#network.fancy_print">fancy_print</a></h2>
 <pre><code class="language-sig">network fancy_print.fancy_print()
 </code></pre>
+<h3 id="arguments-74"><a class="header" href="#arguments-74">Arguments</a></h3>
 <p>Fancy print a network</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-9"><a class="header" href="#network-functions-9">Network Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-12"><a class="header" href="#network-functions-12">Network Functions</a></h1>
 <h2 id="network.plot_timeseries"><a class="header" href="#network.plot_timeseries">plot_timeseries</a></h2>
 <pre><code class="language-sig">network gnuplot.plot_timeseries(
     csvfile: 'Template',
@@ -1278,15 +1835,43 @@ along side the NADI project due to various reasons.</p>
     datacol: '&amp; str',
     outfile: '&amp; Path',
     timefmt: '&amp; str' = "%Y-%m-%d",
-    config: '&amp; GnuplotConfig' = GnuplotConfig { outfile: None,
-    terminal: None,
-    csv: false,
-    preamble: "" },
+    config: '&amp; GnuplotConfig' = GnuplotConfig { outfile: None, terminal: None, csv: false, preamble: "" },
     skip_missing: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments-75"><a class="header" href="#arguments-75">Arguments</a></h3>
+<ul>
+<li><code>csvfile: 'Template'</code> =&gt;</li>
+<li><code>datecol: '&amp; str'</code> =&gt;</li>
+<li><code>datacol: '&amp; str'</code> =&gt;</li>
+<li><code>outfile: '&amp; Path'</code> =&gt;</li>
+<li><code>timefmt: '&amp; str' = "%Y-%m-%d"</code> =&gt;</li>
+<li><code>config: '&amp; GnuplotConfig' = GnuplotConfig { outfile: None, terminal: None, csv: false, preamble: "" }</code> =&gt;</li>
+<li><code>skip_missing: 'bool' = false</code> =&gt;</li>
+</ul>
 <p>Generate a gnuplot file that plots the timeseries data in the network</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-10"><a class="header" href="#network-functions-10">Network Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-9"><a class="header" href="#node-functions-9">Node Functions</a></h1>
+<h2 id="node.attr_fraction_svg"><a class="header" href="#node.attr_fraction_svg">attr_fraction_svg</a></h2>
+<pre><code class="language-sig">node graphics.attr_fraction_svg(
+    attr: '&amp; str',
+    outfile: '&amp; Template',
+    color: '&amp; AttrColor',
+    height: 'f64' = 80.0,
+    width: 'f64' = 80.0,
+    margin: 'f64' = 10.0
+)
+</code></pre>
+<h3 id="arguments-76"><a class="header" href="#arguments-76">Arguments</a></h3>
+<ul>
+<li><code>attr: '&amp; str'</code> =&gt;</li>
+<li><code>outfile: '&amp; Template'</code> =&gt;</li>
+<li><code>color: '&amp; AttrColor'</code> =&gt;</li>
+<li><code>height: 'f64' = 80.0</code> =&gt;</li>
+<li><code>width: 'f64' = 80.0</code> =&gt;</li>
+<li><code>margin: 'f64' = 10.0</code> =&gt;</li>
+</ul>
+<p>Create a SVG file with the given network structure</p>
+<h1 id="network-functions-13"><a class="header" href="#network-functions-13">Network Functions</a></h1>
 <h2 id="network.csv_load_ts"><a class="header" href="#network.csv_load_ts">csv_load_ts</a></h2>
 <pre><code class="language-sig">network graphics.csv_load_ts(
     file: 'PathBuf',
@@ -1296,8 +1881,16 @@ along side the NADI project due to various reasons.</p>
     data_type: 'String' = "Floats"
 )
 </code></pre>
+<h3 id="arguments-77"><a class="header" href="#arguments-77">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt;</li>
+<li><code>name: 'String'</code> =&gt;</li>
+<li><code>date_col: 'String' = "date"</code> =&gt;</li>
+<li><code>timefmt: 'String' = "%Y-%m-%d"</code> =&gt;</li>
+<li><code>data_type: 'String' = "Floats"</code> =&gt;</li>
+</ul>
 <p>Count the number of na values in CSV file for each nodes in a network</p>
-<h3 id="arguments-16"><a class="header" href="#arguments-16">Arguments</a></h3>
+<h3 id="arguments-78"><a class="header" href="#arguments-78">Arguments</a></h3>
 <ul>
 <li><code>file</code>: Input CSV file path to read (should have column with
 node names for all nodes)</li>
@@ -1315,8 +1908,16 @@ node names for all nodes)</li>
     head: 'Option &lt; i64 &gt;'
 )
 </code></pre>
+<h3 id="arguments-79"><a class="header" href="#arguments-79">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt;</li>
+<li><code>outattr: 'Option &lt; String &gt;'</code> =&gt;</li>
+<li><code>sort: 'bool' = false</code> =&gt;</li>
+<li><code>skip_zero: 'bool' = false</code> =&gt;</li>
+<li><code>head: 'Option &lt; i64 &gt;'</code> =&gt;</li>
+</ul>
 <p>Count the number of na values in CSV file for each nodes in a network</p>
-<h3 id="arguments-17"><a class="header" href="#arguments-17">Arguments</a></h3>
+<h3 id="arguments-80"><a class="header" href="#arguments-80">Arguments</a></h3>
 <ul>
 <li><code>file</code>: Input CSV file path to read (should have column with node names for all nodes)</li>
 <li><code>outattr</code>: Output attribute to save the count of NA to. If empty print to stdout</li>
@@ -1330,53 +1931,61 @@ node names for all nodes)</li>
     outfile: 'PathBuf',
     label: 'Template',
     date_col: 'String' = "date",
-    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0,
-    height: 300.0,
-    delta_x: 20.0,
-    delta_y: 20.0,
-    offset: 30.0,
-    radius: 3.0,
-    fontsize: 16.0,
-    fontface: FontFace { inner: Shared { inner: 0x58f60f720320 } } },
+    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } },
     blocks_width: 'f64' = 500.0,
     fit: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments-81"><a class="header" href="#arguments-81">Arguments</a></h3>
+<ul>
+<li><code>csvfile: 'PathBuf'</code> =&gt;</li>
+<li><code>outfile: 'PathBuf'</code> =&gt;</li>
+<li><code>label: 'Template'</code> =&gt;</li>
+<li><code>date_col: 'String' = "date"</code> =&gt;</li>
+<li><code>config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } }</code> =&gt;</li>
+<li><code>blocks_width: 'f64' = 500.0</code> =&gt;</li>
+<li><code>fit: 'bool' = false</code> =&gt;</li>
+</ul>
 <p>Draw the data blocks with arrows in timeline</p>
 <h2 id="network.export_svg"><a class="header" href="#network.export_svg">export_svg</a></h2>
 <pre><code class="language-sig">network graphics.export_svg(
     outfile: 'PathBuf',
-    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0,
-    height: 300.0,
-    delta_x: 20.0,
-    delta_y: 20.0,
-    offset: 30.0,
-    radius: 3.0,
-    fontsize: 16.0,
-    fontface: FontFace { inner: Shared { inner: 0x58f60f720320 } } },
+    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } },
     fit: 'bool' = false,
-    label: 'Option &lt; Template &gt;'
+    label: 'Option &lt; Template &gt;',
+    highlight: '&amp; [usize]' = []
 )
 </code></pre>
+<h3 id="arguments-82"><a class="header" href="#arguments-82">Arguments</a></h3>
+<ul>
+<li><code>outfile: 'PathBuf'</code> =&gt;</li>
+<li><code>config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } }</code> =&gt;</li>
+<li><code>fit: 'bool' = false</code> =&gt;</li>
+<li><code>label: 'Option &lt; Template &gt;'</code> =&gt;</li>
+<li><code>highlight: '&amp; [usize]' = []</code> =&gt;</li>
+</ul>
 <p>Create a SVG file with the given network structure</p>
 <h2 id="network.table_to_svg"><a class="header" href="#network.table_to_svg">table_to_svg</a></h2>
 <pre><code class="language-sig">network graphics.table_to_svg(
     outfile: 'PathBuf',
     table: 'Option &lt; PathBuf &gt;',
     template: 'Option &lt; String &gt;',
-    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0,
-    height: 300.0,
-    delta_x: 20.0,
-    delta_y: 20.0,
-    offset: 30.0,
-    radius: 3.0,
-    fontsize: 16.0,
-    fontface: FontFace { inner: Shared { inner: 0x58f60f720320 } } },
-    fit: 'bool' = false
+    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } },
+    fit: 'bool' = false,
+    highlight: '&amp; [String]' = []
 )
 </code></pre>
+<h3 id="arguments-83"><a class="header" href="#arguments-83">Arguments</a></h3>
+<ul>
+<li><code>outfile: 'PathBuf'</code> =&gt;</li>
+<li><code>table: 'Option &lt; PathBuf &gt;'</code> =&gt;</li>
+<li><code>template: 'Option &lt; String &gt;'</code> =&gt;</li>
+<li><code>config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } }</code> =&gt;</li>
+<li><code>fit: 'bool' = false</code> =&gt;</li>
+<li><code>highlight: '&amp; [String]' = []</code> =&gt;</li>
+</ul>
 <p>Create a SVG file with the given network structure</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-11"><a class="header" href="#network-functions-11">Network Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-14"><a class="header" href="#network-functions-14">Network Functions</a></h1>
 <h2 id="network.save_graphviz"><a class="header" href="#network.save_graphviz">save_graphviz</a></h2>
 <pre><code class="language-sig">network graphviz.save_graphviz(
     outfile: '&amp; Path',
@@ -1386,13 +1995,40 @@ node names for all nodes)</li>
     edge_attr: 'Option &lt; &amp; Template &gt;'
 )
 </code></pre>
+<h3 id="arguments-84"><a class="header" href="#arguments-84">Arguments</a></h3>
+<ul>
+<li><code>outfile: '&amp; Path'</code> =&gt;</li>
+<li><code>name: '&amp; str' = "network"</code> =&gt;</li>
+<li><code>global_attrs: '&amp; str' = ""</code> =&gt;</li>
+<li><code>node_attr: 'Option &lt; &amp; Template &gt;'</code> =&gt;</li>
+<li><code>edge_attr: 'Option &lt; &amp; Template &gt;'</code> =&gt;</li>
+</ul>
 <p>Save the network as a graphviz file</p>
-<h3 id="arguments-18"><a class="header" href="#arguments-18">Arguments:</a></h3>
+<h3 id="arguments-85"><a class="header" href="#arguments-85">Arguments:</a></h3>
 <ul>
 <li><code>outfile</code> - Path to the output file</li>
 <li><code>name</code> - Name of the graph</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-12"><a class="header" href="#network-functions-12">Network Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-15"><a class="header" href="#network-functions-15">Network Functions</a></h1>
+<h2 id="network.export_map"><a class="header" href="#network.export_map">export_map</a></h2>
+<pre><code class="language-sig">network html.export_map(
+    outfile: '&amp; Path',
+    template: 'Template',
+    pagetitle: '&amp; str' = "NADI Network",
+    nodetitle: 'Template' = Template { original: "{_NAME}", parts: [Var("_NAME", "")] },
+    connections: 'bool' = true
+)
+</code></pre>
+<h3 id="arguments-86"><a class="header" href="#arguments-86">Arguments</a></h3>
+<ul>
+<li><code>outfile: '&amp; Path'</code> =&gt;</li>
+<li><code>template: 'Template'</code> =&gt;</li>
+<li><code>pagetitle: '&amp; str' = "NADI Network"</code> =&gt;</li>
+<li><code>nodetitle: 'Template' = Template { original: "{_NAME}", parts: [Var("_NAME", "")] }</code> =&gt;</li>
+<li><code>connections: 'bool' = true</code> =&gt;</li>
+</ul>
+<p>Exports the network as a HTML map</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-16"><a class="header" href="#network-functions-16">Network Functions</a></h1>
 <h2 id="network.gis_load_attrs"><a class="header" href="#network.gis_load_attrs">gis_load_attrs</a></h2>
 <pre><code class="language-sig">network nadi_gis.gis_load_attrs(
     file: 'PathBuf',
@@ -1404,7 +2040,19 @@ node names for all nodes)</li>
     err_no_node: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments-87"><a class="header" href="#arguments-87">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt; GIS file to load (can be any format GDAL can understand)</li>
+<li><code>node: 'String'</code> =&gt; Field in the GIS file corresponding to node name</li>
+<li><code>layer: 'Option &lt; String &gt;'</code> =&gt; layer of the GIS file, first one picked by default</li>
+<li><code>geometry: 'String' = "GEOM"</code> =&gt; Attribute to save the GIS geometry in</li>
+<li><code>ignore: 'String' = ""</code> =&gt; Field names separated by comma, to ignore</li>
+<li><code>sanitize: 'bool' = true</code> =&gt; sanitize the name of the fields</li>
+<li><code>err_no_node: 'bool' = false</code> =&gt; Error if all nodes are not found in the GIS file</li>
+</ul>
 <p>Load node attributes from a GIS file</p>
+<p>The function reads a GIS file in any format (CSV, GPKG, SHP,
+JSON, etc) and loads their fields as attributes to the nodes.</p>
 <h2 id="network.gis_save_connections"><a class="header" href="#network.gis_save_connections">gis_save_connections</a></h2>
 <pre><code class="language-sig">network nadi_gis.gis_save_connections(
     file: 'PathBuf',
@@ -1413,32 +2061,55 @@ node names for all nodes)</li>
     layer: 'String' = "network"
 )
 </code></pre>
+<h3 id="arguments-88"><a class="header" href="#arguments-88">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt;</li>
+<li><code>geometry: 'String'</code> =&gt;</li>
+<li><code>driver: 'Option &lt; String &gt;'</code> =&gt;</li>
+<li><code>layer: 'String' = "network"</code> =&gt;</li>
+</ul>
 <p>Save GIS file of the connections</p>
 <h2 id="network.gis_save_nodes"><a class="header" href="#network.gis_save_nodes">gis_save_nodes</a></h2>
 <pre><code class="language-sig">network nadi_gis.gis_save_nodes(
     file: 'PathBuf',
     geometry: 'String',
-    attrs: 'HashMap &lt; String,
-    String &gt;' = {},
+    attrs: 'HashMap &lt; String, String &gt;' = {},
     driver: 'Option &lt; String &gt;',
     layer: 'String' = "nodes"
 )
 </code></pre>
+<h3 id="arguments-89"><a class="header" href="#arguments-89">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt;</li>
+<li><code>geometry: 'String'</code> =&gt;</li>
+<li><code>attrs: 'HashMap &lt; String, String &gt;' = {}</code> =&gt;</li>
+<li><code>driver: 'Option &lt; String &gt;'</code> =&gt;</li>
+<li><code>layer: 'String' = "nodes"</code> =&gt;</li>
+</ul>
 <p>Save GIS file of the nodes</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-7"><a class="header" href="#node-functions-7">Node Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-10"><a class="header" href="#node-functions-10">Node Functions</a></h1>
 <h2 id="node.print_node"><a class="header" href="#node.print_node">print_node</a></h2>
 <pre><code class="language-sig">node print_node.print_node()
 </code></pre>
+<h3 id="arguments-90"><a class="header" href="#arguments-90">Arguments</a></h3>
 <p>Print the node with its inputs and outputs</p>
-<h1 id="network-functions-13"><a class="header" href="#network-functions-13">Network Functions</a></h1>
+<h1 id="network-functions-17"><a class="header" href="#network-functions-17">Network Functions</a></h1>
 <h2 id="network.print_attr_csv"><a class="header" href="#network.print_attr_csv">print_attr_csv</a></h2>
 <pre><code class="language-sig">network print_node.print_attr_csv(*args)
 </code></pre>
+<h3 id="arguments-91"><a class="header" href="#arguments-91">Arguments</a></h3>
+<ul>
+<li><code>*args</code> =&gt;</li>
+</ul>
 <p>Print the given attributes in csv format with first column with node name</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-8"><a class="header" href="#node-functions-8">Node Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-11"><a class="header" href="#node-functions-11">Node Functions</a></h1>
 <h2 id="node.check_negative"><a class="header" href="#node.check_negative">check_negative</a></h2>
 <pre><code class="language-sig">node streamflow.check_negative(ts_name: '&amp; str')
 </code></pre>
+<h3 id="arguments-92"><a class="header" href="#arguments-92">Arguments</a></h3>
+<ul>
+<li><code>ts_name: '&amp; str'</code> =&gt;</li>
+</ul>
 <p>Check the given streamflow timeseries for negative values</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="data-structure"><a class="header" href="#data-structure">Data Structure</a></h1>
 <p>This section will describe the data structures associated with NADI system in brief.</p>
@@ -1544,7 +2215,7 @@ Current time is {%H} hour  {%M} minutes.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-Current time is 17 hour  49 minutes.
+Current time is 21 hour  56 minutes.
 </code></pre>
 <h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
 <p>Variables can be chained in an optional way, so the first one that’s
@@ -1579,7 +2250,7 @@ float, upcase will make the string UPPERCASE, etc.);</p>
 <pre><code class="language-stp run name=John">Today is {%B %d} of the year {%Y}.
 </code></pre>
 <p>Results (with:  name=John):</p>
-<pre><code class="language-output">Today is November 12 of the year 2024.
+<pre><code class="language-output">Today is January 27 of the year 2025.
 </code></pre>
 <h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
 <p>expressions are lisp expressions that will be evaluated and the
@@ -1613,10 +2284,10 @@ after rendering it for each node.</p>
 )
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">(6th node) Ohio
-	River Flow = 4.533 x 10^4
-(5th node) Red
-	River Flow = NA x 10^4
+<pre><code class="language-output">{
+  ohio = "(6th node) Ohio\n\tRiver Flow = 4.533 x 10^4",
+  red = "(5th node) Red\n\tRiver Flow = NA x 10^4"
+}
 </code></pre>
 <p>As seen in above example, you can render variables, transform them, use basic calculations.</p>
 <p>Or you can use <code>lisp</code> syntax to do more complex calculations. Refer to
@@ -1630,8 +2301,9 @@ info on how to use <code>lisp</code> on string template.</p>
 )
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">The Ohio River Streamflow
-	from lisp = 45.33 x 10^3 cfs
+<pre><code class="language-output">{
+  ohio = "The Ohio River Streamflow\n\tfrom lisp = 45.33 x 10^3 cfs"
+}
 </code></pre>
 <h2 id="some-complex-examples"><a class="header" href="#some-complex-examples">Some Complex Examples</a></h2>
 <p>Optional variables and a command; note that commands can have variables inside them:</p>
@@ -1651,7 +2323,7 @@ info on how to use <code>lisp</code> on string template.</p>
 \\latex\{command\}\{with {variable}\}, should work.
 </code></pre>
 <p>Results (with:  command=Error;variable=Var):</p>
-<pre><code class="language-output">more  options on 2024-11-12 and
+<pre><code class="language-output">more  options on 2025-01-27 and
 \latex{command}{with Var}, should work.
 </code></pre>
 <p>This just combined a lot of different things from above:</p>
@@ -1705,14 +2377,14 @@ now.</p>
 <pre><code class="language-stp run">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
 </code></pre>
 <p>Results (with: ):</p>
-<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2024-11-12
+<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-01-27
 </code></pre>
 <p>But if you are writing a command template to run in bash, then
 it’ll be executed as the syntax is similar.</p>
 <pre><code class="language-task run">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2024-11-12
+<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-01-27
 </code></pre>
 <p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tables"><a class="header" href="#tables">Tables</a></h1>
@@ -1828,7 +2500,7 @@ strings that functions take as inputs. Whether they are used as
 template or not depends on the individual function, refer to their
 help to see if they take <code>Template</code> type or <code>String</code> type.</p>
 </div>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-9"><a class="header" href="#node-functions-9">Node Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node-functions-12"><a class="header" href="#node-functions-12">Node Functions</a></h1>
 <p>Node functions are functions that take a node, and the function
 context to do some operations on it. They take mutable reference to
 the node, hence can read all node attributes, inputs, outputs, their
@@ -1849,7 +2521,7 @@ nodes in the following 6 ways,</p>
 run in a particular order. For example, a function that counts the
 number of dams upstream of each point, might have to be run inputs
 first, so that you can cumulate the number as you move downstream.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-14"><a class="header" href="#network-functions-14">Network Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-18"><a class="header" href="#network-functions-18">Network Functions</a></h1>
 <p>Network functions are functions that take the network as a mutable
 reference and run on it.</p>
 <p>Some examples of network functions:</p>
@@ -2030,13 +2702,15 @@ node render("Node {NAME}")
 </span>node render("Node {NAME}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">Node "lower-mississippi"
-Node "upper-mississippi"
-Node "missouri"
-Node "arkansas"
-Node "red"
-Node "ohio"
-Node "tenessee"
+<pre><code class="language-output">{
+  lower-mississippi = "Node \"lower-mississippi\"",
+  upper-mississippi = "Node \"upper-mississippi\"",
+  missouri = "Node \"missouri\"",
+  arkansas = "Node \"arkansas\"",
+  red = "Node \"red\"",
+  ohio = "Node \"ohio\"",
+  tenessee = "Node \"tenessee\""
+}
 </code></pre>
 <hr />
 <h3 id="tables-1"><a class="header" href="#tables-1">Tables</a></h3>
@@ -2118,30 +2792,16 @@ node render("
 ")
 </code></pre>
 <p>Results:<br />
-<strong>Details about the Nodes:</strong></p>
-<ol>
-<li>
-<p>Lower Mississippi River</p>
-</li>
-<li>
-<p>Upper Mississippi River</p>
-</li>
-<li>
-<p>Missouri River</p>
-</li>
-<li>
-<p>Arkansas River</p>
-</li>
-<li>
-<p>Red River</p>
-</li>
-<li>
-<p>Ohio River</p>
-</li>
-<li>
-<p>Tenessee River</p>
-</li>
-</ol>
+<strong>Details about the Nodes:</strong>
+{
+lower-mississippi = “\n1. Lower Mississippi River\n”,
+upper-mississippi = “\n2. Upper Mississippi River\n”,
+missouri = “\n3. Missouri River\n”,
+arkansas = “\n4. Arkansas River\n”,
+red = “\n5. Red River\n”,
+ohio = “\n6. Ohio River\n”,
+tenessee = “\n7. Tenessee River\n”
+}</p>
 <p>You can also use the same method to insert images like this, at the end of your tasks, so that the image generated by the tasks can be inserted here.</p>
 <pre><code class="language-task run image"># do some tasks
 network echo("Some other output form your tasks")

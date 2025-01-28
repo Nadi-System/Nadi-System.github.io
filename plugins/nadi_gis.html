@@ -166,7 +166,19 @@
     err_no_node: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt; GIS file to load (can be any format GDAL can understand)</li>
+<li><code>node: 'String'</code> =&gt; Field in the GIS file corresponding to node name</li>
+<li><code>layer: 'Option &lt; String &gt;'</code> =&gt; layer of the GIS file, first one picked by default</li>
+<li><code>geometry: 'String' = "GEOM"</code> =&gt; Attribute to save the GIS geometry in</li>
+<li><code>ignore: 'String' = ""</code> =&gt; Field names separated by comma, to ignore</li>
+<li><code>sanitize: 'bool' = true</code> =&gt; sanitize the name of the fields</li>
+<li><code>err_no_node: 'bool' = false</code> =&gt; Error if all nodes are not found in the GIS file</li>
+</ul>
 <p>Load node attributes from a GIS file</p>
+<p>The function reads a GIS file in any format (CSV, GPKG, SHP,
+JSON, etc) and loads their fields as attributes to the nodes.</p>
 <h2 id="network.gis_save_connections"><a class="header" href="#network.gis_save_connections">gis_save_connections</a></h2>
 <pre><code class="language-sig">network nadi_gis.gis_save_connections(
     file: 'PathBuf',
@@ -175,24 +187,38 @@
     layer: 'String' = "network"
 )
 </code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt;</li>
+<li><code>geometry: 'String'</code> =&gt;</li>
+<li><code>driver: 'Option &lt; String &gt;'</code> =&gt;</li>
+<li><code>layer: 'String' = "network"</code> =&gt;</li>
+</ul>
 <p>Save GIS file of the connections</p>
 <h2 id="network.gis_save_nodes"><a class="header" href="#network.gis_save_nodes">gis_save_nodes</a></h2>
 <pre><code class="language-sig">network nadi_gis.gis_save_nodes(
     file: 'PathBuf',
     geometry: 'String',
-    attrs: 'HashMap &lt; String,
-    String &gt;' = {},
+    attrs: 'HashMap &lt; String, String &gt;' = {},
     driver: 'Option &lt; String &gt;',
     layer: 'String' = "nodes"
 )
 </code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt;</li>
+<li><code>geometry: 'String'</code> =&gt;</li>
+<li><code>attrs: 'HashMap &lt; String, String &gt;' = {}</code> =&gt;</li>
+<li><code>driver: 'Option &lt; String &gt;'</code> =&gt;</li>
+<li><code>layer: 'String' = "nodes"</code> =&gt;</li>
+</ul>
 <p>Save GIS file of the nodes</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../plugins/graphviz.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plugins/html.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -206,7 +232,7 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../plugins/graphviz.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plugins/html.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 

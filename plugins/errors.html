@@ -159,40 +159,32 @@
 <pre><code class="language-sig">node errors.calc_ts_error(
     ts1: '&amp; str',
     ts2: '&amp; str',
-    error: '&amp; str' = "rmse",
-    outattr: 'Option &lt; &amp; str &gt;',
-    print: 'bool' = true
+    error: '&amp; str' = "rmse"
 )
 </code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>ts1: '&amp; str'</code> =&gt; Timeseries value to use as actual value</li>
+<li><code>ts2: '&amp; str'</code> =&gt; Timeseries value to be used to calculate the error</li>
+<li><code>error: '&amp; str' = "rmse"</code> =&gt; Error type, one of rmse/nrmse/abserr/nse</li>
+</ul>
 <p>Calculate Error from two timeseries values in the node</p>
 <p>It calculates the error between two timeseries values from the node</p>
-<h3 id="arguments"><a class="header" href="#arguments">Arguments:</a></h3>
-<ul>
-<li>ts1: String      Timeseries value to use as actual value</li>
-<li>ts2: String      Timeseries value to be used to calculate the error</li>
-<li>error: String    Error type: rmse/nrmse/abserr/nse [default: rmse]</li>
-<li>outattr: String  Attribute to save the output on [default: ERROR]</li>
-<li>print: bool      Print the output to stdout [default: false]</li>
-</ul>
 <h2 id="node.calc_ts_errors"><a class="header" href="#node.calc_ts_errors">calc_ts_errors</a></h2>
 <pre><code class="language-sig">node errors.calc_ts_errors(
     ts1: '&amp; String',
     ts2: '&amp; String',
-    errors: '&amp; [String]' = ["rmse"],
-    outattr: '&amp; String' = "ERROR",
-    print: 'bool' = false
+    errors: '&amp; [String]'
 )
 </code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>ts1: '&amp; String'</code> =&gt; Timeseries value to use as actual value</li>
+<li><code>ts2: '&amp; String'</code> =&gt; Timeseries value to be used to calculate the error</li>
+<li><code>errors: '&amp; [String]'</code> =&gt; Error types to calculate, one of rmse/nrmse/abserr/nse</li>
+</ul>
 <p>Calculate Error from two timeseries values in the node</p>
 <p>It calculates the error between two timeseries values from the node.</p>
-<p>Arguments:</p>
-<ul>
-<li>ts1: String      Timeseries value to use as actual value</li>
-<li>ts2: String      Timeseries value to be used to calculate the error</li>
-<li>error: String    Error type: rmse/nrmse/abserr/nse [default: rmse]</li>
-<li>outattr: String  Attribute to save the output on [default: ERROR]</li>
-<li>print: bool      Print the output to stdout [default: false]</li>
-</ul>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.calc_attr_error"><a class="header" href="#network.calc_attr_error">calc_attr_error</a></h2>
 <pre><code class="language-sig">network errors.calc_attr_error(
@@ -201,20 +193,20 @@
     error: 'String' = "rmse"
 )
 </code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>attr1: 'String'</code> =&gt; Attribute value to use as actual value</li>
+<li><code>attr2: 'String'</code> =&gt; Attribute value to be used to calculate the error</li>
+<li><code>error: 'String' = "rmse"</code> =&gt; Error type, one of rmse/nrmse/abserr/nse</li>
+</ul>
 <p>Calculate Error from two attribute values in the network</p>
 <p>It calculates the error using two attribute values from all the nodes.</p>
-<p>Arguments:</p>
-<ul>
-<li>attr1: String    Attribute value to use as actual value</li>
-<li>attr2: String    Attribute value to be used to calculate the error</li>
-<li>error: String    Error type: rmse/nrmse/abserr/nse [default: rmse]</li>
-</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../plugins/dams.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plugins/datafill.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -228,7 +220,7 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../plugins/dams.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plugins/datafill.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 

@@ -155,19 +155,19 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h1>
-<p>If you need help on any functions. Use the <code>help</code> as a <code>task</code>. You can use <code>help.node</code> or <code>help.network</code> for specific help.</p>
-<pre><code class="language-task run">help.node render()
+<p>If you need help on any functions. Use the <code>help</code> as a <code>task</code>. You can use <code>help node</code> or <code>help network</code> for specific help.</p>
+<pre><code class="language-task run">help node render
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">== Node Function: render
+<pre><code class="language-output">node render (template: '&amp; Template', safe: 'bool' = false)
 Render the template based on the node attributes
+Arguments
+- template: &amp; Template String template to render
+- safe: bool [def = false] if render fails keep it as it is instead of exiting
+
 
 For more details on the template system. Refer to the String
 Template section of the NADI book.
-
-# Arguments
-- `template` - String template to render
-- `safe` - if render fails keep it as it is instead of exiting
 </code></pre>
 <p>Or you can use <code>nadi --fnhelp &lt;function&gt;</code> using the <code>nadi-cli</code>.</p>
 <p>Now that you have the overview of the nadi system’s data

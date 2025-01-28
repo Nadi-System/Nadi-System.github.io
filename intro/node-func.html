@@ -158,11 +158,16 @@
 <p>Node function runs on each node. It takes arguments and keyword arguments.</p>
 <p>For example following node function takes multiple attribute names and prints them. The signature of the node function is <code>print_attrs(*args)</code>.</p>
 <pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
-</span>node print_attrs("NAME", "INDEX")
+</span>node print_attrs("INDEX", name=false)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-output">** Running 2 Script **
-Error: Argument 2 (name [bool]): Incorrect Type: got String instead of bool
+<p>Results:</p>
+<pre><code class="language-output">INDEX = 0
+INDEX = 1
+INDEX = 2
+INDEX = 3
+INDEX = 4
+INDEX = 5
+INDEX = 6
 </code></pre>
 <p>Only the <code>NAME</code> is printed as they do not have any other attributes.</p>
 <h2 id="selective-execution"><a class="header" href="#selective-execution">Selective Execution</a></h2>
@@ -174,27 +179,33 @@ nodes are executed.</p>
 </center>
 <h3 id="inverse-order"><a class="header" href="#inverse-order">Inverse Order</a></h3>
 <pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
-</span>node.inverse print_attrs("NAME")
+</span>node&lt;inverse&gt; print_attrs("NAME")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-output">** Running 2 Script **
-Error: Argument 2 (name [bool]) is required
+<p>Results:</p>
+<pre><code class="language-output">NAME = "tenessee"
+NAME = "ohio"
+NAME = "red"
+NAME = "arkansas"
+NAME = "missouri"
+NAME = "upper-mississippi"
+NAME = "lower-mississippi"
 </code></pre>
 <h2 id="list-of-nodes"><a class="header" href="#list-of-nodes">List of Nodes</a></h2>
 <pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
 </span>node[tenessee,"lower-mississippi"] print_attrs("NAME")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-output">** Running 2 Script **
-Error: Argument 2 (name [bool]) is required
+<p>Results:</p>
+<pre><code class="language-output">NAME = "tenessee"
+NAME = "lower-mississippi"
 </code></pre>
 <h2 id="path-of-nodes"><a class="header" href="#path-of-nodes">Path of Nodes</a></h2>
 <pre><code class="language-task run"><span class="boring">network load_file("./data/mississippi.net")
 </span>node[tenessee -&gt; "lower-mississippi"] print_attrs("NAME")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-output">** Running 2 Script **
-Error: Argument 2 (name [bool]) is required
+<p>Results:</p>
+<pre><code class="language-output">NAME = "tenessee"
+NAME = "ohio"
+NAME = "lower-mississippi"
 </code></pre>
 <p>As we can see in the diagram, the path from tenessee to lower
 mississippi includes the ohio node.</p>

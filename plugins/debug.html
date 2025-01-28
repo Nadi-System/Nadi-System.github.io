@@ -158,6 +158,11 @@
 <h2 id="network.debug"><a class="header" href="#network.debug">debug</a></h2>
 <pre><code class="language-sig">network debug.debug(*args, **kwargs)
 </code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>*args</code> =&gt; Function arguments</li>
+<li><code>**kwargs</code> =&gt; Function Keyword arguments</li>
+</ul>
 <p>Print the args and kwargs on this function</p>
 <p>This function will just print out the args and kwargs the
 function is called with. This is for debugging purposes to see
@@ -171,6 +176,12 @@ function call.</p>
     newline: 'bool' = true
 )
 </code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>line: 'String'</code> =&gt; line to print</li>
+<li><code>error: 'bool' = false</code> =&gt; print to stderr instead of stdout</li>
+<li><code>newline: 'bool' = true</code> =&gt; print newline at the end</li>
+</ul>
 <p>Echo the string to stdout or stderr</p>
 <p>This simply echoes anything given to it. This can be used in
 combination with nadi tasks that create files (image, text,
@@ -180,7 +191,11 @@ those files back to the stdout.</p>
 <h2 id="network.clip"><a class="header" href="#network.clip">clip</a></h2>
 <pre><code class="language-sig">network debug.clip(error: 'bool' = false)
 </code></pre>
-<p>Echo the ––8&lt;–– line for clipping sytax</p>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>error: 'bool' = false</code> =&gt; print in stderr instead of in stdout</li>
+</ul>
+<p>Echo the ––8&lt;–– line for clipping syntax</p>
 <p>This function is a utility function for the generation of nadi
 book. This prints out the <code>----8&lt;----</code> line when called, so
 that <code>mdbook</code> preprocessor for <code>nadi</code> knows where to clip the
@@ -205,11 +220,11 @@ generation.</p>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../plugins/connections.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plugins/core.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../plugins/render.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../plugins/logic.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -219,11 +234,11 @@ generation.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../plugins/connections.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plugins/core.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../plugins/render.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../plugins/logic.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

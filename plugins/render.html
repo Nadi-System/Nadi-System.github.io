@@ -158,18 +158,23 @@
 <h2 id="node.render"><a class="header" href="#node.render">render</a></h2>
 <pre><code class="language-sig">node render.render(template: '&amp; Template', safe: 'bool' = false)
 </code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>template: '&amp; Template'</code> =&gt; String template to render</li>
+<li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
+</ul>
 <p>Render the template based on the node attributes</p>
 <p>For more details on the template system. Refer to the String
 Template section of the NADI book.</p>
-<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
-<ul>
-<li><code>template</code> - String template to render</li>
-<li><code>safe</code> - if render fails keep it as it is instead of exiting</li>
-</ul>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.render"><a class="header" href="#network.render">render</a></h2>
 <pre><code class="language-sig">network render.render(template: 'PathBuf', outfile: 'Option &lt; PathBuf &gt;')
 </code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>template: 'PathBuf'</code> =&gt; Path to the template file</li>
+<li><code>outfile: 'Option &lt; PathBuf &gt;'</code> =&gt; output file</li>
+</ul>
 <p>Render a File template for the nodes in the whole network</p>
 <p>Write the file with templates for input variables in the same
 way you write string templates. It’s useful for markdown
@@ -187,7 +192,7 @@ include a file, the line_range syntax, if present, should be
 in the form of <code>start[:increment]:end</code>, you can exclude start
 or end to denote the line 1 or last line (e.g. <code>:5</code> is 1:5,
 and <code>3:</code> is from line 3 to the end)</p>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
 <ul>
 <li><code>template</code>: Path to the template file</li>
 <li><code>outfile</code> [Optional]: Path to save the template file, if none it’ll be printed in stdout</li>
@@ -197,11 +202,11 @@ and <code>3:</code> is from line 3 to the end)</p>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../plugins/debug.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plugins/regex.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../plugins/table.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../plugins/series.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -211,11 +216,11 @@ and <code>3:</code> is from line 3 to the end)</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../plugins/debug.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plugins/regex.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../plugins/table.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../plugins/series.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

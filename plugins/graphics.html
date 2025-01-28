@@ -154,7 +154,28 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
+                        <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
+<h2 id="node.attr_fraction_svg"><a class="header" href="#node.attr_fraction_svg">attr_fraction_svg</a></h2>
+<pre><code class="language-sig">node graphics.attr_fraction_svg(
+    attr: '&amp; str',
+    outfile: '&amp; Template',
+    color: '&amp; AttrColor',
+    height: 'f64' = 80.0,
+    width: 'f64' = 80.0,
+    margin: 'f64' = 10.0
+)
+</code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>attr: '&amp; str'</code> =&gt;</li>
+<li><code>outfile: '&amp; Template'</code> =&gt;</li>
+<li><code>color: '&amp; AttrColor'</code> =&gt;</li>
+<li><code>height: 'f64' = 80.0</code> =&gt;</li>
+<li><code>width: 'f64' = 80.0</code> =&gt;</li>
+<li><code>margin: 'f64' = 10.0</code> =&gt;</li>
+</ul>
+<p>Create a SVG file with the given network structure</p>
+<h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.csv_load_ts"><a class="header" href="#network.csv_load_ts">csv_load_ts</a></h2>
 <pre><code class="language-sig">network graphics.csv_load_ts(
     file: 'PathBuf',
@@ -164,8 +185,16 @@
     data_type: 'String' = "Floats"
 )
 </code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt;</li>
+<li><code>name: 'String'</code> =&gt;</li>
+<li><code>date_col: 'String' = "date"</code> =&gt;</li>
+<li><code>timefmt: 'String' = "%Y-%m-%d"</code> =&gt;</li>
+<li><code>data_type: 'String' = "Floats"</code> =&gt;</li>
+</ul>
 <p>Count the number of na values in CSV file for each nodes in a network</p>
-<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
 <ul>
 <li><code>file</code>: Input CSV file path to read (should have column with
 node names for all nodes)</li>
@@ -183,8 +212,16 @@ node names for all nodes)</li>
     head: 'Option &lt; i64 &gt;'
 )
 </code></pre>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
+<li><code>file: 'PathBuf'</code> =&gt;</li>
+<li><code>outattr: 'Option &lt; String &gt;'</code> =&gt;</li>
+<li><code>sort: 'bool' = false</code> =&gt;</li>
+<li><code>skip_zero: 'bool' = false</code> =&gt;</li>
+<li><code>head: 'Option &lt; i64 &gt;'</code> =&gt;</li>
+</ul>
 <p>Count the number of na values in CSV file for each nodes in a network</p>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
 <ul>
 <li><code>file</code>: Input CSV file path to read (should have column with node names for all nodes)</li>
 <li><code>outattr</code>: Output attribute to save the count of NA to. If empty print to stdout</li>
@@ -198,51 +235,59 @@ node names for all nodes)</li>
     outfile: 'PathBuf',
     label: 'Template',
     date_col: 'String' = "date",
-    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0,
-    height: 300.0,
-    delta_x: 20.0,
-    delta_y: 20.0,
-    offset: 30.0,
-    radius: 3.0,
-    fontsize: 16.0,
-    fontface: FontFace { inner: Shared { inner: 0x58f60f720320 } } },
+    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } },
     blocks_width: 'f64' = 500.0,
     fit: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<ul>
+<li><code>csvfile: 'PathBuf'</code> =&gt;</li>
+<li><code>outfile: 'PathBuf'</code> =&gt;</li>
+<li><code>label: 'Template'</code> =&gt;</li>
+<li><code>date_col: 'String' = "date"</code> =&gt;</li>
+<li><code>config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } }</code> =&gt;</li>
+<li><code>blocks_width: 'f64' = 500.0</code> =&gt;</li>
+<li><code>fit: 'bool' = false</code> =&gt;</li>
+</ul>
 <p>Draw the data blocks with arrows in timeline</p>
 <h2 id="network.export_svg"><a class="header" href="#network.export_svg">export_svg</a></h2>
 <pre><code class="language-sig">network graphics.export_svg(
     outfile: 'PathBuf',
-    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0,
-    height: 300.0,
-    delta_x: 20.0,
-    delta_y: 20.0,
-    offset: 30.0,
-    radius: 3.0,
-    fontsize: 16.0,
-    fontface: FontFace { inner: Shared { inner: 0x58f60f720320 } } },
+    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } },
     fit: 'bool' = false,
-    label: 'Option &lt; Template &gt;'
+    label: 'Option &lt; Template &gt;',
+    highlight: '&amp; [usize]' = []
 )
 </code></pre>
+<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
+<ul>
+<li><code>outfile: 'PathBuf'</code> =&gt;</li>
+<li><code>config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } }</code> =&gt;</li>
+<li><code>fit: 'bool' = false</code> =&gt;</li>
+<li><code>label: 'Option &lt; Template &gt;'</code> =&gt;</li>
+<li><code>highlight: '&amp; [usize]' = []</code> =&gt;</li>
+</ul>
 <p>Create a SVG file with the given network structure</p>
 <h2 id="network.table_to_svg"><a class="header" href="#network.table_to_svg">table_to_svg</a></h2>
 <pre><code class="language-sig">network graphics.table_to_svg(
     outfile: 'PathBuf',
     table: 'Option &lt; PathBuf &gt;',
     template: 'Option &lt; String &gt;',
-    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0,
-    height: 300.0,
-    delta_x: 20.0,
-    delta_y: 20.0,
-    offset: 30.0,
-    radius: 3.0,
-    fontsize: 16.0,
-    fontface: FontFace { inner: Shared { inner: 0x58f60f720320 } } },
-    fit: 'bool' = false
+    config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } },
+    fit: 'bool' = false,
+    highlight: '&amp; [String]' = []
 )
 </code></pre>
+<h3 id="arguments-7"><a class="header" href="#arguments-7">Arguments</a></h3>
+<ul>
+<li><code>outfile: 'PathBuf'</code> =&gt;</li>
+<li><code>table: 'Option &lt; PathBuf &gt;'</code> =&gt;</li>
+<li><code>template: 'Option &lt; String &gt;'</code> =&gt;</li>
+<li><code>config: 'NetworkPlotConfig' = NetworkPlotConfig { width: 250.0, height: 300.0, delta_x: 20.0, delta_y: 20.0, offset: 30.0, radius: 3.0, fontsize: 16.0, fontface: FontFace { inner: Shared { inner: 0x5747b6ea6a20 } } }</code> =&gt;</li>
+<li><code>fit: 'bool' = false</code> =&gt;</li>
+<li><code>highlight: '&amp; [String]' = []</code> =&gt;</li>
+</ul>
 <p>Create a SVG file with the given network structure</p>
 
                     </main>

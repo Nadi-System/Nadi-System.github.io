@@ -155,28 +155,70 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
-<h2 id="node.list_ts"><a class="header" href="#node.list_ts">list_ts</a></h2>
-<pre><code class="language-sig">node timeseries.list_ts(label: 'bool' = true)
+<h2 id="node.ts_count"><a class="header" href="#node.ts_count">ts_count</a></h2>
+<pre><code class="language-sig">node timeseries.ts_count()
 </code></pre>
-<p>Print the list of available timeseries for the node</p>
 <h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<p>Number of timeseries in the node</p>
+<h2 id="node.ts_list"><a class="header" href="#node.ts_list">ts_list</a></h2>
+<pre><code class="language-sig">node timeseries.ts_list()
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<p>List all timeseries in the node</p>
+<h2 id="node.ts_dtype"><a class="header" href="#node.ts_dtype">ts_dtype</a></h2>
+<pre><code class="language-sig">node timeseries.ts_dtype(name: '&amp; str', safe: 'bool' = false)
+</code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
 <ul>
-<li><code>label</code>: Label the line with node name</li>
+<li><code>name: '&amp; str'</code> =&gt; Name of the timeseries</li>
+<li><code>safe: 'bool' = false</code> =&gt; Do not error if timeseries does’t exist</li>
 </ul>
-<h2 id="node.show_ts"><a class="header" href="#node.show_ts">show_ts</a></h2>
-<pre><code class="language-sig">node timeseries.show_ts(
+<p>Type name of the timeseries</p>
+<h2 id="node.ts_len"><a class="header" href="#node.ts_len">ts_len</a></h2>
+<pre><code class="language-sig">node timeseries.ts_len(name: '&amp; str', safe: 'bool' = false)
+</code></pre>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
+<li><code>name: '&amp; str'</code> =&gt; Name of the timeseries</li>
+<li><code>safe: 'bool' = false</code> =&gt; Do not error if timeseries does’t exist</li>
+</ul>
+<p>Length of the timeseries</p>
+<h2 id="node.ts_print"><a class="header" href="#node.ts_print">ts_print</a></h2>
+<pre><code class="language-sig">node timeseries.ts_print(
     name: '&amp; String',
     header: 'bool' = true,
     head: 'Option &lt; i64 &gt;'
 )
 </code></pre>
-<p>Print the given timeseries values in csv format</p>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
 <ul>
-<li><code>name</code>: name of the timeseries</li>
-<li><code>header</code>: whether to show header or not</li>
-<li><code>head</code>: number of head rows to show (all by default)</li>
+<li><code>name: '&amp; String'</code> =&gt; name of the timeseries</li>
+<li><code>header: 'bool' = true</code> =&gt; show header</li>
+<li><code>head: 'Option &lt; i64 &gt;'</code> =&gt; number of head rows to show (all by default)</li>
 </ul>
+<p>Print the given timeseries values in csv format</p>
+<h3 id="todo"><a class="header" href="#todo">TODO</a></h3>
+<ul>
+<li>save to file instead of showing with <code>outfile: Option&lt;PathBuf&gt;</code></li>
+</ul>
+<h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
+<h2 id="network.ts_print_csv"><a class="header" href="#network.ts_print_csv">ts_print_csv</a></h2>
+<pre><code class="language-sig">network timeseries.ts_print_csv(
+    name: 'String',
+    head: 'Option &lt; usize &gt;',
+    nodes: 'Option &lt; HashSet &lt; String &gt; &gt;'
+)
+</code></pre>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<ul>
+<li><code>name: 'String'</code> =&gt; Name of the timeseries to save</li>
+<li><code>head: 'Option &lt; usize &gt;'</code> =&gt; number of head rows to show (all by default)</li>
+<li><code>nodes: 'Option &lt; HashSet &lt; String &gt; &gt;'</code> =&gt; Include only these nodes (all by default)</li>
+</ul>
+<p>Save timeseries from all nodes into a single csv file</p>
+<p>TODO: error/not on unqual length
+TODO: error/not on no timeseries, etc…
+TODO: output to <code>file: PathBuf</code></p>
 
                     </main>
 
@@ -186,7 +228,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../plugins/intro-ex.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../plugins/visuals.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -200,7 +242,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../plugins/intro-ex.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../plugins/visuals.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

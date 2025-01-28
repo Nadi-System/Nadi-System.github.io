@@ -154,7 +154,26 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
+                        <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
+<h2 id="env.exists"><a class="header" href="#env.exists">exists</a></h2>
+<pre><code class="language-sig">env command.exists(path: 'PathBuf', min_lines: 'Option &lt; usize &gt;')
+</code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>path: 'PathBuf'</code> =&gt; Path to check</li>
+<li><code>min_lines: 'Option &lt; usize &gt;'</code> =&gt; Minimum number of lines the file should have</li>
+</ul>
+<p>Checks if the given path exists</p>
+<h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
+<h2 id="node.exists"><a class="header" href="#node.exists">exists</a></h2>
+<pre><code class="language-sig">node command.exists(path: 'Template', min_lines: 'Option &lt; usize &gt;')
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>path: 'Template'</code> =&gt; Path to check</li>
+<li><code>min_lines: 'Option &lt; usize &gt;'</code> =&gt; Minimum number of lines the file should have</li>
+</ul>
+<p>Checks if the given path exists when rendering the template</p>
 <h2 id="node.command"><a class="header" href="#node.command">command</a></h2>
 <pre><code class="language-sig">node command.command(
     cmd: '&amp; Template',
@@ -162,6 +181,12 @@
     echo: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
+<li><code>verbose: 'bool' = true</code> =&gt; Show the rendered version of command, and other messages</li>
+<li><code>echo: 'bool' = false</code> =&gt; Echo the stdout from the command</li>
+</ul>
 <p>Run the given template as a shell command.</p>
 <p>Run any command in the shell. The standard output of the command
 will be consumed and if there are lines starting with <code>nadi:var:</code>
@@ -174,12 +199,6 @@ scripts in any language and pass the values back to the NADI
 system.</p>
 <p>It will also print out the new values or changes from old values,
 if <code>verbose</code> is true.</p>
-<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
-<ul>
-<li><code>cmd</code>: String Command template to run</li>
-<li><code>verbose</code>: bool Show the rendered version of command</li>
-<li><code>echo</code>: bool Echo the stdin from the command</li>
-</ul>
 <h3 id="errors"><a class="header" href="#errors">Errors</a></h3>
 <p>The function will error if,</p>
 <ul>
@@ -187,6 +206,27 @@ if <code>verbose</code> is true.</p>
 <li>The command cannot be executed,</li>
 <li>The attributes from command’s stdout cannot be parsed properly</li>
 </ul>
+<h2 id="node.run"><a class="header" href="#node.run">run</a></h2>
+<pre><code class="language-sig">node command.run(
+    command: '&amp; str',
+    inputs: '&amp; str',
+    outputs: '&amp; str',
+    verbose: 'bool' = true,
+    echo: 'bool' = false
+)
+</code></pre>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
+<li><code>command: '&amp; str'</code> =&gt; Node Attribute with the command to run</li>
+<li><code>inputs: '&amp; str'</code> =&gt; Node attribute with list of input files</li>
+<li><code>outputs: '&amp; str'</code> =&gt; Node attribute with list of output files</li>
+<li><code>verbose: 'bool' = true</code> =&gt; Print the command being run</li>
+<li><code>echo: 'bool' = false</code> =&gt; Show the output of the command</li>
+</ul>
+<p>Run the node as if it’s a command if inputs are changed</p>
+<p>This function will not run a command node if all outputs are older
+than all inputs. This is useful to networks where each nodes are
+tasks with input files and output files.</p>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.parallel"><a class="header" href="#network.parallel">parallel</a></h2>
 <pre><code class="language-sig">network command.parallel(
@@ -196,18 +236,18 @@ if <code>verbose</code> is true.</p>
     echo: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
+<ul>
+<li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
+<li><code>_workers: 'i64' = 4</code> =&gt; Number of workers to run in parallel</li>
+<li><code>verbose: 'bool' = true</code> =&gt; Print the command being run</li>
+<li><code>echo: 'bool' = false</code> =&gt; Show the output of the command</li>
+</ul>
 <p>Run the given template as a shell command for each nodes in the network in parallel.</p>
 <h3 id="warning"><a class="header" href="#warning">Warning</a></h3>
 <p>Currently there is no way to limit the number of parallel
 processes, so please be careful with this command if you have very
 large number of nodes.</p>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
-<ul>
-<li><code>cmd</code>: String Command template to run</li>
-<li><code>workers</code>: Integer Number of workers to run in parallel</li>
-<li><code>verbose</code>: bool Show the rendered version of command and variable changes</li>
-<li><code>echo</code>: bool Echo the stdin from the command</li>
-</ul>
 <h2 id="network.command"><a class="header" href="#network.command">command</a></h2>
 <pre><code class="language-sig">network command.command(
     cmd: 'Template',
@@ -215,6 +255,12 @@ large number of nodes.</p>
     echo: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<ul>
+<li><code>cmd: 'Template'</code> =&gt; String Command template to run</li>
+<li><code>verbose: 'bool' = true</code> =&gt; Print the command being run</li>
+<li><code>echo: 'bool' = false</code> =&gt; Show the output of the command</li>
+</ul>
 <p>Run the given template as a shell command.</p>
 <p>Run any command in the shell. The standard output of the command
 will be consumed and if there are lines starting with <code>nadi:var:</code>
@@ -222,12 +268,6 @@ and followed by <code>key=val</code> pairs, it’ll be read as new attributes
 to that node.</p>
 <p>See <code>node command.command</code> for more details as they have
 the same implementation</p>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
-<ul>
-<li><code>cmd</code>: String Command template to run</li>
-<li><code>verbose</code>: bool Show the rendered version of command</li>
-<li><code>echo</code>: bool Echo the stdin from the command</li>
-</ul>
 
                     </main>
 

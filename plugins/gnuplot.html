@@ -162,13 +162,20 @@
     datacol: '&amp; str',
     outfile: '&amp; Path',
     timefmt: '&amp; str' = "%Y-%m-%d",
-    config: '&amp; GnuplotConfig' = GnuplotConfig { outfile: None,
-    terminal: None,
-    csv: false,
-    preamble: "" },
+    config: '&amp; GnuplotConfig' = GnuplotConfig { outfile: None, terminal: None, csv: false, preamble: "" },
     skip_missing: 'bool' = false
 )
 </code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>csvfile: 'Template'</code> =&gt;</li>
+<li><code>datecol: '&amp; str'</code> =&gt;</li>
+<li><code>datacol: '&amp; str'</code> =&gt;</li>
+<li><code>outfile: '&amp; Path'</code> =&gt;</li>
+<li><code>timefmt: '&amp; str' = "%Y-%m-%d"</code> =&gt;</li>
+<li><code>config: '&amp; GnuplotConfig' = GnuplotConfig { outfile: None, terminal: None, csv: false, preamble: "" }</code> =&gt;</li>
+<li><code>skip_missing: 'bool' = false</code> =&gt;</li>
+</ul>
 <p>Generate a gnuplot file that plots the timeseries data in the network</p>
 
                     </main>

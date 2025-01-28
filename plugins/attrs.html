@@ -154,14 +154,43 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
-<h2 id="node.load_attrs"><a class="header" href="#node.load_attrs">load_attrs</a></h2>
-<pre><code class="language-sig">node attrs.load_attrs(filename)
+                        <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
+<h2 id="env.strmap"><a class="header" href="#env.strmap">strmap</a></h2>
+<pre><code class="language-sig">env attrs.strmap(
+    attr: '&amp; str',
+    attrmap: '&amp; AttrMap',
+    default: 'Option &lt; Attribute &gt;'
+)
 </code></pre>
-<p>Loads attrs from file for all nodes based on the given template</p>
 <h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
 <ul>
+<li><code>attr: '&amp; str'</code> =&gt; Value to transform the attribute</li>
+<li><code>attrmap: '&amp; AttrMap'</code> =&gt; Dictionary of key=value to map the data to</li>
+<li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if key not found in <code>attrmap</code></li>
+</ul>
+<p>map values from the attribute based on the given table</p>
+<h2 id="env.float_transform"><a class="header" href="#env.float_transform">float_transform</a></h2>
+<pre><code class="language-sig">env attrs.float_transform(value: 'f64', transformation: '&amp; str')
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>value: 'f64'</code> =&gt; value to transform</li>
+<li><code>transformation: '&amp; str'</code> =&gt; transformation function, can be one of log/log10/sqrt</li>
+</ul>
+<p>map values from the attribute based on the given table</p>
+<h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
+<h2 id="node.load_attrs"><a class="header" href="#node.load_attrs">load_attrs</a></h2>
+<pre><code class="language-sig">node attrs.load_attrs(filename: 'PathBuf')
+</code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>filename: 'PathBuf'</code> =&gt; Template for the filename to load node attributes from</li>
+</ul>
+<p>Loads attrs from file for all nodes based on the given template</p>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
 <li><code>filename</code>: Template for the filename to load node attributes from</li>
+<li><code>verbose</code>: print verbose message</li>
 </ul>
 <p>The template will be rendered for each node, and that filename from the
 rendered template will be used to load the attributes.</p>
@@ -175,6 +204,7 @@ rendered template will be used to load the attributes.</p>
 <h2 id="node.print_all_attrs"><a class="header" href="#node.print_all_attrs">print_all_attrs</a></h2>
 <pre><code class="language-sig">node attrs.print_all_attrs()
 </code></pre>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
 <p>Print all attrs in a node</p>
 <p>No arguments and no errors, it’ll just print all the attributes in a node with
 <code>node::attr=val</code> format, where,</p>
@@ -184,10 +214,15 @@ rendered template will be used to load the attributes.</p>
 <li>val is attribute value (string representation)</li>
 </ul>
 <h2 id="node.print_attrs"><a class="header" href="#node.print_attrs">print_attrs</a></h2>
-<pre><code class="language-sig">node attrs.print_attrs(*args, name: 'bool')
+<pre><code class="language-sig">node attrs.print_attrs(*attrs, name: 'bool')
 </code></pre>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<ul>
+<li><code>*attrs</code> =&gt;</li>
+<li><code>name: 'bool'</code> =&gt;</li>
+</ul>
 <p>Print the given node attributes if present</p>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
 <ul>
 <li>attrs,… : list of attributes to print</li>
 <li>name: Bool for whether to show the node name or not</li>
@@ -200,16 +235,16 @@ rendered template will be used to load the attributes.</p>
 </ul>
 <p>The attributes will be printed in <code>key=val</code> format.</p>
 <h2 id="node.set_attrs"><a class="header" href="#node.set_attrs">set_attrs</a></h2>
-<pre><code class="language-sig">node attrs.set_attrs(**kwargs)
+<pre><code class="language-sig">node attrs.set_attrs(**attrs)
 </code></pre>
+<h3 id="arguments-7"><a class="header" href="#arguments-7">Arguments</a></h3>
+<ul>
+<li><code>**attrs</code> =&gt; Key value pairs of the attributes to set</li>
+</ul>
 <p>Set node attributes</p>
 <p>Use this function to set the node attributes of all nodes, or
 a select few nodes using the node selection methods (path or
 list of nodes)</p>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
-<ul>
-<li><code>key=value</code> - Kwargs of attr = value</li>
-</ul>
 <h3 id="error-1"><a class="header" href="#error-1">Error</a></h3>
 <p>The function should not error.</p>
 <h3 id="example"><a class="header" href="#example">Example</a></h3>
@@ -217,31 +252,79 @@ list of nodes)</p>
 from <code>A</code> to <code>D</code></p>
 <pre><code class="language-task">node[A -&gt; D] set_attrs(a2d = true)
 </code></pre>
+<h2 id="node.get_attr"><a class="header" href="#node.get_attr">get_attr</a></h2>
+<pre><code class="language-sig">node attrs.get_attr(attr: '&amp; str', default: 'Option &lt; Attribute &gt;')
+</code></pre>
+<h3 id="arguments-8"><a class="header" href="#arguments-8">Arguments</a></h3>
+<ul>
+<li><code>attr: '&amp; str'</code> =&gt; Name of the attribute to get</li>
+<li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if the attribute is not found</li>
+</ul>
+<p>Retrive attribute</p>
+<h2 id="node.has_attr"><a class="header" href="#node.has_attr">has_attr</a></h2>
+<pre><code class="language-sig">node attrs.has_attr(attr: '&amp; str')
+</code></pre>
+<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
+<ul>
+<li><code>attr: '&amp; str'</code> =&gt; Name of the attribute to check</li>
+</ul>
+<p>Check if the attribute is present</p>
+<h2 id="node.first_attr"><a class="header" href="#node.first_attr">first_attr</a></h2>
+<pre><code class="language-sig">node attrs.first_attr(attrs: '&amp; [String]', default: 'Option &lt; Attribute &gt;')
+</code></pre>
+<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
+<ul>
+<li><code>attrs: '&amp; [String]'</code> =&gt; attribute names</li>
+<li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if not found</li>
+</ul>
+<p>Return the first Attribute that exists</p>
+<h2 id="node.set_attrs_ifelse"><a class="header" href="#node.set_attrs_ifelse">set_attrs_ifelse</a></h2>
+<pre><code class="language-sig">node attrs.set_attrs_ifelse(cond: 'bool', **values)
+</code></pre>
+<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
+<ul>
+<li><code>cond: 'bool'</code> =&gt; Condition to check</li>
+<li><code>**values</code> =&gt; key = [val1, val2] where key is set as first if <code>cond</code> is true else second</li>
+</ul>
+<p>if else condition with multiple attributes</p>
 <h2 id="node.set_attrs_render"><a class="header" href="#node.set_attrs_render">set_attrs_render</a></h2>
 <pre><code class="language-sig">node attrs.set_attrs_render(**kwargs)
 </code></pre>
-<p>Set node attributes based on string templates</p>
-<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<h3 id="arguments-12"><a class="header" href="#arguments-12">Arguments</a></h3>
 <ul>
-<li><code>attr=template</code> - Kwargs of attr = String template to render</li>
+<li><code>**kwargs</code> =&gt; key value pair of attribute to set and the Template to render</li>
 </ul>
+<p>Set node attributes based on string templates</p>
+<h2 id="node.load_toml_render"><a class="header" href="#node.load_toml_render">load_toml_render</a></h2>
+<pre><code class="language-sig">node attrs.load_toml_render(toml: '&amp; Template', echo: 'bool' = false)
+</code></pre>
+<h3 id="arguments-13"><a class="header" href="#arguments-13">Arguments</a></h3>
+<ul>
+<li><code>toml: '&amp; Template'</code> =&gt; String template to render and load as TOML string</li>
+<li><code>echo: 'bool' = false</code> =&gt; Print the rendered toml or not</li>
+</ul>
+<p>Set node attributes based on string templates</p>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.set_attrs"><a class="header" href="#network.set_attrs">set_attrs</a></h2>
-<pre><code class="language-sig">network attrs.set_attrs(**kwargs)
+<pre><code class="language-sig">network attrs.set_attrs(**attrs)
 </code></pre>
+<h3 id="arguments-14"><a class="header" href="#arguments-14">Arguments</a></h3>
+<ul>
+<li><code>**attrs</code> =&gt; key value pair of attributes to set</li>
+</ul>
 <p>Set network attributes</p>
-<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
+<h3 id="arguments-15"><a class="header" href="#arguments-15">Arguments</a></h3>
 <ul>
 <li><code>key=value</code> - Kwargs of attr = value</li>
 </ul>
 <h2 id="network.set_attrs_render"><a class="header" href="#network.set_attrs_render">set_attrs_render</a></h2>
 <pre><code class="language-sig">network attrs.set_attrs_render(**kwargs)
 </code></pre>
-<p>Set network attributes based on string templates</p>
-<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<h3 id="arguments-16"><a class="header" href="#arguments-16">Arguments</a></h3>
 <ul>
-<li><code>attr=template</code> - Kwargs of attr = String template to render</li>
+<li><code>**kwargs</code> =&gt; Kwargs of attr = String template to render</li>
 </ul>
+<p>Set network attributes based on string templates</p>
 
                     </main>
 

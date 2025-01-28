@@ -155,18 +155,24 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
-<h2 id="node.count_dams"><a class="header" href="#node.count_dams">count_dams</a></h2>
-<pre><code class="language-sig">node dams.count_dams(outvar: '&amp; str' = "DAMS_COUNT")
+<h2 id="node.count_node_if"><a class="header" href="#node.count_node_if">count_node_if</a></h2>
+<pre><code class="language-sig">node dams.count_node_if(count_attr: '&amp; str', cond: 'bool')
 </code></pre>
-<p>Count the number of dams upstream at each point</p>
-<h2 id="node.count_gages"><a class="header" href="#node.count_gages">count_gages</a></h2>
-<pre><code class="language-sig">node dams.count_gages(outvar: '&amp; str' = "GAGES_COUNT")
-</code></pre>
-<p>Count the number of gages upstream at each point</p>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>count_attr: '&amp; str'</code> =&gt;</li>
+<li><code>cond: 'bool'</code> =&gt;</li>
+</ul>
+<p>Count the number of nodes upstream at each point that satisfies a certain condition</p>
 <h2 id="node.min_year"><a class="header" href="#node.min_year">min_year</a></h2>
 <pre><code class="language-sig">node dams.min_year(yearattr: '&amp; str', write_var: '&amp; str' = "MIN_YEAR")
 </code></pre>
-<p>Propagage the minimum year downstream</p>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>yearattr: '&amp; str'</code> =&gt;</li>
+<li><code>write_var: '&amp; str' = "MIN_YEAR"</code> =&gt;</li>
+</ul>
+<p>Propagate the minimum year downstream</p>
 
                     </main>
 
@@ -176,7 +182,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../plugins/errors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../plugins/datafill.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -190,7 +196,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../plugins/errors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../plugins/datafill.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
