@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -155,19 +158,43 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
+<h2 id="env.count"><a class="header" href="#env.count">count</a></h2>
+<pre><code class="language-sig">env core.count(vars: '&amp; [bool]')
+</code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>vars: '&amp; [bool]'</code> =&gt;</li>
+</ul>
+<p>Count the number of true values in the array</p>
 <h2 id="env.type_name"><a class="header" href="#env.type_name">type_name</a></h2>
 <pre><code class="language-sig">env core.type_name(value: 'Attribute', recursive: 'bool' = false)
 </code></pre>
-<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
 <ul>
 <li><code>value: 'Attribute'</code> =&gt; Argument to get type</li>
 <li><code>recursive: 'bool' = false</code> =&gt; Recursively check types for array and table</li>
 </ul>
 <p>Type name of the arguments</p>
+<h2 id="env.isna"><a class="header" href="#env.isna">isna</a></h2>
+<pre><code class="language-sig">env core.isna(val: 'f64')
+</code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>val: 'f64'</code> =&gt;</li>
+</ul>
+<p>check if a float is nan</p>
+<h2 id="env.isinf"><a class="header" href="#env.isinf">isinf</a></h2>
+<pre><code class="language-sig">env core.isinf(val: 'f64')
+</code></pre>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
+<li><code>val: 'f64'</code> =&gt;</li>
+</ul>
+<p>check if a float is +/- infinity</p>
 <h2 id="env.float"><a class="header" href="#env.float">float</a></h2>
 <pre><code class="language-sig">env core.float(value: 'Attribute', parse: 'bool' = true)
 </code></pre>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
 <ul>
 <li><code>value: 'Attribute'</code> =&gt; Argument to convert to float</li>
 <li><code>parse: 'bool' = true</code> =&gt; parse string to float</li>
@@ -176,7 +203,7 @@
 <h2 id="env.str"><a class="header" href="#env.str">str</a></h2>
 <pre><code class="language-sig">env core.str(value: 'Attribute', quote: 'bool' = false)
 </code></pre>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
 <ul>
 <li><code>value: 'Attribute'</code> =&gt; Argument to convert to float</li>
 <li><code>quote: 'bool' = false</code> =&gt; quote it if it’s literal string</li>
@@ -190,7 +217,7 @@
     strfloat: 'bool' = false
 )
 </code></pre>
-<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
 <ul>
 <li><code>value: 'Attribute'</code> =&gt; Argument to convert to int</li>
 <li><code>parse: 'bool' = true</code> =&gt; parse string to int</li>
@@ -201,7 +228,7 @@
 <h2 id="env.array"><a class="header" href="#env.array">array</a></h2>
 <pre><code class="language-sig">env core.array(*attributes)
 </code></pre>
-<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
+<h3 id="arguments-7"><a class="header" href="#arguments-7">Arguments</a></h3>
 <ul>
 <li><code>*attributes</code> =&gt; List of attributes</li>
 </ul>
@@ -209,18 +236,145 @@
 <h2 id="env.attrmap"><a class="header" href="#env.attrmap">attrmap</a></h2>
 <pre><code class="language-sig">env core.attrmap(**attributes)
 </code></pre>
-<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<h3 id="arguments-8"><a class="header" href="#arguments-8">Arguments</a></h3>
 <ul>
 <li><code>**attributes</code> =&gt; name and values of attributes</li>
 </ul>
 <p>make an array from the arguments</p>
+<h2 id="env.year"><a class="header" href="#env.year">year</a></h2>
+<pre><code class="language-sig">env core.year(value: 'Attribute')
+</code></pre>
+<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
+</ul>
+<p>year from date/datetime</p>
+<h2 id="env.month"><a class="header" href="#env.month">month</a></h2>
+<pre><code class="language-sig">env core.month(value: 'Attribute')
+</code></pre>
+<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
+</ul>
+<p>month from date/datetime</p>
+<h2 id="env.day"><a class="header" href="#env.day">day</a></h2>
+<pre><code class="language-sig">env core.day(value: 'Attribute')
+</code></pre>
+<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
+</ul>
+<p>day from date/datetime</p>
+<h2 id="env.min_num"><a class="header" href="#env.min_num">min_num</a></h2>
+<pre><code class="language-sig">env core.min_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(9223372036854775807))
+</code></pre>
+<h3 id="arguments-12"><a class="header" href="#arguments-12">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute' = Integer(9223372036854775807)</code> =&gt;</li>
+</ul>
+<p>Minimum of the variables</p>
+<p>Starts with integer for type purpose, MAX float is larger than
+max int, so it’ll be incorrect for large numbers</p>
+<h2 id="env.max_num"><a class="header" href="#env.max_num">max_num</a></h2>
+<pre><code class="language-sig">env core.max_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(-9223372036854775808))
+</code></pre>
+<h3 id="arguments-13"><a class="header" href="#arguments-13">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute' = Integer(-9223372036854775808)</code> =&gt;</li>
+</ul>
+<p>Minimum of the variables</p>
+<p>Starts with integer for type purpose, MAX float is larger than
+max int, so it’ll be incorrect for large numbers</p>
+<h2 id="env.min"><a class="header" href="#env.min">min</a></h2>
+<pre><code class="language-sig">env core.min(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute')
+</code></pre>
+<h3 id="arguments-14"><a class="header" href="#arguments-14">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>Minimum of the variables</p>
+<h2 id="env.max"><a class="header" href="#env.max">max</a></h2>
+<pre><code class="language-sig">env core.max(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute')
+</code></pre>
+<h3 id="arguments-15"><a class="header" href="#arguments-15">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>Minimum of the variables</p>
+<h2 id="env.sum"><a class="header" href="#env.sum">sum</a></h2>
+<pre><code class="language-sig">env core.sum(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(0))
+</code></pre>
+<h3 id="arguments-16"><a class="header" href="#arguments-16">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute' = Integer(0)</code> =&gt;</li>
+</ul>
+<p>Sum of the variables</p>
+<h2 id="env.prod"><a class="header" href="#env.prod">prod</a></h2>
+<pre><code class="language-sig">env core.prod(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(1))
+</code></pre>
+<h3 id="arguments-17"><a class="header" href="#arguments-17">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute' = Integer(1)</code> =&gt;</li>
+</ul>
+<p>Product of the variables</p>
+<h2 id="env.unique_str"><a class="header" href="#env.unique_str">unique_str</a></h2>
+<pre><code class="language-sig">env core.unique_str(vars: 'Vec &lt; String &gt;')
+</code></pre>
+<h3 id="arguments-18"><a class="header" href="#arguments-18">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Vec &lt; String &gt;'</code> =&gt;</li>
+</ul>
+<p>Get a list of unique string values</p>
+<h2 id="env.count_str"><a class="header" href="#env.count_str">count_str</a></h2>
+<pre><code class="language-sig">env core.count_str(vars: 'Vec &lt; String &gt;')
+</code></pre>
+<h3 id="arguments-19"><a class="header" href="#arguments-19">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Vec &lt; String &gt;'</code> =&gt;</li>
+</ul>
+<p>Get a count of unique string values</p>
+<h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
+<h2 id="node.inputs_count"><a class="header" href="#node.inputs_count">inputs_count</a></h2>
+<pre><code class="language-sig">node core.inputs_count()
+</code></pre>
+<h3 id="arguments-20"><a class="header" href="#arguments-20">Arguments</a></h3>
+<p>Count the number of input nodes in the node</p>
+<h2 id="node.inputs_attr"><a class="header" href="#node.inputs_attr">inputs_attr</a></h2>
+<pre><code class="language-sig">node core.inputs_attr(attr: 'String' = "NAME")
+</code></pre>
+<h3 id="arguments-21"><a class="header" href="#arguments-21">Arguments</a></h3>
+<ul>
+<li><code>attr: 'String' = "NAME"</code> =&gt; Attribute to get from inputs</li>
+</ul>
+<p>Get attributes of the input nodes</p>
+<h2 id="node.has_outlet"><a class="header" href="#node.has_outlet">has_outlet</a></h2>
+<pre><code class="language-sig">node core.has_outlet()
+</code></pre>
+<h3 id="arguments-22"><a class="header" href="#arguments-22">Arguments</a></h3>
+<p>Node has an outlet or not</p>
+<h2 id="node.output_attr"><a class="header" href="#node.output_attr">output_attr</a></h2>
+<pre><code class="language-sig">node core.output_attr(attr: 'String' = "NAME")
+</code></pre>
+<h3 id="arguments-23"><a class="header" href="#arguments-23">Arguments</a></h3>
+<ul>
+<li><code>attr: 'String' = "NAME"</code> =&gt; Attribute to get from inputs</li>
+</ul>
+<p>Get attributes of the output node</p>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.count"><a class="header" href="#network.count">count</a></h2>
-<pre><code class="language-sig">network core.count()
+<pre><code class="language-sig">network core.count(vars: 'Option &lt; Vec &lt; bool &gt; &gt;')
 </code></pre>
-<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
+<h3 id="arguments-24"><a class="header" href="#arguments-24">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt;</li>
+</ul>
 <p>Count the number of nodes in the network</p>
-<p>If propagation is present, only counts those nodes</p>
 
                     </main>
 
@@ -251,6 +405,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

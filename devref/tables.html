@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -163,7 +166,7 @@ a network function.</p>
 <p>A sample Table file showing two columns, left aligned name for station
 in title case, and right aligned columns for latitude and longitude
 with float value of 4 digits after decimal:</p>
-<pre><code class="language-table run markdown"><span class="boring">network load_file("./data/mississippi.net")
+<pre><code class="language-table"><span class="boring">network load_file("./data/mississippi.net")
 </span>&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
 ^Ind =&gt; =(+ (st+num 'INDEX) 1)
 &gt;Order =&gt; {ORDER}
@@ -195,19 +198,18 @@ with float value of 4 digits after decimal:</p>
 <!-- ``` -->
 <p>Exporting the table in svg instead of markdown allows us better
 network diagram.</p>
-<pre><code class="language-table run svg outfile=&quot;./output/example-table2.svg&quot;"><span class="boring">network load_file("./data/mississippi.net")
+<pre><code class="language-table"><span class="boring">network load_file("./data/mississippi.net")
 </span><span class="boring">network echo("../output/example-table2.svg")
 </span>&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
 ^Ind =&gt; =(+ (st+num 'INDEX) 1)
 &gt;Order =&gt; {ORDER}
 ^Level =&gt; {LEVEL}
 </code></pre>
-<p>Results:</p>
-<center>  
-<p><img src="../output/example-table2.svg" alt="" /></p>
-</center>  
+<p>*Error*:</p>
+<pre><code class="language-error">network function: "table_to_svg" not found
+</code></pre>
 <p>A SVG Table can also be generated using the table file, using the task system like this:</p>
-<pre><code class="language-task run image"><span class="boring">network load_file("./data/mississippi.net")
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span>network table_to_svg(
 	table = "./data/sample.table",
 	# either table = "path/to/table", or template = "table template"
@@ -219,10 +221,9 @@ network diagram.</p>
 </span><span class="boring">network echo("../output/example-table.svg")
 </span>
 </code></pre>
-<p>Results:</p>
-<center>  
-<p><img src="../output/example-table.svg" alt="" /></p>
-</center>  
+<p>*Error*:</p>
+<pre><code class="language-error">network function: "table_to_svg" not found
+</code></pre>
 
                     </main>
 
@@ -253,6 +254,22 @@ network diagram.</p>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

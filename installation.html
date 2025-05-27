@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -155,27 +158,39 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
-<p>Nadi System is a suite of software packages each have different installation methods.</p>
-<h2 id="nadi-cli"><a class="header" href="#nadi-cli">NADI CLI</a></h2>
-<h3 id="through-rust-any-os"><a class="header" href="#through-rust-any-os">Through Rust (Any OS)</a></h3>
-<p>Assuming you have <code>rust</code> and <code>cargo</code> setup in your system.</p>
-<pre><code class="language-bash">cargo install nadi-cli
+<p>Nadi System is a suite of software packages each have different installation methods. The packages are planned to be uploaded to <code>crates.io</code> or <code>pypi.org</code> later to make it easier to install. For now, you can get the source code using <code>git</code>, and using <code>cargo</code> build the packages with the following commands.</p>
+<h2 id="nadi-system"><a class="header" href="#nadi-system">NADI System</a></h2>
+<p>It will build the binaries for <code>nadi</code>, <code>nadi-ide</code>, <code>nadi-help</code>, <code>nadi-editor</code>, etc. <code>nadi</code> is the command line interface to run nadi tasks, parse/validate syntax etc. While <code>nadi-ide</code> is the program to graphically develop nadi tasks and run them.</p>
+<p>Assuming you have <code>git</code> and <code>cargo</code>,</p>
+<pre><code class="language-bash">git clone https://github.com/Nadi-System/nadi-system
+cd nadi-system
+cargo build --release
 </code></pre>
-<h3 id="linux"><a class="header" href="#linux">Linux</a></h3>
-<h3 id="osx-mac"><a class="header" href="#osx-mac">OSX (Mac)</a></h3>
-<h3 id="windows"><a class="header" href="#windows">Windows</a></h3>
-<h2 id="nadi-gui"><a class="header" href="#nadi-gui">NADI GUI</a></h2>
-<h3 id="through-rust-any-os-1"><a class="header" href="#through-rust-any-os-1">Through Rust (Any OS)</a></h3>
-<p>Assuming you have <code>rust</code> and <code>cargo</code> setup in your system.</p>
-<pre><code class="language-bash">cargo install nadi-gui
+<p>To run one of the binary from nadi system, use the command <code>cargo run</code> with binary name.</p>
+<p>For example, the following will run the <code>nadi-ide</code>:</p>
+<pre><code class="language-bash">cargo run --release --bin nadi-ide
 </code></pre>
-<h3 id="linux-1"><a class="header" href="#linux-1">Linux</a></h3>
-<h3 id="osx-mac-1"><a class="header" href="#osx-mac-1">OSX (Mac)</a></h3>
-<h3 id="windows-1"><a class="header" href="#windows-1">Windows</a></h3>
-<h2 id="nadi-python-library"><a class="header" href="#nadi-python-library">NADI Python Library</a></h2>
-<p>Assuming you have <code>python</code> and <code>pip</code> setup in your system.</p>
-<pre><code class="language-bash">pip install nadi-py # (TODO) publish to pip
+<p>The compiled binaries will be saved in the <code>target/release</code> directory, you can copy them and distribute it. The binaries do not need any other files to run.</p>
+<p>The plugins files if present in the system are automatically loaded from <code>NADI_PLUGIN_DIRS</code> environmental variable. Look into installing the plugin section below.</p>
+<h2 id="nadi-gis"><a class="header" href="#nadi-gis">NADI GIS</a></h2>
+<p>NADI GIS uses <code>gdal</code> to read/write GIS files, so it needs to be installed. Please refer to <a href="https://gdal.org/en/stable/download.html">gdal installation documentation</a> for that.</p>
+<p>Assuming you have <code>git</code> and <code>cargo</code>,</p>
+<pre><code class="language-bash">git clone https://github.com/Nadi-System/nadi-gis
+cd nadi-gis
+cargo build --release
 </code></pre>
+<p>The <code>nadi-gis</code> tool also has QGIS plugin that can be installed to run it through QGIS.</p>
+<h2 id="plugins"><a class="header" href="#plugins">Plugins</a></h2>
+<p>The executive plugins are just simple commands, they do not need to be installed along side nadi, just make sure the executables that you are using from <code>nadi</code> can be found in path. A simple way to verify that is to try to run that from terminal and see if it works.</p>
+<p>The compiled plugins can be loaded by setting the <code>NADI_PLUGIN_DIRS</code> environmental variable. The environment variable should be the path to the folder containing the nadi plugins (in <code>.dll</code>, <code>.so</code>, or <code>.dylib</code> formats for windows, linux and mac). You can write your own plugins based on our examples and compile them.</p>
+<p>Officially available plugins are in the <code>nadi-plugins-rust</code> directory.</p>
+<p>Assuming you have <code>git</code> and <code>cargo</code>,</p>
+<pre><code class="language-bash">git clone https://github.com/Nadi-System/nadi-plugins-rust
+cd nadi-gis
+cargo build --release
+</code></pre>
+<p>The plugins will be inside the <code>target/release</code> directory. Copy them to the <code>NADI_PLUGIN_DIRS</code> directory for nadi to load them.</p>
+<p>You can take any one of the plugins as an example to build your own, or following the plugin development instructions from the plugins chapter.</p>
 
                     </main>
 
@@ -206,6 +221,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

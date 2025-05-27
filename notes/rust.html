@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -155,12 +158,12 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="why-rust"><a class="header" href="#why-rust">Why Rust?</a></h1>
-<p>Rust<sup class="footnote-reference"><a href="#fn1">1</a></sup> is an open source programming language that claims to be fast and memory efficient to power performance critical services. Rust is also able to integrate with other programming languages.</p>
+<p>Rust<sup class="footnote-reference" id="fr-fn1-1"><a href="#footnote-fn1">1</a></sup> is an open source programming language that claims to be fast and memory efficient to power performance critical services. Rust is also able to integrate with other programming languages.</p>
 <p>Rust provides a memory safe way to do modern programming. The White
 House has a recent press
-release<sup class="footnote-reference"><a href="#fn2">2</a></sup>
+release<sup class="footnote-reference" id="fr-fn2-1"><a href="#footnote-fn2">2</a></sup>
 about the need to have memory safe language in future softwares. The
-report<sup class="footnote-reference"><a href="#fn3">3</a></sup>
+report<sup class="footnote-reference" id="fr-fn3-1"><a href="#footnote-fn3">3</a></sup>
 has following sentense about the Rust language.</p>
 <div class="right">
 At this time, the most widely used languages that meet all three
@@ -170,23 +173,24 @@ has the three requisite properties above, but has not yet been proven
 in space systems.
 </div>
 <p>The results of the survey from
-stackoverflow<sup class="footnote-reference"><a href="#fn4">4</a></sup>
+stackoverflow<sup class="footnote-reference" id="fr-fn4-1"><a href="#footnote-fn4">4</a></sup>
 shows Rust has been a top choice for developers who want to use a new
 technology for the past 8 years, and the analysis also shows Rust is a
 language that generates for desire to use it once you get to know.</p>
-<div class="footnote-definition" id="fn1"><sup class="footnote-definition-label">1</sup>
-<p>https://www.rust-lang.org/</p>
-</div>
-<div class="footnote-definition" id="fn2"><sup class="footnote-definition-label">2</sup>
-<p>https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/</p>
-</div>
-<div class="footnote-definition" id="fn3"><sup class="footnote-definition-label">3</sup>
-<p>https://www.whitehouse.gov/wp-content/uploads/2024/02/Final-ONCD-Technical-Report.pdf</p>
-</div>
-<div class="footnote-definition" id="fn4"><sup class="footnote-definition-label">4</sup>
-<p>https://survey.stackoverflow.co/2023/#technology-admired-and-desired</p>
-</div>
-
+<hr>
+<ol class="footnote-definition"><li id="footnote-fn1">
+<p>https://www.rust-lang.org/ <a href="#fr-fn1-1">↩</a></p>
+</li>
+<li id="footnote-fn2">
+<p>https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/ <a href="#fr-fn2-1">↩</a></p>
+</li>
+<li id="footnote-fn3">
+<p>https://www.whitehouse.gov/wp-content/uploads/2024/02/Final-ONCD-Technical-Report.pdf <a href="#fr-fn3-1">↩</a></p>
+</li>
+<li id="footnote-fn4">
+<p>https://survey.stackoverflow.co/2023/#technology-admired-and-desired <a href="#fr-fn4-1">↩</a></p>
+</li>
+</ol>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
@@ -216,6 +220,22 @@ language that generates for desire to use it once you get to know.</p>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

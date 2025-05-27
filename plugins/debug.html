@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -154,11 +157,19 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
-<h2 id="network.debug"><a class="header" href="#network.debug">debug</a></h2>
-<pre><code class="language-sig">network debug.debug(*args, **kwargs)
+                        <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
+<h2 id="env.sleep"><a class="header" href="#env.sleep">sleep</a></h2>
+<pre><code class="language-sig">env debug.sleep(time: 'u64' = 1000)
 </code></pre>
 <h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>time: 'u64' = 1000</code> =&gt;</li>
+</ul>
+<p>sleep for given number of milliseconds</p>
+<h2 id="env.debug"><a class="header" href="#env.debug">debug</a></h2>
+<pre><code class="language-sig">env debug.debug(*args, **kwargs)
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
 <ul>
 <li><code>*args</code> =&gt; Function arguments</li>
 <li><code>**kwargs</code> =&gt; Function Keyword arguments</li>
@@ -169,14 +180,14 @@ function is called with. This is for debugging purposes to see
 if the args/kwargs are identified properly. And can also be
 used to see how the nadi system takes the input from the
 function call.</p>
-<h2 id="network.echo"><a class="header" href="#network.echo">echo</a></h2>
-<pre><code class="language-sig">network debug.echo(
+<h2 id="env.echo"><a class="header" href="#env.echo">echo</a></h2>
+<pre><code class="language-sig">env debug.echo(
     line: 'String',
     error: 'bool' = false,
     newline: 'bool' = true
 )
 </code></pre>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
 <ul>
 <li><code>line: 'String'</code> =&gt; line to print</li>
 <li><code>error: 'bool' = false</code> =&gt; print to stderr instead of stdout</li>
@@ -188,10 +199,10 @@ combination with nadi tasks that create files (image, text,
 etc). The <code>echo</code> function can be called to get the link to
 those files back to the stdout.</p>
 <p>Also useful for nadi preprocessor.</p>
-<h2 id="network.clip"><a class="header" href="#network.clip">clip</a></h2>
-<pre><code class="language-sig">network debug.clip(error: 'bool' = false)
+<h2 id="env.clip"><a class="header" href="#env.clip">clip</a></h2>
+<pre><code class="language-sig">env debug.clip(error: 'bool' = false)
 </code></pre>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
 <ul>
 <li><code>error: 'bool' = false</code> =&gt; print in stderr instead of in stdout</li>
 </ul>
@@ -245,6 +256,22 @@ generation.</p>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

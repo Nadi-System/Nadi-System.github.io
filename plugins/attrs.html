@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -178,16 +181,34 @@
 <li><code>transformation: '&amp; str'</code> =&gt; transformation function, can be one of log/log10/sqrt</li>
 </ul>
 <p>map values from the attribute based on the given table</p>
+<h2 id="env.float_div"><a class="header" href="#env.float_div">float_div</a></h2>
+<pre><code class="language-sig">env attrs.float_div(value1: 'f64', value2: 'f64')
+</code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>value1: 'f64'</code> =&gt; numerator</li>
+<li><code>value2: 'f64'</code> =&gt; denominator</li>
+</ul>
+<p>map values from the attribute based on the given table</p>
+<h2 id="env.float_mult"><a class="header" href="#env.float_mult">float_mult</a></h2>
+<pre><code class="language-sig">env attrs.float_mult(value1: 'f64', value2: 'f64')
+</code></pre>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
+<li><code>value1: 'f64'</code> =&gt; numerator</li>
+<li><code>value2: 'f64'</code> =&gt; denominator</li>
+</ul>
+<p>map values from the attribute based on the given table</p>
 <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
 <h2 id="node.load_attrs"><a class="header" href="#node.load_attrs">load_attrs</a></h2>
 <pre><code class="language-sig">node attrs.load_attrs(filename: 'PathBuf')
 </code></pre>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
 <ul>
 <li><code>filename: 'PathBuf'</code> =&gt; Template for the filename to load node attributes from</li>
 </ul>
 <p>Loads attrs from file for all nodes based on the given template</p>
-<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
 <ul>
 <li><code>filename</code>: Template for the filename to load node attributes from</li>
 <li><code>verbose</code>: print verbose message</li>
@@ -204,7 +225,7 @@ rendered template will be used to load the attributes.</p>
 <h2 id="node.print_all_attrs"><a class="header" href="#node.print_all_attrs">print_all_attrs</a></h2>
 <pre><code class="language-sig">node attrs.print_all_attrs()
 </code></pre>
-<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
+<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
 <p>Print all attrs in a node</p>
 <p>No arguments and no errors, it’ll just print all the attributes in a node with
 <code>node::attr=val</code> format, where,</p>
@@ -214,15 +235,15 @@ rendered template will be used to load the attributes.</p>
 <li>val is attribute value (string representation)</li>
 </ul>
 <h2 id="node.print_attrs"><a class="header" href="#node.print_attrs">print_attrs</a></h2>
-<pre><code class="language-sig">node attrs.print_attrs(*attrs, name: 'bool')
+<pre><code class="language-sig">node attrs.print_attrs(*attrs, name: 'bool' = false)
 </code></pre>
-<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<h3 id="arguments-7"><a class="header" href="#arguments-7">Arguments</a></h3>
 <ul>
 <li><code>*attrs</code> =&gt;</li>
-<li><code>name: 'bool'</code> =&gt;</li>
+<li><code>name: 'bool' = false</code> =&gt;</li>
 </ul>
 <p>Print the given node attributes if present</p>
-<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
+<h3 id="arguments-8"><a class="header" href="#arguments-8">Arguments</a></h3>
 <ul>
 <li>attrs,… : list of attributes to print</li>
 <li>name: Bool for whether to show the node name or not</li>
@@ -237,7 +258,7 @@ rendered template will be used to load the attributes.</p>
 <h2 id="node.set_attrs"><a class="header" href="#node.set_attrs">set_attrs</a></h2>
 <pre><code class="language-sig">node attrs.set_attrs(**attrs)
 </code></pre>
-<h3 id="arguments-7"><a class="header" href="#arguments-7">Arguments</a></h3>
+<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
 <ul>
 <li><code>**attrs</code> =&gt; Key value pairs of the attributes to set</li>
 </ul>
@@ -255,7 +276,7 @@ from <code>A</code> to <code>D</code></p>
 <h2 id="node.get_attr"><a class="header" href="#node.get_attr">get_attr</a></h2>
 <pre><code class="language-sig">node attrs.get_attr(attr: '&amp; str', default: 'Option &lt; Attribute &gt;')
 </code></pre>
-<h3 id="arguments-8"><a class="header" href="#arguments-8">Arguments</a></h3>
+<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
 <ul>
 <li><code>attr: '&amp; str'</code> =&gt; Name of the attribute to get</li>
 <li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if the attribute is not found</li>
@@ -264,7 +285,7 @@ from <code>A</code> to <code>D</code></p>
 <h2 id="node.has_attr"><a class="header" href="#node.has_attr">has_attr</a></h2>
 <pre><code class="language-sig">node attrs.has_attr(attr: '&amp; str')
 </code></pre>
-<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
+<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
 <ul>
 <li><code>attr: '&amp; str'</code> =&gt; Name of the attribute to check</li>
 </ul>
@@ -272,7 +293,7 @@ from <code>A</code> to <code>D</code></p>
 <h2 id="node.first_attr"><a class="header" href="#node.first_attr">first_attr</a></h2>
 <pre><code class="language-sig">node attrs.first_attr(attrs: '&amp; [String]', default: 'Option &lt; Attribute &gt;')
 </code></pre>
-<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
+<h3 id="arguments-12"><a class="header" href="#arguments-12">Arguments</a></h3>
 <ul>
 <li><code>attrs: '&amp; [String]'</code> =&gt; attribute names</li>
 <li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if not found</li>
@@ -281,7 +302,7 @@ from <code>A</code> to <code>D</code></p>
 <h2 id="node.set_attrs_ifelse"><a class="header" href="#node.set_attrs_ifelse">set_attrs_ifelse</a></h2>
 <pre><code class="language-sig">node attrs.set_attrs_ifelse(cond: 'bool', **values)
 </code></pre>
-<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
+<h3 id="arguments-13"><a class="header" href="#arguments-13">Arguments</a></h3>
 <ul>
 <li><code>cond: 'bool'</code> =&gt; Condition to check</li>
 <li><code>**values</code> =&gt; key = [val1, val2] where key is set as first if <code>cond</code> is true else second</li>
@@ -290,7 +311,7 @@ from <code>A</code> to <code>D</code></p>
 <h2 id="node.set_attrs_render"><a class="header" href="#node.set_attrs_render">set_attrs_render</a></h2>
 <pre><code class="language-sig">node attrs.set_attrs_render(**kwargs)
 </code></pre>
-<h3 id="arguments-12"><a class="header" href="#arguments-12">Arguments</a></h3>
+<h3 id="arguments-14"><a class="header" href="#arguments-14">Arguments</a></h3>
 <ul>
 <li><code>**kwargs</code> =&gt; key value pair of attribute to set and the Template to render</li>
 </ul>
@@ -298,7 +319,7 @@ from <code>A</code> to <code>D</code></p>
 <h2 id="node.load_toml_render"><a class="header" href="#node.load_toml_render">load_toml_render</a></h2>
 <pre><code class="language-sig">node attrs.load_toml_render(toml: '&amp; Template', echo: 'bool' = false)
 </code></pre>
-<h3 id="arguments-13"><a class="header" href="#arguments-13">Arguments</a></h3>
+<h3 id="arguments-15"><a class="header" href="#arguments-15">Arguments</a></h3>
 <ul>
 <li><code>toml: '&amp; Template'</code> =&gt; String template to render and load as TOML string</li>
 <li><code>echo: 'bool' = false</code> =&gt; Print the rendered toml or not</li>
@@ -308,19 +329,19 @@ from <code>A</code> to <code>D</code></p>
 <h2 id="network.set_attrs"><a class="header" href="#network.set_attrs">set_attrs</a></h2>
 <pre><code class="language-sig">network attrs.set_attrs(**attrs)
 </code></pre>
-<h3 id="arguments-14"><a class="header" href="#arguments-14">Arguments</a></h3>
+<h3 id="arguments-16"><a class="header" href="#arguments-16">Arguments</a></h3>
 <ul>
 <li><code>**attrs</code> =&gt; key value pair of attributes to set</li>
 </ul>
 <p>Set network attributes</p>
-<h3 id="arguments-15"><a class="header" href="#arguments-15">Arguments</a></h3>
+<h3 id="arguments-17"><a class="header" href="#arguments-17">Arguments</a></h3>
 <ul>
 <li><code>key=value</code> - Kwargs of attr = value</li>
 </ul>
 <h2 id="network.set_attrs_render"><a class="header" href="#network.set_attrs_render">set_attrs_render</a></h2>
 <pre><code class="language-sig">network attrs.set_attrs_render(**kwargs)
 </code></pre>
-<h3 id="arguments-16"><a class="header" href="#arguments-16">Arguments</a></h3>
+<h3 id="arguments-18"><a class="header" href="#arguments-18">Arguments</a></h3>
 <ul>
 <li><code>**kwargs</code> =&gt; Kwargs of attr = String template to render</li>
 </ul>
@@ -355,6 +376,22 @@ from <code>A</code> to <code>D</code></p>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

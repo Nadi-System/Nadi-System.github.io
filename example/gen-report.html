@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -180,48 +183,13 @@ We used 4 locks and dams in the ohio river as representative locks and dams as b
 &lt;!-- ---8&lt;--- --&gt;
 </code></pre>
 <p>Which makes the table only for the main-stem ohio:</p>
-<pre><code class="language-task run markdown"><span class="boring">network load_file("./data/ohio.network")
+<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
 </span><span class="boring">node load_attrs("./data/attrs/{_NAME}.toml")
 </span><span class="boring">network clip()
 </span>network render("./data/ohio-report.template")
 </code></pre>
-<p>Results:</p>
-<h2 id="ohio-river-routing-project"><a class="header" href="#ohio-river-routing-project">Ohio River Routing Project</a></h2>
-<p>Our basin Outlet is at Ohio River at Smithland Dam Smithland KY with the total basin area 371802.2 acre-ft.</p>
-<p>The lower part of the Ohio basin are specifically important to us. Those are:</p>
-<div class="table-wrapper"><table><thead><tr><th>ID</th><th style="text-align: right">Basin Area</th><th style="text-align: right">Length to Outlet</th></tr></thead><tbody>
-<tr><td>greenup</td><td style="text-align: right">159430.2</td><td style="text-align: right">2603.80</td></tr>
-<tr><td>meldahl</td><td style="text-align: right">183215.2</td><td style="text-align: right">2450.59</td></tr>
-<tr><td>markland</td><td style="text-align: right">214850.9</td><td style="text-align: right">2293.44</td></tr>
-<tr><td>mcalpine</td><td style="text-align: right">236250.2</td><td style="text-align: right">2172.82</td></tr>
-<tr><td>cannelton</td><td style="text-align: right">249382.5</td><td style="text-align: right">1993.72</td></tr>
-<tr><td>newburgh</td><td style="text-align: right">253065.6</td><td style="text-align: right">1903.58</td></tr>
-<tr><td>evansville</td><td style="text-align: right">275482.9</td><td style="text-align: right">1878.29</td></tr>
-<tr><td>jt-myers</td><td style="text-align: right">277962.5</td><td style="text-align: right">1791.07</td></tr>
-<tr><td>old-shawneetown</td><td style="text-align: right">363656.8</td><td style="text-align: right">1772.27</td></tr>
-<tr><td>golconda</td><td style="text-align: right">370942.3</td><td style="text-align: right">1701.32</td></tr>
-<tr><td>smithland</td><td style="text-align: right">371802.2</td><td style="text-align: right">1675.95</td></tr>
-</tbody></table>
-</div>
-<p>We used 4 locks and dams in the ohio river as representative locks and dams as below:</p>
-<ul>
-<li>
-<p>Willow Island</p>
-<p><img src="../data/willow-island.svg" alt="" /></p>
-</li>
-<li>
-<p>Racine</p>
-<p><img src="../data/racine.svg" alt="" /></p>
-</li>
-<li>
-<p>Markland</p>
-<p><img src="../data/markland.svg" alt="" /></p>
-</li>
-<li>
-<p>Smithland</p>
-<p><img src="../data/smithland.svg" alt="" /></p>
-</li>
-</ul>
+<p>Results:<br />
+“./data/ohio-report.template”</p>
 
                     </main>
 
@@ -252,6 +220,22 @@ We used 4 locks and dams in the ohio river as representative locks and dams as b
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

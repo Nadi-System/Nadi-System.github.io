@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -235,7 +238,7 @@ Hi my name is {name}.
 </code></pre>
 <p>Will become:</p>
 <hr />
-<pre><code class="language-stp run name=John">Hi my name is {name}.
+<pre><code class="language-stp">Hi my name is {name}.
 </code></pre>
 <p>Results (with:  name=John):</p>
 <pre><code class="language-output">Hi my name is John.
@@ -252,7 +255,7 @@ node render("Node {NAME}")
 ```
 </code></pre>
 <hr />
-<pre><code class="language-task run"><span class="boring">network load_file("data/mississippi.net")
+<pre><code class="language-task"><span class="boring">network load_file("data/mississippi.net")
 </span>node render("Node {NAME}")
 </code></pre>
 <p>Results:</p>
@@ -280,7 +283,7 @@ node render("Node {NAME}")
 </code></pre>
 <p>Becomes:</p>
 <hr />
-<pre><code class="language-table run markdown"><span class="boring">network load_file("./data/mississippi.net")
+<pre><code class="language-table"><span class="boring">network load_file("./data/mississippi.net")
 </span>&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
 ^Ind =&gt; =(+ (st+num 'INDEX) 1)
 &gt;Order =&gt; {ORDER}
@@ -301,7 +304,7 @@ node render("Node {NAME}")
 <p>Task can be used to generate markdown in the same way as the tables
 can:</p>
 <p>For example <code>task run</code> of this:</p>
-<pre><code class="language-task run">network load_file("./data/mississippi.net")
+<pre><code class="language-task">network load_file("./data/mississippi.net")
 network table_to_markdown(template="
 &lt;Name =&gt; {_NAME:repl(-, ):case(title)}
 ^Ind =&gt; =(+ (st+num 'INDEX) 1)
@@ -320,7 +323,7 @@ network table_to_markdown(template="
 | Tenessee          |  7  |     1 |
 </code></pre>
 <p>If you do <code>task run markdown</code> then:</p>
-<pre><code class="language-task run markdown">network load_file("./data/mississippi.net")
+<pre><code class="language-task">network load_file("./data/mississippi.net")
 network table_to_markdown(template="
 &lt;Name =&gt; {_NAME:repl(-, ):case(title)}
 ^Ind =&gt; =(+ (st+num 'INDEX) 1)
@@ -339,25 +342,39 @@ network table_to_markdown(template="
 </tbody></table>
 </div>
 <p>Which means it can be used for other things:</p>
-<pre><code class="language-task run markdown">network load_file("./data/mississippi.net")
+<pre><code class="language-task">network load_file("./data/mississippi.net");
 network echo("**Details about the Nodes:**")
-node render("
+network echo(render_nodes("
 =(+ (st+num 'INDEX) 1). {_NAME:repl(-, ):case(title)} River
-")
+"))
 </code></pre>
 <p>Results:<br />
-<strong>Details about the Nodes:</strong>
-{
-lower-mississippi = “\n1. Lower Mississippi River\n”,
-upper-mississippi = “\n2. Upper Mississippi River\n”,
-missouri = “\n3. Missouri River\n”,
-arkansas = “\n4. Arkansas River\n”,
-red = “\n5. Red River\n”,
-ohio = “\n6. Ohio River\n”,
-tenessee = “\n7. Tenessee River\n”
-}</p>
+<strong>Details about the Nodes:</strong></p>
+<ol>
+<li>
+<p>Lower Mississippi River</p>
+</li>
+<li>
+<p>Upper Mississippi River</p>
+</li>
+<li>
+<p>Missouri River</p>
+</li>
+<li>
+<p>Arkansas River</p>
+</li>
+<li>
+<p>Red River</p>
+</li>
+<li>
+<p>Ohio River</p>
+</li>
+<li>
+<p>Tenessee River</p>
+</li>
+</ol>
 <p>You can also use the same method to insert images like this, at the end of your tasks, so that the image generated by the tasks can be inserted here.</p>
-<pre><code class="language-task run image"># do some tasks
+<pre><code class="language-task"># do some tasks
 network echo("Some other output form your tasks")
 network clip()
 network echo("../images/ohio-low.svg")
@@ -396,6 +413,22 @@ network echo("../images/ohio-low.svg")
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

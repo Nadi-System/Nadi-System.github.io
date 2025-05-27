@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -156,6 +159,117 @@
                     <main>
                         <h1 id="network-analysis-and-data-integration-nadi"><a class="header" href="#network-analysis-and-data-integration-nadi">Network Analysis and Data Integration (NADI)</a></h1>
 <p>NADI is group of software packages that facilitate network analysis and do data analysis on data related to network/nodes.</p>
+<p>NADI System consists of:</p>
+<div class="table-wrapper"><table><thead><tr><th>Tool</th><th>Description</th></tr></thead><tbody>
+<tr><td>NADI GIS</td><td>Geographic Information (GIS) Tool for Network Detection</td></tr>
+<tr><td>NADI Task System</td><td>Domain Specific Programming Language</td></tr>
+<tr><td>NADI Plugins</td><td>Plugins that provide the functions in Task System</td></tr>
+<tr><td>NADI library</td><td>Rust and Python library to use in your programs</td></tr>
+<tr><td>NADI CLI</td><td>Command Line Interface to run NADI Tasks</td></tr>
+<tr><td>NADI IDE</td><td>Integrated Development Environment to write/ run NADI Tasks</td></tr>
+</tbody></table>
+</div>
+<h2 id="nadi-gis"><a class="header" href="#nadi-gis">NADI GIS</a></h2>
+<p>Geographic Information (GIS) Tool for Network Detection. The main purpose of the NADI GIS is to find the network connectivity between a set of points using a stream network (which can be developed from elevation models, or downloaded from national databases).</p>
+<p>NADI GIS can be used as a terminal command or QGIS plugin, refer to <a href="installation.html#nadi-gis">installation</a> section for how to install it.</p>
+<h2 id="nadi-task-system"><a class="header" href="#nadi-task-system">NADI Task System</a></h2>
+<p>Task System is a Domain Specific Programming Language (DSL) that is designed for river network analysis. This is the main core of the network analysis. This is included when you install NADI as a library, CLI or GUI.</p>
+<h2 id="nadi-plugins"><a class="header" href="#nadi-plugins">NADI Plugins</a></h2>
+<p>The functions available to call in the task system comes from plugins. There are many internal plugins with core functions already available, while users can load their own plugins for other functions.</p>
+<p>Refer to the plugins section of the book for more details on how to use plugins, how to write them and what to keep in mind while using them.</p>
+<h2 id="nadi-libraries"><a class="header" href="#nadi-libraries">NADI libraries</a></h2>
+<p>Rust and Python library to use in your programs. Rust library <code>nadi_core</code> is available to download/use from <code>cargo</code> with the command <code>cargo add nadi_core</code>.</p>
+<p>While Python library requires you to clone the repo and build it with <code>maturin</code> (for now).
+Future plan for it includes publishing it in pypi.</p>
+<h3 id="rust-libraries"><a class="header" href="#rust-libraries">Rust Libraries</a></h3>
+<p>If you are not writing your own rust programs or plugins, you can skip this section.</p>
+<p>There are three rust libraries:</p>
+<div class="table-wrapper"><table><thead><tr><th>Library</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>nadi_core</code></td><td>Core library with data types, and plugin structure</td></tr>
+<tr><td><code>nadi_plugin</code></td><td>Rust Procedural macro library to write nadi plugins</td></tr>
+<tr><td><code>string_template_plus</code></td><td>Library for string templates with variables</td></tr>
+</tbody></table>
+</div>
+<p>Everything is loaded by <code>nadi_core</code> so you don’t need to load them separately.</p>
+<h3 id="nadi-python"><a class="header" href="#nadi-python">NADI Python</a></h3>
+<p>While using NADI from python library, you only have access to nadi data types (Node, Network, etc), and the plugin functions, which are enough for most cases as python language syntax, variables, loops etc will give you a lot of flexibility on how to do your own analysis. The python module is structured as follows:</p>
+<pre><code>nadi [contains Node, Network, etc]
+ +-- functions
+ | +-- node [contains node functions]
+ | +-- network [contains network functions]
+ | +-- env [contains env functions]
+ +-- plugins
+   +-- &lt;plugin&gt; [each plugin will be added here]
+     +-- node [contains node functions]
+     +-- network [contains network functions]
+     +-- env [contains env functions]
+</code></pre>
+<p>The functions are available directly through <code>functions</code> submodule, or through each plugin in <code>plugins</code> submodule. An example python script looks like this:</p>
+<pre><code class="language-python">import nadi
+import nadi.functions as fn
+
+net = nadi.Network("data/ohio.network")
+for node in net.nodes:
+    try:
+        _ = int(node.name)
+        node.is_usgs = True
+        print(fn.node.render(node, "Node {_NAME} is USGS Site"))
+    except ValueError:
+        node.is_usgs = False
+</code></pre>
+<p>This code shows how to load a network, how to loop through the nodes, and use python logic, or use nadi functions for the node and assign attributes.</p>
+<p>More detail on how to use NADI from python will be explained in NADI Python chapter.</p>
+<h2 id="nadi-cli"><a class="header" href="#nadi-cli">NADI CLI</a></h2>
+<p>Command Line Interface to run NADI Tasks.</p>
+<p>This can run nadi task files, syntax highlight them for verifying them, generate markdown documentations for the plugins. The documentations included in this book (<a href="plugins/index.html">Function List</a> and each plugin’s page like <a href="plugins/attrs.html">Attributes Plugin <code>attrs</code></a>) are generated with that. The documentation on each plugin functions comes from their docstrings in the code, please refer to how to write plugins section of the book for details on that.</p>
+<p>The available options are shown below.</p>
+<pre><code>Usage: nadi [OPTIONS] [TASK_FILE]
+
+Arguments:
+  [TASK_FILE]  Tasks file to run; if `--stdin` is also provided this runs before stdin
+
+Options:
+  -C, --completion &lt;FUNC_TYPE&gt;  list all functions and exit for completions [possible values: node, network, env]
+  -c, --fncode &lt;FUNCTION&gt;       print code for a function
+  -f, --fnhelp &lt;FUNCTION&gt;       print help for a function
+  -g, --generate-doc &lt;DOC_DIR&gt;  Generate markdown doc for all plugins and functions
+  -l, --list-functions          list all functions and exit
+  -n, --network &lt;NETWORK_FILE&gt;  network file to load before executing tasks
+  -p, --print-tasks             print tasks before running
+  -s, --show                    Show the tasks file, do not do anything
+  -S, --stdin                   Use stdin for the tasks; reads the whole stdin before execution
+  -t, --task &lt;TASK_STR&gt;         Run given string as task before running the file
+  -h, --help                    Print help
+  -V, --version                 Print version
+</code></pre>
+<h2 id="nadi-ide"><a class="header" href="#nadi-ide">NADI IDE</a></h2>
+<p>NADI Integrated Development Environment (IDE) is a Graphical User Interface (GUI) for the users to write/ run NADI Tasks.</p>
+<p>As seen in the image below, IDE consists of multiple components arranged in a tiling manner. You can drag them to move them around and build your own layout. When you start IDE it suggests you some layouts and what to open. You can use the buttons on the top right of each pane to:</p>
+<ul>
+<li>change pane type</li>
+<li>vertically split current pane</li>
+<li>horizontally split current pane</li>
+<li>fullscreen current page/ restore layout if it’s fullscreen</li>
+<li>close current pane</li>
+</ul>
+<p><img src="./images/ide-screenshot.png" alt="Screenshot of NADI IDE" /></p>
+<p>It has the following components:</p>
+<h3 id="text-editor"><a class="header" href="#text-editor">Text Editor</a></h3>
+<p>Open text files, edit and save them.</p>
+<p>It comes with syntax highlighting for most languages. And custom highlight for tasks and network files.</p>
+<p>For Tasks file, it can also show you function signatures on top so you can write tasks easily, knowing what arguments the function needs and what the default values are.</p>
+<p>While open inside IDE, it can also run the tasks by sending them to the terminal, or search help documentations on functions. Hover over the buttons on the top row to see which button does what, and the keyboard shortcut to use them as well.</p>
+<h3 id="terminal"><a class="header" href="#terminal">Terminal</a></h3>
+<p>Terminal is there so you can run NADI in a interactive session. Read Eval Print Loop (REPL) of NADI here is meant mostly to be used inside the IDE to evaluate the tasks from editor, but you can open it independently as well.</p>
+<h3 id="function-help"><a class="header" href="#function-help">Function Help</a></h3>
+<p>This is a GUI with the list of all available plugin functions. You can expand the sidebar on left to search and browse functions. You can filter by type of function (node, network, env) with the buttons. When you click a function you can read its documentation on the right side.</p>
+<p>Capabilities of the <code>iced</code> GUI libraries are limited right now, so you cannot select or copy text from the help. Please refer to the documentation online to do that. Or generate the documentation locally using <code>nadi-cli</code> tool.</p>
+<h3 id="network-viewer"><a class="header" href="#network-viewer">Network Viewer</a></h3>
+<p>This is a pane where network is visualized, this is a very basic visualization to see the connections and is not optimized for drawing. Please avoid using this pane (making it visible) in case of large networks as it takes a lot of computation to draw this each frame.</p>
+<h3 id="attribute-browser"><a class="header" href="#attribute-browser">Attribute Browser</a></h3>
+<p>When you click on a node on Network Viewer it will open/update showing the attributes of that node. There is no way to edit the attributes from here, which is intensional design as attributes should be assigned from tasks so that they are reproducible. For temporary assignments use the terminal.</p>
+<h3 id="svg-viewer"><a class="header" href="#svg-viewer">SVG Viewer</a></h3>
+<p>This is a basic utility that can open a SVG file from disk and visualize it. You can click the refresh button to re-read the same file. This is intended for a quick way to check the SVG saved/exported from tasks. This is not a full fledge SVG renderer, so open them in image viewers or browsers to see how it looks.</p>
 <h1 id="trivia"><a class="header" href="#trivia">Trivia</a></h1>
 <ul>
 <li>Nadi means River in Nepali (and probably in many south asian languages).</li>
@@ -194,6 +308,22 @@ related analysis.</li>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

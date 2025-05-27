@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -157,20 +160,51 @@
                         <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.set_nodesize_attrs"><a class="header" href="#network.set_nodesize_attrs">set_nodesize_attrs</a></h2>
 <pre><code class="language-sig">network visuals.set_nodesize_attrs(
-    attr: 'String',
-    default: 'Option &lt; f64 &gt;',
+    attrs: '&amp; [f64]',
     minsize: 'f64' = 4.0,
     maxsize: 'f64' = 12.0
 )
 </code></pre>
 <h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
 <ul>
-<li><code>attr: 'String'</code> =&gt; Attribute to use for size scaling</li>
-<li><code>default: 'Option &lt; f64 &gt;'</code> =&gt; default value of the attribute if not found</li>
+<li><code>attrs: '&amp; [f64]'</code> =&gt; Attribute values to use for size scaling</li>
 <li><code>minsize: 'f64' = 4.0</code> =&gt; minimum size of the node</li>
 <li><code>maxsize: 'f64' = 12.0</code> =&gt; maximum size of the node</li>
 </ul>
 <p>Set the node size of the nodes based on the attribute value</p>
+<h2 id="network.svg_save"><a class="header" href="#network.svg_save">svg_save</a></h2>
+<pre><code class="language-sig">network visuals.svg_save(
+    outfile: '&amp; Path',
+    label: 'Template' = Template { original: "{_NAME}", parts: [Var("_NAME", "")] },
+    x_spacing: 'u64' = 25,
+    y_spacing: 'u64' = 25,
+    offset: 'u64' = 10,
+    twidth: 'f64' = 9.0,
+    width: 'u64' = 500,
+    height: 'u64' = 240,
+    bgcolor: 'Option &lt; String &gt;',
+    page_width: 'Option &lt; u64 &gt;',
+    page_height: 'Option &lt; u64 &gt;'
+)
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>outfile: '&amp; Path'</code> =&gt;</li>
+<li><code>label: 'Template' = Template { original: "{_NAME}", parts: [Var("_NAME", "")] }</code> =&gt;</li>
+<li><code>x_spacing: 'u64' = 25</code> =&gt;</li>
+<li><code>y_spacing: 'u64' = 25</code> =&gt;</li>
+<li><code>offset: 'u64' = 10</code> =&gt;</li>
+<li><code>twidth: 'f64' = 9.0</code> =&gt; in average how many units each text character takes</li>
+</ul>
+<p>For auto calculating width of the page since we don’t have Cairo</p>
+<ul>
+<li><code>width: 'u64' = 500</code> =&gt;</li>
+<li><code>height: 'u64' = 240</code> =&gt;</li>
+<li><code>bgcolor: 'Option &lt; String &gt;'</code> =&gt;</li>
+<li><code>page_width: 'Option &lt; u64 &gt;'</code> =&gt;</li>
+<li><code>page_height: 'Option &lt; u64 &gt;'</code> =&gt;</li>
+</ul>
+<p>Exports the network as a svg</p>
 
                     </main>
 
@@ -201,6 +235,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

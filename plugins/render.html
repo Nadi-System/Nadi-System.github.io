@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -168,12 +171,34 @@
 Template section of the NADI book.</p>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.render"><a class="header" href="#network.render">render</a></h2>
-<pre><code class="language-sig">network render.render(template: 'PathBuf', outfile: 'Option &lt; PathBuf &gt;')
+<pre><code class="language-sig">network render.render(template: '&amp; Template', safe: 'bool' = false)
 </code></pre>
 <h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
 <ul>
+<li><code>template: '&amp; Template'</code> =&gt; Path to the template file</li>
+<li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
+</ul>
+<p>Render from network attributes</p>
+<h2 id="network.render_nodes"><a class="header" href="#network.render_nodes">render_nodes</a></h2>
+<pre><code class="language-sig">network render.render_nodes(
+    template: '&amp; Template',
+    safe: 'bool' = false,
+    join: '&amp; str' = "\n"
+)
+</code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>template: '&amp; Template'</code> =&gt; Path to the template file</li>
+<li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
+<li><code>join: '&amp; str' = "\n"</code> =&gt; String to join the render results</li>
+</ul>
+<p>Render each node of the network and combine to same variable</p>
+<h2 id="network.render_template"><a class="header" href="#network.render_template">render_template</a></h2>
+<pre><code class="language-sig">network render.render_template(template: 'PathBuf')
+</code></pre>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
 <li><code>template: 'PathBuf'</code> =&gt; Path to the template file</li>
-<li><code>outfile: 'Option &lt; PathBuf &gt;'</code> =&gt; output file</li>
 </ul>
 <p>Render a File template for the nodes in the whole network</p>
 <p>Write the file with templates for input variables in the same
@@ -192,7 +217,7 @@ include a file, the line_range syntax, if present, should be
 in the form of <code>start[:increment]:end</code>, you can exclude start
 or end to denote the line 1 or last line (e.g. <code>:5</code> is 1:5,
 and <code>3:</code> is from line 3 to the end)</p>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
 <ul>
 <li><code>template</code>: Path to the template file</li>
 <li><code>outfile</code> [Optional]: Path to save the template file, if none it’ll be printed in stdout</li>
@@ -227,6 +252,22 @@ and <code>3:</code> is from line 3 to the end)</p>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

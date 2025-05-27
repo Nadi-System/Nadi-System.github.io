@@ -24,19 +24,20 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -46,8 +47,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -61,7 +62,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -74,8 +76,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -111,6 +113,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -159,8 +162,8 @@
 <pre><code class="language-sig">node datafill.load_csv_fill(
     name: 'String',
     file: 'Template',
-    columns: '(String, String)',
     timefmt: 'String',
+    columns: '(String, String)',
     method: 'DataFillMethod' = Linear,
     dtype: 'String' = "Floats"
 )
@@ -169,11 +172,49 @@
 <ul>
 <li><code>name: 'String'</code> =&gt; Name of the timeseries</li>
 <li><code>file: 'Template'</code> =&gt; Template of the CSV file for the nodes</li>
-<li><code>columns: '(String, String)'</code> =&gt; Names of date column and value column</li>
 <li><code>timefmt: 'String'</code> =&gt; date time format, if you only have date, but have time on format string, it will panic</li>
+<li><code>columns: '(String, String)'</code> =&gt; Names of date column and value column</li>
 <li><code>method: 'DataFillMethod' = Linear</code> =&gt; Method to use for data filling: forward/backward/linear</li>
 <li><code>dtype: 'String' = "Floats"</code> =&gt; DataType to load into timeseries</li>
 </ul>
+<h2 id="node.datafill_experiment"><a class="header" href="#node.datafill_experiment">datafill_experiment</a></h2>
+<pre><code class="language-sig">node datafill.datafill_experiment(
+    name: 'String',
+    file: 'Template',
+    ratio_var: 'String',
+    columns: 'Option &lt; (String, String) &gt;',
+    experiments: 'usize' = 10,
+    samples: 'usize' = 100
+)
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>name: 'String'</code> =&gt; Prefix for name of the series to save metrics on</li>
+<li><code>file: 'Template'</code> =&gt; Template of the CSV file for the nodes</li>
+<li><code>ratio_var: 'String'</code> =&gt; Variable to use for inputratio/outputratio methods</li>
+<li><code>columns: 'Option &lt; (String, String) &gt;'</code> =&gt; Names of date column and value column</li>
+<li><code>experiments: 'usize' = 10</code> =&gt; Number of experiements to run</li>
+<li><code>samples: 'usize' = 100</code> =&gt; Number of samples on each experiment</li>
+</ul>
+<h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
+<h2 id="network.save_experiments_csv"><a class="header" href="#network.save_experiments_csv">save_experiments_csv</a></h2>
+<pre><code class="language-sig">network datafill.save_experiments_csv(
+    outfile: 'PathBuf',
+    attrs: 'Vec &lt; String &gt;',
+    prefix: 'String',
+    errors: 'Vec &lt; String &gt;',
+    filter: 'Option &lt; Vec &lt; bool &gt; &gt;'
+)
+</code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>outfile: 'PathBuf'</code> =&gt; Path to the output csv</li>
+<li><code>attrs: 'Vec &lt; String &gt;'</code> =&gt; list of attributes to write</li>
+<li><code>prefix: 'String'</code> =&gt; Prefix</li>
+<li><code>errors: 'Vec &lt; String &gt;'</code> =&gt; list of errors to write</li>
+<li><code>filter: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt;</li>
+</ul>
+<p>Write the given nodes to csv with given attributes and experiment results</p>
 
                     </main>
 
@@ -204,6 +245,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
