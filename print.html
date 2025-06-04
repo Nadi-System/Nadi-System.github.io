@@ -481,8 +481,30 @@ cargo build --release
 </code></pre>
 <p>The compiled binaries will be saved in the <code>target/release</code> directory, you can copy them and distribute it. The binaries do not need any other files to run.</p>
 <p>The plugins files if present in the system are automatically loaded from <code>NADI_PLUGIN_DIRS</code> environmental variable. Look into installing the plugin section below.</p>
+<p>Note: all programs will compile and run in Windows, Linux, and MacOS, while only <code>nadi-cli</code> and <code>mdbook-nadi</code> will run in Android (tmux). <code>nadi-ide</code> and family need the GUI libraries that are not available for android (tmux) yet.</p>
 <h2 id="nadi-gis-1"><a class="header" href="#nadi-gis-1">NADI GIS</a></h2>
 <p>NADI GIS uses <code>gdal</code> to read/write GIS files, so it needs to be installed. Please refer to <a href="https://gdal.org/en/stable/download.html">gdal installation documentation</a> for that.</p>
+<h3 id="windows"><a class="header" href="#windows">Windows</a></h3>
+<p>First download compiled gdal from here:</p>
+<ul>
+<li>https://www.gisinternals.com/sdk.php
+Then download clang from here:</li>
+<li>https://github.com/llvm/llvm-project/releases</li>
+</ul>
+<p>Extract it into a folder, and then set environmental variables to point to that:</p>
+<ul>
+<li><code>GDAL_VERSION</code>: Version of gdal e.g. ‘3.10.0’</li>
+<li><code>LIBCLANG_PATH</code>: Path to the <code>lib</code> directory of <code>clang</code></li>
+<li><code>GDAL_HOME</code>: Path to the <code>gdal</code> that has the subdirectories like <code>bin</code>, <code>lib</code>, etc.</li>
+</ul>
+<p>You can also follow the errors from the rust compilers as you compile to set the correct variables.</p>
+<p>Finally you can get the source code and compile <code>nadi-gis</code> with the following command:</p>
+<pre><code class="language-bash">git clone https://github.com/Nadi-System/nadi-gis
+cd nadi-gis
+cargo build --release
+</code></pre>
+<p>This will generate the <code>nadi-gis</code> binary and <code>gis.dll</code> plugin in the <code>target/release</code> folder, they need to be run along side the <code>gdal</code> shared libraries (<code>.dll</code>s). Place the binaries in the same folder as the <code>dll</code>s from <code>gdal</code> and run it. To use the <code>gis.dll</code> plugin from <code>nadi</code>, <code>nadi-ide</code>, etc. same thing applies there, those binaries should be run with the <code>gdal</code>’s <code>dll</code>s to be able to load the <code>gis</code> plugin.</p>
+<h3 id="linux-and-mac"><a class="header" href="#linux-and-mac">Linux and Mac</a></h3>
 <p>Assuming you have <code>git</code>, <code>cargo</code>, and <code>gdal</code> installed in your system you can build it like this:</p>
 <pre><code class="language-bash">git clone https://github.com/Nadi-System/nadi-gis
 cd nadi-gis
@@ -509,6 +531,150 @@ cargo build --release
 </code></pre>
 <p>The plugins will be inside the <code>target/release</code> directory. Copy them to the <code>NADI_PLUGIN_DIRS</code> directory for nadi to load them.</p>
 <p>You can take any one of the plugins as an example to build your own, or following the plugin development instructions from the plugins chapter.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-gis-2"><a class="header" href="#nadi-gis-2">Nadi GIS</a></h1>
+<p>Nadi GIS is available as a CLI tool and QGIS plugin, the CLI tool has the following functions:</p>
+<pre><code>Usage: nadi-gis [OPTIONS] &lt;COMMAND&gt;
+
+Commands:
+  nid      Download the National Inventory of Dams dataset
+  usgs     Download data from USGS NHD+
+  layers   Show list of layers in a GIS file
+  check    Check the stream network to see outlet, branches, etc
+  order    Order the streams, adds order attribute to each segment
+  network  Find the network information from streams file between points
+  help     Print this message or the help of the given subcommand(s)
+
+Options:
+  -q, --quiet  Don't print the stderr outputs
+  -h, --help   Print help
+</code></pre>
+<p>The important functions are:</p>
+<ul>
+<li>Download NID and USGS NHD+ data,</li>
+<li>Check stream network for validity of DAG (Directed Acyclic Graph) required for NADI,</li>
+<li>Stream ordering for visual purposes,</li>
+<li>Network detection between points of interest using the stream network</li>
+</ul>
+<p>You can use the help command for each one of the subcommand for more help.
+For example, <code>usgs</code> subcommand’s help using <code>nadi-gis help usgs</code> gets us:</p>
+<pre><code>Download data from USGS NHD+
+
+Usage: nadi-gis usgs [OPTIONS] --site-no &lt;SITE_NO&gt;
+
+Options:
+  -s, --site-no &lt;SITE_NO&gt;
+          USGS Site number (separate by ',' for multiple)
+
+  -d, --data &lt;DATA&gt;
+          Type of data (u/d/t/b/n)
+          
+          [upstream (u), downstream (d), tributaries (t), basin (b), nwis-site (n)]
+          
+          [default: b]
+
+  -u, --url
+          Display the url and exit (no download)
+
+  -v, --verbose
+          Display the progress
+
+  -o, --output-dir &lt;OUTPUT_DIR&gt;
+          [default: .]
+
+  -h, --help
+          Print help (see a summary with '-h')
+</code></pre>
+<h1 id="nadi-qgis"><a class="header" href="#nadi-qgis">NADI QGIS</a></h1>
+<p>The QGIS plugin for nadi has a subset of the CLI functionality. It can be accessed from the Processing Toolbox.</p>
+<p><img src="gis/../images/qgis-processing.png" alt="QGIS Processing Toolbox" /></p>
+<p>You can run the tools from there and use the layers in QGIS as inputs. The QGIS plugin will first try to find <code>nadi-gis</code> binary on your <code>PATH</code> and use it, if not it’ll try to use the binary provided with the plugins. It is preferred to have <code>nadi-gis</code> available in <code>PATH</code> and running without errors.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="example"><a class="header" href="#example">Example</a></h1>
+<p>The examples here will be given using QGIS plugin, and using the CLI tool both. CLI tool is great for quickly running things, and doing things in batch, while QGIS plugin will be better on visualization and manual fixes using other GIS tools.</p>
+<h2 id="using-qgis-plugin"><a class="header" href="#using-qgis-plugin">Using QGIS Plugin</a></h2>
+<p>First <strong>downloading the data</strong> is done through the <code>Download USGS Data</code> tool. As shown in the screenshot below, input the USGS site ID and the data type you want to download.</p>
+<p><img src="gis/../images/qgis-download.png" alt="QGIS Download" /></p>
+<p>You will need, <code>tributaries</code> for the upstream tributaries for network, and <code>nwis-site</code> will download the USGS NWIS sites upstream of the location. We will use those two for the example. If you have national data from other sources, you can use the basin polygon to crop them.</p>
+<p><strong>Stream Order</strong> tool is mostly for visual purposes. The figure below shows the results from stream order on right compared to the raw download on left.</p>
+<p><img src="gis/../images/qgis-order.png" alt="Stream Order Result" /></p>
+<p>After you have streams (tributaries), you can use the <strong>Check Streams</strong> tool to see if there are any errors. It will give all the nodes and their categories, you can filter them to see if it has branches, or if it has more than one outlet. The figure below shows the branches with red dot. If we zoom in we can see how the bifurcation on the stream is detected, and how stream order calculation is confused there.</p>
+<p><img src="gis/../images/qgis-branch.png" alt="Check Streams Result" /></p>
+<div class="warning">
+Note: Clicking the checkbox for different node types in the Layers tab seems to be glitchy in my QGIS, so you might have to goto Symbology to turn on/off the different node types here. If it's a bug from the plugin code being incorrect, I'll fix it later.
+</div>
+<p><strong>Find Connections</strong> tool will find the connection between the points using the stream network. The results below shows the tool being run on the NWIS points.</p>
+<p><img src="gis/../images/qgis-network.png" alt="Find Connections Result" /></p>
+<p>If we select <strong>simplify</strong> option, it’ll only save the start and end point of the connection instead of the whole stream.</p>
+<p><img src="gis/../images/qgis-network2.png" alt="Find Connections Result Alt" /></p>
+<p>Of course you can run <strong>Stream Order</strong> on the results to get a more aesthetically pleasing result.</p>
+<p><img src="gis/../images/qgis-network3.png" alt="Find Connections Result with Order" /></p>
+<h2 id="using-cli"><a class="header" href="#using-cli">Using CLI</a></h2>
+<p>An example of running <code>nadi-gis</code> using CLI can be done in the following steps:</p>
+<h3 id="download-data"><a class="header" href="#download-data">Download data</a></h3>
+<p>We’ll download the streamlines and the NWIS Sites from USGS for station 03217200 (Ohio River at Portsmouth, OH).</p>
+<pre><code class="language-bash">nadi-gis usgs -s 03217200 -d n -d t -o output/
+</code></pre>
+<p>This will download two files:</p>
+<pre><code>output/03217200_nwis-site.json  output/03217200_tributaries.json
+</code></pre>
+<p>Now we can use <code>check</code> command to see if there are any problems with the streams.</p>
+<pre><code class="language-bash">nadi-gis check output/03217200_tributaries.json
+</code></pre>
+<p>That gives us the following output:</p>
+<pre><code>Invalid Streams File: Branches (826)
+* Outlet: 1
+* Branch: 826
+* Confluence: 30321
+* Origin: 29591
+</code></pre>
+<p>We can generate a GIS file to locate the branches and see if those are significant. Refer to the <code>help</code> for <code>check</code> or use the QGIS plugin.</p>
+<p>And to find the connections, we use <code>network</code> subcommand like this:</p>
+<pre><code class="language-bash">nadi-gis network -i output/03217200_nwis-site.json output/03217200_tributaries.json
+</code></pre>
+<p>Output:</p>
+<pre><code>Outlet: 3221 (-82.996916801, 38.727624498) -&gt; None
+3847 -&gt; 3199
+2656 -&gt; 2644
+399 -&gt; 1212
+2965 -&gt; 3942
+2817 -&gt; 6236
+5708 -&gt; 4733
+2631 -&gt; 5741
+201 -&gt; 2101
+2066 -&gt; 2317
+3770 -&gt; 1045
+... and so on
+</code></pre>
+<p>Since this is not as useful, we can use the flags in the <code>network</code> subcommand to use a different id, and save the results to a network file.</p>
+<p>First we can use <code>layers</code> subcommand to see the available fields in the file:</p>
+<pre><code class="language-bash">nadi-gis layers output/03217200_nwis-site.json -a
+</code></pre>
+<p>which gives us:</p>
+<pre><code>03217200_nwis-site
+  - Fields:
+    + "type" (String)
+    + "source" (String)
+    + "sourceName" (String)
+    + "identifier" (String)
+    + "name" (String)
+    + "uri" (String)
+    + "comid" (String)
+    + "reachcode" (String)
+    + "measure" (String)
+    + "navigation" (String)
+</code></pre>
+<p>Using <code>comid</code> as the id for points, and saving the results:</p>
+<pre><code class="language-bash">nadi-gis network -i output/03217200_nwis-site.json output/03217200_tributaries.json -p comid -o output/03217200.network
+</code></pre>
+<p>The <code>output/03217200.network</code> file will have the connections like:</p>
+<pre><code>15410797 -&gt; 15411587
+6889212 -&gt; 6890126
+8980342 -&gt; 10220188
+19440469 -&gt; 19442989
+19390000 -&gt; 19389366
+6929652 -&gt; 6929644
+... and so on
+</code></pre>
+<p>Make sure you use a field with unique name, and valid identifier in NADI System.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="core-concepts"><a class="header" href="#core-concepts">Core Concepts</a></h1>
 <p>This section contains a brief explanation of core concepts. Refer to
 the Reference section for the full details on each.</p>
@@ -2088,7 +2254,7 @@ a select few nodes using the node selection methods (path or
 list of nodes)</p>
 <h3 id="error-1"><a class="header" href="#error-1">Error</a></h3>
 <p>The function should not error.</p>
-<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
 <p>Following will set the attribute <code>a2d</code> to <code>true</code> for all nodes
 from <code>A</code> to <code>D</code></p>
 <pre><code class="language-task">node[A -&gt; D] set_attrs(a2d = true)
@@ -2622,7 +2788,7 @@ output for displaying it in the book.</p>
 output in the documentation instead of having the user see
 output of other unrelated parts which are necessary for
 generating the results.</p>
-<h3 id="example-1"><a class="header" href="#example-1">Example</a></h3>
+<h3 id="example-2"><a class="header" href="#example-2">Example</a></h3>
 <p>Given the following tasks file:</p>
 <pre><code class="language-task">net load_file("...")
 net load_attrs("...")
@@ -3652,7 +3818,7 @@ Current time is {%H} hour  {%M} minutes.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-Current time is 00 hour  33 minutes.
+Current time is 16 hour  31 minutes.
 </code></pre>
 <h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
 <p>Variables can be chained in an optional way, so the first one that’s
