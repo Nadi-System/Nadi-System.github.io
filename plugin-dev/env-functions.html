@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Nadi GIS - Network Analysis and Data Integration (NADI)</title>
+        <title>Environment Functions - Network Analysis and Data Integration (NADI)</title>
 
 
         <!-- Custom HTML head -->
@@ -43,6 +43,17 @@
         <script src="../toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
@@ -120,7 +131,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -157,82 +168,45 @@
 
                 <div id="content" class="content">
                     <main>
-                        <div class="warning">
-This plugin uses gdal to read/write GIS files, it can be compiled easily in Linux and Mac by installing gdal as a prerequisite, but on windows that step might be complicated. Please refer to the documentation of gdal to know how to install it in windows. Or use the provided dlls from the plugin repo.
-</div>
-<h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
-<h2 id="network.gis_load_attrs"><a class="header" href="#network.gis_load_attrs">gis_load_attrs</a></h2>
-<pre><code class="language-sig">network nadi_gis.gis_load_attrs(
-    file: 'PathBuf',
-    node: 'String',
-    layer: 'Option &lt; String &gt;',
-    geometry: 'String' = "GEOM",
-    ignore: 'String' = "",
-    sanitize: 'bool' = true,
-    err_no_node: 'bool' = false
-)
+                        <h1 id="environment-functions"><a class="header" href="#environment-functions">Environment Functions</a></h1>
+<p>Environment functions are like any normal function on programming languages that take arguments and run code. In Nadi environment functions can be called from any scope. For example, if a node function and environement function share the same name, then in a node task node function is called, but in network task env function is called.</p>
+<p>Environment functions are denoted in the plugins with <code>#[env_func]</code> macro. All the arguments this function takes need to be provided by user or through default values.</p>
+<p>Here is an example of a environment function <code>and</code> in plugin <code>logic</code>.</p>
+<pre><code class="language-rust">    /// Boolean and
+    #[env_func]
+    fn and(
+        /// List of attributes that can be cast to bool
+        #[args]
+        conds: &amp;[Attribute],
+    ) -&gt; bool {
+        let mut ans = true;
+        for c in conds {
+            ans = ans &amp;&amp; bool::from_attr_relaxed(c).unwrap();
+        }
+        ans
+    }</code></pre>
+<p>This function can be called inside the task system in different context like follows:</p>
+<pre><code class="language-task">env and(true, 12)
+env.something = false
+env and(something, true) == (something &amp; true)
+
+network and(what?, and(true, true))
 </code></pre>
-<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
-<ul>
-<li><code>file: 'PathBuf'</code> =&gt; GIS file to load (can be any format GDAL can understand)</li>
-<li><code>node: 'String'</code> =&gt; Field in the GIS file corresponding to node name</li>
-<li><code>layer: 'Option &lt; String &gt;'</code> =&gt; layer of the GIS file, first one picked by default</li>
-<li><code>geometry: 'String' = "GEOM"</code> =&gt; Attribute to save the GIS geometry in</li>
-<li><code>ignore: 'String' = ""</code> =&gt; Field names separated by comma, to ignore</li>
-<li><code>sanitize: 'bool' = true</code> =&gt; sanitize the name of the fields</li>
-<li><code>err_no_node: 'bool' = false</code> =&gt; Error if all nodes are not found in the GIS file</li>
-</ul>
-<p>Load node attributes from a GIS file</p>
-<p>The function reads a GIS file in any format (CSV, GPKG, SHP,
-JSON, etc) and loads their fields as attributes to the nodes.</p>
-<h2 id="network.gis_save_connections"><a class="header" href="#network.gis_save_connections">gis_save_connections</a></h2>
-<pre><code class="language-sig">network nadi_gis.gis_save_connections(
-    file: 'PathBuf',
-    geometry: 'String',
-    driver: 'Option &lt; String &gt;',
-    layer: 'String' = "network",
-    filter: 'Option &lt; Vec &lt; bool &gt; &gt;'
-)
+<p>Results:</p>
+<pre><code class="language-output">true
+true
+false
 </code></pre>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
-<ul>
-<li><code>file: 'PathBuf'</code> =&gt;</li>
-<li><code>geometry: 'String'</code> =&gt;</li>
-<li><code>driver: 'Option &lt; String &gt;'</code> =&gt;</li>
-<li><code>layer: 'String' = "network"</code> =&gt;</li>
-<li><code>filter: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt;</li>
-</ul>
-<p>Save GIS file of the connections</p>
-<h2 id="network.gis_save_nodes"><a class="header" href="#network.gis_save_nodes">gis_save_nodes</a></h2>
-<pre><code class="language-sig">network nadi_gis.gis_save_nodes(
-    file: 'PathBuf',
-    geometry: 'String',
-    attrs: 'HashMap &lt; String, String &gt;' = {},
-    driver: 'Option &lt; String &gt;',
-    layer: 'String' = "nodes",
-    filter: 'Option &lt; Vec &lt; bool &gt; &gt;'
-)
-</code></pre>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
-<ul>
-<li><code>file: 'PathBuf'</code> =&gt;</li>
-<li><code>geometry: 'String'</code> =&gt;</li>
-<li><code>attrs: 'HashMap &lt; String, String &gt;' = {}</code> =&gt;</li>
-<li><code>driver: 'Option &lt; String &gt;'</code> =&gt;</li>
-<li><code>layer: 'String' = "nodes"</code> =&gt;</li>
-<li><code>filter: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt;</li>
-</ul>
-<p>Save GIS file of the nodes</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../plugins/html.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plugin-dev/functions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../plugins/print_node.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../plugin-dev/node-functions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -242,33 +216,17 @@ JSON, etc) and loads their fields as attributes to the nodes.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../plugins/html.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plugin-dev/functions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../plugins/print_node.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../plugin-dev/node-functions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

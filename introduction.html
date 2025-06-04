@@ -43,6 +43,17 @@
         <script src="toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
@@ -120,7 +131,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -169,6 +180,14 @@
 <tr><td>NADI IDE</td><td>Integrated Development Environment to write/ run NADI Tasks</td></tr>
 </tbody></table>
 </div>
+<p>The github repositories consisting of source codes:</p>
+<div class="table-wrapper"><table><thead><tr><th>Repo</th><th>Tool</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/Nadi-System/nadi-gis">nadi-gis</a></td><td>Nadi GIS</td></tr>
+<tr><td><a href="https://github.com/Nadi-System/nadi-system">nadi-system</a></td><td>Nadi CLI/ IDE/ Core</td></tr>
+<tr><td><a href="https://github.com/Nadi-System/nadi-plugins-rust">nadi-plugins-rust</a></td><td>Sample Plugins</td></tr>
+<tr><td><a href="https://github.com/Nadi-System/nadi-book">nadi-book</a></td><td>Source for this Nadi Book</td></tr>
+</tbody></table>
+</div>
 <h2 id="nadi-gis"><a class="header" href="#nadi-gis">NADI GIS</a></h2>
 <p>Geographic Information (GIS) Tool for Network Detection. The main purpose of the NADI GIS is to find the network connectivity between a set of points using a stream network (which can be developed from elevation models, or downloaded from national databases).</p>
 <p>NADI GIS can be used as a terminal command or QGIS plugin, refer to <a href="installation.html#nadi-gis">installation</a> section for how to install it.</p>
@@ -200,9 +219,10 @@ Future plan for it includes publishing it in pypi.</p>
  | +-- env [contains env functions]
  +-- plugins
    +-- &lt;plugin&gt; [each plugin will be added here]
-     +-- node [contains node functions]
-     +-- network [contains network functions]
-     +-- env [contains env functions]
+   | +-- node [contains node functions]
+   | +-- network [contains network functions]
+   | +-- env [contains env functions]
+   +-- &lt;next-plugin&gt; and so on ...
 </code></pre>
 <p>The functions are available directly through <code>functions</code> submodule, or through each plugin in <code>plugins</code> submodule. An example python script looks like this:</p>
 <pre><code class="language-python">import nadi
@@ -283,7 +303,7 @@ related analysis.</li>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="how-to.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="citation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -297,7 +317,7 @@ related analysis.</li>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="how-to.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="citation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
@@ -308,22 +328,6 @@ related analysis.</li>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

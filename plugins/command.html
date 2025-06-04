@@ -43,6 +43,17 @@
         <script src="../toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
@@ -120,7 +131,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -157,26 +168,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
-<h2 id="env.exists"><a class="header" href="#env.exists">exists</a></h2>
-<pre><code class="language-sig">env command.exists(path: 'PathBuf', min_lines: 'Option &lt; usize &gt;')
-</code></pre>
-<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
-<ul>
-<li><code>path: 'PathBuf'</code> =&gt; Path to check</li>
-<li><code>min_lines: 'Option &lt; usize &gt;'</code> =&gt; Minimum number of lines the file should have</li>
-</ul>
-<p>Checks if the given path exists</p>
-<h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
-<h2 id="node.exists"><a class="header" href="#node.exists">exists</a></h2>
-<pre><code class="language-sig">node command.exists(path: 'Template', min_lines: 'Option &lt; usize &gt;')
-</code></pre>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
-<ul>
-<li><code>path: 'Template'</code> =&gt; Path to check</li>
-<li><code>min_lines: 'Option &lt; usize &gt;'</code> =&gt; Minimum number of lines the file should have</li>
-</ul>
-<p>Checks if the given path exists when rendering the template</p>
+                        <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
 <h2 id="node.command"><a class="header" href="#node.command">command</a></h2>
 <pre><code class="language-sig">node command.command(
     cmd: '&amp; Template',
@@ -184,7 +176,7 @@
     echo: 'bool' = false
 )
 </code></pre>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
 <ul>
 <li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
 <li><code>verbose: 'bool' = true</code> =&gt; Show the rendered version of command, and other messages</li>
@@ -218,7 +210,7 @@ if <code>verbose</code> is true.</p>
     echo: 'bool' = false
 )
 </code></pre>
-<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
 <ul>
 <li><code>command: '&amp; str'</code> =&gt; Node Attribute with the command to run</li>
 <li><code>inputs: '&amp; str'</code> =&gt; Node attribute with list of input files</li>
@@ -239,7 +231,7 @@ tasks with input files and output files.</p>
     echo: 'bool' = false
 )
 </code></pre>
-<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
 <ul>
 <li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
 <li><code>_workers: 'i64' = 4</code> =&gt; Number of workers to run in parallel</li>
@@ -258,7 +250,7 @@ large number of nodes.</p>
     echo: 'bool' = false
 )
 </code></pre>
-<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
 <ul>
 <li><code>cmd: 'Template'</code> =&gt; String Command template to run</li>
 <li><code>verbose: 'bool' = true</code> =&gt; Print the command being run</li>
@@ -276,7 +268,7 @@ the same implementation</p>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../plugins/attrs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plugins/attributes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -290,7 +282,7 @@ the same implementation</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../plugins/attrs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plugins/attributes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
@@ -301,22 +293,6 @@ the same implementation</p>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

@@ -43,6 +43,17 @@
         <script src="../toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
@@ -120,7 +131,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -162,14 +173,14 @@
 <pre><code class="language-sig">network table.save_csv(
     path: '&amp; Path',
     fields: '&amp; [String]',
-    filter: 'Vec &lt; bool &gt;'
+    filter: 'Option &lt; Vec &lt; bool &gt; &gt;'
 )
 </code></pre>
 <h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
 <ul>
 <li><code>path: '&amp; Path'</code> =&gt;</li>
 <li><code>fields: '&amp; [String]'</code> =&gt;</li>
-<li><code>filter: 'Vec &lt; bool &gt;'</code> =&gt;</li>
+<li><code>filter: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt;</li>
 </ul>
 <p>Save CSV</p>
 <h2 id="network.table_to_markdown"><a class="header" href="#network.table_to_markdown">table_to_markdown</a></h2>
@@ -228,22 +239,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

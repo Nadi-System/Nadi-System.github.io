@@ -1,0 +1,216 @@
+<svg height="700" viewBox="0 0 472 1070" width="500" xmlns="http://www.w3.org/2000/svg">
+<rect fill="gray" height="100%" width="100%"/>
+<g>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="1035" y2="1060"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="1010" y2="1035"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="985" y2="1010"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="960" y2="1010"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="935" y2="960"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="910" y2="935"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="885" y2="935"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="860" y2="885"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="835" y2="860"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="810" y2="860"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="785" y2="810"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="760" y2="810"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="735" y2="760"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="710" y2="760"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="685" y2="760"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="660" y2="760"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="635" y2="760"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="610" y2="760"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="585" y2="610"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="560" y2="610"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="535" y2="560"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="510" y2="560"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="485" y2="510"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="460" y2="510"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="435" y2="460"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="410" y2="460"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="385" y2="410"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="360" y2="385"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="335" y2="385"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="310" y2="385"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="285" y2="385"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="260" y2="285"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="235" y2="260"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="210" y2="235"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="185" y2="210"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="160" y2="185"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="135" y2="185"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="110" y2="135"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="85" y2="110"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="60" y2="110"/>
+<line stroke="#000000" stroke-width="1" x1="35" x2="10" y1="35" y2="110"/>
+</g>
+<g>
+<rect fill="#000000" height="5" width="5" x="7.5" y="1057.5"/>
+<text font-size="large" text-anchor="start" x="75" y="1060">
+smithland (A = 371802.16; L = 1676.0)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="1032.5"/>
+<text font-size="large" text-anchor="start" x="75" y="1035">
+golconda (A = 370942.26; L = 1701.3)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="1007.5"/>
+<text font-size="large" text-anchor="start" x="75" y="1010">
+old-shawneetown (A = 363656.85; L = 1772.3)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="982.5"/>
+<text font-size="large" text-anchor="start" x="75" y="985">
+mountcarmel (A = 74359.92; L = 1918.1)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="957.5"/>
+<text font-size="large" text-anchor="start" x="75" y="960">
+jt-myers (A = 277962.45; L = 1791.1)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="932.5"/>
+<text font-size="large" text-anchor="start" x="75" y="935">
+evansville (A = 275482.9; L = 1878.3)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="907.5"/>
+<text font-size="large" text-anchor="start" x="75" y="910">
+calhoun (A = 18540.88; L = 1992.5)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="882.5"/>
+<text font-size="large" text-anchor="start" x="75" y="885">
+newburgh (A = 253065.62; L = 1903.6)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="857.5"/>
+<text font-size="large" text-anchor="start" x="75" y="860">
+cannelton (A = 249382.5; L = 1993.7)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="832.5"/>
+<text font-size="large" text-anchor="start" x="75" y="835">
+shepherdsville (A = 3111.32; L = 2174.6)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="807.5"/>
+<text font-size="large" text-anchor="start" x="75" y="810">
+mcalpine (A = 236250.2; L = 2172.8)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="782.5"/>
+<text font-size="large" text-anchor="start" x="75" y="785">
+lockport (A = 16020.13; L = 2321.9)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="757.5"/>
+<text font-size="large" text-anchor="start" x="75" y="760">
+markland (A = 214850.87; L = 2293.4)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="732.5"/>
+<text font-size="large" text-anchor="start" x="75" y="735">
+milford (A = 3117.14; L = 2424.6)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="707.5"/>
+<text font-size="large" text-anchor="start" x="75" y="710">
+catawba (A = 8554.78; L = 2472.5)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="682.5"/>
+<text font-size="large" text-anchor="start" x="75" y="685">
+hamilton (A = 9415.47; L = 2417.3)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="657.5"/>
+<text font-size="large" text-anchor="start" x="75" y="660">
+perintown (A = 1233.67; L = 2431.5)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="632.5"/>
+<text font-size="large" text-anchor="start" x="75" y="635">
+brookville (A = 3178.87; L = 2416.6)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="607.5"/>
+<text font-size="large" text-anchor="start" x="75" y="610">
+meldahl (A = 183215.23; L = 2450.6)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="582.5"/>
+<text font-size="large" text-anchor="start" x="75" y="585">
+higby (A = 13298.7; L = 2666.2)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="557.5"/>
+<text font-size="large" text-anchor="start" x="75" y="560">
+greenup (A = 159430.25; L = 2603.8)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="532.5"/>
+<text font-size="large" text-anchor="start" x="75" y="535">
+grayson (A = 1039.62; L = 2668.2)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="507.5"/>
+<text font-size="large" text-anchor="start" x="75" y="510">
+ashland (A = 156836.61; L = 2630.4)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="482.5"/>
+<text font-size="large" text-anchor="start" x="75" y="485">
+branchland (A = 3177.12; L = 2712.9)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="457.5"/>
+<text font-size="large" text-anchor="start" x="75" y="460">
+rc-byrd (A = 138654.16; L = 2703.3)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="432.5"/>
+<text font-size="large" text-anchor="start" x="75" y="435">
+charleston (A = 26788.29; L = 2809.3)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="407.5"/>
+<text font-size="large" text-anchor="start" x="75" y="410">
+racine (A = 103965.32; L = 2764.7)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="382.5"/>
+<text font-size="large" text-anchor="start" x="75" y="385">
+belleville (A = 101986.98; L = 2818.5)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="357.5"/>
+<text font-size="large" text-anchor="start" x="75" y="360">
+mcconnelsville (A = 19209.06; L = 2949.6)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="332.5"/>
+<text font-size="large" text-anchor="start" x="75" y="335">
+athens (A = 2448.79; L = 2878.5)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="307.5"/>
+<text font-size="large" text-anchor="start" x="75" y="310">
+elizabeth (A = 3923.51; L = 2896.3)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="282.5"/>
+<text font-size="large" text-anchor="start" x="75" y="285">
+willow-island (A = 69636.93; L = 2892.4)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="257.5"/>
+<text font-size="large" text-anchor="start" x="75" y="260">
+hannibal (A = 67148.15; L = 2949.2)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="232.5"/>
+<text font-size="large" text-anchor="start" x="75" y="235">
+pike-island (A = 63824.38; L = 3006.9)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="207.5"/>
+<text font-size="large" text-anchor="start" x="75" y="210">
+new-cumberland (A = 61704.22; L = 3065.0)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="182.5"/>
+<text font-size="large" text-anchor="start" x="75" y="185">
+montgomery (A = 59388.63; L = 3101.6)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="157.5"/>
+<text font-size="large" text-anchor="start" x="75" y="160">
+beaverfalls (A = 8083.53; L = 3116.1)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="132.5"/>
+<text font-size="large" text-anchor="start" x="75" y="135">
+dashields (A = 50478.4; L = 3126.6)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="107.5"/>
+<text font-size="large" text-anchor="start" x="75" y="110">
+emsworth (A = 50204.12; L = 3142.6)
+</text>
+<rect fill="#000000" height="5" width="5" x="7.5" y="82.5"/>
+<text font-size="large" text-anchor="start" x="75" y="85">
+natrona (A = 29548.32; L = 3188.4)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="57.5"/>
+<text font-size="large" text-anchor="start" x="75" y="60">
+elizabeth2 (A = 13823.08; L = 3185.7)
+</text>
+<rect fill="#000000" height="5" width="5" x="32.5" y="32.5"/>
+<text font-size="large" text-anchor="start" x="75" y="35">
+sutersville (A = 4433.26; L = 3198.0)
+</text>
+</g>
+</svg>

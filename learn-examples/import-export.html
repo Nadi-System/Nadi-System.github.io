@@ -43,6 +43,17 @@
         <script src="../toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
@@ -120,7 +131,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -158,6 +169,111 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="import-export-files"><a class="header" href="#import-export-files">Import Export Files</a></h1>
+<p>Similar to how you can load network files, you can load attributes from files as well. Direct load of TOML format is supported from the internal plugins, while you might need external plugins for other formats.</p>
+<p><code>load_attrs</code> function takes a template, and reads a different files for each node to load the attributes from.</p>
+<pre><code class="language-task">network load_file("data/ohio.network")
+node attributes.load_attrs("data/attrs/{_NAME}.toml")
+network svg_save(
+<span class="boring">  "output/ohio-import-export.svg",
+</span>  label="{_NAME} (A = {basin_area?:f(2)})",
+<span class="boring">  height=700,
+</span>  bgcolor="gray"
+)
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="../output/ohio-import-export.svg" alt="" /></p>
+</center>  
+<p>You can use the render function to see if the files being loaded are correct. Here we can see the examples for the first 4 nodes:</p>
+<pre><code class="language-task"><span class="boring">network load_file("data/ohio.network")
+</span>node(INDEX&lt;4) render("data/attrs/{_NAME}.toml")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  smithland = "data/attrs/smithland.toml",
+  golconda = "data/attrs/golconda.toml",
+  old-shawneetown = "data/attrs/old-shawneetown.toml",
+  mountcarmel = "data/attrs/mountcarmel.toml"
+}
+</code></pre>
+<p>You can also read a attributes from string, so you can combine that with <code>files.from_file</code> and load it.</p>
+<pre><code class="language-task">network load_file("data/ohio.network")
+env.somevalue = attributes.parse_attrmap(
+	files.from_file("data/attrs/smithland.toml")
+);
+env.somevalue.basin_area
+env.somevalue.length
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">371802.16
+1675.95
+</code></pre>
+<p>You can export csv files</p>
+<pre><code class="language-task">network load_file("data/ohio.network")
+node attributes.load_attrs("data/attrs/{_NAME}.toml")
+network table.save_csv("output/ohio-export.csv", ["NAME", "basin_area", "length"])
+network command("cat output/ohio-export.csv | head", echo=true)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">$ cat output/ohio-export.csv | head
+NAME,basin_area,length
+"smithland",371802.16,1675.95
+"golconda",370942.26,1701.32
+"old-shawneetown",363656.85,1772.27
+"mountcarmel",74359.92,1918.08
+"jt-myers",277962.45,1791.07
+"evansville",275482.9,1878.29
+"calhoun",18540.88,1992.5
+"newburgh",253065.62,1903.58
+"cannelton",249382.5,1993.72
+</code></pre>
+<h2 id="gis-files"><a class="header" href="#gis-files">GIS Files</a></h2>
+<div class="warning">
+The examples below require the `gis` external plugin from `nadi-gis` repository to work. Make sure you have the plugin file in the directory in your `NADI_PLUGIN_DIRS` environmental variable.
+</div>
+<p>First we make a GIS file by exporting. The image below shows the resulting points (red) from the shapefile and connections (black) from the Geopackage file when we visualize this on QGIS (with background of Terrain and Ohio River tributaries).</p>
+<pre><code class="language-task">network load_file("data/ohio.network")
+node attributes.load_attrs("data/attrs/{_NAME}.toml")
+node.geometry = render("POINT ({lon} {lat})");
+network gis.gis_save_nodes(
+  "output/ohio-nodes.shp",
+  "geometry",
+  {
+    NAME = "String",
+	basin_area = "Float",
+	length = "Float"
+  }
+)
+# Exporting the edges
+network gis.gis_save_connections(
+  "output/ohio-connections.gpkg",
+  "geometry"
+)
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="../images/ohio-nodes.png" alt="" /></p>
+</center>  
+<p>The geometry attributes should be <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">WKT String</a>.</p>
+<!-- node(output._?).out_lon = output.lon; -->
+<!-- node(output._?).out_lat = output.lat; -->
+<!-- node(output._?).edge_geom = render("LINESTRING ({lon} {lat}, {out_lon} {out_lat})"); -->
+<p>Now we are using the generated GIS files to load the network and the attributes:</p>
+<pre><code class="language-task">network gis.gis_load_network("output/ohio-connections.gpkg", "start", "end")
+network gis.gis_load_attrs("output/ohio-nodes.shp", "NAME")
+
+network svg_save(
+<span class="boring">  "output/ohio-from-gis.svg",
+</span>  label="{_NAME} (A = {basin_area?:f(2)}; L = {length:f(1)})",
+<span class="boring">  height=700,
+</span>  bgcolor="gray"
+)
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="../output/ohio-from-gis.svg" alt="" /></p>
+</center>  
+<p>As we can see the plugins make it easier to interoperate with a lot of different data formats. Here GIS plugin will support any file types supported by <code>gdal</code>. Similarly, other formats can be supported by writing plugins.</p>
 
                     </main>
 
@@ -188,22 +304,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

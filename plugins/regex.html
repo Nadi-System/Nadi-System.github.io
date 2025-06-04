@@ -43,6 +43,17 @@
         <script src="../toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
@@ -120,7 +131,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -158,54 +169,64 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
-<h2 id="env.str_match"><a class="header" href="#env.str_match">str_match</a></h2>
-<pre><code class="language-sig">env regex.str_match(pattern: 'Regex', attr: '&amp; str')
+<h2 id="env.str_filter"><a class="header" href="#env.str_filter">str_filter</a></h2>
+<pre><code class="language-sig">env regex.str_filter(attrs: 'Vec &lt; String &gt;', pattern: 'Regex')
 </code></pre>
 <h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
 <ul>
+<li><code>attrs: 'Vec &lt; String &gt;'</code> =&gt; attribute to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
 </ul>
 <p>Check if the given pattern matches the value or not</p>
-<h2 id="env.str_replace"><a class="header" href="#env.str_replace">str_replace</a></h2>
-<pre><code class="language-sig">env regex.str_replace(
-    pattern: 'Regex',
-    attr: '&amp; str',
-    rep: '&amp; str'
-)
+<h2 id="env.str_match"><a class="header" href="#env.str_match">str_match</a></h2>
+<pre><code class="language-sig">env regex.str_match(attr: '&amp; str', pattern: 'Regex')
 </code></pre>
 <h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
 <ul>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to replace</li>
+</ul>
+<p>Check if the given pattern matches the value or not</p>
+<p>You can also use match operator for this</p>
+<h2 id="env.str_replace"><a class="header" href="#env.str_replace">str_replace</a></h2>
+<pre><code class="language-sig">env regex.str_replace(
+    attr: '&amp; str',
+    pattern: 'Regex',
+    rep: '&amp; str'
+)
+</code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>attr: '&amp; str'</code> =&gt; original string</li>
+<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 <li><code>rep: '&amp; str'</code> =&gt; replacement string</li>
 </ul>
 <p>Replace the occurances of the given match</p>
 <h2 id="env.str_find"><a class="header" href="#env.str_find">str_find</a></h2>
-<pre><code class="language-sig">env regex.str_find(pattern: 'Regex', attr: '&amp; str')
-</code></pre>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
-<ul>
-<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
-</ul>
-<p>Find the given pattern in the value</p>
-<h2 id="env.str_find_all"><a class="header" href="#env.str_find_all">str_find_all</a></h2>
-<pre><code class="language-sig">env regex.str_find_all(pattern: 'Regex', attr: '&amp; str')
+<pre><code class="language-sig">env regex.str_find(attr: '&amp; str', pattern: 'Regex')
 </code></pre>
 <h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
 <ul>
-<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 <li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
-<p>Find all the matches of the given pattern in the value</p>
-<h2 id="env.str_count"><a class="header" href="#env.str_count">str_count</a></h2>
-<pre><code class="language-sig">env regex.str_count(pattern: 'Regex', attr: '&amp; str')
+<p>Find the given pattern in the value</p>
+<h2 id="env.str_find_all"><a class="header" href="#env.str_find_all">str_find_all</a></h2>
+<pre><code class="language-sig">env regex.str_find_all(attr: '&amp; str', pattern: 'Regex')
 </code></pre>
 <h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
 <ul>
-<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 <li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
+</ul>
+<p>Find all the matches of the given pattern in the value</p>
+<h2 id="env.str_count"><a class="header" href="#env.str_count">str_count</a></h2>
+<pre><code class="language-sig">env regex.str_count(attr: '&amp; str', pattern: 'Regex')
+</code></pre>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
+<ul>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Count the number of matches of given pattern in the value</p>
 
@@ -238,22 +259,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

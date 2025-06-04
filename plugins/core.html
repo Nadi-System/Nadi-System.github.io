@@ -43,6 +43,17 @@
         <script src="../toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
@@ -120,7 +131,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -241,10 +252,27 @@
 <li><code>**attributes</code> =&gt; name and values of attributes</li>
 </ul>
 <p>make an array from the arguments</p>
+<h2 id="env.append"><a class="header" href="#env.append">append</a></h2>
+<pre><code class="language-sig">env core.append(array: 'Vec &lt; Attribute &gt;', value: 'Attribute')
+</code></pre>
+<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
+<ul>
+<li><code>array: 'Vec &lt; Attribute &gt;'</code> =&gt; List of attributes</li>
+<li><code>value: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>append a value to an array</p>
+<h2 id="env.length"><a class="header" href="#env.length">length</a></h2>
+<pre><code class="language-sig">env core.length(value: '&amp; Attribute')
+</code></pre>
+<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
+<ul>
+<li><code>value: '&amp; Attribute'</code> =&gt; Array or a HashMap</li>
+</ul>
+<p>length of an array or hashmap</p>
 <h2 id="env.year"><a class="header" href="#env.year">year</a></h2>
 <pre><code class="language-sig">env core.year(value: 'Attribute')
 </code></pre>
-<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
+<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
 <ul>
 <li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
 </ul>
@@ -252,7 +280,7 @@
 <h2 id="env.month"><a class="header" href="#env.month">month</a></h2>
 <pre><code class="language-sig">env core.month(value: 'Attribute')
 </code></pre>
-<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
+<h3 id="arguments-12"><a class="header" href="#arguments-12">Arguments</a></h3>
 <ul>
 <li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
 </ul>
@@ -260,7 +288,7 @@
 <h2 id="env.day"><a class="header" href="#env.day">day</a></h2>
 <pre><code class="language-sig">env core.day(value: 'Attribute')
 </code></pre>
-<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
+<h3 id="arguments-13"><a class="header" href="#arguments-13">Arguments</a></h3>
 <ul>
 <li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
 </ul>
@@ -268,7 +296,7 @@
 <h2 id="env.min_num"><a class="header" href="#env.min_num">min_num</a></h2>
 <pre><code class="language-sig">env core.min_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(9223372036854775807))
 </code></pre>
-<h3 id="arguments-12"><a class="header" href="#arguments-12">Arguments</a></h3>
+<h3 id="arguments-14"><a class="header" href="#arguments-14">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
 <li><code>start: 'Attribute' = Integer(9223372036854775807)</code> =&gt;</li>
@@ -279,7 +307,7 @@ max int, so it’ll be incorrect for large numbers</p>
 <h2 id="env.max_num"><a class="header" href="#env.max_num">max_num</a></h2>
 <pre><code class="language-sig">env core.max_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(-9223372036854775808))
 </code></pre>
-<h3 id="arguments-13"><a class="header" href="#arguments-13">Arguments</a></h3>
+<h3 id="arguments-15"><a class="header" href="#arguments-15">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
 <li><code>start: 'Attribute' = Integer(-9223372036854775808)</code> =&gt;</li>
@@ -290,7 +318,7 @@ max int, so it’ll be incorrect for large numbers</p>
 <h2 id="env.min"><a class="header" href="#env.min">min</a></h2>
 <pre><code class="language-sig">env core.min(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute')
 </code></pre>
-<h3 id="arguments-14"><a class="header" href="#arguments-14">Arguments</a></h3>
+<h3 id="arguments-16"><a class="header" href="#arguments-16">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
 <li><code>start: 'Attribute'</code> =&gt;</li>
@@ -299,7 +327,7 @@ max int, so it’ll be incorrect for large numbers</p>
 <h2 id="env.max"><a class="header" href="#env.max">max</a></h2>
 <pre><code class="language-sig">env core.max(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute')
 </code></pre>
-<h3 id="arguments-15"><a class="header" href="#arguments-15">Arguments</a></h3>
+<h3 id="arguments-17"><a class="header" href="#arguments-17">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
 <li><code>start: 'Attribute'</code> =&gt;</li>
@@ -308,7 +336,7 @@ max int, so it’ll be incorrect for large numbers</p>
 <h2 id="env.sum"><a class="header" href="#env.sum">sum</a></h2>
 <pre><code class="language-sig">env core.sum(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(0))
 </code></pre>
-<h3 id="arguments-16"><a class="header" href="#arguments-16">Arguments</a></h3>
+<h3 id="arguments-18"><a class="header" href="#arguments-18">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
 <li><code>start: 'Attribute' = Integer(0)</code> =&gt;</li>
@@ -317,7 +345,7 @@ max int, so it’ll be incorrect for large numbers</p>
 <h2 id="env.prod"><a class="header" href="#env.prod">prod</a></h2>
 <pre><code class="language-sig">env core.prod(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(1))
 </code></pre>
-<h3 id="arguments-17"><a class="header" href="#arguments-17">Arguments</a></h3>
+<h3 id="arguments-19"><a class="header" href="#arguments-19">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
 <li><code>start: 'Attribute' = Integer(1)</code> =&gt;</li>
@@ -326,7 +354,7 @@ max int, so it’ll be incorrect for large numbers</p>
 <h2 id="env.unique_str"><a class="header" href="#env.unique_str">unique_str</a></h2>
 <pre><code class="language-sig">env core.unique_str(vars: 'Vec &lt; String &gt;')
 </code></pre>
-<h3 id="arguments-18"><a class="header" href="#arguments-18">Arguments</a></h3>
+<h3 id="arguments-20"><a class="header" href="#arguments-20">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; String &gt;'</code> =&gt;</li>
 </ul>
@@ -334,21 +362,30 @@ max int, so it’ll be incorrect for large numbers</p>
 <h2 id="env.count_str"><a class="header" href="#env.count_str">count_str</a></h2>
 <pre><code class="language-sig">env core.count_str(vars: 'Vec &lt; String &gt;')
 </code></pre>
-<h3 id="arguments-19"><a class="header" href="#arguments-19">Arguments</a></h3>
+<h3 id="arguments-21"><a class="header" href="#arguments-21">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; String &gt;'</code> =&gt;</li>
 </ul>
 <p>Get a count of unique string values</p>
+<h2 id="env.concat"><a class="header" href="#env.concat">concat</a></h2>
+<pre><code class="language-sig">env core.concat(*vars, join: '&amp; str' = "")
+</code></pre>
+<h3 id="arguments-22"><a class="header" href="#arguments-22">Arguments</a></h3>
+<ul>
+<li><code>*vars</code> =&gt;</li>
+<li><code>join: '&amp; str' = ""</code> =&gt;</li>
+</ul>
+<p>Concat the strings</p>
 <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
 <h2 id="node.inputs_count"><a class="header" href="#node.inputs_count">inputs_count</a></h2>
 <pre><code class="language-sig">node core.inputs_count()
 </code></pre>
-<h3 id="arguments-20"><a class="header" href="#arguments-20">Arguments</a></h3>
+<h3 id="arguments-23"><a class="header" href="#arguments-23">Arguments</a></h3>
 <p>Count the number of input nodes in the node</p>
 <h2 id="node.inputs_attr"><a class="header" href="#node.inputs_attr">inputs_attr</a></h2>
 <pre><code class="language-sig">node core.inputs_attr(attr: 'String' = "NAME")
 </code></pre>
-<h3 id="arguments-21"><a class="header" href="#arguments-21">Arguments</a></h3>
+<h3 id="arguments-24"><a class="header" href="#arguments-24">Arguments</a></h3>
 <ul>
 <li><code>attr: 'String' = "NAME"</code> =&gt; Attribute to get from inputs</li>
 </ul>
@@ -356,12 +393,12 @@ max int, so it’ll be incorrect for large numbers</p>
 <h2 id="node.has_outlet"><a class="header" href="#node.has_outlet">has_outlet</a></h2>
 <pre><code class="language-sig">node core.has_outlet()
 </code></pre>
-<h3 id="arguments-22"><a class="header" href="#arguments-22">Arguments</a></h3>
+<h3 id="arguments-25"><a class="header" href="#arguments-25">Arguments</a></h3>
 <p>Node has an outlet or not</p>
 <h2 id="node.output_attr"><a class="header" href="#node.output_attr">output_attr</a></h2>
 <pre><code class="language-sig">node core.output_attr(attr: 'String' = "NAME")
 </code></pre>
-<h3 id="arguments-23"><a class="header" href="#arguments-23">Arguments</a></h3>
+<h3 id="arguments-26"><a class="header" href="#arguments-26">Arguments</a></h3>
 <ul>
 <li><code>attr: 'String' = "NAME"</code> =&gt; Attribute to get from inputs</li>
 </ul>
@@ -370,7 +407,7 @@ max int, so it’ll be incorrect for large numbers</p>
 <h2 id="network.count"><a class="header" href="#network.count">count</a></h2>
 <pre><code class="language-sig">network core.count(vars: 'Option &lt; Vec &lt; bool &gt; &gt;')
 </code></pre>
-<h3 id="arguments-24"><a class="header" href="#arguments-24">Arguments</a></h3>
+<h3 id="arguments-27"><a class="header" href="#arguments-27">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt;</li>
 </ul>
@@ -405,22 +442,6 @@ max int, so it’ll be incorrect for large numbers</p>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
