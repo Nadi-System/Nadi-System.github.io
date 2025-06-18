@@ -394,18 +394,21 @@ Arguments:
   [TASK_FILE]  Tasks file to run; if `--stdin` is also provided this runs before stdin
 
 Options:
-  -C, --completion &lt;FUNC_TYPE&gt;  list all functions and exit for completions [possible values: node, network, env]
-  -c, --fncode &lt;FUNCTION&gt;       print code for a function
-  -f, --fnhelp &lt;FUNCTION&gt;       print help for a function
-  -g, --generate-doc &lt;DOC_DIR&gt;  Generate markdown doc for all plugins and functions
-  -l, --list-functions          list all functions and exit
-  -n, --network &lt;NETWORK_FILE&gt;  network file to load before executing tasks
-  -p, --print-tasks             print tasks before running
-  -s, --show                    Show the tasks file, do not do anything
-  -S, --stdin                   Use stdin for the tasks; reads the whole stdin before execution
-  -t, --task &lt;TASK_STR&gt;         Run given string as task before running the file
-  -h, --help                    Print help
-  -V, --version                 Print version
+  -C, --completion &lt;FUNC_TYPE&gt;   list all functions and exit for completions [possible values: node, network, env]
+  -c, --fncode &lt;FUNCTION&gt;        print code for a function
+  -f, --fnhelp &lt;FUNCTION&gt;        print help for a function
+  -g, --generate-doc &lt;DOC_DIR&gt;   Generate markdown doc for all plugins and functions
+  -l, --list-functions           list all functions and exit
+  -n, --network &lt;NETWORK_FILE&gt;   network file to load before executing tasks
+  -p, --print-tasks              print tasks before running
+  -P, --new-plugin &lt;NEW_PLUGIN&gt;  Create the files for a new nadi_plugin
+  -N, --nadi-core &lt;NADI_CORE&gt;    Path to the nadi_core library for the new nadi_plugin
+  -s, --show                     Show the tasks file, do not do anything
+  -S, --stdin                    Use stdin for the tasks; reads the whole stdin before execution
+  -r, --repl                     Open the REPL (interactive session) before exiting
+  -t, --task &lt;TASK_STR&gt;          Run given string as task before running the file
+  -h, --help                     Print help
+  -V, --version                  Print version
 </code></pre>
 <h2 id="nadi-ide"><a class="header" href="#nadi-ide">NADI IDE</a></h2>
 <p>NADI Integrated Development Environment (IDE) is a Graphical User Interface (GUI) for the users to write/ run NADI Tasks.</p>
@@ -444,8 +447,19 @@ information, but it was modified to be more generic for many network
 related analysis.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
-<p>Nadi System is a suite of software packages each have different installation methods. The packages are planned to be uploaded to <code>crates.io</code> or <code>pypi.org</code> later to make it easier to install.</p>
-<p>For now, you can either get the binaries compiled for different OS from the Releases page of the github repo. Or you can get the source code using <code>git</code>, and using <code>cargo</code> build the packages.</p>
+<p>Nadi System is a suite of software packages each have different
+installation methods. Some of the packages are uploaded to <code>crates.io</code>
+(rust) and <code>pypi</code> (python).  For others, you can either get the
+compiled binaries from the Releases page of the
+github repo [windows]. Or you can get the source code using <code>git</code>, and using
+<code>cargo</code> build the packages [all OS].</p>
+<h2 id="packages"><a class="header" href="#packages">Packages</a></h2>
+<p>For <code>nadi-py</code> you can use <code>pip</code>:</p>
+<pre><code class="language-bash">pip install nadi-py
+</code></pre>
+<p>For <code>nadi-cli</code> you can use <code>cargo</code>:</p>
+<pre><code class="language-bash">cargo install nadi
+</code></pre>
 <h1 id="downloading-binaries"><a class="header" href="#downloading-binaries">Downloading Binaries</a></h1>
 <p>Goto the repo of each component and refer to the releases section for binaries of different versions.</p>
 <ul>
@@ -772,7 +786,7 @@ I wrote this document on {%A}, exact date: {%Y-%m-%d}.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-I wrote this document on Wednesday, exact date: 2025-06-04.
+I wrote this document on Wednesday, exact date: 2025-06-18.
 </code></pre>
 <p>With more complicated templates, we would be able to generate
 documents with text and images based on the node attributes as well.</p>
@@ -894,8 +908,8 @@ NAME = "lower-mississippi"
 </span>node[tenessee,"lower-mississippi"] print_attrs("NAME")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">NAME = "tenessee"
-NAME = "lower-mississippi"
+<pre><code class="language-output">NAME = "lower-mississippi"
+NAME = "tenessee"
 </code></pre>
 <h2 id="path-of-nodes"><a class="header" href="#path-of-nodes">Path of Nodes</a></h2>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
@@ -1597,7 +1611,23 @@ network svg_save(
 <tr><td style="text-align: left"><a href="plugins/connections.html"><code>connections</code></a></td><td style="text-align: left"><a href="plugins/connections.html#node.load_edges"><code>load_edges</code></a></td><td style="text-align: left">Load the given edges into the network</td></tr>
 <tr><td style="text-align: left"><a href="plugins/gnuplot.html"><code>gnuplot</code></a></td><td style="text-align: left"><a href="plugins/gnuplot.html#node.plot_timeseries"><code>plot_timeseries</code></a></td><td style="text-align: left">Generate a gnuplot file that plots the timeseries data in the network</td></tr>
 </tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="executable-plugins"><a class="header" href="#executable-plugins">Executable Plugins</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-python-library"><a class="header" href="#nadi-python-library">Nadi Python Library</a></h1>
+<p>This can be installed from <code>pypi</code> with <code>pip install nadi-py</code> command.</p>
+<p>Then you can simply import and use it:</p>
+<pre><code class="language-python">import nadi
+
+net = nadi.Network.from_str("a -&gt; b")
+print([n.NAME for n in net.nodes])
+</code></pre>
+<p>The functions are available inside the <code>nadi.functions</code> submodule.</p>
+<pre><code class="language-python">import nadi
+import nadi.functions as fn
+
+net = nadi.Network.from_str("a -&gt; b")
+fn.network.svg_save(net, "test.svg")
+</code></pre>
+<p>The difference from Task system is that now we use python syntax and the python functions. The environment from task system is no longer available, and the node functions are not automatically run in a loop.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="executable-plugins"><a class="header" href="#executable-plugins">Executable Plugins</a></h1>
 <p>Executable plugins are programs that can be called from terminal. The <a href="plugin-dev/../plugins/command.html#node.command">node <code>command</code> function</a>, <a href="plugin-dev/../plugins/command.html#network.command">network <code>command</code> function</a> and their families in the <a href="plugin-dev/../plugins/command.html"><code>command</code> plugin</a> have the capacity to run external programs through the command line.</p>
 <p>The inputs to the program is given through the command line arguments, while the output of the programs are read through the standard output of the program. This can be used to call different/same commands for nodes with arguments dependent on their attributes.</p>
 <p>And the output from the programs are taken by reading their stdout (standard output). Any lines starting from <code>nadi:var:</code> (prefix) is considered a communication attempt with Nadi. Currently, you can set attribute values by providing <code>key=val</code> pairs after the prefix. The node function will set it for current node, and network function will set it for the network. Furthermore, in network function, you can add one more section after prefix to set node attributes. For example, <code>nadi:var:node1:value=12</code> will set the <code>value</code> attribute to <code>12</code> in the node named <code>node1</code> in the current network.</p>
@@ -3818,7 +3848,7 @@ Current time is {%H} hour  {%M} minutes.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-Current time is 16 hour  31 minutes.
+Current time is 00 hour  40 minutes.
 </code></pre>
 <h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
 <p>Variables can be chained in an optional way, so the first one that’s
@@ -3853,7 +3883,7 @@ float, upcase will make the string UPPERCASE, etc.);</p>
 <pre><code class="language-stp">Today is {%B %d} of the year {%Y}.
 </code></pre>
 <p>Results (with:  name=John):</p>
-<pre><code class="language-output">Today is June 04 of the year 2025.
+<pre><code class="language-output">Today is June 18 of the year 2025.
 </code></pre>
 <h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
 <p>expressions are lisp expressions that will be evaluated and the
@@ -3888,8 +3918,8 @@ after rendering it for each node.</p>
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  ohio = "(6th node) Ohio\n\tRiver Flow = 4.533 x 10^4",
-  red = "(5th node) Red\n\tRiver Flow = NA x 10^4"
+  red = "(5th node) Red\n\tRiver Flow = NA x 10^4",
+  ohio = "(6th node) Ohio\n\tRiver Flow = 4.533 x 10^4"
 }
 </code></pre>
 <p>As seen in above example, you can render variables, transform them, use basic calculations.</p>
@@ -3926,7 +3956,7 @@ info on how to use <code>lisp</code> on string template.</p>
 \\latex\{command\}\{with {variable}\}, should work.
 </code></pre>
 <p>Results (with:  command=Error;variable=Var):</p>
-<pre><code class="language-output">more  options on 2025-06-04 and
+<pre><code class="language-output">more  options on 2025-06-18 and
 \latex{command}{with Var}, should work.
 </code></pre>
 <p>This just combined a lot of different things from above:</p>
@@ -3980,14 +4010,14 @@ now.</p>
 <pre><code class="language-stp">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
 </code></pre>
 <p>Results (with: ):</p>
-<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-06-04
+<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-06-18
 </code></pre>
 <p>But if you are writing a command template to run in bash, then
 it’ll be executed as the syntax is similar.</p>
 <pre><code class="language-task">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-06-04
+<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-06-18
 </code></pre>
 <p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tables"><a class="header" href="#tables">Tables</a></h1>

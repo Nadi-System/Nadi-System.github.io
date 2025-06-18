@@ -249,18 +249,21 @@ Arguments:
   [TASK_FILE]  Tasks file to run; if `--stdin` is also provided this runs before stdin
 
 Options:
-  -C, --completion &lt;FUNC_TYPE&gt;  list all functions and exit for completions [possible values: node, network, env]
-  -c, --fncode &lt;FUNCTION&gt;       print code for a function
-  -f, --fnhelp &lt;FUNCTION&gt;       print help for a function
-  -g, --generate-doc &lt;DOC_DIR&gt;  Generate markdown doc for all plugins and functions
-  -l, --list-functions          list all functions and exit
-  -n, --network &lt;NETWORK_FILE&gt;  network file to load before executing tasks
-  -p, --print-tasks             print tasks before running
-  -s, --show                    Show the tasks file, do not do anything
-  -S, --stdin                   Use stdin for the tasks; reads the whole stdin before execution
-  -t, --task &lt;TASK_STR&gt;         Run given string as task before running the file
-  -h, --help                    Print help
-  -V, --version                 Print version
+  -C, --completion &lt;FUNC_TYPE&gt;   list all functions and exit for completions [possible values: node, network, env]
+  -c, --fncode &lt;FUNCTION&gt;        print code for a function
+  -f, --fnhelp &lt;FUNCTION&gt;        print help for a function
+  -g, --generate-doc &lt;DOC_DIR&gt;   Generate markdown doc for all plugins and functions
+  -l, --list-functions           list all functions and exit
+  -n, --network &lt;NETWORK_FILE&gt;   network file to load before executing tasks
+  -p, --print-tasks              print tasks before running
+  -P, --new-plugin &lt;NEW_PLUGIN&gt;  Create the files for a new nadi_plugin
+  -N, --nadi-core &lt;NADI_CORE&gt;    Path to the nadi_core library for the new nadi_plugin
+  -s, --show                     Show the tasks file, do not do anything
+  -S, --stdin                    Use stdin for the tasks; reads the whole stdin before execution
+  -r, --repl                     Open the REPL (interactive session) before exiting
+  -t, --task &lt;TASK_STR&gt;          Run given string as task before running the file
+  -h, --help                     Print help
+  -V, --version                  Print version
 </code></pre>
 <h2 id="nadi-ide"><a class="header" href="#nadi-ide">NADI IDE</a></h2>
 <p>NADI Integrated Development Environment (IDE) is a Graphical User Interface (GUI) for the users to write/ run NADI Tasks.</p>
