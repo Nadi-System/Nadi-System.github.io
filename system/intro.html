@@ -169,8 +169,45 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="core-concepts"><a class="header" href="#core-concepts">Core Concepts</a></h1>
-<p>This section contains a brief explanation of core concepts. Refer to
-the Reference section for the full details on each.</p>
+<p>This section contains a brief explanation of core concepts.</p>
+<p>The main concepts that you need to know are:</p>
+<ul>
+<li><strong>Attributes</strong> are values, it can be float, integer, boolean, strings, or list of attributes, or a map of attributes (key=value),</li>
+<li><strong>Nodes</strong> are points in the network, they can have attributes, input nodes and an output node,</li>
+<li><strong>Network</strong> is a collection of nodes, network can also have attributes, Network used in the Nadi system can have only one outlet, so a ‘ROOT’ node is added if there are multiple outlet. And loading a network that is not a directed tree is undefined behaviour.</li>
+<li><strong>Expression</strong> is something that can be evaluated or executed, it consists of literal values (attributes), variables (node, network, env variables that could hold attributes), function calls, or a mathmatical or logical operation.</li>
+<li><strong>Functions</strong> in nadi are of 3 types, env functions are normal functions that take values and run, network functions take values and run on the network, while node functions run at each node (they also provide a way to subset which nodes to run it on).</li>
+<li><strong>Task</strong> is an execution body of the task system. It can be of env, network or node type. It can be conditional (If-Else) or loop (While) consisting of more tasks inside it. Task can assign values to the env/network/node attributes, or call mutable functions on the top level.</li>
+<li><strong>String Template</strong>: Some functions take string inputs that are interpreted dynamically to represent different strings based on variables.</li>
+</ul>
+<h2 id="keywords"><a class="header" href="#keywords">Keywords</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Keyword</th><th>Description</th></tr></thead><tbody>
+<tr><td>node</td><td>the node task type, function or variable</td></tr>
+<tr><td>network/net</td><td>the network task type, function or variable</td></tr>
+<tr><td>env</td><td>the environment task type, function or variable</td></tr>
+<tr><td>exit</td><td>exit the program</td></tr>
+<tr><td>end</td><td>end the execution of tasks without exiting</td></tr>
+<tr><td>help</td><td>display help for functions</td></tr>
+<tr><td>inputs</td><td>get node variables or function output for input nodes of a node</td></tr>
+<tr><td>output</td><td>get node variable or function output for output node of a node</td></tr>
+<tr><td>nodes</td><td>get node variable or function output for all nodes in the network</td></tr>
+<tr><td>if</td><td>if statement for conditional task/expression</td></tr>
+<tr><td>else</td><td>else statement for conditional task/expression</td></tr>
+<tr><td>while</td><td>while statement for loop task</td></tr>
+<tr><td>in</td><td>binary operator to check if something is in another (list/string)</td></tr>
+<tr><td>match</td><td>binary operator to check patterns on string (regex)</td></tr>
+</tbody></table>
+</div>
+<p>And here are some keywords reserved for future:</p>
+<div class="table-wrapper"><table><thead><tr><th>Keyword</th><th>Description</th></tr></thead><tbody>
+<tr><td>function/func</td><td>user defined functions</td></tr>
+<tr><td>map</td><td>map values in an array/attrmap to a function</td></tr>
+<tr><td>attrs</td><td>attributes of the env/node/network</td></tr>
+<tr><td>loop</td><td>loop task</td></tr>
+<tr><td>for</td><td>for loop task for looping through array/attrmap</td></tr>
+</tbody></table>
+</div>
+<p>Continue with the chapters for details on each concept. Or skip ahead to <a href="/learn-examples.html">Learn by Examples</a> if you want to jump into the examples.</p>
 
                     </main>
 
@@ -180,7 +217,7 @@ the Reference section for the full details on each.</p>
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../intro/node.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../intro/task.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -194,7 +231,7 @@ the Reference section for the full details on each.</p>
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../intro/node.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../intro/task.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -169,7 +169,22 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="network-function"><a class="header" href="#network-function">Network Function</a></h1>
-<p>Network function runs on the network as a whole. It takes arguments and keyword arguments.</p>
+<p>Network function runs on the network as a whole. It takes arguments and keyword arguments. Few network functions we have been using throughout the examples are <code>load_file</code>, <code>load_str</code> and <code>svg_save</code>:</p>
+<pre><code class="language-task">network load_file("./data/mississippi.net")
+<span class="boring">network command("mkdir -p output")
+</span>network svg_save(
+   "./output/network-mississippi-sdf.svg",
+	label="[{INDEX}] {_NAME:repl(-, ):case(title)}",
+	bgcolor="gray"
+)
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="../output/network-mississippi-sdf.svg" alt="" /></p>
+</center>  
+<div class="warning">
+The examples below use the graphviz plugin. Make sure you have it loaded. Refer to the plugins section to learn how to load the plugins in to the Nadi System.
+</div>
 <p>For example following network function takes file path as input to save the network in graphviz format:</p>
 <pre><code class="language-sig">save_graphviz(
 	outfile [PathBuf],
@@ -219,7 +234,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../intro/further.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../intro/cross-context.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -233,7 +248,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../intro/further.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../intro/cross-context.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

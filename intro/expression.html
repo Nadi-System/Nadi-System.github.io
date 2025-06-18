@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Further Reading - Network Analysis and Data Integration (NADI)</title>
+        <title>Expression - Network Analysis and Data Integration (NADI)</title>
 
 
         <!-- Custom HTML head -->
@@ -168,37 +168,93 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h1>
-<p>If you need help on any functions. Use the <code>help</code> as a <code>task</code>. You can use <code>help node</code> or <code>help network</code> for specific help. You can also browse through the function help window in the <code>nadi-ide</code> for help related to each functions.</p>
-<pre><code class="language-task">help node render
+                        <h1 id="expression"><a class="header" href="#expression">Expression</a></h1>
+<p>Expressions are airthmetic or logical operations. They can appear inside the conditional statements, or as input to a task, or nested in other expression or function calls.</p>
+<p>Expressions are defined into the following categories:</p>
+<h2 id="literal-values"><a class="header" href="#literal-values">Literal Values</a></h2>
+<pre><code class="language-task">env [1, true, "no maybe"]
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">node render (template: '&amp; Template', safe: 'bool' = false)
-Render the template based on the node attributes
-# Arguments
-- `template: &amp; Template` String template to render
-- `safe: bool` [def = false] if render fails keep it as it is instead of exiting
-
-
-For more details on the template system. Refer to the String
-Template section of the NADI book.
+<pre><code class="language-output">[1, true, "no maybe"]
 </code></pre>
-<p>Or you can use <code>nadi --fnhelp &lt;function&gt;</code> using the <code>nadi-cli</code>.</p>
-<p>Now that you have the overview of the nadi system’s data
-structures. We’ll jump into the software structure and how to setup
-and use the system.</p>
-<p>If you want more details on any of the data structures refer the
-Developer’s references, or the library documentation.</p>
+<h2 id="variable"><a class="header" href="#variable">Variable</a></h2>
+<pre><code class="language-task">env.value = [1, true, "no maybe"];
+env.value
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">[1, true, "no maybe"]
+</code></pre>
+<p>Variables also have a “check” mode, where it returns true if variable exists, false if it does not.</p>
+<pre><code class="language-task">env.value = [1, true, "no maybe"];
+env value?
+env other_var?
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">true
+false
+</code></pre>
+<p>You can also use use varible from node, or network in other context. For example:</p>
+<pre><code class="language-task">env.value = [1, true, "no maybe"];
+network echo(json(env.value))
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">[1, true, "no maybe"]
+</code></pre>
+<p>Special variable types like <code>nodes</code>, <code>inputs</code>, <code>output</code> are available besides <code>env</code>, <code>network</code> and <code>node</code> based on what type of task the expression is on.</p>
+<p>You will learn more about this on <a href="/intro/cross-context.html">Cross Context Functions and Variables</a> chapter.</p>
+<h2 id="unary-operator"><a class="header" href="#unary-operator">Unary Operator</a></h2>
+<pre><code class="language-task">env !true
+env - 12.0
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">false
+-12
+</code></pre>
+<h2 id="binary-operator"><a class="header" href="#binary-operator">Binary Operator</a></h2>
+<pre><code class="language-task">env (12 &gt; 34) &amp; true
+env "x" in "xyz"
+env 12 in [123, true]
+env "my name is" match "^my.*"
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">false
+true
+false
+true
+</code></pre>
+<h2 id="if-else"><a class="header" href="#if-else">If Else</a></h2>
+<pre><code class="language-task">env if(!true) {"if true"} else {"if false"}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">"if false"
+</code></pre>
+<h2 id="function"><a class="header" href="#function">Function</a></h2>
+<pre><code class="language-task">env.value = [1, true, "no maybe"];
+env get(value, 2)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">"no maybe"
+</code></pre>
+<p>Out of all expressions, only the function is not garanteed to return a value. If you are using a function expression and expect a value and it does not return it, it’ll be a runtime error.</p>
+<pre><code class="language-task">env echo("Hello world!") + 12
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">Hello world!
+
+Function echo did not return a value
+</code></pre>
+<p>Special function types like <code>nodes</code>, <code>inputs</code>, <code>output</code> are available besides <code>env</code>, <code>network</code> and <code>node</code> based on what type of task the expression is on.</p>
+<p>You will learn more about this on <a href="/intro/cross-context.html">Cross Context Functions and Variables</a> chapter.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../intro/cross-context.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../intro/network.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../learn-examples.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../intro/template.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -208,11 +264,11 @@ Developer’s references, or the library documentation.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../intro/cross-context.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../intro/network.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../learn-examples.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../intro/template.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

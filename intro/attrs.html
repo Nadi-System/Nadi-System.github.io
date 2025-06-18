@@ -169,7 +169,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="attributes"><a class="header" href="#attributes">Attributes</a></h1>
-<p>Attributes are TOML like values. They can be one of the following types:</p>
+<p>Attributes are <a href="https://toml.io/en/">TOML</a> like values. They can be one of the following types:</p>
 <div class="table-wrapper"><table><thead><tr><th>Type Name</th><th>Rust Type</th><th>Description</th></tr></thead><tbody>
 <tr><td>Bool</td><td><code>bool</code></td><td>Boolean values (<code>true</code> or <code>false</code>)</td></tr>
 <tr><td>String</td><td><code>RString</code></td><td>Quoted String Values</td></tr>
@@ -179,11 +179,18 @@
 <tr><td>Time</td><td><code>Time</code></td><td>Time (<code>HH:MM</code>, <code>HH:MM:SS</code> formatted)</td></tr>
 <tr><td>DateTime</td><td><code>DateTime</code></td><td>Date and Time separed by <code> </code> or <code>T</code></td></tr>
 <tr><td>Array</td><td><code>RVec&lt;Attribute&gt;</code></td><td>List of any attribute values</td></tr>
-<tr><td>Table</td><td><code>AttrMap</code></td><td>Key Value pairs of any attribute values</td></tr>
+<tr><td>Table/AttrMap</td><td><code>AttrMap</code></td><td>Key Value pairs of any attribute values</td></tr>
 </tbody></table>
 </div>
-<p>You can write attributes directly into the task system to assign them, use them in functions. You can also load attributes from a file into the node/network.</p>
-<p>Example Attribute File:</p>
+<p>You can write attributes directly into the task system to assign them, use them in functions. You can also load attributes from a file into the env/node/network.</p>
+<p>If you want to assign a attribute inside the task system, you can do it like this:</p>
+<pre><code class="language-task">env.river = "Ohio River"
+env.river
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">"Ohio River"
+</code></pre>
+<p>Example Attribute File that can be loaded:</p>
 <pre><code class="language-toml">river = "Ohio River"
 outlet = "Smithland Lock and Dam"
 outlet_is_gage = true
@@ -194,16 +201,33 @@ obs_7q10 = 19405.3
 nat_7q10 = 12335.9
 num_dams_gages = 2348
 </code></pre>
+<p>Here loading the files we can see only ohio has the attributes loaded</p>
+<pre><code class="language-task"><span class="boring"> network load_file("./data/mississippi.net")
+</span>node[ohio] load_attrs("./data/attrs/{_NAME}.toml")
+node.outlet
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  lower-mississippi = &lt;None&gt;,
+  upper-mississippi = &lt;None&gt;,
+  missouri = &lt;None&gt;,
+  arkansas = &lt;None&gt;,
+  red = &lt;None&gt;,
+  ohio = "Smithland Lock and Dam",
+  tenessee = &lt;None&gt;
+}
+</code></pre>
+<p>With plugins, you can load attributes from different file types.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../intro/network.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../intro/task.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../intro/template.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../intro/node.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -213,11 +237,11 @@ num_dams_gages = 2348
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../intro/network.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../intro/task.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../intro/template.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../intro/node.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

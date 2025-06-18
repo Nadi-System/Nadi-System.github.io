@@ -178,9 +178,6 @@
 <p><img src="../images/qgis-order.png" alt="Stream Order Result" /></p>
 <p>After you have streams (tributaries), you can use the <strong>Check Streams</strong> tool to see if there are any errors. It will give all the nodes and their categories, you can filter them to see if it has branches, or if it has more than one outlet. The figure below shows the branches with red dot. If we zoom in we can see how the bifurcation on the stream is detected, and how stream order calculation is confused there.</p>
 <p><img src="../images/qgis-branch.png" alt="Check Streams Result" /></p>
-<div class="warning">
-Note: Clicking the checkbox for different node types in the Layers tab seems to be glitchy in my QGIS, so you might have to goto Symbology to turn on/off the different node types here. If it's a bug from the plugin code being incorrect, I'll fix it later.
-</div>
 <p><strong>Find Connections</strong> tool will find the connection between the points using the stream network. The results below shows the tool being run on the NWIS points.</p>
 <p><img src="../images/qgis-network.png" alt="Find Connections Result" /></p>
 <p>If we select <strong>simplify</strong> option, it’ll only save the start and end point of the connection instead of the whole stream.</p>

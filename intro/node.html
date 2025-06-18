@@ -175,12 +175,39 @@ identifiable with their unique name, along with timeseries values also
 identifiable with their names.</p>
 <p>If you understand graph theory, then node in nadi network is the same
 as a node in a graph.</p>
+<p>Nodes in Nadi are identified by their name, that is loaded from the network file. Node names are string values, even if they are integer or float, they are read and internally stored as strings. If the node name contains characters outside of alphanumeric and underscore (<code>_</code>), it has to be quoted.</p>
+<p>i.e. valid names like <code>123</code> or <code>node_1</code> can appear unquoted or quoted, but names like <code>node-123</code> needs to be quoted: <code>"node-123"</code>.</p>
+<pre><code class="language-task">network load_str("
+123 -&gt; node_1
+node_1 -&gt; \"node-123\"
+")
+node.NAME
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  node-123 = "node-123",
+  node_1 = "node_1",
+  123 = "123"
+}
+</code></pre>
+<div class="warning">
+If the node name `node-123` appearing on the output is unquoted, it's a bug that will be fixed in the next version. It is harmless as long as you don't try to copy the output as a valid attribute value to load back into the system.
+</div>
+<p>If you do not quote the name, you’ll get an error:</p>
+<pre><code class="language-task">network load_str("123 -&gt; node-1")
+node.NAME
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">Error in function load_str: Error: Parse Error at Line 1 Column 8
+  123 -&gt; node-1
+         ^ Incomplete Path; expected node here
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../system/intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../intro/attrs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -194,7 +221,7 @@ as a node in a graph.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../system/intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../intro/attrs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 

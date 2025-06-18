@@ -612,9 +612,6 @@ Options:
 <p><img src="gis/../images/qgis-order.png" alt="Stream Order Result" /></p>
 <p>After you have streams (tributaries), you can use the <strong>Check Streams</strong> tool to see if there are any errors. It will give all the nodes and their categories, you can filter them to see if it has branches, or if it has more than one outlet. The figure below shows the branches with red dot. If we zoom in we can see how the bifurcation on the stream is detected, and how stream order calculation is confused there.</p>
 <p><img src="gis/../images/qgis-branch.png" alt="Check Streams Result" /></p>
-<div class="warning">
-Note: Clicking the checkbox for different node types in the Layers tab seems to be glitchy in my QGIS, so you might have to goto Symbology to turn on/off the different node types here. If it's a bug from the plugin code being incorrect, I'll fix it later.
-</div>
 <p><strong>Find Connections</strong> tool will find the connection between the points using the stream network. The results below shows the tool being run on the NWIS points.</p>
 <p><img src="gis/../images/qgis-network.png" alt="Find Connections Result" /></p>
 <p>If we select <strong>simplify</strong> option, it’ll only save the start and end point of the connection instead of the whole stream.</p>
@@ -690,136 +687,92 @@ Note: Clicking the checkbox for different node types in the Layers tab seems to 
 </code></pre>
 <p>Make sure you use a field with unique name, and valid identifier in NADI System.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="core-concepts"><a class="header" href="#core-concepts">Core Concepts</a></h1>
-<p>This section contains a brief explanation of core concepts. Refer to
-the Reference section for the full details on each.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="node"><a class="header" href="#node">Node</a></h1>
-<p>A Node is a point in network. A Node can have multiple input nodes and
-only one output node. And a Node can also have multiple attributes
-identifiable with their unique name, along with timeseries values also
-identifiable with their names.</p>
-<p>If you understand graph theory, then node in nadi network is the same
-as a node in a graph.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="network"><a class="header" href="#network">Network</a></h1>
-<p>A Network is a collection of nodes. The network can also have
-attributes associated with it. The connection information is stored
-within the nodes itself. But Network will have nodes ordered based on
-their connection information. So that when you loop from node from
-first to last, you will always find output node before its input
-nodes.</p>
-<p>A condition a nadi network is that it can only be a directed graph
-with tree structure.</p>
-<p>Example Network file:</p>
-<pre><code class="language-net"># network consists of edges where input node goes to output node
-# each line is of the format: input -&gt; output
-tenessee -&gt; ohio
-# if your node name has characters outside of a-zA-Z_, you need to
-# quote them as strings
-ohio -&gt; "lower-mississippi"
-"upper-mississippi" -&gt; "lower-mississippi"
-missouri -&gt; "lower-mississippi"
-arkansas -&gt; "lower-mississippi"
-red -&gt; "lower-mississippi"
-</code></pre>
-<p>The given network can be visualized using <code>svg_save</code> function.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span><span class="boring">network command("mkdir -p output")
-</span>network svg_save(
-   "./output/network-mississippi.svg",
-	label="[{INDEX}] {_NAME:repl(-, ):case(title)}",
-	bgcolor="gray"
-)
-</code></pre>
-<p>Results:</p>
-<center>  
-<p><img src="intro/../output/network-mississippi.svg" alt="" /></p>
-</center>  
-<p>You can assign different graphical properties through node properties.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node[red].visual.nodecolor = "red";
-node[ohio].visual.linecolor = "blue";
-node[ohio].visual.linewidth = 3;
-node["upper-mississippi", red].visual.nodesize = 8;
-node[red].visual.nodeshape = "triangle";
-node["upper-mississippi"].visual.nodeshape = "ellipse:0.5";
-network svg_save(
-   "./output/network-mississippi-colors.svg",
-   label="[{INDEX}] {_NAME:repl(-, ):case(title)}",
-	bgcolor="gray"
-)
-</code></pre>
-<p>Results:</p>
-<center>  
-<p><img src="intro/../output/network-mississippi-colors.svg" alt="" /></p>
-</center>  
-<div style="break-before: page; page-break-before: always;"></div><h1 id="attributes"><a class="header" href="#attributes">Attributes</a></h1>
-<p>Attributes are TOML like values. They can be one of the following types:</p>
-<div class="table-wrapper"><table><thead><tr><th>Type Name</th><th>Rust Type</th><th>Description</th></tr></thead><tbody>
-<tr><td>Bool</td><td><code>bool</code></td><td>Boolean values (<code>true</code> or <code>false</code>)</td></tr>
-<tr><td>String</td><td><code>RString</code></td><td>Quoted String Values</td></tr>
-<tr><td>Integer</td><td><code>i64</code></td><td>Integer values (numbers)</td></tr>
-<tr><td>Float</td><td><code>f64</code></td><td>Float values (numbers with decimals)</td></tr>
-<tr><td>Date</td><td><code>Date</code></td><td>Date (<code>yyyy-mm-dd</code> formatted)</td></tr>
-<tr><td>Time</td><td><code>Time</code></td><td>Time (<code>HH:MM</code>, <code>HH:MM:SS</code> formatted)</td></tr>
-<tr><td>DateTime</td><td><code>DateTime</code></td><td>Date and Time separed by <code> </code> or <code>T</code></td></tr>
-<tr><td>Array</td><td><code>RVec&lt;Attribute&gt;</code></td><td>List of any attribute values</td></tr>
-<tr><td>Table</td><td><code>AttrMap</code></td><td>Key Value pairs of any attribute values</td></tr>
+<p>This section contains a brief explanation of core concepts.</p>
+<p>The main concepts that you need to know are:</p>
+<ul>
+<li><strong>Attributes</strong> are values, it can be float, integer, boolean, strings, or list of attributes, or a map of attributes (key=value),</li>
+<li><strong>Nodes</strong> are points in the network, they can have attributes, input nodes and an output node,</li>
+<li><strong>Network</strong> is a collection of nodes, network can also have attributes, Network used in the Nadi system can have only one outlet, so a ‘ROOT’ node is added if there are multiple outlet. And loading a network that is not a directed tree is undefined behaviour.</li>
+<li><strong>Expression</strong> is something that can be evaluated or executed, it consists of literal values (attributes), variables (node, network, env variables that could hold attributes), function calls, or a mathmatical or logical operation.</li>
+<li><strong>Functions</strong> in nadi are of 3 types, env functions are normal functions that take values and run, network functions take values and run on the network, while node functions run at each node (they also provide a way to subset which nodes to run it on).</li>
+<li><strong>Task</strong> is an execution body of the task system. It can be of env, network or node type. It can be conditional (If-Else) or loop (While) consisting of more tasks inside it. Task can assign values to the env/network/node attributes, or call mutable functions on the top level.</li>
+<li><strong>String Template</strong>: Some functions take string inputs that are interpreted dynamically to represent different strings based on variables.</li>
+</ul>
+<h2 id="keywords"><a class="header" href="#keywords">Keywords</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Keyword</th><th>Description</th></tr></thead><tbody>
+<tr><td>node</td><td>the node task type, function or variable</td></tr>
+<tr><td>network/net</td><td>the network task type, function or variable</td></tr>
+<tr><td>env</td><td>the environment task type, function or variable</td></tr>
+<tr><td>exit</td><td>exit the program</td></tr>
+<tr><td>end</td><td>end the execution of tasks without exiting</td></tr>
+<tr><td>help</td><td>display help for functions</td></tr>
+<tr><td>inputs</td><td>get node variables or function output for input nodes of a node</td></tr>
+<tr><td>output</td><td>get node variable or function output for output node of a node</td></tr>
+<tr><td>nodes</td><td>get node variable or function output for all nodes in the network</td></tr>
+<tr><td>if</td><td>if statement for conditional task/expression</td></tr>
+<tr><td>else</td><td>else statement for conditional task/expression</td></tr>
+<tr><td>while</td><td>while statement for loop task</td></tr>
+<tr><td>in</td><td>binary operator to check if something is in another (list/string)</td></tr>
+<tr><td>match</td><td>binary operator to check patterns on string (regex)</td></tr>
 </tbody></table>
 </div>
-<p>You can write attributes directly into the task system to assign them, use them in functions. You can also load attributes from a file into the node/network.</p>
-<p>Example Attribute File:</p>
-<pre><code class="language-toml">river = "Ohio River"
-outlet = "Smithland Lock and Dam"
-outlet_is_gage = true
-outlet_site_no = ""
-streamflow_start = 1930-06-07
-mean_streamflow = 123456.0
-obs_7q10 = 19405.3
-nat_7q10 = 12335.9
-num_dams_gages = 2348
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="string-template"><a class="header" href="#string-template">String Template</a></h1>
-<p>String templates are strings with dynamic components that can be
-rendered for each node based on the node attributes.</p>
-<p>A simple template can be like below:</p>
-<pre><code class="language-stp">Hi, my name is {name}, my address is {address?"N/A"}.
-I wrote this document on {%A}, exact date: {%Y-%m-%d}.
-</code></pre>
-<p>Results (with:  name=John; address=123 Road, USA):</p>
-<pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-I wrote this document on Wednesday, exact date: 2025-06-18.
-</code></pre>
-<p>With more complicated templates, we would be able to generate
-documents with text and images based on the node attributes as well.</p>
-<p>For example the following template can be used to generate a table.</p>
-<pre><code class="language-markdown">| Name             | Index   |
-|------------------|---------|
-&lt;!-- ---8&lt;--- --&gt;
-| {_NAME:case(up)} | {INDEX} |
-&lt;!-- ---8&lt;--- --&gt;
-</code></pre>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net");
-</span>network echo(render_template("./data/example.template"))
-</code></pre>
-<p>Results:</p>
-<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Index</th></tr></thead><tbody>
-<tr><td>LOWER-MISSISSIPPI</td><td>0</td></tr>
-<tr><td>UPPER-MISSISSIPPI</td><td>1</td></tr>
-<tr><td>MISSOURI</td><td>2</td></tr>
-<tr><td>ARKANSAS</td><td>3</td></tr>
-<tr><td>RED</td><td>4</td></tr>
-<tr><td>OHIO</td><td>5</td></tr>
-<tr><td>TENESSEE</td><td>6</td></tr>
+<p>And here are some keywords reserved for future:</p>
+<div class="table-wrapper"><table><thead><tr><th>Keyword</th><th>Description</th></tr></thead><tbody>
+<tr><td>function/func</td><td>user defined functions</td></tr>
+<tr><td>map</td><td>map values in an array/attrmap to a function</td></tr>
+<tr><td>attrs</td><td>attributes of the env/node/network</td></tr>
+<tr><td>loop</td><td>loop task</td></tr>
+<tr><td>for</td><td>for loop task for looping through array/attrmap</td></tr>
 </tbody></table>
 </div>
-<p>Of course, there are better ways to generate table than this, but this
-shows how flexible the template system is.</p>
+<p>Continue with the chapters for details on each concept. Or skip ahead to <a href="system//learn-examples.html">Learn by Examples</a> if you want to jump into the examples.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="task"><a class="header" href="#task">Task</a></h1>
+<p>Task is an execution body in the task system. There are different types of tasks, specially environment, network and node type tasks, and there can be conditional tasks that only execute based on a condition or loops.</p>
+<p>Some examples of different tasks are given below to show a general overview, but the concepts inside the tasks system will be introduced as we progress through the chapters,</p>
+<p>Environment tasks that can evaluate expressions, assign variables, or call functions:</p>
+<pre><code class="language-task">env 1 + 2 * 8
+env render("my name is {_name}", name="John")
+env.x = 12 &gt; 2;
+env.x
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">17
+"my name is John"
+true
+</code></pre>
+<p>network task loading a network, and node task getting node attributes:</p>
+<pre><code class="language-task">network load_str("a-&gt;b\nb-&gt;c")
+node.NAME
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  c = "c",
+  b = "b",
+  a = "a"
+}
+</code></pre>
+<p>Conditional and Loop task</p>
+<pre><code class="language-task">if ( !val? | (val &gt; 5) ) {
+	# if val is not defined or greater than 5, set it to 0
+    env.val = 0
+}
+while (val &lt; 5) {
+	env.val = env.val + 1
+}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">0 -&gt; 1
+1 -&gt; 2
+2 -&gt; 3
+3 -&gt; 4
+4 -&gt; 5
+</code></pre>
 <p>Tasks system acts like a scripting language for nadi system. A
 Task consists of getting/evaluating/setting attributes in environment, network or nodes. The value that can be evaluated are expressions that consists of literal values, variables, or function calls that can either be a environment, node or a network function. Functions are unique based on their names, and can
 have default values if users do not pass all arguments.</p>
 <p>The code examples throughout this book, that are being used to
 generate network diagrams, tables, etc are run using the task system.</p>
-<p>Here is an example contents of a task file:</p>
+<p>Here is an example contents of a more complex task file, do not concern with what each task does, we will go through them in other chapters.</p>
 <pre><code class="language-task"># sample .tasks file which is like a script with functions
 node&lt;inputsfirst&gt; print_attrs("uniqueID")
 node show_node()
@@ -867,6 +820,255 @@ node[
 # selecting a path
 node[WV04112 -&gt; WV04113] render("=(&gt; 2 3)")
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="attributes"><a class="header" href="#attributes">Attributes</a></h1>
+<p>Attributes are <a href="https://toml.io/en/">TOML</a> like values. They can be one of the following types:</p>
+<div class="table-wrapper"><table><thead><tr><th>Type Name</th><th>Rust Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>Bool</td><td><code>bool</code></td><td>Boolean values (<code>true</code> or <code>false</code>)</td></tr>
+<tr><td>String</td><td><code>RString</code></td><td>Quoted String Values</td></tr>
+<tr><td>Integer</td><td><code>i64</code></td><td>Integer values (numbers)</td></tr>
+<tr><td>Float</td><td><code>f64</code></td><td>Float values (numbers with decimals)</td></tr>
+<tr><td>Date</td><td><code>Date</code></td><td>Date (<code>yyyy-mm-dd</code> formatted)</td></tr>
+<tr><td>Time</td><td><code>Time</code></td><td>Time (<code>HH:MM</code>, <code>HH:MM:SS</code> formatted)</td></tr>
+<tr><td>DateTime</td><td><code>DateTime</code></td><td>Date and Time separed by <code> </code> or <code>T</code></td></tr>
+<tr><td>Array</td><td><code>RVec&lt;Attribute&gt;</code></td><td>List of any attribute values</td></tr>
+<tr><td>Table/AttrMap</td><td><code>AttrMap</code></td><td>Key Value pairs of any attribute values</td></tr>
+</tbody></table>
+</div>
+<p>You can write attributes directly into the task system to assign them, use them in functions. You can also load attributes from a file into the env/node/network.</p>
+<p>If you want to assign a attribute inside the task system, you can do it like this:</p>
+<pre><code class="language-task">env.river = "Ohio River"
+env.river
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">"Ohio River"
+</code></pre>
+<p>Example Attribute File that can be loaded:</p>
+<pre><code class="language-toml">river = "Ohio River"
+outlet = "Smithland Lock and Dam"
+outlet_is_gage = true
+outlet_site_no = ""
+streamflow_start = 1930-06-07
+mean_streamflow = 123456.0
+obs_7q10 = 19405.3
+nat_7q10 = 12335.9
+num_dams_gages = 2348
+</code></pre>
+<p>Here loading the files we can see only ohio has the attributes loaded</p>
+<pre><code class="language-task"><span class="boring"> network load_file("./data/mississippi.net")
+</span>node[ohio] load_attrs("./data/attrs/{_NAME}.toml")
+node.outlet
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  lower-mississippi = &lt;None&gt;,
+  upper-mississippi = &lt;None&gt;,
+  missouri = &lt;None&gt;,
+  arkansas = &lt;None&gt;,
+  red = &lt;None&gt;,
+  ohio = "Smithland Lock and Dam",
+  tenessee = &lt;None&gt;
+}
+</code></pre>
+<p>With plugins, you can load attributes from different file types.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node"><a class="header" href="#node">Node</a></h1>
+<p>A Node is a point in network. A Node can have multiple input nodes and
+only one output node. And a Node can also have multiple attributes
+identifiable with their unique name, along with timeseries values also
+identifiable with their names.</p>
+<p>If you understand graph theory, then node in nadi network is the same
+as a node in a graph.</p>
+<p>Nodes in Nadi are identified by their name, that is loaded from the network file. Node names are string values, even if they are integer or float, they are read and internally stored as strings. If the node name contains characters outside of alphanumeric and underscore (<code>_</code>), it has to be quoted.</p>
+<p>i.e. valid names like <code>123</code> or <code>node_1</code> can appear unquoted or quoted, but names like <code>node-123</code> needs to be quoted: <code>"node-123"</code>.</p>
+<pre><code class="language-task">network load_str("
+123 -&gt; node_1
+node_1 -&gt; \"node-123\"
+")
+node.NAME
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  node-123 = "node-123",
+  node_1 = "node_1",
+  123 = "123"
+}
+</code></pre>
+<div class="warning">
+If the node name `node-123` appearing on the output is unquoted, it's a bug that will be fixed in the next version. It is harmless as long as you don't try to copy the output as a valid attribute value to load back into the system.
+</div>
+<p>If you do not quote the name, you’ll get an error:</p>
+<pre><code class="language-task">network load_str("123 -&gt; node-1")
+node.NAME
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">Error in function load_str: Error: Parse Error at Line 1 Column 8
+  123 -&gt; node-1
+         ^ Incomplete Path; expected node here
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network"><a class="header" href="#network">Network</a></h1>
+<p>A Network is a collection of nodes. The network can also have
+attributes associated with it. The connection information is stored
+within the nodes itself. But Network will have nodes ordered based on
+their connection information. So that when you loop from node from
+first to last, you will always find output node before its input
+nodes.</p>
+<p>A condition a nadi network is that it can only be a directed graph
+with tree structure.</p>
+<p>Example Network file:</p>
+<pre><code class="language-net"># network consists of edges where input node goes to output node
+# each line is of the format: input -&gt; output
+tenessee -&gt; ohio
+# if your node name has characters outside of a-zA-Z_, you need to
+# quote them as strings
+ohio -&gt; "lower-mississippi"
+"upper-mississippi" -&gt; "lower-mississippi"
+missouri -&gt; "lower-mississippi"
+arkansas -&gt; "lower-mississippi"
+red -&gt; "lower-mississippi"
+</code></pre>
+<p>The given network can be loaded and visualized using <code>svg_save</code> function.</p>
+<pre><code class="language-task">network load_file("./data/mississippi.net")
+<span class="boring">network command("mkdir -p output")
+</span>network svg_save(
+   "./output/network-mississippi.svg",
+	label="[{INDEX}] {_NAME:repl(-, ):case(title)}",
+	bgcolor="gray"
+)
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="intro/../output/network-mississippi.svg" alt="" /></p>
+</center>  
+<p>You can assign different graphical properties through node properties.</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
+</span>node[red].visual.nodecolor = "red";
+node[ohio].visual.linecolor = "blue";
+node[ohio].visual.linewidth = 3;
+node["upper-mississippi", red].visual.nodesize = 8;
+node[red].visual.nodeshape = "triangle";
+node["upper-mississippi"].visual.nodeshape = "ellipse:0.5";
+network svg_save(
+   "./output/network-mississippi-colors.svg",
+   label="[{INDEX}] {_NAME:repl(-, ):case(title)}",
+	bgcolor="gray"
+)
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="intro/../output/network-mississippi-colors.svg" alt="" /></p>
+</center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="expression"><a class="header" href="#expression">Expression</a></h1>
+<p>Expressions are airthmetic or logical operations. They can appear inside the conditional statements, or as input to a task, or nested in other expression or function calls.</p>
+<p>Expressions are defined into the following categories:</p>
+<h2 id="literal-values"><a class="header" href="#literal-values">Literal Values</a></h2>
+<pre><code class="language-task">env [1, true, "no maybe"]
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">[1, true, "no maybe"]
+</code></pre>
+<h2 id="variable"><a class="header" href="#variable">Variable</a></h2>
+<pre><code class="language-task">env.value = [1, true, "no maybe"];
+env.value
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">[1, true, "no maybe"]
+</code></pre>
+<p>Variables also have a “check” mode, where it returns true if variable exists, false if it does not.</p>
+<pre><code class="language-task">env.value = [1, true, "no maybe"];
+env value?
+env other_var?
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">true
+false
+</code></pre>
+<p>You can also use use varible from node, or network in other context. For example:</p>
+<pre><code class="language-task">env.value = [1, true, "no maybe"];
+network echo(json(env.value))
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">[1, true, "no maybe"]
+</code></pre>
+<p>Special variable types like <code>nodes</code>, <code>inputs</code>, <code>output</code> are available besides <code>env</code>, <code>network</code> and <code>node</code> based on what type of task the expression is on.</p>
+<p>You will learn more about this on <a href="intro//intro/cross-context.html">Cross Context Functions and Variables</a> chapter.</p>
+<h2 id="unary-operator"><a class="header" href="#unary-operator">Unary Operator</a></h2>
+<pre><code class="language-task">env !true
+env - 12.0
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">false
+-12
+</code></pre>
+<h2 id="binary-operator"><a class="header" href="#binary-operator">Binary Operator</a></h2>
+<pre><code class="language-task">env (12 &gt; 34) &amp; true
+env "x" in "xyz"
+env 12 in [123, true]
+env "my name is" match "^my.*"
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">false
+true
+false
+true
+</code></pre>
+<h2 id="if-else"><a class="header" href="#if-else">If Else</a></h2>
+<pre><code class="language-task">env if(!true) {"if true"} else {"if false"}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">"if false"
+</code></pre>
+<h2 id="function"><a class="header" href="#function">Function</a></h2>
+<pre><code class="language-task">env.value = [1, true, "no maybe"];
+env get(value, 2)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">"no maybe"
+</code></pre>
+<p>Out of all expressions, only the function is not garanteed to return a value. If you are using a function expression and expect a value and it does not return it, it’ll be a runtime error.</p>
+<pre><code class="language-task">env echo("Hello world!") + 12
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">Hello world!
+
+Function echo did not return a value
+</code></pre>
+<p>Special function types like <code>nodes</code>, <code>inputs</code>, <code>output</code> are available besides <code>env</code>, <code>network</code> and <code>node</code> based on what type of task the expression is on.</p>
+<p>You will learn more about this on <a href="intro//intro/cross-context.html">Cross Context Functions and Variables</a> chapter.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="string-template"><a class="header" href="#string-template">String Template</a></h1>
+<p>String templates are strings with dynamic components that can be
+rendered for each node based on the node attributes.</p>
+<p>A simple template can be like below:</p>
+<pre><code class="language-stp">Hi, my name is {name}, my address is {address?"N/A"}.
+I wrote this document on {%A}, exact date: {%Y-%m-%d}.
+</code></pre>
+<p>Results (with:  name=John; address=123 Road, USA):</p>
+<pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
+I wrote this document on Wednesday, exact date: 2025-06-18.
+</code></pre>
+<p>With more complicated templates, we would be able to generate
+documents with text and images based on the node attributes as well.</p>
+<p>For example the following template can be used to generate a table.</p>
+<pre><code class="language-markdown">| Name             | Index   |
+|------------------|---------|
+&lt;!-- ---8&lt;--- --&gt;
+| {_NAME:case(up)} | {INDEX} |
+&lt;!-- ---8&lt;--- --&gt;
+</code></pre>
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net");
+</span>network echo(render_template("./data/example.template"))
+</code></pre>
+<p>Results:</p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Index</th></tr></thead><tbody>
+<tr><td>LOWER-MISSISSIPPI</td><td>0</td></tr>
+<tr><td>UPPER-MISSISSIPPI</td><td>1</td></tr>
+<tr><td>MISSOURI</td><td>2</td></tr>
+<tr><td>ARKANSAS</td><td>3</td></tr>
+<tr><td>RED</td><td>4</td></tr>
+<tr><td>OHIO</td><td>5</td></tr>
+<tr><td>TENESSEE</td><td>6</td></tr>
+</tbody></table>
+</div>
+<p>Of course, there are better ways to generate table than this, but this
+shows how flexible the template system is.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="node-function"><a class="header" href="#node-function">Node Function</a></h1>
 <p>Node function runs on each node. It takes arguments and keyword arguments.</p>
 <p>For example following node function takes multiple attribute names and prints them. The signature of the node function is <code>print_attrs(*args)</code>.</p>
@@ -923,7 +1125,22 @@ NAME = "lower-mississippi"
 <p>As we can see in the diagram, the path from tenessee to lower
 mississippi includes the ohio node.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="network-function"><a class="header" href="#network-function">Network Function</a></h1>
-<p>Network function runs on the network as a whole. It takes arguments and keyword arguments.</p>
+<p>Network function runs on the network as a whole. It takes arguments and keyword arguments. Few network functions we have been using throughout the examples are <code>load_file</code>, <code>load_str</code> and <code>svg_save</code>:</p>
+<pre><code class="language-task">network load_file("./data/mississippi.net")
+<span class="boring">network command("mkdir -p output")
+</span>network svg_save(
+   "./output/network-mississippi-sdf.svg",
+	label="[{INDEX}] {_NAME:repl(-, ):case(title)}",
+	bgcolor="gray"
+)
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="intro/../output/network-mississippi-sdf.svg" alt="" /></p>
+</center>  
+<div class="warning">
+The examples below use the graphviz plugin. Make sure you have it loaded. Refer to the plugins section to learn how to load the plugins in to the Nadi System.
+</div>
 <p>For example following network function takes file path as input to save the network in graphviz format:</p>
 <pre><code class="language-sig">save_graphviz(
 	outfile [PathBuf],
@@ -964,6 +1181,91 @@ mississippi includes the ohio node.</p>
 <center>  
 <p><img src="intro/../output/test.svg" alt="" /></p>
 </center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cross-context-functions-and-variables"><a class="header" href="#cross-context-functions-and-variables">Cross Context Functions and Variables</a></h1>
+<p>You can access variable and call functions based on their default context (e.g. node variable/function in a node task). Additionally, you can also access the variables or call functions in select few other context.</p>
+<p>By default, if a function is not available, node/network task calls the environment function of the same name.</p>
+<p>For example, here the <code>sum</code> and <code>array</code> functions are environment functions, while the <code>count</code> is a network function. When you use Nadi IDE, it’ll show you which function is actually being called at the top of the editor.</p>
+<pre><code class="language-task">network load_str("a-&gt;b")
+network sum(array(count(), 1))
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">3
+</code></pre>
+<p>Besides this, you can manually call cross context variable/functions in the following ways:</p>
+<h2 id="env-and-network-variablesfunctions"><a class="header" href="#env-and-network-variablesfunctions">Env and Network Variables/Functions</a></h2>
+<p>You can use <code>env</code> and <code>network</code> variables anywhere in the task system with the dot syntax.</p>
+<pre><code class="language-task"><span class="boring"> network load_str("a-&gt;b")
+</span>env.var = 12;
+network.sth = true;
+
+env render("this is {x}", x = network.sth)
+network str(env.var)
+node array(network.sth, env.var, node.NAME)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">"this is true"
+"12"
+{
+  b = [true, 12, "b"],
+  a = [true, 12, "a"]
+}
+</code></pre>
+<p>Similary, env and network functions can be called anywhere. These functions cannot be mutable functions (change network internally).</p>
+<p>Taking the previous example, if we use env function <code>count</code>, we get an error as the function arguments are different.</p>
+<pre><code class="language-task">network load_str("a-&gt;b")
+node network.count()
+network sum(array(env.count(), 1))
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">{
+  b = 2,
+  a = 2
+}
+Error in function count: Argument 1 (vars [&amp; [bool]]) is required
+</code></pre>
+<h2 id="node-variablesfunctions"><a class="header" href="#node-variablesfunctions">Node Variables/Functions</a></h2>
+<p>You can use <code>node</code>, <code>inputs</code>, <code>output</code> and <code>nodes</code> keywords to access node variables and functions from different contexts. <code>nodes</code> is valid in all tasks, while the other 3 are only valid in a node task and refer to the current node, input nodes and output node respectively.</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
+</span>env count(nodes._)
+node inputs.NAME
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">7
+{
+  lower-mississippi = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"],
+  upper-mississippi = [],
+  missouri = [],
+  arkansas = [],
+  red = [],
+  ohio = ["tenessee"],
+  tenessee = []
+}
+</code></pre>
+<p>You can call node functions not just for the node in the context, but also for input nodes, and output node:</p>
+<p>Please note that the root node (outlet) of the network doesn’t have output node, so we need to skip that, which can be done through the <code>output._?</code> which is checking for the dummy variable <code>_</code> in <code>output</code>, which is true if the node has an output.</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
+</span>node[tenessee -&gt; "lower-mississippi"] inputs.render("{_NAME}")
+node[tenessee -&gt; "lower-mississippi"](output._?) output.render("{_NAME}")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  tenessee = [],
+  ohio = ["tenessee"],
+  lower-mississippi = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"]
+}
+{
+  tenessee = "ohio",
+  ohio = "lower-mississippi"
+}
+</code></pre>
+<p>You can also use <code>nodes</code> keyword to call the function on each node, it can be used anywhere, but is useful for env and network tasks.</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
+</span>
+env nodes.render("Node [{INDEX}] {_NAME}")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">["Node [0] lower-mississippi", "Node [1] upper-mississippi", "Node [2] missouri", "Node [3] arkansas", "Node [4] red", "Node [5] ohio", "Node [6] tenessee"]
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h1>
 <p>If you need help on any functions. Use the <code>help</code> as a <code>task</code>. You can use <code>help node</code> or <code>help network</code> for specific help. You can also browse through the function help window in the <code>nadi-ide</code> for help related to each functions.</p>
 <pre><code class="language-task">help node render
@@ -1627,6 +1929,45 @@ net = nadi.Network.from_str("a -&gt; b")
 fn.network.svg_save(net, "test.svg")
 </code></pre>
 <p>The difference from Task system is that now we use python syntax and the python functions. The environment from task system is no longer available, and the node functions are not automatically run in a loop.</p>
+<p>We lose the advantages brought by the Domain Specific Programming Language, while gaining the flexibility and the well developed libraries of the python language.</p>
+<p>To use this book from python, you just have to change the syntax, some examples are:</p>
+<h2 id="example-1"><a class="header" href="#example-1">Example 1</a></h2>
+<pre><code class="language-task">network load_str("a -&gt; b\nc -&gt; b")
+node(output._?) echo(env.render("{i} -&gt; {o}", i=node.INDEX, o=output.INDEX))
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">1 -&gt; 0
+2 -&gt; 0
+</code></pre>
+<p>Equivalent Python:</p>
+<pre><code class="language-python">import nadi
+
+net = nadi.Network.from_str("a -&gt; b\nc -&gt; b")
+for node in net.nodes:
+    out = node.output()
+	if out is None:
+	    continue
+    print(f"{node.INDEX} -&gt; {out.INDEX}")
+</code></pre>
+<p>Here the code for python is longer because it is general purpose and doesn’t have the syntax tailored for network analysis like with Nadi Task System.</p>
+<h2 id="example-2"><a class="header" href="#example-2">Example 2</a></h2>
+<p>If we had to check for an attribute, then it becomes even more complicated.</p>
+<pre><code class="language-task">node(somevar?) somefunc(somevar)
+</code></pre>
+<pre><code class="language-python">import nadi
+import nadi.functions as fn
+
+net = nadi.Network.from_str("a -&gt; b\nc -&gt; b")
+for node in net.nodes():
+	try:
+	    fn.node.somefun(node, node.somevar)
+	except AttributeError:
+	    continue
+</code></pre>
+<p>In case of multiple variables being used, the <code>AttributeError</code> might catch all of them, further fine tuning in python could make the code far longer than in nadi.</p>
+<h1 id="combining-the-power-of-python-and-task-system"><a class="header" href="#combining-the-power-of-python-and-task-system">Combining the power of python and Task System</a></h1>
+<p>You can combine the power of python with task system using the <code>command</code> function from Nadi. Basically, you write your logic that cannot be written in nadi in python, you can use <code>nadi-py</code> if you need to parse network files, load attributes or call any other nadi functions. And you can pass the results of the python script at the end by simply printing it to the standard output.</p>
+<p>Future work is under consideration to have a tight couple between the python and nadi system.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="executable-plugins"><a class="header" href="#executable-plugins">Executable Plugins</a></h1>
 <p>Executable plugins are programs that can be called from terminal. The <a href="plugin-dev/../plugins/command.html#node.command">node <code>command</code> function</a>, <a href="plugin-dev/../plugins/command.html#network.command">network <code>command</code> function</a> and their families in the <a href="plugin-dev/../plugins/command.html"><code>command</code> plugin</a> have the capacity to run external programs through the command line.</p>
 <p>The inputs to the program is given through the command line arguments, while the output of the programs are read through the standard output of the program. This can be used to call different/same commands for nodes with arguments dependent on their attributes.</p>
@@ -3848,7 +4189,7 @@ Current time is {%H} hour  {%M} minutes.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-Current time is 00 hour  40 minutes.
+Current time is 16 hour  41 minutes.
 </code></pre>
 <h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
 <p>Variables can be chained in an optional way, so the first one that’s

@@ -189,9 +189,9 @@ missouri -&gt; "lower-mississippi"
 arkansas -&gt; "lower-mississippi"
 red -&gt; "lower-mississippi"
 </code></pre>
-<p>The given network can be visualized using <code>svg_save</code> function.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span><span class="boring">network command("mkdir -p output")
+<p>The given network can be loaded and visualized using <code>svg_save</code> function.</p>
+<pre><code class="language-task">network load_file("./data/mississippi.net")
+<span class="boring">network command("mkdir -p output")
 </span>network svg_save(
    "./output/network-mississippi.svg",
 	label="[{INDEX}] {_NAME:repl(-, ):case(title)}",
@@ -229,7 +229,7 @@ network svg_save(
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../intro/attrs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../intro/expression.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -243,7 +243,7 @@ network svg_save(
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../intro/attrs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../intro/expression.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
