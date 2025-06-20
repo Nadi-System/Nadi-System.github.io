@@ -173,7 +173,8 @@
 <p>The inputs to the program is given through the command line arguments, while the output of the programs are read through the standard output of the program. This can be used to call different/same commands for nodes with arguments dependent on their attributes.</p>
 <p>And the output from the programs are taken by reading their stdout (standard output). Any lines starting from <code>nadi:var:</code> (prefix) is considered a communication attempt with Nadi. Currently, you can set attribute values by providing <code>key=val</code> pairs after the prefix. The node function will set it for current node, and network function will set it for the network. Furthermore, in network function, you can add one more section after prefix to set node attributes. For example, <code>nadi:var:node1:value=12</code> will set the <code>value</code> attribute to <code>12</code> in the node named <code>node1</code> in the current network.</p>
 <p>The executable plugin or commands are language agnostic, as long as the command is available to run from the parent shell they will be run.</p>
-<p>The following section shows example programs written in different languages that can interact with nadi in this way.</p>
+<p>To learn how to write code in your language to parse command line arguments refer to the <a href="https://en.wikipedia.org/wiki/Command-line_argument_parsing">Wikipedia page on Command Line Arguments</a></p>
+<p>The following section shows example programs written in python and R that can interact with nadi in this way.</p>
 <h2 id="python"><a class="header" href="#python">Python</a></h2>
 <p>Here is an example python script that can be called from nadi for each node. This script just reads a CSV file and passes the attributes to nadi, but more complicated programs can be written by the users.</p>
 <p>First part is importing libraries and getting the arguments from nadi. The code below reads one string as a commandline argument and saves that into <code>station</code> variable.</p>
@@ -238,7 +239,7 @@ print(args)
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../python.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../python/examples.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -252,7 +253,7 @@ print(args)
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../python.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../python/examples.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 

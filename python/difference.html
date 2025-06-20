@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Cross Context Functions and Variables - Network Analysis and Data Integration (NADI)</title>
+        <title>Differences with Task System - Network Analysis and Data Integration (NADI)</title>
 
 
         <!-- Custom HTML head -->
@@ -168,101 +168,54 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="cross-context-functions-and-variables"><a class="header" href="#cross-context-functions-and-variables">Cross Context Functions and Variables</a></h1>
-<p>You can access variable and call functions based on their default context (e.g. node variable/function in a node task). Additionally, you can also access the variables or call functions in select few other context.</p>
-<p>By default, if a function is not available, node/network task calls the environment function of the same name.</p>
-<p>For example, here the <code>sum</code> and <code>array</code> functions are environment functions, while the <code>count</code> is a network function. When you use Nadi IDE, it’ll show you which function is actually being called at the top of the editor.</p>
-<pre><code class="language-task">network load_str("a-&gt;b")
-network sum(array(count(), 1))
+                        <h1 id="differences-with-task-system"><a class="header" href="#differences-with-task-system">Differences with Task System</a></h1>
+<p>The difference from Task system is that now we use python syntax and the python functions. The environment from task system is no longer available, and the node functions are not automatically run in a loop.</p>
+<p>We lose the advantages brought by the Domain Specific Programming Language, while gaining the flexibility and the well developed libraries of the python language.</p>
+<p>Some examples showing how you’d have to write python codes from equivalent examples in the book are shown below.</p>
+<h2 id="example-1-looping-through-the-nodes"><a class="header" href="#example-1-looping-through-the-nodes">Example 1: looping through the nodes</a></h2>
+<pre><code class="language-task">network load_str("a -&gt; b\nc -&gt; b")
+node(output._?) echo(env.render("{i} -&gt; {o}", i=node.INDEX, o=output.INDEX))
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">3
+<pre><code class="language-output">1 -&gt; 0
+2 -&gt; 0
 </code></pre>
-<p>Besides this, you can manually call cross context variable/functions in the following ways:</p>
-<h2 id="env-and-network-variablesfunctions"><a class="header" href="#env-and-network-variablesfunctions">Env and Network Variables/Functions</a></h2>
-<p>You can use <code>env</code> and <code>network</code> variables anywhere in the task system with the dot syntax.</p>
-<pre><code class="language-task"><span class="boring"> network load_str("a-&gt;b")
-</span>env.var = 12;
-network.sth = true;
+<p>Equivalent Python:</p>
+<pre><code class="language-python">import nadi
 
-env render("this is {x}", x = network.sth)
-network str(env.var)
-node array(network.sth, env.var, node.NAME)
+net = nadi.Network.from_str("a -&gt; b\nc -&gt; b")
+for node in net.nodes:
+    out = node.output()
+	if out is None:
+	    continue
+    print(f"{node.INDEX} -&gt; {out.INDEX}")
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">"this is true"
-"12"
-{
-  b = [true, 12, "b"],
-  a = [true, 12, "a"]
-}
+<p>Here the code for python is longer because it is general purpose and doesn’t have the syntax tailored for network analysis like with Nadi Task System.</p>
+<h2 id="example-2-skip-execution-when-variable-is-absent"><a class="header" href="#example-2-skip-execution-when-variable-is-absent">Example 2: Skip execution when variable is absent</a></h2>
+<p>If we had to check for an attribute, then it becomes even more complicated.</p>
+<pre><code class="language-task">node(somevar?) somefunc(somevar)
 </code></pre>
-<p>Similary, env and network functions can be called anywhere. These functions cannot be mutable functions (change network internally).</p>
-<p>Taking the previous example, if we use env function <code>count</code>, we get an error as the function arguments are different.</p>
-<pre><code class="language-task">network load_str("a-&gt;b")
-node network.count()
-network sum(array(env.count(), 1))
+<pre><code class="language-python">import nadi
+import nadi.functions as fn
+
+net = nadi.Network.from_str("a -&gt; b\nc -&gt; b")
+for node in net.nodes():
+	try:
+	    fn.node.somefun(node, node.somevar)
+	except AttributeError:
+	    continue
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">{
-  b = 2,
-  a = 2
-}
-Error in function count: Argument 1 (vars [&amp; [bool]]) is required
-</code></pre>
-<h2 id="node-variablesfunctions"><a class="header" href="#node-variablesfunctions">Node Variables/Functions</a></h2>
-<p>You can use <code>node</code>, <code>inputs</code>, <code>output</code> and <code>nodes</code> keywords to access node variables and functions from different contexts. <code>nodes</code> is valid in all tasks, while the other 3 are only valid in a node task and refer to the current node, input nodes and output node respectively.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>env count(nodes._)
-node inputs.NAME
-</code></pre>
-<p>Results:</p>
-<pre><code class="language-output">7
-{
-  lower-mississippi = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"],
-  upper-mississippi = [],
-  missouri = [],
-  arkansas = [],
-  red = [],
-  ohio = ["tenessee"],
-  tenessee = []
-}
-</code></pre>
-<p>You can call node functions not just for the node in the context, but also for input nodes, and output node:</p>
-<p>Please note that the root node (outlet) of the network doesn’t have output node, so we need to skip that, which can be done through the <code>output._?</code> which is checking for the dummy variable <code>_</code> in <code>output</code>, which is true if the node has an output.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node[tenessee -&gt; "lower-mississippi"] inputs.render("{_NAME}")
-node[tenessee -&gt; "lower-mississippi"](output._?) output.render("{_NAME}")
-</code></pre>
-<p>Results:</p>
-<pre><code class="language-output">{
-  tenessee = [],
-  ohio = ["tenessee"],
-  lower-mississippi = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"]
-}
-{
-  tenessee = "ohio",
-  ohio = "lower-mississippi"
-}
-</code></pre>
-<p>You can also use <code>nodes</code> keyword to call the function on each node, it can be used anywhere, but is useful for env and network tasks.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>
-env nodes.render("Node [{INDEX}] {_NAME}")
-</code></pre>
-<p>Results:</p>
-<pre><code class="language-output">["Node [0] lower-mississippi", "Node [1] upper-mississippi", "Node [2] missouri", "Node [3] arkansas", "Node [4] red", "Node [5] ohio", "Node [6] tenessee"]
-</code></pre>
+<p>In case of multiple variables being used, the <code>AttributeError</code> might catch all of them, further fine tuning in python could make the code far longer than in nadi.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../intro/network-func.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../python.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../intro/plugins.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../python/plugins.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -272,11 +225,11 @@ env nodes.render("Node [{INDEX}] {_NAME}")
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../intro/network-func.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../python.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../intro/plugins.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../python/plugins.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

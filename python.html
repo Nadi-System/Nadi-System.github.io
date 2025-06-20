@@ -183,43 +183,6 @@ import nadi.functions as fn
 net = nadi.Network.from_str("a -&gt; b")
 fn.network.svg_save(net, "test.svg")
 </code></pre>
-<p>The difference from Task system is that now we use python syntax and the python functions. The environment from task system is no longer available, and the node functions are not automatically run in a loop.</p>
-<p>We lose the advantages brought by the Domain Specific Programming Language, while gaining the flexibility and the well developed libraries of the python language.</p>
-<p>To use this book from python, you just have to change the syntax, some examples are:</p>
-<h2 id="example-1"><a class="header" href="#example-1">Example 1</a></h2>
-<pre><code class="language-task">network load_str("a -&gt; b\nc -&gt; b")
-node(output._?) echo(env.render("{i} -&gt; {o}", i=node.INDEX, o=output.INDEX))
-</code></pre>
-<p>Results:</p>
-<pre><code class="language-output">1 -&gt; 0
-2 -&gt; 0
-</code></pre>
-<p>Equivalent Python:</p>
-<pre><code class="language-python">import nadi
-
-net = nadi.Network.from_str("a -&gt; b\nc -&gt; b")
-for node in net.nodes:
-    out = node.output()
-	if out is None:
-	    continue
-    print(f"{node.INDEX} -&gt; {out.INDEX}")
-</code></pre>
-<p>Here the code for python is longer because it is general purpose and doesn’t have the syntax tailored for network analysis like with Nadi Task System.</p>
-<h2 id="example-2"><a class="header" href="#example-2">Example 2</a></h2>
-<p>If we had to check for an attribute, then it becomes even more complicated.</p>
-<pre><code class="language-task">node(somevar?) somefunc(somevar)
-</code></pre>
-<pre><code class="language-python">import nadi
-import nadi.functions as fn
-
-net = nadi.Network.from_str("a -&gt; b\nc -&gt; b")
-for node in net.nodes():
-	try:
-	    fn.node.somefun(node, node.somevar)
-	except AttributeError:
-	    continue
-</code></pre>
-<p>In case of multiple variables being used, the <code>AttributeError</code> might catch all of them, further fine tuning in python could make the code far longer than in nadi.</p>
 <h1 id="combining-the-power-of-python-and-task-system"><a class="header" href="#combining-the-power-of-python-and-task-system">Combining the power of python and Task System</a></h1>
 <p>You can combine the power of python with task system using the <code>command</code> function from Nadi. Basically, you write your logic that cannot be written in nadi in python, you can use <code>nadi-py</code> if you need to parse network files, load attributes or call any other nadi functions. And you can pass the results of the python script at the end by simply printing it to the standard output.</p>
 <p>Future work is under consideration to have a tight couple between the python and nadi system.</p>
@@ -232,7 +195,7 @@ for node in net.nodes():
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="plugin-dev/exe-plugins.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="python/difference.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -246,7 +209,7 @@ for node in net.nodes():
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="plugin-dev/exe-plugins.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="python/difference.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

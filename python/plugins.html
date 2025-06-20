@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Cross Context Functions and Variables - Network Analysis and Data Integration (NADI)</title>
+        <title>Plugins - Network Analysis and Data Integration (NADI)</title>
 
 
         <!-- Custom HTML head -->
@@ -168,101 +168,97 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="cross-context-functions-and-variables"><a class="header" href="#cross-context-functions-and-variables">Cross Context Functions and Variables</a></h1>
-<p>You can access variable and call functions based on their default context (e.g. node variable/function in a node task). Additionally, you can also access the variables or call functions in select few other context.</p>
-<p>By default, if a function is not available, node/network task calls the environment function of the same name.</p>
-<p>For example, here the <code>sum</code> and <code>array</code> functions are environment functions, while the <code>count</code> is a network function. When you use Nadi IDE, it’ll show you which function is actually being called at the top of the editor.</p>
-<pre><code class="language-task">network load_str("a-&gt;b")
-network sum(array(count(), 1))
-</code></pre>
-<p>Results:</p>
-<pre><code class="language-output">3
-</code></pre>
-<p>Besides this, you can manually call cross context variable/functions in the following ways:</p>
-<h2 id="env-and-network-variablesfunctions"><a class="header" href="#env-and-network-variablesfunctions">Env and Network Variables/Functions</a></h2>
-<p>You can use <code>env</code> and <code>network</code> variables anywhere in the task system with the dot syntax.</p>
-<pre><code class="language-task"><span class="boring"> network load_str("a-&gt;b")
-</span>env.var = 12;
-network.sth = true;
+                        <h1 id="plugins"><a class="header" href="#plugins">Plugins</a></h1>
+<p>Not only can you use <code>nadi-py</code> to write network based algorithms in python, you can also use it to write executable plugins that you can use to run analysis in python and feed it back to nadi system.</p>
+<p>First thing to say about that is, you don’t need <code>nadi-py</code> for writing python plugins, as they are run as a normal python scripts.</p>
+<h2 id="example-without-using-nadi-py"><a class="header" href="#example-without-using-nadi-py">Example without using nadi-py</a></h2>
+<p>Here is an example task that calls python using the <code>command</code> function:</p>
+<pre><code class="language-task">network load_file("scioto.network")
 
-env render("this is {x}", x = network.sth)
-network str(env.var)
-node array(network.sth, env.var, node.NAME)
+# load average streamflow from the csv file
+# containing timeseries using python
+node command("python area-and-streamflow.py {_NAME}")
+
+# this just prints the attributes in csv format.
+network print_attr_csv("INDEX", "area", "streamflow")
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">"this is true"
-"12"
-{
-  b = [true, 12, "b"],
-  a = [true, 12, "a"]
-}
+<p>Here the <code>command</code> function takes a string template, renders it and runs it as a shell command for each node.</p>
+<p>Our python script should have a way to read that node’s name that we passed to the python command.</p>
+<pre><code class="language-python">import sys
+import pandas as pd
+
+try:
+    station = sys.argv[1]
+except IndexError:
+    print("Give station")
+    exit(1)
+
+df = pd.read_csv(f"data/streamflow/{station}.csv", header=None)
+sf = df.iloc[:, 4]
+sf.index = pd.to_datetime(df.iloc[:, 2])
+daily = sf.resample('1d').mean()
+counts = daily.groupby(daily.index.year).count()
+counts.index.name = "datetime"
+daily.index.name = "datetime"
+annual = daily.groupby(daily.index.year).mean().loc[counts &gt; 300]
+
+print("nadi:var:sf_mean=", float(daily.mean()))
+
+for year, flow in annual.items():
+    print(f"nadi:var:sf_year_{year}={flow}")
 </code></pre>
-<p>Similary, env and network functions can be called anywhere. These functions cannot be mutable functions (change network internally).</p>
-<p>Taking the previous example, if we use env function <code>count</code>, we get an error as the function arguments are different.</p>
-<pre><code class="language-task">network load_str("a-&gt;b")
-node network.count()
-network sum(array(env.count(), 1))
+<p>Here the line <code>sys.argv[1]</code> reads the argument from command line (node’s name in this case). And reads the data for that node. The ouput is printed with prefix <code>nadi:var:</code> which tells nadi to load as <code>key=val</code> pair for that node.</p>
+<h2 id="example-using-nadi-py"><a class="header" href="#example-using-nadi-py">Example using nadi-py</a></h2>
+<p>The same example can be written using <code>nadi-py</code> so that the execution is very short (as it is being run as a network function instead of node function; <code>command</code> is a slow function as a new shell instance has to be created every time it is invoked).</p>
+<p>Here we use the <code>command</code> network function and pass the network file as input. If your network has changed you can use <code>save_file</code> <code>network</code> function to save the network as a text file and then pass that instead.</p>
+<pre><code class="language-task">network load_file("scioto.network")
+
+# load average streamflow from the csv file
+# containing timeseries using python
+network command("python area-and-streamflow.py scioto.network")
+
+# this just prints the attributes in csv format.
+network print_attr_csv("INDEX", "area", "streamflow")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">{
-  b = 2,
-  a = 2
-}
-Error in function count: Argument 1 (vars [&amp; [bool]]) is required
+<p>The corresponding python script now will look like this:</p>
+<pre><code class="language-python">import sys
+import pandas as pd
+import nadi
+
+try:
+    network = sys.argv[1]
+except IndexError:
+    print("Give station")
+    exit(1)
+
+for node in nadi.Network(network).nodes():
+	station = node.NAME
+	df = pd.read_csv(f"data/streamflow/{station}.csv", header=None)
+	sf = df.iloc[:, 4]
+	sf.index = pd.to_datetime(df.iloc[:, 2])
+	daily = sf.resample('1d').mean()
+	counts = daily.groupby(daily.index.year).count()
+	counts.index.name = "datetime"
+	daily.index.name = "datetime"
+	annual = daily.groupby(daily.index.year).mean().loc[counts &gt; 300]
+
+	print(f"nadi:var:{station}:sf_mean=", float(daily.mean()))
+
+	for year, flow in annual.items():
+		print(f"nadi:var:{station}:sf_year_{year}={flow}")
 </code></pre>
-<h2 id="node-variablesfunctions"><a class="header" href="#node-variablesfunctions">Node Variables/Functions</a></h2>
-<p>You can use <code>node</code>, <code>inputs</code>, <code>output</code> and <code>nodes</code> keywords to access node variables and functions from different contexts. <code>nodes</code> is valid in all tasks, while the other 3 are only valid in a node task and refer to the current node, input nodes and output node respectively.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>env count(nodes._)
-node inputs.NAME
-</code></pre>
-<p>Results:</p>
-<pre><code class="language-output">7
-{
-  lower-mississippi = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"],
-  upper-mississippi = [],
-  missouri = [],
-  arkansas = [],
-  red = [],
-  ohio = ["tenessee"],
-  tenessee = []
-}
-</code></pre>
-<p>You can call node functions not just for the node in the context, but also for input nodes, and output node:</p>
-<p>Please note that the root node (outlet) of the network doesn’t have output node, so we need to skip that, which can be done through the <code>output._?</code> which is checking for the dummy variable <code>_</code> in <code>output</code>, which is true if the node has an output.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node[tenessee -&gt; "lower-mississippi"] inputs.render("{_NAME}")
-node[tenessee -&gt; "lower-mississippi"](output._?) output.render("{_NAME}")
-</code></pre>
-<p>Results:</p>
-<pre><code class="language-output">{
-  tenessee = [],
-  ohio = ["tenessee"],
-  lower-mississippi = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"]
-}
-{
-  tenessee = "ohio",
-  ohio = "lower-mississippi"
-}
-</code></pre>
-<p>You can also use <code>nodes</code> keyword to call the function on each node, it can be used anywhere, but is useful for env and network tasks.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>
-env nodes.render("Node [{INDEX}] {_NAME}")
-</code></pre>
-<p>Results:</p>
-<pre><code class="language-output">["Node [0] lower-mississippi", "Node [1] upper-mississippi", "Node [2] missouri", "Node [3] arkansas", "Node [4] red", "Node [5] ohio", "Node [6] tenessee"]
-</code></pre>
+<p>Here we load the network using <code>nadi-py</code>, and then loop through the node, and pass the variables back to nadi through stdout. We have to pass the node names with the <code>nadi:var:</code> as this is being run for the whole network. Without the node name, it’ll take the <code>key=val</code> pair as network attribute.</p>
+<p>This should allow users to have a lot of flexibility in using python to do complex analysis and get the results back into nadi directly. You can also save the results of the python script into a file, and check if the file exists before running the command from nadi to save the redundant computations.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../intro/network-func.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../python/difference.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../intro/plugins.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../python/examples.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -272,11 +268,11 @@ env nodes.render("Node [{INDEX}] {_NAME}")
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../intro/network-func.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../python/difference.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../intro/plugins.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../python/examples.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

@@ -172,13 +172,30 @@
 <p>This section contains a brief explanation of core concepts.</p>
 <p>The main concepts that you need to know are:</p>
 <ul>
-<li><strong>Attributes</strong> are values, it can be float, integer, boolean, strings, or list of attributes, or a map of attributes (key=value),</li>
-<li><strong>Nodes</strong> are points in the network, they can have attributes, input nodes and an output node,</li>
-<li><strong>Network</strong> is a collection of nodes, network can also have attributes, Network used in the Nadi system can have only one outlet, so a ‘ROOT’ node is added if there are multiple outlet. And loading a network that is not a directed tree is undefined behaviour.</li>
-<li><strong>Expression</strong> is something that can be evaluated or executed, it consists of literal values (attributes), variables (node, network, env variables that could hold attributes), function calls, or a mathmatical or logical operation.</li>
-<li><strong>Functions</strong> in nadi are of 3 types, env functions are normal functions that take values and run, network functions take values and run on the network, while node functions run at each node (they also provide a way to subset which nodes to run it on).</li>
-<li><strong>Task</strong> is an execution body of the task system. It can be of env, network or node type. It can be conditional (If-Else) or loop (While) consisting of more tasks inside it. Task can assign values to the env/network/node attributes, or call mutable functions on the top level.</li>
-<li><strong>String Template</strong>: Some functions take string inputs that are interpreted dynamically to represent different strings based on variables.</li>
+<li>
+<p><strong>Attributes</strong> are values, it can be float, integer, boolean, strings, or list of attributes, or a map of attributes (key=value),</p>
+</li>
+<li>
+<p><strong>Nodes</strong> are points in the network, they can have attributes, input nodes and an output node,</p>
+</li>
+<li>
+<p><strong>Network</strong> is a collection of nodes, network can also have attributes, Network used in the Nadi system can have only one outlet, so a ‘ROOT’ node is added if there are multiple outlet. And loading a network that is not a directed tree is undefined behaviour.</p>
+</li>
+<li>
+<p><strong>Expression</strong> is something that can be evaluated or executed, it consists of literal values (attributes), variables (node, network, env variables that could hold attributes), function calls, or a mathmatical or logical operation.</p>
+</li>
+<li>
+<p><strong>Functions</strong> in nadi are of 3 types, env functions are normal functions that take values and run, network functions take values and run on the network, while node functions run at each node (they also provide a way to subset which nodes to run it on).</p>
+</li>
+<li>
+<p><strong>Task</strong> is an execution body of the task system. It can be of env, network or node type. It can be conditional (If-Else) or loop (While) consisting of more tasks inside it. Task can assign values to the env/network/node attributes, or call mutable functions on the top level.</p>
+</li>
+<li>
+<p><strong>String Template</strong>: Some functions take string inputs that are interpreted dynamically to represent different strings based on variables.</p>
+</li>
+<li>
+<p><strong>Plugins</strong> provide the functions used by the nadi task system. There are internal plugins and external plugins. Internal plugins comes with the installation, while external plugins are loaded from dynamic libraries.</p>
+</li>
 </ul>
 <h2 id="keywords"><a class="header" href="#keywords">Keywords</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Keyword</th><th>Description</th></tr></thead><tbody>
