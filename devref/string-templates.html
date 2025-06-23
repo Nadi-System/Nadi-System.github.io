@@ -190,7 +190,7 @@ Current time is {%H} hour  {%M} minutes.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-Current time is 00 hour  10 minutes.
+Current time is 00 hour  02 minutes.
 </code></pre>
 <h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
 <p>Variables can be chained in an optional way, so the first one that’s
@@ -225,7 +225,7 @@ float, upcase will make the string UPPERCASE, etc.);</p>
 <pre><code class="language-stp">Today is {%B %d} of the year {%Y}.
 </code></pre>
 <p>Results (with:  name=John):</p>
-<pre><code class="language-output">Today is June 20 of the year 2025.
+<pre><code class="language-output">Today is June 23 of the year 2025.
 </code></pre>
 <h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
 <p>expressions are lisp expressions that will be evaluated and the
@@ -298,7 +298,7 @@ info on how to use <code>lisp</code> on string template.</p>
 \\latex\{command\}\{with {variable}\}, should work.
 </code></pre>
 <p>Results (with:  command=Error;variable=Var):</p>
-<pre><code class="language-output">more  options on 2025-06-20 and
+<pre><code class="language-output">more  options on 2025-06-23 and
 \latex{command}{with Var}, should work.
 </code></pre>
 <p>This just combined a lot of different things from above:</p>
@@ -352,14 +352,14 @@ now.</p>
 <pre><code class="language-stp">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
 </code></pre>
 <p>Results (with: ):</p>
-<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-06-20
+<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-06-23
 </code></pre>
 <p>But if you are writing a command template to run in bash, then
 it’ll be executed as the syntax is similar.</p>
 <pre><code class="language-task">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-06-20
+<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-06-23
 </code></pre>
 <p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
 
