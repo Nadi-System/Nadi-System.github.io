@@ -567,7 +567,7 @@ network command("julia --version", echo=true)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">$ python --version
-Python 3.13.3
+Python 3.13.5
 
 $ Rscript --version
 Rscript (R) version 4.5.1 (2025-06-13)
@@ -1091,7 +1091,7 @@ I wrote this document on {%A}, exact date: {%Y-%m-%d}.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-I wrote this document on Monday, exact date: 2025-06-23.
+I wrote this document on Wednesday, exact date: 2025-07-02.
 </code></pre>
 <p>With more complicated templates, we would be able to generate
 documents with text and images based on the node attributes as well.</p>
@@ -1338,6 +1338,7 @@ and use the system.</p>
 <p>If you want more details on any of the data structures refer the
 Developer’s references, or the library documentation.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="learn-by-examples"><a class="header" href="#learn-by-examples">Learn by Examples</a></h1>
+<p>For example data download the <a href="./data.zip">zip file here</a></p>
 <div class="table-wrapper"><table><thead><tr><th>Topic</th><th>Learn About</th></tr></thead><tbody>
 <tr><td><a href="./learn-examples/attributes.html">Attributes</a></td><td>Setting and Getting Attributes</td></tr>
 <tr><td><a href="./learn-examples/control.html">Control Flow</a></td><td>Control flow, if, else, while loops etc</td></tr>
@@ -4324,7 +4325,7 @@ Current time is {%H} hour  {%M} minutes.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-Current time is 00 hour  02 minutes.
+Current time is 13 hour  22 minutes.
 </code></pre>
 <h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
 <p>Variables can be chained in an optional way, so the first one that’s
@@ -4359,7 +4360,7 @@ float, upcase will make the string UPPERCASE, etc.);</p>
 <pre><code class="language-stp">Today is {%B %d} of the year {%Y}.
 </code></pre>
 <p>Results (with:  name=John):</p>
-<pre><code class="language-output">Today is June 23 of the year 2025.
+<pre><code class="language-output">Today is July 02 of the year 2025.
 </code></pre>
 <h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
 <p>expressions are lisp expressions that will be evaluated and the
@@ -4432,7 +4433,7 @@ info on how to use <code>lisp</code> on string template.</p>
 \\latex\{command\}\{with {variable}\}, should work.
 </code></pre>
 <p>Results (with:  command=Error;variable=Var):</p>
-<pre><code class="language-output">more  options on 2025-06-23 and
+<pre><code class="language-output">more  options on 2025-07-02 and
 \latex{command}{with Var}, should work.
 </code></pre>
 <p>This just combined a lot of different things from above:</p>
@@ -4486,14 +4487,14 @@ now.</p>
 <pre><code class="language-stp">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
 </code></pre>
 <p>Results (with: ):</p>
-<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-06-23
+<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-07-02
 </code></pre>
 <p>But if you are writing a command template to run in bash, then
 it’ll be executed as the syntax is similar.</p>
 <pre><code class="language-task">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-06-23
+<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-07-02
 </code></pre>
 <p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tables"><a class="header" href="#tables">Tables</a></h1>
