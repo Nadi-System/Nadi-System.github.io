@@ -172,19 +172,28 @@
 <h2 id="env.render"><a class="header" href="#env.render">render</a></h2>
 <pre><code class="language-sig">env render.render(
     template: '&amp; Template',
-    **keyval,
-    safe: 'bool' = false
+    safe: 'bool' = false,
+    **keyval
 )
 </code></pre>
 <h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
 <ul>
 <li><code>template: '&amp; Template'</code> =&gt; String template to render</li>
-<li><code>**keyval</code> =&gt;</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
+<li><code>**keyval</code> =&gt;</li>
 </ul>
 <p>Render the template based on the node attributes</p>
 <p>For more details on the template system. Refer to the String
 Template section of the NADI book.</p>
+<pre><code class="language-task">env assert_eq(render("abc {_x}", x="ab"), "abc ab")
+env assert_eq(render("abc {x}", x=23), "abc 23")
+</code></pre>
+<p>If safe parameter is true, then it doesn’t error out even if
+the variable is not present, and will just return the original
+template. By default it errors out if there are any variables
+in the template without a value.</p>
+<pre><code class="language-task">env assert_eq(render("abc {x}", safe=true), "abc {x}")
+</code></pre>
 <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
 <h2 id="node.render"><a class="header" href="#node.render">render</a></h2>
 <pre><code class="language-sig">node render.render(template: '&amp; Template', safe: 'bool' = false)
@@ -197,6 +206,10 @@ Template section of the NADI book.</p>
 <p>Render the template based on the node attributes</p>
 <p>For more details on the template system. Refer to the String
 Template section of the NADI book.</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+node.x = 13
+node assert_eq(render("abc {x}"), "abc 13")
+</code></pre>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.render"><a class="header" href="#network.render">render</a></h2>
 <pre><code class="language-sig">network render.render(template: '&amp; Template', safe: 'bool' = false)
@@ -207,6 +220,9 @@ Template section of the NADI book.</p>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 </ul>
 <p>Render from network attributes</p>
+<pre><code class="language-task">network.x = 13
+network assert_eq(render("abc {x}"), "abc 13")
+</code></pre>
 <h2 id="network.render_nodes"><a class="header" href="#network.render_nodes">render_nodes</a></h2>
 <pre><code class="language-sig">network render.render_nodes(
     template: '&amp; Template',
@@ -221,6 +237,10 @@ Template section of the NADI book.</p>
 <li><code>join: '&amp; str' = "\n"</code> =&gt; String to join the render results</li>
 </ul>
 <p>Render each node of the network and combine to same variable</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+node.x = INDEX + 1
+network assert_eq(render_nodes("abc {x}"), "abc 1\nabc 2")
+</code></pre>
 <h2 id="network.render_template"><a class="header" href="#network.render_template">render_template</a></h2>
 <pre><code class="language-sig">network render.render_template(template: 'PathBuf')
 </code></pre>

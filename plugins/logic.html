@@ -183,6 +183,16 @@
 <li><code>iffalse: 'Attribute'</code> =&gt; Output if <code>cond</code> is false</li>
 </ul>
 <p>Simple if else condition</p>
+<p>This is similar to using the <code>if-else</code> expression, the
+difference being the condition is relaxed. For example, for
+<code>if-else</code> the condition should be true or false, but for this
+function, the attribute can be anything that can be cast as
+true or false. (e.g. 1 =&gt; true, 0 =&gt; false)</p>
+<pre><code class="language-task">env assert_eq(ifelse(true, 1, 2), 1)
+env assert_eq(ifelse(false, 1, 2), 2)
+env assert_eq(ifelse(100.0, 1, 2), 1)
+env assert_eq(ifelse(true, 1, 2), if (true) {1} else {2})
+</code></pre>
 <h2 id="env.gt"><a class="header" href="#env.gt">gt</a></h2>
 <pre><code class="language-sig">env logic.gt(a: '&amp; Attribute', b: '&amp; Attribute')
 </code></pre>
@@ -192,6 +202,9 @@
 <li><code>b: '&amp; Attribute'</code> =&gt; second attribute</li>
 </ul>
 <p>Greater than check</p>
+<pre><code class="language-task">env assert_eq(gt(1, 2), 1 &gt; 2)
+env assert_eq(gt(1.0, 20), 1.0 &gt; 20)
+</code></pre>
 <h2 id="env.lt"><a class="header" href="#env.lt">lt</a></h2>
 <pre><code class="language-sig">env logic.lt(a: '&amp; Attribute', b: '&amp; Attribute')
 </code></pre>
@@ -200,7 +213,10 @@
 <li><code>a: '&amp; Attribute'</code> =&gt; first attribute</li>
 <li><code>b: '&amp; Attribute'</code> =&gt; second attribute</li>
 </ul>
-<p>Greater than check</p>
+<p>Less than check</p>
+<pre><code class="language-task">env assert_eq(lt(1, 2), 1 &lt; 2)
+env assert_eq(lt(1.0, 20), 1.0 &lt; 20)
+</code></pre>
 <h2 id="env.eq"><a class="header" href="#env.eq">eq</a></h2>
 <pre><code class="language-sig">env logic.eq(a: '&amp; Attribute', b: '&amp; Attribute')
 </code></pre>
@@ -209,7 +225,11 @@
 <li><code>a: '&amp; Attribute'</code> =&gt; first attribute</li>
 <li><code>b: '&amp; Attribute'</code> =&gt; second attribute</li>
 </ul>
-<p>Greater than check</p>
+<p>Equality than check</p>
+<pre><code class="language-task">env assert_eq(eq(1, 2), 1 == 2)
+env assert_eq(eq(2.0, 2.0), 2.0 == 2.0)
+env assert_eq(eq(2.0, 2), 2.0 == 2)
+</code></pre>
 <h2 id="env.and"><a class="header" href="#env.and">and</a></h2>
 <pre><code class="language-sig">env logic.and(*conds)
 </code></pre>
@@ -218,6 +238,11 @@
 <li><code>*conds</code> =&gt; List of attributes that can be cast to bool</li>
 </ul>
 <p>Boolean and</p>
+<p>Similar to the operator <code>&amp;</code> but the values are cast to boolean</p>
+<pre><code class="language-task">env assert_eq(and(true, true), true)
+env assert_eq(and(true, false), false)
+env assert_eq(and(true, false), false &amp; true)
+</code></pre>
 <h2 id="env.or"><a class="header" href="#env.or">or</a></h2>
 <pre><code class="language-sig">env logic.or(*conds)
 </code></pre>
@@ -226,6 +251,11 @@
 <li><code>*conds</code> =&gt; List of attributes that can be cast to bool</li>
 </ul>
 <p>boolean or</p>
+<p>Similar to the operator <code>|</code> but the values are cast to boolean</p>
+<pre><code class="language-task">env assert_eq(or(true, false), true)
+env assert_eq(or(false, false), false)
+env assert_eq(or(true, false), false | true)
+</code></pre>
 <h2 id="env.not"><a class="header" href="#env.not">not</a></h2>
 <pre><code class="language-sig">env logic.not(cond: 'bool')
 </code></pre>
@@ -234,6 +264,12 @@
 <li><code>cond: 'bool'</code> =&gt; attribute that can be cast to bool</li>
 </ul>
 <p>boolean not</p>
+<p>Similar to the operator <code>!</code> but the values are cast to boolean</p>
+<pre><code class="language-task">env assert_eq(not(true), false)
+env assert_eq(not(false), true)
+env assert_eq(not(true), !true)
+env assert_eq(not(false), !false)
+</code></pre>
 <h2 id="env.all"><a class="header" href="#env.all">all</a></h2>
 <pre><code class="language-sig">env logic.all(vars: '&amp; [bool]')
 </code></pre>
@@ -242,6 +278,11 @@
 <li><code>vars: '&amp; [bool]'</code> =&gt;</li>
 </ul>
 <p>check if all of the bool are true</p>
+<pre><code class="language-task">env assert_eq(all([true]), true)
+env assert_eq(all([false, true]), false)
+env assert_eq(all([true, true]), true)
+env assert_eq(all([false]), false)
+</code></pre>
 <h2 id="env.any"><a class="header" href="#env.any">any</a></h2>
 <pre><code class="language-sig">env logic.any(vars: '&amp; [bool]')
 </code></pre>
@@ -250,6 +291,11 @@
 <li><code>vars: '&amp; [bool]'</code> =&gt;</li>
 </ul>
 <p>check if any of the bool are true</p>
+<pre><code class="language-task">env assert_eq(any([true]), true)
+env assert_eq(any([false, true]), true)
+env assert_eq(any([false, false]), false)
+env assert_eq(any([false]), false)
+</code></pre>
 
                     </main>
 

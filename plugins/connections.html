@@ -191,6 +191,9 @@ file.</p>
 <p>Load the given file into the network</p>
 <p>This replaces the current network with the one loaded from the
 file.</p>
+<pre><code class="language-task">network load_str("a -&gt; b");
+env assert_eq(nodes.NAME, ["b", "a"])
+</code></pre>
 <h2 id="network.load_edges"><a class="header" href="#network.load_edges">load_edges</a></h2>
 <pre><code class="language-sig">network connections.load_edges(edges: '&amp; [(String, String)]', append: 'bool' = false)
 </code></pre>
@@ -202,6 +205,9 @@ file.</p>
 <p>Load the given edges into the network</p>
 <p>This replaces the current network with the one loaded from the
 file.</p>
+<pre><code class="language-task">network load_edges([["a", "b"], ["b", "c"]]);
+env assert_eq(nodes.NAME, ["c", "b", "a"])
+</code></pre>
 <h2 id="network.subset"><a class="header" href="#network.subset">subset</a></h2>
 <pre><code class="language-sig">network connections.subset(filter: '&amp; [bool]', keep: 'bool' = true)
 </code></pre>
@@ -211,6 +217,12 @@ file.</p>
 <li><code>keep: 'bool' = true</code> =&gt; Keep the selected nodes (false = removes the selected)</li>
 </ul>
 <p>Take a subset of network by only including the selected nodes</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b-&gt;c");
+node[a-&gt;b].sth = true;
+node[c].sth = false;
+network subset(nodes.sth);
+env assert_eq(nodes.NAME, ["b", "a"])
+</code></pre>
 <h2 id="network.save_file"><a class="header" href="#network.save_file">save_file</a></h2>
 <pre><code class="language-sig">network connections.save_file(
     file: 'PathBuf',
@@ -225,7 +237,7 @@ file.</p>
 <li><code>graphviz: 'bool' = false</code> =&gt; wrap the network into a valid graphviz file</li>
 </ul>
 <p>Save the network into the given file</p>
-<p>For more control on graphviz file writing use
+<p>For more control on graphviz file writing, use
 <code>save_graphviz</code> from <code>graphviz</code> plugin instead.</p>
 
                     </main>

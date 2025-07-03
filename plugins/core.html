@@ -177,6 +177,8 @@
 <li><code>vars: '&amp; [bool]'</code> =&gt;</li>
 </ul>
 <p>Count the number of true values in the array</p>
+<pre><code class="language-task">env assert_eq(count([true, false, true, false]), 2)
+</code></pre>
 <h2 id="env.type_name"><a class="header" href="#env.type_name">type_name</a></h2>
 <pre><code class="language-sig">env core.type_name(value: 'Attribute', recursive: 'bool' = false)
 </code></pre>
@@ -186,6 +188,11 @@
 <li><code>recursive: 'bool' = false</code> =&gt; Recursively check types for array and table</li>
 </ul>
 <p>Type name of the arguments</p>
+<pre><code class="language-task">env assert_eq(type_name(true), "Bool")
+env assert_eq(type_name([true, 12]), "Array")
+env assert_eq(type_name([true, 12], recursive=true), ["Bool", "Integer"])
+env assert_eq(type_name("true"), "String")
+</code></pre>
 <h2 id="env.isna"><a class="header" href="#env.isna">isna</a></h2>
 <pre><code class="language-sig">env core.isna(val: 'f64')
 </code></pre>
@@ -194,6 +201,8 @@
 <li><code>val: 'f64'</code> =&gt;</li>
 </ul>
 <p>check if a float is nan</p>
+<pre><code class="language-task">env assert(isna(nan + 5))
+</code></pre>
 <h2 id="env.isinf"><a class="header" href="#env.isinf">isinf</a></h2>
 <pre><code class="language-sig">env core.isinf(val: 'f64')
 </code></pre>
@@ -202,6 +211,8 @@
 <li><code>val: 'f64'</code> =&gt;</li>
 </ul>
 <p>check if a float is +/- infinity</p>
+<pre><code class="language-task">env assert(isinf(12.0 / 0))
+</code></pre>
 <h2 id="env.float"><a class="header" href="#env.float">float</a></h2>
 <pre><code class="language-sig">env core.float(value: 'Attribute', parse: 'bool' = true)
 </code></pre>
@@ -211,6 +222,9 @@
 <li><code>parse: 'bool' = true</code> =&gt; parse string to float</li>
 </ul>
 <p>make a float from value</p>
+<pre><code class="language-task">env assert_eq(float(5), 5.0)
+env assert_eq(float("5.0"), 5.0)
+</code></pre>
 <h2 id="env.str"><a class="header" href="#env.str">str</a></h2>
 <pre><code class="language-sig">env core.str(value: 'Attribute', quote: 'bool' = false)
 </code></pre>
@@ -220,6 +234,12 @@
 <li><code>quote: 'bool' = false</code> =&gt; quote it if it’s literal string</li>
 </ul>
 <p>make a string from value</p>
+<pre><code class="language-task">env assert_eq(str(nan + 5), "nan")
+env assert_eq(str(2 + 5), "7")
+env assert_eq(str(12.34), "12.34")
+env assert_eq(str("nan + 5"), "nan + 5")
+env assert_eq(str("true", quote=true), "\"true\"")
+</code></pre>
 <h2 id="env.int"><a class="header" href="#env.int">int</a></h2>
 <pre><code class="language-sig">env core.int(
     value: 'Attribute',
@@ -236,6 +256,11 @@
 <li><code>strfloat: 'bool' = false</code> =&gt; parse string first as float before converting to int</li>
 </ul>
 <p>make an int from the value</p>
+<pre><code class="language-task">env assert_eq(int(5.0), 5)
+env assert_eq(int(5.1), 5)
+env assert_eq(int("45"), 45)
+env assert_eq(int("5.0", strfloat=true), 5)
+</code></pre>
 <h2 id="env.array"><a class="header" href="#env.array">array</a></h2>
 <pre><code class="language-sig">env core.array(*attributes)
 </code></pre>
@@ -244,6 +269,8 @@
 <li><code>*attributes</code> =&gt; List of attributes</li>
 </ul>
 <p>make an array from the arguments</p>
+<pre><code class="language-task">env assert_eq(array(5, true), [5, true])
+</code></pre>
 <h2 id="env.attrmap"><a class="header" href="#env.attrmap">attrmap</a></h2>
 <pre><code class="language-sig">env core.attrmap(**attributes)
 </code></pre>
@@ -251,81 +278,105 @@
 <ul>
 <li><code>**attributes</code> =&gt; name and values of attributes</li>
 </ul>
-<p>make an array from the arguments</p>
+<p>make an attrmap from the arguments</p>
+<pre><code class="language-task">env assert_eq(attrmap(val=5), {val=5})
+</code></pre>
+<h2 id="env.json"><a class="header" href="#env.json">json</a></h2>
+<pre><code class="language-sig">env core.json(value: 'Attribute')
+</code></pre>
+<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; attribute to format</li>
+</ul>
+<p>format the attribute as a json string</p>
+<pre><code class="language-task">env assert_eq(json(5), "5")
+env assert_eq(json([5, true]), "[5, true]")
+env assert_eq(json({a=5}), "{\"a\": 5}")
+</code></pre>
 <h2 id="env.append"><a class="header" href="#env.append">append</a></h2>
 <pre><code class="language-sig">env core.append(array: 'Vec &lt; Attribute &gt;', value: 'Attribute')
 </code></pre>
-<h3 id="arguments-9"><a class="header" href="#arguments-9">Arguments</a></h3>
+<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
 <ul>
 <li><code>array: 'Vec &lt; Attribute &gt;'</code> =&gt; List of attributes</li>
 <li><code>value: 'Attribute'</code> =&gt;</li>
 </ul>
 <p>append a value to an array</p>
+<pre><code class="language-task">env assert_eq(append([4], 5), [4, 5])
+</code></pre>
 <h2 id="env.length"><a class="header" href="#env.length">length</a></h2>
 <pre><code class="language-sig">env core.length(value: '&amp; Attribute')
 </code></pre>
-<h3 id="arguments-10"><a class="header" href="#arguments-10">Arguments</a></h3>
+<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
 <ul>
 <li><code>value: '&amp; Attribute'</code> =&gt; Array or a HashMap</li>
 </ul>
 <p>length of an array or hashmap</p>
+<pre><code class="language-task">env assert_eq(length([4, 5]), 2)
+env assert_eq(length({x=4, y=5}), 2)
+</code></pre>
 <h2 id="env.year"><a class="header" href="#env.year">year</a></h2>
 <pre><code class="language-sig">env core.year(value: 'Attribute')
-</code></pre>
-<h3 id="arguments-11"><a class="header" href="#arguments-11">Arguments</a></h3>
-<ul>
-<li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
-</ul>
-<p>year from date/datetime</p>
-<h2 id="env.month"><a class="header" href="#env.month">month</a></h2>
-<pre><code class="language-sig">env core.month(value: 'Attribute')
 </code></pre>
 <h3 id="arguments-12"><a class="header" href="#arguments-12">Arguments</a></h3>
 <ul>
 <li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
 </ul>
-<p>month from date/datetime</p>
-<h2 id="env.day"><a class="header" href="#env.day">day</a></h2>
-<pre><code class="language-sig">env core.day(value: 'Attribute')
+<p>year from date/datetime</p>
+<pre><code class="language-task">env assert_eq(year(1223-12-12), 1223)
+env assert_eq(year(1223-12-12T12:12), 1223)
+env assert_eq(year(1223-12-12 12:12:08), 1223)
+</code></pre>
+<h2 id="env.month"><a class="header" href="#env.month">month</a></h2>
+<pre><code class="language-sig">env core.month(value: 'Attribute')
 </code></pre>
 <h3 id="arguments-13"><a class="header" href="#arguments-13">Arguments</a></h3>
 <ul>
 <li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
 </ul>
-<p>day from date/datetime</p>
-<h2 id="env.min_num"><a class="header" href="#env.min_num">min_num</a></h2>
-<pre><code class="language-sig">env core.min_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(9223372036854775807))
+<p>month from date/datetime</p>
+<pre><code class="language-task">env assert_eq(month(1223-12-14), 12)
+env assert_eq(month(1223-12-14T15:19), 12)
+</code></pre>
+<h2 id="env.day"><a class="header" href="#env.day">day</a></h2>
+<pre><code class="language-sig">env core.day(value: 'Attribute')
 </code></pre>
 <h3 id="arguments-14"><a class="header" href="#arguments-14">Arguments</a></h3>
 <ul>
-<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
-<li><code>start: 'Attribute' = Integer(9223372036854775807)</code> =&gt;</li>
+<li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
 </ul>
-<p>Minimum of the variables</p>
-<p>Starts with integer for type purpose, MAX float is larger than
-max int, so it’ll be incorrect for large numbers</p>
-<h2 id="env.max_num"><a class="header" href="#env.max_num">max_num</a></h2>
-<pre><code class="language-sig">env core.max_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(-9223372036854775808))
+<p>day from date/datetime</p>
+<pre><code class="language-task">env assert_eq(day(1223-12-14), 14)
+env assert_eq(day(1223-12-14T15:19), 14)
+</code></pre>
+<h2 id="env.min_num"><a class="header" href="#env.min_num">min_num</a></h2>
+<pre><code class="language-sig">env core.min_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Float(inf))
 </code></pre>
 <h3 id="arguments-15"><a class="header" href="#arguments-15">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
-<li><code>start: 'Attribute' = Integer(-9223372036854775808)</code> =&gt;</li>
+<li><code>start: 'Attribute' = Float(inf)</code> =&gt;</li>
 </ul>
 <p>Minimum of the variables</p>
-<p>Starts with integer for type purpose, MAX float is larger than
-max int, so it’ll be incorrect for large numbers</p>
-<h2 id="env.min"><a class="header" href="#env.min">min</a></h2>
-<pre><code class="language-sig">env core.min(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute')
+<pre><code class="language-task">env assert_eq(min_num([1, 2, 3]), 1)
+env assert_eq(min_num([1.0, 2, 3]), 1.0)
+env assert_eq(min_num([1, 2, 3], start = 0), 0)
+</code></pre>
+<h2 id="env.max_num"><a class="header" href="#env.max_num">max_num</a></h2>
+<pre><code class="language-sig">env core.max_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Float(-inf))
 </code></pre>
 <h3 id="arguments-16"><a class="header" href="#arguments-16">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
-<li><code>start: 'Attribute'</code> =&gt;</li>
+<li><code>start: 'Attribute' = Float(-inf)</code> =&gt;</li>
 </ul>
 <p>Minimum of the variables</p>
-<h2 id="env.max"><a class="header" href="#env.max">max</a></h2>
-<pre><code class="language-sig">env core.max(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute')
+<pre><code class="language-task">env assert_eq(max_num([1, 2, 3.0]), 3.0)
+env assert_eq(max_num([1.0, 2, 3]), 3)
+env assert_eq(max_num([1, inf, 3], 0), inf)
+</code></pre>
+<h2 id="env.min"><a class="header" href="#env.min">min</a></h2>
+<pre><code class="language-sig">env core.min(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute')
 </code></pre>
 <h3 id="arguments-17"><a class="header" href="#arguments-17">Arguments</a></h3>
 <ul>
@@ -333,85 +384,221 @@ max int, so it’ll be incorrect for large numbers</p>
 <li><code>start: 'Attribute'</code> =&gt;</li>
 </ul>
 <p>Minimum of the variables</p>
+<pre><code class="language-task">env assert_eq(min([1, 2, 3], 100), 1)
+env assert_eq(min([1.0, 2, 3], 100), 1.0)
+env assert_eq(min([1, 2, 3], inf), 1)
+env assert_eq(min(["b", "a", "d"], "zzz"), "a")
+</code></pre>
+<h2 id="env.max"><a class="header" href="#env.max">max</a></h2>
+<pre><code class="language-sig">env core.max(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute')
+</code></pre>
+<h3 id="arguments-18"><a class="header" href="#arguments-18">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>Maximum of the variables</p>
+<pre><code class="language-task">env assert_eq(max([1, 2, 3], -1), 3)
+env assert_eq(max([1.0, 2, 3], -1), 3)
+env assert_eq(max([1, 2, 3], -inf), 3)
+env assert_eq(max(["b", "a", "d"], ""), "d")
+</code></pre>
 <h2 id="env.sum"><a class="header" href="#env.sum">sum</a></h2>
 <pre><code class="language-sig">env core.sum(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(0))
 </code></pre>
-<h3 id="arguments-18"><a class="header" href="#arguments-18">Arguments</a></h3>
+<h3 id="arguments-19"><a class="header" href="#arguments-19">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
 <li><code>start: 'Attribute' = Integer(0)</code> =&gt;</li>
 </ul>
 <p>Sum of the variables</p>
+<p>This function is for numeric attributes. You need to give the
+start attribute so that data type is valid.</p>
+<pre><code class="language-task">env assert_eq(sum([2, 3, 4]), 9)
+env assert_eq(sum([2, 3, 4], start=0.0), 9.0)
+</code></pre>
 <h2 id="env.prod"><a class="header" href="#env.prod">prod</a></h2>
 <pre><code class="language-sig">env core.prod(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(1))
 </code></pre>
-<h3 id="arguments-19"><a class="header" href="#arguments-19">Arguments</a></h3>
+<h3 id="arguments-20"><a class="header" href="#arguments-20">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
 <li><code>start: 'Attribute' = Integer(1)</code> =&gt;</li>
 </ul>
 <p>Product of the variables</p>
+<p>This function is for numerical values/attributes</p>
+<pre><code class="language-task">env assert_eq(prod([1, 2, 3]), 6)
+env assert_eq(prod([1.0, 2, 3]), 6.0)
+</code></pre>
 <h2 id="env.unique_str"><a class="header" href="#env.unique_str">unique_str</a></h2>
 <pre><code class="language-sig">env core.unique_str(vars: 'Vec &lt; String &gt;')
-</code></pre>
-<h3 id="arguments-20"><a class="header" href="#arguments-20">Arguments</a></h3>
-<ul>
-<li><code>vars: 'Vec &lt; String &gt;'</code> =&gt;</li>
-</ul>
-<p>Get a list of unique string values</p>
-<h2 id="env.count_str"><a class="header" href="#env.count_str">count_str</a></h2>
-<pre><code class="language-sig">env core.count_str(vars: 'Vec &lt; String &gt;')
 </code></pre>
 <h3 id="arguments-21"><a class="header" href="#arguments-21">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Vec &lt; String &gt;'</code> =&gt;</li>
 </ul>
+<p>Get a list of unique string values</p>
+<p>The order of the strings returned is not guaranteed</p>
+<pre><code class="language-task">env.uniq = unique_str(["hi", "me", "hi", "you"]);
+env assert_eq(length(uniq), 3)
+</code></pre>
+<h2 id="env.count_str"><a class="header" href="#env.count_str">count_str</a></h2>
+<pre><code class="language-sig">env core.count_str(vars: 'Vec &lt; String &gt;')
+</code></pre>
+<h3 id="arguments-22"><a class="header" href="#arguments-22">Arguments</a></h3>
+<ul>
+<li><code>vars: 'Vec &lt; String &gt;'</code> =&gt;</li>
+</ul>
 <p>Get a count of unique string values</p>
+<pre><code class="language-task">env assert_eq(
+count_str(["Hi", "there", "Deliah", "Hi"]),
+{Hi = 2, there = 1, Deliah=1}
+)
+</code></pre>
 <h2 id="env.concat"><a class="header" href="#env.concat">concat</a></h2>
 <pre><code class="language-sig">env core.concat(*vars, join: '&amp; str' = "")
 </code></pre>
-<h3 id="arguments-22"><a class="header" href="#arguments-22">Arguments</a></h3>
+<h3 id="arguments-23"><a class="header" href="#arguments-23">Arguments</a></h3>
 <ul>
 <li><code>*vars</code> =&gt;</li>
 <li><code>join: '&amp; str' = ""</code> =&gt;</li>
 </ul>
 <p>Concat the strings</p>
+<pre><code class="language-task">env assert_eq(concat("Hello", "World", join=" "), "Hello World")
+</code></pre>
+<h2 id="env.range"><a class="header" href="#env.range">range</a></h2>
+<pre><code class="language-sig">env core.range(start: 'i64', end: 'i64')
+</code></pre>
+<h3 id="arguments-24"><a class="header" href="#arguments-24">Arguments</a></h3>
+<ul>
+<li><code>start: 'i64'</code> =&gt;</li>
+<li><code>end: 'i64'</code> =&gt;</li>
+</ul>
+<p>Generate integer array, end is not included</p>
+<pre><code class="language-task">env assert_eq(range(1, 5), [1, 2, 3, 4])
+</code></pre>
+<h2 id="env.assert"><a class="header" href="#env.assert">assert</a></h2>
+<pre><code class="language-sig">env core.assert(condition: 'bool', note: 'String' = "Condition False")
+</code></pre>
+<h3 id="arguments-25"><a class="header" href="#arguments-25">Arguments</a></h3>
+<ul>
+<li><code>condition: 'bool'</code> =&gt;</li>
+<li><code>note: 'String' = "Condition False"</code> =&gt;</li>
+</ul>
+<p>Assert the condition is true</p>
+<p>Use <code>assert_eq</code>/<code>assert_neq</code> if you are testing equality for
+better error message.</p>
+<pre><code class="language-task">env assert(true)
+</code></pre>
+<h2 id="env.assert_eq"><a class="header" href="#env.assert_eq">assert_eq</a></h2>
+<pre><code class="language-sig">env core.assert_eq(left: 'Attribute', right: 'Attribute')
+</code></pre>
+<h3 id="arguments-26"><a class="header" href="#arguments-26">Arguments</a></h3>
+<ul>
+<li><code>left: 'Attribute'</code> =&gt;</li>
+<li><code>right: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>Assert the two values are equal</p>
+<p>This function is for testing the code, as well as for
+terminating the execution when certain values are not equal</p>
+<pre><code class="language-task">env assert_eq(1, 1)
+env assert_eq(true, 1 &gt; 0)
+env assert_eq("string val", concat("string", " ", "val"))
+</code></pre>
+<h2 id="env.assert_neq"><a class="header" href="#env.assert_neq">assert_neq</a></h2>
+<pre><code class="language-sig">env core.assert_neq(left: 'Attribute', right: 'Attribute')
+</code></pre>
+<h3 id="arguments-27"><a class="header" href="#arguments-27">Arguments</a></h3>
+<ul>
+<li><code>left: 'Attribute'</code> =&gt;</li>
+<li><code>right: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>Assert the two values are not equal</p>
+<p>This function is for testing the code, as well as for
+terminating the execution when certain values are not equal</p>
+<pre><code class="language-task">env assert_neq(1, 1.0)
+env assert_neq(true, 1 &lt; 0)
+env assert_neq("string val", concat("string", "val"))
+</code></pre>
 <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
 <h2 id="node.inputs_count"><a class="header" href="#node.inputs_count">inputs_count</a></h2>
 <pre><code class="language-sig">node core.inputs_count()
 </code></pre>
-<h3 id="arguments-23"><a class="header" href="#arguments-23">Arguments</a></h3>
+<h3 id="arguments-28"><a class="header" href="#arguments-28">Arguments</a></h3>
 <p>Count the number of input nodes in the node</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
+node assert_eq(inputs_count(), length(inputs._))
+</code></pre>
 <h2 id="node.inputs_attr"><a class="header" href="#node.inputs_attr">inputs_attr</a></h2>
 <pre><code class="language-sig">node core.inputs_attr(attr: 'String' = "NAME")
 </code></pre>
-<h3 id="arguments-24"><a class="header" href="#arguments-24">Arguments</a></h3>
+<h3 id="arguments-29"><a class="header" href="#arguments-29">Arguments</a></h3>
 <ul>
 <li><code>attr: 'String' = "NAME"</code> =&gt; Attribute to get from inputs</li>
 </ul>
 <p>Get attributes of the input nodes</p>
+<p>This is equivalent to using the <code>inputs</code> keyword</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
+node assert_eq(inputs_attr("NAME"), inputs.NAME)
+</code></pre>
 <h2 id="node.has_outlet"><a class="header" href="#node.has_outlet">has_outlet</a></h2>
 <pre><code class="language-sig">node core.has_outlet()
 </code></pre>
-<h3 id="arguments-25"><a class="header" href="#arguments-25">Arguments</a></h3>
+<h3 id="arguments-30"><a class="header" href="#arguments-30">Arguments</a></h3>
 <p>Node has an outlet or not</p>
+<p>This is equivalent to using <code>output._?</code>, as <code>_</code> is a dummy
+variable that will always be present in all cases, it being
+absent is because there is no output/outlet of that node.</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
+node assert_eq(has_outlet(), output._?)
+</code></pre>
 <h2 id="node.output_attr"><a class="header" href="#node.output_attr">output_attr</a></h2>
 <pre><code class="language-sig">node core.output_attr(attr: 'String' = "NAME")
 </code></pre>
-<h3 id="arguments-26"><a class="header" href="#arguments-26">Arguments</a></h3>
+<h3 id="arguments-31"><a class="header" href="#arguments-31">Arguments</a></h3>
 <ul>
 <li><code>attr: 'String' = "NAME"</code> =&gt; Attribute to get from inputs</li>
 </ul>
 <p>Get attributes of the output node</p>
+<p>This is equivalent to using the <code>output</code> keyword</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
+node(output._?) assert_eq(output_attr("NAME"), output.NAME)
+</code></pre>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.count"><a class="header" href="#network.count">count</a></h2>
 <pre><code class="language-sig">network core.count(vars: 'Option &lt; Vec &lt; bool &gt; &gt;')
 </code></pre>
-<h3 id="arguments-27"><a class="header" href="#arguments-27">Arguments</a></h3>
+<h3 id="arguments-32"><a class="header" href="#arguments-32">Arguments</a></h3>
 <ul>
 <li><code>vars: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt;</li>
 </ul>
 <p>Count the number of nodes in the network</p>
+<pre><code class="language-task">network assert_eq(count(), 0)
+network load_str("a -&gt; b")
+network assert_eq(count(), 2)
+node.sel = INDEX &lt; 1
+network assert_eq(count(nodes.sel), 1)
+</code></pre>
+<h2 id="network.outlet"><a class="header" href="#network.outlet">outlet</a></h2>
+<pre><code class="language-sig">network core.outlet()
+</code></pre>
+<h3 id="arguments-33"><a class="header" href="#arguments-33">Arguments</a></h3>
+<p>Get the name of the outlet node</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+network assert_eq(outlet(), "b")
+</code></pre>
+<h2 id="network.node_attr"><a class="header" href="#network.node_attr">node_attr</a></h2>
+<pre><code class="language-sig">network core.node_attr(name: 'String', attribute: 'String' = "_")
+</code></pre>
+<h3 id="arguments-34"><a class="header" href="#arguments-34">Arguments</a></h3>
+<ul>
+<li><code>name: 'String'</code> =&gt; name of the node</li>
+<li><code>attribute: 'String' = "_"</code> =&gt; attribute to get</li>
+</ul>
+<p>Get the attr of the provided node</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+network assert_eq(node_attr("a", "NAME"), "a")
+</code></pre>
 
                     </main>
 

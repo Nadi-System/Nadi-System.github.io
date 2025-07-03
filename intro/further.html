@@ -182,6 +182,12 @@ Render the template based on the node attributes
 
 For more details on the template system. Refer to the String
 Template section of the NADI book.
+
+```task
+network load_str("a -&gt; b")
+node.x = 13
+node assert_eq(render("abc {x}"), "abc 13")
+```
 </code></pre>
 <p>Or you can use <code>nadi --fnhelp &lt;function&gt;</code> using the <code>nadi-cli</code>.</p>
 <p>Now that you have the overview of the nadi system’s data

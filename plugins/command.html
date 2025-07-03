@@ -201,6 +201,10 @@ if <code>verbose</code> is true.</p>
 <li>The command cannot be executed,</li>
 <li>The attributes from command’s stdout cannot be parsed properly</li>
 </ul>
+<pre><code class="language-task">network load_str("a -&gt; b");
+node command("echo 'nadi:var:sth={NAME}'");
+node assert_eq(sth, NAME)
+</code></pre>
 <h2 id="node.run"><a class="header" href="#node.run">run</a></h2>
 <pre><code class="language-sig">node command.run(
     command: '&amp; str',
@@ -226,7 +230,7 @@ tasks with input files and output files.</p>
 <h2 id="network.parallel"><a class="header" href="#network.parallel">parallel</a></h2>
 <pre><code class="language-sig">network command.parallel(
     cmd: '&amp; Template',
-    _workers: 'i64' = 4,
+    workers: 'i64' = 16,
     verbose: 'bool' = true,
     echo: 'bool' = false
 )
@@ -234,15 +238,16 @@ tasks with input files and output files.</p>
 <h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
 <ul>
 <li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
-<li><code>_workers: 'i64' = 4</code> =&gt; Number of workers to run in parallel</li>
+<li><code>workers: 'i64' = 16</code> =&gt; Number of workers to run in parallel</li>
 <li><code>verbose: 'bool' = true</code> =&gt; Print the command being run</li>
 <li><code>echo: 'bool' = false</code> =&gt; Show the output of the command</li>
 </ul>
 <p>Run the given template as a shell command for each nodes in the network in parallel.</p>
-<h3 id="warning"><a class="header" href="#warning">Warning</a></h3>
-<p>Currently there is no way to limit the number of parallel
-processes, so please be careful with this command if you have very
-large number of nodes.</p>
+<p>Other than parallel execution this is same as the <code>node</code> function <code>command</code></p>
+<pre><code class="language-task">network load_str("a -&gt; b");
+network parallel("echo 'nadi:var:sth={NAME}'");
+node assert_eq(sth, NAME)
+</code></pre>
 <h2 id="network.command"><a class="header" href="#network.command">command</a></h2>
 <pre><code class="language-sig">network command.command(
     cmd: 'Template',
@@ -260,9 +265,19 @@ large number of nodes.</p>
 <p>Run any command in the shell. The standard output of the command
 will be consumed and if there are lines starting with <code>nadi:var:</code>
 and followed by <code>key=val</code> pairs, it’ll be read as new attributes
-to that node.</p>
+to the network. If you want to pass node attributes add node name
+with <code>nadi:var:name:</code> as the prefix for <code>key=val</code>.</p>
 <p>See <code>node command.command</code> for more details as they have
 the same implementation</p>
+<p>The examples below run <code>echo</code> command to set the variables, you
+can use any command that are scripting languages (python, R,
+Julia, etc) or individual programs.</p>
+<pre><code class="language-task">network load_str("a -&gt; b");
+network command("echo 'nadi:var:sth=123'");
+network assert_eq(sth, 123)
+network command("echo 'nadi:var:a:sth=123'");
+node[a] assert_eq(sth, 123)
+</code></pre>
 
                     </main>
 
