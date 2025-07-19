@@ -38,6 +38,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -94,10 +95,13 @@
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -148,7 +152,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -169,6 +178,23 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="plugins"><a class="header" href="#plugins">Plugins</a></h1>
+<p>Plugins are the main source of functions in the task system. There are two types of plugins,</p>
+<ul>
+<li>internal plugins: come with your nadi distribution, and</li>
+<li>external plugins: you can install them using shared libraries.</li>
+</ul>
+<p>The functions available from the internal plugins are available in any format. You can access the functions with their name, or with <code>plugin.name</code> syntax.</p>
+<p>External plugins are loaded from the directory in <code>NADI_PLUGIN_DIRS</code> environmental variable. If the shared library in that directory does not match the specification of NADI plugin, is compiled using different version, or compiled with different internal data structures, it will print warning and skip that file.</p>
+<h1 id="security"><a class="header" href="#security">Security</a></h1>
+<p><strong>Plugins can run arbitrary code</strong>, so users are expected to be careful while loading plugins by making sure it is not malicious.</p>
+<p>Rust plugins give option to look at the code used to build the function, but it is only intended to be helpful, a malicious actor can still obfuscate, omit, or show different code than the actual function.</p>
+<p>Furthermore, plugins can also replace functions if they have same name, look out for the warnings while running nadi.</p>
+<p>Expect these Changes in the Future Versions to make the plugins system more secure in terms of function replacement problem:</p>
+<ul>
+<li>internal plugin names will be uppercase, and external lowercase, so that external plugins are not mistaken as internal ones, and no overwriting functions,</li>
+<li>external plugin functions always need to be accessed with dot syntax (<code>plugin.function(...)</code>). And so that external functions are not called accidently.</li>
+</ul>
+<p>This still will not solve the first problem, so always be vigilant using plugins. It is recommended to only use plugins developed in house, or those that you have source code of and can compile it yourself.</p>
 
                     </main>
 
@@ -217,6 +243,7 @@
 
         <!-- Custom JS scripts -->
         <script src="../theme/syntax-highlight.js"></script>
+
 
 
     </div>

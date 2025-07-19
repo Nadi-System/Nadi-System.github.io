@@ -39,6 +39,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -95,10 +96,13 @@
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -149,7 +153,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -237,6 +246,9 @@ cum_sf(network.outlet())
 <h2 id="extensibility"><a class="header" href="#extensibility">Extensibility</a></h2>
 <p>NADI has two types of plugin systems, which means users can write their own analysis in any programming language and have it interact with NADI through attributes, or they can write it in rust and have even more direct interaction.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="who-this-book-is-for"><a class="header" href="#who-this-book-is-for">Who this book is for</a></h1>
+<div class="warning">
+If you are a developer and want an API documentation for the data types used in the NADI Rust library refer to the [docs.rs `nadi_core` page](https://docs.rs/nadi_core/latest/nadi_core/). But if you want to understand the core concepts, use cases, and examples then proceed.
+</div>
 <p>This book has sections explaining the concepts of the NADI system, its developmental notes, user guide and developer guide.</p>
 <p>Hence it can be useful for people who:</p>
 <ul>
@@ -454,6 +466,15 @@ installation methods. Some of the packages are uploaded to <code>crates.io</code
 compiled binaries from the Releases page of the
 github repo [windows]. Or you can get the source code using <code>git</code>, and using
 <code>cargo</code> build the packages [all OS].</p>
+<div class="table-wrapper"><table><thead><tr><th>Program</th><th>Linux</th><th>Windows</th><th>Mac</th><th>Android (Termux)</th></tr></thead><tbody>
+<tr><td>Nadi CLI</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td>Nadi IDE</td><td>yes</td><td>yes</td><td>yes</td><td>no</td></tr>
+<tr><td>mdbook nadi</td><td>untested</td><td>yes</td><td>untested</td><td>yes</td></tr>
+<tr><td>Nadi-py</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td>QGIS Plugin</td><td>yes</td><td>yes</td><td>untested</td><td>no</td></tr>
+</tbody></table>
+</div>
+<p>Untested means it should work in theory, but I have not tested it.</p>
 <h2 id="packages"><a class="header" href="#packages">Packages</a></h2>
 <p>For <code>nadi-py</code> you can use <code>pip</code>:</p>
 <pre><code class="language-bash">pip install nadi-py
@@ -470,6 +491,7 @@ github repo [windows]. Or you can get the source code using <code>git</code>, an
 </ul>
 <p>To setup the nadi-systm to load the plugins you have to place them inside the directory included in the <code>NADI_PLUGIN_DIRS</code> environmental variable. Refer to your Operating System’s documentation on how to set environemental variables.</p>
 <p>The binaries should be able to run directly without needing extra steps. If you get a security warnings because the binaries are not signed, you might have to ignore it.</p>
+<p>For QGIS Plugin, you can install it from Plugins Wizard on QGIS if you turn on experiemental plugins. But the <code>nadi-gis</code> binary should be available from PATH (i.e. you can call it from terminal).</p>
 <h1 id="building-from-source"><a class="header" href="#building-from-source">Building from Source</a></h1>
 <p>This is currently the preferred way of installing <code>nadi-system</code> (and <code>nadi-gis</code> for Linux and MacOS). Although it includes a bit more steps this makes sure the compiled program is compatible with your OS.</p>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
@@ -573,7 +595,7 @@ $ Rscript --version
 Rscript (R) version 4.5.1 (2025-06-13)
 
 $ julia --version
-julia version 1.11.5
+julia version 1.11.6
 </code></pre>
 <p>Here we can see, the commands that ran successfully and returned a version are valid.</p>
 <p>To write scripts and run them from nadi refer to <a href="plugin-dev/exe-plugins.html">Executable Plugins</a> section on Plugin Developer Guide.</p>
@@ -636,6 +658,7 @@ Options:
 <p>You can run the tools from there and use the layers in QGIS as inputs. The QGIS plugin will first try to find <code>nadi-gis</code> binary on your <code>PATH</code> and use it, if not it’ll try to use the binary provided with the plugins. It is preferred to have <code>nadi-gis</code> available in <code>PATH</code> and running without errors.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="example"><a class="header" href="#example">Example</a></h1>
 <p>The examples here will be given using QGIS plugin, and using the CLI tool both. CLI tool is great for quickly running things, and doing things in batch, while QGIS plugin will be better on visualization and manual fixes using other GIS tools.</p>
+<p>If you want a video demostration, <a href="https://youtu.be/PIGoVnXb7ck">there is a Demo Video on YouTube</a>.</p>
 <h2 id="using-qgis-plugin"><a class="header" href="#using-qgis-plugin">Using QGIS Plugin</a></h2>
 <p>First <strong>downloading the data</strong> is done through the <code>Download USGS Data</code> tool. As shown in the screenshot below, input the USGS site ID and the data type you want to download.</p>
 <p><img src="gis/../images/qgis-download.png" alt="QGIS Download" /></p>
@@ -718,6 +741,124 @@ Options:
 ... and so on
 </code></pre>
 <p>Make sure you use a field with unique name, and valid identifier in NADI System.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
+<p>This section walks you throuh the process of using Nadi system through the CLI and IDE.</p>
+<p>Network analysis is done through the Domain Specific Programming Language. This is the main feature of NADI.</p>
+<p>You can run the DSL, called tasks through the CLI, or through the IDE. Refer to the <a href="./installation.html">Installation</a> for how to install them.</p>
+<p>Recommended way to develop/write nadi tasks is with IDE, while CLI can be used to automate/batch run it once the tasks are finalized.</p>
+<h2 id="command-line-interface-cli"><a class="header" href="#command-line-interface-cli">Command Line Interface (CLI)</a></h2>
+<p>NADI CLI is available as <code>nadi</code> command when you have it installed. You can run it in interactive mode in a Read Eval Print Loop (REPL), or provide a file to run.</p>
+<p>So assuming you have the following contents in <code>sample.tasks</code> file:</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+node array(LEVEL, ORDER)
+</code></pre>
+<p>You run it with:</p>
+<pre><code class="language-bash">nadi sample.tasks
+</code></pre>
+<p>You should get the following output:</p>
+<pre><code class="language-task">{
+  b = [0, 2],
+  a = [0, 1]
+}
+</code></pre>
+<p>If you run nadi with <code>--repl</code> or <code>-r</code> flag, then it’ll open a REPL. If you have a tasks file provided like before, it’ll run the tasks in the file before entering a REPL, otherwise it’ll start from empty context.</p>
+<p>For more details on other use of <code>nadi</code> command. Refer to the output of <code>nadi --help</code>. It has options for,</p>
+<ul>
+<li>Evalute some tasks before running the file/repl for setting context,</li>
+<li>Print/Generate help for functions,</li>
+<li>Inspect code for functions,</li>
+<li>Autocomplete nadi functions,</li>
+<li>Generate a template for nadi plugin code, and more.</li>
+</ul>
+<h2 id="integrated-development-environment-ide"><a class="header" href="#integrated-development-environment-ide">Integrated Development Environment (IDE)</a></h2>
+<p>NADI IDE contains multiple components to make it easier to write, edit, and run tasks, as well as visualize the network and browse the function documentation.</p>
+<p><img src="./images/ide-screenshot.png" alt="IDE" /></p>
+<p>As you can see, the main UI is divided into multiple panes, which are independent components that you can resize, arrange the way you want.</p>
+<p>First, when you start NADI IDE, you come up with this view:</p>
+<p><img src="./images/ide-start.png" alt="IDE Greeting" /></p>
+<ol>
+<li>Different layout options</li>
+<li>Global options</li>
+<li>Pane Title Bar</li>
+<li>Dropdown to change the Pane Type</li>
+<li>Pane options (horizontal/vertical split, fullscreen, close)</li>
+<li>Pane Contents</li>
+</ol>
+<p>The layout of each pane are similar, while each one will have their own contents. For example, “Function Help” contains the help for the plugin functions. We will go over each one in a separate chapter.</p>
+<p>You can choose a singular pane type here, or chose a combination of panes that feels more useful. Some panes like terminal/attribute views also spawn automatically (if not already in view) when you try to run tasks, or click nodes.</p>
+<p>Now, let’s choose “Text Editor” for now, then we’re greeted with this view:</p>
+<p><img src="./images/ide-editor.png" alt="IDE Editor" /></p>
+<p>Now, aside from the global components, we have:</p>
+<ol start="6">
+<li>Editor Tools,</li>
+<li>Function Signature: Only shows when cursor is on a function,</li>
+<li>Editor Theme: Only works for non-NADI formats like Python, C, Rust, R, etc.</li>
+<li>Tasks File Contents: File contents with syntax highlighting,</li>
+<li>Current File Path: Where the file is opened from and will be saved, and</li>
+<li>Line/Column of Cursor.</li>
+</ol>
+<p>As for the editor tools: you can hover over them to know their names, and shortcuts. We’ll explain them shortly below in the left to right order,</p>
+<div class="table-wrapper"><table><thead><tr><th>Button</th><th>Key</th><th>Function</th></tr></thead><tbody>
+<tr><td>New File</td><td><code>Ctrl</code> + <code>n</code></td><td>Remove the contents, and the filepath for new file</td></tr>
+<tr><td>Open</td><td><code>Ctrl</code> + <code>o</code></td><td>Browse and open a new file</td></tr>
+<tr><td>Save</td><td><code>Ctrl</code> + <code>s</code></td><td>Save the file, browse for new file if path is not given</td></tr>
+<tr><td>Toggle Comment</td><td><code>Alt</code> + <code>;</code></td><td>Comment or uncomment the current selection</td></tr>
+<tr><td>Undo</td><td><code>Ctrl</code> + <code>z</code></td><td>Undo the last edit (edits are saved periodically)</td></tr>
+<tr><td>Redo</td><td><code>Ctrl</code> + <code>y</code></td><td>Redo the last undo  (redo vanishes if you edit after undo)</td></tr>
+<tr><td>Run Line/Selection</td><td><code>Ctrl</code> + <code>Enter</code></td><td>Run the current line, or the selection in terminal</td></tr>
+<tr><td>Run Buffer</td><td><code>Ctrl</code> + <code>Shift</code> + <code>Enter</code></td><td>Run the whole buffer (file contents) in terminal</td></tr>
+<tr><td>Search</td><td></td><td>Search the selection in function help</td></tr>
+<tr><td>Help</td><td></td><td>Visit the function help for current function</td></tr>
+</tbody></table>
+</div>
+<p>When yo run a line using “Run Line/Selection” it should spawn a terminal pane on the right side</p>
+<p><img src="./images/ide-term.png" alt="IDE Terminal" /></p>
+<p>Here we have:</p>
+<ol>
+<li>Terminal Contents: tasks that were run, and their output,</li>
+<li>Terminal Navigation: Buttons to goto top/bottom or page up/down,</li>
+<li>Command Entry: You can directly enter commands here instead of from editor (they won’t be saved),</li>
+<li>Clear: Clear the current command entry,</li>
+<li>History: Search here for previous commands, clicking them will copy it to the Command Entry</li>
+</ol>
+<p>Upto here will be enough to run tasks. But the advantage of the IDE with a Graphical User Interface (GUI) comes in the form of network visualization. If you open the Network Viewer pane, either through the dropdown to change one of the pane. Or split the panes and open Network Viewer there, you can see the network visualized.</p>
+<p>The figure below shows the network viewer, and the attribute viewer (it spawns when you click on a node in the network) on the bottom right.</p>
+<p><img src="./images/ide-screenshot.png" alt="IDE" /></p>
+<p>You can click on the “&lt;” button on the right side of the network viewer to expand the sidebar that has details on how to change the visual attributes of the nodes. You can run the examples in the code for testing them out as well.</p>
+<p><strong>Extra components of the IDE</strong> includes the Function Help that you can use to browse the plugin functions’ documentation, and SVG viewer that you can use to open SVG files. The SVG viewer is very primitive and only meant to be a quick check/update while you’re fine tuning an exported SVG file, use dedicated softwares and web browsers for actual viewing.</p>
+<p>The function help looks like below:</p>
+<p><img src="./images/ide-help.png" alt="IDE Help" /></p>
+<p>The figure contains,</p>
+<ol>
+<li>Buttons for Reset, and links to Nadi Book and Github,</li>
+<li>Buttons to filter search by function type,</li>
+<li>Text Entry to search the function,</li>
+<li>List of plugin functions,</li>
+<li>Bar to collapse/expand the function search sidebar, and</li>
+<li>Plugin function documentation content.</li>
+</ol>
+<p>Currently you cannot copy the code or any contents from the documentation, it is a limitation of the GUI library that might be fixed in the future. If you want to copy the text, refer to the web version of the function help (in NADI Book). Or use the <code>help [type] &lt;function&gt;</code> task. For example:</p>
+<pre><code class="language-task">help node render
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">node render (template: '&amp; Template', safe: 'bool' = false)
+Render the template based on the node attributes
+# Arguments
+- `template: &amp; Template` String template to render
+- `safe: bool` [def = false] if render fails keep it as it is instead of exiting
+
+
+For more details on the template system. Refer to the String
+Template section of the NADI book.
+
+```task
+network load_str("a -&gt; b")
+node.x = 13
+node assert_eq(render("abc {x}"), "abc 13")
+```
+</code></pre>
+<p>You can copy the example code from the output in the terminal.</p>
+<p>That should be enough for you to be able to use the GUI, in the next section we’ll talk about the core concepts in NADI system that you need to understand, and then we’ll show some examples you can run using what you learned in this chapter.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="core-concepts"><a class="header" href="#core-concepts">Core Concepts</a></h1>
 <p>This section contains a brief explanation of core concepts.</p>
 <p>The main concepts that you need to know are:</p>
@@ -1091,7 +1232,7 @@ I wrote this document on {%A}, exact date: {%Y-%m-%d}.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-I wrote this document on Wednesday, exact date: 2025-07-02.
+I wrote this document on Saturday, exact date: 2025-07-19.
 </code></pre>
 <p>With more complicated templates, we would be able to generate
 documents with text and images based on the node attributes as well.</p>
@@ -1134,27 +1275,75 @@ INDEX = 5
 INDEX = 6
 </code></pre>
 <p>Only the <code>NAME</code> is printed as they do not have any other attributes.</p>
-<h2 id="selective-execution"><a class="header" href="#selective-execution">Selective Execution</a></h2>
-<p>You can selectively run only a few nodes, or change the order the
-nodes are executed.</p>
+<h1 id="node-function-propagation"><a class="header" href="#node-function-propagation">Node Function Propagation</a></h1>
+<p>Propagation of the node functions refer to the order and selection of nodes to run the function on.</p>
+<p>By default node function is run at each node. But that might not be the intended use of the function, for example you might want to:</p>
+<ul>
+<li>run the function only on nodes that satisfy a condition,</li>
+<li>run the funciton only on a group of nodes,</li>
+</ul>
+<p>Or you might want to change the order of the node function execution. Like running input nodes before the output node, if your function/analysis needs that.</p>
+<p>These things are done with 3 syntax in the node function:</p>
+<h2 id="order"><a class="header" href="#order">Order</a></h2>
+<p>You can run functions in different orders:</p>
+<ul>
+<li><code>sequential</code>/<code>seq</code> =&gt; based on node index</li>
+<li><code>inverse</code>/<code>inv</code> =&gt; inverse based on node index</li>
+<li><code>inputsfirst</code>/<code>inp</code> =&gt; input nodes before output</li>
+<li><code>outputfirst</code>/<code>out</code> =&gt; output node before inputs</li>
+</ul>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt;d \n c -&gt; d \n d -&gt; e")
+node&lt;seq&gt; array(INDEX, ORDER)
+node&lt;inv&gt; array(INDEX, ORDER)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  e = [0, 5],
+  d = [1, 4],
+  c = [2, 1],
+  b = [3, 2],
+  a = [4, 1]
+}
+{
+  a = [4, 1],
+  b = [3, 2],
+  c = [2, 1],
+  d = [1, 4],
+  e = [0, 5]
+}
+</code></pre>
+<p>Currently, <code>inp</code> and <code>inv</code> are equivalent, while <code>seq</code> and <code>out</code> are also equivalent. But when the parallization is added in the future versions, they will be implemented differently. So for backward compatibility, if you function needs to be run in a certain way, always use that one.</p>
+<p>Here an example showing how to calculate the order of the node.</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt;d \n c -&gt; d \n d -&gt; e")
+node&lt;inp&gt;.val = sum(inputs.val) + 1;
+node array(val, ORDER)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  e = [5, 5],
+  d = [4, 4],
+  c = [1, 1],
+  b = [2, 2],
+  a = [1, 1]
+}
+</code></pre>
+<p>If you do not use the <code>inputsfirst</code> propagation here, you get an error because the <code>val</code> attribute doesn’t exist in <code>inputs</code>, and if you did have that variable already, it would be old data instead of the recent results from your expression.</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt;d \n c -&gt; d \n d -&gt; e")
+node.val = sum(inputs.val) + 1;
+node array(val, ORDER)
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">Attribute not found
+</code></pre>
+<p>NOTE: I need to work on better error messaging. It is in TODO list for the next major release.</p>
+<h2 id="node-listpath"><a class="header" href="#node-listpath">Node List/Path</a></h2>
+<p>You can selectively run only a few nodes based on a list, or a path.</p>
 <p>Given this network:</p>
 <center>
 <p><img src="intro/../data/mississippi.svg" alt="Network Diagram" /></p>
 </center>
-<h3 id="inverse-order"><a class="header" href="#inverse-order">Inverse Order</a></h3>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node&lt;inverse&gt; print_attrs("NAME")
-</code></pre>
-<p>Results:</p>
-<pre><code class="language-output">NAME = "tenessee"
-NAME = "ohio"
-NAME = "red"
-NAME = "arkansas"
-NAME = "missouri"
-NAME = "upper-mississippi"
-NAME = "lower-mississippi"
-</code></pre>
-<h2 id="list-of-nodes"><a class="header" href="#list-of-nodes">List of Nodes</a></h2>
+<h3 id="list-of-nodes"><a class="header" href="#list-of-nodes">List of Nodes</a></h3>
+<p>List of node contains a separated list of node names or quoted string if the name is not valid identifier/number inside <code>[]</code>.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span>node[tenessee,"lower-mississippi"] print_attrs("NAME")
 </code></pre>
@@ -1162,7 +1351,8 @@ NAME = "lower-mississippi"
 <pre><code class="language-output">NAME = "lower-mississippi"
 NAME = "tenessee"
 </code></pre>
-<h2 id="path-of-nodes"><a class="header" href="#path-of-nodes">Path of Nodes</a></h2>
+<h3 id="path-of-nodes"><a class="header" href="#path-of-nodes">Path of Nodes</a></h3>
+<p>Path of node has the same syntax as a path used in the network file. It has starting node and end node. Instead of it representing a single edge like in network file, it represents all the nodes that are between those two (inclusive).</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span>node[tenessee -&gt; "lower-mississippi"] print_attrs("NAME")
 </code></pre>
@@ -1173,6 +1363,37 @@ NAME = "lower-mississippi"
 </code></pre>
 <p>As we can see in the diagram, the path from tenessee to lower
 mississippi includes the ohio node.</p>
+<h2 id="logical-condition"><a class="header" href="#logical-condition">Logical Condition</a></h2>
+<p>Logical condition is used by putting an expression that evaluates to a boolean value inside the <code>()</code>.</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
+</span>node("mississippi" in NAME) print_attrs("NAME")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">NAME = "lower-mississippi"
+NAME = "upper-mississippi"
+</code></pre>
+<h2 id="combination"><a class="header" href="#combination">Combination</a></h2>
+<p>You can combine the three different types of propagations in a single task using the syntax <code>node&lt;...&gt;[...](...)</code>, they must come in that sequence as the order is decided first, then the list/path is taken, and finally the condition is evaluated to boolean before selecting the nodes.</p>
+<p>For example:</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
+</span>node[tenessee -&gt; "lower-mississippi"]("mississippi" in NAME) INDEX
+node&lt;inv&gt;[tenessee -&gt; "lower-mississippi"] INDEX
+node&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  lower-mississippi = 0
+}
+{
+  lower-mississippi = 0,
+  ohio = 5,
+  tenessee = 6
+}
+{
+  lower-mississippi = 0,
+  ohio = 5
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="network-function"><a class="header" href="#network-function">Network Function</a></h1>
 <p>Network function runs on the network as a whole. It takes arguments and keyword arguments. Few network functions we have been using throughout the examples are <code>load_file</code>, <code>load_str</code> and <code>svg_save</code>:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net")
@@ -1316,6 +1537,23 @@ env nodes.render("Node [{INDEX}] {_NAME}")
 <pre><code class="language-output">["Node [0] lower-mississippi", "Node [1] upper-mississippi", "Node [2] missouri", "Node [3] arkansas", "Node [4] red", "Node [5] ohio", "Node [6] tenessee"]
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="plugins-1"><a class="header" href="#plugins-1">Plugins</a></h1>
+<p>Plugins are the main source of functions in the task system. There are two types of plugins,</p>
+<ul>
+<li>internal plugins: come with your nadi distribution, and</li>
+<li>external plugins: you can install them using shared libraries.</li>
+</ul>
+<p>The functions available from the internal plugins are available in any format. You can access the functions with their name, or with <code>plugin.name</code> syntax.</p>
+<p>External plugins are loaded from the directory in <code>NADI_PLUGIN_DIRS</code> environmental variable. If the shared library in that directory does not match the specification of NADI plugin, is compiled using different version, or compiled with different internal data structures, it will print warning and skip that file.</p>
+<h1 id="security"><a class="header" href="#security">Security</a></h1>
+<p><strong>Plugins can run arbitrary code</strong>, so users are expected to be careful while loading plugins by making sure it is not malicious.</p>
+<p>Rust plugins give option to look at the code used to build the function, but it is only intended to be helpful, a malicious actor can still obfuscate, omit, or show different code than the actual function.</p>
+<p>Furthermore, plugins can also replace functions if they have same name, look out for the warnings while running nadi.</p>
+<p>Expect these Changes in the Future Versions to make the plugins system more secure in terms of function replacement problem:</p>
+<ul>
+<li>internal plugin names will be uppercase, and external lowercase, so that external plugins are not mistaken as internal ones, and no overwriting functions,</li>
+<li>external plugin functions always need to be accessed with dot syntax (<code>plugin.function(...)</code>). And so that external functions are not called accidently.</li>
+</ul>
+<p>This still will not solve the first problem, so always be vigilant using plugins. It is recommended to only use plugins developed in house, or those that you have source code of and can compile it yourself.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="further-reading"><a class="header" href="#further-reading">Further Reading</a></h1>
 <p>If you need help on any functions. Use the <code>help</code> as a <code>task</code>. You can use <code>help node</code> or <code>help network</code> for specific help. You can also browse through the function help window in the <code>nadi-ide</code> for help related to each functions.</p>
 <pre><code class="language-task">help node render
@@ -4806,7 +5044,7 @@ Current time is {%H} hour  {%M} minutes.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-Current time is 23 hour  36 minutes.
+Current time is 16 hour  37 minutes.
 </code></pre>
 <h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
 <p>Variables can be chained in an optional way, so the first one that’s
@@ -4841,7 +5079,7 @@ float, upcase will make the string UPPERCASE, etc.);</p>
 <pre><code class="language-stp">Today is {%B %d} of the year {%Y}.
 </code></pre>
 <p>Results (with:  name=John):</p>
-<pre><code class="language-output">Today is July 02 of the year 2025.
+<pre><code class="language-output">Today is July 19 of the year 2025.
 </code></pre>
 <h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
 <p>expressions are lisp expressions that will be evaluated and the
@@ -4914,7 +5152,7 @@ info on how to use <code>lisp</code> on string template.</p>
 \\latex\{command\}\{with {variable}\}, should work.
 </code></pre>
 <p>Results (with:  command=Error;variable=Var):</p>
-<pre><code class="language-output">more  options on 2025-07-02 and
+<pre><code class="language-output">more  options on 2025-07-19 and
 \latex{command}{with Var}, should work.
 </code></pre>
 <p>This just combined a lot of different things from above:</p>
@@ -4968,14 +5206,14 @@ now.</p>
 <pre><code class="language-stp">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
 </code></pre>
 <p>Results (with: ):</p>
-<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-07-02
+<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-07-19
 </code></pre>
 <p>But if you are writing a command template to run in bash, then
 it’ll be executed as the syntax is similar.</p>
 <pre><code class="language-task">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-07-02
+<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-07-19
 </code></pre>
 <p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tables"><a class="header" href="#tables">Tables</a></h1>
@@ -5481,6 +5719,7 @@ plot along side the network information.</p>
             });
         });
         </script>
+
 
     </div>
     </body>

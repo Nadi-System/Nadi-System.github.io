@@ -38,6 +38,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
@@ -94,10 +95,13 @@
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -148,7 +152,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -184,27 +193,75 @@ INDEX = 5
 INDEX = 6
 </code></pre>
 <p>Only the <code>NAME</code> is printed as they do not have any other attributes.</p>
-<h2 id="selective-execution"><a class="header" href="#selective-execution">Selective Execution</a></h2>
-<p>You can selectively run only a few nodes, or change the order the
-nodes are executed.</p>
+<h1 id="node-function-propagation"><a class="header" href="#node-function-propagation">Node Function Propagation</a></h1>
+<p>Propagation of the node functions refer to the order and selection of nodes to run the function on.</p>
+<p>By default node function is run at each node. But that might not be the intended use of the function, for example you might want to:</p>
+<ul>
+<li>run the function only on nodes that satisfy a condition,</li>
+<li>run the funciton only on a group of nodes,</li>
+</ul>
+<p>Or you might want to change the order of the node function execution. Like running input nodes before the output node, if your function/analysis needs that.</p>
+<p>These things are done with 3 syntax in the node function:</p>
+<h2 id="order"><a class="header" href="#order">Order</a></h2>
+<p>You can run functions in different orders:</p>
+<ul>
+<li><code>sequential</code>/<code>seq</code> =&gt; based on node index</li>
+<li><code>inverse</code>/<code>inv</code> =&gt; inverse based on node index</li>
+<li><code>inputsfirst</code>/<code>inp</code> =&gt; input nodes before output</li>
+<li><code>outputfirst</code>/<code>out</code> =&gt; output node before inputs</li>
+</ul>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt;d \n c -&gt; d \n d -&gt; e")
+node&lt;seq&gt; array(INDEX, ORDER)
+node&lt;inv&gt; array(INDEX, ORDER)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  e = [0, 5],
+  d = [1, 4],
+  c = [2, 1],
+  b = [3, 2],
+  a = [4, 1]
+}
+{
+  a = [4, 1],
+  b = [3, 2],
+  c = [2, 1],
+  d = [1, 4],
+  e = [0, 5]
+}
+</code></pre>
+<p>Currently, <code>inp</code> and <code>inv</code> are equivalent, while <code>seq</code> and <code>out</code> are also equivalent. But when the parallization is added in the future versions, they will be implemented differently. So for backward compatibility, if you function needs to be run in a certain way, always use that one.</p>
+<p>Here an example showing how to calculate the order of the node.</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt;d \n c -&gt; d \n d -&gt; e")
+node&lt;inp&gt;.val = sum(inputs.val) + 1;
+node array(val, ORDER)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  e = [5, 5],
+  d = [4, 4],
+  c = [1, 1],
+  b = [2, 2],
+  a = [1, 1]
+}
+</code></pre>
+<p>If you do not use the <code>inputsfirst</code> propagation here, you get an error because the <code>val</code> attribute doesn’t exist in <code>inputs</code>, and if you did have that variable already, it would be old data instead of the recent results from your expression.</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt;d \n c -&gt; d \n d -&gt; e")
+node.val = sum(inputs.val) + 1;
+node array(val, ORDER)
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">Attribute not found
+</code></pre>
+<p>NOTE: I need to work on better error messaging. It is in TODO list for the next major release.</p>
+<h2 id="node-listpath"><a class="header" href="#node-listpath">Node List/Path</a></h2>
+<p>You can selectively run only a few nodes based on a list, or a path.</p>
 <p>Given this network:</p>
 <center>
 <p><img src="../data/mississippi.svg" alt="Network Diagram" /></p>
 </center>
-<h3 id="inverse-order"><a class="header" href="#inverse-order">Inverse Order</a></h3>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node&lt;inverse&gt; print_attrs("NAME")
-</code></pre>
-<p>Results:</p>
-<pre><code class="language-output">NAME = "tenessee"
-NAME = "ohio"
-NAME = "red"
-NAME = "arkansas"
-NAME = "missouri"
-NAME = "upper-mississippi"
-NAME = "lower-mississippi"
-</code></pre>
-<h2 id="list-of-nodes"><a class="header" href="#list-of-nodes">List of Nodes</a></h2>
+<h3 id="list-of-nodes"><a class="header" href="#list-of-nodes">List of Nodes</a></h3>
+<p>List of node contains a separated list of node names or quoted string if the name is not valid identifier/number inside <code>[]</code>.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span>node[tenessee,"lower-mississippi"] print_attrs("NAME")
 </code></pre>
@@ -212,7 +269,8 @@ NAME = "lower-mississippi"
 <pre><code class="language-output">NAME = "lower-mississippi"
 NAME = "tenessee"
 </code></pre>
-<h2 id="path-of-nodes"><a class="header" href="#path-of-nodes">Path of Nodes</a></h2>
+<h3 id="path-of-nodes"><a class="header" href="#path-of-nodes">Path of Nodes</a></h3>
+<p>Path of node has the same syntax as a path used in the network file. It has starting node and end node. Instead of it representing a single edge like in network file, it represents all the nodes that are between those two (inclusive).</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span>node[tenessee -&gt; "lower-mississippi"] print_attrs("NAME")
 </code></pre>
@@ -223,6 +281,37 @@ NAME = "lower-mississippi"
 </code></pre>
 <p>As we can see in the diagram, the path from tenessee to lower
 mississippi includes the ohio node.</p>
+<h2 id="logical-condition"><a class="header" href="#logical-condition">Logical Condition</a></h2>
+<p>Logical condition is used by putting an expression that evaluates to a boolean value inside the <code>()</code>.</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
+</span>node("mississippi" in NAME) print_attrs("NAME")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">NAME = "lower-mississippi"
+NAME = "upper-mississippi"
+</code></pre>
+<h2 id="combination"><a class="header" href="#combination">Combination</a></h2>
+<p>You can combine the three different types of propagations in a single task using the syntax <code>node&lt;...&gt;[...](...)</code>, they must come in that sequence as the order is decided first, then the list/path is taken, and finally the condition is evaluated to boolean before selecting the nodes.</p>
+<p>For example:</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
+</span>node[tenessee -&gt; "lower-mississippi"]("mississippi" in NAME) INDEX
+node&lt;inv&gt;[tenessee -&gt; "lower-mississippi"] INDEX
+node&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  lower-mississippi = 0
+}
+{
+  lower-mississippi = 0,
+  ohio = 5,
+  tenessee = 6
+}
+{
+  lower-mississippi = 0,
+  ohio = 5
+}
+</code></pre>
 
                     </main>
 
@@ -271,6 +360,7 @@ mississippi includes the ohio node.</p>
 
         <!-- Custom JS scripts -->
         <script src="../theme/syntax-highlight.js"></script>
+
 
 
     </div>

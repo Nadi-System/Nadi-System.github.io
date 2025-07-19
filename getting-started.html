@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Learn by Examples - Network Analysis and Data Integration (NADI)</title>
+        <title>Getting Started - Network Analysis and Data Integration (NADI)</title>
 
 
         <!-- Custom HTML head -->
@@ -177,27 +177,134 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="learn-by-examples"><a class="header" href="#learn-by-examples">Learn by Examples</a></h1>
-<p>For example data download the <a href="./data.zip">zip file here</a></p>
-<div class="table-wrapper"><table><thead><tr><th>Topic</th><th>Learn About</th></tr></thead><tbody>
-<tr><td><a href="./learn-examples/attributes.html">Attributes</a></td><td>Setting and Getting Attributes</td></tr>
-<tr><td><a href="./learn-examples/control.html">Control Flow</a></td><td>Control flow, if, else, while loops etc</td></tr>
-<tr><td><a href="./learn-examples/connections.html">Connections</a></td><td>Loading and modifying connections</td></tr>
-<tr><td><a href="./learn-examples/counting.html">Counting</a></td><td>Counting nodes in network, conditional</td></tr>
-<tr><td><a href="./learn-examples/cumulative.html">Cumulative</a></td><td>Calculating Network cumulative sums and those</td></tr>
-<tr><td><a href="./learn-examples/import-export.html">Import Export</a></td><td>Importing and exporting multiple data formats</td></tr>
-<tr><td><a href="./learn-examples/str-templates.html">String Template</a></td><td>Using String Templates to do various things</td></tr>
+                        <h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
+<p>This section walks you throuh the process of using Nadi system through the CLI and IDE.</p>
+<p>Network analysis is done through the Domain Specific Programming Language. This is the main feature of NADI.</p>
+<p>You can run the DSL, called tasks through the CLI, or through the IDE. Refer to the <a href="./installation.html">Installation</a> for how to install them.</p>
+<p>Recommended way to develop/write nadi tasks is with IDE, while CLI can be used to automate/batch run it once the tasks are finalized.</p>
+<h2 id="command-line-interface-cli"><a class="header" href="#command-line-interface-cli">Command Line Interface (CLI)</a></h2>
+<p>NADI CLI is available as <code>nadi</code> command when you have it installed. You can run it in interactive mode in a Read Eval Print Loop (REPL), or provide a file to run.</p>
+<p>So assuming you have the following contents in <code>sample.tasks</code> file:</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+node array(LEVEL, ORDER)
+</code></pre>
+<p>You run it with:</p>
+<pre><code class="language-bash">nadi sample.tasks
+</code></pre>
+<p>You should get the following output:</p>
+<pre><code class="language-task">{
+  b = [0, 2],
+  a = [0, 1]
+}
+</code></pre>
+<p>If you run nadi with <code>--repl</code> or <code>-r</code> flag, then it’ll open a REPL. If you have a tasks file provided like before, it’ll run the tasks in the file before entering a REPL, otherwise it’ll start from empty context.</p>
+<p>For more details on other use of <code>nadi</code> command. Refer to the output of <code>nadi --help</code>. It has options for,</p>
+<ul>
+<li>Evalute some tasks before running the file/repl for setting context,</li>
+<li>Print/Generate help for functions,</li>
+<li>Inspect code for functions,</li>
+<li>Autocomplete nadi functions,</li>
+<li>Generate a template for nadi plugin code, and more.</li>
+</ul>
+<h2 id="integrated-development-environment-ide"><a class="header" href="#integrated-development-environment-ide">Integrated Development Environment (IDE)</a></h2>
+<p>NADI IDE contains multiple components to make it easier to write, edit, and run tasks, as well as visualize the network and browse the function documentation.</p>
+<p><img src="./images/ide-screenshot.png" alt="IDE" /></p>
+<p>As you can see, the main UI is divided into multiple panes, which are independent components that you can resize, arrange the way you want.</p>
+<p>First, when you start NADI IDE, you come up with this view:</p>
+<p><img src="./images/ide-start.png" alt="IDE Greeting" /></p>
+<ol>
+<li>Different layout options</li>
+<li>Global options</li>
+<li>Pane Title Bar</li>
+<li>Dropdown to change the Pane Type</li>
+<li>Pane options (horizontal/vertical split, fullscreen, close)</li>
+<li>Pane Contents</li>
+</ol>
+<p>The layout of each pane are similar, while each one will have their own contents. For example, “Function Help” contains the help for the plugin functions. We will go over each one in a separate chapter.</p>
+<p>You can choose a singular pane type here, or chose a combination of panes that feels more useful. Some panes like terminal/attribute views also spawn automatically (if not already in view) when you try to run tasks, or click nodes.</p>
+<p>Now, let’s choose “Text Editor” for now, then we’re greeted with this view:</p>
+<p><img src="./images/ide-editor.png" alt="IDE Editor" /></p>
+<p>Now, aside from the global components, we have:</p>
+<ol start="6">
+<li>Editor Tools,</li>
+<li>Function Signature: Only shows when cursor is on a function,</li>
+<li>Editor Theme: Only works for non-NADI formats like Python, C, Rust, R, etc.</li>
+<li>Tasks File Contents: File contents with syntax highlighting,</li>
+<li>Current File Path: Where the file is opened from and will be saved, and</li>
+<li>Line/Column of Cursor.</li>
+</ol>
+<p>As for the editor tools: you can hover over them to know their names, and shortcuts. We’ll explain them shortly below in the left to right order,</p>
+<div class="table-wrapper"><table><thead><tr><th>Button</th><th>Key</th><th>Function</th></tr></thead><tbody>
+<tr><td>New File</td><td><code>Ctrl</code> + <code>n</code></td><td>Remove the contents, and the filepath for new file</td></tr>
+<tr><td>Open</td><td><code>Ctrl</code> + <code>o</code></td><td>Browse and open a new file</td></tr>
+<tr><td>Save</td><td><code>Ctrl</code> + <code>s</code></td><td>Save the file, browse for new file if path is not given</td></tr>
+<tr><td>Toggle Comment</td><td><code>Alt</code> + <code>;</code></td><td>Comment or uncomment the current selection</td></tr>
+<tr><td>Undo</td><td><code>Ctrl</code> + <code>z</code></td><td>Undo the last edit (edits are saved periodically)</td></tr>
+<tr><td>Redo</td><td><code>Ctrl</code> + <code>y</code></td><td>Redo the last undo  (redo vanishes if you edit after undo)</td></tr>
+<tr><td>Run Line/Selection</td><td><code>Ctrl</code> + <code>Enter</code></td><td>Run the current line, or the selection in terminal</td></tr>
+<tr><td>Run Buffer</td><td><code>Ctrl</code> + <code>Shift</code> + <code>Enter</code></td><td>Run the whole buffer (file contents) in terminal</td></tr>
+<tr><td>Search</td><td></td><td>Search the selection in function help</td></tr>
+<tr><td>Help</td><td></td><td>Visit the function help for current function</td></tr>
 </tbody></table>
 </div>
+<p>When yo run a line using “Run Line/Selection” it should spawn a terminal pane on the right side</p>
+<p><img src="./images/ide-term.png" alt="IDE Terminal" /></p>
+<p>Here we have:</p>
+<ol>
+<li>Terminal Contents: tasks that were run, and their output,</li>
+<li>Terminal Navigation: Buttons to goto top/bottom or page up/down,</li>
+<li>Command Entry: You can directly enter commands here instead of from editor (they won’t be saved),</li>
+<li>Clear: Clear the current command entry,</li>
+<li>History: Search here for previous commands, clicking them will copy it to the Command Entry</li>
+</ol>
+<p>Upto here will be enough to run tasks. But the advantage of the IDE with a Graphical User Interface (GUI) comes in the form of network visualization. If you open the Network Viewer pane, either through the dropdown to change one of the pane. Or split the panes and open Network Viewer there, you can see the network visualized.</p>
+<p>The figure below shows the network viewer, and the attribute viewer (it spawns when you click on a node in the network) on the bottom right.</p>
+<p><img src="./images/ide-screenshot.png" alt="IDE" /></p>
+<p>You can click on the “&lt;” button on the right side of the network viewer to expand the sidebar that has details on how to change the visual attributes of the nodes. You can run the examples in the code for testing them out as well.</p>
+<p><strong>Extra components of the IDE</strong> includes the Function Help that you can use to browse the plugin functions’ documentation, and SVG viewer that you can use to open SVG files. The SVG viewer is very primitive and only meant to be a quick check/update while you’re fine tuning an exported SVG file, use dedicated softwares and web browsers for actual viewing.</p>
+<p>The function help looks like below:</p>
+<p><img src="./images/ide-help.png" alt="IDE Help" /></p>
+<p>The figure contains,</p>
+<ol>
+<li>Buttons for Reset, and links to Nadi Book and Github,</li>
+<li>Buttons to filter search by function type,</li>
+<li>Text Entry to search the function,</li>
+<li>List of plugin functions,</li>
+<li>Bar to collapse/expand the function search sidebar, and</li>
+<li>Plugin function documentation content.</li>
+</ol>
+<p>Currently you cannot copy the code or any contents from the documentation, it is a limitation of the GUI library that might be fixed in the future. If you want to copy the text, refer to the web version of the function help (in NADI Book). Or use the <code>help [type] &lt;function&gt;</code> task. For example:</p>
+<pre><code class="language-task">help node render
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">node render (template: '&amp; Template', safe: 'bool' = false)
+Render the template based on the node attributes
+# Arguments
+- `template: &amp; Template` String template to render
+- `safe: bool` [def = false] if render fails keep it as it is instead of exiting
+
+
+For more details on the template system. Refer to the String
+Template section of the NADI book.
+
+```task
+network load_str("a -&gt; b")
+node.x = 13
+node assert_eq(render("abc {x}"), "abc 13")
+```
+</code></pre>
+<p>You can copy the example code from the output in the terminal.</p>
+<p>That should be enough for you to be able to use the GUI, in the next section we’ll talk about the core concepts in NADI system that you need to understand, and then we’ll show some examples you can run using what you learned in this chapter.</p>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="intro/further.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="gis/example.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="learn-examples/attributes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="system/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -207,11 +314,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="intro/further.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="gis/example.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="learn-examples/attributes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="system/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
