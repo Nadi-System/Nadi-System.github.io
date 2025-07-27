@@ -258,13 +258,26 @@ If you are a developer and want an API documentation for the data types used in 
 <li>Want to contribute to the NADI system packages, etc.</li>
 </ul>
 <p>Although not intended, it might include resources and links to other materials related to Rust concepts, Geographical Information System (GIS) concepts, Hydrology concepts, etc. that people could potentially benefit from.</p>
+<p>Please note that, this book assumes you have some knowledge of programming, like control flow, loops, functions, variables, etc. As as well some knowledge of GIS if you are reading network detection + GIS visualization specific functions. Those concepts will not be covered in this book. And if you are reading the developer reference or compiled plugin development, some knowledge of rust is assumed, but this is not necessary for the users of NADI that will only write code in NADI.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-use-this-book"><a class="header" href="#how-to-use-this-book">How to use this book</a></h1>
 <p>You can read this book sequentially to understand the concepts used in the NADI system. And then go through the references sections for a specific use cases you want to get into the details of.</p>
-<p>If you are in a hurry, but this is your first time reading this book,
+<ul>
+<li>If you are in a hurry, but this is your first time reading this book,
 at least read the <a href="./intro.html">Core Concepts</a>, then refer to the
-section you are interested in. <a href="./learn-examples.html">Learn by Example</a></p>
+section you are interested in.</li>
+<li>If you want to know a specific details, click on the search icon at the top left of the book to get the search bar. You can search text there and visit the pages.</li>
+<li>If you want to learn about the QGIS Plugin, NADI GIS, goto “Network Detection (GIS)” section.</li>
+<li>If you want to learn about the Domain Specific Programming Language (DSL), refer to the “Network Analysis (DSL)” section.
+<ul>
+<li><a href="./learn-examples.html">Learn by Example</a> contains some simple examples you can follow to learn the basic syntax of the Task System.</li>
+<li>If you want more detailed examples of the use of Task System, refer to the “Slightly Complex Examples” section.</li>
+</ul>
+</li>
+<li>If you want reference for functions used in Task System goto “Plugin Functions”, the <a href="./plugins/intro.html">Internal Plugins</a> section contains details on the functions that are available with nadi system, while the external plugins are plugins that were loaded while this book was compiled.</li>
+</ul>
+<p>If you have suggestions on the formatting, or arrangement of chapters in this book, please make an issue on <a href="https://github.com/Nadi-System/nadi-book">the GitHub repository for this book</a>.</p>
 <h2 id="code-blocks"><a class="header" href="#code-blocks">Code Blocks</a></h2>
-<p>The code blocks will have example codes for various languages, most common will be <code>string template</code>, <code>task</code>, and <code>rust</code> codes.</p>
+<p>The code blocks will have example codes for various languages, most common will be <code>string template</code>, <code>task</code>, <code>python</code>, and <code>rust</code> codes.</p>
 <p>String template and task have custom syntax highlights that is
 intended to make it easier for the reader to understand different
 semantic blocks.</p>
@@ -346,6 +359,19 @@ command, then they will be executed during that process.</p>
 <tr><td><a href="https://github.com/Nadi-System/nadi-book">nadi-book</a></td><td>Source for this Nadi Book</td></tr>
 </tbody></table>
 </div>
+<h2 id="workflow"><a class="header" href="#workflow">Workflow</a></h2>
+<p>A Typical workflow in NADI System consists of the follwing 4 processes:</p>
+<ol>
+<li>Download Data</li>
+<li>Pre-Process Data</li>
+<li>Network Detection (using NADI GIS)</li>
+<li>Network Analysis (Using NADI System’s DSL, and Plugins)</li>
+<li>Post Process</li>
+</ol>
+<p>The figure below shows the order of how the components of the NADI System (blue) is used along side external tools (black).</p>
+<p><img src="./images/venn-diagram.svg" alt="Nadi Workflow" /></p>
+<p>Here the numbers in red circles are the order of use for different tools. Here the “Run Tasks” step represents running the Nadi DSL Code in the System, so it is further divided into the tasks inside the code. The numbers on the blue circles show a typical use case of the DSL to perform a research work.</p>
+<p>For exact details on what a typical research workflow involving the Nadi DSL is, refer to the examples.</p>
 <h2 id="nadi-gis"><a class="header" href="#nadi-gis">NADI GIS</a></h2>
 <p>Geographic Information (GIS) Tool for Network Detection. The main purpose of the NADI GIS is to find the network connectivity between a set of points using a stream network (which can be developed from elevation models, or downloaded from national databases).</p>
 <p>NADI GIS can be used as a terminal command or QGIS plugin, refer to <a href="installation.html#nadi-gis">installation</a> section for how to install it.</p>
@@ -391,6 +417,8 @@ for node in net.nodes:
     try:
         _ = int(node.name)
         node.is_usgs = True
+		# this just shows how nadi functions can be called from python
+		# for simple functions please use the python native functions
         print(fn.node.render(node, "Node {_NAME} is USGS Site"))
     except ValueError:
         node.is_usgs = False
@@ -915,6 +943,21 @@ node assert_eq(render("abc {x}"), "abc 13")
 <tr><td>for</td><td>for loop task for looping through array/attrmap</td></tr>
 </tbody></table>
 </div>
+<h2 id="symbols"><a class="header" href="#symbols">Symbols</a></h2>
+<p>Some special symbols and their functions are listed below:</p>
+<ul>
+<li><code>.</code> dot accessor for variables, e.g. <code>node.var</code>, <code>node.var.another</code>, etc.,</li>
+<li><code>?</code> variable check (only used after a variable) e.g. <code>node.var?</code> evaluates to a <code>true</code> or <code>false</code>,</li>
+<li><code>()</code>, <code>{}</code>, <code>[]</code> brackets for functions/expressions, attrmaps and arrays,</li>
+<li><code>;</code> suppress current task output (only used at the end of a task),</li>
+<li><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>//</code> are mathematical operators,</li>
+<li><code>&amp;</code>, <code>|</code>, and <code>!</code> are logical operators,</li>
+<li><code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, and <code>==</code> are comparision operators,</li>
+<li><code>-&gt;</code> path operator (only used in node propagation, or network),</li>
+<li><code>=</code> is assignment operator,</li>
+<li><code>#</code> starts a comment,</li>
+</ul>
+<p>There might be more functions of each symbol depending on the context.</p>
 <p>Continue with the chapters for details on each concept. Or skip ahead to <a href="system//learn-examples.html">Learn by Examples</a> if you want to jump into the examples.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="task"><a class="header" href="#task">Task</a></h1>
 <p>Task is an execution body in the task system. There are different types of tasks, specially environment, network and node type tasks, and there can be conditional tasks that only execute based on a condition or loops.</p>
@@ -1232,7 +1275,7 @@ I wrote this document on {%A}, exact date: {%Y-%m-%d}.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-I wrote this document on Saturday, exact date: 2025-07-19.
+I wrote this document on Saturday, exact date: 2025-07-26.
 </code></pre>
 <p>With more complicated templates, we would be able to generate
 documents with text and images based on the node attributes as well.</p>
@@ -1582,6 +1625,7 @@ and use the system.</p>
 <p>If you want more details on any of the data structures refer the
 Developer’s references, or the library documentation.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="learn-by-examples"><a class="header" href="#learn-by-examples">Learn by Examples</a></h1>
+<p>This section teaches you the basics of the Nadi’s syntax with small examples. If you want a higher level example that focuses on the actual research problem instead of syntax then refer to the Slightly Complex Examples Section.</p>
 <p>For example data download the <a href="./data.zip">zip file here</a></p>
 <div class="table-wrapper"><table><thead><tr><th>Topic</th><th>Learn About</th></tr></thead><tbody>
 <tr><td><a href="./learn-examples/attributes.html">Attributes</a></td><td>Setting and Getting Attributes</td></tr>
@@ -2224,7 +2268,884 @@ network svg_save(
 <tr><td style="text-align: left"><a href="plugins/visuals.html"><code>visuals</code></a></td><td style="text-align: left"><a href="plugins/visuals.html#node.set_nodesize_attrs"><code>set_nodesize_attrs</code></a></td><td style="text-align: left">Set the node size of the nodes based on the attribute value</td></tr>
 <tr><td style="text-align: left"><a href="plugins/visuals.html"><code>visuals</code></a></td><td style="text-align: left"><a href="plugins/visuals.html#node.svg_save"><code>svg_save</code></a></td><td style="text-align: left">Exports the network as a svg</td></tr>
 </tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-python-library"><a class="header" href="#nadi-python-library">Nadi Python Library</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="latex-table"><a class="header" href="#latex-table">LaTeX Table</a></h1>
+<p>This example runs a task to generate latex table with tikz graphics. Similar method can be used to do generative programming (where you write code to write code for another program).</p>
+<pre><code class="language-task">network load_str("
+tenesse -&gt; ohio
+ohio -&gt; mississippi
+red -&gt; mississippi
+")
+node.area = (1 + ORDER) * 100.0
+
+env echo("\\begin{tabular}{llll}")
+env echo("Connections &amp; Node &amp; Area &amp; Name \\\\[2mm]")
+node(output._?).out = output.INDEX
+node echo(render("\\\\Node[{LEVEL}]\\{{INDEX}\\}\\{{INDEX}\\} &amp; $N_{INDEX}$ &amp; {area:f(2)} &amp; {_NAME:case(title)} \\\\\\\\[2mm]"))
+env echo("\\end{tabular}
+\\tikz[overlay, remember picture]{")
+node(output._?).edge = echo(render("\\\\path[-&gt;] ({INDEX}) edge ({out});"))
+env echo("}")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">\begin{tabular}{llll}
+
+Connections &amp; Node &amp; Area &amp; Name \\[2mm]
+
+\Node[0]{0}{0} &amp; $N_0$ &amp; 500.00 &amp; Mississippi \\[2mm]
+\Node[1]{1}{1} &amp; $N_1$ &amp; 200.00 &amp; Red \\[2mm]
+\Node[0]{2}{2} &amp; $N_2$ &amp; 300.00 &amp; Ohio \\[2mm]
+\Node[0]{3}{3} &amp; $N_3$ &amp; 200.00 &amp; Tenesse \\[2mm]
+
+\end{tabular}
+\tikz[overlay, remember picture]{
+
+\path[-&gt;] (1) edge (0);
+\path[-&gt;] (2) edge (0);
+\path[-&gt;] (3) edge (2);
+
+}
+</code></pre>
+<p>The latex file contains the <code>Node</code> command as follows:</p>
+<pre><code class="language-latex">
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+
+\newcommand{\Node}[3][0]{%
+  \tikz[overlay,remember picture]{\draw (#1 + 0.5, 0.1) circle [radius=0.2] node (#2) {#3};%
+  }}
+</code></pre>
+<p>The result of the compilation will result in the following table:</p>
+<p><img src="example/../images/latex-table.png" alt="LaTeX Table" /></p>
+<p>This is just an example, you can use this method to generate, markdown, latex, typst, html, and other markups as well. The syntax is a bit hard for LaTeX due to its use of <code>\</code> and <code>{</code>, both of which are special syntax of template system and need to be escaped. but for others it should be simpler.</p>
+<p>This should become easier after the introduction of user defined functions.</p>
+<p>The full latex source code is shown below:</p>
+<pre><code class="language-latex">\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+
+\newcommand{\Node}[3][0]{%
+  \tikz[overlay,remember picture]{\draw (#1 + 0.5, 0.1) circle [radius=0.2] node (#2) {#3};%
+}}
+
+\begin{document}
+\begin{tabular}{llll}
+
+Connections &amp; Node &amp; Area &amp; Name \\[2mm]
+
+\Node[0]{0}{0} &amp; $N_0$ &amp; 500.00 &amp; Mississippi \\[2mm]
+\Node[1]{1}{1} &amp; $N_1$ &amp; 200.00 &amp; Red \\[2mm]
+\Node[0]{2}{2} &amp; $N_2$ &amp; 300.00 &amp; Ohio \\[2mm]
+\Node[0]{3}{3} &amp; $N_3$ &amp; 200.00 &amp; Tenesse \\[2mm]
+
+\end{tabular}
+\tikz[overlay, remember picture]{
+
+\path[-&gt;] (1) edge (0);
+\path[-&gt;] (2) edge (0);
+\path[-&gt;] (3) edge (2);
+
+}
+\end{document}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="effects-of-dams"><a class="header" href="#effects-of-dams">Effects of Dams</a></h1>
+<p>Ohio River is one of the largest river basin in the USA. The development of the basin and its river system started early, so we have a problem where many streamgages never recorded the river in their natural state. In these examples, we’ll try to load a network, validate the network based on metadata, count the dams/gages, and get the year of earliest constructed dam upstream for further analysis.</p>
+<p>The examples in this chapter loads the data for the dams from National Inventory of Dams (NID), and USGS gages from Gages.shp (EPA and USGS), and uses the network developed using the NHDPlus streamlines above the Ohio River at Smithland Streamgage.</p>
+<p>The files used in this demo are follows:</p>
+<div class="table-wrapper"><table><thead><tr><th>Data</th><th>Filename</th><th>Source</th></tr></thead><tbody>
+<tr><td><a href="https://nid.sec.usace.army.mil/#/downloads">NID Data</a></td><td><code>nid-uniq.gpkg</code></td><td>National Inventory of Dams</td></tr>
+<tr><td><a href="https://www.sciencebase.gov/catalog/item/577445bee4b07657d1a991b6">Gage Locations</a></td><td><code>GageLoc.shp.zip</code></td><td>US EPA  &amp; USGS</td></tr>
+<tr><td><a href="https://pubs.usgs.gov/publication/70046617">Gage Attributes</a></td><td><code>gages-II.gpkg</code></td><td>USGS</td></tr>
+<tr><td>Gage Drainage</td><td><code>usgs-drainage.csv</code></td><td>Scrapped from USGS NWIS</td></tr>
+</tbody></table>
+</div>
+<p>Except NID data (due to large size), the others are also in the <code>src/data/ohio-river</code> directory on <a href="https://github.com/Nadi-System/nadi-book">the repository of this book</a>. Place the nid data into it before running the examples from this chapter. If you’re using the repository, you also have to unzip the <code>gages-II.gpkg.zip</code> into <code>gages-II.gpkg</code>.</p>
+<p>The Gage Drainage data is scrapped manually for some basins from the USGS website to increase the amount of gage we know the drainage area of, you can skip that in loading and still be able to do your analysis.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="validating-network"><a class="header" href="#validating-network">Validating Network</a></h1>
+<div class="warning">
+In this example we will use `nadi-gis` plugin to load and write GIS files, while using QGIS to generate the map visualization. The plugin is external, refer to the installation page to install it into the NADI System.
+<p>Different from other chapters, the code in this chapters are run in the order they are given, meaning each task code blocks are not independent.</p>
+</div>
+<h2 id="load-network-and-attributes"><a class="header" href="#load-network-and-attributes">Load Network and Attributes</a></h2>
+<p>We’ll use the same network from the Dams count example.</p>
+<pre><code class="language-task">network load_file("data/ohio-river/ohio.network")
+network count()
+network outlet()
+
+node.is_usgs = NAME match "^[0-9]+";
+node.is_dam = !is_usgs;
+network count(nodes.is_usgs)
+network count(nodes.is_dam)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">5987
+"03399800"
+1806
+4181
+</code></pre>
+<p>Then we load the node attributes from the gis files, we can see some of the variables are loaded from NID website.</p>
+<pre><code class="language-task">network gis_load_attrs("data/ohio-river/nid-uniq.gpkg", "nidId")
+network gis_load_attrs("data/ohio-river/GageLoc.shp.zip", "SOURCE_FEA")
+network gis_load_attrs("data/ohio-river/gages-II.gpkg", "STAID")
+network gis_load_attrs("data/ohio-river/usgs-drainage.csv", "SiteNumber")
+
+node[03399800].SiteNumber # only USGS gages have it
+node(INDEX &lt; 5).yearCompleted # only NID dams have it
+node(INDEX &lt; 5).GEOM # all nodes have it although from different sources
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  03399800 = &lt;None&gt;
+}
+{
+  03399800 = &lt;None&gt;,
+  IL50499 = 1980,
+  IL00070 = 1960,
+  IL00955 = 1977,
+  IL40055 = 1980
+}
+{
+  03399800 = "POINT (-88.4234349499133 37.1612042742605 0)",
+  IL50499 = "POINT (-88.42921894 37.16622664)",
+  IL00070 = "POINT (-88.57139 37.21975)",
+  IL00955 = "POINT (-88.78582 37.38365)",
+  IL40055 = "POINT (-88.77145 37.401709)"
+}
+</code></pre>
+<p>Also note that, while loading GIS files it also loads the geometry into “GEOM” attribute (you can change it through <code>change</code> function argument).</p>
+<!-- Let's make them into same format to avoid future problems. -->
+<!-- ```task run continue -->
+<!-- node(GEOM?).GEOM = str_replace(GEOM, " 0\\)", ")"); -->
+<!-- node(INDEX < 5).GEOM -->
+<!-- ``` -->
+<h2 id="process-attributes"><a class="header" href="#process-attributes">Process Attributes</a></h2>
+<p>Since we need a quick and easy way to identify USGS gage and NID dam, we use regex to categorize them.</p>
+<pre><code class="language-task">node.is_usgs = NAME match "^[0-9]+";
+node.is_dam = !is_usgs;
+network count(nodes.is_usgs)
+network count(nodes.is_dam)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">1806
+4181
+</code></pre>
+<p>The basin area is stored as different variable in each dataset, we want to combine them into a single one.</p>
+<pre><code class="language-task">node.ba = first_attr(["drainageArea", "DRAIN_SQKM", "Drainage"])
+network count(nodes.ba?) / count()
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">0.7561382996492401
+</code></pre>
+<p>Even then we only have 75% of the nodes with basin area. Since the <code>DrainageArea</code> is in sqmiles</p>
+<p>If we look at some examples here on two sources of basin area of USGS gages, we can see the problems:</p>
+<pre><code class="language-task">node(is_usgs &amp; Drainage? &amp; DRAIN_SQKM? &amp; INDEX &lt; 100) array(Drainage, DRAIN_SQKM)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  03384450 = ["42.9", 111.1266],
+  03383000 = ["255.0", 660.5415],
+  03382100 = ["147.0", 367.272]
+}
+</code></pre>
+<ol>
+<li>The <code>Drainage</code> value are <code>String</code>,</li>
+<li>The units are different (confirmed from metadata of datasets).</li>
+</ol>
+<p>So we reconcile that,</p>
+<pre><code class="language-task">node(Drainage?).basin_area = float(Drainage);
+node(DRAIN_SQKM?).basin_area = DRAIN_SQKM * 0.38610216;
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">Error in function float: cannot parse float from empty string
+</code></pre>
+<p>We got an error, seems like <code>Drainage</code> contains empty strings as well. That and the <code>String</code> part comes from loading a CSV without data types (<code>.csvt</code> file).</p>
+<p>Let’s fix the code for that, and also let’s get the <code>basin_area</code> for dams.</p>
+<pre><code class="language-task">node(Drainage? &amp; Drainage match "[0-9]+(.[0-9]+)?").basin_area = float(Drainage);
+node(DRAIN_SQKM?).basin_area = DRAIN_SQKM * 0.38610216;
+node(drainageArea?).basin_area = float(drainageArea);
+
+node(INDEX &lt; 10).basin_area
+network count(nodes.basin_area?) / count()
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  03399800 = &lt;None&gt;,
+  IL50499 = 144000,
+  IL00070 = &lt;None&gt;,
+  IL00955 = &lt;None&gt;,
+  IL40055 = 0.08,
+  IL00039 = &lt;None&gt;,
+  03386500 = 9.853134072120001,
+  IL00102 = 2,
+  03386000 = &lt;None&gt;,
+  03385500 = &lt;None&gt;
+}
+0.755971271087356
+</code></pre>
+<h2 id="check-for-incorrect-basin-areas"><a class="header" href="#check-for-incorrect-basin-areas">Check for Incorrect Basin Areas</a></h2>
+<p>Now we have all the different variables combined into a single one with same data type and unit. Let’s do a quick analysis to see if there are points in the network where nodes have larger area than input nodes.</p>
+<pre><code class="language-task">node.incorrect = basin_area &lt; sum(inputs.basin_area);
+network count(nodes.incorrect)
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">Attribute not found
+</code></pre>
+<p>The error here comes from the fact that not all nodes contain <code>basin_area</code> attribute. Since <code>basin_area?</code> will only check for the current node, we use a default value when the values are not available into a temporary variable.</p>
+<pre><code class="language-task">node.temp_ba = basin_area ? 0.0;
+node.incorrect = basin_area? &amp; (basin_area &lt; sum(inputs.temp_ba));
+network count(nodes.incorrect)
+network count(nodes.incorrect) / count()
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">547
+0.09136462335059295
+</code></pre>
+<p>That’s around 10% error rate.</p>
+<p>Looking at the actual values, few of them seem to be due to minor errors in values, while most of them seem to be from large input area.</p>
+<pre><code class="language-task">node(incorrect &amp; INDEX &lt; 400) array(basin_area, sum(inputs.temp_ba))
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  IL00028 = [1.5, 30.036998660096],
+  IL50443 = [0.04, 141009.11000000002],
+  KY00192 = [0.07, 0.31],
+  IN04021 = [0.08, 0.2],
+  IN03653 = [0.04, 0.37],
+  IL50585 = [0.03, 0.16],
+  IL01085 = [240, 240.171142047264],
+  IL00606 = [0.6, 57],
+  IN00316 = [0.09, 0.15],
+  IN00317 = [0.15, 0.7000000000000001],
+  IN00319 = [0.7000000000000001, 43.053904369656],
+  IN03161 = [0.06, 0.07],
+  IN03160 = [0.07, 3.0100000000000002],
+  IN04048 = [0.4, 0.53],
+  IN00627 = [0.53, 1.1300000000000001],
+  IN03433 = [0.03, 1.82],
+  IN00617 = [0.27, 0.49],
+  IN00480 = [0.56, 21.637975860936002],
+  IN00618 = [0.41000000000000003, 1.2700000000000002],
+  IN00098 = [0.33, 263.021357392616],
+  IN00035 = [0.23, 168.12355234608],
+  03343010 = [13732, 13755.171304576803],
+  IN00528 = [0.21, 0.32],
+  IN00151 = [1.18, 4.75],
+  IN03337 = [1.1500000000000001, 42.9097178978],
+  IN00107 = [0.55, 8.22],
+  IN00209 = [1.8, 8.48],
+  IN00091 = [0.6900000000000001, 0.87],
+  IN00092 = [0.87, 8.38]
+}
+</code></pre>
+<p>This could be due to the error in snapping to the streamlines. It is also possible that some basin area that are missing are contributing to the unaccounted area.</p>
+<p>Let’s try to fix them, or avoid points without data.</p>
+<pre><code class="language-task">node.all_inputs_ba = all(inputs.basin_area?);
+node.incorrect = basin_area? &amp; all_inputs_ba &amp; (
+	basin_area &lt; (0.975 * sum(inputs.basin_area))
+);
+network count(nodes.incorrect)
+network count(nodes.incorrect) / count()
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">451
+0.07532988140972106
+</code></pre>
+<p>Looks like 7.5% of the errors are reasonable errors from network detection.</p>
+<pre><code class="language-task">network count(nodes.incorrect &amp; nodes.is_usgs)
+network count(nodes.incorrect &amp; nodes.is_dam)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">8
+443
+</code></pre>
+<p>This shows that the majority of the errors come from the NID dams, which makes sense given the <code>GageLoc.shp</code> data has points indexed to the NHDPlus streamlines, while the NID Dams are not indexed to it. Furthermore, looking at the attributes in QGIS shows, many dams are in locations without streamlines, and even then sometimes they have unusually large basin area values for their location.</p>
+<h2 id="export-to-gis-for-visualization"><a class="header" href="#export-to-gis-for-visualization">Export to GIS for visualization</a></h2>
+<p>We can export this result to a GIS file and look into individual cases in QGIS.</p>
+<pre><code class="language-task">network gis_save_nodes(
+    "output/ohio-gages-check.gpkg",
+	"GEOM",
+	{
+		NAME="String",
+		is_usgs="String",
+		incorrect="String",
+		basin_area="Float"
+	}
+)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">
+</code></pre>
+<p>We also need connection information to cross reference, let’s make them through some string manipulation. NADI GIS plugin uses WKT format for geometries, which are string values, so we can manipulate them using string functions.</p>
+<p>Note: we should probably add a function for this in future. A WKT plugin to work with geometries.</p>
+<pre><code class="language-task">node.xy_coords = str_find_all(node.GEOM, "-?[0-9]+[.][0-9]+");
+node(output._?).out_coords = str_find_all(output.GEOM, "-?[0-9]+[.][0-9]+");
+node(! output._?).conn_geom = GEOM
+node(output._?).conn_geom = env.render(
+	"LINESTRING ({_x1} {_y1}, {_x2} {_y2})",
+	x1=get(node.xy_coords, 0),
+	y1=get(node.xy_coords, 1),
+	x2=get(node.out_coords, 0),
+	y2=get(node.out_coords, 1)
+)
+node(output._? &amp; (INDEX &lt; 10)).conn_geom
+
+network gis_save_connections("output/ohio-conn-all.gpkg", "conn_geom")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  IL50499 = "LINESTRING (-88.42921894 37.16622664, -88.4234349499133 37.1612042742605)",
+  IL00070 = "LINESTRING (-88.57139 37.21975, -88.42921894 37.16622664)",
+  IL00955 = "LINESTRING (-88.78582 37.38365, -88.42921894 37.16622664)",
+  IL40055 = "LINESTRING (-88.77145 37.401709, -88.42921894 37.16622664)",
+  IL00039 = "LINESTRING (-88.68815 37.38965, -88.42921894 37.16622664)",
+  03386500 = "LINESTRING (-88.6736645 37.4156072, -88.68815 37.38965)",
+  IL00102 = "LINESTRING (-88.66408 37.41518, -88.6736645 37.4156072)",
+  03386000 = "LINESTRING (-88.6637356477429 37.4140878122472, -88.66408 37.41518)",
+  03385500 = "LINESTRING (-88.6494395725886 37.4141446558289, -88.6637356477429 37.4140878122472)"
+}
+</code></pre>
+<p>When we visualize the output in QGIS, we can see the nodes where the <code>basin_area</code> are not correct based on the network information.</p>
+<p><img src="example/../images/ohio-correctness-qgis.png" alt="Correctness in QGIS" /></p>
+<p>The zoomed in images at the bottom shows some of the reasons:</p>
+<ul>
+<li>[left] Incorrect Data in database (I think the dam coordinates are wrong on the blue dot with 277 basin area),</li>
+<li>[middle &amp; right] Not enough streamlines for smaller details, and</li>
+<li>Nearest river detection algorithm problem from not considering river width.</li>
+</ul>
+<p>The example for the last problem can be seen in the <a href="https://youtu.be/PIGoVnXb7ck?t=770">Video demostration for NADI QGIS Plugin</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="counting-ohio-dams"><a class="header" href="#counting-ohio-dams">Counting Ohio Dams</a></h1>
+<p>In the previous example we validated the network using basin_area. You can also use other properties like river mile to validate the network connection. Or to validate the metadata.</p>
+<p>In this example, we’ll be assuming there are some errors and continue with our analysis. Because the errors are mostly in the placement of dams, the count of dam upstream of a gage is still the same. For example:</p>
+<p>If our network is:</p>
+<pre><code class="language-network">gage1 -&gt; dam1
+dam1 -&gt; gage2
+</code></pre>
+<p>instead of:</p>
+<pre><code class="language-network">gage1 -&gt; gage2
+dam1 -&gt; gage2
+</code></pre>
+<p>For both gage, number of dams upstream (or the first dam construction year upstead) is still the same, even though there is error on the same calculation in the dam.</p>
+<h2 id="load-network-and-attributes-1"><a class="header" href="#load-network-and-attributes-1">Load Network and Attributes</a></h2>
+<p>First load the network</p>
+<pre><code class="language-task">network load_file("data/ohio-river/ohio.network")
+network count()
+network outlet()
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">5987
+"03399800"
+</code></pre>
+<h2 id="identify-dams-and-gages"><a class="header" href="#identify-dams-and-gages">Identify Dams and Gages</a></h2>
+<p>Since we need a quick and easy way to identify USGS gage and NID dam, we use regex to categorize them.</p>
+<pre><code class="language-task">node.is_usgs = NAME match "^[0-9]+";
+node.is_dam = !is_usgs;
+network count(nodes.is_usgs)
+network count(nodes.is_dam)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">1806
+4181
+</code></pre>
+<h2 id="count-damsgages-upstream"><a class="header" href="#count-damsgages-upstream">Count Dams/Gages Upstream</a></h2>
+<p>Now we simply count the number of dams and gages upstream recursively. We run it inputs first, so that the count begins with leaf nodes where we get 1 for the category we’re counting and 0 otherwise, then we propagate that value downstream.</p>
+<pre><code class="language-task">node&lt;inp&gt;.ngage = int(is_usgs) + sum(inputs.ngage);
+node&lt;inp&gt;.ndam = int(!is_usgs) + sum(inputs.ndam);
+
+node(INDEX &lt; 10) array(ngage, ndam)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  03399800 = [1806, 4181],
+  IL50499 = [1805, 4181],
+  IL00070 = [0, 1],
+  IL00955 = [0, 1],
+  IL40055 = [0, 1],
+  IL00039 = [3, 2],
+  03386500 = [3, 1],
+  IL00102 = [2, 1],
+  03386000 = [2, 0],
+  03385500 = [1, 0]
+}
+</code></pre>
+<p>If we run this code without the <code>inputsfirst</code>/<code>inp</code> propagation, we get an error because the node’s <code>inputs</code> will not have <code>ngage</code> and <code>ndam</code> values.</p>
+<p>The counting is done, super simple right? NADI’s ability to work with networks mean that some things are super simple compared to other languages.</p>
+<h2 id="gis-visualization"><a class="header" href="#gis-visualization">GIS Visualization</a></h2>
+<p>Again, if we use <code>nadi-gis</code> plugin, then we can export this result and visualize it in QGIS.</p>
+<pre><code class="language-task">network gis_save_nodes(
+	"output/ohio-gages-count.gpkg",
+	"GEOM",
+	{
+		NAME="String",
+		is_usgs="String",
+		ndam="Integer",
+		ngage="Integer"
+	}
+)
+</code></pre>
+<p>After applying some filters and styles in QGIS, we can look at the numbers visually,</p>
+<p><img src="example/../images/counts-combined.png" alt="Gage/Dam Count" /></p>
+<h2 id="extra-counting-large-dams"><a class="header" href="#extra-counting-large-dams">Extra: Counting Large Dams</a></h2>
+<p>The definition of large dam: https://www.icold-cigb.org/GB/dams/definition_of_a_large_dam.asp</p>
+<ul>
+<li>height of more than 15 meters,</li>
+<li>height between 5m and 15m impounding more than 3 million cubic meters.</li>
+</ul>
+<p>Converting them to imperial units we get:</p>
+<div class="table-wrapper"><table><thead><tr><th>Metric</th><th>Imperial</th></tr></thead><tbody>
+<tr><td>15m</td><td>49.21ft</td></tr>
+<tr><td>5m</td><td>16.40ft</td></tr>
+<tr><td>3 x 10⁶ m³</td><td>810.71 acre feet</td></tr>
+</tbody></table>
+</div>
+<p>Now, we need to load the dam attributes from NID database.</p>
+<!-- And extract the dam height, the database has different dam heights, and not all of them have everything available, so let's try our best by prioritizing different variables. -->
+<pre><code class="language-task">network gis_load_attrs("data/ohio-river/nid-uniq.gpkg", "nidId")
+node(is_dam).dam_height = float(nidHeight);
+node(is_dam).dam_storage = float(nidStorage);
+
+network count(nodes.is_dam)
+network count(nodes.dam_height? &amp; nodes.dam_storage?)
+node(is_dam &amp; (INDEX &lt; 10)) array(dam_height, dam_storage)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">4181
+4181
+{
+  IL50499 = [56, 738700],
+  IL00070 = [24, 153],
+  IL00955 = [36, 366],
+  IL40055 = [28, 47],
+  IL00039 = [59, 633],
+  IL00102 = [38, 1814]
+}
+</code></pre>
+<p>Lot’s of basins do not have basin area.</p>
+<p>First, using the previous requirements for large dams:</p>
+<pre><code class="language-task">node.large_dam = is_dam &amp; ((dam_height &gt; 49) | ((dam_height &gt; 16) &amp; (dam_storage &gt; 811)));
+network count(nodes.large_dam)
+network count(nodes.large_dam) / count(nodes.is_dam)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">1135
+0.27146615642190863
+</code></pre>
+<p>This will allow us to run the same counting as before:</p>
+<pre><code class="language-task">node&lt;inp&gt;.nldam = int(large_dam) + sum(inputs.nldam);
+node(INDEX &lt; 10) array(ndam, nldam)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  03399800 = [4181, 1135],
+  IL50499 = [4181, 1135],
+  IL00070 = [1, 0],
+  IL00955 = [1, 0],
+  IL40055 = [1, 0],
+  IL00039 = [2, 2],
+  03386500 = [1, 1],
+  IL00102 = [1, 1],
+  03386000 = [0, 0],
+  03385500 = [0, 0]
+}
+</code></pre>
+<p>Although not obivious, the numbers were quite large, so when I inspected the NID data, some dams seem to have very high height values that do not match.</p>
+<p>Let’s load basin area and flag any locations with more than 50ft of dam height, and less than 10 square miles of basin area.</p>
+<pre><code class="language-task">node(is_dam &amp; drainageArea?).basin_area = float(drainageArea);
+network count(nodes.basin_area?)
+node(! basin_area?).basin_area = nan;
+
+node.flag = large_dam &amp; ((dam_height &gt; 50) &amp; (basin_area &lt; 10));
+network count(nodes.flag)
+node(flag &amp; (INDEX &lt; 1000)) array(dam_height, dam_storage, basin_area)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">3766
+353
+{
+  IL50593 = [108, 10790, 0.27],
+  IL50678 = [110, 5250, 0.1],
+  IL50066 = [55, 1087, 0.7000000000000001],
+  IN00446 = [54, 7538, 4.75],
+  IL00688 = [52, 3474, 3.3000000000000003],
+  IN00439 = [56, 321, 0.52],
+  IN03920 = [55, 39, 0.02],
+  IN00505 = [56, 66, 0.03],
+  IN00036 = [63, 1595, 1.2],
+  IN00181 = [55, 1380, 4.7],
+  IN00201 = [55, 2861, 4.69],
+  IN00069 = [68, 6718, 5.8],
+  IN03731 = [57, 128, 0.8200000000000001],
+  IN03007 = [55, 29800, 0],
+  IN00197 = [62, 3555, 1.82],
+  IN00103 = [60, 1158, 0.36],
+  IN00133 = [82, 13000, 9.34],
+  IN00342 = [63, 198, 0.19],
+  IN00565 = [53, 109, 0.1]
+}
+</code></pre>
+<p>We don’t have all basin areas, but from this we flagged around 300 dams. Looking at the values, <code>IL50678</code> basically says it has a dam with height of 110, but basin area of 0.1, which seems very unreasonable. To remove these from our identification process, let’s add another category.</p>
+<pre><code class="language-task">node.large_dam = is_dam &amp; (((dam_height &gt; 49) | ((dam_height &gt; 16) &amp; (dam_storage &gt; 811))) &amp; (basin_area &gt; 10));
+network count(nodes.large_dam)
+network count(nodes.large_dam) / count(nodes.is_dam)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">321
+0.07677589093518297
+</code></pre>
+<p>The number of dams that are now categorized as large dams have been reduced significantly.</p>
+<h2 id="extra-looking-at-main-stem-of-the-river"><a class="header" href="#extra-looking-at-main-stem-of-the-river">Extra: Looking at Main Stem of the River</a></h2>
+<p>Let’s look at the values along the main stem. <code>LEVEL == 0</code> means the mainstem of the network.</p>
+<pre><code class="language-task">node(LEVEL==0) array(ngage, ndam, nldam)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  03399800 = [1806, 4181, 1135],
+  IL50499 = [1805, 4181, 1135],
+  03384500 = [1801, 4169, 1129],
+  IL50443 = [1799, 4164, 1129],
+  03381700 = [1785, 4065, 1097],
+  KY03060 = [1454, 3087, 905],
+  03322420 = [1454, 3086, 904],
+  IN03661 = [1451, 3067, 897],
+  03322190 = [1451, 3061, 897],
+  KY01059 = [1450, 3061, 897],
+  03322000 = [1448, 3044, 894],
+  IN04061 = [1388, 2822, 826],
+  03304300 = [1388, 2821, 826],
+  KY03059 = [1387, 2821, 826],
+  03303500 = [1386, 2809, 823],
+  KY01255 = [1383, 2771, 815],
+  KY00842 = [1383, 2769, 814],
+  IN03297 = [1383, 2768, 813],
+  KY03058 = [1383, 2765, 813],
+  03303280 = [1383, 2764, 812],
+  IN03192 = [1382, 2764, 812],
+  KY01272 = [1373, 2726, 807],
+  03294600 = [1322, 2576, 789],
+  KY00597 = [1318, 2572, 788],
+  KY01022 = [1318, 2571, 788],
+  03294500 = [1318, 2570, 788],
+  KY03034 = [1316, 2552, 780],
+  03293600 = [1316, 2551, 779],
+  03293551 = [1315, 2551, 779],
+  03293550 = [1314, 2551, 779],
+  03293548 = [1313, 2551, 779],
+  IN00643 = [1295, 2533, 775],
+  KY03033 = [1220, 2287, 689],
+  03277200 = [1220, 2286, 688],
+  KY01215 = [1217, 2272, 685],
+  OH01690 = [1111, 2112, 657],
+  03255000 = [1091, 2087, 648],
+  OH01350 = [1013, 1898, 616],
+  03238680 = [1011, 1886, 612],
+  KY03032 = [1010, 1886, 612],
+  KY00938 = [1004, 1869, 609],
+  KY01093 = [1003, 1868, 609],
+  03238000 = [1003, 1867, 608],
+  OH03181 = [1002, 1866, 607],
+  03217200 = [883, 1700, 573],
+  KY03031 = [875, 1692, 572],
+  03216600 = [875, 1691, 571],
+  03216000 = [868, 1680, 568],
+  03206000 = [788, 1596, 513],
+  WV05302 = [760, 1568, 503],
+  03201500 = [622, 1335, 415],
+  03160000 = [621, 1335, 415],
+  OH00971 = [619, 1327, 411],
+  WV05312 = [617, 1318, 408],
+  WV05313 = [617, 1317, 407],
+  WV05301 = [617, 1314, 407],
+  03159870 = [617, 1313, 406],
+  WV10702 = [609, 1296, 399],
+  03159530 = [609, 1295, 398],
+  03151000 = [564, 1186, 358],
+  OH00943 = [563, 1185, 358],
+  OH00939 = [563, 1184, 358],
+  03150700 = [563, 1182, 357],
+  WV07301 = [396, 842, 288],
+  WV10301 = [393, 836, 285],
+  03114280 = [393, 835, 284],
+  03114275 = [392, 835, 284],
+  WV05108 = [389, 827, 280],
+  03113600 = [385, 805, 273],
+  03112500 = [377, 798, 270],
+  03111534 = [373, 769, 251],
+  WV06908 = [372, 769, 251],
+  03111520 = [372, 768, 250],
+  03111515 = [371, 768, 250],
+  OH03169 = [368, 742, 246],
+  WV02901 = [362, 704, 227],
+  03110690 = [362, 703, 226],
+  OH03172 = [361, 703, 226],
+  03110685 = [361, 702, 226],
+  03108500 = [344, 661, 219],
+  PA00128 = [343, 661, 219],
+  03108490 = [343, 660, 218],
+  PA00127 = [279, 528, 184],
+  03086000 = [279, 527, 183],
+  PA00126 = [276, 519, 181],
+  03085730 = [276, 518, 180],
+  PA01994 = [142, 265, 96],
+  PA00120 = [141, 264, 96],
+  03085000 = [141, 263, 95],
+  03075070 = [100, 192, 73],
+  03075000 = [98, 172, 64],
+  PA00122 = [97, 172, 64],
+  PA00123 = [94, 156, 60],
+  PA01549 = [89, 135, 50],
+  PA01265 = [89, 133, 49],
+  PA00124 = [88, 121, 44],
+  03072655 = [88, 120, 43],
+  03072500 = [86, 118, 43],
+  PA00125 = [45, 90, 36],
+  03063000 = [45, 89, 35],
+  WV06106 = [43, 78, 31],
+  03062450 = [43, 77, 30],
+  03062445 = [42, 77, 30],
+  WV06107 = [40, 75, 29],
+  WV06108 = [40, 74, 28],
+  03062224 = [40, 73, 27],
+  03062000 = [37, 69, 26],
+  03061000 = [12, 37, 9],
+  03059000 = [9, 20, 8],
+  WV03336 = [8, 20, 8],
+  03058975 = [8, 18, 8],
+  03058500 = [7, 16, 7],
+  WV04110 = [6, 6, 1],
+  03058020 = [6, 5, 1],
+  WV04111 = [5, 2, 1],
+  03058006 = [5, 1, 1],
+  WV04114 = [4, 1, 1],
+  03058000 = [4, 0, 0],
+  03057900 = [3, 0, 0],
+  03057300 = [1, 0, 0]
+}
+</code></pre>
+<p>If you want to be more accurate, we can load the <code>SiteName</code> from GIS file and match the node with “Ohio River” in its name with the lowest order to find the first Ohio River Node.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="earliest-dam-year"><a class="header" href="#earliest-dam-year">Earliest Dam Year</a></h1>
+<p>First load the network, and attributes</p>
+<pre><code class="language-task">network load_file("data/ohio-river/ohio.network")
+network gis_load_attrs("data/ohio-river/nid-uniq.gpkg", "nidId")
+
+node.is_usgs = NAME match "^[0-9]+";
+node.is_dam = !is_usgs;
+network count(nodes.is_usgs)
+network count(nodes.is_dam)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">1806
+4181
+</code></pre>
+<p>Counting the upstream dams again,</p>
+<pre><code class="language-task">node&lt;inp&gt;.ndam = int(is_dam) + sum(inputs.ndam);
+node.no_dam_us = ndam == 0;
+network count(nodes.no_dam_us &amp; nodes.is_usgs)
+network count(nodes.no_dam_us &amp; nodes.is_usgs) / count(nodes.is_usgs)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">605
+0.33499446290143964
+</code></pre>
+<p>We can see 33% of the USGS gages do not have dams upstream.</p>
+<p>And for those that do, let’s look at the construction year,</p>
+<pre><code class="language-task">env.max_year = 9999; # todo test it with nan
+node.dam_year = int(get_attr("yearCompleted", env.max_year));
+
+node&lt;inp&gt;.dam_aff_yr = min_num(inputs.dam_aff_yr, dam_year);
+node&lt;inp&gt;.dam_affected = dam_aff_yr &lt; env.max_year;
+
+network count(nodes.dam_affected &amp; nodes.is_usgs)
+network count(!nodes.no_dam_us &amp; nodes.is_usgs)
+network count(nodes.dam_affected &amp; nodes.is_usgs) / count(!nodes.no_dam_us &amp; nodes.is_usgs)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">1152
+1201
+0.9592006661115737
+</code></pre>
+<p>This shows we have the construction year for 95% of the USGS gages that were constructed after at least one upstream dams.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ohio-river-streamflow-routing-project"><a class="header" href="#ohio-river-streamflow-routing-project">Ohio River Streamflow Routing Project</a></h1>
+<p>The Network for the flow routing is as follows:</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
+</span>network svg_save(label="{_NAME}", outfile = "./output/ohio.svg", height=1000)
+</code></pre>
+<p>Results:</p>
+<center>  
+<p><img src="../output/ohio.svg" alt="" /></p>
+</center>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="making-tables"><a class="header" href="#making-tables">Making Tables</a></h1>
+<pre><code class="language-table"><span class="boring">network load_file("./data/ohio.network")
+</span><span class="boring">node load_attrs("./data/attrs/{_NAME}.toml")
+</span><span class="boring">network clip()
+</span><span class="boring"># ^Ind =&gt; =(+ (st+num 'INDEX) 1)
+</span>&lt;Node ID =&gt; {_NAME}
+&lt;Title =&gt; {_description:case(title):repl(Ky,KY):repl(In,IN):repl(Wv,WV):repl(Oh,OH)?}
+&gt;Latitude =&gt; {lat:f(4)}
+&gt;Longitude =&gt; {lon:f(4)}
+</code></pre>
+<p>Results:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Node ID</th><th style="text-align: left">Title</th><th style="text-align: right">Latitude</th><th style="text-align: right">Longitude</th></tr></thead><tbody>
+<tr><td style="text-align: left">smithland</td><td style="text-align: left">OHio River at Smithland Dam Smithland KY</td><td style="text-align: right">37.1584</td><td style="text-align: right">-88.4262</td></tr>
+<tr><td style="text-align: left">golconda</td><td style="text-align: left">OHio River at Dam 51 at Golconda, Il</td><td style="text-align: right">37.3578</td><td style="text-align: right">-88.4825</td></tr>
+<tr><td style="text-align: left">old-shawneetown</td><td style="text-align: left">OHio River at Old Shawneetown, Il-KY</td><td style="text-align: right">37.6919</td><td style="text-align: right">-88.1333</td></tr>
+<tr><td style="text-align: left">mountcarmel</td><td style="text-align: left">Wabash River at Mt. Carmel, Il</td><td style="text-align: right">38.3983</td><td style="text-align: right">-87.7564</td></tr>
+<tr><td style="text-align: left">jt-myers</td><td style="text-align: left">OHio River at Uniontown Dam, KY</td><td style="text-align: right">37.7972</td><td style="text-align: right">-87.9983</td></tr>
+<tr><td style="text-align: left">evansville</td><td style="text-align: left">OHio River at Evansville, IN</td><td style="text-align: right">37.9723</td><td style="text-align: right">-87.5764</td></tr>
+<tr><td style="text-align: left">calhoun</td><td style="text-align: left">Green River at Lock 2 at Calhoun, KY</td><td style="text-align: right">37.5339</td><td style="text-align: right">-87.2639</td></tr>
+<tr><td style="text-align: left">newburgh</td><td style="text-align: left">Newburgh</td><td style="text-align: right">37.9309</td><td style="text-align: right">-87.3722</td></tr>
+<tr><td style="text-align: left">cannelton</td><td style="text-align: left">OHio River at Cannelton Dam at Cannelton, IN</td><td style="text-align: right">37.8995</td><td style="text-align: right">-86.7055</td></tr>
+<tr><td style="text-align: left">shepherdsville</td><td style="text-align: left">Salt River at Shepherdsville, KY</td><td style="text-align: right">37.9851</td><td style="text-align: right">-85.7175</td></tr>
+<tr><td style="text-align: left">mcalpine</td><td style="text-align: left">OHio River at Louisville, KY</td><td style="text-align: right">38.2803</td><td style="text-align: right">-85.7991</td></tr>
+<tr><td style="text-align: left">lockport</td><td style="text-align: left">Kentucky River at Lock 2 at Lockport, KY</td><td style="text-align: right">38.4390</td><td style="text-align: right">-84.9633</td></tr>
+<tr><td style="text-align: left">markland</td><td style="text-align: left">OHio River at Markland Dam Near Warsaw, KY</td><td style="text-align: right">38.7748</td><td style="text-align: right">-84.9644</td></tr>
+<tr><td style="text-align: left">milford</td><td style="text-align: left">Little Miami River at Milford OH</td><td style="text-align: right">39.1714</td><td style="text-align: right">-84.2980</td></tr>
+<tr><td style="text-align: left">catawba</td><td style="text-align: left">Licking River at Catawba, KY</td><td style="text-align: right">38.7103</td><td style="text-align: right">-84.3108</td></tr>
+<tr><td style="text-align: left">hamilton</td><td style="text-align: left">Great Miami River at Hamilton OH</td><td style="text-align: right">39.3912</td><td style="text-align: right">-84.5722</td></tr>
+<tr><td style="text-align: left">perintown</td><td style="text-align: left">East Fork Little Miami River at Perintown OH</td><td style="text-align: right">39.1370</td><td style="text-align: right">-84.2380</td></tr>
+<tr><td style="text-align: left">brookville</td><td style="text-align: left">Whitewater River at Brookville, IN</td><td style="text-align: right">39.4075</td><td style="text-align: right">-85.0129</td></tr>
+<tr><td style="text-align: left">meldahl</td><td style="text-align: left">Meldahl</td><td style="text-align: right">38.7972</td><td style="text-align: right">-84.1705</td></tr>
+<tr><td style="text-align: left">higby</td><td style="text-align: left">Scioto River at Higby OH</td><td style="text-align: right">39.2123</td><td style="text-align: right">-82.8638</td></tr>
+<tr><td style="text-align: left">greenup</td><td style="text-align: left">Greenup</td><td style="text-align: right">38.6468</td><td style="text-align: right">-82.8608</td></tr>
+<tr><td style="text-align: left">grayson</td><td style="text-align: left">Little Sandy River at Grayson, KY</td><td style="text-align: right">38.3301</td><td style="text-align: right">-82.9393</td></tr>
+<tr><td style="text-align: left">ashland</td><td style="text-align: left">OHio River at Ashland, KY</td><td style="text-align: right">38.4812</td><td style="text-align: right">-82.6365</td></tr>
+<tr><td style="text-align: left">branchland</td><td style="text-align: left">Guyandotte River at Branchland, WV</td><td style="text-align: right">38.2209</td><td style="text-align: right">-82.2026</td></tr>
+<tr><td style="text-align: left">rc-byrd</td><td style="text-align: left">Rc-Byrd</td><td style="text-align: right">38.6816</td><td style="text-align: right">-82.1883</td></tr>
+<tr><td style="text-align: left">charleston</td><td style="text-align: left">Kanawha River at Charleston, WV</td><td style="text-align: right">38.3715</td><td style="text-align: right">-81.7021</td></tr>
+<tr><td style="text-align: left">racine</td><td style="text-align: left">OHio River at Racine Dam, WV</td><td style="text-align: right">38.9167</td><td style="text-align: right">-81.9121</td></tr>
+<tr><td style="text-align: left">belleville</td><td style="text-align: left">OHio River at Belleville Dam, WV</td><td style="text-align: right">39.1190</td><td style="text-align: right">-81.7424</td></tr>
+<tr><td style="text-align: left">mcconnelsville</td><td style="text-align: left">Muskingum River at McConnelsville OH</td><td style="text-align: right">39.6451</td><td style="text-align: right">-81.8499</td></tr>
+<tr><td style="text-align: left">athens</td><td style="text-align: left">Hocking River at Athens OH</td><td style="text-align: right">39.3290</td><td style="text-align: right">-82.0876</td></tr>
+<tr><td style="text-align: left">elizabeth</td><td style="text-align: left">Little Kanawha River at Palestine, WV</td><td style="text-align: right">39.0590</td><td style="text-align: right">-81.3896</td></tr>
+<tr><td style="text-align: left">willow-island</td><td style="text-align: left">Willow-Island</td><td style="text-align: right">39.3605</td><td style="text-align: right">-81.3204</td></tr>
+<tr><td style="text-align: left">hannibal</td><td style="text-align: left">Hannibal</td><td style="text-align: right">39.6671</td><td style="text-align: right">-80.8653</td></tr>
+<tr><td style="text-align: left">pike-island</td><td style="text-align: left">OHio River at Martins Ferry, OH</td><td style="text-align: right">40.1051</td><td style="text-align: right">-80.7084</td></tr>
+<tr><td style="text-align: left">new-cumberland</td><td style="text-align: left">New-Cumberland</td><td style="text-align: right">40.5277</td><td style="text-align: right">-80.6276</td></tr>
+<tr><td style="text-align: left">montgomery</td><td style="text-align: left">Montgomery</td><td style="text-align: right">40.6486</td><td style="text-align: right">-80.3855</td></tr>
+<tr><td style="text-align: left">beaverfalls</td><td style="text-align: left">Beaver River at Beaver Falls, PA</td><td style="text-align: right">40.7634</td><td style="text-align: right">-80.3151</td></tr>
+<tr><td style="text-align: left">dashields</td><td style="text-align: left">OHio River at Sewickley, PA</td><td style="text-align: right">40.5492</td><td style="text-align: right">-80.2056</td></tr>
+<tr><td style="text-align: left">emsworth</td><td style="text-align: left">Emsworth</td><td style="text-align: right">40.5043</td><td style="text-align: right">-80.0889</td></tr>
+<tr><td style="text-align: left">natrona</td><td style="text-align: left">Allegheny River at Natrona, PA</td><td style="text-align: right">40.6153</td><td style="text-align: right">-79.7184</td></tr>
+<tr><td style="text-align: left">elizabeth2</td><td style="text-align: left">Monongahela River at Elizabeth, PA</td><td style="text-align: right">40.2623</td><td style="text-align: right">-79.9012</td></tr>
+<tr><td style="text-align: left">sutersville</td><td style="text-align: left">Youghiogheny River at Sutersville, PA</td><td style="text-align: right">40.2402</td><td style="text-align: right">-79.8067</td></tr>
+</tbody></table>
+</div>
+<p>Nadi style table with network information:</p>
+<pre><code class="language-table"><span class="boring">network load_file("./data/ohio.network")
+</span><span class="boring">node load_attrs("./data/attrs/{_NAME}.toml")
+</span><span class="boring">network clip()
+</span><span class="boring">network echo("../output/ohio-table.svg")
+</span><span class="boring"># ^Ind =&gt; =(+ (st+num 'INDEX) 1)
+</span>&lt;Node ID =&gt; {_NAME}
+&lt;Title =&gt; {_description:case(title):repl(Ky,KY):repl(In,IN):repl(Wv,WV):repl(Oh,OH)?}
+&gt;Latitude =&gt; {lat:f(4)}
+&gt;Longitude =&gt; {lon:f(4)}
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">network function: "table_to_svg" not found
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generating-reports"><a class="header" href="#generating-reports">Generating Reports</a></h1>
+<p>So we write this template:</p>
+<pre><code class="language-stp-md">
+## Ohio River Routing Project
+
+&lt;!-- ---8&lt;---:[smithland]: --&gt;
+Our basin Outlet is at {_description:case(title):repl(Ky,KY)} with the total basin area {basin_area:f(1)} acre-ft.
+&lt;!-- ---8&lt;--- --&gt;
+
+The lower part of the Ohio basin are specifically important to us. Those are:
+| ID      | Basin Area   | Length to Outlet |
+|---------|-------------:|-----------------:|
+&lt;!-- ---8&lt;---:[greenup -&gt; smithland]: --&gt;
+| {_NAME} | {basin_area:f(1)} | {length:f(2)}  |
+&lt;!-- ---8&lt;--- --&gt;
+
+
+We used 4 locks and dams in the ohio river as representative locks and dams as below:
+
+&lt;!-- ---8&lt;---:["willow-island",racine,markland,smithland]: --&gt;
+- {_NAME:repl(-, ):case(title)?}
+
+  ![](../data/{_NAME}.svg)
+&lt;!-- ---8&lt;--- --&gt;
+</code></pre>
+<p>Which makes the table only for the main-stem ohio:</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
+</span><span class="boring">node load_attrs("./data/attrs/{_NAME}.toml")
+</span><span class="boring">network clip()
+</span>network render("./data/ohio-report.template")
+</code></pre>
+<p>Results:<br />
+“./data/ohio-report.template”</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="analysing-timeseries"><a class="header" href="#analysing-timeseries">Analysing Timeseries</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="looking-at-data-gaps"><a class="header" href="#looking-at-data-gaps">Looking at Data Gaps</a></h1>
+<p>Couting the gaps in a csv data with all the nodes is easy. Let’s look
+at the top 5 nodes with data gaps.</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
+</span><span class="boring">network clip()
+</span>network csv_count_na(
+	"./data/ts/observed.csv",
+	sort=true,
+	head = 5
+)
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">----8&lt;----
+
+network function: "csv_count_na" not found
+</code></pre>
+<p>Running it for two timeseries, and comparing them base don network
+information. We can see the downstream part have more missing data on
+natural timeseries.</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
+</span>network csv_count_na("./data/ts/observed.csv", outattr = "observed_missing")
+network csv_count_na("./data/ts/natural.csv", outattr = "natural_missing")
+<span class="boring">network table_to_svg(
+</span><span class="boring">	template="
+</span><span class="boring">&lt;Node=&gt; {_NAME}
+</span><span class="boring">&gt;Observed =&gt; {observed_missing}
+</span><span class="boring">&gt;Natural =&gt; {natural_missing}
+</span><span class="boring">",
+</span><span class="boring">	outfile="./output/natural-gaps.svg"
+</span><span class="boring">)
+</span><span class="boring">network clip()
+</span><span class="boring">network echo("
+</span><span class="boring">&lt;center&gt;
+</span><span class="boring">Number of Missing Days in Timeseries Data
+</span><span class="boring">
+</span><span class="boring"> ![](../output/natural-gaps.svg)
+</span><span class="boring">&lt;center&gt;
+</span><span class="boring">")
+</span></code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">network function: "csv_count_na" not found
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="visualizing-data-gaps"><a class="header" href="#visualizing-data-gaps">Visualizing Data Gaps</a></h1>
+<p>To look at the temporal distribution of the gaps, we can use this function.</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
+</span>network csv_count_na("./data/ts/natural.csv", outattr = "nat_na")
+network csv_data_blocks_svg(
+	csvfile="./data/ts/natural.csv",
+	outfile="./output/natural-blocks.svg",
+	label="{_NAME} ({=(/ (st+num 'nat_na) 365.0):f(1)} yr)"
+)
+<span class="boring">network clip()
+</span><span class="boring">network echo("../output/natural-blocks.svg")
+</span></code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">network function: "csv_count_na" not found
+</code></pre>
+<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
+</span>network csv_count_na("./data/ts/observed.csv", outattr = "obs_na")
+network csv_data_blocks_svg(
+	csvfile="./data/ts/observed.csv",
+	outfile="./output/observed-blocks.svg",
+	label="{_NAME} ({obs_na})"
+)
+<span class="boring">network clip()
+</span><span class="boring">network echo("../output/observed-blocks.svg")
+</span></code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">network function: "csv_count_na" not found
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-python-library"><a class="header" href="#nadi-python-library">Nadi Python Library</a></h1>
 <p>This can be installed from <code>pypi</code> with <code>pip install nadi-py</code> command.</p>
 <p>Then you can simply import and use it:</p>
 <pre><code class="language-python">import nadi
@@ -2657,190 +3578,6 @@ false
 <p>Other arguments and the return types for node functions are the same as the environement functions.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="network-functions-1"><a class="header" href="#network-functions-1">Network Functions</a></h1>
 <p>Network functions, like node functions take <code>&amp;Network</code> or <code>&amp; mut Network</code> as the first argument. It has the same restrictions as the env/node functions for the arguments and the return types.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="example-usage"><a class="header" href="#example-usage">Example Usage</a></h1>
-<h2 id="ohio-river-streamflow-routing-project"><a class="header" href="#ohio-river-streamflow-routing-project">Ohio River Streamflow Routing Project</a></h2>
-<p>The Network for the flow routing is as follows:</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
-</span>network svg_save(label="{_NAME}", outfile = "./output/ohio.svg", height=1000)
-</code></pre>
-<p>Results:</p>
-<center>  
-<p><img src="../output/ohio.svg" alt="" /></p>
-</center>  
-<div style="break-before: page; page-break-before: always;"></div><h1 id="making-tables"><a class="header" href="#making-tables">Making Tables</a></h1>
-<pre><code class="language-table"><span class="boring">network load_file("./data/ohio.network")
-</span><span class="boring">node load_attrs("./data/attrs/{_NAME}.toml")
-</span><span class="boring">network clip()
-</span><span class="boring"># ^Ind =&gt; =(+ (st+num 'INDEX) 1)
-</span>&lt;Node ID =&gt; {_NAME}
-&lt;Title =&gt; {_description:case(title):repl(Ky,KY):repl(In,IN):repl(Wv,WV):repl(Oh,OH)?}
-&gt;Latitude =&gt; {lat:f(4)}
-&gt;Longitude =&gt; {lon:f(4)}
-</code></pre>
-<p>Results:</p>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Node ID</th><th style="text-align: left">Title</th><th style="text-align: right">Latitude</th><th style="text-align: right">Longitude</th></tr></thead><tbody>
-<tr><td style="text-align: left">smithland</td><td style="text-align: left">OHio River at Smithland Dam Smithland KY</td><td style="text-align: right">37.1584</td><td style="text-align: right">-88.4262</td></tr>
-<tr><td style="text-align: left">golconda</td><td style="text-align: left">OHio River at Dam 51 at Golconda, Il</td><td style="text-align: right">37.3578</td><td style="text-align: right">-88.4825</td></tr>
-<tr><td style="text-align: left">old-shawneetown</td><td style="text-align: left">OHio River at Old Shawneetown, Il-KY</td><td style="text-align: right">37.6919</td><td style="text-align: right">-88.1333</td></tr>
-<tr><td style="text-align: left">mountcarmel</td><td style="text-align: left">Wabash River at Mt. Carmel, Il</td><td style="text-align: right">38.3983</td><td style="text-align: right">-87.7564</td></tr>
-<tr><td style="text-align: left">jt-myers</td><td style="text-align: left">OHio River at Uniontown Dam, KY</td><td style="text-align: right">37.7972</td><td style="text-align: right">-87.9983</td></tr>
-<tr><td style="text-align: left">evansville</td><td style="text-align: left">OHio River at Evansville, IN</td><td style="text-align: right">37.9723</td><td style="text-align: right">-87.5764</td></tr>
-<tr><td style="text-align: left">calhoun</td><td style="text-align: left">Green River at Lock 2 at Calhoun, KY</td><td style="text-align: right">37.5339</td><td style="text-align: right">-87.2639</td></tr>
-<tr><td style="text-align: left">newburgh</td><td style="text-align: left">Newburgh</td><td style="text-align: right">37.9309</td><td style="text-align: right">-87.3722</td></tr>
-<tr><td style="text-align: left">cannelton</td><td style="text-align: left">OHio River at Cannelton Dam at Cannelton, IN</td><td style="text-align: right">37.8995</td><td style="text-align: right">-86.7055</td></tr>
-<tr><td style="text-align: left">shepherdsville</td><td style="text-align: left">Salt River at Shepherdsville, KY</td><td style="text-align: right">37.9851</td><td style="text-align: right">-85.7175</td></tr>
-<tr><td style="text-align: left">mcalpine</td><td style="text-align: left">OHio River at Louisville, KY</td><td style="text-align: right">38.2803</td><td style="text-align: right">-85.7991</td></tr>
-<tr><td style="text-align: left">lockport</td><td style="text-align: left">Kentucky River at Lock 2 at Lockport, KY</td><td style="text-align: right">38.4390</td><td style="text-align: right">-84.9633</td></tr>
-<tr><td style="text-align: left">markland</td><td style="text-align: left">OHio River at Markland Dam Near Warsaw, KY</td><td style="text-align: right">38.7748</td><td style="text-align: right">-84.9644</td></tr>
-<tr><td style="text-align: left">milford</td><td style="text-align: left">Little Miami River at Milford OH</td><td style="text-align: right">39.1714</td><td style="text-align: right">-84.2980</td></tr>
-<tr><td style="text-align: left">catawba</td><td style="text-align: left">Licking River at Catawba, KY</td><td style="text-align: right">38.7103</td><td style="text-align: right">-84.3108</td></tr>
-<tr><td style="text-align: left">hamilton</td><td style="text-align: left">Great Miami River at Hamilton OH</td><td style="text-align: right">39.3912</td><td style="text-align: right">-84.5722</td></tr>
-<tr><td style="text-align: left">perintown</td><td style="text-align: left">East Fork Little Miami River at Perintown OH</td><td style="text-align: right">39.1370</td><td style="text-align: right">-84.2380</td></tr>
-<tr><td style="text-align: left">brookville</td><td style="text-align: left">Whitewater River at Brookville, IN</td><td style="text-align: right">39.4075</td><td style="text-align: right">-85.0129</td></tr>
-<tr><td style="text-align: left">meldahl</td><td style="text-align: left">Meldahl</td><td style="text-align: right">38.7972</td><td style="text-align: right">-84.1705</td></tr>
-<tr><td style="text-align: left">higby</td><td style="text-align: left">Scioto River at Higby OH</td><td style="text-align: right">39.2123</td><td style="text-align: right">-82.8638</td></tr>
-<tr><td style="text-align: left">greenup</td><td style="text-align: left">Greenup</td><td style="text-align: right">38.6468</td><td style="text-align: right">-82.8608</td></tr>
-<tr><td style="text-align: left">grayson</td><td style="text-align: left">Little Sandy River at Grayson, KY</td><td style="text-align: right">38.3301</td><td style="text-align: right">-82.9393</td></tr>
-<tr><td style="text-align: left">ashland</td><td style="text-align: left">OHio River at Ashland, KY</td><td style="text-align: right">38.4812</td><td style="text-align: right">-82.6365</td></tr>
-<tr><td style="text-align: left">branchland</td><td style="text-align: left">Guyandotte River at Branchland, WV</td><td style="text-align: right">38.2209</td><td style="text-align: right">-82.2026</td></tr>
-<tr><td style="text-align: left">rc-byrd</td><td style="text-align: left">Rc-Byrd</td><td style="text-align: right">38.6816</td><td style="text-align: right">-82.1883</td></tr>
-<tr><td style="text-align: left">charleston</td><td style="text-align: left">Kanawha River at Charleston, WV</td><td style="text-align: right">38.3715</td><td style="text-align: right">-81.7021</td></tr>
-<tr><td style="text-align: left">racine</td><td style="text-align: left">OHio River at Racine Dam, WV</td><td style="text-align: right">38.9167</td><td style="text-align: right">-81.9121</td></tr>
-<tr><td style="text-align: left">belleville</td><td style="text-align: left">OHio River at Belleville Dam, WV</td><td style="text-align: right">39.1190</td><td style="text-align: right">-81.7424</td></tr>
-<tr><td style="text-align: left">mcconnelsville</td><td style="text-align: left">Muskingum River at McConnelsville OH</td><td style="text-align: right">39.6451</td><td style="text-align: right">-81.8499</td></tr>
-<tr><td style="text-align: left">athens</td><td style="text-align: left">Hocking River at Athens OH</td><td style="text-align: right">39.3290</td><td style="text-align: right">-82.0876</td></tr>
-<tr><td style="text-align: left">elizabeth</td><td style="text-align: left">Little Kanawha River at Palestine, WV</td><td style="text-align: right">39.0590</td><td style="text-align: right">-81.3896</td></tr>
-<tr><td style="text-align: left">willow-island</td><td style="text-align: left">Willow-Island</td><td style="text-align: right">39.3605</td><td style="text-align: right">-81.3204</td></tr>
-<tr><td style="text-align: left">hannibal</td><td style="text-align: left">Hannibal</td><td style="text-align: right">39.6671</td><td style="text-align: right">-80.8653</td></tr>
-<tr><td style="text-align: left">pike-island</td><td style="text-align: left">OHio River at Martins Ferry, OH</td><td style="text-align: right">40.1051</td><td style="text-align: right">-80.7084</td></tr>
-<tr><td style="text-align: left">new-cumberland</td><td style="text-align: left">New-Cumberland</td><td style="text-align: right">40.5277</td><td style="text-align: right">-80.6276</td></tr>
-<tr><td style="text-align: left">montgomery</td><td style="text-align: left">Montgomery</td><td style="text-align: right">40.6486</td><td style="text-align: right">-80.3855</td></tr>
-<tr><td style="text-align: left">beaverfalls</td><td style="text-align: left">Beaver River at Beaver Falls, PA</td><td style="text-align: right">40.7634</td><td style="text-align: right">-80.3151</td></tr>
-<tr><td style="text-align: left">dashields</td><td style="text-align: left">OHio River at Sewickley, PA</td><td style="text-align: right">40.5492</td><td style="text-align: right">-80.2056</td></tr>
-<tr><td style="text-align: left">emsworth</td><td style="text-align: left">Emsworth</td><td style="text-align: right">40.5043</td><td style="text-align: right">-80.0889</td></tr>
-<tr><td style="text-align: left">natrona</td><td style="text-align: left">Allegheny River at Natrona, PA</td><td style="text-align: right">40.6153</td><td style="text-align: right">-79.7184</td></tr>
-<tr><td style="text-align: left">elizabeth2</td><td style="text-align: left">Monongahela River at Elizabeth, PA</td><td style="text-align: right">40.2623</td><td style="text-align: right">-79.9012</td></tr>
-<tr><td style="text-align: left">sutersville</td><td style="text-align: left">Youghiogheny River at Sutersville, PA</td><td style="text-align: right">40.2402</td><td style="text-align: right">-79.8067</td></tr>
-</tbody></table>
-</div>
-<p>Nadi style table with network information:</p>
-<pre><code class="language-table"><span class="boring">network load_file("./data/ohio.network")
-</span><span class="boring">node load_attrs("./data/attrs/{_NAME}.toml")
-</span><span class="boring">network clip()
-</span><span class="boring">network echo("../output/ohio-table.svg")
-</span><span class="boring"># ^Ind =&gt; =(+ (st+num 'INDEX) 1)
-</span>&lt;Node ID =&gt; {_NAME}
-&lt;Title =&gt; {_description:case(title):repl(Ky,KY):repl(In,IN):repl(Wv,WV):repl(Oh,OH)?}
-&gt;Latitude =&gt; {lat:f(4)}
-&gt;Longitude =&gt; {lon:f(4)}
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">network function: "table_to_svg" not found
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="generating-reports"><a class="header" href="#generating-reports">Generating Reports</a></h1>
-<p>So we write this template:</p>
-<pre><code class="language-stp-md">
-## Ohio River Routing Project
-
-&lt;!-- ---8&lt;---:[smithland]: --&gt;
-Our basin Outlet is at {_description:case(title):repl(Ky,KY)} with the total basin area {basin_area:f(1)} acre-ft.
-&lt;!-- ---8&lt;--- --&gt;
-
-The lower part of the Ohio basin are specifically important to us. Those are:
-| ID      | Basin Area   | Length to Outlet |
-|---------|-------------:|-----------------:|
-&lt;!-- ---8&lt;---:[greenup -&gt; smithland]: --&gt;
-| {_NAME} | {basin_area:f(1)} | {length:f(2)}  |
-&lt;!-- ---8&lt;--- --&gt;
-
-
-We used 4 locks and dams in the ohio river as representative locks and dams as below:
-
-&lt;!-- ---8&lt;---:["willow-island",racine,markland,smithland]: --&gt;
-- {_NAME:repl(-, ):case(title)?}
-
-  ![](../data/{_NAME}.svg)
-&lt;!-- ---8&lt;--- --&gt;
-</code></pre>
-<p>Which makes the table only for the main-stem ohio:</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
-</span><span class="boring">node load_attrs("./data/attrs/{_NAME}.toml")
-</span><span class="boring">network clip()
-</span>network render("./data/ohio-report.template")
-</code></pre>
-<p>Results:<br />
-“./data/ohio-report.template”</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="analysing-timeseries"><a class="header" href="#analysing-timeseries">Analysing Timeseries</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="looking-at-data-gaps"><a class="header" href="#looking-at-data-gaps">Looking at Data Gaps</a></h1>
-<p>Couting the gaps in a csv data with all the nodes is easy. Let’s look
-at the top 5 nodes with data gaps.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
-</span><span class="boring">network clip()
-</span>network csv_count_na(
-	"./data/ts/observed.csv",
-	sort=true,
-	head = 5
-)
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">----8&lt;----
-
-network function: "csv_count_na" not found
-</code></pre>
-<p>Running it for two timeseries, and comparing them base don network
-information. We can see the downstream part have more missing data on
-natural timeseries.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
-</span>network csv_count_na("./data/ts/observed.csv", outattr = "observed_missing")
-network csv_count_na("./data/ts/natural.csv", outattr = "natural_missing")
-<span class="boring">network table_to_svg(
-</span><span class="boring">	template="
-</span><span class="boring">&lt;Node=&gt; {_NAME}
-</span><span class="boring">&gt;Observed =&gt; {observed_missing}
-</span><span class="boring">&gt;Natural =&gt; {natural_missing}
-</span><span class="boring">",
-</span><span class="boring">	outfile="./output/natural-gaps.svg"
-</span><span class="boring">)
-</span><span class="boring">network clip()
-</span><span class="boring">network echo("
-</span><span class="boring">&lt;center&gt;
-</span><span class="boring">Number of Missing Days in Timeseries Data
-</span><span class="boring">
-</span><span class="boring"> ![](../output/natural-gaps.svg)
-</span><span class="boring">&lt;center&gt;
-</span><span class="boring">")
-</span></code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">network function: "csv_count_na" not found
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="visualizing-data-gaps"><a class="header" href="#visualizing-data-gaps">Visualizing Data Gaps</a></h1>
-<p>To look at the temporal distribution of the gaps, we can use this function.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
-</span>network csv_count_na("./data/ts/natural.csv", outattr = "nat_na")
-network csv_data_blocks_svg(
-	csvfile="./data/ts/natural.csv",
-	outfile="./output/natural-blocks.svg",
-	label="{_NAME} ({=(/ (st+num 'nat_na) 365.0):f(1)} yr)"
-)
-<span class="boring">network clip()
-</span><span class="boring">network echo("../output/natural-blocks.svg")
-</span></code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">network function: "csv_count_na" not found
-</code></pre>
-<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
-</span>network csv_count_na("./data/ts/observed.csv", outattr = "obs_na")
-network csv_data_blocks_svg(
-	csvfile="./data/ts/observed.csv",
-	outfile="./output/observed-blocks.svg",
-	label="{_NAME} ({obs_na})"
-)
-<span class="boring">network clip()
-</span><span class="boring">network echo("../output/observed-blocks.svg")
-</span></code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">network function: "csv_count_na" not found
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="internal-plugins-1"><a class="header" href="#internal-plugins-1">Internal Plugins</a></h1>
 <p>There are some plugins that are provided with the <code>nadi_core</code>
 library. They are part of the library, so users can directly use them.</p>
@@ -5044,7 +5781,7 @@ Current time is {%H} hour  {%M} minutes.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-Current time is 16 hour  37 minutes.
+Current time is 20 hour  29 minutes.
 </code></pre>
 <h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
 <p>Variables can be chained in an optional way, so the first one that’s
@@ -5079,7 +5816,7 @@ float, upcase will make the string UPPERCASE, etc.);</p>
 <pre><code class="language-stp">Today is {%B %d} of the year {%Y}.
 </code></pre>
 <p>Results (with:  name=John):</p>
-<pre><code class="language-output">Today is July 19 of the year 2025.
+<pre><code class="language-output">Today is July 26 of the year 2025.
 </code></pre>
 <h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
 <p>expressions are lisp expressions that will be evaluated and the
@@ -5152,7 +5889,7 @@ info on how to use <code>lisp</code> on string template.</p>
 \\latex\{command\}\{with {variable}\}, should work.
 </code></pre>
 <p>Results (with:  command=Error;variable=Var):</p>
-<pre><code class="language-output">more  options on 2025-07-19 and
+<pre><code class="language-output">more  options on 2025-07-26 and
 \latex{command}{with Var}, should work.
 </code></pre>
 <p>This just combined a lot of different things from above:</p>
@@ -5206,14 +5943,14 @@ now.</p>
 <pre><code class="language-stp">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
 </code></pre>
 <p>Results (with: ):</p>
-<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-07-19
+<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-07-26
 </code></pre>
 <p>But if you are writing a command template to run in bash, then
 it’ll be executed as the syntax is similar.</p>
 <pre><code class="language-task">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-07-19
+<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-07-26
 </code></pre>
 <p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tables"><a class="header" href="#tables">Tables</a></h1>
@@ -5665,6 +6402,20 @@ optimize for.</p>
 <p>We might require an option to call other functions in
 this case. Then maybe we can just pass the name of the function.</p>
 <p>Complex idea could be to add the support for loop syntax in task system.</p>
+<h1 id="while-loop-1"><a class="header" href="#while-loop-1">While loop</a></h1>
+<p>Visiting this page was fun because I ended up implementing a while loop and the if-else statement.</p>
+<p>Now, as long as you have functions to calculate error metrics from your variables/network you should be able to run optimization using the brute-force method.</p>
+<!-- The example below is a really bad way to search for a solution until a condition is true. More complicated code could be written  -->
+<!-- ```task -->
+<!-- env.param = 1; -->
+<!-- env.optimum = false; -->
+<!-- while (!optimum) { -->
+<!--    network.err = your_function(env.param); -->
+<!--    # and other things here -->
+<!--    env.optimum = network.err > 0.9; -->
+<!--    env.param = param + 0.1; -->
+<!-- } -->
+<!-- ``` -->
 <div style="break-before: page; page-break-before: always;"></div><h1 id="interactive-plots"><a class="header" href="#interactive-plots">Interactive Plots</a></h1>
 <p>An experiment using the <code>cairo</code> graphics library shows that a PDF can
 be directly produced without using LaTeX as intermediate using the

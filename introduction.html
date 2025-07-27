@@ -197,6 +197,19 @@
 <tr><td><a href="https://github.com/Nadi-System/nadi-book">nadi-book</a></td><td>Source for this Nadi Book</td></tr>
 </tbody></table>
 </div>
+<h2 id="workflow"><a class="header" href="#workflow">Workflow</a></h2>
+<p>A Typical workflow in NADI System consists of the follwing 4 processes:</p>
+<ol>
+<li>Download Data</li>
+<li>Pre-Process Data</li>
+<li>Network Detection (using NADI GIS)</li>
+<li>Network Analysis (Using NADI System’s DSL, and Plugins)</li>
+<li>Post Process</li>
+</ol>
+<p>The figure below shows the order of how the components of the NADI System (blue) is used along side external tools (black).</p>
+<p><img src="./images/venn-diagram.svg" alt="Nadi Workflow" /></p>
+<p>Here the numbers in red circles are the order of use for different tools. Here the “Run Tasks” step represents running the Nadi DSL Code in the System, so it is further divided into the tasks inside the code. The numbers on the blue circles show a typical use case of the DSL to perform a research work.</p>
+<p>For exact details on what a typical research workflow involving the Nadi DSL is, refer to the examples.</p>
 <h2 id="nadi-gis"><a class="header" href="#nadi-gis">NADI GIS</a></h2>
 <p>Geographic Information (GIS) Tool for Network Detection. The main purpose of the NADI GIS is to find the network connectivity between a set of points using a stream network (which can be developed from elevation models, or downloaded from national databases).</p>
 <p>NADI GIS can be used as a terminal command or QGIS plugin, refer to <a href="installation.html#nadi-gis">installation</a> section for how to install it.</p>
@@ -242,6 +255,8 @@ for node in net.nodes:
     try:
         _ = int(node.name)
         node.is_usgs = True
+		# this just shows how nadi functions can be called from python
+		# for simple functions please use the python native functions
         print(fn.node.render(node, "Node {_NAME} is USGS Site"))
     except ValueError:
         node.is_usgs = False
