@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Visualizing Data Gaps - Network Analysis and Data Integration (NADI)</title>
+        <title>DSS - Network Analysis and Data Integration (NADI)</title>
 
 
         <!-- Custom HTML head -->
@@ -177,44 +177,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="visualizing-data-gaps"><a class="header" href="#visualizing-data-gaps">Visualizing Data Gaps</a></h1>
-<p>To look at the temporal distribution of the gaps, we can use this function.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
-</span>network csv_count_na("./data/ts/natural.csv", outattr = "nat_na")
-network csv_data_blocks_svg(
-	csvfile="./data/ts/natural.csv",
-	outfile="./output/natural-blocks.svg",
-	label="{_NAME} ({=(/ (st+num 'nat_na) 365.0):f(1)} yr)"
-)
-<span class="boring">network clip()
-</span><span class="boring">network echo("../output/natural-blocks.svg")
-</span></code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">network function: "csv_count_na" not found
+                        <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
+<h2 id="env.list_catalog"><a class="header" href="#env.list_catalog">list_catalog</a></h2>
+<pre><code class="language-sig">env dss.list_catalog(dssfile: 'String', paths: 'String' = "/*/*/*/*/*/*/")
 </code></pre>
-<pre><code class="language-task"><span class="boring">network load_file("./data/ohio.network")
-</span>network csv_count_na("./data/ts/observed.csv", outattr = "obs_na")
-network csv_data_blocks_svg(
-	csvfile="./data/ts/observed.csv",
-	outfile="./output/observed-blocks.svg",
-	label="{_NAME} ({obs_na})"
-)
-<span class="boring">network clip()
-</span><span class="boring">network echo("../output/observed-blocks.svg")
-</span></code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">network function: "csv_count_na" not found
-</code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>dssfile: 'String'</code> =&gt;</li>
+<li><code>paths: 'String' = "/*/*/*/*/*/*/"</code> =&gt;</li>
+</ul>
+<p>List the catalog of the dss file</p>
+<p>env list_catalog(“/home/gaurav/work/nadi-project/codes/nadi-dss/dsslib/routed-main-stem.dss”)</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../example/data-gap.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plugins/datafill.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../python.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../plugins/errors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -224,11 +207,11 @@ network csv_data_blocks_svg(
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../example/data-gap.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plugins/datafill.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../python.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../plugins/errors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

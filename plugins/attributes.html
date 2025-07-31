@@ -218,7 +218,7 @@ env assert_eq(parse_attr("1234-12-12"), 1234-12-12)
 <ul>
 <li><code>toml: 'String'</code> =&gt; String to parse into attribute</li>
 </ul>
-<p>Parse attribute from string</p>
+<p>Parse attribute map from string</p>
 <pre><code class="language-task">env assert_eq(parse_attrmap("y = true"), {y = true})
 env assert_eq(parse_attrmap(
 "x = [1234-12-12, true]"),

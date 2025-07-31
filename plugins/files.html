@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Plugin Development - Network Analysis and Data Integration (NADI)</title>
+        <title>Files - Network Analysis and Data Integration (NADI)</title>
 
 
         <!-- Custom HTML head -->
@@ -38,11 +38,23 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
@@ -83,10 +95,13 @@
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -120,7 +135,7 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -137,7 +152,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -157,33 +177,61 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="plugin-development"><a class="header" href="#plugin-development">Plugin Development</a></h1>
-<p>As it is not possible to forsee all the use cases in advance, the nadi
-software can be easily extended (easy being an relative term) to
-account for different use cases.</p>
-<p>The program can load compiled shared libraries (<code>.dll</code> in windows,
-<code>.so</code> in linux, and <code>.dylib</code> on mac). Since they are shared libraries
-compiled into binaries, any programming languages can be used to
-generate those. So far, the <code>nadi_core</code> library is available for
-<code>Rust</code> only. Using that, plugins can be written and those functions
-can be made available from the system.</p>
-<p>The syntax for functions in plugins are same for internal and external
-plugins. While the way to register the plugin differ slightly.</p>
-<p>We will go through them very briefly here, and more details on them on their own pages.</p>
-<h2 id="exporting-plugins"><a class="header" href="#exporting-plugins">Exporting Plugins</a></h2>
-<p>To export plugins, use [<code>nadi_core::nadi_plugin::nadi_plugin</code>] macro
-for external plugins while use
-[<code>nadi_core::nadi_plugin::nadi_internal_plugin</code>] for internal ones.</p>
+                        <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
+<h2 id="env.exists"><a class="header" href="#env.exists">exists</a></h2>
+<pre><code class="language-sig">env files.exists(path: 'PathBuf', min_lines: 'Option &lt; usize &gt;')
+</code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<ul>
+<li><code>path: 'PathBuf'</code> =&gt; Path to check</li>
+<li><code>min_lines: 'Option &lt; usize &gt;'</code> =&gt; Minimum number of lines the file should have</li>
+</ul>
+<p>Checks if the given path exists</p>
+<h2 id="env.from_file"><a class="header" href="#env.from_file">from_file</a></h2>
+<pre><code class="language-sig">env files.from_file(path: 'PathBuf', default: 'Option &lt; String &gt;')
+</code></pre>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<ul>
+<li><code>path: 'PathBuf'</code> =&gt; File Path to load the contents from</li>
+<li><code>default: 'Option &lt; String &gt;'</code> =&gt; default value</li>
+</ul>
+<p>Reads the file contents as string</p>
+<h2 id="env.to_file"><a class="header" href="#env.to_file">to_file</a></h2>
+<pre><code class="language-sig">env files.to_file(
+    contents: 'String',
+    path: 'PathBuf',
+    append: 'bool' = false,
+    end: 'String' = "\n"
+)
+</code></pre>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<ul>
+<li><code>contents: 'String'</code> =&gt; Contents to write</li>
+<li><code>path: 'PathBuf'</code> =&gt; Path to write the file</li>
+<li><code>append: 'bool' = false</code> =&gt; Append to the file</li>
+<li><code>end: 'String' = "\n"</code> =&gt; End the write with this</li>
+</ul>
+<p>Writes the string to the file</p>
+<h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
+<h2 id="node.exists"><a class="header" href="#node.exists">exists</a></h2>
+<pre><code class="language-sig">node files.exists(path: 'Template', min_lines: 'Option &lt; usize &gt;')
+</code></pre>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<ul>
+<li><code>path: 'Template'</code> =&gt; Path to check</li>
+<li><code>min_lines: 'Option &lt; usize &gt;'</code> =&gt; Minimum number of lines the file should have</li>
+</ul>
+<p>Checks if the given path exists when rendering the template</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../plugins/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plugins/debug.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../example-usage.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../plugins/logic.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -193,33 +241,17 @@ for external plugins while use
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../plugins/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plugins/debug.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../example-usage.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../plugins/logic.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
@@ -238,6 +270,7 @@ for external plugins while use
 
         <!-- Custom JS scripts -->
         <script src="../theme/syntax-highlight.js"></script>
+
 
 
     </div>

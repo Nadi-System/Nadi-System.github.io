@@ -177,11 +177,17 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
+                        <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
+<h2 id="env.root_node"><a class="header" href="#env.root_node">root_node</a></h2>
+<pre><code class="language-sig">env connections.root_node()
+</code></pre>
+<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<p>default name used for ROOT node of the network</p>
+<h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.load_file"><a class="header" href="#network.load_file">load_file</a></h2>
 <pre><code class="language-sig">network connections.load_file(file: 'PathBuf', append: 'bool' = false)
 </code></pre>
-<h3 id="arguments"><a class="header" href="#arguments">Arguments</a></h3>
+<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
 <ul>
 <li><code>file: 'PathBuf'</code> =&gt; File to load the network connections from</li>
 <li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
@@ -192,26 +198,26 @@ file.</p>
 <h2 id="network.load_str"><a class="header" href="#network.load_str">load_str</a></h2>
 <pre><code class="language-sig">network connections.load_str(contents: '&amp; str', append: 'bool' = false)
 </code></pre>
-<h3 id="arguments-1"><a class="header" href="#arguments-1">Arguments</a></h3>
+<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
 <ul>
 <li><code>contents: '&amp; str'</code> =&gt; String containing Network connections</li>
 <li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
 </ul>
-<p>Load the given file into the network</p>
+<p>Load network from the given string</p>
 <p>This replaces the current network with the one loaded from the
-file.</p>
+string.</p>
 <pre><code class="language-task">network load_str("a -&gt; b");
 env assert_eq(nodes.NAME, ["b", "a"])
 </code></pre>
 <h2 id="network.load_edges"><a class="header" href="#network.load_edges">load_edges</a></h2>
 <pre><code class="language-sig">network connections.load_edges(edges: '&amp; [(String, String)]', append: 'bool' = false)
 </code></pre>
-<h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
+<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
 <ul>
 <li><code>edges: '&amp; [(String, String)]'</code> =&gt; String containing Network connections</li>
 <li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
 </ul>
-<p>Load the given edges into the network</p>
+<p>Load the given edges as a network</p>
 <p>This replaces the current network with the one loaded from the
 file.</p>
 <pre><code class="language-task">network load_edges([["a", "b"], ["b", "c"]]);
@@ -220,7 +226,7 @@ env assert_eq(nodes.NAME, ["c", "b", "a"])
 <h2 id="network.subset"><a class="header" href="#network.subset">subset</a></h2>
 <pre><code class="language-sig">network connections.subset(filter: '&amp; [bool]', keep: 'bool' = true)
 </code></pre>
-<h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments</a></h3>
+<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
 <ul>
 <li><code>filter: '&amp; [bool]'</code> =&gt;</li>
 <li><code>keep: 'bool' = true</code> =&gt; Keep the selected nodes (false = removes the selected)</li>
@@ -239,7 +245,7 @@ env assert_eq(nodes.NAME, ["b", "a"])
     graphviz: 'bool' = false
 )
 </code></pre>
-<h3 id="arguments-4"><a class="header" href="#arguments-4">Arguments</a></h3>
+<h3 id="arguments-5"><a class="header" href="#arguments-5">Arguments</a></h3>
 <ul>
 <li><code>file: 'PathBuf'</code> =&gt; Path to the output file</li>
 <li><code>quote_all: 'bool' = true</code> =&gt; quote all node names; if false, doesn’t quote valid identifier names</li>
@@ -248,6 +254,38 @@ env assert_eq(nodes.NAME, ["b", "a"])
 <p>Save the network into the given file</p>
 <p>For more control on graphviz file writing, use
 <code>save_graphviz</code> from <code>graphviz</code> plugin instead.</p>
+<h2 id="network.subset_from"><a class="header" href="#network.subset_from">subset_from</a></h2>
+<pre><code class="language-sig">network connections.subset_from(node: '&amp; str')
+</code></pre>
+<h3 id="arguments-6"><a class="header" href="#arguments-6">Arguments</a></h3>
+<ul>
+<li><code>node: '&amp; str'</code> =&gt;</li>
+</ul>
+<p>Take a subset of network by taking the given node as new outlet</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b-&gt;c\n x -&gt; y");
+network subset_from("b")
+env assert_eq(nodes.NAME, ["b", "a"])
+</code></pre>
+<h2 id="network.subset_largest"><a class="header" href="#network.subset_largest">subset_largest</a></h2>
+<pre><code class="language-sig">network connections.subset_largest(node: '&amp; str' = "*ROOT*")
+</code></pre>
+<h3 id="arguments-7"><a class="header" href="#arguments-7">Arguments</a></h3>
+<ul>
+<li><code>node: '&amp; str' = "*ROOT*"</code> =&gt;</li>
+</ul>
+<p>Take a subset of network by only including the largest blob of connected nodes</p>
+<p>When you load a network that have disconnected nodes, nadi
+includes a ROOT note by default and collects all the outlets
+as inputs to that node. This function allows you to filter out
+all the nodes except the one belonging to the largest
+connected network (number of nodes). Alternatively, you can
+also use ORDER and other logic in the task system to do that.</p>
+<p>If your network doesn’t have a root node, then it’ll just keep
+the network as it is.</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b-&gt;c\n x -&gt; y");
+network subset_largest()
+env assert_eq(nodes.NAME, ["c", "b", "a"])
+</code></pre>
 
                     </main>
 
