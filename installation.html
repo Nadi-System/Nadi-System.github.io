@@ -178,17 +178,17 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
-<p>Nadi System is a suite of software packages each have different
+<p>NADI System is a suite of software packages each have different
 installation methods. Some of the packages are uploaded to <code>crates.io</code>
 (rust) and <code>pypi</code> (python).  For others, you can either get the
 compiled binaries from the Releases page of the
 github repo [windows]. Or you can get the source code using <code>git</code>, and using
 <code>cargo</code> build the packages [all OS].</p>
 <div class="table-wrapper"><table><thead><tr><th>Program</th><th>Linux</th><th>Windows</th><th>Mac</th><th>Android (Termux)</th></tr></thead><tbody>
-<tr><td>Nadi CLI</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
-<tr><td>Nadi IDE</td><td>yes</td><td>yes</td><td>yes</td><td>no</td></tr>
+<tr><td>NADI CLI</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td>NADI IDE</td><td>yes</td><td>yes</td><td>yes</td><td>no</td></tr>
 <tr><td>mdbook nadi</td><td>untested</td><td>yes</td><td>untested</td><td>yes</td></tr>
-<tr><td>Nadi-py</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td><code>nadi-py</code></td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
 <tr><td>QGIS Plugin</td><td>yes</td><td>yes</td><td>untested</td><td>no</td></tr>
 </tbody></table>
 </div>
@@ -273,10 +273,10 @@ cargo build --release --features bindgen
 <p>The <code>nadi-gis</code> repo also contains the QGIS plugin that can be installed to run it through QGIS. The plugin will use the <code>nadi-gis</code> binary in your <code>PATH</code> if available. And it also contains the nadi plugin that can be loaded into the nadi system to import/export GIS files into/from the system.</p>
 <p>You can download the zip file for plugin from releases page, and use the “Install from Zip” option on QGIS plugins tab. Or copy the <code>nadi</code> directory inside <code>qgis</code> to your python plugin directory for qgis.</p>
 <p>Refer to the <a href="https://docs.qgis.org/3.40/en/docs/training_manual/qgis_plugins/fetching_plugins.html">QGIS plugins page</a> for more instructions. In future we are planning on publishing the plugin so that you can simply add it from QGIS without downloading from here.</p>
-<h3 id="nadi-gis-plugin"><a class="header" href="#nadi-gis-plugin">Nadi GIS Plugin</a></h3>
-<p>The nadi plugin on this repo provides the functions to import attributes, geometries from GIS files, and export them into GIS files.</p>
-<h2 id="nadi-plugins"><a class="header" href="#nadi-plugins">Nadi Plugins</a></h2>
-<p>Out of the two types of plugins, the executable plugins are just simple commands, they do not need to be installed along side nadi, just make sure the executables that you are using from <code>nadi</code> can be found in path. A simple way to verify that is to try to run that from terminal and see if it works.</p>
+<h3 id="nadi-gis-plugin"><a class="header" href="#nadi-gis-plugin">NADI GIS Plugin</a></h3>
+<p>The NADI plugin on this repo provides the functions to import attributes, geometries from GIS files, and export them into GIS files.</p>
+<h2 id="nadi-plugins"><a class="header" href="#nadi-plugins">NADI Plugins</a></h2>
+<p>Out of the two types of plugins, the executable plugins are just simple commands, they do not need to be installed along side NADI System, just make sure the executables that you are using from NADI System can be found in path. A simple way to verify that is to try to run that from terminal and see if it works.</p>
 <p>The compiled plugins can be loaded by setting the <code>NADI_PLUGIN_DIRS</code> environmental variable. The environment variable should be the path to the folder containing the nadi plugins (in <code>.dll</code>, <code>.so</code>, or <code>.dylib</code> formats for windows, linux and mac). You can write your own plugins based on our examples and compile them.</p>
 <p>Officially available plugins are in the <code>nadi-plugins-rust</code> directory.</p>
 <p>Assuming you have <code>git</code> and <code>cargo</code>,</p>

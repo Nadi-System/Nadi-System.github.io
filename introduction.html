@@ -194,7 +194,7 @@
 <tr><td><a href="https://github.com/Nadi-System/nadi-gis">nadi-gis</a></td><td>Nadi GIS</td></tr>
 <tr><td><a href="https://github.com/Nadi-System/nadi-system">nadi-system</a></td><td>Nadi CLI/ IDE/ Core</td></tr>
 <tr><td><a href="https://github.com/Nadi-System/nadi-plugins-rust">nadi-plugins-rust</a></td><td>Sample Plugins</td></tr>
-<tr><td><a href="https://github.com/Nadi-System/nadi-book">nadi-book</a></td><td>Source for this Nadi Book</td></tr>
+<tr><td><a href="https://github.com/Nadi-System/nadi-book">nadi-book</a></td><td>Source for this NADI Book</td></tr>
 </tbody></table>
 </div>
 <h2 id="workflow"><a class="header" href="#workflow">Workflow</a></h2>
@@ -207,9 +207,9 @@
 <li>Post Process</li>
 </ol>
 <p>The figure below shows the order of how the components of the NADI System (blue) is used along side external tools (black).</p>
-<p><img src="./images/venn-diagram.svg" alt="Nadi Workflow" /></p>
-<p>Here the numbers in red circles are the order of use for different tools. Here the “Run Tasks” step represents running the Nadi DSL Code in the System, so it is further divided into the tasks inside the code. The numbers on the blue circles show a typical use case of the DSL to perform a research work.</p>
-<p>For exact details on what a typical research workflow involving the Nadi DSL is, refer to the examples.</p>
+<p><img src="./images/venn-diagram.svg" alt="NADI System Workflow" /></p>
+<p>Here the numbers in red circles are the order of use for different tools. Here the “Run Tasks” step represents running the NADI DSL Code in the System, so it is further divided into the tasks inside the code. The numbers on the blue circles show a typical use case of the DSL to perform a research work.</p>
+<p>For exact details on what a typical research workflow involving the NADI DSL is, refer to the examples.</p>
 <h2 id="nadi-gis"><a class="header" href="#nadi-gis">NADI GIS</a></h2>
 <p>Geographic Information (GIS) Tool for Network Detection. The main purpose of the NADI GIS is to find the network connectivity between a set of points using a stream network (which can be developed from elevation models, or downloaded from national databases).</p>
 <p>NADI GIS can be used as a terminal command or QGIS plugin, refer to <a href="installation.html#nadi-gis">installation</a> section for how to install it.</p>
@@ -265,7 +265,7 @@ for node in net.nodes:
 <p>More detail on how to use NADI from python will be explained in NADI Python chapter.</p>
 <h2 id="nadi-cli"><a class="header" href="#nadi-cli">NADI CLI</a></h2>
 <p>Command Line Interface to run NADI Tasks.</p>
-<p>This can run nadi task files, syntax highlight them for verifying them, generate markdown documentations for the plugins. The documentations included in this book (<a href="plugins/index.html">Function List</a> and each plugin’s page like <a href="plugins/attrs.html">Attributes Plugin <code>attrs</code></a>) are generated with that. The documentation on each plugin functions comes from their docstrings in the code, please refer to how to write plugins section of the book for details on that.</p>
+<p>This can run nadi task files, syntax highlight them for verifying them, generate markdown documentations for the plugins. The documentations included in this book (<a href="plugins/index.html">Function List</a> and each plugin’s page like <a href="plugins/attributes.html">Attributes Plugin <code>attributes</code></a>) are generated with that. The documentation on each plugin functions comes from their docstrings in the code, please refer to how to write plugins section of the book for details on that.</p>
 <p>The available options are shown below.</p>
 <pre><code>Usage: nadi [OPTIONS] [TASK_FILE]
 

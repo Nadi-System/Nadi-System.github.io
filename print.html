@@ -191,7 +191,7 @@ make an github issue, we will try to accomodate it if it fits within
 the scope of the program.</p>
 </div>
 <p><a href="./data/nadi-book.pdf">The PDF version of this book (Experimental)</a></p>
-<p>The PDF Book is generated using automated script, so it might have some problems, please refer to the web version of the Nadi Book if there are problematic/incomplete contents.</p>
+<p>The PDF Book is generated using automated script, so it might have some problems, please refer to the web version of the NADI Book if there are problematic/incomplete contents.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="acknowledgements"><a class="header" href="#acknowledgements">Acknowledgements</a></h1>
 <p>Thank you everyone who has been consistently testing this software throughout the development and providing feedbacks. Specially the members of Water System Analysis Lab in University of Cincinnati.</p>
 <h1 id="funding"><a class="header" href="#funding">Funding</a></h1>
@@ -199,7 +199,7 @@ the scope of the program.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-nadi-system"><a class="header" href="#what-is-nadi-system">What is NADI System?</a></h1>
 <p>Network Analysis amd Data Integration (NADI) System is a system of programs made to make network based data analysis easier and more accessible.</p>
 <p>It consists of multiple tools, that perform two important functions, network detection and network analysis. First part is done throuh the <strong>Geographic Information (GIS) Tool</strong>, while the second part is done using a <strong>Domain Specific Programming Language (DSPL)</strong> called NADI Task system.</p>
-<p><img src="./images/nadi-workflow-simple.svg" alt="Nadi Workflow" /></p>
+<p><img src="./images/nadi-workflow-simple.svg" alt="NADI System Workflow" /></p>
 <h1 id="why-use-nadi-system"><a class="header" href="#why-use-nadi-system">Why use NADI System?</a></h1>
 <p>Hydrologic modeling involves the integration of diverse data to
 simulate complex (and often poorly understood) hydrological
@@ -272,14 +272,14 @@ If you are a developer and want an API documentation for the data types used in 
 <p>You can read this book sequentially to understand the concepts used in the NADI system. And then go through the references sections for a specific use cases you want to get into the details of.</p>
 <ul>
 <li>If you are in a hurry, but this is your first time reading this book,
-at least read the <a href="./intro.html">Core Concepts</a>, then refer to the
+at least read the <a href="./system/intro.html">Core Concepts</a>, then refer to the
 section you are interested in.</li>
 <li>If you want to know a specific details, click on the search icon at the top left of the book to get the search bar. You can search text there and visit the pages.</li>
 <li>If you want to learn about the QGIS Plugin, NADI GIS, goto “Network Detection (GIS)” section.</li>
 <li>If you want to learn about the Domain Specific Programming Language (DSL), refer to the “Network Analysis (DSL)” section.
 <ul>
 <li><a href="./learn-examples.html">Learn by Example</a> contains some simple examples you can follow to learn the basic syntax of the Task System.</li>
-<li>If you want more detailed examples of the use of Task System, refer to the “Slightly Complex Examples” section.</li>
+<li>If you want more detailed examples of the use of Task System, refer to the chapters in “Example Research Problems” section on the sidebar.</li>
 </ul>
 </li>
 <li>If you want reference for functions used in Task System goto “Plugin Functions”, the <a href="./plugins/intro.html">Internal Plugins</a> section contains details on the functions that are available with nadi system, while the external plugins are plugins that were loaded while this book was compiled.</li>
@@ -333,7 +333,7 @@ command, then they will be executed during that process.</p>
   urldate = {2025-05-02}
 }
 </code></pre>
-<h1 id="works-using-nadi-system"><a class="header" href="#works-using-nadi-system">Works using Nadi System</a></h1>
+<h1 id="works-using-nadi-system"><a class="header" href="#works-using-nadi-system">Works using NADI System</a></h1>
 <p>Atreya, G., G. Mandavya, and P. Ray. 2024. “Which came first? Streamgages or Dams: Diving into the History of Unaltered River Flow Data with a Novel Analytical tool.” H51L-0865.</p>
 <pre><code>@inproceedings{atreyaWhichCameFirst2024,
   title = {Which Came First? {{Streamgages}} or {{Dams}}: {{Diving}} into the {{History}} of {{Unaltered River Flow Data}} with a {{Novel Analytical}} Tool},
@@ -365,7 +365,7 @@ command, then they will be executed during that process.</p>
 <tr><td><a href="https://github.com/Nadi-System/nadi-gis">nadi-gis</a></td><td>Nadi GIS</td></tr>
 <tr><td><a href="https://github.com/Nadi-System/nadi-system">nadi-system</a></td><td>Nadi CLI/ IDE/ Core</td></tr>
 <tr><td><a href="https://github.com/Nadi-System/nadi-plugins-rust">nadi-plugins-rust</a></td><td>Sample Plugins</td></tr>
-<tr><td><a href="https://github.com/Nadi-System/nadi-book">nadi-book</a></td><td>Source for this Nadi Book</td></tr>
+<tr><td><a href="https://github.com/Nadi-System/nadi-book">nadi-book</a></td><td>Source for this NADI Book</td></tr>
 </tbody></table>
 </div>
 <h2 id="workflow"><a class="header" href="#workflow">Workflow</a></h2>
@@ -378,9 +378,9 @@ command, then they will be executed during that process.</p>
 <li>Post Process</li>
 </ol>
 <p>The figure below shows the order of how the components of the NADI System (blue) is used along side external tools (black).</p>
-<p><img src="./images/venn-diagram.svg" alt="Nadi Workflow" /></p>
-<p>Here the numbers in red circles are the order of use for different tools. Here the “Run Tasks” step represents running the Nadi DSL Code in the System, so it is further divided into the tasks inside the code. The numbers on the blue circles show a typical use case of the DSL to perform a research work.</p>
-<p>For exact details on what a typical research workflow involving the Nadi DSL is, refer to the examples.</p>
+<p><img src="./images/venn-diagram.svg" alt="NADI System Workflow" /></p>
+<p>Here the numbers in red circles are the order of use for different tools. Here the “Run Tasks” step represents running the NADI DSL Code in the System, so it is further divided into the tasks inside the code. The numbers on the blue circles show a typical use case of the DSL to perform a research work.</p>
+<p>For exact details on what a typical research workflow involving the NADI DSL is, refer to the examples.</p>
 <h2 id="nadi-gis"><a class="header" href="#nadi-gis">NADI GIS</a></h2>
 <p>Geographic Information (GIS) Tool for Network Detection. The main purpose of the NADI GIS is to find the network connectivity between a set of points using a stream network (which can be developed from elevation models, or downloaded from national databases).</p>
 <p>NADI GIS can be used as a terminal command or QGIS plugin, refer to <a href="installation.html#nadi-gis">installation</a> section for how to install it.</p>
@@ -436,7 +436,7 @@ for node in net.nodes:
 <p>More detail on how to use NADI from python will be explained in NADI Python chapter.</p>
 <h2 id="nadi-cli"><a class="header" href="#nadi-cli">NADI CLI</a></h2>
 <p>Command Line Interface to run NADI Tasks.</p>
-<p>This can run nadi task files, syntax highlight them for verifying them, generate markdown documentations for the plugins. The documentations included in this book (<a href="plugins/index.html">Function List</a> and each plugin’s page like <a href="plugins/attrs.html">Attributes Plugin <code>attrs</code></a>) are generated with that. The documentation on each plugin functions comes from their docstrings in the code, please refer to how to write plugins section of the book for details on that.</p>
+<p>This can run nadi task files, syntax highlight them for verifying them, generate markdown documentations for the plugins. The documentations included in this book (<a href="plugins/index.html">Function List</a> and each plugin’s page like <a href="plugins/attributes.html">Attributes Plugin <code>attributes</code></a>) are generated with that. The documentation on each plugin functions comes from their docstrings in the code, please refer to how to write plugins section of the book for details on that.</p>
 <p>The available options are shown below.</p>
 <pre><code>Usage: nadi [OPTIONS] [TASK_FILE]
 
@@ -497,17 +497,17 @@ information, but it was modified to be more generic for many network
 related analysis.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
-<p>Nadi System is a suite of software packages each have different
+<p>NADI System is a suite of software packages each have different
 installation methods. Some of the packages are uploaded to <code>crates.io</code>
 (rust) and <code>pypi</code> (python).  For others, you can either get the
 compiled binaries from the Releases page of the
 github repo [windows]. Or you can get the source code using <code>git</code>, and using
 <code>cargo</code> build the packages [all OS].</p>
 <div class="table-wrapper"><table><thead><tr><th>Program</th><th>Linux</th><th>Windows</th><th>Mac</th><th>Android (Termux)</th></tr></thead><tbody>
-<tr><td>Nadi CLI</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
-<tr><td>Nadi IDE</td><td>yes</td><td>yes</td><td>yes</td><td>no</td></tr>
+<tr><td>NADI CLI</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td>NADI IDE</td><td>yes</td><td>yes</td><td>yes</td><td>no</td></tr>
 <tr><td>mdbook nadi</td><td>untested</td><td>yes</td><td>untested</td><td>yes</td></tr>
-<tr><td>Nadi-py</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
+<tr><td><code>nadi-py</code></td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr>
 <tr><td>QGIS Plugin</td><td>yes</td><td>yes</td><td>untested</td><td>no</td></tr>
 </tbody></table>
 </div>
@@ -592,10 +592,10 @@ cargo build --release --features bindgen
 <p>The <code>nadi-gis</code> repo also contains the QGIS plugin that can be installed to run it through QGIS. The plugin will use the <code>nadi-gis</code> binary in your <code>PATH</code> if available. And it also contains the nadi plugin that can be loaded into the nadi system to import/export GIS files into/from the system.</p>
 <p>You can download the zip file for plugin from releases page, and use the “Install from Zip” option on QGIS plugins tab. Or copy the <code>nadi</code> directory inside <code>qgis</code> to your python plugin directory for qgis.</p>
 <p>Refer to the <a href="https://docs.qgis.org/3.40/en/docs/training_manual/qgis_plugins/fetching_plugins.html">QGIS plugins page</a> for more instructions. In future we are planning on publishing the plugin so that you can simply add it from QGIS without downloading from here.</p>
-<h3 id="nadi-gis-plugin"><a class="header" href="#nadi-gis-plugin">Nadi GIS Plugin</a></h3>
-<p>The nadi plugin on this repo provides the functions to import attributes, geometries from GIS files, and export them into GIS files.</p>
-<h2 id="nadi-plugins-1"><a class="header" href="#nadi-plugins-1">Nadi Plugins</a></h2>
-<p>Out of the two types of plugins, the executable plugins are just simple commands, they do not need to be installed along side nadi, just make sure the executables that you are using from <code>nadi</code> can be found in path. A simple way to verify that is to try to run that from terminal and see if it works.</p>
+<h3 id="nadi-gis-plugin"><a class="header" href="#nadi-gis-plugin">NADI GIS Plugin</a></h3>
+<p>The NADI plugin on this repo provides the functions to import attributes, geometries from GIS files, and export them into GIS files.</p>
+<h2 id="nadi-plugins-1"><a class="header" href="#nadi-plugins-1">NADI Plugins</a></h2>
+<p>Out of the two types of plugins, the executable plugins are just simple commands, they do not need to be installed along side NADI System, just make sure the executables that you are using from NADI System can be found in path. A simple way to verify that is to try to run that from terminal and see if it works.</p>
 <p>The compiled plugins can be loaded by setting the <code>NADI_PLUGIN_DIRS</code> environmental variable. The environment variable should be the path to the folder containing the nadi plugins (in <code>.dll</code>, <code>.so</code>, or <code>.dylib</code> formats for windows, linux and mac). You can write your own plugins based on our examples and compile them.</p>
 <p>Officially available plugins are in the <code>nadi-plugins-rust</code> directory.</p>
 <p>Assuming you have <code>git</code> and <code>cargo</code>,</p>
@@ -607,7 +607,7 @@ cargo build --release
 <p>You can take any one of the plugins as an example to build your own, or following the plugin development instructions from the plugins chapter.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="plugins"><a class="header" href="#plugins">Plugins</a></h1>
 <div class="warning">
-Plugins allow users to extend the use case of the Nadi System by adding more functions or scripts. User are expected to only use plugins from trusted sources, or develop it in-house. Although the compiled plugin functions have their code exposed in their documentation for the transparency purposes even if the source code is not available, always make sure the plugin you run are not malicious.
+Plugins allow users to extend the use case of the NADI System by adding more functions or scripts. User are expected to only use plugins from trusted sources, or develop it in-house. Although the compiled plugin functions have their code exposed in their documentation for the transparency purposes even if the source code is not available, always make sure the plugin you run are not malicious.
 </div>
 <p>There are two types of nadi plugins.
 Compiled plugins (shared libraries) are loaded dynamically from shared libraries, while executable plugins are called as shell commands. Refer to <a href="./intro/plugins.html">Plugins</a> section of core concepts for more details.</p>
@@ -636,8 +636,8 @@ julia version 1.11.6
 </code></pre>
 <p>Here we can see, the commands that ran successfully and returned a version are valid.</p>
 <p>To write scripts and run them from nadi refer to <a href="plugin-dev/exe-plugins.html">Executable Plugins</a> section on Plugin Developer Guide.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-gis-1"><a class="header" href="#nadi-gis-1">Nadi GIS</a></h1>
-<p>Nadi GIS is available as a CLI tool and QGIS plugin, the CLI tool has the following functions:</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-gis-1"><a class="header" href="#nadi-gis-1">NADI GIS</a></h1>
+<p>NADI GIS is available as a CLI tool and QGIS plugin, the CLI tool has the following functions:</p>
 <pre><code>Usage: nadi-gis [OPTIONS] &lt;COMMAND&gt;
 
 Commands:
@@ -779,7 +779,7 @@ Options:
 </code></pre>
 <p>Make sure you use a field with unique name, and valid identifier in NADI System.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
-<p>This section walks you throuh the process of using Nadi system through the CLI and IDE.</p>
+<p>This section walks you throuh the process of using NADI system through the CLI and IDE.</p>
 <p>Network analysis is done through the Domain Specific Programming Language. This is the main feature of NADI.</p>
 <p>You can run the DSL, called tasks through the CLI, or through the IDE. Refer to the <a href="./installation.html">Installation</a> for how to install them.</p>
 <p>Recommended way to develop/write nadi tasks is with IDE, while CLI can be used to automate/batch run it once the tasks are finalized.</p>
@@ -867,7 +867,7 @@ node array(LEVEL, ORDER)
 <p><img src="./images/ide-help.png" alt="IDE Help" /></p>
 <p>The figure contains,</p>
 <ol>
-<li>Buttons for Reset, and links to Nadi Book and Github,</li>
+<li>Buttons for Reset, and links to NADI Book and Github,</li>
 <li>Buttons to filter search by function type,</li>
 <li>Text Entry to search the function,</li>
 <li>List of plugin functions,</li>
@@ -907,7 +907,7 @@ node assert_eq(render("abc {x}"), "abc 13")
 <p><strong>Nodes</strong> are points in the network, they can have attributes, input nodes and an output node,</p>
 </li>
 <li>
-<p><strong>Network</strong> is a collection of nodes, network can also have attributes, Network used in the Nadi system can have only one outlet, so a ‘ROOT’ node is added if there are multiple outlet. And loading a network that is not a directed tree is undefined behaviour.</p>
+<p><strong>Network</strong> is a collection of nodes, network can also have attributes, Network used in the NADI System can have only one outlet, so a ‘ROOT’ node is added if there are multiple outlet. And loading a network that is not a directed tree is undefined behaviour.</p>
 </li>
 <li>
 <p><strong>Expression</strong> is something that can be evaluated or executed, it consists of literal values (attributes), variables (node, network, env variables that could hold attributes), function calls, or a mathmatical or logical operation.</p>
@@ -967,7 +967,7 @@ node assert_eq(render("abc {x}"), "abc 13")
 <li><code>#</code> starts a comment,</li>
 </ul>
 <p>There might be more functions of each symbol depending on the context.</p>
-<p>Continue with the chapters for details on each concept. Or skip ahead to <a href="system//learn-examples.html">Learn by Examples</a> if you want to jump into the examples.</p>
+<p>Continue with the chapters for details on each concept. Or skip ahead to <a href="system/../learn-examples.html">Learn by Examples</a> if you want to jump into the examples.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="task"><a class="header" href="#task">Task</a></h1>
 <p>Task is an execution body in the task system. There are different types of tasks, specially environment, network and node type tasks, and there can be conditional tasks that only execute based on a condition or loops.</p>
 <p>Some examples of different tasks are given below to show a general overview, but the concepts inside the tasks system will be introduced as we progress through the chapters,</p>
@@ -1119,7 +1119,7 @@ identifiable with their unique name, along with timeseries values also
 identifiable with their names.</p>
 <p>If you understand graph theory, then node in nadi network is the same
 as a node in a graph.</p>
-<p>Nodes in Nadi are identified by their name, that is loaded from the network file. Node names are string values, even if they are integer or float, they are read and internally stored as strings. If the node name contains characters outside of alphanumeric and underscore (<code>_</code>), it has to be quoted.</p>
+<p>Nodes in NADI Network are identified by their name, that is loaded from the network file. Node names are string values, even if they are integer or float, they are read and internally stored as strings. If the node name contains characters outside of alphanumeric and underscore (<code>_</code>), it has to be quoted.</p>
 <p>i.e. valid names like <code>123</code> or <code>node_1</code> can appear unquoted or quoted, but names like <code>node-123</code> needs to be quoted: <code>"node-123"</code>.</p>
 <pre><code class="language-task">network load_str("
 123 -&gt; node_1
@@ -1231,7 +1231,7 @@ network echo(json(env.value))
 <pre><code class="language-output">[1, true, "no maybe"]
 </code></pre>
 <p>Special variable types like <code>nodes</code>, <code>inputs</code>, <code>output</code> are available besides <code>env</code>, <code>network</code> and <code>node</code> based on what type of task the expression is on.</p>
-<p>You will learn more about this on <a href="intro//intro/cross-context.html">Cross Context Functions and Variables</a> chapter.</p>
+<p>You will learn more about this on <a href="intro/cross-context.html">Cross Context Functions and Variables</a> chapter.</p>
 <h2 id="unary-operator"><a class="header" href="#unary-operator">Unary Operator</a></h2>
 <pre><code class="language-task">env !true
 env - 12.0
@@ -1274,7 +1274,7 @@ env get(value, 2)
 Function echo did not return a value
 </code></pre>
 <p>Special function types like <code>nodes</code>, <code>inputs</code>, <code>output</code> are available besides <code>env</code>, <code>network</code> and <code>node</code> based on what type of task the expression is on.</p>
-<p>You will learn more about this on <a href="intro//intro/cross-context.html">Cross Context Functions and Variables</a> chapter.</p>
+<p>You will learn more about this on <a href="intro/cross-context.html">Cross Context Functions and Variables</a> chapter.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="string-template"><a class="header" href="#string-template">String Template</a></h1>
 <p>String templates are strings with dynamic components that can be
 rendered for each node based on the node attributes.</p>
@@ -1284,7 +1284,7 @@ I wrote this document on {%A}, exact date: {%Y-%m-%d}.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-I wrote this document on Thursday, exact date: 2025-07-31.
+I wrote this document on Friday, exact date: 2025-08-01.
 </code></pre>
 <p>With more complicated templates, we would be able to generate
 documents with text and images based on the node attributes as well.</p>
@@ -1461,7 +1461,7 @@ node&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
 <p><img src="intro/../output/network-mississippi-sdf.svg" alt="" /></p>
 </center>  
 <div class="warning">
-The examples below use the graphviz plugin. Make sure you have it loaded. Refer to the plugins section to learn how to load the plugins in to the Nadi System.
+The examples below use the graphviz plugin. Make sure you have it loaded. Refer to the plugins section to learn how to load the plugins in to the NADI System.
 </div>
 <p>For example following network function takes file path as input to save the network in graphviz format:</p>
 <pre><code class="language-sig">save_graphviz(
@@ -1506,7 +1506,7 @@ The examples below use the graphviz plugin. Make sure you have it loaded. Refer 
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cross-context-functions-and-variables"><a class="header" href="#cross-context-functions-and-variables">Cross Context Functions and Variables</a></h1>
 <p>You can access variable and call functions based on their default context (e.g. node variable/function in a node task). Additionally, you can also access the variables or call functions in select few other context.</p>
 <p>By default, if a function is not available, node/network task calls the environment function of the same name.</p>
-<p>For example, here the <code>sum</code> and <code>array</code> functions are environment functions, while the <code>count</code> is a network function. When you use Nadi IDE, it’ll show you which function is actually being called at the top of the editor.</p>
+<p>For example, here the <code>sum</code> and <code>array</code> functions are environment functions, while the <code>count</code> is a network function. When you use NADI IDE, it’ll show you which function is actually being called at the top of the editor.</p>
 <pre><code class="language-task">network load_str("a-&gt;b")
 network sum(array(count(), 1))
 </code></pre>
@@ -1634,7 +1634,7 @@ and use the system.</p>
 <p>If you want more details on any of the data structures refer the
 Developer’s references, or the library documentation.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="learn-by-examples"><a class="header" href="#learn-by-examples">Learn by Examples</a></h1>
-<p>This section teaches you the basics of the Nadi’s syntax with small examples. If you want a higher level example that focuses on the actual research problem instead of syntax then refer to the Slightly Complex Examples Section.</p>
+<p>This section teaches you the basics of the NADI Task System’s syntax with small examples. If you want a higher level example that focuses on the actual research problem instead of syntax then refer to the “Example Research Problems” Section on the sidebar.</p>
 <p>For example data download the <a href="./data.zip">zip file here</a></p>
 <div class="table-wrapper"><table><thead><tr><th>Topic</th><th>Learn About</th></tr></thead><tbody>
 <tr><td><a href="./learn-examples/attributes.html">Attributes</a></td><td>Setting and Getting Attributes</td></tr>
@@ -2118,8 +2118,8 @@ network svg_save(
 </center>  
 <p>As we can see the plugins make it easier to interoperate with a lot of different data formats. Here GIS plugin will support any file types supported by <code>gdal</code>. Similarly, other formats can be supported by writing plugins.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="string-templates"><a class="header" href="#string-templates">String Templates</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-extension-capabilities"><a class="header" href="#nadi-extension-capabilities">Nadi Extension Capabilities</a></h1>
-<p>Nadi System can be extended for custom use cases with the following ways:</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-extension-capabilities"><a class="header" href="#nadi-extension-capabilities">NADI Extension Capabilities</a></h1>
+<p>NADI System can be extended for custom use cases with the following ways:</p>
 <ul>
 <li><a href="system/../devref/string_templates.html#advanced-string-template-with-lisp">LISP on String Template</a></li>
 <li>Task System</li>
@@ -2975,7 +2975,7 @@ Connections &amp; Node &amp; Area &amp; Name \\[2mm]
 }
 \end{document}
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-python-library"><a class="header" href="#nadi-python-library">Nadi Python Library</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nadi-python-library"><a class="header" href="#nadi-python-library">NADI Python Library</a></h1>
 <p>This can be installed from <code>pypi</code> with <code>pip install nadi-py</code> command.</p>
 <p>Then you can simply import and use it:</p>
 <pre><code class="language-python">import nadi
@@ -2991,7 +2991,7 @@ net = nadi.Network.from_str("a -&gt; b")
 fn.network.svg_save(net, "test.svg")
 </code></pre>
 <h1 id="combining-the-power-of-python-and-task-system"><a class="header" href="#combining-the-power-of-python-and-task-system">Combining the power of python and Task System</a></h1>
-<p>You can combine the power of python with task system using the <code>command</code> function from Nadi. Basically, you write your logic that cannot be written in nadi in python, you can use <code>nadi-py</code> if you need to parse network files, load attributes or call any other nadi functions. And you can pass the results of the python script at the end by simply printing it to the standard output.</p>
+<p>You can combine the power of python with task system using the <code>command</code> function from NADI Task System. Basically, you write your logic that cannot be written in nadi in python, you can use <code>nadi-py</code> if you need to parse network files, load attributes or call any other nadi functions. And you can pass the results of the python script at the end by simply printing it to the standard output.</p>
 <p>Future work is under consideration to have a tight couple between the python and nadi system.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="differences-with-task-system"><a class="header" href="#differences-with-task-system">Differences with Task System</a></h1>
 <p>The difference from Task system is that now we use python syntax and the python functions. The environment from task system is no longer available, and the node functions are not automatically run in a loop.</p>
@@ -3015,7 +3015,7 @@ for node in net.nodes:
 	    continue
     print(f"{node.INDEX} -&gt; {out.INDEX}")
 </code></pre>
-<p>Here the code for python is longer because it is general purpose and doesn’t have the syntax tailored for network analysis like with Nadi Task System.</p>
+<p>Here the code for python is longer because it is general purpose and doesn’t have the syntax tailored for network analysis like with NADI Task System.</p>
 <h2 id="example-2-skip-execution-when-variable-is-absent"><a class="header" href="#example-2-skip-execution-when-variable-is-absent">Example 2: Skip execution when variable is absent</a></h2>
 <p>If we had to check for an attribute, then it becomes even more complicated.</p>
 <pre><code class="language-task">node(somevar?) somefunc(somevar)
@@ -3117,7 +3117,7 @@ for node in nadi.Network(network).nodes():
 <div style="break-before: page; page-break-before: always;"></div><h1 id="executable-plugins-1"><a class="header" href="#executable-plugins-1">Executable Plugins</a></h1>
 <p>Executable plugins are programs that can be called from terminal. The <a href="plugin-dev/../plugins/command.html#node.command">node <code>command</code> function</a>, <a href="plugin-dev/../plugins/command.html#network.command">network <code>command</code> function</a> and their families in the <a href="plugin-dev/../plugins/command.html"><code>command</code> plugin</a> have the capacity to run external programs through the command line.</p>
 <p>The inputs to the program is given through the command line arguments, while the output of the programs are read through the standard output of the program. This can be used to call different/same commands for nodes with arguments dependent on their attributes.</p>
-<p>And the output from the programs are taken by reading their stdout (standard output). Any lines starting from <code>nadi:var:</code> (prefix) is considered a communication attempt with Nadi. Currently, you can set attribute values by providing <code>key=val</code> pairs after the prefix. The node function will set it for current node, and network function will set it for the network. Furthermore, in network function, you can add one more section after prefix to set node attributes. For example, <code>nadi:var:node1:value=12</code> will set the <code>value</code> attribute to <code>12</code> in the node named <code>node1</code> in the current network.</p>
+<p>And the output from the programs are taken by reading their stdout (standard output). Any lines starting from <code>nadi:var:</code> (prefix) is considered a communication attempt with NADI Task System. Currently, you can set attribute values by providing <code>key=val</code> pairs after the prefix. The node function will set it for current node, and network function will set it for the network. Furthermore, in network function, you can add one more section after prefix to set node attributes. For example, <code>nadi:var:node1:value=12</code> will set the <code>value</code> attribute to <code>12</code> in the node named <code>node1</code> in the current network.</p>
 <p>The executable plugin or commands are language agnostic, as long as the command is available to run from the parent shell they will be run.</p>
 <p>To learn how to write code in your language to parse command line arguments refer to the <a href="https://en.wikipedia.org/wiki/Command-line_argument_parsing">Wikipedia page on Command Line Arguments</a></p>
 <p>The following section shows example programs written in python and R that can interact with nadi in this way.</p>
@@ -3190,7 +3190,7 @@ compiled into binaries, any programming languages can be used to
 generate those. So far, the <code>nadi_core</code> library is available for
 <code>Rust</code> only. Using that, plugins can be written and those functions
 can be made available from the system.</p>
-<p>Nadi core automatically loads:</p>
+<p>NADI core library automatically loads:</p>
 <ul>
 <li>internal plugins if feature <code>functions</code> is used in <code>nadi_core</code> to compile it,</li>
 <li>external plugins in the directories inside the <code>NADI_PLUGIN_DIRS</code> environmental variables. The plugins must be compiled using the same <code>nadi_core</code> version and must have the same internal ABI for data types.</li>
@@ -3203,7 +3203,7 @@ for external plugins while
 [<code>nadi_core::nadi_plugin::nadi_internal_plugin</code>] for internal ones.</p>
 <p>In the next sections we will go in detail about how to write plugins and load them in nadi.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="internal-plugins"><a class="header" href="#internal-plugins">Internal Plugins</a></h1>
-<p>Internal plugins come with the nadi system. They are only modified between the different versions of Nadi.</p>
+<p>Internal plugins come with the nadi system. They are only modified between the different versions of NADI.</p>
 <p>The internal plugins provide core functionality of the Task system like data conversion, parsing network/attribute files, logical operations, template rendering, etc.</p>
 <p>Future planned internal plugin functions can be found in <a href="https://github.com/Nadi-System/nadi-futures">nadi-futures</a> repository. Which in itself is an external plugin.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="external-plugins"><a class="header" href="#external-plugins">External Plugins</a></h1>
@@ -3375,7 +3375,7 @@ mod sample {
         Ok(text)
     }</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="environment-functions"><a class="header" href="#environment-functions">Environment Functions</a></h1>
-<p>Environment functions are like any normal function on programming languages that take arguments and run code. In Nadi environment functions can be called from any scope. For example, if a node function and environement function share the same name, then in a node task node function is called, but in network task env function is called.</p>
+<p>Environment functions are like any normal function on programming languages that take arguments and run code. In NADI environment functions can be called from any scope. For example, if a node function and environement function share the same name, then in a node task node function is called, but in network task env function is called.</p>
 <p>Environment functions are denoted in the plugins with <code>#[env_func]</code> macro. All the arguments this function takes need to be provided by user or through default values.</p>
 <p>Here is an example of a environment function <code>and</code> in plugin <code>logic</code>.</p>
 <pre><code class="language-rust">    /// Boolean and
@@ -5724,7 +5724,7 @@ Current time is {%H} hour  {%M} minutes.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-Current time is 00 hour  35 minutes.
+Current time is 06 hour  40 minutes.
 </code></pre>
 <h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
 <p>Variables can be chained in an optional way, so the first one that’s
@@ -5759,7 +5759,7 @@ float, upcase will make the string UPPERCASE, etc.);</p>
 <pre><code class="language-stp">Today is {%B %d} of the year {%Y}.
 </code></pre>
 <p>Results (with:  name=John):</p>
-<pre><code class="language-output">Today is July 31 of the year 2025.
+<pre><code class="language-output">Today is August 01 of the year 2025.
 </code></pre>
 <h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
 <p>expressions are lisp expressions that will be evaluated and the
@@ -5779,7 +5779,7 @@ quoted string format, while their name with underscore prefix will be
 unquoted raw string. (e.g. if we have attribute <code>name="smithland"</code>,
 then <code>{name}</code> will render to <code>"smithland"</code>, while <code>{_name}</code> will
 render to <code>smithland</code>).</p>
-<p>Nadi system uses templates in a variety of place, and plugin functions
+<p>NADI system uses templates in a variety of place, and plugin functions
 also sometimes take templates for file path, or strings, and such
 things. Look at the help string of the function to see if it takes
 <code>String</code> or <code>Template</code> type.</p>
@@ -5800,7 +5800,7 @@ after rendering it for each node.</p>
 </code></pre>
 <p>As seen in above example, you can render variables, transform them, use basic calculations.</p>
 <p>Or you can use <code>lisp</code> syntax to do more complex calculations. Refer to
-<a href="devref/../system/extensions.html">Nadi Extension Capabilities</a> section for more
+<a href="devref/../system/extensions.html">NADI Extension Capabilities</a> section for more
 info on how to use <code>lisp</code> on string template.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span><span class="boring">node[ohio] set_attrs(river="the Ohio River", streamflow=45334.12424343)
@@ -5832,7 +5832,7 @@ info on how to use <code>lisp</code> on string template.</p>
 \\latex\{command\}\{with {variable}\}, should work.
 </code></pre>
 <p>Results (with:  command=Error;variable=Var):</p>
-<pre><code class="language-output">more  options on 2025-07-31 and
+<pre><code class="language-output">more  options on 2025-08-01 and
 \latex{command}{with Var}, should work.
 </code></pre>
 <p>This just combined a lot of different things from above:</p>
@@ -5850,7 +5850,7 @@ see $(some-command --flag "and the value" {problem})
 if <code>{problem}</code> will also error later, so while solving for problems in
 string templates, you might have to give it multiple tries.</p>
 <h2 id="advanced-string-template-with-lisp"><a class="header" href="#advanced-string-template-with-lisp">Advanced String Template with LISP</a></h2>
-<p>Nadi Template string is useful when you want to represent node
+<p>NADI String Template is useful when you want to represent node
 specific string, or file path in a network. This is not as advanced as
 the formatted strings in python. But it can be used for complex
 situations based on the current functionality.</p>
@@ -5886,14 +5886,14 @@ now.</p>
 <pre><code class="language-stp">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
 </code></pre>
 <p>Results (with: ):</p>
-<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-07-31
+<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-08-01
 </code></pre>
 <p>But if you are writing a command template to run in bash, then
 it’ll be executed as the syntax is similar.</p>
 <pre><code class="language-task">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-07-31
+<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-08-01
 </code></pre>
 <p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tables"><a class="header" href="#tables">Tables</a></h1>
