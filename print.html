@@ -1284,7 +1284,7 @@ I wrote this document on {%A}, exact date: {%Y-%m-%d}.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-I wrote this document on Friday, exact date: 2025-08-01.
+I wrote this document on Wednesday, exact date: 2025-08-06.
 </code></pre>
 <p>With more complicated templates, we would be able to generate
 documents with text and images based on the node attributes as well.</p>
@@ -5620,6 +5620,52 @@ JSON, etc) and loads their fields as attributes to the nodes.</p>
 <li><code>table: 'Table'</code> =&gt;</li>
 </ul>
 <p>Generate Typst code for given Table</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="software-architecture"><a class="header" href="#software-architecture">Software Architecture</a></h1>
+<p>NADI System consists of multiple components. The top-most division is in the GIS component and the DSL component.</p>
+<h2 id="nadi-gis-2"><a class="header" href="#nadi-gis-2">NADI GIS</a></h2>
+<p>This is the GIS component that helps with network detection, dealing with GIS files, and other utilities.</p>
+<p><a href="https://github.com/Nadi-System/nadi-gis">NADI GIS repository</a> contains 3 important components:</p>
+<h3 id="cli_tool"><a class="header" href="#cli_tool"><code>cli_tool</code></a></h3>
+<p>This contains the CLI for the NADI GIS tool (this compiles to generate <code>nadi-gis</code> binary). The <code>main.rs</code> file contains the code for the CLI, with files inside it providing data types, or code for the subcommands.</p>
+<p>Currently it has the following subcommands:</p>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>File</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>nid</code></td><td><code>nid.rs</code></td><td>Download the National Inventory of Dams dataset</td></tr>
+<tr><td><code>usgs</code></td><td><code>usgs.rs</code></td><td>Download data from USGS National Hydrography Dataset (NHD+)</td></tr>
+<tr><td><code>layers</code></td><td><code>layers.rs</code></td><td>Show list of layers in a GIS file</td></tr>
+<tr><td><code>check</code></td><td><code>check.rs</code></td><td>Check the stream network to see outlet, branches, etc</td></tr>
+<tr><td><code>order</code></td><td><code>order.rs</code></td><td>Order the streams, adds order attribute to each segment</td></tr>
+<tr><td><code>network</code></td><td><code>network.rs</code></td><td>Find the network information from streams file between points</td></tr>
+</tbody></table>
+</div>
+<h3 id="qgis"><a class="header" href="#qgis"><code>qgis</code></a></h3>
+<p>This directory contains the NADI QGIS plugin. The plugin is written in Python. This is an experiemental plugin that calls the <code>nadi-gis</code> command line utility with appropriate flags.</p>
+<h3 id="nadi_plugin"><a class="header" href="#nadi_plugin"><code>nadi_plugin</code></a></h3>
+<p>This is the plugin for NADI DSL that has GIS functions. This compiles into a shared library that can be loaded with NADI System, refer to the nadi plugins documentation on how to load plugins.</p>
+<p>The repo contains <code>lib.rs</code> that generates the plugin codes and function available for loading/saving GIS files from the NADI DSL.</p>
+<h2 id="nadi-dsl"><a class="header" href="#nadi-dsl">NADI DSL</a></h2>
+<p>The NADI DSL also called the Task System consists of components that are related to the programming language that helps with network analysis.</p>
+<p>The figure below shows the internal data structure and components that support the NADI DSL execution.</p>
+<p><img src="devref/../images/task-architecture.svg" alt="Tasks Architecture" /></p>
+<p>The task context is the main runtime environment for the DSL. The Context contains a Network (starts as empty network), functions loaded from the plugins, and the environmental variables. As the DSL is executed Task by Task, the context is modified with mutable functions or assignment operator. For example running a <code>network load_file(...)</code> will load a network from file and save that in the context. When a user runs a <code>node</code> task, the expression/function is run on each node of the network in the current context.</p>
+<p>If a user is using NADI from Python library instead of the DSL, then they have access to the Functions, and the data types to generate the Network from files/strings/edges. But they don’t have access to environment variables (they can use python variables), and other syntax advantages of DSL. They also have to run the node functions in loop yourself.
+Because of this <code>nadi-py</code> should provide data types from NADI, as well as the functions from the plugins as callable objects in python along side their documentation. We use <code>maturin</code> to generate the python bindings from the rust code.</p>
+<p>NADI DSL can also load <code>nadi_gis</code> plugin that provides the functions to read/write GIS files.</p>
+<p><a href="https://github.com/Nadi-System/nadi-system">The NADI DSL repository</a> contains the following components:</p>
+<p><img src="devref/../images/architecture.svg" alt="Architecture" /></p>
+<h3 id="nadi_plugin-1"><a class="header" href="#nadi_plugin-1"><code>nadi_plugin</code></a></h3>
+<p>This is crate for proc-macros that <code>nadi_core</code> uses, and can be used to make plugin development easier. This contains the codes for the macros <code>nadi_plugin</code>, <code>env_func</code>, <code>node_func</code>, and <code>network_func</code>. This is re-exported by <code>nadi_core</code> so that it is not used directly by the users.</p>
+<h3 id="nadi_core"><a class="header" href="#nadi_core"><code>nadi_core</code></a></h3>
+<p>This is the main/core library for NADI System. This contains the data types, APIs and mechanisms for the Plugin system to work.</p>
+<h3 id="nadi-cli-1"><a class="header" href="#nadi-cli-1"><code>nadi-cli</code></a></h3>
+<p>This contains the code for generating the <code>nadi</code> binary. It uses the <code>nadi_core</code> library and just runs the tasks. The binary has command line options (using <code>clap</code>) to run in interactive mode, run a file, show help/code for functions, list functions, etc.</p>
+<h3 id="nadi-ide-1"><a class="header" href="#nadi-ide-1"><code>nadi-ide</code></a></h3>
+<p>This is the main GUI component of NADI system. This provides a graphical interface (written in <code>iced</code>), that has tiling window style panes that each have different components that can display information, or let user interact with it.</p>
+<p>This also contains codes to generate custom highlight for the DSL, generate custom widget with network diagram, and such.</p>
+<p>The <code>nadi-ide/src/</code> directory contains multiple rust source code files, many of them are for corresponding component of the GUI window.</p>
+<h3 id="nadi-serve"><a class="header" href="#nadi-serve"><code>nadi-serve</code></a></h3>
+<p>This contains experimental server for running NADI Tasks from a browser. It uses <code>rocket</code> to open a local server, then listens for requests. The requests to run tasks are run independently of one another. The security of letting users run tasks in the server is not well explored, and might need more experimentation before it can be recommended to be used.</p>
+<h3 id="extra"><a class="header" href="#extra"><code>extra</code></a></h3>
+<p>This directory contains some extra scripts. Currently it contains codes and examples for syntax highlighing task scripts in sublime, typst, latex, HTML (using javascript), etc.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="data-structure"><a class="header" href="#data-structure">Data Structure</a></h1>
 <p>This section will describe the data structures associated with NADI system in brief.</p>
 <p>For more accurate and upto date details on the data structures and their available methods. Look at the API reference of <a href="https://docs.rs/nadi_core/latest/nadi_core/"><code>nadi_core</code> on docs.rs</a>.</p>
@@ -5724,7 +5770,7 @@ Current time is {%H} hour  {%M} minutes.
 </code></pre>
 <p>Results (with:  name=John; address=123 Road, USA):</p>
 <pre><code class="language-output">Hi, my name is John, my address is 123 Road, USA.
-Current time is 06 hour  40 minutes.
+Current time is 18 hour  55 minutes.
 </code></pre>
 <h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
 <p>Variables can be chained in an optional way, so the first one that’s
@@ -5759,7 +5805,7 @@ float, upcase will make the string UPPERCASE, etc.);</p>
 <pre><code class="language-stp">Today is {%B %d} of the year {%Y}.
 </code></pre>
 <p>Results (with:  name=John):</p>
-<pre><code class="language-output">Today is August 01 of the year 2025.
+<pre><code class="language-output">Today is August 06 of the year 2025.
 </code></pre>
 <h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
 <p>expressions are lisp expressions that will be evaluated and the
@@ -5832,7 +5878,7 @@ info on how to use <code>lisp</code> on string template.</p>
 \\latex\{command\}\{with {variable}\}, should work.
 </code></pre>
 <p>Results (with:  command=Error;variable=Var):</p>
-<pre><code class="language-output">more  options on 2025-08-01 and
+<pre><code class="language-output">more  options on 2025-08-06 and
 \latex{command}{with Var}, should work.
 </code></pre>
 <p>This just combined a lot of different things from above:</p>
@@ -5886,14 +5932,14 @@ now.</p>
 <pre><code class="language-stp">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
 </code></pre>
 <p>Results (with: ):</p>
-<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-08-01
+<pre><code class="language-output">echo today=$(date +%Y-%m-%d) 2025-08-06
 </code></pre>
 <p>But if you are writing a command template to run in bash, then
 it’ll be executed as the syntax is similar.</p>
 <pre><code class="language-task">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-08-01
+<pre><code class="language-output">$ echo today=$(date +%Y-%m-%d) 2025-08-06
 </code></pre>
 <p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tables"><a class="header" href="#tables">Tables</a></h1>
