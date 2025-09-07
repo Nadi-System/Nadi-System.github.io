@@ -236,6 +236,14 @@ cum_sf(network.outlet())
 <h2 id="extensibility"><a class="header" href="#extensibility">Extensibility</a></h2>
 <p>NADI has two types of plugin systems, which means users can write their own analysis in any programming language and have it interact with NADI through attributes, or they can write it in rust and have even more direct interaction.</p>
 
+
+<h2 id="visualizations"><a class="header" href="#visualizations">Visualizations</a></h2>
+<p>NADI has visualization capabilities for network based data presentation through SVG, PDF, HTML, etc. The plots can be interactive plots, or a simple plots with network information on the side. Although this feature is currently under development, the potential for user plugins that does different visualization are great.</p>
+
+<p>The example below shows a plot of timeseries data (streamflow) for nodes that represent USGS streamgages in the Scioto River Basin (Ohio, USA). The Node names are links that when clicked the plot changes to that node's timeseries. This allows the user to interactively see the timeseries plot of different locations along the network. This was generated using the html plugin of NADI System (available since nadi 0.8.0).</p>
+
+<iframe src="./interactive-plot.html" width="100%" height="350px">
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
