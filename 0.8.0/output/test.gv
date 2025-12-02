@@ -1,9 +1,9 @@
 digraph network {
 
-"upper-mississippi" -> "lower-mississippi"
-"missouri" -> "lower-mississippi"
-"arkansas" -> "lower-mississippi"
 "red" -> "lower-mississippi"
+"arkansas" -> "lower-mississippi"
+"missouri" -> "lower-mississippi"
+"upper-mississippi" -> "lower-mississippi"
 "ohio" -> "lower-mississippi"
 "tenessee" -> "ohio"
 }

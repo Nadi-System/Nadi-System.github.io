@@ -1,0 +1,734 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Core - Network Analysis and Data Integration (NADI)</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-42cba1d6.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Network Analysis and Data Integration (NADI)</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
+<h2 id="env.str_quote"><a class="header" href="#env.str_quote">str_quote</a></h2>
+<pre><code class="language-sig">env CORE.str_quote(vars: 'String', quote_char: '&amp; str' = "\"")
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'String'</code> =&gt;</li>
+<li><code>quote_char: '&amp; str' = "\""</code> =&gt;</li>
+</ul>
+<p>Convert string to double quoted form</p>
+<pre><code class="language-task">env assert_eq(str_quote("value"), "\"value\"")
+env assert_eq(str_quote(true), "\"true\"")
+env assert_eq(str_quote(12), "\"12\"")
+</code></pre>
+<h2 id="env.count"><a class="header" href="#env.count">count</a></h2>
+<pre><code class="language-sig">env CORE.count(vars: '&amp; [bool]')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: '&amp; [bool]'</code> =&gt;</li>
+</ul>
+<p>Count the number of true values in the array</p>
+<pre><code class="language-task">env assert_eq(count([true, false, true, false]), 2)
+</code></pre>
+<h2 id="env.insert"><a class="header" href="#env.insert">insert</a></h2>
+<pre><code class="language-sig">env CORE.insert(
+    map: 'AttrMap',
+    key: 'RString',
+    value: 'Attribute'
+)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>map: 'AttrMap'</code> =&gt;</li>
+<li><code>key: 'RString'</code> =&gt;</li>
+<li><code>value: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>Insert a key and value to a attrmap</p>
+<pre><code class="language-task">env.x = attrmap(a=1, b=2)
+node assert_eq(insert(x, c, 3), attrmap(a=1, b=2, c=3))
+</code></pre>
+<h2 id="env.type_name"><a class="header" href="#env.type_name">type_name</a></h2>
+<pre><code class="language-sig">env CORE.type_name(value: 'Attribute', recursive: 'bool' = false)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Argument to get type</li>
+<li><code>recursive: 'bool' = false</code> =&gt; Recursively check types for array and table</li>
+</ul>
+<p>Type name of the arguments</p>
+<pre><code class="language-task">env assert_eq(type_name(true), "Bool")
+env assert_eq(type_name([true, 12]), "Array")
+env assert_eq(type_name([true, 12], recursive=true), ["Bool", "Integer"])
+env assert_eq(type_name("true"), "String")
+</code></pre>
+<h2 id="env.isna"><a class="header" href="#env.isna">isna</a></h2>
+<pre><code class="language-sig">env CORE.isna(val: 'f64')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>val: 'f64'</code> =&gt;</li>
+</ul>
+<p>check if a float is nan</p>
+<pre><code class="language-task">env assert(isna(nan + 5))
+</code></pre>
+<h2 id="env.isinf"><a class="header" href="#env.isinf">isinf</a></h2>
+<pre><code class="language-sig">env CORE.isinf(val: 'f64')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>val: 'f64'</code> =&gt;</li>
+</ul>
+<p>check if a float is +/- infinity</p>
+<pre><code class="language-task">env assert(isinf(12.0 / 0))
+</code></pre>
+<h2 id="env.float"><a class="header" href="#env.float">float</a></h2>
+<pre><code class="language-sig">env CORE.float(value: 'Attribute', parse: 'bool' = true)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Argument to convert to float</li>
+<li><code>parse: 'bool' = true</code> =&gt; parse string to float</li>
+</ul>
+<p>make a float from value</p>
+<pre><code class="language-task">env assert_eq(float(5), 5.0)
+env assert_eq(float("5.0"), 5.0)
+</code></pre>
+<h2 id="env.str"><a class="header" href="#env.str">str</a></h2>
+<pre><code class="language-sig">env CORE.str(value: 'Attribute', quote: 'bool' = false)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Argument to convert to float</li>
+<li><code>quote: 'bool' = false</code> =&gt; quote it if it’s literal string</li>
+</ul>
+<p>make a string from value</p>
+<pre><code class="language-task">env assert_eq(str(nan + 5), "nan")
+env assert_eq(str(2 + 5), "7")
+env assert_eq(str(12.34), "12.34")
+env assert_eq(str("nan + 5"), "nan + 5")
+env assert_eq(str("true", quote=true), "\"true\"")
+</code></pre>
+<h2 id="env.int"><a class="header" href="#env.int">int</a></h2>
+<pre><code class="language-sig">env CORE.int(
+    value: 'Attribute',
+    parse: 'bool' = true,
+    round: 'bool' = true,
+    strfloat: 'bool' = false
+)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Argument to convert to int</li>
+<li><code>parse: 'bool' = true</code> =&gt; parse string to int</li>
+<li><code>round: 'bool' = true</code> =&gt; round float into integer</li>
+<li><code>strfloat: 'bool' = false</code> =&gt; parse string first as float before converting to int</li>
+</ul>
+<p>make an int from the value</p>
+<pre><code class="language-task">env assert_eq(int(5.0), 5)
+env assert_eq(int(5.1), 5)
+env assert_eq(int("45"), 45)
+env assert_eq(int("5.0", strfloat=true), 5)
+</code></pre>
+<h2 id="env.array"><a class="header" href="#env.array">array</a></h2>
+<pre><code class="language-sig">env CORE.array(*attributes)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>*attributes</code> =&gt; List of attributes</li>
+</ul>
+<p>make an array from the arguments</p>
+<pre><code class="language-task">env assert_eq(array(5, true), [5, true])
+</code></pre>
+<h2 id="env.attrmap"><a class="header" href="#env.attrmap">attrmap</a></h2>
+<pre><code class="language-sig">env CORE.attrmap(**attributes)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>**attributes</code> =&gt; name and values of attributes</li>
+</ul>
+<p>make an attrmap from the arguments</p>
+<pre><code class="language-task">env assert_eq(attrmap(val=5), {val=5})
+</code></pre>
+<h2 id="env.json"><a class="header" href="#env.json">json</a></h2>
+<pre><code class="language-sig">env CORE.json(value: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; attribute to format</li>
+</ul>
+<p>format the attribute as a json string</p>
+<pre><code class="language-task">env assert_eq(json(5), "5")
+env assert_eq(json([5, true]), "[5, true]")
+env assert_eq(json({a=5}), "{\"a\": 5}")
+</code></pre>
+<h2 id="env.append"><a class="header" href="#env.append">append</a></h2>
+<pre><code class="language-sig">env CORE.append(array: 'Vec &lt; Attribute &gt;', value: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>array: 'Vec &lt; Attribute &gt;'</code> =&gt; List of attributes</li>
+<li><code>value: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>append a value to an array</p>
+<pre><code class="language-task">env assert_eq(append([4], 5), [4, 5])
+</code></pre>
+<h2 id="env.flatten"><a class="header" href="#env.flatten">flatten</a></h2>
+<pre><code class="language-sig">env CORE.flatten(array: 'Vec &lt; Attribute &gt;')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>array: 'Vec &lt; Attribute &gt;'</code> =&gt; List of attributes</li>
+</ul>
+<p>flatten the given list of arrays into a single one</p>
+<p>If any argument is not an array, then it will treat them as
+single element array</p>
+<pre><code class="language-task">env assert_eq(flatten([[4], [5, 6]]), [4, 5, 6])
+</code></pre>
+<h2 id="env.drop_nan"><a class="header" href="#env.drop_nan">drop_nan</a></h2>
+<pre><code class="language-sig">env CORE.drop_nan(array: 'Vec &lt; Attribute &gt;')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>array: 'Vec &lt; Attribute &gt;'</code> =&gt; List of attributes</li>
+</ul>
+<p>append a value to an array</p>
+<pre><code class="language-task">env assert_eq(append([4], 5), [4, 5])
+</code></pre>
+<h2 id="env.length"><a class="header" href="#env.length">length</a></h2>
+<pre><code class="language-sig">env CORE.length(value: '&amp; Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: '&amp; Attribute'</code> =&gt; Array or a HashMap</li>
+</ul>
+<p>length of an array or hashmap</p>
+<pre><code class="language-task">env assert_eq(length([4, 5]), 2)
+env assert_eq(length({x=4, y=5}), 2)
+</code></pre>
+<h2 id="env.year"><a class="header" href="#env.year">year</a></h2>
+<pre><code class="language-sig">env CORE.year(value: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
+</ul>
+<p>year from date/datetime</p>
+<pre><code class="language-task">env assert_eq(year(1223-12-12), 1223)
+env assert_eq(year(1223-12-12T12:12), 1223)
+env assert_eq(year(1223-12-12 12:12:08), 1223)
+</code></pre>
+<h2 id="env.month"><a class="header" href="#env.month">month</a></h2>
+<pre><code class="language-sig">env CORE.month(value: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
+</ul>
+<p>month from date/datetime</p>
+<pre><code class="language-task">env assert_eq(month(1223-12-14), 12)
+env assert_eq(month(1223-12-14T15:19), 12)
+</code></pre>
+<h2 id="env.day"><a class="header" href="#env.day">day</a></h2>
+<pre><code class="language-sig">env CORE.day(value: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
+</ul>
+<p>day from date/datetime</p>
+<pre><code class="language-task">env assert_eq(day(1223-12-14), 14)
+env assert_eq(day(1223-12-14T15:19), 14)
+</code></pre>
+<h2 id="env.min_num"><a class="header" href="#env.min_num">min_num</a></h2>
+<pre><code class="language-sig">env CORE.min_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Float(inf))
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute' = Float(inf)</code> =&gt;</li>
+</ul>
+<p>Minimum of the variables</p>
+<pre><code class="language-task">env assert_eq(min_num([1, 2, 3]), 1)
+env assert_eq(min_num([1.0, 2, 3]), 1.0)
+env assert_eq(min_num([1, 2, 3], start = 0), 0)
+</code></pre>
+<h2 id="env.max_num"><a class="header" href="#env.max_num">max_num</a></h2>
+<pre><code class="language-sig">env CORE.max_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Float(-inf))
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute' = Float(-inf)</code> =&gt;</li>
+</ul>
+<p>Minimum of the variables</p>
+<pre><code class="language-task">env assert_eq(max_num([1, 2, 3.0]), 3.0)
+env assert_eq(max_num([1.0, 2, 3]), 3)
+env assert_eq(max_num([1, inf, 3], 0), inf)
+</code></pre>
+<h2 id="env.min"><a class="header" href="#env.min">min</a></h2>
+<pre><code class="language-sig">env CORE.min(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>Minimum of the variables</p>
+<pre><code class="language-task">env assert_eq(min([1, 2, 3], 100), 1)
+env assert_eq(min([1.0, 2, 3], 100), 1.0)
+env assert_eq(min([1, 2, 3], inf), 1)
+env assert_eq(min(["b", "a", "d"], "zzz"), "a")
+</code></pre>
+<h2 id="env.max"><a class="header" href="#env.max">max</a></h2>
+<pre><code class="language-sig">env CORE.max(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>Maximum of the variables</p>
+<pre><code class="language-task">env assert_eq(max([1, 2, 3], -1), 3)
+env assert_eq(max([1.0, 2, 3], -1), 3)
+env assert_eq(max([1, 2, 3], -inf), 3)
+env assert_eq(max(["b", "a", "d"], ""), "d")
+</code></pre>
+<h2 id="env.sum"><a class="header" href="#env.sum">sum</a></h2>
+<pre><code class="language-sig">env CORE.sum(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(0))
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute' = Integer(0)</code> =&gt;</li>
+</ul>
+<p>Sum of the variables</p>
+<p>This function is for numeric attributes. You need to give the
+start attribute so that data type is valid.</p>
+<pre><code class="language-task">env assert_eq(sum([2, 3, 4]), 9)
+env assert_eq(sum([2, 3, 4], start=0.0), 9.0)
+</code></pre>
+<h2 id="env.prod"><a class="header" href="#env.prod">prod</a></h2>
+<pre><code class="language-sig">env CORE.prod(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Integer(1))
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Vec &lt; Attribute &gt;'</code> =&gt;</li>
+<li><code>start: 'Attribute' = Integer(1)</code> =&gt;</li>
+</ul>
+<p>Product of the variables</p>
+<p>This function is for numerical values/attributes</p>
+<pre><code class="language-task">env assert_eq(prod([1, 2, 3]), 6)
+env assert_eq(prod([1.0, 2, 3]), 6.0)
+</code></pre>
+<h2 id="env.unique_str"><a class="header" href="#env.unique_str">unique_str</a></h2>
+<pre><code class="language-sig">env CORE.unique_str(vars: 'Vec &lt; String &gt;')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Vec &lt; String &gt;'</code> =&gt;</li>
+</ul>
+<p>Get a list of unique string values</p>
+<p>The order of the strings returned is not guaranteed</p>
+<pre><code class="language-task">env.uniq = unique_str(["hi", "me", "hi", "you"]);
+env assert_eq(length(uniq), 3)
+</code></pre>
+<h2 id="env.count_str"><a class="header" href="#env.count_str">count_str</a></h2>
+<pre><code class="language-sig">env CORE.count_str(vars: 'Vec &lt; String &gt;')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Vec &lt; String &gt;'</code> =&gt;</li>
+</ul>
+<p>Get a count of unique string values</p>
+<pre><code class="language-task">env assert_eq(
+count_str(["Hi", "there", "Deliah", "Hi"]),
+{Hi = 2, there = 1, Deliah=1}
+)
+</code></pre>
+<h2 id="env.concat"><a class="header" href="#env.concat">concat</a></h2>
+<pre><code class="language-sig">env CORE.concat(*vars, join: '&amp; str' = "")
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>*vars</code> =&gt;</li>
+<li><code>join: '&amp; str' = ""</code> =&gt;</li>
+</ul>
+<p>Concat the strings</p>
+<pre><code class="language-task">env assert_eq(concat("Hello", "World", join=" "), "Hello World")
+</code></pre>
+<h2 id="env.range"><a class="header" href="#env.range">range</a></h2>
+<pre><code class="language-sig">env CORE.range(start: 'i64', end: 'i64')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>start: 'i64'</code> =&gt;</li>
+<li><code>end: 'i64'</code> =&gt;</li>
+</ul>
+<p>Generate integer array, end is not included</p>
+<pre><code class="language-task">env assert_eq(range(1, 5), [1, 2, 3, 4])
+</code></pre>
+<h2 id="env.assert"><a class="header" href="#env.assert">assert</a></h2>
+<pre><code class="language-sig">env CORE.assert(condition: 'bool', note: 'String' = "Condition False")
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>condition: 'bool'</code> =&gt;</li>
+<li><code>note: 'String' = "Condition False"</code> =&gt;</li>
+</ul>
+<p>Assert the condition is true</p>
+<p>Use <code>assert_eq</code>/<code>assert_neq</code> if you are testing equality for
+better error message.</p>
+<pre><code class="language-task">env assert(true)
+</code></pre>
+<h2 id="env.assert_eq"><a class="header" href="#env.assert_eq">assert_eq</a></h2>
+<pre><code class="language-sig">env CORE.assert_eq(left: 'Attribute', right: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>left: 'Attribute'</code> =&gt;</li>
+<li><code>right: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>Assert the two values are equal</p>
+<p>This function is for testing the code, as well as for
+terminating the execution when certain values are not equal</p>
+<pre><code class="language-task">env assert_eq(1, 1)
+env assert_eq(true, 1 &gt; 0)
+env assert_eq("string val", concat("string", " ", "val"))
+</code></pre>
+<h2 id="env.assert_neq"><a class="header" href="#env.assert_neq">assert_neq</a></h2>
+<pre><code class="language-sig">env CORE.assert_neq(left: 'Attribute', right: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>left: 'Attribute'</code> =&gt;</li>
+<li><code>right: 'Attribute'</code> =&gt;</li>
+</ul>
+<p>Assert the two values are not equal</p>
+<p>This function is for testing the code, as well as for
+terminating the execution when certain values are not equal</p>
+<pre><code class="language-task">env assert_neq(1, 1.0)
+env assert_neq(true, 1 &lt; 0)
+env assert_neq("string val", concat("string", "val"))
+</code></pre>
+<h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
+<h2 id="node.inputs_count"><a class="header" href="#node.inputs_count">inputs_count</a></h2>
+<pre><code class="language-sig">node CORE.inputs_count()
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<p>Count the number of input nodes in the node</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
+node assert_eq(inputs_count(), length(inputs._))
+</code></pre>
+<h2 id="node.inputs_attr"><a class="header" href="#node.inputs_attr">inputs_attr</a></h2>
+<pre><code class="language-sig">node CORE.inputs_attr(attr: 'String' = "NAME")
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>attr: 'String' = "NAME"</code> =&gt; Attribute to get from inputs</li>
+</ul>
+<p>Get attributes of the input nodes</p>
+<p>This is equivalent to using the <code>inputs</code> keyword</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
+node assert_eq(inputs_attr("NAME"), inputs.NAME)
+</code></pre>
+<h2 id="node.has_outlet"><a class="header" href="#node.has_outlet">has_outlet</a></h2>
+<pre><code class="language-sig">node CORE.has_outlet()
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<p>Node has an outlet or not</p>
+<p>This is equivalent to using <code>output._?</code>, as <code>_</code> is a dummy
+variable that will always be present in all cases, it being
+absent is because there is no output/outlet of that node.</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
+node assert_eq(has_outlet(), output._?)
+</code></pre>
+<h2 id="node.output_attr"><a class="header" href="#node.output_attr">output_attr</a></h2>
+<pre><code class="language-sig">node CORE.output_attr(attr: 'String' = "NAME")
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>attr: 'String' = "NAME"</code> =&gt; Attribute to get from inputs</li>
+</ul>
+<p>Get attributes of the output node</p>
+<p>This is equivalent to using the <code>output</code> keyword</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
+node(output._?) assert_eq(output_attr("NAME"), output.NAME)
+</code></pre>
+<h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
+<h2 id="network.count"><a class="header" href="#network.count">count</a></h2>
+<pre><code class="language-sig">network CORE.count(vars: 'Option &lt; Vec &lt; bool &gt; &gt;')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt;</li>
+</ul>
+<p>Count the number of nodes in the network</p>
+<pre><code class="language-task">network assert_eq(count(), 0)
+network load_str("a -&gt; b")
+network assert_eq(count(), 2)
+node.sel = INDEX &lt; 1
+network assert_eq(count(nodes.sel), 1)
+</code></pre>
+<h2 id="network.outlet"><a class="header" href="#network.outlet">outlet</a></h2>
+<pre><code class="language-sig">network CORE.outlet()
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<p>Get the name of the outlet node</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+network assert_eq(outlet(), "b")
+</code></pre>
+<h2 id="network.node_attr"><a class="header" href="#network.node_attr">node_attr</a></h2>
+<pre><code class="language-sig">network CORE.node_attr(name: 'String', attribute: 'String' = "_")
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>name: 'String'</code> =&gt; name of the node</li>
+<li><code>attribute: 'String' = "_"</code> =&gt; attribute to get</li>
+</ul>
+<p>Get the attr of the provided node</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+network assert_eq(node_attr("a", "NAME"), "a")
+</code></pre>
+<h2 id="network.node_map"><a class="header" href="#network.node_map">node_map</a></h2>
+<pre><code class="language-sig">network CORE.node_map(attribute: 'Option &lt; String &gt;', invert: 'bool' = false)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>attribute: 'Option &lt; String &gt;'</code> =&gt; attribute to get (defaults to INDEX)</li>
+<li><code>invert: 'bool' = false</code> =&gt; invert the map key and value</li>
+</ul>
+<p>Get a attrmap with node name and attributes</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+network assert_eq(node_map("NAME"), attrmap(a="a", b="b"))
+network assert_eq(node_map("INDEX"), attrmap(a=1, b=0))
+network assert_eq(node_map(), attrmap(a=1, b=0))
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../plugins/CONN.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../plugins/DEBUG.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../plugins/CONN.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../plugins/DEBUG.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

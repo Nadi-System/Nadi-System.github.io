@@ -12,11 +12,11 @@ NAME,basin_area,length
 "mcalpine",236250.2,2172.82
 "lockport",16020.13,2321.92
 "markland",214850.87,2293.44
-"milford",3117.14,2424.64
-"catawba",8554.78,2472.5
-"hamilton",9415.47,2417.33
-"perintown",1233.67,2431.51
 "brookville",3178.87,2416.63
+"perintown",1233.67,2431.51
+"hamilton",9415.47,2417.33
+"catawba",8554.78,2472.5
+"milford",3117.14,2424.64
 "meldahl",183215.23,2450.59
 "higby",13298.7,2666.15
 "greenup",159430.25,2603.8
@@ -27,9 +27,9 @@ NAME,basin_area,length
 "charleston",26788.29,2809.28
 "racine",103965.32,2764.66
 "belleville",101986.98,2818.54
-"mcconnelsville",19209.06,2949.63
-"athens",2448.79,2878.51
 "elizabeth",3923.51,2896.3
+"athens",2448.79,2878.51
+"mcconnelsville",19209.06,2949.63
 "willow-island",69636.93,2892.36
 "hannibal",67148.15,2949.17
 "pike-island",63824.38,3006.94
@@ -38,6 +38,6 @@ NAME,basin_area,length
 "beaverfalls",8083.53,3116.06
 "dashields",50478.4,3126.58
 "emsworth",50204.12,3142.61
-"natrona",29548.32,3188.42
-"elizabeth2",13823.08,3185.73
 "sutersville",4433.26,3197.96
+"elizabeth2",13823.08,3185.73
+"natrona",29548.32,3188.42

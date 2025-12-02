@@ -1,0 +1,32 @@
+network load_file("data/ohio-river/ohio.network")
+network count()
+network outlet()
+node.is_usgs = NAME match "^[0-9]+";
+node.is_dam = !is_usgs;
+network count(nodes.is_usgs)
+network count(nodes.is_dam)
+node<inp>.ngage = int(is_usgs) + sum(inputs.ngage);
+node<inp>.ndam = int(!is_usgs) + sum(inputs.ndam);
+
+node(GEOM?).NAME
+node(INDEX < 10) array(ngage, ndam)
+network gis.load_attrs("data/ohio-river/nid-uniq.gpkg", "nidId")
+network gis.load_attrs("data/ohio-river/GageLoc.shp.zip", "SOURCE_FEA")
+network gis.load_attrs("data/ohio-river/gages-II.gpkg", "STAID")
+network gis.load_attrs("data/ohio-river/usgs-drainage.csv", "SiteNumber")
+
+node[03399800].SiteNumber # only USGS gages have it
+node(INDEX < 5).yearCompleted # only NID dams have it
+node(INDEX < 5).GEOM # all nodes have it although from different sources
+
+
+network gis.save_nodes(
+    "output/ohio-gages-count.gpkg",
+    "GEOM",
+    {
+        NAME="String",
+        is_usgs="String",
+        ndam="Integer",
+        ngage="Integer"
+    }
+)

@@ -1,0 +1,415 @@
+<svg viewBox="0 0 1000 240" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arr1" refY="1" viewBox="0 0 2 2">
+<polyline fill="none" points="2,2 0,1 2,0" stroke="#0000aa" stroke-width="0.5"/>
+</marker>
+<marker id="arr2" refX="2" refY="1" viewBox="0 0 2 2">
+<polyline fill="none" points="0,0 2,1 0,2" stroke="#0000aa" stroke-width="0.5"/>
+</marker>
+</defs>
+<g>
+<line stroke="#000000" stroke-width="1" x1="20" x2="10" y1="220" y2="230"/>
+<line stroke="#000000" stroke-width="1" x1="20" x2="20" y1="210" y2="220"/>
+<line stroke="#000000" stroke-width="1" x1="20" x2="20" y1="200" y2="210"/>
+<line stroke="#000000" stroke-width="1" x1="30" x2="20" y1="190" y2="220"/>
+<line stroke="#000000" stroke-width="1" x1="30" x2="30" y1="180" y2="190"/>
+<line stroke="#000000" stroke-width="1" x1="30" x2="20" y1="170" y2="220"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="160" y2="230"/>
+<line stroke="#000000" stroke-width="1" x1="20" x2="10" y1="150" y2="160"/>
+<line stroke="#000000" stroke-width="1" x1="20" x2="20" y1="140" y2="150"/>
+<line stroke="#000000" stroke-width="1" x1="20" x2="20" y1="130" y2="140"/>
+<line stroke="#000000" stroke-width="1" x1="20" x2="20" y1="120" y2="130"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="110" y2="160"/>
+<line stroke="#000000" stroke-width="1" x1="20" x2="10" y1="100" y2="110"/>
+<line stroke="#000000" stroke-width="1" x1="20" x2="10" y1="90" y2="110"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="80" y2="110"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="70" y2="80"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="60" y2="70"/>
+<line stroke="#000000" stroke-width="1" x1="10" x2="10" y1="50" y2="60"/>
+</g>
+<g>
+<circle cx="10" cy="230" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="234">
+03229610
+</text>
+<circle cx="20" cy="220" fill="#0000FF" r="2.5"/>
+<text fill="#0000FF" font-size="8" stroke="#0000FF" stroke-width="0.5" text-anchor="start" x="40" y="224">
+03229500
+</text>
+<circle cx="20" cy="210" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="214">
+03228805
+</text>
+<circle cx="20" cy="200" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="204">
+03228750
+</text>
+<circle cx="30" cy="190" fill="#0000FF" r="2.5"/>
+<text fill="#0000FF" font-size="8" stroke="#0000FF" stroke-width="0.5" text-anchor="start" x="40" y="194">
+03228500
+</text>
+<circle cx="30" cy="180" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="184">
+03228300
+</text>
+<circle cx="30" cy="170" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="174">
+03228689
+</text>
+<circle cx="10" cy="160" fill="#0000FF" r="2.5"/>
+<text fill="#0000FF" font-size="8" stroke="#0000FF" stroke-width="0.5" text-anchor="start" x="40" y="164">
+03227500
+</text>
+<circle cx="20" cy="150" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="154">
+03227107
+</text>
+<circle cx="20" cy="140" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="144">
+03226800
+</text>
+<circle cx="20" cy="130" fill="#0000FF" r="2.5"/>
+<text fill="#0000FF" font-size="8" stroke="#0000FF" stroke-width="0.5" text-anchor="start" x="40" y="134">
+03225500
+</text>
+<circle cx="20" cy="120" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="124">
+03223425
+</text>
+<circle cx="10" cy="110" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="114">
+03221646
+</text>
+<circle cx="20" cy="100" fill="#0000FF" r="2.5"/>
+<text fill="#0000FF" font-size="8" stroke="#0000FF" stroke-width="0.5" text-anchor="start" x="40" y="104">
+03220000
+</text>
+<circle cx="20" cy="90" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="94">
+03219781
+</text>
+<circle cx="10" cy="80" fill="#0000FF" r="2.5"/>
+<text fill="#0000FF" font-size="8" stroke="#0000FF" stroke-width="0.5" text-anchor="start" x="40" y="84">
+03221000
+</text>
+<circle cx="10" cy="70" fill="#0000FF" r="2.5"/>
+<text fill="#0000FF" font-size="8" stroke="#0000FF" stroke-width="0.5" text-anchor="start" x="40" y="74">
+03219500
+</text>
+<circle cx="10" cy="60" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="64">
+03217500
+</text>
+<circle cx="10" cy="50" fill="#000000" r="2.5"/>
+<text font-size="8" text-anchor="start" x="40" y="54">
+03217424
+</text>
+</g>
+<g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="818.5676768737854" x2="970" y1="230" y2="230"/>
+<text font-size="6.4" text-anchor="start" x="975" y="233">
+0.18
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="157.86018173223383" x2="267.94579547245127" y1="220" y2="220"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="291.5694101580965" x2="970" y1="220" y2="220"/>
+<text font-size="6.4" text-anchor="start" x="975" y="223">
+0.96
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="485.5759231052051" x2="970" y1="210" y2="210"/>
+<text font-size="6.4" text-anchor="start" x="975" y="213">
+0.59
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="567.5371605651558" x2="629.7725720888702" y1="200" y2="200"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="779.2452334681443" x2="969.3970271547876" y1="200" y2="200"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="969.4185618992594" x2="970" y1="200" y2="200"/>
+<text font-size="6.4" text-anchor="start" x="975" y="203">
+0.31
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="291.5694101580965" x2="896.3081044172488" y1="190" y2="190"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="896.3296391617207" x2="896.4157781396082" y1="190" y2="190"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="896.43731288408" x2="970" y1="190" y2="190"/>
+<text font-size="6.4" text-anchor="start" x="975" y="193">
+0.83
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="684.8584484479227" x2="969.5908398550343" y1="180" y2="180"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="969.6769788329219" x2="970" y1="180" y2="180"/>
+<text font-size="6.4" text-anchor="start" x="975" y="183">
+0.35
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="945.9026209359736" x2="970" y1="170" y2="170"/>
+<text font-size="6.4" text-anchor="start" x="975" y="173">
+0.03
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="150" x2="704.5196701507432" y1="160" y2="160"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="704.6058091286307" x2="704.6704133620464" y1="160" y2="160"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="704.8426913178213" x2="970" y1="160" y2="160"/>
+<text font-size="6.4" text-anchor="start" x="975" y="163">
+1.00
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="891.6350648668523" x2="970" y1="150" y2="150"/>
+<text font-size="6.4" text-anchor="start" x="975" y="153">
+0.10
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="425.27863858395926" x2="653.5899994747624" y1="140" y2="140"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="660.136561794212" x2="661.2563685067494" y1="140" y2="140"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="708.4389936446242" x2="709.149640212196" y1="140" y2="140"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="709.494196123746" x2="709.5803351016335" y1="140" y2="140"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="709.6880088239928" x2="709.9464257576553" y1="140" y2="140"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="710.0325647355428" x2="710.1402384579022" y1="140" y2="140"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="710.2479121802616" x2="710.3125164136771" y1="140" y2="140"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="710.334051158149" x2="715.6531330427018" y1="140" y2="140"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="715.6962025316456" x2="716.3207101213299" y1="140" y2="140"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="747.7829717947371" x2="970" y1="140" y2="140"/>
+<text font-size="6.4" text-anchor="start" x="975" y="143">
+0.56
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="181.46226167340723" x2="260.08561374021747" y1="130" y2="130"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="291.5694101580965" x2="970" y1="130" y2="130"/>
+<text font-size="6.4" text-anchor="start" x="975" y="133">
+0.92
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="747.7829717947371" x2="970" y1="120" y2="120"/>
+<text font-size="6.4" text-anchor="start" x="975" y="123">
+0.27
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="889.3523819528336" x2="908.367561321498" y1="110" y2="110"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="908.3890960659699" x2="970" y1="110" y2="110"/>
+<text font-size="6.4" text-anchor="start" x="975" y="113">
+0.10
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="330.8918535637376" x2="970" y1="100" y2="100"/>
+<text font-size="6.4" text-anchor="start" x="975" y="103">
+0.78
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="943.4261253217081" x2="970" y1="90" y2="90"/>
+<text font-size="6.4" text-anchor="start" x="975" y="93">
+0.03
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="153.919323493881" x2="970" y1="80" y2="80"/>
+<text font-size="6.4" text-anchor="start" x="975" y="83">
+1.00
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="189.32244340564105" x2="244.36525027574976" y1="70" y2="70"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="299.42959189033036" x2="970" y1="70" y2="70"/>
+<text font-size="6.4" text-anchor="start" x="975" y="73">
+0.88
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="197.18262513787488" x2="267.94579547245127" y1="60" y2="60"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="291.5694101580965" x2="393.7948421660801" y1="60" y2="60"/>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="850.0299385471926" x2="970" y1="60" y2="60"/>
+<text font-size="6.4" text-anchor="start" x="975" y="63">
+0.36
+</text>
+</g>
+<g>
+<line marker-end="url(#arr2)" marker-start="url(#arr1)" stroke="#0000aa" stroke-width="1.3" x1="942.3278533536425" x2="970" y1="50" y2="50"/>
+<text font-size="6.4" text-anchor="start" x="975" y="53">
+0.03
+</text>
+</g>
+</g>
+<g>
+<line stroke="#000000" stroke-width="0.5" x1="151.98124852273025" x2="151.98124852273025" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="159.84163668356226" x2="159.84163668356226" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="167.70202484439426" x2="167.70202484439426" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="175.56241300522626" x2="175.56241300522626" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="183.44433647608793" x2="183.44433647608793" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="191.30472463691993" x2="191.30472463691993" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="199.16511279775193" x2="199.16511279775193" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="207.02550095858393" x2="207.02550095858393" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="214.9074244294456" x2="214.9074244294456" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="222.7678125902776" x2="222.7678125902776" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="230.6282007511096" x2="230.6282007511096" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="238.48858891194158" x2="238.48858891194158" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="246.37051238280327" x2="246.37051238280327" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="254.23090054363527" x2="254.23090054363527" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="262.0912887044673" x2="262.0912887044673" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="269.95167686529925" x2="269.95167686529925" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="277.83360033616094" x2="277.83360033616094" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="285.6939884969929" x2="285.6939884969929" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="293.55437665782495" x2="293.55437665782495" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="301.414764818657" x2="301.414764818657" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="309.29668828951856" x2="309.29668828951856" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="317.1570764503506" x2="317.1570764503506" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="325.0174646111826" x2="325.0174646111826" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="332.8778527720146" x2="332.8778527720146" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="340.7597762428763" x2="340.7597762428763" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="348.62016440370826" x2="348.62016440370826" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="356.4805525645403" x2="356.4805525645403" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="364.3409407253723" x2="364.3409407253723" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="372.22286419623396" x2="372.22286419623396" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="380.08325235706593" x2="380.08325235706593" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="387.94364051789796" x2="387.94364051789796" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="395.80402867872994" x2="395.80402867872994" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="403.6859521495916" x2="403.6859521495916" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="411.5463403104236" x2="411.5463403104236" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="419.4067284712556" x2="419.4067284712556" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="427.2671166320876" x2="427.2671166320876" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="435.1490401029493" x2="435.1490401029493" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="443.0094282637813" x2="443.0094282637813" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="450.8698164246133" x2="450.8698164246133" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="458.7302045854453" x2="458.7302045854453" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="466.612128056307" x2="466.612128056307" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="474.47251621713895" x2="474.47251621713895" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="482.332904377971" x2="482.332904377971" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="490.19329253880295" x2="490.19329253880295" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="498.07521600966464" x2="498.07521600966464" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="505.9356041704966" x2="505.9356041704966" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="513.7959923313285" x2="513.7959923313285" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="521.6563804921607" x2="521.6563804921607" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="529.5383039630224" x2="529.5383039630224" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="537.3986921238543" x2="537.3986921238543" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="545.2590802846863" x2="545.2590802846863" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="553.1194684455184" x2="553.1194684455184" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="561.0013919163799" x2="561.0013919163799" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="568.861780077212" x2="568.861780077212" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="576.722168238044" x2="576.722168238044" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="584.582556398876" x2="584.582556398876" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="592.4644798697376" x2="592.4644798697376" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="600.3248680305696" x2="600.3248680305696" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="608.1852561914017" x2="608.1852561914017" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="616.0456443522337" x2="616.0456443522337" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="623.9275678230954" x2="623.9275678230954" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="631.7879559839273" x2="631.7879559839273" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="639.6483441447592" x2="639.6483441447592" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="647.5087323055914" x2="647.5087323055914" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="655.3906557764531" x2="655.3906557764531" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="663.251043937285" x2="663.251043937285" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="671.111432098117" x2="671.111432098117" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="678.9718202589489" x2="678.9718202589489" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="686.8537437298107" x2="686.8537437298107" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="694.7141318906426" x2="694.7141318906426" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="702.5745200514747" x2="702.5745200514747" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="710.4349082123066" x2="710.4349082123066" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="718.3168316831683" x2="718.3168316831683" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="726.1772198440003" x2="726.1772198440003" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="734.0376080048324" x2="734.0376080048324" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="741.8979961656643" x2="741.8979961656643" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="749.779919636526" x2="749.779919636526" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="757.640307797358" x2="757.640307797358" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="765.50069595819" x2="765.50069595819" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="773.3610841190219" x2="773.3610841190219" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="781.2430075898836" x2="781.2430075898836" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="789.1033957507157" x2="789.1033957507157" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="796.9637839115477" x2="796.9637839115477" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="804.8241720723797" x2="804.8241720723797" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="812.7060955432413" x2="812.7060955432413" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="820.5664837040733" x2="820.5664837040733" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="828.4268718649053" x2="828.4268718649053" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="836.2872600257374" x2="836.2872600257374" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="844.169183496599" x2="844.169183496599" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="852.029571657431" x2="852.029571657431" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="859.889959818263" x2="859.889959818263" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="867.750347979095" x2="867.750347979095" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="875.6322714499568" x2="875.6322714499568" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="883.4926596107887" x2="883.4926596107887" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="891.3530477716207" x2="891.3530477716207" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="899.2134359324526" x2="899.2134359324526" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="907.0953594033143" x2="907.0953594033143" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="914.9557475641463" x2="914.9557475641463" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="922.8161357249784" x2="922.8161357249784" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="1" x1="930.6765238858103" x2="930.6765238858103" y1="32" y2="38"/>
+<line stroke="#000000" stroke-width="0.5" x1="938.558447356672" x2="938.558447356672" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="946.418835517504" x2="946.418835517504" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="954.279223678336" x2="954.279223678336" y1="33.5" y2="36.5"/>
+<line stroke="#000000" stroke-width="0.5" x1="962.139611839168" x2="962.139611839168" y1="33.5" y2="36.5"/>
+<polyline fill="none" marker-mid="url(#mark1)" points="150,35 151.98124852273025,35 159.84163668356226,35 167.70202484439426,35 175.56241300522626,35 183.44433647608793,35 191.30472463691993,35 199.16511279775193,35 207.02550095858393,35 214.9074244294456,35 222.7678125902776,35 230.6282007511096,35 238.48858891194158,35 246.37051238280327,35 254.23090054363527,35 262.0912887044673,35 269.95167686529925,35 277.83360033616094,35 285.6939884969929,35 293.55437665782495,35 301.414764818657,35 309.29668828951856,35 317.1570764503506,35 325.0174646111826,35 332.8778527720146,35 340.7597762428763,35 348.62016440370826,35 356.4805525645403,35 364.3409407253723,35 372.22286419623396,35 380.08325235706593,35 387.94364051789796,35 395.80402867872994,35 403.6859521495916,35 411.5463403104236,35 419.4067284712556,35 427.2671166320876,35 435.1490401029493,35 443.0094282637813,35 450.8698164246133,35 458.7302045854453,35 466.612128056307,35 474.47251621713895,35 482.332904377971,35 490.19329253880295,35 498.07521600966464,35 505.9356041704966,35 513.7959923313285,35 521.6563804921607,35 529.5383039630224,35 537.3986921238543,35 545.2590802846863,35 553.1194684455184,35 561.0013919163799,35 568.861780077212,35 576.722168238044,35 584.582556398876,35 592.4644798697376,35 600.3248680305696,35 608.1852561914017,35 616.0456443522337,35 623.9275678230954,35 631.7879559839273,35 639.6483441447592,35 647.5087323055914,35 655.3906557764531,35 663.251043937285,35 671.111432098117,35 678.9718202589489,35 686.8537437298107,35 694.7141318906426,35 702.5745200514747,35 710.4349082123066,35 718.3168316831683,35 726.1772198440003,35 734.0376080048324,35 741.8979961656643,35 749.779919636526,35 757.640307797358,35 765.50069595819,35 773.3610841190219,35 781.2430075898836,35 789.1033957507157,35 796.9637839115477,35 804.8241720723797,35 812.7060955432413,35 820.5664837040733,35 828.4268718649053,35 836.2872600257374,35 844.169183496599,35 852.029571657431,35 859.889959818263,35 867.750347979095,35 875.6322714499568,35 883.4926596107887,35 891.3530477716207,35 899.2134359324526,35 907.0953594033143,35 914.9557475641463,35 922.8161357249784,35 930.6765238858103,35 938.558447356672,35 946.418835517504,35 954.279223678336,35 962.139611839168,35 970,35" stroke="#000000" stroke-width="0.5"/>
+<g>
+<text font-size="6.4" text-anchor="start" transform="translate(183.44433647608793, 30) rotate(-30)" x="0" y="0">
+1925
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(222.7678125902776, 30) rotate(-30)" x="0" y="0">
+1930
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(262.0912887044673, 30) rotate(-30)" x="0" y="0">
+1935
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(301.414764818657, 30) rotate(-30)" x="0" y="0">
+1940
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(340.7597762428763, 30) rotate(-30)" x="0" y="0">
+1945
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(380.08325235706593, 30) rotate(-30)" x="0" y="0">
+1950
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(419.4067284712556, 30) rotate(-30)" x="0" y="0">
+1955
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(458.7302045854453, 30) rotate(-30)" x="0" y="0">
+1960
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(498.07521600966464, 30) rotate(-30)" x="0" y="0">
+1965
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(537.3986921238543, 30) rotate(-30)" x="0" y="0">
+1970
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(576.722168238044, 30) rotate(-30)" x="0" y="0">
+1975
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(616.0456443522337, 30) rotate(-30)" x="0" y="0">
+1980
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(655.3906557764531, 30) rotate(-30)" x="0" y="0">
+1985
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(694.7141318906426, 30) rotate(-30)" x="0" y="0">
+1990
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(734.0376080048324, 30) rotate(-30)" x="0" y="0">
+1995
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(773.3610841190219, 30) rotate(-30)" x="0" y="0">
+2000
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(812.7060955432413, 30) rotate(-30)" x="0" y="0">
+2005
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(852.029571657431, 30) rotate(-30)" x="0" y="0">
+2010
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(891.3530477716207, 30) rotate(-30)" x="0" y="0">
+2015
+</text>
+<text font-size="6.4" text-anchor="start" transform="translate(930.6765238858103, 30) rotate(-30)" x="0" y="0">
+2020
+</text>
+</g>
+</g>
+</svg>
