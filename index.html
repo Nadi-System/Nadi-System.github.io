@@ -25,7 +25,25 @@
     <p>Welcome to the NADI (Network Analysis and Data Integration) system documentation.
 
 	<p>NADI is group of software packages that facilitate network analysis and do data analysis on data related to network/nodes.</p>
-	<p>NADI System consists of:</p>
+
+
+	<p> The main component of the NADI is the Domain Specific Language (DSL) called Nadi Task System. The custom syntax and data types used in the task system can help researchers run river based analysis easily and intuitively compared to other general purpose programming languages. A prerequisite to that is the network detection, NADI comes with a GIS tool to help with large networks while smaller networks can be manually entered in the system. The figure below shows a typical workflow while using NADI System.</p>
+
+	<img src="/0.7.0/images/nadi-workflow-simple.png" width="100%">
+
+	<p><b>Why use NADI?</b></p>
+
+	<p> <ol>
+	    <li> Custom syntax and data types for river network analysis </li>
+	    <li> Integration with GIS files </li>
+	    <li> Extensible through language agnostic executable plugins, and high performace Rust plugins</li>
+	    <li> Automatic detection of upstream/downstream relationships and validation for large networks</li>
+	    <li> Also available as Python plugin for custom analysis using the python ecosystem (can feed it back to NADI Task system through plugins)</li>
+	</ol></p>
+
+	For more details on how to use NADI System, and some example research problems solved using NADI, refer to the User Guide.
+	
+	<p>NADI System Components:</p>
 
 	<div class="table-wrapper">
 	    <table><thead><tr><th>Tool</th><th>Description</th></tr></thead><tbody>
