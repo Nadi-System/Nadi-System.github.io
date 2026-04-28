@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-42cba1d6.js"></script>
+        <script src="toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -185,7 +185,13 @@
 <p>NADI CLI is available as <code>nadi</code> command when you have it installed. You can run it in interactive mode in a Read Eval Print Loop (REPL), or provide a file to run.</p>
 <p>So assuming you have the following contents in <code>sample.tasks</code> file:</p>
 <pre><code class="language-task">network load_str("a -&gt; b")
-node array(LEVEL, ORDER)
+nodesmap array(LEVEL, ORDER)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  b = [0, 2],
+  a = [0, 1]
+}
 </code></pre>
 <p>You run it with:</p>
 <pre><code class="language-bash">nadi sample.tasks
@@ -294,9 +300,9 @@ Template section of the NADI book.
 
 ```task
 network load_str("a -&gt; b")
-node.x = 13
-node assert_eq(render("abc {x}"), "abc 13")
-node assert_eq(render("abc {x} {a}", safe=true), "abc {x} {a}")
+nodes.x = 13
+nodes assert_eq(render("abc {x}"), "abc 13")
+nodes assert_eq(render("abc {x} {a}", safe=true), "abc {x} {a}")
 ```
 </code></pre>
 <p>You can copy the example code from the output in the terminal.</p>
@@ -353,7 +359,7 @@ node assert_eq(render("abc {x} {a}", safe=true), "abc {x} {a}")
         <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

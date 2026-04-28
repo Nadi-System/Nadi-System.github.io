@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -183,28 +183,42 @@ tenesse -&gt; ohio
 ohio -&gt; mississippi
 red -&gt; mississippi
 ")
-node.area = (1 + ORDER) * 100.0
+nodes.area = (1 + ORDER) * 100.0
 
-env echo("\\begin{tabular}{llll}")
-env echo("Connections &amp; Node &amp; Area &amp; Name \\\\[2mm]")
-node(output._?).out = output.INDEX
-node echo(render("\\\\Node[{LEVEL}]\\{{INDEX}\\}\\{{INDEX}\\} &amp; $N_{INDEX}$ &amp; {area:f(2)} &amp; {_NAME:case(title)} \\\\\\\\[2mm]"))
-env echo("\\end{tabular}
-\\tikz[overlay, remember picture]{")
-node(output._?).edge = echo(render("\\\\path[-&gt;] ({INDEX}) edge ({out});"))
-env echo("}")
+nodes(output._?).out = output.INDEX
+nds = nodes {r"\\\\Node[{LEVEL}]\\{{INDEX}\\}\\{{INDEX}\\} &amp; $N_{INDEX}$ &amp; {area:.2} &amp; {NAME} \\\\\\\\[2mm]"}
+eds = nodes(output._?) {r"\\\\path[-&gt;] ({INDEX}) edge ({out});"}
+
+echo("\\begin{tabular}{llll}")
+echo("Connections &amp; Node &amp; Area &amp; Name \\\\[2mm]")
+echo(str_join(nds, "\n"))
+echo("\\end{tabular}\n\\tikz[overlay, remember picture]{")
+echo(str_join(eds, "\n"))
+echo("}")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-
-\begin{tabular}{llll}
+<p>Results:</p>
+<pre><code class="language-output">\begin{tabular}{llll}
 
 
 Connections &amp; Node &amp; Area &amp; Name \\[2mm]
 
 
+\Node[0]{0}{0} &amp; $N_0$ &amp; 400.00 &amp; mississippi \\[2mm]
+\Node[1]{1}{1} &amp; $N_1$ &amp; 200.00 &amp; red \\[2mm]
+\Node[0]{2}{2} &amp; $N_2$ &amp; 300.00 &amp; ohio \\[2mm]
+\Node[0]{3}{3} &amp; $N_3$ &amp; 200.00 &amp; tenesse \\[2mm]
 
-EvalError at Line 7 Column 1: Error in function render: Argument 1 (template [Template]): TemplateError at pos 56: Invalid Character 'f'
+
+\end{tabular}
+\tikz[overlay, remember picture]{
+
+
+\path[-&gt;] (1) edge (0);
+\path[-&gt;] (2) edge (0);
+\path[-&gt;] (3) edge (2);
+
+
+}
 </code></pre>
 <p>The latex file contains the <code>Node</code> command as follows:</p>
 <pre><code class="language-latex">
@@ -300,7 +314,7 @@ Connections &amp; Node &amp; Area &amp; Name \\[2mm]
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

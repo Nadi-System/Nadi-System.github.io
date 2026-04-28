@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -215,7 +215,7 @@ env assert_eq(str_quote(12), "\"12\"")
 </ul>
 <p>Insert a key and value to a attrmap</p>
 <pre><code class="language-task">env.x = attrmap(a=1, b=2)
-node assert_eq(insert(x, c, 3), attrmap(a=1, b=2, c=3))
+nodes assert_eq(insert(x, c, 3), attrmap(a=1, b=2, c=3))
 </code></pre>
 <h2 id="env.type_name"><a class="header" href="#env.type_name">type_name</a></h2>
 <pre><code class="language-sig">env CORE.type_name(value: 'Attribute', recursive: 'bool' = false)
@@ -309,6 +309,17 @@ env assert_eq(int("5.0", strfloat=true), 5)
 <p>make an array from the arguments</p>
 <pre><code class="language-task">env assert_eq(array(5, true), [5, true])
 </code></pre>
+<h2 id="env.zip"><a class="header" href="#env.zip">zip</a></h2>
+<pre><code class="language-sig">env CORE.zip(*attributes, err_diff_len: 'bool' = true)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>*attributes</code> =&gt; List of attributes</li>
+<li><code>err_diff_len: 'bool' = true</code> =&gt; error if different lengths</li>
+</ul>
+<p>make an array combining the arrays from arguments</p>
+<pre><code class="language-task">env assert_eq(array(5, true), [5, true])
+</code></pre>
 <h2 id="env.attrmap"><a class="header" href="#env.attrmap">attrmap</a></h2>
 <pre><code class="language-sig">env CORE.attrmap(**attributes)
 </code></pre>
@@ -318,6 +329,16 @@ env assert_eq(int("5.0", strfloat=true), 5)
 </ul>
 <p>make an attrmap from the arguments</p>
 <pre><code class="language-task">env assert_eq(attrmap(val=5), {val=5})
+</code></pre>
+<h2 id="env.to_attrmap"><a class="header" href="#env.to_attrmap">to_attrmap</a></h2>
+<pre><code class="language-sig">env CORE.to_attrmap(key_val: 'Vec &lt; (RString, Attribute) &gt;')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>key_val: 'Vec &lt; (RString, Attribute) &gt;'</code> =&gt; name and values of attributes</li>
+</ul>
+<p>make an attrmap from a list of (k, v)</p>
+<pre><code class="language-task">env assert_eq(to_attrmap([["val", 5]]), {val=5})
 </code></pre>
 <h2 id="env.json"><a class="header" href="#env.json">json</a></h2>
 <pre><code class="language-sig">env CORE.json(value: 'Attribute')
@@ -375,6 +396,69 @@ single element array</p>
 <pre><code class="language-task">env assert_eq(length([4, 5]), 2)
 env assert_eq(length({x=4, y=5}), 2)
 </code></pre>
+<h2 id="env.timediff"><a class="header" href="#env.timediff">timediff</a></h2>
+<pre><code class="language-sig">env CORE.timediff(start: 'DateTime', end: 'DateTime')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>start: 'DateTime'</code> =&gt;</li>
+<li><code>end: 'DateTime'</code> =&gt;</li>
+</ul>
+<p>get the current date time</p>
+<h2 id="env.now"><a class="header" href="#env.now">now</a></h2>
+<pre><code class="language-sig">env CORE.now()
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<p>get the current date time</p>
+<h2 id="env.today"><a class="header" href="#env.today">today</a></h2>
+<pre><code class="language-sig">env CORE.today()
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<p>get the current date</p>
+<h2 id="env.hour"><a class="header" href="#env.hour">hour</a></h2>
+<pre><code class="language-sig">env CORE.hour(value: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Time or DateTime</li>
+</ul>
+<p>hour from time/datetime</p>
+<pre><code class="language-task">env assert_eq(hour(parse_attr("12:14")), 12)
+env assert_eq(hour(parse_attr("1223-12-14T15:19")), 15)
+</code></pre>
+<h2 id="env.minute"><a class="header" href="#env.minute">minute</a></h2>
+<pre><code class="language-sig">env CORE.minute(value: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Time or DateTime</li>
+</ul>
+<p>minute from time/datetime</p>
+<pre><code class="language-task">env assert_eq(minute(parse_attr("12:14")), 14)
+env assert_eq(minute(parse_attr("1223-12-14T15:19")), 19)
+</code></pre>
+<h2 id="env.second"><a class="header" href="#env.second">second</a></h2>
+<pre><code class="language-sig">env CORE.second(value: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Time or DateTime</li>
+</ul>
+<p>second from time/datetime</p>
+<pre><code class="language-task">env assert_eq(second(parse_attr("12:14")), 0)
+env assert_eq(second(parse_attr("1223-12-14T15:19:12")), 12)
+</code></pre>
+<h2 id="env.nanosecond"><a class="header" href="#env.nanosecond">nanosecond</a></h2>
+<pre><code class="language-sig">env CORE.nanosecond(value: 'Attribute')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>value: 'Attribute'</code> =&gt; Time or DateTime</li>
+</ul>
+<p>nanosecond from time/datetime</p>
+<pre><code class="language-task">env assert_eq(nanosecond(parse_attr("12:14")), 0)
+env assert_eq(nanosecond(parse_attr("1223-12-14T15:19")), 0)
+</code></pre>
 <h2 id="env.year"><a class="header" href="#env.year">year</a></h2>
 <pre><code class="language-sig">env CORE.year(value: 'Attribute')
 </code></pre>
@@ -383,9 +467,9 @@ env assert_eq(length({x=4, y=5}), 2)
 <li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
 </ul>
 <p>year from date/datetime</p>
-<pre><code class="language-task">env assert_eq(year(1223-12-12), 1223)
-env assert_eq(year(1223-12-12T12:12), 1223)
-env assert_eq(year(1223-12-12 12:12:08), 1223)
+<pre><code class="language-task">env assert_eq(year(parse_attr("1223-12-12")), 1223)
+env assert_eq(year(parse_attr("1223-12-12T12:12")), 1223)
+env assert_eq(year(parse_attr("1223-12-12 12:12:08")), 1223)
 </code></pre>
 <h2 id="env.month"><a class="header" href="#env.month">month</a></h2>
 <pre><code class="language-sig">env CORE.month(value: 'Attribute')
@@ -395,8 +479,8 @@ env assert_eq(year(1223-12-12 12:12:08), 1223)
 <li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
 </ul>
 <p>month from date/datetime</p>
-<pre><code class="language-task">env assert_eq(month(1223-12-14), 12)
-env assert_eq(month(1223-12-14T15:19), 12)
+<pre><code class="language-task">env assert_eq(month(parse_attr("1223-12-14")), 12)
+env assert_eq(month(parse_attr("1223-12-14T15:19")), 12)
 </code></pre>
 <h2 id="env.day"><a class="header" href="#env.day">day</a></h2>
 <pre><code class="language-sig">env CORE.day(value: 'Attribute')
@@ -406,8 +490,8 @@ env assert_eq(month(1223-12-14T15:19), 12)
 <li><code>value: 'Attribute'</code> =&gt; Date or DateTime</li>
 </ul>
 <p>day from date/datetime</p>
-<pre><code class="language-task">env assert_eq(day(1223-12-14), 14)
-env assert_eq(day(1223-12-14T15:19), 14)
+<pre><code class="language-task">env assert_eq(day(parse_attr("1223-12-14")), 14)
+env assert_eq(day(parse_attr("1223-12-14T15:19")), 14)
 </code></pre>
 <h2 id="env.min_num"><a class="header" href="#env.min_num">min_num</a></h2>
 <pre><code class="language-sig">env CORE.min_num(vars: 'Vec &lt; Attribute &gt;', start: 'Attribute' = Float(inf))
@@ -587,7 +671,7 @@ env assert_neq("string val", concat("string", "val"))
 <p><strong>Arguments:</strong></p>
 <p>Count the number of input nodes in the node</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
-node assert_eq(inputs_count(), length(inputs._))
+nodes assert_eq(inputs_count(), length(inputs._))
 </code></pre>
 <h2 id="node.inputs_attr"><a class="header" href="#node.inputs_attr">inputs_attr</a></h2>
 <pre><code class="language-sig">node CORE.inputs_attr(attr: 'String' = "NAME")
@@ -599,18 +683,29 @@ node assert_eq(inputs_count(), length(inputs._))
 <p>Get attributes of the input nodes</p>
 <p>This is equivalent to using the <code>inputs</code> keyword</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
-node assert_eq(inputs_attr("NAME"), inputs.NAME)
+nodes assert_eq(inputs_attr("NAME"), inputs.NAME)
 </code></pre>
-<h2 id="node.has_outlet"><a class="header" href="#node.has_outlet">has_outlet</a></h2>
-<pre><code class="language-sig">node CORE.has_outlet()
+<h2 id="node.inputs_map"><a class="header" href="#node.inputs_map">inputs_map</a></h2>
+<pre><code class="language-sig">node CORE.inputs_map(attr: 'String' = "NAME")
 </code></pre>
 <p><strong>Arguments:</strong></p>
-<p>Node has an outlet or not</p>
+<ul>
+<li><code>attr: 'String' = "NAME"</code> =&gt; Attribute to get from inputs</li>
+</ul>
+<p>Get attributes of the input nodes in map format</p>
+<pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
+nodes assert_eq(node[b].inputs_map("NAME"), {a="a"})
+</code></pre>
+<h2 id="node.has_output"><a class="header" href="#node.has_output">has_output</a></h2>
+<pre><code class="language-sig">node CORE.has_output()
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<p>Node has an output or not</p>
 <p>This is equivalent to using <code>output._?</code>, as <code>_</code> is a dummy
 variable that will always be present in all cases, it being
-absent is because there is no output/outlet of that node.</p>
+absent is because there is no output node of that node.</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
-node assert_eq(has_outlet(), output._?)
+nodes assert_eq(has_output(), output._?)
 </code></pre>
 <h2 id="node.output_attr"><a class="header" href="#node.output_attr">output_attr</a></h2>
 <pre><code class="language-sig">node CORE.output_attr(attr: 'String' = "NAME")
@@ -622,7 +717,7 @@ node assert_eq(has_outlet(), output._?)
 <p>Get attributes of the output node</p>
 <p>This is equivalent to using the <code>output</code> keyword</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
-node(output._?) assert_eq(output_attr("NAME"), output.NAME)
+nodes(output._?) assert_eq(output_attr("NAME"), output.NAME)
 </code></pre>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.count"><a class="header" href="#network.count">count</a></h2>
@@ -636,16 +731,24 @@ node(output._?) assert_eq(output_attr("NAME"), output.NAME)
 <pre><code class="language-task">network assert_eq(count(), 0)
 network load_str("a -&gt; b")
 network assert_eq(count(), 2)
-node.sel = INDEX &lt; 1
+nodes.sel = INDEX &lt; 1
 network assert_eq(count(nodes.sel), 1)
 </code></pre>
-<h2 id="network.outlet"><a class="header" href="#network.outlet">outlet</a></h2>
-<pre><code class="language-sig">network CORE.outlet()
+<h2 id="network.net_roots"><a class="header" href="#network.net_roots">net_roots</a></h2>
+<pre><code class="language-sig">network CORE.net_roots()
 </code></pre>
 <p><strong>Arguments:</strong></p>
-<p>Get the name of the outlet node</p>
+<p>Get the name of the outlet nodes</p>
 <pre><code class="language-task">network load_str("a -&gt; b")
-network assert_eq(outlet(), "b")
+network assert_eq(net_roots(), ["b"])
+</code></pre>
+<h2 id="network.net_leaves"><a class="header" href="#network.net_leaves">net_leaves</a></h2>
+<pre><code class="language-sig">network CORE.net_leaves()
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<p>Get the name of the leaf nodes</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+network assert_eq(net_leaves(), ["a"])
 </code></pre>
 <h2 id="network.node_attr"><a class="header" href="#network.node_attr">node_attr</a></h2>
 <pre><code class="language-sig">network CORE.node_attr(name: 'String', attribute: 'String' = "_")
@@ -725,7 +828,7 @@ network assert_eq(node_map(), attrmap(a=1, b=0))
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

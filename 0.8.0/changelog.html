@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-42cba1d6.js"></script>
+        <script src="toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -180,32 +180,79 @@
 <h2 id="nadi-gis"><a class="header" href="#nadi-gis">NADI GIS</a></h2>
 <p>There are new algorithms to deal with larger than RAM datasets. These algorithms work by only loading a subset of the GIS entries at a time while working through the file. They are slower compared to regular algorithms but they can work with larger datasets the regular algorithms can not work with.</p>
 <p>User are directed to only use them for larger than RAM datasets.</p>
+<h2 id="nadi-ide"><a class="header" href="#nadi-ide">NADI IDE</a></h2>
+<p>The GUI backend <code>iced</code> has been upgrated to <code>0.14</code>. This comes with a lot of optimization and improvements from iced.</p>
+<p>For example, the network diagram now looks a lot less pixelated while using circular node shapes. It also takes less resources to redraw the diagrams for each frame with better caching.</p>
+<p><a href="images/iced-update.svg">Screenshot Comparing Network Diagrams after Iced Update</a></p>
 <h2 id="nadi-task-system"><a class="header" href="#nadi-task-system">NADI Task System</a></h2>
-<p>First the there are the following new keywords in the task system:</p>
+<p>Most important change: the tasks that run functions in multiple nodes now need <code>nodes</code> or <code>nodesmap</code> keyword instead of <code>node</code> keyword. <code>node</code> keyword now always refers to a single node in a given context. This is to make the keywords consistent with everything else (and English). You need to replace the keywords in your <code>.tasks</code> files.</p>
+<p>First, there are many new keywords added to the DSL, some of them are listed below:</p>
 <div class="table-wrapper">
 <table>
 <thead>
 <tr><th>New Keyword</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td>root</td><td>root node of the network</td></tr>
 <tr><td>try</td><td>try statement to contain tasks</td></tr>
 <tr><td>catch</td><td>catch statement when error occurs on try block</td></tr>
 <tr><td>local</td><td>Local; similar to environment but within current locale</td></tr>
 <tr><td>function/func</td><td>user defined functions</td></tr>
 <tr><td>error</td><td>raises an error while evaluating</td></tr>
+<tr><td>return</td><td>early return from a function</td></tr>
+<tr><td>break</td><td>break from a loop</td></tr>
 </tbody>
 </table>
 </div>
-<p>While <code>return</code> is now a reserved keyword for future use.</p>
+<p>Many other keywords like, <code>nodesmap</code>, <code>rootsmap</code>, <code>leavesmap</code>, <code>inputsmap</code>, <code>leaves</code>, etc are added as variable types, while the keywords like <code>loop</code>, <code>break</code>, <code>error</code>, <code>try</code>, <code>catch</code>, <code>continue</code>, etc are about control flow.</p>
 <p>As some of you probably can guess from the keywords, we now have support for error handling and user defined functions.</p>
 <h3 id="plugin-namespace"><a class="header" href="#plugin-namespace">Plugin Namespace</a></h3>
 <p>Now the plugin functions are on their own namespace. Which means, to be able to use an external plugin, you have to use the dot syntax. For example <code>load_network</code> function from <code>gis</code> plugin is used as <code>gis.load_network</code>. This makes it easy to see which functions are from external plugins, as well as decrease the chances of plugins overwriting functions that were already loaded.</p>
 <p>We plan to add an alias system where you can choose to import all functions from a plugin to the global namespace so you don’t have to use the dot syntax.</p>
+<h3 id="expression-context"><a class="header" href="#expression-context">Expression Context</a></h3>
+<p>The DSL now supports expression with context. This is similar to how previously you could use different variable types to get different attributes, function calls, etc. And how you had different task types like <code>node</code>, <code>env</code>, and <code>network</code>. Now all of that is combined with expression context. And it can be nested, giving an endless possible combinations.</p>
+<p>Previous tasks that start with keyword and then an expression is now equivalent to an expression context with the same keyword.</p>
+<p>For example:</p>
+<pre><code class="language-task">env.x = 1
+env {x = 1}
+env.x
+
+network.y = 1
+network y + 1
+network {
+	net.y = 1;
+    y + 1
+}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">1
+
+
+2
+
+2
+</code></pre>
+<p>But because it is an expression context now, instead of just 3 task type, we can do a lot more:</p>
+<p>Here we are assigning incide an expression context, and then reassigning the leaf nodes’ values later</p>
+<pre><code class="language-task">net.load_str("a -&gt; b\n c -&gt; b")
+# the block below is equivalent to: nodes&lt;inp&gt;.x = sum(inputs.x) + 1
+nodes&lt;inp&gt; do {
+   node.x = sum(inputs.x) + 1;
+}
+leaves.x = 0;
+nodesmap.x
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  b = 3,
+  c = 0,
+  a = 0
+}
+</code></pre>
 <h3 id="expression-evaluation"><a class="header" href="#expression-evaluation">Expression Evaluation</a></h3>
 <p>Now normal expressions can be evaluated without the need for <code>env</code> keyword at the beginning.</p>
 <p>For example the two lines below are equivalent</p>
 <pre><code class="language-task">env 1 + 2
+
 1 + 2
 </code></pre>
 <p>Results:</p>
@@ -213,7 +260,7 @@
 
 3
 </code></pre>
-<p>This does not give any significant benefit to the language except for the fact that users do not have to type redundant <code>env</code> keyword for simple calculations or evaluations to use the REPL as a calculator/debugger.</p>
+<p>Not only does this mean that users do not have to type redundant <code>env</code> keyword for simple calculations or evaluations to use the REPL as a calculator/debugger. This also means now users can nest expressions within themselves to create more complex expressions.</p>
 <h3 id="string-template"><a class="header" href="#string-template">String Template</a></h3>
 <p>We have a new string template system now that is natively implemented inside the NADI system. Which means it is now not as powerful as the last one, but it is fast and more similar to template systems from other languages.</p>
 <p>The main changes from the previous string templates in terms of implementation:</p>
@@ -222,19 +269,19 @@
 <li>There are no support for lisp expressions, datetime, and transformation functions in the template. The formatting is done through format expressions. Refer to the new String Template chapter for details.</li>
 </ul>
 <p>Furthermore, we have a syntax suger for rendering a template directly.</p>
-<pre><code class="language-task">env r"Hi there {name}"
+<pre><code class="language-task">r"Hi there {name}"
 </code></pre>
 <p>*Error*:</p>
-<pre><code class="language-error">EvalError at Line 1 Column 1: Rendering Failed: TemplateError at pos 10: Attribute "name" not found
+<pre><code class="language-error">RenderError  at Line 1 Column 1: TemplateError at pos 10: Attribute "name" not found
 </code></pre>
-<pre><code class="language-task">env.name = "Joe"
-env r"Hi there {name}"
+<pre><code class="language-task">name = "Joe"
+r"Hi there {name}"
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"Hi there Joe"
 </code></pre>
 <p>This is equivalent to:</p>
-<pre><code class="language-task">env render("Hi there {name}", name="Joe")
+<pre><code class="language-task">render("Hi there {name}", name="Joe")
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"Hi there Joe"
@@ -243,7 +290,7 @@ env r"Hi there {name}"
 <p>That is:</p>
 <p>Instead of a <code>exists</code> function that takes a <code>Template</code>, and render it for each node, <code>exists</code> can just take <code>String</code> and user can pass rendered <code>String</code> while calling the function.</p>
 <pre><code class="language-task"><span class="boring">network load_str("a -&gt; b")
-</span>node exists("{NAME}.txt")
+</span>nm exists("{NAME}.txt")
 help node exists
 </code></pre>
 <p>Results:</p>
@@ -264,10 +311,14 @@ Checks if the given path exists when rendering the template
 <p>Now the users can choose to catch or raise errors. This is done through adding the syntax to raise an error, and <code>try-catch</code> block that can catch an error inside a code.</p>
 <p>The panic is still a problem as it crashes the whole program, we will try to fix any instances of panic that happens inside the code.</p>
 <p>For example if a variable is not found</p>
-<pre><code class="language-task">env.somevar
+<pre><code class="language-task">somevar = 10
+somevar
+env.somevar
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">EvalError at Line 1 Column 1: Attribute not found
+<p>Results:</p>
+<pre><code class="language-output">10
+
+&lt;None&gt;
 </code></pre>
 <p>We can catch it,</p>
 <pre><code class="language-task">try {env.somevar} catch { 1 }
@@ -293,7 +344,7 @@ fact(9)
 <pre><code class="language-task">fact(-8)
 </code></pre>
 <p>*Error*:</p>
-<pre><code class="language-error">EvalError: Error: Negative Value not supported
+<pre><code class="language-error">UserError  at Line 1 Column 1: Negative Value not supported
 </code></pre>
 <p>There is no way to catch specific errors for now. In future versions pattern matching for error handling might be added.</p>
 
@@ -348,7 +399,7 @@ fact(9)
         <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

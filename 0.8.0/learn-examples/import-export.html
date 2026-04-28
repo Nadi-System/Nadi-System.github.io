@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -180,7 +180,7 @@
 <p>Similar to how you can load network files, you can load attributes from files as well. Direct load of TOML format is supported from the internal plugins, while you might need external plugins for other formats.</p>
 <p><code>load_attrs</code> function takes a template, and reads a different files for each node to load the attributes from.</p>
 <pre><code class="language-task">network load_file("data/ohio.network")
-node load_attrs("data/attrs/{NAME}.toml")
+nodes do load_attrs("data/attrs/{NAME}.toml")
 
 network cairo.table("
 &lt;Name =&gt; {NAME}
@@ -190,23 +190,18 @@ network cairo.table("
 <p>Results:<br><img src="../output/ohio-import-export.svg" alt="Output Image"></p>
 <p>You can use the render function to see if the files being loaded are correct. Here we can see the examples for the first 4 nodes:</p>
 <pre><code class="language-task"><span class="boring">network load_file("data/ohio.network")
-</span>node(INDEX&lt;4) render("data/attrs/{NAME}.toml")
+</span>nodes(INDEX&lt;4) r"data/attrs/{NAME}.toml"
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">{
-  smithland = "data/attrs/smithland.toml",
-  golconda = "data/attrs/golconda.toml",
-  old-shawneetown = "data/attrs/old-shawneetown.toml",
-  mountcarmel = "data/attrs/mountcarmel.toml"
-}
+<pre><code class="language-output">["data/attrs/smithland.toml", "data/attrs/golconda.toml", "data/attrs/old-shawneetown.toml", "data/attrs/mountcarmel.toml"]
 </code></pre>
 <p>You can also read a attributes from string, so you can combine that with <code>FILES.from_file</code> and load it.</p>
 <pre><code class="language-task">network load_file("data/ohio.network")
-env.somevalue = ATTRS.parse_attrmap(
+somevalue = ATTRS.parse_attrmap(
 	FILES.from_file("data/attrs/smithland.toml")
 );
-env.somevalue.basin_area
-env.somevalue.length
+somevalue.basin_area
+somevalue.length
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">371802.16
@@ -215,7 +210,7 @@ env.somevalue.length
 </code></pre>
 <p>You can export csv files</p>
 <pre><code class="language-task">network load_file("data/ohio.network")
-node ATTRS.load_attrs("data/attrs/{NAME}.toml")
+nodes do ATTRS.load_attrs("data/attrs/{NAME}.toml")
 network TABLE.save_csv("output/ohio-export.csv", ["NAME", "basin_area", "length"])
 network command("cat output/ohio-export.csv | head", echo=true)
 </code></pre>
@@ -239,8 +234,8 @@ The examples below require the `gis` external plugin from `nadi-gis` repository 
 
 <p>First we make a GIS file by exporting. The image below shows the resulting points (red) from the shapefile and connections (black) from the Geopackage file when we visualize this on QGIS (with background of Terrain and Ohio River tributaries).</p>
 <pre><code class="language-task">network load_file("data/ohio.network")
-node ATTRS.load_attrs("data/attrs/{NAME}.toml")
-node.geometry = render("POINT ({lon} {lat})");
+nodes do ATTRS.load_attrs("data/attrs/{NAME}.toml")
+nodes.geometry = r"POINT ({lon} {lat})";
 network gis.save_nodes(
   "output/ohio-nodes.shp",
   "geometry",
@@ -268,7 +263,7 @@ network gis.load_attrs("output/ohio-nodes.shp", "NAME")
 
 network cairo.table("
 &lt;Name =&gt; {NAME}
-&gt;Area =&gt; {basin_area?:.2}
+&gt;Area =&gt; {basin_area?:.1}
 &gt;Length =&gt; {length:.1}
 ", "output/ohio-from-gis.svg"
 )
@@ -327,7 +322,7 @@ network cairo.table("
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

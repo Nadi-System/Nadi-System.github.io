@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -181,7 +181,7 @@
 <h2 id="default-is-empty-network"><a class="header" href="#default-is-empty-network">Default is Empty Network</a></h2>
 <p>Tasks are run by default with an empty network. So you might still be able to work with network attributes, but the nodes will be empty. also note that when you load network it replaces the old one including the attributes.</p>
 <pre><code class="language-task">network.someattr = 1234;
-network.someattr
+net.someattr
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">1234
@@ -196,10 +196,10 @@ network nodes.NAME
 []
 </code></pre>
 <p>Trying to run node functions on the empty network means nothing is run</p>
-<pre><code class="language-task">node render("{NAME}")
+<pre><code class="language-task">nodes render("{NAME}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">
+<pre><code class="language-output">[]
 </code></pre>
 <h2 id="loading-network-from-string"><a class="header" href="#loading-network-from-string">Loading Network from String</a></h2>
 <p>Here assume we have a network consisting of nodes of dams and gages like the following where dam nodes start with d and gages with g:</p>
@@ -217,12 +217,17 @@ d4 -&gt; g3
 <p>Results:<br><img src="../output/load-str.svg" alt="Output Image"></p>
 <h2 id="loading-network-from-a-file"><a class="header" href="#loading-network-from-a-file">Loading Network from a File</a></h2>
 <p>we can load a network from a file:</p>
-<pre><code class="language-task">network load_file("./data/mississippi.net");
+<pre><code class="language-task">command("rm output/ex-network-conn.svg")
+network load_file("./data/mississippi.net");
 
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\nName =&gt; {NAME}\n", "./output/ex-network-conn.svg")
 </span></code></pre>
 <p>Results:<br><img src="../output/ex-network-conn.svg" alt="Output Image"></p>
 <h2 id="modifying-the-network"><a class="header" href="#modifying-the-network">Modifying the network</a></h2>
+<div class="warning">
+Modification of the network is currently unstable due to the expansion of support from river networks to any kind of directed networks. Further development is necessary to make sure the connections are preserved while subset of a network is taken, and enough functions are provided to modify the network from the DSL. If the results you get are not what you expected, please make an issue in the repository.
+</div>
+
 <p>You can modify the network after loading it as well. The example below extracts just the nodes that are dams. Compare this with the previous network to see how the connections are retained during the subsets.</p>
 <pre><code class="language-task"><span class="boring">network load_str("
 </span><span class="boring">d1 -&gt; d2
@@ -232,10 +237,23 @@ d4 -&gt; g3
 </span><span class="boring">g2 -&gt; d4
 </span><span class="boring">d4 -&gt; g3
 </span><span class="boring">");
-</span>node.is_dam = NAME match "^d[0-9]+";
+</span>nodes.is_dam = NAME match "^d[0-9]+";
+nodes(is_dam).visual = {nodecolor = "red"};
+
+<span class="boring">network cairo.table("Index =&gt; {INDEX}\n&lt;Name =&gt; {NAME}\n", "./output/simple-count-before-subset.svg")
+</span></code></pre>
+<p>Results:<br><img src="../output/simple-count-before-subset.svg" alt="Output Image"></p>
+<pre><code class="language-task"><span class="boring">network load_str("
+</span><span class="boring">d1 -&gt; d2
+</span><span class="boring">d3 -&gt; g2
+</span><span class="boring">d2 -&gt; g1
+</span><span class="boring">g1 -&gt; d4
+</span><span class="boring">g2 -&gt; d4
+</span><span class="boring">d4 -&gt; g3
+</span><span class="boring">");
+</span>nodes.is_dam = NAME match "^d[0-9]+";
+nodes(is_dam).visual = {nodecolor = "red"};
 network subset(nodes.is_dam);
-<span class="boring">import utils
-</span>
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\n&lt;Name =&gt; {NAME}\n", "./output/simple-count-subset.svg")
 </span></code></pre>
 <p>Results:<br><img src="../output/simple-count-subset.svg" alt="Output Image"></p>
@@ -292,7 +310,7 @@ network subset(nodes.is_dam);
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

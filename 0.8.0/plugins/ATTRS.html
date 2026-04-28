@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -208,7 +208,7 @@ env assert_eq(val2, 12)
 env assert_eq(parse_attr("123"), 123)
 env assert_eq(parse_attr("12.34"), 12.34)
 env assert_eq(parse_attr("\"my value\""), "my value")
-env assert_eq(parse_attr("1234-12-12"), 1234-12-12)
+env assert_eq(parse_attr("1234-12-12 00:00"), 1234-12-12T00:00)
 </code></pre>
 <h2 id="env.parse_attrmap"><a class="header" href="#env.parse_attrmap">parse_attrmap</a></h2>
 <pre><code class="language-sig">env ATTRS.parse_attrmap(toml: 'String')
@@ -220,8 +220,8 @@ env assert_eq(parse_attr("1234-12-12"), 1234-12-12)
 <p>Parse attribute map from string</p>
 <pre><code class="language-task">env assert_eq(parse_attrmap("y = true"), {y = true})
 env assert_eq(parse_attrmap(
-"x = [1234-12-12, true]"),
-{x = [1234-12-12, true]}
+"x = [1234, true]"),
+{x = [1234, true]}
 )
 </code></pre>
 <h2 id="env.keys"><a class="header" href="#env.keys">keys</a></h2>
@@ -231,6 +231,15 @@ env assert_eq(parse_attrmap(
 <ul>
 <li><code>attrmap: 'AttrMap'</code> =&gt;</li>
 </ul>
+<p>keys of the attribute map</p>
+<h2 id="env.values"><a class="header" href="#env.values">values</a></h2>
+<pre><code class="language-sig">env ATTRS.values(attrmap: 'AttrMap')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>attrmap: 'AttrMap'</code> =&gt;</li>
+</ul>
+<p>values of the attribute map</p>
 <h2 id="env.get"><a class="header" href="#env.get">get</a></h2>
 <pre><code class="language-sig">env ATTRS.get(
     parent: 'Attribute',
@@ -347,10 +356,10 @@ list of nodes)</p>
 <p>Following will set the attribute <code>a2d</code> to <code>true</code> for all nodes
 from <code>A</code> to <code>D</code></p>
 <pre><code class="language-task">network load_str("A -&gt; B\n B -&gt; D");
-node[A -&gt; D] set_attrs(a2d = true)
+nodes[A -&gt; D] set_attrs(a2d = true)
 </code></pre>
 <p>This is equivalent to the following:</p>
-<pre><code class="language-task">node[A-&gt;D].a2d = true;
+<pre><code class="language-task">nodes[A-&gt;D].a2d = true;
 </code></pre>
 <h2 id="node.del_attrs"><a class="header" href="#node.del_attrs">del_attrs</a></h2>
 <pre><code class="language-sig">node ATTRS.del_attrs(delete: 'Vec &lt; String &gt;')
@@ -361,7 +370,7 @@ node[A -&gt; D] set_attrs(a2d = true)
 </ul>
 <p>Delete attributes from the given node</p>
 <pre><code class="language-task">network load_str("a -&gt; b");
-node set_attrs(val = true);
+nodes set_attrs(val = true);
 node[a] del_attrs(["val"]);
 node[a] assert_eq(val?, false)
 node[b] assert_eq(val?, true)
@@ -376,7 +385,19 @@ node[b] assert_eq(val?, true)
 </ul>
 <p>Retrive attribute</p>
 <pre><code class="language-task">network load_str("A -&gt; B\n B -&gt; D");
-node assert_eq(get_attr("NAME"), NAME);
+nodes assert_eq(get_attr("NAME"), NAME);
+</code></pre>
+<h2 id="node.get_attrs"><a class="header" href="#node.get_attrs">get_attrs</a></h2>
+<pre><code class="language-sig">node ATTRS.get_attrs(*attr_names)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>*attr_names</code> =&gt; Name of the attribute to get</li>
+</ul>
+<p>Retrive multiple attributes</p>
+<pre><code class="language-task">network load_str("A -&gt; B\n B -&gt; D");
+nodes assert_eq(get_attrs("NAME"), array(NAME));
+nodes assert_eq(get_attrs("NAME", "ORDER"), array(NAME, ORDER));
 </code></pre>
 <h2 id="node.has_attr"><a class="header" href="#node.has_attr">has_attr</a></h2>
 <pre><code class="language-sig">node ATTRS.has_attr(attr: '&amp; str')
@@ -387,9 +408,9 @@ node assert_eq(get_attr("NAME"), NAME);
 </ul>
 <p>Check if the attribute is present</p>
 <pre><code class="language-task">network load_str("A -&gt; B\n B -&gt; D");
-node.x = 90;
-node assert(has_attr("x"))
-node assert(!has_attr("y"))
+nodes.x = 90;
+nodes assert(has_attr("x"))
+nodes assert(!has_attr("y"))
 </code></pre>
 <h2 id="node.first_attr"><a class="header" href="#node.first_attr">first_attr</a></h2>
 <pre><code class="language-sig">node ATTRS.first_attr(attrs: '&amp; [String]', default: 'Option &lt; Attribute &gt;')
@@ -404,9 +425,9 @@ node assert(!has_attr("y"))
 be equivalent but are using different names. Normally due to
 them being combined from different datasets.</p>
 <pre><code class="language-task">network load_str("A -&gt; B\n B -&gt; D");
-node.x = 90;
-node assert_eq(first_attr(["y", "x"]), 90)
-node assert_eq(first_attr(["x", "NAME"]), 90)
+nodes.x = 90;
+nodes assert_eq(first_attr(["y", "x"]), 90)
+nodes assert_eq(first_attr(["x", "NAME"]), 90)
 </code></pre>
 <h2 id="node.set_attrs_ifelse"><a class="header" href="#node.set_attrs_ifelse">set_attrs_ifelse</a></h2>
 <pre><code class="language-sig">node ATTRS.set_attrs_ifelse(cond: 'bool', **values)
@@ -419,7 +440,7 @@ node assert_eq(first_attr(["x", "NAME"]), 90)
 <p>if else condition with multiple attributes</p>
 <pre><code class="language-task">network load_str("a -&gt; b");
 env.some_condition = true;
-node set_attrs_ifelse(
+nodes set_attrs_ifelse(
 env.some_condition,
 val1 = [1, 2],
 val2 = ["a", "b"]
@@ -428,7 +449,7 @@ env assert_eq(nodes.val1, [1, 1])
 env assert_eq(nodes.val2, ["a", "a"])
 </code></pre>
 <p>This is equivalent to using the if-else expression directly,</p>
-<pre><code class="language-task">node.val1 = if (env.some_condition) {1} else {2};
+<pre><code class="language-task">nodes.val1 = if (env.some_condition) {1} else {2};
 env assert_eq(nodes.val1, [1, 1])
 </code></pre>
 <p>Furthermore if-else expression will give a lot more
@@ -445,7 +466,7 @@ function is useful when you have to do something in a batch.</p>
 <p>This renders the template for each node, then it sets the
 values from the rendered results.</p>
 <pre><code class="language-task">network load_str("a -&gt; b");
-node set_attrs_render(val1 = "Node: {NAME}");
+nodes set_attrs_render(val1 = "Node: {NAME}");
 node[a] assert_eq(val1, "Node: a")
 </code></pre>
 <h2 id="node.load_toml_render"><a class="header" href="#node.load_toml_render">load_toml_render</a></h2>
@@ -465,8 +486,8 @@ template system.</p>
 functions and other environmental functions to get new
 attribute values to set.</p>
 <pre><code class="language-task">network load_str("a -&gt; b");
-node load_toml_render("label = \"Node: {NAME}\"")
-node assert_eq(label, render("Node: {NAME}"))
+nodes load_toml_render("label = \"Node: {NAME}\"")
+nodes assert_eq(label, render("Node: {NAME}"))
 </code></pre>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.set_attrs"><a class="header" href="#network.set_attrs">set_attrs</a></h2>
@@ -485,16 +506,21 @@ node assert_eq(label, render("Node: {NAME}"))
 network assert_eq(val, 23.4)
 </code></pre>
 <h2 id="network.set_node_attrs"><a class="header" href="#network.set_node_attrs">set_node_attrs</a></h2>
-<pre><code class="language-sig">network ATTRS.set_node_attrs(attr_name: '&amp; str', node_map: 'AttrMap')
+<pre><code class="language-sig">network ATTRS.set_node_attrs(attr_name: '&amp; str', node_values: 'TableOrArray')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>attr_name: '&amp; str'</code> =&gt; Name of the attribute to set,</li>
-<li><code>node_map: 'AttrMap'</code> =&gt; key value pair of attributes to set (key = node name)</li>
+<li><code>node_values: 'TableOrArray'</code> =&gt; array or a key value pair of attributes to set (key = node name)</li>
 </ul>
-<p>Set node attributes in a network using a attrmap</p>
-<pre><code class="language-task">network set_attrs(val = 23.4)
-network assert_eq(val, 23.4)
+<p>Set node attributes in a network using a attrmap or array</p>
+<p>Currenly you can only set all nodes using array, if you want
+to set a subset of the nodes, use the attrmap option.</p>
+<pre><code class="language-task">network load_str("a -&gt; b")
+network set_node_attrs("val", {a = 23.4})
+network assert_eq(node[a].val, 23.4)
+network set_node_attrs("val", [2, 4])
+network assert_eq(nodes.val, [2, 4])
 </code></pre>
 <h2 id="network.set_attrs_render"><a class="header" href="#network.set_attrs_render">set_attrs_render</a></h2>
 <pre><code class="language-sig">network ATTRS.set_attrs_render(**kwargs)
@@ -509,6 +535,20 @@ network assert_eq(val, 23.4)
 network set_attrs_render(val2 = "{val}05")
 network assert_eq(val2, "23.405")
 </code></pre>
+<h2 id="network.nodemap"><a class="header" href="#network.nodemap">nodemap</a></h2>
+<pre><code class="language-sig">network ATTRS.nodemap(
+    attr: 'String',
+    filter: 'Option &lt; Vec &lt; bool &gt; &gt;',
+    safe: 'bool' = false
+)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>attr: 'String'</code> =&gt; attribute to be the value of the attrmap</li>
+<li><code>filter: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt; Only include these nodes</li>
+<li><code>safe: 'bool' = false</code> =&gt; Exclude nodes if they do not have the attribute</li>
+</ul>
+<p>Generate attribute map for the given attribute for the nodes</p>
 
                     </main>
 
@@ -561,7 +601,7 @@ network assert_eq(val2, "23.405")
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

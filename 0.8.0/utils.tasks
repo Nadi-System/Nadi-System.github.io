@@ -1,0 +1,6 @@
+func settings(top=10, bottom=10, left=10, right=10, deltax=10, deltay=10) {
+  attrmap(
+    top=float(top), left=float(left), right=float(right), bottom=float(bottom),
+    deltax=float(deltax), deltay=float(deltay), fontsize=10.0
+  )
+}

@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -230,7 +230,8 @@
 <pre><code class="language-sig">node TS.ts_print(
     name: '&amp; String',
     header: 'bool' = true,
-    head: 'Option &lt; i64 &gt;'
+    head: 'Option &lt; i64 &gt;',
+    missing: 'String' = ""
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
@@ -238,6 +239,7 @@
 <li><code>name: '&amp; String'</code> =&gt; name of the timeseries</li>
 <li><code>header: 'bool' = true</code> =&gt; show header</li>
 <li><code>head: 'Option &lt; i64 &gt;'</code> =&gt; number of head rows to show (all by default)</li>
+<li><code>missing: 'String' = ""</code> =&gt; Show missing values as this string</li>
 </ul>
 <p>Print the given timeseries values in csv format</p>
 <h3 id="todo"><a class="header" href="#todo">TODO</a></h3>
@@ -249,7 +251,8 @@
 <pre><code class="language-sig">network TS.ts_print_csv(
     name: 'String',
     head: 'Option &lt; usize &gt;',
-    nodes: 'Option &lt; HashSet &lt; String &gt; &gt;'
+    nodes: 'Option &lt; HashSet &lt; String &gt; &gt;',
+    missing: 'String' = ""
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
@@ -257,6 +260,7 @@
 <li><code>name: 'String'</code> =&gt; Name of the timeseries to save</li>
 <li><code>head: 'Option &lt; usize &gt;'</code> =&gt; number of head rows to show (all by default)</li>
 <li><code>nodes: 'Option &lt; HashSet &lt; String &gt; &gt;'</code> =&gt; Include only these nodes (all by default)</li>
+<li><code>missing: 'String' = ""</code> =&gt; Show missing values as this string</li>
 </ul>
 <p>Save timeseries from all nodes into a single csv file</p>
 <p>TODO: error/not on unqual length
@@ -267,7 +271,8 @@ TODO: output to <code>file: PathBuf</code></p>
     filter: 'Vec &lt; bool &gt;',
     outfile: 'PathBuf',
     attrs: 'Vec &lt; String &gt;',
-    series: 'Vec &lt; String &gt;'
+    series: 'Vec &lt; String &gt;',
+    missing: 'String' = ""
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
@@ -276,6 +281,7 @@ TODO: output to <code>file: PathBuf</code></p>
 <li><code>outfile: 'PathBuf'</code> =&gt; Path to the output csv</li>
 <li><code>attrs: 'Vec &lt; String &gt;'</code> =&gt; list of attributes to write</li>
 <li><code>series: 'Vec &lt; String &gt;'</code> =&gt; list of series to write</li>
+<li><code>missing: 'String' = ""</code> =&gt; Show missing values as this string</li>
 </ul>
 <p>Write the given nodes to csv with given attributes and series</p>
 
@@ -330,7 +336,7 @@ TODO: output to <code>file: PathBuf</code></p>
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-42cba1d6.js"></script>
+        <script src="toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -200,13 +200,24 @@ higher-level analysis and translation of their findings.</p>
 </ul>
 <h2 id="network-based-data-analysis"><a class="header" href="#network-based-data-analysis">Network Based Data Analysis</a></h2>
 <p>If you have data that are network based, like in case of data related to points in a river. NADI provides a text representation of the network that can be manually created with any text editor, or through NADI GIS tool.</p>
-<p>Some domains where the data are network based (directed tree graph) are:</p>
+<p>Directed networks are a good representation for any system that have flow, sequential, causual, or preceedance relationships.</p>
+<p>Some domains where the data are network based (directed graph) are:</p>
 <ul>
-<li>River networks,</li>
-<li>File/Directory structures,</li>
-<li>Human Resources in a Company,</li>
-<li>Decision Tree / Policy Tree,</li>
-<li>Modeling work with dependencies to component models,</li>
+<li>river networks, road networks,</li>
+<li>file/directory structures,</li>
+<li>flow networks,</li>
+<li>control flow/signal flow graphs,</li>
+<li>social networks, computer networks,</li>
+<li>project management (Grantt chart),</li>
+<li>compilers, git history,</li>
+<li>any kind of dependencies map (modeling, project, files),</li>
+<li>human resources in a company,</li>
+<li>trade routes/ trade networks,</li>
+<li>decision tree / policy tree,</li>
+<li>reaction mechanics for compound sysnthesis,</li>
+<li>neural signals,</li>
+<li>gene-regulatory networks,</li>
+<li>modeling work with dependencies to component models, etc</li>
 </ul>
 <!-- TODO -->
 <!-- ## Interactive outputs -->
@@ -216,7 +227,7 @@ higher-level analysis and translation of their findings.</p>
 <h2 id="task-system"><a class="header" href="#task-system">Task System</a></h2>
 <p>The Domain Specific Programming Language (DSPL) developed for network analysis in NADI makes network analysis simple and intutive. So, it is easier to understand, interpret and catch mistakes. While the NADI IDE has network visualization tools built in that can help you visualiza the network attributes for visual analysis.</p>
 <p>For example, implementing “cumulative sum of streamflow” in nadi:</p>
-<pre><code class="language-task">node&lt;inputsfirst&gt;.cum_sf = node.streamflow + sum(inputs.streamflow);
+<pre><code class="language-task">nodes&lt;inputsfirst&gt;.cum_sf = node.streamflow + sum(inputs.streamflow);
 </code></pre>
 <p>The trying to do this in Python while making sure input nodes are run before the output. So you might have to write a recursive algorithm like this:</p>
 <pre><code class="language-python">def cum_sf(node):
@@ -239,7 +250,7 @@ cum_sf(network.outlet())
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="acknowledgements.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="elevator.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
@@ -253,7 +264,7 @@ cum_sf(network.outlet())
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="acknowledgements.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="elevator.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
@@ -286,7 +297,7 @@ cum_sf(network.outlet())
         <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

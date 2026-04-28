@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -207,7 +207,7 @@
 <p>Furthermore, there are required and optional arguments. And users can optionally omit the arguments that are of type <code>Option&lt;T&gt;</code>, or have default value in the macro (e.g. <code>safe = false</code> in the codes below).</p>
 <p>For now, the function arguments except the <code>Node</code> or <code>Network</code> cannot be <code>mut</code>. But they can be reference of <code>T</code> if <code>T</code> satisfies the trait constraints, for example, instead of <code>Vec&lt;String&gt;</code>, it can be <code>&amp;[String]</code>. But because the function context is evaluated for each node/network, there is no optimization by using the references.</p>
 <h2 id="return-types"><a class="header" href="#return-types">Return Types</a></h2>
-<p>Function Return can be empty, an attribute value, or an error. When a function returns an error, the execution is halted. When it doesn’t return a value and an assignment is performed, it will error as well.</p>
+<p>Function Return can be empty, an attribute value, image, multiple images, file, or an error. When a function returns an error, the execution is halted. When it doesn’t return a value and an assignment is performed, it will error as well. Image and file return will be converted to string, if the return value is used as part of an expression, otherwise a signal is sent for the program to handle it. For example, NADI IDE will display the image in SVG Viewer.</p>
 <p>The return type of the function should implement <code>Into&lt;FunctinRet&gt;</code>, refer to the documentation for <a href="https://docs.rs/nadi_core/latest/nadi_core/functions/enum.FunctionRet.html"><code>nadi_core::functions::FunctionRet</code></a> to see what types implement it. You can also implement that for your own types.</p>
 <p>You can simply use any type that satisfy the trait requirement mentioned above as a function return and the nadi macros will convert them automatically for you.</p>
 <h2 id="verbosity"><a class="header" href="#verbosity">Verbosity</a></h2>
@@ -326,7 +326,7 @@
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

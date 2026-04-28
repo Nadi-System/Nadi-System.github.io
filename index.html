@@ -14,7 +14,8 @@
 
 <nav>
     <a href="/index.html">Home</a>
-    <a href="/user-guide.html">User Guide</a>
+    <a href="/publications.html">Publications</a>
+    <a href="/user-guide.html">User Manual</a>
     <a href="/developer-guide.html">Developer Guide</a>
     <a href="/api-reference.html">API Reference</a>
     <a href="/tutorials.html">Tutorials</a>
@@ -22,40 +23,47 @@
 
 <!-- the content only changes from here below -->
 <div class="container">
-    <p>Welcome to the NADI (Network Analysis and Data Integration) system documentation.
-
-	<p>NADI is group of software packages that facilitate network analysis and do data analysis on data related to network/nodes.</p>
-
-
-	<p> The main component of the NADI is the Domain Specific Language (DSL) called Nadi Task System. The custom syntax and data types used in the task system can help researchers run river based analysis easily and intuitively compared to other general purpose programming languages. A prerequisite to that is the network detection, NADI comes with a GIS tool to help with large networks while smaller networks can be manually entered in the system. The figure below shows a typical workflow while using NADI System.</p>
+	<p>NADI (Network Analysis and Data Integration) system is group of software packages that facilitate network analysis and do data analysis on data related to network/nodes.</p>
+	
+	<p>The system is made with focus on river network, but is general enough to be applicable to any kind of directed network (<a href="https://en.wikipedia.org/wiki/Directed_graph">Wikipedia: directed graph</a>).</p>
 
 	<img src="/0.7.0/images/nadi-workflow-simple.png" width="100%">
 
 	<p><b>Why use NADI?</b></p>
-
-	<p> <ol>
-	    <li> Custom syntax and data types for river network analysis </li>
-	    <li> Integration with GIS files </li>
-	    <li> Extensible through language agnostic executable plugins, and high performace Rust plugins</li>
-	    <li> Automatic detection of upstream/downstream relationships and validation for large networks</li>
-	    <li> Also available as Python plugin for custom analysis using the python ecosystem (can feed it back to NADI Task system through plugins)</li>
-	</ol></p>
-
-	For more details on how to use NADI System, and some example research problems solved using NADI, refer to the User Guide.
 	
-	<p>NADI System Components:</p>
-
+	<p>NADI DSL is designed with the intension of making network analysis codes easier, for example look at some example codes for NADI vs python for common things:</p>
 	<div class="table-wrapper">
-	    <table><thead><tr><th>Tool</th><th>Description</th></tr></thead><tbody>
-<tr><td>NADI GIS</td><td>Geographic Information (GIS) Tool for Network Detection</td></tr>
-<tr><td>NADI Task System</td><td>Domain Specific Programming Language</td></tr>
-<tr><td>NADI Plugins</td><td>Plugins that provide the functions in Task System</td></tr>
-<tr><td>NADI library</td><td>Rust and Python library to use in your programs</td></tr>
-<tr><td>NADI CLI</td><td>Command Line Interface to run NADI Tasks</td></tr>
-<tr><td>NADI IDE</td><td>Integrated Development Environment to write/ run NADI Tasks</td></tr>
-	    </tbody></table>
+<table>
+<thead>
+<tr><th>Description</th><th>Python</th><th>NADI</th></tr>
+</thead>
+<tbody>
+<tr><td>get a node attribute</td><td><code>node.val</code></td><td><code>node.val</code></td></tr>
+<tr><td>check a node attribute exists</td><td><code>node.val is not None</code></td><td><code>node.val?</code></td></tr>
+<tr><td>sum val for all nodes</td><td><code>sum(n.val for n in net.nodes())</code></td><td><code>sum(nodes.val)</code></td></tr>
+<tr><td>assign value to all nodes</td><td><code>for n in net.nodes(): n.val = 1</code></td><td><code>nodes.val = 1</code></td></tr>
+</tbody>
+</table>
 	</div>
 
+	<p>Of course, this are simple examples, but as you learn more about NADI you can see how these and many other patterns in NADI language makes it easier and intuitive to analyze networks.
+	    Refer to the book’s <a href="./0.8.0/learn-examples.html">Learn by Examples</a> chapter to see specific features of NADI that are related to the programming language.</p>
+	<p>Most important features of NADI are:</p>
+	<ol>
+	    <li>Language Keywords to support:
+		<ol type="a">
+		    <li>Implicit loop while running functions/expressions in the <code>nodes</code> vs single <code>node</code>,</li>
+		    <li>Implicit array and map (dictionary) for variables, expressions, function calls,</li>
+		    <li>Easier access to <code>input</code> vs <code>output</code> nodes as well as <code>root</code> and <code>leaf</code> nodes of the networks for analysis,</li>
+		    <li><a href="0.8.0/system/intro.html#keywords">and more</a></li>
+		</ol>
+	    </li>
+	    <li>Features that are present in other languages like <code>if-else</code>, <code>while</code>, <code>for</code>, <code>loop</code>, <code>try-catch</code>, <code>function</code>, <code>import</code>, allowing users to write their own logic, reuse code, and handle errors.</li>
+	    <li>The ability to load functions from shared libraries (<code>.dll</code>, <code>.so</code>, <code>.dynlib</code>) through the NADI plugin system, allowing advanced users to write functions that are computationally efficient and use them as if they are native to the language itself.</li>
+	</ol>
+	<p>NADI comes with GIS tools, IDE, jupyter notebook, and other tools to make it easier to use it thorough different interfaces.</p>
+
+	<p>For more details, refer to the User Manual.</p>
 </div>
 
 </body>

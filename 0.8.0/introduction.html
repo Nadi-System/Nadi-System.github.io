@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-42cba1d6.js"></script>
+        <script src="toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -185,12 +185,14 @@
 <tr><th>Tool</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td>NADI GIS</td><td>Geographic Information (GIS) Tool for Network Detection</td></tr>
-<tr><td>NADI Task System</td><td>Domain Specific Programming Language</td></tr>
-<tr><td>NADI Plugins</td><td>Plugins that provide the functions in Task System</td></tr>
-<tr><td>NADI library</td><td>Rust and Python library to use in your programs</td></tr>
+<tr><td>NADI Task System</td><td>Domain Specific Programming Language (used through CLI &amp; IDE)</td></tr>
 <tr><td>NADI CLI</td><td>Command Line Interface to run NADI Tasks</td></tr>
 <tr><td>NADI IDE</td><td>Integrated Development Environment to write/ run NADI Tasks</td></tr>
+<tr><td>NADI GIS</td><td>Geographic Information (GIS) Tool for Network Detection</td></tr>
+<tr><td>NADI Plugins</td><td>Plugins that provide the functions in Task System</td></tr>
+<tr><td>NADI library</td><td>Rust and Python library to use in your programs</td></tr>
+<tr><td>NADI Serve</td><td>NADI binary to open a server that can run NADI DSL as requests</td></tr>
+<tr><td>NADI Kernel</td><td>Jupyter Notebook Kernel to work with NADI DSL</td></tr>
 </tbody>
 </table>
 </div>
@@ -208,12 +210,14 @@
 </tbody>
 </table>
 </div>
-<h2 id="workflow"><a class="header" href="#workflow">Workflow</a></h2>
-<p>A Typical workflow in NADI System consists of the follwing 4 processes:</p>
+<p>As seen in the figure below: as a user you only need to interact with a subset of the NADI architecture.</p>
+<p><img src="../images/architecture.svg" alt="Architecture"></p>
+<h2 id="workflow-for-rivers"><a class="header" href="#workflow-for-rivers">Workflow for Rivers</a></h2>
+<p>A Typical workflow in NADI System for river network related analysis consists of the follwing 4 processes:</p>
 <ol>
 <li>Download Data</li>
 <li>Pre-Process Data</li>
-<li>Network Detection (using NADI GIS)</li>
+<li>Network Detection/Construction (you can automate it using NADI GIS)</li>
 <li>Network Analysis (Using NADI System’s DSL, and Plugins)</li>
 <li>Post Process</li>
 </ol>
@@ -222,7 +226,7 @@
 <p>Here the numbers in red circles are the order of use for different tools. Here the “Run Tasks” step represents running the NADI DSL Code in the System, so it is further divided into the tasks inside the code. The numbers on the blue circles show a typical use case of the DSL to perform a research work.</p>
 <p>For exact details on what a typical research workflow involving the NADI DSL is, refer to the examples.</p>
 <h2 id="nadi-gis"><a class="header" href="#nadi-gis">NADI GIS</a></h2>
-<p>Geographic Information (GIS) Tool for Network Detection. The main purpose of the NADI GIS is to find the network connectivity between a set of points using a stream network (which can be developed from elevation models, or downloaded from national databases).</p>
+<p>Geographic Information (GIS) Tool for Network Detection in river systems. The main purpose of the NADI GIS is to find the network connectivity between a set of points using a stream network (which can be developed from elevation models, or downloaded from national databases).</p>
 <p>NADI GIS can be used as a terminal command or QGIS plugin, refer to <a href="installation.html#nadi-gis">installation</a> section for how to install it.</p>
 <h2 id="nadi-task-system"><a class="header" href="#nadi-task-system">NADI Task System</a></h2>
 <p>Task System is a Domain Specific Programming Language (DSL) that is designed for river network analysis. This is the main core of the network analysis. This is included when you install NADI as a library, CLI or GUI.</p>
@@ -394,7 +398,7 @@ related analysis.</li>
         <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

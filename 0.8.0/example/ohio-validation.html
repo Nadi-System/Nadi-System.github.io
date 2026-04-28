@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -186,17 +186,17 @@ In this example we will use `nadi-gis` plugin to load and write GIS files, while
 <p>We’ll use the same network from the Dams count example.</p>
 <pre><code class="language-task">network load_file("data/ohio-river/ohio.network")
 network count()
-network outlet()
+roots.NAME
 
-node.is_usgs = NAME match "^[0-9]+";
-node.is_dam = !is_usgs;
+nodes.is_usgs = NAME match "^[0-9]+";
+nodes.is_dam = !is_usgs;
 network count(nodes.is_usgs)
 network count(nodes.is_dam)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">5987
 
-"03399800"
+["03399800"]
 
 
 
@@ -210,17 +210,12 @@ network gis.load_attrs("data/ohio-river/GageLoc.shp.zip", "SOURCE_FEA")
 network gis.load_attrs("data/ohio-river/gages-II.gpkg", "STAID")
 network gis.load_attrs("data/ohio-river/usgs-drainage.csv", "SiteNumber")
 
-node[03399800].SiteNumber # only USGS gages have it
-node(INDEX &lt; 5).yearCompleted # only NID dams have it
-node(INDEX &lt; 5).GEOM # all nodes have it although from different sources
+nm(INDEX &lt; 5).yearCompleted # only NID dams have it
+nm(INDEX &lt; 5).GEOM # all nodes have it although from different sources
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  03399800 = &lt;None&gt;
-}
-
-{
-  03399800 = &lt;None&gt;,
+  "03399800" = &lt;None&gt;,
   IL50499 = 1980,
   IL40055 = 1980,
   IL00955 = 1977,
@@ -228,7 +223,7 @@ node(INDEX &lt; 5).GEOM # all nodes have it although from different sources
 }
 
 {
-  03399800 = "POINT (-88.4234349499133 37.1612042742605 0)",
+  "03399800" = "POINT (-88.4234349499133 37.1612042742605 0)",
   IL50499 = "POINT (-88.42921894 37.16622664)",
   IL40055 = "POINT (-88.77145 37.401709)",
   IL00955 = "POINT (-88.78582 37.38365)",
@@ -243,8 +238,8 @@ node(INDEX &lt; 5).GEOM # all nodes have it although from different sources
 <!-- ``` -->
 <h2 id="process-attributes"><a class="header" href="#process-attributes">Process Attributes</a></h2>
 <p>Since we need a quick and easy way to identify USGS gage and NID dam, we use regex to categorize them.</p>
-<pre><code class="language-task">node.is_usgs = NAME match "^[0-9]+";
-node.is_dam = !is_usgs;
+<pre><code class="language-task">nodes.is_usgs = NAME match "^[0-9]+";
+nodes.is_dam = !is_usgs;
 network count(nodes.is_usgs)
 network count(nodes.is_dam)
 </code></pre>
@@ -254,21 +249,25 @@ network count(nodes.is_dam)
 4181
 </code></pre>
 <p>The basin area is stored as different variable in each dataset, we want to combine them into a single one.</p>
-<pre><code class="language-task">node.ba = first_attr(["drainageArea", "DRAIN_SQKM", "Drainage"])
-network count(nodes.ba?) / count()
+<pre><code class="language-task">nodes do {
+  try {
+	  node.ba = first_attr(["drainageArea", "DRAIN_SQKM", "Drainage"])
+	} catch {}
+  }
+network count(nodes {ba?}) / count()
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">0.7561382996492401
 </code></pre>
 <p>Even then we only have 75% of the nodes with basin area. Since the <code>DrainageArea</code> is in sqmiles</p>
 <p>If we look at some examples here on two sources of basin area of USGS gages, we can see the problems:</p>
-<pre><code class="language-task">node(is_usgs &amp; Drainage? &amp; DRAIN_SQKM? &amp; INDEX &lt; 100) array(Drainage, DRAIN_SQKM)
+<pre><code class="language-task">nm(is_usgs &amp; Drainage? &amp; DRAIN_SQKM? &amp; INDEX &lt; 100) [Drainage, DRAIN_SQKM]
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  03384450 = ["42.9", 111.1266],
-  03383000 = ["255.0", 660.5415],
-  03382100 = ["147.0", 367.272]
+  "03384450" = ["42.9", 111.1266],
+  "03383000" = ["255.0", 660.5415],
+  "03382100" = ["147.0", 367.272]
 }
 </code></pre>
 <ol>
@@ -276,48 +275,48 @@ network count(nodes.ba?) / count()
 <li>The units are different (confirmed from metadata of datasets).</li>
 </ol>
 <p>So we reconcile that,</p>
-<pre><code class="language-task">node(Drainage?).basin_area = float(Drainage);
-node(DRAIN_SQKM?).basin_area = DRAIN_SQKM * 0.38610216;
+<pre><code class="language-task">nodes(Drainage?).basin_area = float(Drainage);
+nodes(DRAIN_SQKM?).basin_area = DRAIN_SQKM * 0.38610216
 </code></pre>
 <p>*Error*:</p>
-<pre><code class="language-error">EvalError at Line 1 Column 1: Error in function float: cannot parse float from empty string
+<pre><code class="language-error">FunctionError [410014081362600] at Line 1 Column 1: function float: cannot parse float from empty string
 </code></pre>
 <p>We got an error, seems like <code>Drainage</code> contains empty strings as well. That and the <code>String</code> part comes from loading a CSV without data types (<code>.csvt</code> file).</p>
 <p>Let’s fix the code for that, and also let’s get the <code>basin_area</code> for dams.</p>
-<pre><code class="language-task">node(Drainage? &amp; Drainage match "[0-9]+(.[0-9]+)?").basin_area = float(Drainage);
-node(DRAIN_SQKM?).basin_area = DRAIN_SQKM * 0.38610216;
-node(drainageArea?).basin_area = float(drainageArea);
+<pre><code class="language-task">nodes(Drainage? &amp; Drainage match "[0-9]+(.[0-9]+)?").basin_area = float(Drainage);
+nodes(DRAIN_SQKM?).basin_area = DRAIN_SQKM * 0.38610216;
+nodes(drainageArea?).basin_area = float(drainageArea);
 
-node(INDEX &lt; 10).basin_area
-network count(nodes.basin_area?) / count()
+nm(INDEX &lt; 10).basin_area
+network count(nodes {basin_area?}) / count()
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  03399800 = &lt;None&gt;,
+  "03399800" = &lt;None&gt;,
   IL50499 = 144000,
   IL40055 = 0.08,
   IL00955 = &lt;None&gt;,
   IL00070 = &lt;None&gt;,
   IL00039 = &lt;None&gt;,
-  03386500 = 9.853134072120001,
+  "03386500" = 9.853134072120001,
   IL00102 = 2,
-  03386000 = &lt;None&gt;,
-  03385500 = &lt;None&gt;
+  "03386000" = &lt;None&gt;,
+  "03385500" = &lt;None&gt;
 }
 
 0.755971271087356
 </code></pre>
 <h2 id="check-for-incorrect-basin-areas"><a class="header" href="#check-for-incorrect-basin-areas">Check for Incorrect Basin Areas</a></h2>
 <p>Now we have all the different variables combined into a single one with same data type and unit. Let’s do a quick analysis to see if there are points in the network where nodes have larger area than input nodes.</p>
-<pre><code class="language-task">node.incorrect = basin_area &lt; sum(inputs.basin_area);
+<pre><code class="language-task">nodes.incorrect = basin_area &lt; sum(inputs.basin_area);
 network count(nodes.incorrect)
 </code></pre>
 <p>*Error*:</p>
-<pre><code class="language-error">EvalError at Line 1 Column 1: Attribute Error: Attribute basin_area not found
+<pre><code class="language-error">EmptyValueError  at Line 1 Column 1: the expression resulted in empty value
 </code></pre>
 <p>The error here comes from the fact that not all nodes contain <code>basin_area</code> attribute. Since <code>basin_area?</code> will only check for the current node, we use a default value when the values are not available into a temporary variable.</p>
-<pre><code class="language-task">node.temp_ba = basin_area ? 0.0;
-node.incorrect = basin_area? &amp; (basin_area &lt; sum(inputs.temp_ba));
+<pre><code class="language-task">nodes.temp_ba = basin_area ? 0.0;
+nodes.incorrect = basin_area? &amp; (basin_area &lt; sum(inputs.temp_ba));
 network count(nodes.incorrect)
 network count(nodes.incorrect) / count()
 </code></pre>
@@ -328,7 +327,7 @@ network count(nodes.incorrect) / count()
 </code></pre>
 <p>That’s around 10% error rate.</p>
 <p>Looking at the actual values, few of them seem to be due to minor errors in values, while most of them seem to be from large input area.</p>
-<pre><code class="language-task">node(incorrect &amp; INDEX &lt; 400) array(basin_area, sum(inputs.temp_ba))
+<pre><code class="language-task">nm(incorrect) [basin_area, sum(inputs.temp_ba)]
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
@@ -353,37 +352,109 @@ network count(nodes.incorrect) / count()
   IN00618 = [0.41000000000000003, 1.2700000000000002],
   IN00098 = [0.33, 263.021357392616],
   IN00035 = [0.23, 168.12355234608],
-  03343010 = [13732, 13755.171304576803],
+  "03343010" = [13732, 13755.171304576803],
   IN00528 = [0.21, 0.32],
   IN00151 = [1.18, 4.75],
   IN03337 = [1.1500000000000001, 42.9097178978],
   IN00107 = [0.55, 8.22],
   IN00209 = [1.8, 8.48],
   IN00091 = [0.6900000000000001, 0.87],
-  IN00092 = [0.87, 8.38]
+  IN00092 = [0.87, 8.38],
+  IN00462 = [0.39, 1.1500000000000001],
+  IL40011 = [2.36, 11.4],
+  IN00726 = [0.01, 0.2],
+  IN00731 = [0.2, 3.73],
+  IN00729 = [0.16, 1],
+  IL00742 = [0.2, 21.7],
+  IN00722 = [0.29, 3.08],
+  IN00723 = [0.2, 1],
+  IN00437 = [0.2, 2.4],
+  IN00721 = [0.17, 0.39],
+  IN00431 = [0.39, 0.85],
+  IN03216 = [0.25, 0.5],
+  IN00728 = [0.66, 11167.3448859856],
+  IN00288 = [0.09, 0.34],
+  IN00505 = [0.03, 223.256539885312],
+  IN04020 = [0.13, 1.09],
+  IN03196 = [0.25, 677.48802118264],
+  IN00735 = [1.9000000000000001, 2.15],
+  IL50291 = [0.06, 69.89807631177601],
+  IN00753 = [0.3, 1868.7614815512],
+  IN00459 = [0.31, 1790],
+  "03332605" = [1790, 1793],
+  IN00240 = [1.6, 35.2],
+  IN03801 = [0.2, 809],
+  IN03355 = [0, 695.78422034768],
+  IN00321 = [0.23, 0.49],
+  IN03984 = [0.13, 8.620000000000001],
+  IN03462 = [0, 33.65716107796],
+  IN00763 = [0.09, 0.45],
+  IN00767 = [0, 768.8080807372801],
+  IN00441 = [0.38, 556.23730459968],
+  IN03434 = [0, 263.58341177426405],
+  IN03758 = [0.64, 578.7119252311201],
+  IN00445 = [0.37, 499.66125210536006],
+  IN00207 = [0.26, 0.28],
+  IN00257 = [0.28, 308.349756443952],
+  OH03208 = [0.02, 0.06],
+  OH00258 = [0.12, 12.49],
+  IN00188 = [0.79, 4.04],
+  IN00057 = [1.2, 14.2],
+  IN00120 = [0.44, 14.450000000000001],
+  IN03353 = [0, 0.25],
+  IN00166 = [0.22, 0.97],
+  IN00325 = [0.21, 0.63],
+  IN00460 = [0.15, 834.9862486900802],
+  IN03430 = [0.25, 0.78],
+  IN00708 = [0.16, 0.29],
+  IN03789 = [0.02, 0.11],
+  IN03788 = [0.11, 0.43],
+  IN00709 = [0.23, 0.36],
+  IN03956 = [0.13, 294.15926653704],
+  "03359000" = [294.15926653704, 295],
+  IN00663 = [0, 0.37],
+  IN00666 = [0, 0.85],
+  IN00704 = [0.35000000000000003, 10.75],
+  IN00702 = [0, 134.30289503066402],
+  IN00711 = [0, 2986.82183069928],
+  IN00695 = [0.15, 0.66],
+  IN03272 = [0, 1.75],
+  IN00691 = [0.22, 15.1],
+  IN00665 = [0.45, 0.63],
+  IN03503 = [0.02, 1.23],
+  IN00563 = [0.1, 3.1],
+  IN03189 = [0.1, 0.38],
+  IN04040 = [0.09, 0.48],
+  IN04043 = [0.48, 9.34],
+  IN03961 = [0.16, 0.34],
+  IN00363 = [0.92, 7.3],
+  IN00365 = [0.88, 1.67],
+  IN00361 = [1.67, 72.23],
+  IN00581 = [0.04, 0.09], ... 
 }
 </code></pre>
 <p>This could be due to the error in snapping to the streamlines. It is also possible that some basin area that are missing are contributing to the unaccounted area.</p>
 <p>Let’s try to fix them, or avoid points without data.</p>
-<pre><code class="language-task">node.all_inputs_ba = all(inputs.basin_area?);
-node.incorrect = basin_area? &amp; all_inputs_ba &amp; (
+<pre><code class="language-task">nodes.all_inputs_ba = all(inputs {basin_area?});
+nodes.incorrect = basin_area? &amp; all_inputs_ba &amp; (
 	basin_area &lt; (0.975 * sum(inputs.basin_area))
 );
 network count(nodes.incorrect)
 network count(nodes.incorrect) / count()
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-EvalError at Line 2 Column 1: Attribute Error: Attribute basin_area not found
+<p>Results:</p>
+<pre><code class="language-output">451
+
+0.07532988140972106
 </code></pre>
 <p>Looks like 7.5% of the errors are reasonable errors from network detection.</p>
-<pre><code class="language-task">network count(nodes.incorrect &amp; nodes.is_usgs)
-network count(nodes.incorrect &amp; nodes.is_dam)
+<pre><code class="language-task">network count(nodes {incorrect &amp; is_usgs})
+network count(nodes {incorrect &amp; is_dam})
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">33
+<pre><code class="language-output">8
 
-514
+443
 </code></pre>
 <p>This shows that the majority of the errors come from the NID dams, which makes sense given the <code>GageLoc.shp</code> data has points indexed to the NHDPlus streamlines, while the NID Dams are not indexed to it. Furthermore, looking at the attributes in QGIS shows, many dams are in locations without streamlines, and even then sometimes they have unusually large basin area values for their location.</p>
 <h2 id="export-to-gis-for-visualization"><a class="header" href="#export-to-gis-for-visualization">Export to GIS for visualization</a></h2>
@@ -404,32 +475,22 @@ network count(nodes.incorrect &amp; nodes.is_dam)
 </code></pre>
 <p>We also need connection information to cross reference, let’s make them through some string manipulation. NADI GIS plugin uses WKT format for geometries, which are string values, so we can manipulate them using string functions.</p>
 <p>Note: we should probably add a function for this in future. A WKT plugin to work with geometries.</p>
-<pre><code class="language-task">node.xy_coords = str_find_all(node.GEOM, "-?[0-9]+[.][0-9]+");
-node(output._?).out_coords = str_find_all(output.GEOM, "-?[0-9]+[.][0-9]+");
-node(! output._?).conn_geom = GEOM
-node(output._?).conn_geom = env.render(
+<pre><code class="language-task">nodes.xy_coords = str_find_all(node.GEOM, "-?[0-9]+[.][0-9]+");
+nodes(output._?).out_coords = str_find_all(output.GEOM, "-?[0-9]+[.][0-9]+");
+nodes(! output._?).conn_geom = GEOM
+nodes(output._?).conn_geom = env.render(
 	"LINESTRING ({x1} {y1}, {x2} {y2})",
 	x1=get(node.xy_coords, 0),
 	y1=get(node.xy_coords, 1),
 	x2=get(node.out_coords, 0),
 	y2=get(node.out_coords, 1)
 )
-node(output._? &amp; (INDEX &lt; 10)).conn_geom
+nodes(output._? &amp; (INDEX &lt; 10)).conn_geom
 
 network gis.save_connections("output/ohio-conn-all.gpkg", "conn_geom")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">{
-  IL50499 = "LINESTRING (-88.42921894 37.16622664, -88.4234349499133 37.1612042742605)",
-  IL40055 = "LINESTRING (-88.77145 37.401709, -88.42921894 37.16622664)",
-  IL00955 = "LINESTRING (-88.78582 37.38365, -88.42921894 37.16622664)",
-  IL00070 = "LINESTRING (-88.57139 37.21975, -88.42921894 37.16622664)",
-  IL00039 = "LINESTRING (-88.68815 37.38965, -88.42921894 37.16622664)",
-  03386500 = "LINESTRING (-88.6736645 37.4156072, -88.68815 37.38965)",
-  IL00102 = "LINESTRING (-88.66408 37.41518, -88.6736645 37.4156072)",
-  03386000 = "LINESTRING (-88.6637356477429 37.4140878122472, -88.66408 37.41518)",
-  03385500 = "LINESTRING (-88.6494395725886 37.4141446558289, -88.6637356477429 37.4140878122472)"
-}
+<pre><code class="language-output">["LINESTRING (-88.42921894 37.16622664, -88.4234349499133 37.1612042742605)", "LINESTRING (-88.77145 37.401709, -88.42921894 37.16622664)", "LINESTRING (-88.78582 37.38365, -88.42921894 37.16622664)", "LINESTRING (-88.57139 37.21975, -88.42921894 37.16622664)", "LINESTRING (-88.68815 37.38965, -88.42921894 37.16622664)", "LINESTRING (-88.6736645 37.4156072, -88.68815 37.38965)", "LINESTRING (-88.66408 37.41518, -88.6736645 37.4156072)", "LINESTRING (-88.6637356477429 37.4140878122472, -88.66408 37.41518)", "LINESTRING (-88.6494395725886 37.4141446558289, -88.6637356477429 37.4140878122472)"]
 </code></pre>
 <p>When we visualize the output in QGIS, we can see the nodes where the <code>basin_area</code> are not correct based on the network information.</p>
 <p><img src="../images/ohio-correctness-qgis.png" alt="Correctness in QGIS"></p>
@@ -492,7 +553,7 @@ network gis.save_connections("output/ohio-conn-all.gpkg", "conn_geom")
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -189,16 +189,16 @@
 12.2
 </code></pre>
 <h2 id="variable"><a class="header" href="#variable">Variable</a></h2>
-<pre><code class="language-task">env.value = [1, true, "no maybe"];
-env.value
+<pre><code class="language-task">value = [1, true, "no maybe"];
+value
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">[1, true, "no maybe"]
 </code></pre>
 <p>Variables also have a “check” mode, where it returns true if variable exists, false if it does not.</p>
-<pre><code class="language-task">env.value = [1, true, "no maybe"];
-env value?
-env other_var?
+<pre><code class="language-task">value = [1, true, "no maybe"];
+value?
+other_var?
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">true
@@ -206,15 +206,15 @@ env other_var?
 false
 </code></pre>
 <p>If you use variable that does not exist, then it will throw an error. You can use <code>try-catch</code> block to catch that error. This is computationally better than checking if a variable exists. But the checking is useful in case of filtering the node functions (explained later).</p>
-<pre><code class="language-task">env.value = [1, true, "no maybe"];
-env try { other_var } catch { value }
+<pre><code class="language-task">value = [1, true, "no maybe"];
+try { other_var } catch { value }
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">[1, true, "no maybe"]
 </code></pre>
 <p>You can also use varible from node, or network in other context. For example:</p>
-<pre><code class="language-task">env.value = [1, true, "no maybe"];
-network echo(json(env.value))
+<pre><code class="language-task">value = [1, true, "no maybe"];
+network echo(json(value))
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">[1, true, "no maybe"]
@@ -223,7 +223,7 @@ network echo(json(env.value))
 <p>You will learn more about this on <a href="cross-context.html">Cross Context Functions and Variables</a> chapter.</p>
 <h2 id="unary-operator"><a class="header" href="#unary-operator">Unary Operator</a></h2>
 <pre><code class="language-task">env !true
-env - 12.0
+- 12.0
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">false
@@ -231,10 +231,10 @@ env - 12.0
 -12
 </code></pre>
 <h2 id="binary-operator"><a class="header" href="#binary-operator">Binary Operator</a></h2>
-<pre><code class="language-task">env (12 &gt; 34) &amp; true
-env "x" in "xyz"
-env 12 in [123, true]
-env "my name is" match "^my.*"
+<pre><code class="language-task">(12 &gt; 34) &amp; true
+"x" in "xyz"
+12 in [123, true]
+"my name is" match "^my.*"
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">false
@@ -246,25 +246,25 @@ false
 true
 </code></pre>
 <h2 id="if-else"><a class="header" href="#if-else">If Else</a></h2>
-<pre><code class="language-task">env if(!true) {"if true"} else {"if false"}
+<pre><code class="language-task">if(!true) {"if true"} else {"if false"}
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"if false"
 </code></pre>
 <h2 id="function"><a class="header" href="#function">Function</a></h2>
-<pre><code class="language-task">env.value = [1, true, "no maybe"];
-env get(value, 2)
+<pre><code class="language-task">value = [1, true, "no maybe"];
+get(value, 2)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"no maybe"
 </code></pre>
-<p>Out of all expressions, only the function is not garanteed to return a value. If you are using a function expression and expect a value and it does not return it, it’ll be a runtime error.</p>
-<pre><code class="language-task">env echo("Hello world!") + 12
+<p>All expressions are not garanteed to return a value. If you are using a function expression and expect a value and it does not return it, it’ll be a runtime error. Similar case for <code>if</code> block without <code>else</code> if condition is false, and so on.</p>
+<pre><code class="language-task">echo("Hello world!") + 12
 </code></pre>
 <p>*Error*:</p>
 <pre><code class="language-error">Hello world!
 
-EvalError at Line 1 Column 1: Function echo did not return a value
+EmptyValueError  at Line 1 Column 1: the expression resulted in empty value
 </code></pre>
 <p>Special function types like <code>nodes</code>, <code>inputs</code>, <code>output</code> are available besides <code>env</code>, <code>network</code> and <code>node</code> based on what type of task the expression is on.</p>
 <p>You will learn more about this on <a href="cross-context.html">Cross Context Functions and Variables</a> chapter.</p>
@@ -277,7 +277,7 @@ EvalError at Line 1 Column 1: Function echo did not return a value
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../intro/udf.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../intro/context.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -291,7 +291,7 @@ EvalError at Line 1 Column 1: Function echo did not return a value
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../intro/udf.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../intro/context.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -320,7 +320,7 @@ EvalError at Line 1 Column 1: Function echo did not return a value
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

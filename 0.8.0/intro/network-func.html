@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -180,7 +180,7 @@
 <p>Network function runs on the network as a whole. It takes arguments and keyword arguments. Few network functions we have been using throughout the examples are <code>load_file</code>, <code>load_str</code> and <code>cairo.table</code>:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net")
 <span class="boring">network command("mkdir -p output")
-</span>node.title = str_replace(NAME, "-", " ");
+</span>nodes.title = str_replace(NAME, "-", " ");
 
 network cairo.table(
    "Index =&gt; {INDEX}\n&lt;Name =&gt; {NAME}\n",
@@ -193,7 +193,7 @@ The examples below use the graphviz plugin to generate the graphviz file, and la
 </div>
 
 <p>For example following network function takes file path as input to save the network in graphviz format:</p>
-<pre><code class="language-sig">graphviz.save(
+<pre><code class="language-sig">save_gv(
 	outfile [PathBuf],
 	name [String] = "network",
 	global_attrs [String] = "",
@@ -204,7 +204,7 @@ The examples below use the graphviz plugin to generate the graphviz file, and la
 <p>Note that, if the arguments have default values, or are optional, then you do not need to provide them.</p>
 <p>For example, you can simply call the above function like this.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>network graphviz.save("./output/test.gv")
+</span>network save_gv("./output/test.gv")
 <span class="boring">network clip()
 </span><span class="boring"># the path link are relative to /src
 </span><span class="boring">network echo("./output/test.gv")
@@ -222,7 +222,7 @@ The examples below use the graphviz plugin to generate the graphviz file, and la
 </code></pre>
 <p>With extra commands you can also convert it into an image</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span><span class="boring">network graphviz.save("./output/test.gv")
+</span><span class="boring">network save_gv("./output/test.gv")
 </span>network command("dot -Tsvg ./output/test.gv -o ./output/test.svg")
 <span class="boring">network clip()
 </span><span class="boring"># the link path needs to be relative to this file
@@ -281,7 +281,7 @@ The examples below use the graphviz plugin to generate the graphviz file, and la
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -188,12 +188,12 @@ env array(someattr, other)
 network.someattr = true;
 network.someattr
 # node attributes
-node.someattr = "string val";
+nodes.someattr = "string val";
 
-node.someattr
+nm.someattr
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">[123, 1998-12-21]
+<pre><code class="language-output">[123, 1965]
 
 
 true
@@ -227,14 +227,14 @@ env array(network.someattr, other)
 network nodes.NAME
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">[true, 1998-12-21]
+<pre><code class="language-output">[true, 1965]
 
 ["d", "c", "b", "a"]
 </code></pre>
 <p>Similarly inputs:</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d\n");
 
-node inputs.NAME
+nm inputs.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
@@ -302,7 +302,7 @@ node inputs.NAME
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -186,7 +186,7 @@
 </span><span class="boring">g2 -&gt; d4
 </span><span class="boring">d4 -&gt; g3
 </span><span class="boring">");
-</span>node&lt;inputsfirst&gt;.stream_ord = max(inputs.stream_ord, 1) + int(count(inputs._?) &gt; 1);
+</span>nodes&lt;inputsfirst&gt;.stream_ord = max(inputs.stream_ord, 1) + int(count(inputs._) &gt; 1);
 <span class="boring">network cairo.table("Name =&gt; {NAME}\nstream_ord =&gt; {stream_ord}", "./output/cumulative-1.svg")
 </span></code></pre>
 <p>Results:<br><img src="../output/cumulative-1.svg" alt="Output Image"></p>
@@ -201,12 +201,13 @@
 </span><span class="boring">g2 -&gt; d4
 </span><span class="boring">d4 -&gt; g3
 </span><span class="boring">");
-</span><span class="boring">node&lt;inputsfirst&gt;.stream_ord = max(inputs.stream_ord, 1) + int(count(inputs._?) &gt; 1);
-</span>node.visual.linewidth = stream_ord;
-node.visual.nodecolor = "white";
-node(stream_ord == 1).visual.linecolor = "green";
-node(stream_ord == 2).visual.linecolor = "blue";
-node(stream_ord == 3).visual.linecolor = "red";
+</span><span class="boring">nodes&lt;inputsfirst&gt;.stream_ord = max(inputs.stream_ord, 1) + int(count(inputs._) &gt; 1);
+</span>nodes.visual = {};
+nodes.visual.linewidth = stream_ord;
+nodes.visual.nodecolor = "white";
+nodes(stream_ord == 1).visual.linecolor = "green";
+nodes(stream_ord == 2).visual.linecolor = "blue";
+nodes(stream_ord == 3).visual.linecolor = "red";
 
 <span class="boring">network cairo.table("Name =&gt; {NAME}\nstream_ord =&gt; {stream_ord}", "./output/cumulative-2.svg")
 </span></code></pre>
@@ -263,7 +264,7 @@ node(stream_ord == 3).visual.linecolor = "red";
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

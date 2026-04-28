@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -216,8 +216,8 @@ env assert_eq(shell_env("testing"), "true")
 <p>Runs a command in terminal and returns attribute map</p>
 <p>The returned AttrMap contains any key=value pair that were
 output from the command if they are prefixed with <code>nadi:var:</code></p>
-<pre><code class="language-task">env.outputs = command("echo nadi:var:test=12");
-env assert_eq(outputs.test, 12)
+<pre><code class="language-task">env.outputs2 = command("echo nadi:var:test=12");
+env assert_eq(outputs2.test, 12)
 </code></pre>
 <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
 <h2 id="node.command"><a class="header" href="#node.command">command</a></h2>
@@ -253,8 +253,8 @@ if <code>verbose</code> is true.</p>
 <li>The attributes from command’s stdout cannot be parsed properly</li>
 </ul>
 <pre><code class="language-task">network load_str("a -&gt; b");
-node command("echo 'nadi:var:sth=\"{NAME}\"'");
-node assert_eq(sth, NAME)
+nodes command("echo 'nadi:var:sth=\"{NAME}\"'");
+nodes assert_eq(sth, NAME)
 </code></pre>
 <h2 id="node.run"><a class="header" href="#node.run">run</a></h2>
 <pre><code class="language-sig">node COMMAND.run(
@@ -297,7 +297,7 @@ tasks with input files and output files.</p>
 <p>Other than parallel execution this is same as the <code>node</code> function <code>command</code></p>
 <pre><code class="language-task">network load_str("a -&gt; b");
 network parallel("echo 'nadi:var:sth=\"{NAME}\"'");
-node assert_eq(sth, NAME)
+nodes assert_eq(sth, NAME)
 </code></pre>
 <h2 id="network.command"><a class="header" href="#network.command">command</a></h2>
 <pre><code class="language-sig">network COMMAND.command(
@@ -381,7 +381,7 @@ node[a] assert_eq(sth, 123)
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

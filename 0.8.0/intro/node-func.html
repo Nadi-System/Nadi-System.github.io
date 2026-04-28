@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -180,7 +180,7 @@
 <p>Node function runs on each node. It takes arguments and keyword arguments.</p>
 <p>For example following node function takes multiple attribute names and prints them. The signature of the node function is <code>print_attrs(*args)</code>.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node print_attrs("INDEX", name=false)
+</span>nodes print_attrs("INDEX", name=false)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">INDEX = 0
@@ -190,11 +190,49 @@ INDEX = 3
 INDEX = 4
 INDEX = 5
 INDEX = 6
+
+[&lt;None&gt;, &lt;None&gt;, &lt;None&gt;, &lt;None&gt;, &lt;None&gt;, &lt;None&gt;, &lt;None&gt;]
 </code></pre>
-<p>Only the <code>NAME</code> is printed as they do not have any other attributes.</p>
+<p>Only the <code>INDEX</code> is printed here. But node that the return value of nodes is an array, and as the <code>print_attrs</code> function does not return a value, it lists a values of <code>&lt;None&gt;</code>. When you want to do things for each node, but not return a value, you can either silence the return through <code>;</code>, or use a <code>do</code> keyword to idicate it’s a task not a return value.</p>
+<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
+</span>nodes print_attrs("INDEX", name=false);
+
+nodes do print_attrs("NAME", name=false)
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">INDEX = 0
+INDEX = 1
+INDEX = 2
+INDEX = 3
+INDEX = 4
+INDEX = 5
+INDEX = 6
+
+
+NAME = "lower-mississippi"
+NAME = "red"
+NAME = "arkansas"
+NAME = "missouri"
+NAME = "upper-mississippi"
+NAME = "ohio"
+NAME = "tenessee"
+</code></pre>
+<p>The keywords <code>nodes</code> and <code>nodesmap</code> always return an array or a map, if not silenced or used with the <code>do</code> keyword.</p>
 <h1 id="node-function-propagation"><a class="header" href="#node-function-propagation">Node Function Propagation</a></h1>
 <p>Propagation of the node functions refer to the order and selection of nodes to run the function on.</p>
-<p>By default node function is run at each node. But that might not be the intended use of the function, for example you might want to:</p>
+<p>As we have seen above, when you run node functions, you can run it for all the nodes. If you want to run it for one node, or a selective nodes, you need to select them using propagation.</p>
+<p>For single node, the way of selecting the node is similar to propagation, i.e. use <code>node</code> keyword with node name inside <code>[]</code>:</p>
+<pre><code class="language-task"><span class="boring">network.load_str("a -&gt; b");
+</span>node[a].NAME
+node[b] {[NAME, ORDER]}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">"a"
+
+["b", 2]
+</code></pre>
+<p>But this does not allow more than one node, and returns a value instead of a list, or a map that <code>nodes</code> or <code>nodesmap</code> keywords do.</p>
+<p>For multiple nodes, for example, you might want to:</p>
 <ul>
 <li>run the function only on nodes that satisfy a condition,</li>
 <li>run the funciton only on a group of nodes,</li>
@@ -210,36 +248,30 @@ INDEX = 6
 <li><code>outputfirst</code>/<code>out</code> =&gt; output node before inputs</li>
 </ul>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt;d \n c -&gt; d \n d -&gt; e")
-node&lt;seq&gt; array(INDEX, ORDER)
-node&lt;inv&gt; array(INDEX, ORDER)
+nodesmap&lt;seq&gt; array(INDEX, ORDER)
+nodes&lt;inv&gt; array(INDEX, ORDER)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  e = [0, 5],
-  d = [1, 4],
+  e = [0, 4],
+  d = [1, 3],
   c = [2, 1],
   b = [3, 2],
   a = [4, 1]
 }
 
-{
-  a = [4, 1],
-  b = [3, 2],
-  c = [2, 1],
-  d = [1, 4],
-  e = [0, 5]
-}
+[[4, 1], [3, 2], [2, 1], [1, 3], [0, 4]]
 </code></pre>
 <p>Currently, <code>inp</code> and <code>inv</code> are equivalent, while <code>seq</code> and <code>out</code> are also equivalent. But when the parallization is added in the future versions, they will be implemented differently. So for backward compatibility, if you function needs to be run in a certain way, always use that one.</p>
 <p>Here an example showing how to calculate the order of the node.</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt;d \n c -&gt; d \n d -&gt; e")
-node&lt;inp&gt;.val = sum(inputs.val) + 1;
-node array(val, ORDER)
+nodes&lt;inp&gt;.val = sum(inputs.val) + 1;
+nm [val, ORDER]
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  e = [5, 5],
-  d = [4, 4],
+  e = [5, 4],
+  d = [4, 3],
   c = [1, 1],
   b = [2, 2],
   a = [1, 1]
@@ -247,12 +279,37 @@ node array(val, ORDER)
 </code></pre>
 <p>If you do not use the <code>inputsfirst</code> propagation here, you get an error because the <code>val</code> attribute doesn’t exist in <code>inputs</code>, and if you did have that variable already, it would be old data instead of the recent results from your expression.</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt;d \n c -&gt; d \n d -&gt; e")
-node.val = sum(inputs.val) + 1;
-node array(val, ORDER)
+nodes.val = sum(inputs.val) + 1;
+nm [val, ORDER]
 </code></pre>
 <p>*Error*:</p>
 <pre><code class="language-error">
-EvalError at Line 2 Column 1: Attribute Error: Attribute val not found
+EmptyValueError [e] at Line 2 Column 1: the expression resulted in empty value
+</code></pre>
+<p>Here the <code>[e]</code> after the Error shows which node the error is from. If we look at the values, we can see that all values are empty, and the expressions errors out on the first node <code>e</code>, because the input <code>d</code> doesn’t have <code>val</code>.</p>
+<pre><code class="language-task">nm [val, inputs.NAME]
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  e = [&lt;None&gt;, ["d"]],
+  d = [&lt;None&gt;, ["b", "c"]],
+  c = [&lt;None&gt;, []],
+  b = [&lt;None&gt;, ["a"]],
+  a = [&lt;None&gt;, []]
+}
+</code></pre>
+<p>If we ran it for node <code>a</code> for example then we wouldn’t get an error.</p>
+<pre><code class="language-task">node[a].val = sum(inputs.val) + 1;
+nm [val, ORDER]
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  e = [&lt;None&gt;, 4],
+  d = [&lt;None&gt;, 3],
+  c = [&lt;None&gt;, 1],
+  b = [&lt;None&gt;, 2],
+  a = [1, 1]
+}
 </code></pre>
 <p>NOTE: I need to work on better error messaging. It is in TODO list for the next major release.</p>
 <h2 id="node-listpath"><a class="header" href="#node-listpath">Node List/Path</a></h2>
@@ -264,16 +321,16 @@ EvalError at Line 2 Column 1: Attribute Error: Attribute val not found
 <h3 id="list-of-nodes"><a class="header" href="#list-of-nodes">List of Nodes</a></h3>
 <p>List of node contains a separated list of node names or quoted string if the name is not valid identifier/number inside <code>[]</code>.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node[tenessee,"lower-mississippi"] print_attrs("NAME")
+</span>nodes[tenessee,"lower-mississippi"] do print_attrs("NAME")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">NAME = "lower-mississippi"
-NAME = "tenessee"
+<pre><code class="language-output">NAME = "tenessee"
+NAME = "lower-mississippi"
 </code></pre>
 <h3 id="path-of-nodes"><a class="header" href="#path-of-nodes">Path of Nodes</a></h3>
-<p>Path of node has the same syntax as a path used in the network file. It has starting node and end node. Instead of it representing a single edge like in network file, it represents all the nodes that are between those two (inclusive).</p>
+<p>Path of node has the same syntax as a path used in the network file. It has starting node and end node. Instead of it representing a single edge like in network file, it represents all the nodes that are between those two (inclusive) if the network is a rooted tree graph. If any nodes in between the nodes have multiple outputs, then the path doesn’t work. This limitation will be fixed in the future.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node[tenessee -&gt; "lower-mississippi"] print_attrs("NAME")
+</span>nodes[tenessee -&gt; "lower-mississippi"] do print_attrs("NAME")
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">NAME = "tenessee"
@@ -285,7 +342,7 @@ mississippi includes the ohio node.</p>
 <h2 id="logical-condition"><a class="header" href="#logical-condition">Logical Condition</a></h2>
 <p>Logical condition is used by putting an expression that evaluates to a boolean value inside the <code>()</code>.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node("mississippi" in NAME) print_attrs("NAME")
+</span>nodes("mississippi" in NAME) do print_attrs("NAME")
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">NAME = "lower-mississippi"
@@ -295,23 +352,23 @@ NAME = "upper-mississippi"
 <p>You can combine the three different types of propagations in a single task using the syntax <code>node&lt;...&gt;[...](...)</code>, they must come in that sequence as the order is decided first, then the list/path is taken, and finally the condition is evaluated to boolean before selecting the nodes.</p>
 <p>For example:</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node[tenessee -&gt; "lower-mississippi"]("mississippi" in NAME) INDEX
-node&lt;inv&gt;[tenessee -&gt; "lower-mississippi"] INDEX
-node&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
+</span>nodesmap[tenessee -&gt; "lower-mississippi"]("mississippi" in NAME) INDEX
+nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"] INDEX
+nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  lower-mississippi = 0
+  "lower-mississippi" = 0
 }
 
 {
-  lower-mississippi = 0,
+  "lower-mississippi" = 0,
   ohio = 5,
   tenessee = 6
 }
 
 {
-  lower-mississippi = 0,
+  "lower-mississippi" = 0,
   ohio = 5
 }
 </code></pre>
@@ -367,7 +424,7 @@ node&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

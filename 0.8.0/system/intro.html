@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -182,41 +182,76 @@
 <ul>
 <li><strong>Attributes</strong> are values, it can be float, integer, boolean, strings, or list of attributes, or a map of attributes (key=value),</li>
 <li><strong>Expression</strong> is something that can be evaluated or executed, it consists of literal values (attributes), variables (node, network, env variables that could hold attributes), function calls, or a mathmatical or logical operation.</li>
-<li><strong>Nodes</strong> are points in the network, they can have attributes, input nodes and an output node,</li>
-<li><strong>Network</strong> is a collection of nodes, network can also have attributes, Network used in the NADI System can have only one outlet, so a ‘ROOT’ node is added if there are multiple outlet. And loading a network that is not a directed tree is undefined behaviour.</li>
+<li><strong>Nodes</strong> are points in the network, they can have attributes, input nodes and an output node. Different types of nodes are:
+<ul>
+<li>Input Node: node that leads into a node,</li>
+<li>Output Node: node that the current node leads into,</li>
+<li>Edge Node: node that is connected to the current node,</li>
+<li>Leaf Node: node with no input nodes, and</li>
+<li>Root Node: node with no output nodes.</li>
+</ul>
+</li>
+<li><strong>Network</strong> is a collection of nodes, network can also have attributes. Loading a network that is not a directed tree is undefined behaviour.</li>
 <li><strong>Task</strong> is an execution body of the task system. It can be of env, network or node type. It can be conditional (If-Else) or loop (While) consisting of more tasks inside it. Task can assign values to the env/network/node attributes, or call mutable functions on the top level.</li>
 <li><strong>Functions</strong> in nadi are of 3 types, env functions are normal functions that take values and run, network functions take values and run on the network, while node functions run at each node (they also provide a way to subset which nodes to run it on).</li>
 <li><strong>String Template</strong>: Some functions take string inputs that are interpreted dynamically to represent different strings based on variables.</li>
 <li><strong>Plugins</strong> provide the functions used by the nadi task system. There are internal plugins and external plugins. Internal plugins comes with the installation, while external plugins are loaded from dynamic libraries.</li>
 </ul>
 <h2 id="keywords"><a class="header" href="#keywords">Keywords</a></h2>
+<p>The keywords in the language are listed below. You can not use keywords as variables or function names. If you use <code>nadi_plugin</code> to generate your plugin functions, it will check for that.</p>
+<p>Know that the keywords here are a bit more numerous than a typical language as nadi is a domain specific language, and it is designed to make it easier to represent and work with network related structures. As such, many keywords are available to directly denote many types of nodes in a given context. For more details on node related keywords goto <a href="../intro/context.html">Evaluation Context</a>
+Chapter</p>
 <div class="table-wrapper">
 <table>
 <thead>
 <tr><th>Keyword</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td>node</td><td>the node task type, function or variable</td></tr>
-<tr><td>network/net</td><td>the network task type, function or variable</td></tr>
+<tr><td>clear</td><td>Clear the task context</td></tr>
+<tr><td>import</td><td>import functions from an external tasks file</td></tr>
+<tr><td>exec</td><td>execute an external tasks file</td></tr>
+<tr><td>from</td><td>to use paths other than current directory for <code>exec</code> and <code>import</code></td></tr>
+<tr><td>node</td><td>represents the current node</td></tr>
+<tr><td>network/net</td><td>represents the current network (only one in this version)</td></tr>
 <tr><td>env</td><td>the environment task type, function or variable</td></tr>
 <tr><td>exit</td><td>exit the program</td></tr>
 <tr><td>end</td><td>end the execution of tasks without exiting</td></tr>
 <tr><td>help</td><td>display help for functions</td></tr>
-<tr><td>inputs</td><td>get node variables or function output for input nodes of a node</td></tr>
-<tr><td>output</td><td>get node variable or function output for output node of a node</td></tr>
-<tr><td>nodes</td><td>get node variable or function output for all nodes in the network</td></tr>
-<tr><td>Root</td><td>root node of the network</td></tr>
+<tr><td>input</td><td>represents a single input node of a node</td></tr>
+<tr><td>inputs</td><td>represents multiple input nodes of a node</td></tr>
+<tr><td>inputsmap/im</td><td>represents a map for input nodes of a node</td></tr>
+<tr><td>output</td><td>represents a single output node of a node (only one in this version)</td></tr>
+<tr><td>outputs</td><td>represents multiple output nodes of a node (only one in this version)</td></tr>
+<tr><td>outputsmap/om</td><td>represents a map for output nodes of a node (only one in this version)</td></tr>
+<tr><td>edge</td><td>represents a single edge node of a node</td></tr>
+<tr><td>edges</td><td>represents multiple edge nodes of a node</td></tr>
+<tr><td>edgesmap/em</td><td>represents a map for edge nodes of a node</td></tr>
+<tr><td>root</td><td>represents a single root node of a network</td></tr>
+<tr><td>roots</td><td>represents all root nodes of a network</td></tr>
+<tr><td>rootsmap/rm</td><td>represents a map of all root nodes of a network</td></tr>
+<tr><td>leavess</td><td>represents all leaf nodes in the network</td></tr>
+<tr><td>leavesmap/lm</td><td>represents a map of all leaf nodes in the network</td></tr>
+<tr><td>nodes</td><td>represents all nodes in the network</td></tr>
+<tr><td>nodesmap/nm</td><td>represents a map of all nodes in the network</td></tr>
 <tr><td>if</td><td>if statement for conditional task/expression</td></tr>
 <tr><td>else</td><td>else statement for conditional task/expression</td></tr>
-<tr><td>while</td><td>while statement for loop task</td></tr>
-<tr><td>Try</td><td>try statement to contain tasks</td></tr>
-<tr><td>Catch</td><td>catch statement when error occurs on try block</td></tr>
+<tr><td>for</td><td>for loop task for looping through array/attrmap</td></tr>
+<tr><td>while</td><td>while statement for loops</td></tr>
+<tr><td>loop</td><td>infinite loop that can only be broken through break statements</td></tr>
+<tr><td>break</td><td>break statement inside a loop</td></tr>
+<tr><td>continue</td><td>continue statement inside a loop</td></tr>
+<tr><td>try</td><td>try statement to contain tasks</td></tr>
+<tr><td>catch</td><td>catch statement when error occurs on try block</td></tr>
 <tr><td>in</td><td>binary operator to check if something is in another (list/string)</td></tr>
+<tr><td>in</td><td>keyword in for loop to determine the parent attribute to loop from</td></tr>
 <tr><td>match</td><td>binary operator to check patterns on string (regex)</td></tr>
-<tr><td>Hook</td><td>hook tasks to run at each execution</td></tr>
-<tr><td>Local</td><td>Local; similar to environment but within current locale</td></tr>
+<tr><td>hook</td><td>hook tasks to run at each execution</td></tr>
+<tr><td>local/loc</td><td>Local; similar to environment but within current locale</td></tr>
 <tr><td>function/func</td><td>user defined functions</td></tr>
-<tr><td>Error</td><td>raises an error while evaluating</td></tr>
+<tr><td>return</td><td>return statement inside function</td></tr>
+<tr><td>error</td><td>raises an error while evaluating</td></tr>
+<tr><td>progress</td><td>send a progress signal from anywhere</td></tr>
+<tr><td>do</td><td>execute the current context without expecting value</td></tr>
 </tbody>
 </table>
 </div>
@@ -227,14 +262,16 @@
 <tr><th>Keyword</th><th>Description</th></tr>
 </thead>
 <tbody>
+<tr><td>networks</td><td>represents all the networks (only one in this version)</td></tr>
+<tr><td>networksmap/netm</td><td>represents a map of all the networks (only one in this version)</td></tr>
+<tr><td>par</td><td>execute the current context in parallel</td></tr>
+<tr><td>dopar</td><td>execute the current context in parallel without expecting value</td></tr>
 <tr><td>map</td><td>map values in an array/attrmap to a function</td></tr>
-<tr><td>attrs</td><td>attributes of the env/node/network</td></tr>
-<tr><td>loop</td><td>loop task</td></tr>
-<tr><td>for</td><td>for loop task for looping through array/attrmap</td></tr>
-<tr><td>Return</td><td>return statement inside function</td></tr>
+<tr><td>attrs</td><td>attributes of the current context</td></tr>
 </tbody>
 </table>
 </div>
+<p>As seen in the keywords, there are plans to support multiple networks, as well as parallel execution.</p>
 <h2 id="symbols"><a class="header" href="#symbols">Symbols</a></h2>
 <p>Some special symbols and their functions are listed below:</p>
 <ul>
@@ -248,9 +285,6 @@
 <li><code>-&gt;</code> path operator (only used in node propagation, or network),</li>
 <li><code>=</code> is assignment operator,</li>
 <li><code>#</code> starts a comment,</li>
-</ul>
-<p>Some reserved Symbols for future:</p>
-<ul>
 <li><code>$</code> for series/timeseries access,</li>
 <li><code>@</code> for Function pointers</li>
 </ul>
@@ -265,7 +299,7 @@
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../intro/task.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../intro/node.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -279,7 +313,7 @@
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../intro/task.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../intro/node.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -308,7 +342,7 @@
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

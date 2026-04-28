@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -199,22 +199,31 @@
 <p>You can write attributes directly into the task system to assign them, use them in functions. You can also load attributes from a file into the env/node/network.</p>
 <p>Following are some example values that are evaluated as literal values (themselves).</p>
 <pre><code class="language-task">true
-2024-12-21
 "string value"
 12.21
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">true
 
-2024-12-21
-
 "string value"
 
 12.21
 </code></pre>
+<p>Please note that, the date and time by themselves are not valid in a tasks file. While they are valid attributes in a “.toml” file or while parsing attributes, in a task file they are interpreted as integer expression and integer range.</p>
+<pre><code class="language-task">2024-12-21
+12:24
+12:04:24
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">1991
+
+[12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+
+[12, 16, 20, 24]
+</code></pre>
 <p>You can assign attribute values to variable names. We will discuss nodes and network later, but let’s assign environmental values:</p>
 <pre><code class="language-task">env.river = "Ohio River"
-river
+env.river
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"Ohio River"
@@ -234,15 +243,15 @@ num_dams_gages = 2348
 <p>Here loading the files we can see only ohio has the attributes loaded</p>
 <pre><code class="language-task"><span class="boring"> network load_file("./data/mississippi.net")
 </span>node[ohio] load_attrs("./data/attrs/{NAME}.toml")
-node.outlet
+nodesmap.outlet
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  lower-mississippi = &lt;None&gt;,
+  "lower-mississippi" = &lt;None&gt;,
   red = &lt;None&gt;,
   arkansas = &lt;None&gt;,
   missouri = &lt;None&gt;,
-  upper-mississippi = &lt;None&gt;,
+  "upper-mississippi" = &lt;None&gt;,
   ohio = "Smithland Lock and Dam",
   tenessee = &lt;None&gt;
 }
@@ -253,7 +262,7 @@ node.outlet
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../intro/task.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../intro/network.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
@@ -267,7 +276,7 @@ node.outlet
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../intro/task.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../intro/network.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
@@ -300,7 +309,7 @@ node.outlet
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

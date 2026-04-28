@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-42cba1d6.js"></script>
+        <script src="toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -192,21 +192,21 @@ Compiled plugins (shared libraries) are loaded dynamically from shared libraries
 <p>Executable plugins are terminal commands, you set it up as you’d set any other terminal programs, by making sure the program is in <code>PATH</code> and can be executed from terminal. Linux and Mac do them mostly by default, while in Windows you might have to check the box saying something along the lines of “include this in path” during installation, or manually edit the <code>PATH</code> in “Environment Variables”.</p>
 <p>For example, if you want to call python scripts, make sure you can run <code>python --version</code> in terminal and get a response.</p>
 <p>You can also check it using the <code>command</code> function:</p>
-<pre><code class="language-task">network command("python --version", echo=true)
-network command("Rscript --version", echo=true)
-network command("julia --version", echo=true)
+<pre><code class="language-task">command("python --version", echo=true);
+command("Rscript --version", echo=true);
+command("julia --version", echo=true);
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">$ python --version
-Python 3.13.7
+Python 3.14.4
 
 
 $ Rscript --version
-Rscript (R) version 4.5.2 (2025-10-31)
+Rscript (R) version 4.6.0 (2026-04-24)
 
 
 $ julia --version
-julia version 1.12.2
+julia version 1.12.6
 </code></pre>
 <p>Here we can see, the commands that ran successfully and returned a version are valid.</p>
 <p>To write scripts and run them from nadi refer to <a href="plugin-dev/exe-plugins.html">Executable Plugins</a> section on Plugin Developer Guide.</p>
@@ -262,7 +262,7 @@ julia version 1.12.2
         <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

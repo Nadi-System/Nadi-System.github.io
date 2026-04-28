@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -181,8 +181,8 @@
 <pre><code class="language-task">network load_file("data/ohio-river/ohio.network")
 network gis.load_attrs("data/ohio-river/nid-uniq.gpkg", "nidId")
 
-node.is_usgs = NAME match "^[0-9]+";
-node.is_dam = !is_usgs;
+nodes.is_usgs = NAME match "^[0-9]+";
+nodes.is_dam = !is_usgs;
 network count(nodes.is_usgs)
 network count(nodes.is_dam)
 </code></pre>
@@ -192,10 +192,10 @@ network count(nodes.is_dam)
 4181
 </code></pre>
 <p>Counting the upstream dams again,</p>
-<pre><code class="language-task">node&lt;inp&gt;.ndam = int(is_dam) + sum(inputs.ndam);
-node.no_dam_us = ndam == 0;
-network count(nodes.no_dam_us &amp; nodes.is_usgs)
-network count(nodes.no_dam_us &amp; nodes.is_usgs) / count(nodes.is_usgs)
+<pre><code class="language-task">nodes&lt;inp&gt;.ndam = int(is_dam) + sum(inputs.ndam);
+nodes.no_dam_us = ndam == 0;
+network count(nodes {no_dam_us &amp; is_usgs})
+network count(nodes {no_dam_us &amp; is_usgs}) / count(nodes.is_usgs)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">605
@@ -205,10 +205,10 @@ network count(nodes.no_dam_us &amp; nodes.is_usgs) / count(nodes.is_usgs)
 <p>We can see 33% of the USGS gages do not have dams upstream.</p>
 <p>And for those that do, let’s look at the construction year,</p>
 <pre><code class="language-task">env.max_year = 9999; # todo test it with nan
-node.dam_year = int(get_attr("yearCompleted", env.max_year));
+nodes.dam_year = int(get_attr("yearCompleted", env.max_year));
 
-node&lt;inp&gt;.dam_aff_yr = min_num(inputs.dam_aff_yr, dam_year);
-node&lt;inp&gt;.dam_affected = dam_aff_yr &lt; env.max_year;
+nodes&lt;inp&gt;.dam_aff_yr = min_num(inputs.dam_aff_yr, dam_year);
+nodes&lt;inp&gt;.dam_affected = dam_aff_yr &lt; env.max_year;
 
 network count(nodes.dam_affected &amp; nodes.is_usgs)
 network count(!nodes.no_dam_us &amp; nodes.is_usgs)
@@ -275,7 +275,7 @@ network count(nodes.dam_affected &amp; nodes.is_usgs) / count(!nodes.no_dam_us &
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -195,22 +195,19 @@ network.sth = true;
 
 env render("this is {x}", x = network.sth)
 network str(env.var)
-node array(network.sth, env.var, node.NAME)
+nodes array(network.sth, env.var, node.NAME)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"this is true"
 
 "12"
 
-{
-  b = [true, 12, "b"],
-  a = [true, 12, "a"]
-}
+[[true, 12, "b"], [true, 12, "a"]]
 </code></pre>
 <p>Similary, env and network functions can be called anywhere. These functions cannot be mutable functions (change network internally).</p>
 <p>Taking the previous example, if we use env function <code>count</code>, we get an error as the function arguments are different.</p>
 <pre><code class="language-task">network load_str("a-&gt;b")
-node network.count()
+nodesmap network.count()
 network sum(array(env.count(), 1))
 </code></pre>
 <p>*Error*:</p>
@@ -220,23 +217,23 @@ network sum(array(env.count(), 1))
   a = 2
 }
 
-EvalError at Line 3 Column 1: Error in function count: Argument 1 (vars [&amp; [bool]]) is required
+FunctionError  at Line 3 Column 1: function count: Argument 1 (vars [&amp; [bool]]) is required
 </code></pre>
 <h2 id="node-variablesfunctions"><a class="header" href="#node-variablesfunctions">Node Variables/Functions</a></h2>
 <p>You can use <code>node</code>, <code>inputs</code>, <code>output</code> and <code>nodes</code> keywords to access node variables and functions from different contexts. <code>nodes</code> is valid in all tasks, while the other 3 are only valid in a node task and refer to the current node, input nodes and output node respectively.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span>env count(nodes._)
-node inputs.NAME
+nodesmap inputs.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">7
 
 {
-  lower-mississippi = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"],
+  "lower-mississippi" = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"],
   red = [],
   arkansas = [],
   missouri = [],
-  upper-mississippi = [],
+  "upper-mississippi" = [],
   ohio = ["tenessee"],
   tenessee = []
 }
@@ -244,14 +241,14 @@ node inputs.NAME
 <p>You can call node functions not just for the node in the context, but also for input nodes, and output node:</p>
 <p>Please note that the root node (outlet) of the network doesn’t have output node, so we need to skip that, which can be done through the <code>output._?</code> which is checking for the dummy variable <code>_</code> in <code>output</code>, which is true if the node has an output.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>node[tenessee -&gt; "lower-mississippi"] inputs.render("{NAME}")
-node[tenessee -&gt; "lower-mississippi"](output._?) output.render("{NAME}")
+</span>nm[tenessee -&gt; "lower-mississippi"] inputs.render("{NAME}")
+nm[tenessee -&gt; "lower-mississippi"](output._?) output.render("{NAME}")
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
   tenessee = [],
   ohio = ["tenessee"],
-  lower-mississippi = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"]
+  "lower-mississippi" = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"]
 }
 
 {
@@ -259,13 +256,21 @@ node[tenessee -&gt; "lower-mississippi"](output._?) output.render("{NAME}")
   ohio = "lower-mississippi"
 }
 </code></pre>
-<p>You can also use <code>nodes</code> keyword to call the function on each node, it can be used anywhere, but is useful for env and network tasks.</p>
+<p>You can also use <code>nodes</code> and <code>nodesmap</code>/<code>nm</code> keyword to call the function on each node, it can be used anywhere, but is useful for env and network context.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span>
-env nodes.render("Node [{INDEX}] {NAME}")
+network nm.render("Node [{INDEX}] {NAME}")
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">["Node [0] lower-mississippi", "Node [1] red", "Node [2] arkansas", "Node [3] missouri", "Node [4] upper-mississippi", "Node [5] ohio", "Node [6] tenessee"]
+<pre><code class="language-output">{
+  "lower-mississippi" = "Node [0] lower-mississippi",
+  red = "Node [1] red",
+  arkansas = "Node [2] arkansas",
+  missouri = "Node [3] missouri",
+  "upper-mississippi" = "Node [4] upper-mississippi",
+  ohio = "Node [5] ohio",
+  tenessee = "Node [6] tenessee"
+}
 </code></pre>
 
                     </main>
@@ -319,7 +324,7 @@ env nodes.render("Node [{INDEX}] {NAME}")
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

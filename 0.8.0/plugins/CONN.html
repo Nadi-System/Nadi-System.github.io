@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -176,31 +176,41 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
-<h2 id="env.root_node"><a class="header" href="#env.root_node">root_node</a></h2>
-<pre><code class="language-sig">env CONN.root_node()
+                        <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
+<h2 id="node.move_aside"><a class="header" href="#node.move_aside">move_aside</a></h2>
+<pre><code class="language-sig">node CONN.move_aside()
 </code></pre>
 <p><strong>Arguments:</strong></p>
-<p>default name used for ROOT node of the network</p>
+<p>Move the node to the side so that its inputs go to the output</p>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.load_file"><a class="header" href="#network.load_file">load_file</a></h2>
-<pre><code class="language-sig">network CONN.load_file(file: 'PathBuf', append: 'bool' = false)
+<pre><code class="language-sig">network CONN.load_file(
+    file: 'PathBuf',
+    append: 'bool' = false,
+    force: 'bool' = false
+)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>file: 'PathBuf'</code> =&gt; File to load the network connections from</li>
 <li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
+<li><code>force: 'bool' = false</code> =&gt; Force overriding outputs if previous one is present, only valid for override</li>
 </ul>
 <p>Load the given file into the network</p>
 <p>This replaces the current network with the one loaded from the
 file.</p>
 <h2 id="network.load_str"><a class="header" href="#network.load_str">load_str</a></h2>
-<pre><code class="language-sig">network CONN.load_str(contents: '&amp; str', append: 'bool' = false)
+<pre><code class="language-sig">network CONN.load_str(
+    contents: '&amp; str',
+    append: 'bool' = false,
+    force: 'bool' = false
+)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>contents: '&amp; str'</code> =&gt; String containing Network connections</li>
 <li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
+<li><code>force: 'bool' = false</code> =&gt; Force overriding outputs if previous one is present, only valid for override</li>
 </ul>
 <p>Load network from the given string</p>
 <p>This replaces the current network with the one loaded from the
@@ -209,12 +219,17 @@ string.</p>
 env assert_eq(nodes.NAME, ["b", "a"])
 </code></pre>
 <h2 id="network.load_edges"><a class="header" href="#network.load_edges">load_edges</a></h2>
-<pre><code class="language-sig">network CONN.load_edges(edges: '&amp; [(String, String)]', append: 'bool' = false)
+<pre><code class="language-sig">network CONN.load_edges(
+    edges: '&amp; [(String, String)]',
+    append: 'bool' = false,
+    force: 'bool' = false
+)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>edges: '&amp; [(String, String)]'</code> =&gt; String containing Network connections</li>
 <li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
+<li><code>force: 'bool' = false</code> =&gt; Force overriding outputs if previous one is present</li>
 </ul>
 <p>Load the given edges as a network</p>
 <p>This replaces the current network with the one loaded from the
@@ -232,7 +247,7 @@ env assert_eq(nodes.NAME, ["c", "b", "a"])
 </ul>
 <p>Take a subset of network by only including the selected nodes</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b-&gt;c");
-node[a-&gt;b].sth = true;
+nodes[a-&gt;b].sth = true;
 node[c].sth = false;
 network subset(nodes.sth);
 env assert_eq(nodes.NAME, ["b", "a"])
@@ -254,33 +269,32 @@ env assert_eq(nodes.NAME, ["b", "a"])
 <p>For more control on graphviz file writing, use
 <code>save_graphviz</code> from <code>graphviz</code> plugin instead.</p>
 <h2 id="network.subset_from"><a class="header" href="#network.subset_from">subset_from</a></h2>
-<pre><code class="language-sig">network CONN.subset_from(new_outlet: '&amp; str')
+<pre><code class="language-sig">network CONN.subset_from(new_root: '&amp; str')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>new_outlet: '&amp; str'</code> =&gt;</li>
+<li><code>new_root: '&amp; str'</code> =&gt;</li>
 </ul>
-<p>Take a subset of network by taking the given node as new outlet</p>
+<p>Take a subset of network by taking the given node as a new outlet</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b-&gt;c\n x -&gt; y");
 network subset_from("b")
 env assert_eq(nodes.NAME, ["b", "a"])
 </code></pre>
 <h2 id="network.subset_largest"><a class="header" href="#network.subset_largest">subset_largest</a></h2>
-<pre><code class="language-sig">network CONN.subset_largest(parent: '&amp; str' = "*ROOT*")
+<pre><code class="language-sig">network CONN.subset_largest(parent: 'Option &lt; String &gt;')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>parent: '&amp; str' = "*ROOT*"</code> =&gt;</li>
+<li><code>parent: 'Option &lt; String &gt;'</code> =&gt;</li>
 </ul>
 <p>Take a subset of network by only including the largest blob of connected nodes</p>
-<p>When you load a network that have disconnected nodes, nadi
-includes a ROOT note by default and collects all the outlets
-as inputs to that node. This function allows you to filter out
-all the nodes except the one belonging to the largest
-connected network (number of nodes). Alternatively, you can
-also use ORDER and other logic in the task system to do that.</p>
-<p>If your network doesn’t have a root node, then it’ll just keep
-the network as it is.</p>
+<p>When you load a network that have disconnected nodes, this
+function allows you to filter out all the nodes except the one
+belonging to the largest connected network (number of
+nodes). Alternatively, you can also use ORDER and other logic
+in the task system to do that.</p>
+<p>If your network has a root node, and no parent node is given,
+then it’ll just keep the network as it is.</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b-&gt;c\n x -&gt; y");
 network subset_largest()
 env assert_eq(nodes.NAME, ["c", "b", "a"])
@@ -337,7 +351,7 @@ env assert_eq(nodes.NAME, ["c", "b", "a"])
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

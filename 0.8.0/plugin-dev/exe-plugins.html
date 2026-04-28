@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -230,7 +230,7 @@ for year, flow in sf.groupby(sf.index.year).mean().items():
     print(f"nadi:var:sf_year_{year}={flow}")
 </code></pre>
 <p>Now we can call this script from inside the nadi tasks system like the following, assuming the python file is saved as <code>streamflow.py</code>.</p>
-<pre><code class="language-task">node command("python streamflow.py {_NAME}")
+<pre><code class="language-task">nodes do command("python streamflow.py {_NAME}")
 </code></pre>
 <p>If you want to know what the template will be rendered as, use <code>render</code> function, and if you want to check whether it exists or not, you can use <code>exists</code> function.</p>
 <h2 id="rscript"><a class="header" href="#rscript">RScript</a></h2>
@@ -294,7 +294,7 @@ print(args)
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>String Templates - Network Analysis and Data Integration (NADI)</title>
+        <title>Typst - Network Analysis and Data Integration (NADI)</title>
 
 
         <!-- Custom HTML head -->
@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-00a723c8.js";
+            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-42cba1d6.js"></script>
+        <script src="../toc-613f6f39.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -176,197 +176,53 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="string-templates"><a class="header" href="#string-templates">String Templates</a></h1>
-<p>The templating system will be used by an external library developed by
-me. The library can be modified if there are specific needs for this
-project.</p>
-<p>The template system is feature rich, allowing for formatting, simple
-string transformations, and airthmatic calculations based on the
-variables (node attributes in this case). This can be used to generate
-file paths, and similar strings based on node attributes, as well as
-to format the cell values for exported table, figures, etc.</p>
-<p>The template library is also available for <code>Rust</code>, <code>C</code> and <code>C++</code>, but
-all the interactions with the templates will be done through the
-<code>nadi</code> interface, so that is not required.</p>
-<p>Documentations on the template system, can be redirected to
-<a href="https://docs.rs/string-template-plus/latest/string_template_plus/">the <code>string_template_plus</code> library page</a>.</p>
-<p>Brief explanation on the template system is given below.</p>
-<h2 id="template-parts"><a class="header" href="#template-parts">Template Parts</a></h2>
-<p>Templates have variables, time formats, expressions, and commands (disabled by default);</p>
-<pre><code class="language-stp">Hi, my name is {name}, my address is {address?"N/A"}.
-Current time is {%H} hour  {%M} minutes.
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 38: Attribute "address?\"N/A\"" not found
-</code></pre>
-<h2 id="optional-variables"><a class="header" href="#optional-variables">Optional Variables</a></h2>
-<p>Variables can be chained in an optional way, so the first one that’s
-found will be used (e.g. <code>{nickname?name}</code> will render nickname if
-it’s present, else name);</p>
-<pre><code class="language-stp">Hi, I am {nickname?name}, my address is {address?"N/A"}.
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 10: Attribute "nickname?name" not found
-</code></pre>
-<h2 id="string-literal"><a class="header" href="#string-literal">String Literal</a></h2>
-<p>Variables when replaced with literal strings (quoted strings), they
-will be used directly <code>{address?"N/A"}</code> will render <code>N/A</code> is
-<code>address</code> is not present;</p>
-<pre><code class="language-stp">Hi, I am {nickname?name}, my address is {address?"N/A"}.
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 10: Attribute "nickname?name" not found
-</code></pre>
-<h2 id="transformers"><a class="header" href="#transformers">Transformers</a></h2>
-<p>Variables can have optional transformers which transform the string
-based on their rules, (e.g. float transformer will truncate the
-float, upcase will make the string UPPERCASE, etc.);</p>
-<pre><code class="language-stp">Hi, I am {nickname?name:case(up)}, my address is {address?"N/A"}.
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 25: Invalid Character 'c'
-</code></pre>
-<h2 id="time-formats"><a class="header" href="#time-formats">Time formats</a></h2>
-<p>time formats are formatted current time (e.g. <code>{%Y}</code> will become
-<code>2024</code> as of now);</p>
-<pre><code class="language-stp">Today is {%B %d} of the year {%Y}.
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 10: Attribute "%B %d" not found
-</code></pre>
-<h2 id="lisp-expressions"><a class="header" href="#lisp-expressions">Lisp Expressions</a></h2>
-<p>expressions are lisp expressions that will be evaluated and the
-results will be used. The lisp expression can also access any
-variables and do any supported programming. (e.g. <code>(+ 1 1)</code> in lisp
-will become <code>2</code>);</p>
-<pre><code class="language-stp">guess my age(x) if: (x + 21) * 4 = =(* (+ (st+num 'age) 21) 4).
-</code></pre>
-<p>Results (with:  age=20):</p>
-<pre><code class="language-output">guess my age(x) if: (x + 21) * 4 = =(* (+ (st+num 'age) 21) 4).
-</code></pre>
-<h2 id="nadi-specific-options"><a class="header" href="#nadi-specific-options">NADI Specific options</a></h2>
-<p>Besides the above points, specific to nadi system, any node template
-will have all the variables from node attributes available as strings
-for template. For string variables, their name can be used to access
-quoted string format, while their name with underscore prefix will be
-unquoted raw string. (e.g. if we have attribute <code>name="smithland"</code>,
-then <code>{name}</code> will render to <code>"smithland"</code>, while <code>{_name}</code> will
-render to <code>smithland</code>).</p>
-<p>NADI system uses templates in a variety of place, and plugin functions
-also sometimes take templates for file path, or strings, and such
-things. Look at the help string of the function to see if it takes
-<code>String</code> or <code>Template</code> type.</p>
-<p>For example <code>render</code> is a function that takes a template and prints it
-after rendering it for each node.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span><span class="boring">node[ohio] set_attrs(river="the Ohio River", streamflow=45334.12424343)
-</span>node[ohio,red] render(
-	"(=(+ 1 (st+num 'INDEX))th node) {_NAME:case(title)}
-	River Flow = {streamflow:calc(/10000):f(3)?\"NA\"} x 10^4"
+                        <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
+<h2 id="env.svg2pdf"><a class="header" href="#env.svg2pdf">svg2pdf</a></h2>
+<pre><code class="language-sig">env typst.svg2pdf(
+    inpfile: 'PathBuf',
+    outfile: 'PathBuf',
+    height: 'String' = "auto",
+    width: 'String' = "auto",
+    margin: 'String' = "0pt"
 )
 </code></pre>
-<p>As seen in above example, you can render variables, transform them, use basic calculations.</p>
-<p>Or you can use <code>lisp</code> syntax to do more complex calculations. Refer to
-<a href="../system/extensions.html">NADI Extension Capabilities</a> section for more
-info on how to use <code>lisp</code> on string template.</p>
-<pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span><span class="boring">node[ohio] set_attrs(river="the Ohio River", streamflow=45334.12424343)
-</span>node[ohio] render(
-	"{_river:case(title)} Streamflow
-	from lisp = {=(/ (st+num 'streamflow) 1000):f(2)} x 10^3 cfs"
-)
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>inpfile: 'PathBuf'</code> =&gt;</li>
+<li><code>outfile: 'PathBuf'</code> =&gt;</li>
+<li><code>height: 'String' = "auto"</code> =&gt;</li>
+<li><code>width: 'String' = "auto"</code> =&gt;</li>
+<li><code>margin: 'String' = "0pt"</code> =&gt;</li>
+</ul>
+<p>convert the svg content into pdf or png (or svg)</p>
+<h2 id="env.compile"><a class="header" href="#env.compile">compile</a></h2>
+<pre><code class="language-sig">env typst.compile(content: 'String', outfile: 'PathBuf')
 </code></pre>
-<h2 id="some-complex-examples"><a class="header" href="#some-complex-examples">Some Complex Examples</a></h2>
-<p>Optional variables and a command; note that commands can have variables inside them:</p>
-<pre><code class="language-stp">hi there, this {is?a?"test"} for $(echo a simple case {that?} {might} be "possible")
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>content: 'String'</code> =&gt;</li>
+<li><code>outfile: 'PathBuf'</code> =&gt;</li>
+</ul>
+<p>convert the typst content into pdf/svg/png</p>
+<h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
+<h2 id="network.table"><a class="header" href="#network.table">table</a></h2>
+<pre><code class="language-sig">network typst.table(table: 'Table')
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 16: Attribute "is?a?\"test\"" not found
-</code></pre>
-<p>Optional variables with transformers inside command.</p>
-<pre><code class="language-stp">Hi {like?a?"test"} for $(this does {work:case(up)} now) (yay)
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 42: Invalid Character 'c'
-</code></pre>
-<p>If you need to use <code>{</code> and <code>}</code> in a template, you can escape them. Following template shows how LaTeX commands can be generated from templates.</p>
-<pre><code class="language-stp">more {formatting?} options on {%F} and
-\\latex\{command\}\{with {variable}\}, should work.
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 31: Attribute "%F" not found
-</code></pre>
-<p>This just combined a lot of different things from above:</p>
-<pre><code class="language-stp">let's try {every:f(2)?and?"everything"}
-for $(a complex case {that?%F?} {might?be?not?found} be "possible")
-
-see $(some-command --flag "and the value" {problem})
-=(+ 1 2 (st+num 'hithere) (st+num "otherhi"))
-{otherhi?=(1+ pi):f(4)}
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 18: Invalid Character 'f'
-</code></pre>
-<p>This shows the error for the first template part that errors out, even
-if <code>{problem}</code> will also error later, so while solving for problems in
-string templates, you might have to give it multiple tries.</p>
-<h2 id="advanced-string-template-with-lisp"><a class="header" href="#advanced-string-template-with-lisp">Advanced String Template with LISP</a></h2>
-<p>NADI String Template is useful when you want to represent node
-specific string, or file path in a network. This is not as advanced as
-the formatted strings in python. But it can be used for complex
-situations based on the current functionality.</p>
-<p>The most important extension capability of the string template is the
-embedded lisp system.</p>
-<p>As we know, templates can render variables, and have some capacity of transforming them:</p>
-<pre><code class="language-stp">{name:case(title):repl(-, )} River Streamflow = {streamflow} cfs
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 7: Invalid Character 'c'
-</code></pre>
-<p>But for numerical operation, the transformers capabilities are limited as they are made for strings.</p>
-<p>With lisp, we can add more logic to our templates.</p>
-<pre><code class="language-stp">{name:case(title):repl(-, )} River Streamflow is =(
-	if (&gt; (st+num 'streamflow) 10000)
-	'Higher 'Lower
-) than the threshold of 10^5 cfs.
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 7: Invalid Character 'c'
-</code></pre>
-<p>The available lisp functions are also limited, but the syntax itself
-gives us better airthmetic and logical calculations.</p>
-<h1 id="note"><a class="header" href="#note">Note</a></h1>
-<p>As the template string can get complicated, and the parsing is done
-through <code>Regex</code>, it is not perfect. If you come across any parsing
-problems, please raise an issue at <a href="https://github.com/Atreyagaurav/string-template-plus">string template
-plus</a> github
-repo.</p>
-<h1 id="commands"><a class="header" href="#commands">Commands</a></h1>
-<p>Note that running commands within the templates is disabled for
-now.</p>
-<pre><code class="language-stp">echo today=$(date +%Y-%m-%d) {%Y-%m-%d}
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">TemplateError at pos 30: Attribute "%Y-%m-%d" not found
-</code></pre>
-<p>But if you are writing a command template to run in bash, then
-it’ll be executed as the syntax is similar.</p>
-<pre><code class="language-task">network command("echo today=$(date +%Y-%m-%d) {%Y-%m-%d}")
-</code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">EvalError at Line 1 Column 1: Error in function command: TemplateError at pos 30: Attribute "%Y-%m-%d" not found
-</code></pre>
-<p>Here although the <code>$(date +%Y-%m-%d)</code> portion was not rendered on template rendering process, the command was still valid, and was executed.</p>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>table: 'Table'</code> =&gt;</li>
+</ul>
+<p>Generate Typst code for given Table</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../devref/timeseries.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../plugins/html.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../devref/tables.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../notes/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -376,11 +232,11 @@ it’ll be executed as the syntax is similar.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../devref/timeseries.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../plugins/html.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../devref/tables.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../notes/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -409,7 +265,7 @@ it’ll be executed as the syntax is similar.</p>
         <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-302aa5fc.js"></script>
+        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
 
 
 
