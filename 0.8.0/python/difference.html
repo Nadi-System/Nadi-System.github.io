@@ -184,9 +184,9 @@
 <pre><code class="language-task">network load_str("a -&gt; b\nc -&gt; b")
 nodes(output._?) do echo(env.render("{i} -&gt; {o}", i=node.INDEX, o=output.INDEX))
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">1 -&gt; 0
-2 -&gt; 0
+<p>*Error*:</p>
+<pre><code class="language-error">
+NotANodeContextError [c] at Line 2 Column 1: currently not inside a node context
 </code></pre>
 <p>Equivalent Python:</p>
 <pre><code class="language-python">import nadi

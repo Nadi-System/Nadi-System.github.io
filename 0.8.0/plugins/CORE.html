@@ -191,11 +191,11 @@ env assert_eq(str_quote(true), "\"true\"")
 env assert_eq(str_quote(12), "\"12\"")
 </code></pre>
 <h2 id="env.count"><a class="header" href="#env.count">count</a></h2>
-<pre><code class="language-sig">env CORE.count(vars: '&amp; [bool]')
+<pre><code class="language-sig">env CORE.count(vars: 'Vec &lt; bool &gt;')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>vars: '&amp; [bool]'</code> =&gt;</li>
+<li><code>vars: 'Vec &lt; bool &gt;'</code> =&gt;</li>
 </ul>
 <p>Count the number of true values in the array</p>
 <pre><code class="language-task">env assert_eq(count([true, false, true, false]), 2)
@@ -385,16 +385,16 @@ single element array</p>
 <p>append a value to an array</p>
 <pre><code class="language-task">env assert_eq(append([4], 5), [4, 5])
 </code></pre>
-<h2 id="env.length"><a class="header" href="#env.length">length</a></h2>
-<pre><code class="language-sig">env CORE.length(value: '&amp; Attribute')
+<h2 id="env.len"><a class="header" href="#env.len">len</a></h2>
+<pre><code class="language-sig">env CORE.len(value: '&amp; FunctionInput')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>value: '&amp; Attribute'</code> =&gt; Array or a HashMap</li>
+<li><code>value: '&amp; FunctionInput'</code> =&gt; Array or a HashMap</li>
 </ul>
 <p>length of an array or hashmap</p>
-<pre><code class="language-task">env assert_eq(length([4, 5]), 2)
-env assert_eq(length({x=4, y=5}), 2)
+<pre><code class="language-task">env assert_eq(len([4, 5]), 2)
+env assert_eq(len({x=4, y=5}), 2)
 </code></pre>
 <h2 id="env.timediff"><a class="header" href="#env.timediff">timediff</a></h2>
 <pre><code class="language-sig">env CORE.timediff(start: 'DateTime', end: 'DateTime')
@@ -574,6 +574,22 @@ env assert_eq(sum([2, 3, 4], start=0.0), 9.0)
 <pre><code class="language-task">env assert_eq(prod([1, 2, 3]), 6)
 env assert_eq(prod([1.0, 2, 3]), 6.0)
 </code></pre>
+<h2 id="env.unique"><a class="header" href="#env.unique">unique</a></h2>
+<pre><code class="language-sig">env CORE.unique(vars: 'Vec &lt; HashableAttr &gt;')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Vec &lt; HashableAttr &gt;'</code> =&gt;</li>
+</ul>
+<p>Get a list of unique attribute values (only primitives)</p>
+<p>The order of the attributes returned is not guaranteed. This
+does not support array and attrmap values due to uniqueness
+ambiguity.</p>
+<pre><code class="language-task">env.uniq = unique(["hi", "me", "hi", "you"]);
+env assert_eq(len(uniq), 3)
+env.uniq = unique(["hi", true, true, nan, 1.0, 1, nan]);
+env assert_eq(len(uniq), 5)
+</code></pre>
 <h2 id="env.unique_str"><a class="header" href="#env.unique_str">unique_str</a></h2>
 <pre><code class="language-sig">env CORE.unique_str(vars: 'Vec &lt; String &gt;')
 </code></pre>
@@ -584,7 +600,7 @@ env assert_eq(prod([1.0, 2, 3]), 6.0)
 <p>Get a list of unique string values</p>
 <p>The order of the strings returned is not guaranteed</p>
 <pre><code class="language-task">env.uniq = unique_str(["hi", "me", "hi", "you"]);
-env assert_eq(length(uniq), 3)
+env assert_eq(len(uniq), 3)
 </code></pre>
 <h2 id="env.count_str"><a class="header" href="#env.count_str">count_str</a></h2>
 <pre><code class="language-sig">env CORE.count_str(vars: 'Vec &lt; String &gt;')
@@ -611,15 +627,16 @@ count_str(["Hi", "there", "Deliah", "Hi"]),
 <pre><code class="language-task">env assert_eq(concat("Hello", "World", join=" "), "Hello World")
 </code></pre>
 <h2 id="env.range"><a class="header" href="#env.range">range</a></h2>
-<pre><code class="language-sig">env CORE.range(start: 'i64', end: 'i64')
+<pre><code class="language-sig">env CORE.range(start: 'i64', end: 'Option &lt; i64 &gt;')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>start: 'i64'</code> =&gt;</li>
-<li><code>end: 'i64'</code> =&gt;</li>
+<li><code>end: 'Option &lt; i64 &gt;'</code> =&gt;</li>
 </ul>
 <p>Generate integer array, end is not included</p>
-<pre><code class="language-task">env assert_eq(range(1, 5), [1, 2, 3, 4])
+<pre><code class="language-task">env assert_eq(range(1, 5), [1, 2, 3, 4, 5])
+env assert_eq(range(2), [1, 2])
 </code></pre>
 <h2 id="env.assert"><a class="header" href="#env.assert">assert</a></h2>
 <pre><code class="language-sig">env CORE.assert(condition: 'bool', note: 'String' = "Condition False")
@@ -671,7 +688,7 @@ env assert_neq("string val", concat("string", "val"))
 <p><strong>Arguments:</strong></p>
 <p>Count the number of input nodes in the node</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
-nodes assert_eq(inputs_count(), length(inputs._))
+nodes assert_eq(inputs_count(), len(inputs._))
 </code></pre>
 <h2 id="node.inputs_attr"><a class="header" href="#node.inputs_attr">inputs_attr</a></h2>
 <pre><code class="language-sig">node CORE.inputs_attr(attr: 'String' = "NAME")

@@ -177,16 +177,31 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
+<h2 id="env.none"><a class="header" href="#env.none">none</a></h2>
+<pre><code class="language-sig">env ATTRS.none()
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<p>None function that returns None</p>
+<h2 id="env.is_none"><a class="header" href="#env.is_none">is_none</a></h2>
+<pre><code class="language-sig">env ATTRS.is_none(inp: 'Option &lt; FunctionInput &gt;')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>inp: 'Option &lt; FunctionInput &gt;'</code> =&gt;</li>
+</ul>
+<p>check for none value</p>
+<pre><code class="language-task">assert_eq(is_none(none()), true)
+</code></pre>
 <h2 id="env.strmap"><a class="header" href="#env.strmap">strmap</a></h2>
 <pre><code class="language-sig">env ATTRS.strmap(
-    attr: '&amp; str',
+    attr: 'String',
     attrmap: '&amp; AttrMap',
     default: 'Option &lt; Attribute &gt;'
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; Value to transform the attribute</li>
+<li><code>attr: 'String'</code> =&gt; Value to transform the attribute</li>
 <li><code>attrmap: '&amp; AttrMap'</code> =&gt; Dictionary of key=value to map the data to</li>
 <li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if key not found in <code>attrmap</code></li>
 </ul>
@@ -413,11 +428,11 @@ nodes assert(has_attr("x"))
 nodes assert(!has_attr("y"))
 </code></pre>
 <h2 id="node.first_attr"><a class="header" href="#node.first_attr">first_attr</a></h2>
-<pre><code class="language-sig">node ATTRS.first_attr(attrs: '&amp; [String]', default: 'Option &lt; Attribute &gt;')
+<pre><code class="language-sig">node ATTRS.first_attr(attrs: 'Vec &lt; RString &gt;', default: 'Option &lt; Attribute &gt;')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attrs: '&amp; [String]'</code> =&gt; attribute names</li>
+<li><code>attrs: 'Vec &lt; RString &gt;'</code> =&gt; attribute names</li>
 <li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if not found</li>
 </ul>
 <p>Return the first Attribute that exists</p>
@@ -456,11 +471,11 @@ env assert_eq(nodes.val1, [1, 1])
 flexibility than this function in normal use cases. But this
 function is useful when you have to do something in a batch.</p>
 <h2 id="node.set_attrs_render"><a class="header" href="#node.set_attrs_render">set_attrs_render</a></h2>
-<pre><code class="language-sig">node ATTRS.set_attrs_render(**kwargs)
+<pre><code class="language-sig">node ATTRS.set_attrs_render(**values)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>**kwargs</code> =&gt; key value pair of attribute to set and the Template to render</li>
+<li><code>**values</code> =&gt; key value pair of attribute to set and the Template to render</li>
 </ul>
 <p>Set node attributes based on string templates</p>
 <p>This renders the template for each node, then it sets the
@@ -470,11 +485,11 @@ nodes set_attrs_render(val1 = "Node: {NAME}");
 node[a] assert_eq(val1, "Node: a")
 </code></pre>
 <h2 id="node.load_toml_render"><a class="header" href="#node.load_toml_render">load_toml_render</a></h2>
-<pre><code class="language-sig">node ATTRS.load_toml_render(toml: '&amp; Template', echo: 'bool' = false)
+<pre><code class="language-sig">node ATTRS.load_toml_render(toml: 'Template', echo: 'bool' = false)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>toml: '&amp; Template'</code> =&gt; String template to render and load as toml string</li>
+<li><code>toml: 'Template'</code> =&gt; String template to render and load as toml string</li>
 <li><code>echo: 'bool' = false</code> =&gt; Print the rendered toml or not</li>
 </ul>
 <p>Set node attributes by loading a toml from rendered template</p>
@@ -491,11 +506,11 @@ nodes assert_eq(label, render("Node: {NAME}"))
 </code></pre>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.set_attrs"><a class="header" href="#network.set_attrs">set_attrs</a></h2>
-<pre><code class="language-sig">network ATTRS.set_attrs(**attrs)
+<pre><code class="language-sig">network ATTRS.set_attrs(**values)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>**attrs</code> =&gt; key value pair of attributes to set</li>
+<li><code>**values</code> =&gt; key value pair of attributes to set</li>
 </ul>
 <p>Set network attributes</p>
 <h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>

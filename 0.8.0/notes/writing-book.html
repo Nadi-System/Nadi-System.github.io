@@ -289,21 +289,35 @@ Hi my name is {name}.
 <p>Example:</p>
 <pre><code>```table run markdown
 !network load_file("./data/mississippi.net")
-&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
-^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&lt;Name =&gt; {NAME}
+^Ind =&gt; {INDEX}
 &gt;Order =&gt; {ORDER}
 ```
 </code></pre>
 <p>Becomes:</p>
 <hr>
 <pre><code class="language-table"><span class="boring">network load_file("./data/mississippi.net")
-</span>&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
-^Ind =&gt; =(+ (st+num 'INDEX) 1)
+</span>&lt;Name =&gt; {NAME}
+^Ind =&gt; {INDEX}
 &gt;Order =&gt; {ORDER}
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">FunctionError  at Line 3 Column 1: function table_to_markdown: TemplateError at pos 8: Invalid Character 'r'
-</code></pre>
+<p>Results:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left">lower-mississippi</td><td style="text-align: center">0</td><td style="text-align: right">3</td></tr>
+<tr><td style="text-align: left">red</td><td style="text-align: center">1</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">arkansas</td><td style="text-align: center">2</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">upper-mississippi</td><td style="text-align: center">4</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">ohio</td><td style="text-align: center">5</td><td style="text-align: right">2</td></tr>
+<tr><td style="text-align: left">tenessee</td><td style="text-align: center">6</td><td style="text-align: right">1</td></tr>
+</tbody>
+</table>
+</div>
 <hr>
 <p>I’d like to refine this further.</p>
 <p>Task can be used to generate markdown in the same way as the tables
@@ -311,41 +325,78 @@ can:</p>
 <p>For example <code>task run</code> of this:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net")
 network table_to_markdown(template="
-&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
-^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&lt;Name =&gt; {NAME}
+^Ind =&gt; {INDEX}
 &gt;Order =&gt; {ORDER}
 ")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-FunctionError  at Line 2 Column 1: function table_to_markdown: TemplateError at pos 8: Invalid Character 'r'
+<p>Results:</p>
+<pre><code class="language-output">| Name              | Ind | Order |
+|:------------------|:---:|------:|
+| lower-mississippi |  0  |     3 |
+| red               |  1  |     1 |
+| arkansas          |  2  |     1 |
+| missouri          |  3  |     1 |
+| upper-mississippi |  4  |     1 |
+| ohio              |  5  |     2 |
+| tenessee          |  6  |     1 |
 </code></pre>
 <p>If you do <code>task run markdown</code> then:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net")
 network table_to_markdown(template="
-&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
-^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&lt;Name =&gt; {NAME}
+^Ind =&gt; {INDEX}
 &gt;Order =&gt; {ORDER}
 ")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-FunctionError  at Line 2 Column 1: function table_to_markdown: TemplateError at pos 8: Invalid Character 'r'
-</code></pre>
+<p>Results:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left">lower-mississippi</td><td style="text-align: center">0</td><td style="text-align: right">3</td></tr>
+<tr><td style="text-align: left">red</td><td style="text-align: center">1</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">arkansas</td><td style="text-align: center">2</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">upper-mississippi</td><td style="text-align: center">4</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">ohio</td><td style="text-align: center">5</td><td style="text-align: right">2</td></tr>
+<tr><td style="text-align: left">tenessee</td><td style="text-align: center">6</td><td style="text-align: right">1</td></tr>
+</tbody>
+</table>
+</div>
 <p>Which means it can be used for other things:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net");
 network echo("**Details about the Nodes:**")
 network echo(render_nodes("
-=(+ (st+num 'INDEX) 1). {_NAME:repl(-, ):case(title)} River
+{INDEX}. {NAME}
 "))
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-**Details about the Nodes:**
-
-
-FunctionError  at Line 3 Column 1: function render_nodes: Argument 1 (template [Template]): TemplateError at pos 33: Invalid Character 'r'
-</code></pre>
+<p>Results:<br><strong>Details about the Nodes:</strong></p>
+<ol start="0">
+<li>
+<p>lower-mississippi</p>
+</li>
+<li>
+<p>red</p>
+</li>
+<li>
+<p>arkansas</p>
+</li>
+<li>
+<p>missouri</p>
+</li>
+<li>
+<p>upper-mississippi</p>
+</li>
+<li>
+<p>ohio</p>
+</li>
+<li>
+<p>tenessee</p>
+</li>
+</ol>
 <p>You can also use the same method to insert images like this, at the end of your tasks, so that the image generated by the tasks can be inserted here.</p>
 <pre><code class="language-task"># do some tasks
 network echo("Some other output form your tasks")
