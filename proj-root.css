@@ -3,36 +3,36 @@ body {
        margin: 0;
        padding: 0;
        background: #444;
-       line-height: 1.6;
+       line-height: 1.4;
    }
    header {
        background: #666;
        color: #fff;
-       padding: 1rem;
+       padding: 0.5rem;
        text-align: center;
    }
    nav {
        background: #222;
-       padding: 0.5rem;
+       padding: 0.4rem;
        text-align: center;
    }
    nav a {
        color: #fff;
-       margin: 0 0.8rem;
+       margin: 0 0.5rem;
        text-decoration: none;
        font-weight: bold;
    }
    nav a:hover { text-decoration: underline; }
 
    .container {
-       max-width: 800px;
-       margin: 2rem auto;
+       max-width: 900px;
+       margin: 0.5rem auto;
        background: #999;
-       padding: 1.5rem;
+       padding: 0.5rem;
        border-radius: 5px;
        box-shadow: 0 2px 4px rgba(0,0,0,.1);
    }
-   h1, h2 { margin-top: 0; }
+   h1, h2, h3 { margin-top: 0; }
    ul { list-style: none; padding-left: 0; }
    li { margin-bottom: 0.8rem; }
    li a { color: #0066cc; text-decoration: none; }

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Network Analysis and Data Integration (NADI) System</title>
+  <link rel="stylesheet" href="proj-root.css">
+  
+  <style>
+   #playground-container {
+       width: 100%;
+       height: 50vh; /* take the whole viewport height */
+       display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: center;
+   }
+   #code-column, #result-column {
+       width: 45%;
+       margin: 20px;
+       padding: 20px;
+       border: 1px solid #ddd;
+       border-radius: 5px;
+       background-color: #f9f9f9;
+       box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+   }
+   
+   #code-column {
+       margin-right: 20px;
+   }
+   
+   #source-code, #results {
+       width: 100%;
+       height: 50vh; /* take most of the height */
+       padding: 10px;
+       font-size: 14px;
+       border: none;
+       resize: vertical;
+   }
+   
+   #btn-sync {
+       margin-top: 4px;
+       background-color: #4CAF50;
+       padding: 5px 8px;
+   }
+   
+   #btn-sync:hover {
+       background-color: #3e8e41;
+   }
+  </style>
+</head>
+<body>
+
+    <header>
+	<image src="./logo.svg" height="100px" />
+	<h1>Network Analysis and Data Integration (NADI) System</h1>
+    </header>
+
+<nav>
+    <a href="/index.html">Home</a>
+    <a href="/publications.html">Publications</a>
+    <a href="/user-guide.html">User Manual</a>
+    <a href="/playground.html">Playground</a>
+    <a href="/developer-guide.html">Developer Guide</a>
+    <a href="/api-reference.html">API Reference</a>
+    <a href="/tutorials.html">Tutorials</a>
+</nav>
+
+<!-- the content only changes from here below -->
+<div class="container">
+    <p>
+	NADI Playground allows you to input a Network (Rooted Tree Graph) and visualize it. Although NADI can support more types of networks, the original design for NADI is for RTG.
+    </p>
+    <div id="playground-container">
+	    <div id="code-column">
+		<div class="button-container">
+		    <div>
+			Colors:
+			<label><input id="node-color" type="color" value="#5522ff" style="width: 20px;height: 20px;">Node</label>
+			    <label><input id="edge-color" type="color" value="#5588aa" style="width: 20px;height: 20px;">Edge</label>
+			    <label><input id="text-color" type="color" style="width: 20px;height: 20px;">Text</label>
+			</div>
+		</div>
+		<textarea id="nadi-network" rows="20" cols="35" style="height: 40vh;width:30vh;">
+A -> B
+C -> D
+B -> D
+D -> E
+F -> G
+E -> G
+G -> H
+I -> J
+K -> L
+J -> L
+</textarea>
+	    </div>
+	    <div id="result-column">
+		<div>
+		    <button id="btn-sync" onclick="document._nadi_refresh()">Draw</button>
+		</div>
+		<canvas id="nadi-canvas" style="height: 40vh;width:30vw;overflow-y:scroll;"></canvas>
+	    </div>
+    </div>
+    <p> Warning: The syntax here is simplified for demonstration purposes, this is not the same as NADI full network parsing.</p>
+    
+	<script type="module">
+	 import init, {nadi_draw_network} from './pkg/nadi_wasm.js';
+
+	 await init();
+	 
+	 function refresh() {
+	     var nd = document.getElementById("node-color").value;
+	     var ed = document.getElementById("edge-color").value;
+	     var tx = document.getElementById("text-color").value;
+	     nadi_draw_network("nadi-canvas", "nadi-network", nd, ed, tx);
+	 }
+
+	 document._nadi_refresh = refresh;
+	 
+	 refresh();
+	</script>
+</div>
+
+</body>
+</html>
