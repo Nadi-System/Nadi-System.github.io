@@ -193,7 +193,7 @@
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Check if the given pattern matches the value or not</p>
@@ -215,15 +215,15 @@ env assert_eq(str_match("abc", "^a"), "abc" match "^a")
 <li><code>rep: '&amp; str'</code> =&gt; replacement string</li>
 </ul>
 <p>Replace the occurances of the given match</p>
-<pre><code class="language-task">env assert_eq(str_replace("abc", "^a", 2), "2bc")
-env assert_eq(str_replace("abc", "[abc]", 2), "222")
+<pre><code class="language-task">env assert_eq(str_replace("abc", "^a", "2"), "2bc")
+env assert_eq(str_replace("abc", "[abc]", "2"), "222")
 </code></pre>
 <h2 id="env.str_find"><a class="header" href="#env.str_find">str_find</a></h2>
 <pre><code class="language-sig">env REGEX.str_find(attr: '&amp; str', pattern: 'Regex')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Find the given pattern in the value</p>
@@ -234,7 +234,7 @@ env assert_eq(str_replace("abc", "[abc]", 2), "222")
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Find all the matches of the given pattern in the value</p>
@@ -245,7 +245,7 @@ env assert_eq(str_replace("abc", "[abc]", 2), "222")
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Count the number of matches of given pattern in the string</p>

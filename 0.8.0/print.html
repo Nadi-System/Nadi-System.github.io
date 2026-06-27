@@ -307,6 +307,24 @@ cum_sf(network.outlet())
 If you are a developer and want an API documentation for the data types used in the NADI Rust library refer to the docs.rs `nadi_core` page (https://docs.rs/nadi_core/latest/nadi_core/). But if you want to understand the core concepts, use cases, and examples then proceed.
 </div>
 
+<p>If you have to model, or analyze data that represents a system with directed network? then you might find NADI useful to you. Some examples include:</p>
+<ul>
+<li>river networks, road networks,</li>
+<li>file/directory structures,</li>
+<li>flow networks,</li>
+<li>control flow/signal flow graphs,</li>
+<li>social networks, computer networks,</li>
+<li>project management (Grantt chart),</li>
+<li>compilers, git history,</li>
+<li>any kind of dependencies map (modeling, project, files),</li>
+<li>human resources in a company,</li>
+<li>trade routes/ trade networks,</li>
+<li>decision tree / policy tree,</li>
+<li>reaction mechanics for compound sysnthesis,</li>
+<li>neural signals,</li>
+<li>gene-regulatory networks,</li>
+<li>modeling work with dependencies to component models, etc</li>
+</ul>
 <p>This book has sections explaining the concepts of the NADI system, its developmental notes, user guide and developer guide.</p>
 <p>Hence it can be useful for people who:</p>
 <ul>
@@ -932,6 +950,32 @@ fact(9)
 <pre><code class="language-error">UserError  at Line 1 Column 1: Negative Value not supported
 </code></pre>
 <p>There is no way to catch specific errors for now. In future versions pattern matching for error handling might be added.</p>
+<h3 id="seriestimeseries-with-gaps"><a class="header" href="#seriestimeseries-with-gaps">Series/TimeSeries with Gaps</a></h3>
+<p>The current version supports series and timeseries data with gaps in them. In the previous version you could only store complete series/timeseries resulting in the plugins having to fill the gap themselves.</p>
+<p>Furthermore the series can also be filled with user functions in current version.</p>
+<p>The code below shows how to define a series, how to introduce gaps or fill it using series map syntax.</p>
+<pre><code class="language-task">env$x = 1:10
+
+env$x_gap = $x -&gt; func(i) {if (i % 2 == 0) {return i * 10}}
+env$x_gap
+
+env$x_filled = $x_gap -&gt; func(i=false) {if (i == false) { 0.0 } else { i }}
+env$x_filled
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">MaskedSeries(len: 10, dtype: Integers, valid: 5) [-, 20, -, 40, -, 60, -, 80, -, 100]
+
+
+Series(len: 10, dtype: Floats) [0, 20, 0, 40, 0, 60, 0, 80, 0, 100]
+</code></pre>
+<p>You can also use other series to fill the gaps like:</p>
+<pre><code class="language-task">env$x_filled2 = ($x, $x_gap) -&gt; func(i, j = false) { if (j == false) {i} else {j}}
+env$x_filled2
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">Series(len: 10, dtype: Integers) [1, 20, 3, 40, 5, 60, 7, 80, 9, 100]
+</code></pre>
+<p>Here we combined two series, but you can do multiple ones. And while you are in a network context, you can also use series from <code>inputs</code>, <code>outputs</code>, etc.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="nadi-gis-3"><a class="header" href="#nadi-gis-3">NADI GIS</a></h1>
 <p>NADI GIS is available as a CLI tool and QGIS plugin, the CLI tool has the following functions:</p>
@@ -1189,10 +1233,10 @@ nodesmap array(LEVEL, ORDER)
 <pre><code class="language-task">help node render
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">node render (template: '&amp; Template', safe: 'bool' = false)
+<pre><code class="language-output">node render (template: 'Template', safe: 'bool' = false)
 Render the template based on the node attributes
 # Arguments
-- `template: &amp; Template` String template to render
+- `template: Template` String template to render
 - `safe: bool` [def = false] if render fails keep it as it is instead of exiting
 
 
@@ -1535,7 +1579,7 @@ network echo(json(value))
 <p>Results:</p>
 <pre><code class="language-output">false
 
--12
+-12.0
 </code></pre>
 <h2 id="binary-operator"><a class="header" href="#binary-operator">Binary Operator</a></h2>
 <pre><code class="language-task">(12 &gt; 34) &amp; true
@@ -1953,7 +1997,7 @@ for x in range(1, 20) {cakc(x)}
 <pre><code class="language-output">
 </code></pre>
 <p>In addition to that, you can also assign the function arguments dynamic values based on previous arguments, or environement/network context. These are similar to the local variables inside the function body, but they can be overridden with other values by the users.</p>
-<pre><code class="language-task">func last(vals, offset=1) { get(vals, length(vals) - offset) }
+<pre><code class="language-task">func last(vals, offset=1) { get(vals, len(vals) - offset) }
 
 last(["a", "b", "c", "d", "e"])
 last(["a", "b", "c", "d", "e"], 2)
@@ -1988,7 +2032,7 @@ test()
 </code></pre>
 <p>This can allow you to reduce the number of arguments required for the function call while also allowing the user to define that if needed.</p>
 <p>Since there is only immutable expression evaluation in the functions, anything requiring something like a loop has to be done through recursion.</p>
-<pre><code class="language-task">func sum_vals(vals, ind=length(vals) - 1) {
+<pre><code class="language-task">func sum_vals(vals, ind=len(vals) - 1) {
 	if (ind &lt; 0) { 0 } else {
 		get(vals, ind) + sum_vals(vals, ind - 1)
 	}
@@ -2028,9 +2072,9 @@ utils.settings()
 utils.settings(top=100)
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">{right = 10, left = 10, deltay = 10, deltax = 10, bottom = 10, fontsize = 10, top = 10}
+<pre><code class="language-output">{left = 10.0, bottom = 10.0, deltay = 10.0, fontsize = 10.0, right = 10.0, deltax = 10.0, top = 10.0}
 
-{right = 10, deltax = 10, left = 10, deltay = 10, fontsize = 10, top = 100, bottom = 10}
+{top = 100.0, bottom = 10.0, deltax = 10.0, deltay = 10.0, right = 10.0, fontsize = 10.0, left = 10.0}
 </code></pre>
 <p>While importing functions from a <code>.tasks</code> file, only the function definitions are imported, other tasks are not executed.</p>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -2386,7 +2430,7 @@ network sum(array(env.count(), 1))
   a = 2
 }
 
-FunctionError  at Line 3 Column 1: function count: Argument 1 (vars [&amp; [bool]]) is required
+FunctionError  at Line 3 Column 1: function count: Argument 1 (vars [Vec &lt; bool &gt;]) is required
 </code></pre>
 <h2 id="node-variablesfunctions"><a class="header" href="#node-variablesfunctions">Node Variables/Functions</a></h2>
 <p>You can use <code>node</code>, <code>inputs</code>, <code>output</code> and <code>nodes</code> keywords to access node variables and functions from different contexts. <code>nodes</code> is valid in all tasks, while the other 3 are only valid in a node task and refer to the current node, input nodes and output node respectively.</p>
@@ -2442,6 +2486,110 @@ network nm.render("Node [{INDEX}] {NAME}")
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
+<h1 id="series-and-timeseries"><a class="header" href="#series-and-timeseries">Series and TimeSeries</a></h1>
+<p>Series is a list of values of same types. The array in nadi can be different types, so this is a separate data type from that.</p>
+<p>In addition to arrays, Series values can be null, while arrays or attributes can not be null.</p>
+<p>TimeSeries is Series plus time information. Currently the time information is not as well designed due to complications with timezones and other aspects of datetime. So the recommendation is to keep the time information as string, work with Series, and save timeseries with string column of time.</p>
+<p>Series is accessed with <code>$</code> while timeseries is accessed with <code>$$</code> after variable type.</p>
+<h2 id="series-vs-attributes"><a class="header" href="#series-vs-attributes">Series vs Attributes</a></h2>
+<p>While you can assign an array to a series variable, it will internally convert that to the series. And similarly assigning series to attribute will convert it into an attribute array.</p>
+<pre><code class="language-task"># array
+env.x = [1,2,3]
+env.x
+env$x = [1,2,3]
+env$x
+
+env.x + env$x
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">[1, 2, 3]
+
+
+Series(len: 3, dtype: Integers) [1, 2, 3]
+
+[2, 4, 6]
+</code></pre>
+<p>The main thing to keep in mind is that they are stored separately, and the inter-operability is just there to make things easier.</p>
+<h2 id="series-with-gaps"><a class="header" href="#series-with-gaps">Series with Gaps</a></h2>
+<p>Series loaded from CSV/DSS or other sources (each need their own plugins) can have missing data. But because attributes can not be null, only way to make a series with missing data is to generate it with series map.</p>
+<pre><code class="language-task">env$x = 1:10
+env$x
+env$xg = $x -&gt; func(i) {if (i%3 != 0) {return i}}
+env$xg
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">Series(len: 10, dtype: Integers) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+MaskedSeries(len: 10, dtype: Integers, valid: 7) [1, 2, -, 4, 5, -, 7, 8, -, 10]
+</code></pre>
+<h2 id="data-imputation"><a class="header" href="#data-imputation">Data Imputation</a></h2>
+<p>You can fill the gaps again using series map. Or of course you can load functions from plugins that do it for you.</p>
+<p>Because functions can’t take null values, you need to use a default value to check if the series sent any values or not. This might be fixed in the future versions.</p>
+<pre><code class="language-task">env $xg -&gt; func(i=false) {if (i==false) {0} else {i}}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">Series(len: 10, dtype: Integers) [1, 2, 0, 4, 5, 0, 7, 8, 0, 10]
+</code></pre>
+<p>You can also use multiple series in series map to impute data based on other series</p>
+<pre><code class="language-task">network.load_str("a -&gt; b")
+node[a]$x = 1:8
+node[b]$x = node[a]$x -&gt; func(i) {if (i%3 != 0) {i * 10}}
+nm $x
+
+# filling
+node[b]$xf = ($x, input$x) -&gt; func(b=false, a=false) {if (b == false) {a} else {b}}
+node[b] $xf
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  b = MaskedSeries(len: 8, dtype: Integers, valid: 6) [10, 20, -, 40, 50, -, 70, 80],
+  a = Series(len: 8, dtype: Integers) [1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+
+Series(len: 8, dtype: Integers) [10, 20, 3, 40, 50, 6, 70, 80]
+</code></pre>
+<h2 id="conversion-of-timeseries-and-series"><a class="header" href="#conversion-of-timeseries-and-series">Conversion of TimeSeries and Series</a></h2>
+<p>If you want to convert series into timeseries, you need another series with same length to be the time component.</p>
+<pre><code class="language-task">env$times = ["1920-01-01", "1920-01-02", "1920-01-03", "1920-01-04"]
+env$values = [1, 2, 3, 4]
+
+env$$tsvals = timeseries($times, $values)
+env$$tsvals
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">TimeSeries([1920-01-01, 1920-01-02, ..., 1920-01-04], values: Series(len: 4, dtype: Integers) [1, 2, 3, 4])
+</code></pre>
+<p>While you can use timeseries directly where you need series, it will only use the series component</p>
+<pre><code class="language-task">env$y = env$$tsvals
+env$y
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">Series(len: 4, dtype: Integers) [1, 2, 3, 4]
+</code></pre>
+<p>If you are doing series map, only one of them needs to be a timeseries, the time information will be carried over to the result.</p>
+<pre><code class="language-task">env$$z = (env$$tsvals, env$y) -&gt; func(a, b) {a + b}
+env$$z
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">TimeSeries([1920-01-01, 1920-01-02, ..., 1920-01-04], values: Series(len: 4, dtype: Integers) [2, 4, 6, 8])
+</code></pre>
+<p>If you are trying to assign a series values to a timeseries, it will only work if the timeseries already exists.</p>
+<pre><code class="language-task">env$$z2 = (env$values, env$y) -&gt; func(a, b) {a + b}
+env$$z2
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">TimeSeriesNotFoundError  at Line 1 Column 1: z2
+</code></pre>
+<p>If the timeseries already exists, then it will overwrite its values.</p>
+<pre><code class="language-task">env$$z = (env$values, env$y) -&gt; func(a, b) {a * b}
+env$$z
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">TimeSeries([1920-01-01, 1920-01-02, ..., 1920-01-04], values: Series(len: 4, dtype: Integers) [1, 4, 9, 16])
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="plugins-1"><a class="header" href="#plugins-1">Plugins</a></h1>
 <p>Plugins are the main source of functions in the task system. There are two types of plugins,</p>
 <ul>
@@ -2466,10 +2614,10 @@ network nm.render("Node [{INDEX}] {NAME}")
 <pre><code class="language-task">help node render
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">node render (template: '&amp; Template', safe: 'bool' = false)
+<pre><code class="language-output">node render (template: 'Template', safe: 'bool' = false)
 Render the template based on the node attributes
 # Arguments
-- `template: &amp; Template` String template to render
+- `template: Template` String template to render
 - `safe: bool` [def = false] if render fails keep it as it is instead of exiting
 
 
@@ -3039,10 +3187,10 @@ nm(INDEX &lt; 5).GEOM # all nodes have it although from different sources
 <p>Results:</p>
 <pre><code class="language-output">{
   "03399800" = &lt;None&gt;,
-  IL50499 = 1980,
-  IL40055 = 1980,
-  IL00955 = 1977,
-  IL00070 = 1960
+  IL50499 = 1980.0,
+  IL40055 = 1980.0,
+  IL00955 = 1977.0,
+  IL00070 = 1960.0
 }
 
 {
@@ -3116,13 +3264,13 @@ network count(nodes {basin_area?}) / count()
 <p>Results:</p>
 <pre><code class="language-output">{
   "03399800" = &lt;None&gt;,
-  IL50499 = 144000,
+  IL50499 = 144000.0,
   IL40055 = 0.08,
   IL00955 = &lt;None&gt;,
   IL00070 = &lt;None&gt;,
   IL00039 = &lt;None&gt;,
   "03386500" = 9.853134072120001,
-  IL00102 = 2,
+  IL00102 = 2.0,
   "03386000" = &lt;None&gt;,
   "03385500" = &lt;None&gt;
 }
@@ -3160,8 +3308,8 @@ network count(nodes.incorrect) / count()
   IN04021 = [0.08, 0.2],
   IN03653 = [0.04, 0.37],
   IL50585 = [0.03, 0.16],
-  IL01085 = [240, 240.171142047264],
-  IL00606 = [0.6, 57],
+  IL01085 = [240.0, 240.171142047264],
+  IL00606 = [0.6, 57.0],
   IN00316 = [0.09, 0.15],
   IN00317 = [0.15, 0.7000000000000001],
   IN00319 = [0.7000000000000001, 43.053904369656],
@@ -3175,7 +3323,7 @@ network count(nodes.incorrect) / count()
   IN00618 = [0.41000000000000003, 1.2700000000000002],
   IN00098 = [0.33, 263.021357392616],
   IN00035 = [0.23, 168.12355234608],
-  "03343010" = [13732, 13755.171304576803],
+  "03343010" = [13732.0, 13755.171304576803],
   IN00528 = [0.21, 0.32],
   IN00151 = [1.18, 4.75],
   IN03337 = [1.1500000000000001, 42.9097178978],
@@ -3187,10 +3335,10 @@ network count(nodes.incorrect) / count()
   IL40011 = [2.36, 11.4],
   IN00726 = [0.01, 0.2],
   IN00731 = [0.2, 3.73],
-  IN00729 = [0.16, 1],
+  IN00729 = [0.16, 1.0],
   IL00742 = [0.2, 21.7],
   IN00722 = [0.29, 3.08],
-  IN00723 = [0.2, 1],
+  IN00723 = [0.2, 1.0],
   IN00437 = [0.2, 2.4],
   IN00721 = [0.17, 0.39],
   IN00431 = [0.39, 0.85],
@@ -3203,18 +3351,18 @@ network count(nodes.incorrect) / count()
   IN00735 = [1.9000000000000001, 2.15],
   IL50291 = [0.06, 69.89807631177601],
   IN00753 = [0.3, 1868.7614815512],
-  IN00459 = [0.31, 1790],
-  "03332605" = [1790, 1793],
+  IN00459 = [0.31, 1790.0],
+  "03332605" = [1790.0, 1793.0],
   IN00240 = [1.6, 35.2],
-  IN03801 = [0.2, 809],
-  IN03355 = [0, 695.78422034768],
+  IN03801 = [0.2, 809.0],
+  IN03355 = [0.0, 695.78422034768],
   IN00321 = [0.23, 0.49],
   IN03984 = [0.13, 8.620000000000001],
-  IN03462 = [0, 33.65716107796],
+  IN03462 = [0.0, 33.65716107796],
   IN00763 = [0.09, 0.45],
-  IN00767 = [0, 768.8080807372801],
+  IN00767 = [0.0, 768.8080807372801],
   IN00441 = [0.38, 556.23730459968],
-  IN03434 = [0, 263.58341177426405],
+  IN03434 = [0.0, 263.58341177426405],
   IN03758 = [0.64, 578.7119252311201],
   IN00445 = [0.37, 499.66125210536006],
   IN00207 = [0.26, 0.28],
@@ -3224,7 +3372,7 @@ network count(nodes.incorrect) / count()
   IN00188 = [0.79, 4.04],
   IN00057 = [1.2, 14.2],
   IN00120 = [0.44, 14.450000000000001],
-  IN03353 = [0, 0.25],
+  IN03353 = [0.0, 0.25],
   IN00166 = [0.22, 0.97],
   IN00325 = [0.21, 0.63],
   IN00460 = [0.15, 834.9862486900802],
@@ -3234,14 +3382,14 @@ network count(nodes.incorrect) / count()
   IN03788 = [0.11, 0.43],
   IN00709 = [0.23, 0.36],
   IN03956 = [0.13, 294.15926653704],
-  "03359000" = [294.15926653704, 295],
-  IN00663 = [0, 0.37],
-  IN00666 = [0, 0.85],
+  "03359000" = [294.15926653704, 295.0],
+  IN00663 = [0.0, 0.37],
+  IN00666 = [0.0, 0.85],
   IN00704 = [0.35000000000000003, 10.75],
-  IN00702 = [0, 134.30289503066402],
-  IN00711 = [0, 2986.82183069928],
+  IN00702 = [0.0, 134.30289503066402],
+  IN00711 = [0.0, 2986.82183069928],
   IN00695 = [0.15, 0.66],
-  IN03272 = [0, 1.75],
+  IN03272 = [0.0, 1.75],
   IN00691 = [0.22, 15.1],
   IN00665 = [0.45, 0.63],
   IN03503 = [0.02, 1.23],
@@ -3258,7 +3406,10 @@ network count(nodes.incorrect) / count()
 </code></pre>
 <p>This could be due to the error in snapping to the streamlines. It is also possible that some basin area that are missing are contributing to the unaccounted area.</p>
 <p>Let’s try to fix them, or avoid points without data.</p>
-<pre><code class="language-task">nodes.all_inputs_ba = all(inputs {basin_area?});
+<pre><code class="language-task">nodes.all_inputs_ba = node {
+	x = inputs {basin_area?}
+	all(*x)
+};
 nodes.incorrect = basin_area? &amp; all_inputs_ba &amp; (
 	basin_area &lt; (0.975 * sum(inputs.basin_area))
 );
@@ -3433,12 +3584,12 @@ nm(is_dam &amp; (INDEX &lt; 10)) array(dam_height, dam_storage)
 4181
 
 {
-  IL50499 = [56, 738700],
-  IL40055 = [28, 47],
-  IL00955 = [36, 366],
-  IL00070 = [24, 153],
-  IL00039 = [59, 633],
-  IL00102 = [38, 1814]
+  IL50499 = [56.0, 738700.0],
+  IL40055 = [28.0, 47.0],
+  IL00955 = [36.0, 366.0],
+  IL00070 = [24.0, 153.0],
+  IL00039 = [59.0, 633.0],
+  IL00102 = [38.0, 1814.0]
 }
 </code></pre>
 <p>Lot’s of basins do not have basin area.</p>
@@ -3488,25 +3639,25 @@ nm(flag &amp; (INDEX &lt; 1000)) array(dam_height, dam_storage, basin_area)
 353
 
 {
-  IL50593 = [108, 10790, 0.27],
-  IL50678 = [110, 5250, 0.1],
-  IL50066 = [55, 1087, 0.7000000000000001],
-  IN00446 = [54, 7538, 4.75],
-  IL00688 = [52, 3474, 3.3000000000000003],
-  IN00439 = [56, 321, 0.52],
-  IN03920 = [55, 39, 0.02],
-  IN00505 = [56, 66, 0.03],
-  IN00036 = [63, 1595, 1.2],
-  IN00201 = [55, 2861, 4.69],
-  IN00181 = [55, 1380, 4.7],
-  IN00069 = [68, 6718, 5.8],
-  IN03731 = [57, 128, 0.8200000000000001],
-  IN03007 = [55, 29800, 0],
-  IN00197 = [62, 3555, 1.82],
-  IN00103 = [60, 1158, 0.36],
-  IN00133 = [82, 13000, 9.34],
-  IN00342 = [63, 198, 0.19],
-  IN00565 = [53, 109, 0.1]
+  IL50593 = [108.0, 10790.0, 0.27],
+  IL50678 = [110.0, 5250.0, 0.1],
+  IL50066 = [55.0, 1087.0, 0.7000000000000001],
+  IN00446 = [54.0, 7538.0, 4.75],
+  IL00688 = [52.0, 3474.0, 3.3000000000000003],
+  IN00439 = [56.0, 321.0, 0.52],
+  IN03920 = [55.0, 39.0, 0.02],
+  IN00505 = [56.0, 66.0, 0.03],
+  IN00036 = [63.0, 1595.0, 1.2],
+  IN00201 = [55.0, 2861.0, 4.69],
+  IN00181 = [55.0, 1380.0, 4.7],
+  IN00069 = [68.0, 6718.0, 5.8],
+  IN03731 = [57.0, 128.0, 0.8200000000000001],
+  IN03007 = [55.0, 29800.0, 0.0],
+  IN00197 = [62.0, 3555.0, 1.82],
+  IN00103 = [60.0, 1158.0, 0.36],
+  IN00133 = [82.0, 13000.0, 9.34],
+  IN00342 = [63.0, 198.0, 0.19],
+  IN00565 = [53.0, 109.0, 0.1]
 }
 </code></pre>
 <p>We don’t have all basin areas, but from this we flagged around 300 dams. Looking at the values, <code>IL50678</code> basically says it has a dam with height of 110, but basin area of 0.1, which seems very unreasonable. To remove these from our identification process, let’s add another category.</p>
@@ -3814,12 +3965,111 @@ nodes.visual = {};
 nodes.visual.nodeshape = "circle";
 nodes(good).visual.nodecolor = "darkgreen";
 nodes(good).visual.textcolor = "darkgreen";
+node[03221646].visual.nodecolor = "red"; # for later
 network svg_ts_blocks("output/scioto-ts-gap-id.svg", "{NAME}", "streamflow", 620.0, 820.0, arr_width=500.0, bgcolor="#ffffff33")
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">
 </code></pre>
 <p><img src="output/scioto-ts-gap-id.svg" alt="Plot Showing the Data Gaps in the CSV"></p>
+<p>We can use the series map function in NADI to fill the gaps in timeseries using other nodes. The example below shows just two nodes using one to fill the other.</p>
+<pre><code class="language-task"># example to fill timeseries with a value from another node
+node[03229610]$sf_fix = ($$streamflow, node[03227500]$$streamflow) -&gt; func(a=false, b=false) {
+	if (a == false &amp; b == false) {return}
+	if (a == false) { float(b) } else { float(a) }
+}
+
+node[03229610]$$streamflow
+node[03229610]$sf_fix
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">TimeSeries([1920-10-01, 1920-10-02, ..., 2024-12-31], values: MaskedSeries(len: 38078, dtype: Strings, valid: 7032) [-, -, -, -, -, -, -, -, -, -, ...])
+
+MaskedSeries(len: 38078, dtype: Floats, valid: 38067) [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, ...]
+</code></pre>
+<p>We can see the data is filled here, in the beginning the data comes from the node <code>03227500</code>, while at the end we can see the data comes from the node itself.</p>
+<pre><code class="language-task">node[03229610]$sf_fix[0:100]
+nm[03229610,03227500] {$$streamflow[0:100]}
+
+l = node[03229610].sr_len("sf_fix")-1
+s = l - 500
+node[03229610]$sf_fix[s:l]
+nm[03229610,03227500] {$$streamflow[s:l]}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">Series(len: 101, dtype: Floats) [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, ...]
+
+{
+  "03229610" = MaskedSeries(len: 101, dtype: Attributes, valid: 0) [-, -, -, -, -, -, -, -, -, -, ...],
+  "03227500" = Series(len: 101, dtype: Floats) [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, ...]
+}
+
+
+
+Series(len: 501, dtype: Floats) [574, 485, 465, 439, 421, 5170, 5360, 5300, 4260, 3620, ...]
+
+{
+  "03229610" = Series(len: 501, dtype: Strings) ["574.0", "485.0", "465.0", "439.0", "421.0", "5170.0", "5360.0", "5300.0", "4260.0", "3620.0", ...],
+  "03227500" = Series(len: 501, dtype: Floats) [191, 176, 165, 159, 134, 3500, 3690, 4520, 3530, 2970, ...]
+}
+</code></pre>
+<p>Now while this was an example where we manually chose which node to use to fill the other. You probably noticed that we can’t simply fill the value in many cases, or you might want to use multiple nodes, or automate it. In that case you can simply use the <code>inputs</code>/<code>outputs</code>/<code>edges</code> or any other keywords in similar manner to use the timeseries from connected nodes, as well as using other attribute values to weight or scale the values.</p>
+<pre><code class="language-task">node[03229610]$sf_fix2 = ($$streamflow, im$$streamflow) -&gt; func(a=false, b=false) {
+	if (a == false &amp; b == false) {return}
+	if (a == false) {
+      if (len(b) == 0) {return}
+	  sum([float(i) for i in values(b)])
+	} else { float(a) }
+}
+
+node[03229610]$sf_fix[1000:1200]
+node[03229610]$sf_fix2[1000:1200]
+
+node[03229610]$sf_org = $$streamflow -&gt; func(a="") {
+	if (a != "") {float(a)}
+}
+# need to add the ability to calculate mean of maskedseries
+
+node[03229610] {[sr_mean("sf_org"), sr_mean("sf_fix"), sr_mean("sf_fix2")]}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">Series(len: 201, dtype: Floats) [271, 271, 231, 194, 177, 194, 194, 271, 231, 360, ...]
+
+Series(len: 201, dtype: Floats) [405, 389, 345, 276, 252, 3304, 904, 891, 422, 528, ...]
+
+
+[2781.179749715586, 1701.8723040954108, 2077.1651452282154]
+</code></pre>
+<pre><code class="language-task">nodes$$streamflow2 = $$streamflow
+node[03229610]$$streamflow2 = $sf_fix2
+network svg_ts_blocks("output/scioto-ts-gap-id-2.svg", "{NAME}", "streamflow2", 620.0, 820.0, arr_width=500.0, bgcolor="#ffffff33")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">
+</code></pre>
+<p><img src="output/scioto-ts-gap-id-2.svg" alt="Plot Showing the Data Gaps in the CSV"></p>
+<p>Now if we do the same with all the nodes with more than one input nodes, we get the following result.</p>
+<pre><code class="language-task">
+nodes(len(inputs._)&gt;0)$sf_fix3 = ($$streamflow, im$$streamflow) -&gt; func(a=false, b=false) {
+	if (a == false &amp; b == false) {return}
+	if (a == false) {
+      if (len(b) == 0) {return}
+	  sum([float(i) for i in values(b)])
+	} else { float(a) }
+}
+
+nodes$$streamflow3 = $$streamflow
+
+nodes(len(inputs._)&gt;0)$$streamflow3 = $sf_fix3
+network svg_ts_blocks("../output/scioto-ts-gap-id-3.svg", "{NAME}", "streamflow3", 620.0, 820.0, arr_width=500.0, bgcolor="#ffffff33")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">
+</code></pre>
+<p><img src="output/scioto-ts-gap-id-3.svg" alt="Plot Showing the Data Gaps in the CSV"></p>
+<p>If you compare this with the previous image side by side, you can see that now we have timeseries data available for a lot more range. Look at the red node, and the root node, how the timeseries range is now the same as the longest input node.</p>
+<p>But it is still limited to when the data is available in the input nodes. We can run another step with output nodes to fill the gaps in the leaf nodes. We can also do that multiple times in a loop to propagate the values based on previous imputation, but of course that decreases the accuracy overall.</p>
+<p>Note: This is a simplified algorithm to fill the gaps, you can make it more complicated.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="nadi-python-library"><a class="header" href="#nadi-python-library">NADI Python Library</a></h1>
 <p>This can be installed from <code>pypi</code> with <code>pip install nadi-py</code> command.</p>
@@ -3848,9 +4098,9 @@ fn.network.svg_save(net, "test.svg")
 <pre><code class="language-task">network load_str("a -&gt; b\nc -&gt; b")
 nodes(output._?) do echo(env.render("{i} -&gt; {o}", i=node.INDEX, o=output.INDEX))
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">1 -&gt; 0
-2 -&gt; 0
+<p>*Error*:</p>
+<pre><code class="language-error">
+NotANodeContextError [c] at Line 2 Column 1: currently not inside a node context
 </code></pre>
 <p>Equivalent Python:</p>
 <pre><code class="language-python">import nadi
@@ -4259,13 +4509,8 @@ env and(something, true) == (something &amp; true)
 
 network and(what?, and(true, true))
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">true
-
-
-true
-
-false
+<p>*Error*:</p>
+<pre><code class="language-error">FunctionError  at Line 1 Column 1: function and: Invalid Type: Integer
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
@@ -4287,7 +4532,9 @@ false
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.float_div"><code>float_div</code></a></td><td style="text-align: left">Float Division (same as / operator)</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.float_mult"><code>float_mult</code></a></td><td style="text-align: left">Float Multiplication (same as * operator)</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.get"><code>get</code></a></td><td style="text-align: left">get the choosen attribute from Array or AttrMap</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.is_none"><code>is_none</code></a></td><td style="text-align: left">check for none value</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.keys"><code>keys</code></a></td><td style="text-align: left">keys of the attribute map</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.none"><code>none</code></a></td><td style="text-align: left">None function that returns None</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.parse_attr"><code>parse_attr</code></a></td><td style="text-align: left">Parse attribute from string</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.parse_attrmap"><code>parse_attrmap</code></a></td><td style="text-align: left">Parse attribute map from string</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.strmap"><code>strmap</code></a></td><td style="text-align: left">map values from the attribute based on the given table</td></tr>
@@ -4314,7 +4561,7 @@ false
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.isinf"><code>isinf</code></a></td><td style="text-align: left">check if a float is +/- infinity</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.isna"><code>isna</code></a></td><td style="text-align: left">check if a float is nan</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.json"><code>json</code></a></td><td style="text-align: left">format the attribute as a json string</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.length"><code>length</code></a></td><td style="text-align: left">length of an array or hashmap</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.len"><code>len</code></a></td><td style="text-align: left">length of an array or hashmap</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.max_num"><code>max_num</code></a></td><td style="text-align: left">Minimum of the variables</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.max"><code>max</code></a></td><td style="text-align: left">Maximum of the variables</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.min_num"><code>min_num</code></a></td><td style="text-align: left">Minimum of the variables</td></tr>
@@ -4334,6 +4581,7 @@ false
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.today"><code>today</code></a></td><td style="text-align: left">get the current date</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.type_name"><code>type_name</code></a></td><td style="text-align: left">Type name of the arguments</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.unique_str"><code>unique_str</code></a></td><td style="text-align: left">Get a list of unique string values</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.unique"><code>unique</code></a></td><td style="text-align: left">Get a list of unique attribute values (only primitives)</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.year"><code>year</code></a></td><td style="text-align: left">year from date/datetime</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.zip"><code>zip</code></a></td><td style="text-align: left">make an array combining the arrays from arguments</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-4"><code>DEBUG</code></a></td><td style="text-align: left"><a href="#env.clip"><code>clip</code></a></td><td style="text-align: left">Echo the <code>----8&lt;----</code> line for clipping syntax</td></tr>
@@ -4369,20 +4617,25 @@ false
 <tr><td style="text-align: left"><a href="#env-functions-10"><code>REGEX</code></a></td><td style="text-align: left"><a href="#env.str_replace"><code>str_replace</code></a></td><td style="text-align: left">Replace the occurances of the given match</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-10"><code>REGEX</code></a></td><td style="text-align: left"><a href="#env.str_split"><code>str_split</code></a></td><td style="text-align: left">Split the string with the given pattern</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-11"><code>RENDER</code></a></td><td style="text-align: left"><a href="#env.render"><code>render</code></a></td><td style="text-align: left">Render the template based on the node attributes</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.image"><code>image</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_open_multi"><code>svg_open_multi</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_open"><code>svg_open</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_settings"><code>svg_settings</code></a></td><td style="text-align: left">Generate the margins for the SVGs</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>csv</code></a></td><td style="text-align: left"><a href="#env.count_data"><code>count_data</code></a></td><td style="text-align: left">Count the number of data in a column from a CSV file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>csv</code></a></td><td style="text-align: left"><a href="#env.count_usgs_years"><code>count_usgs_years</code></a></td><td style="text-align: left">Count the number of data in a column from a CSV file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>csv</code></a></td><td style="text-align: left"><a href="#env.schema"><code>schema</code></a></td><td style="text-align: left">List the columns in a CSV file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>gis</code></a></td><td style="text-align: left"><a href="#env.features_count"><code>features_count</code></a></td><td style="text-align: left">Show the fields in the GIS file layer as a list</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>gis</code></a></td><td style="text-align: left"><a href="#env.fields"><code>fields</code></a></td><td style="text-align: left">Show the fields in the GIS file layer as a list</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>gis</code></a></td><td style="text-align: left"><a href="#env.layers"><code>layers</code></a></td><td style="text-align: left">Show the layers of the GIS file as a list</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>gis</code></a></td><td style="text-align: left"><a href="#env.line-1"><code>line</code></a></td><td style="text-align: left">Show the layers of the GIS file as a list</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>gis</code></a></td><td style="text-align: left"><a href="#env.values-1"><code>values</code></a></td><td style="text-align: left">Returns the values from a feature in a GIS file from its index</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>typst</code></a></td><td style="text-align: left"><a href="#env.compile"><code>compile</code></a></td><td style="text-align: left">convert the typst content into pdf/svg/png</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>typst</code></a></td><td style="text-align: left"><a href="#env.svg2pdf"><code>svg2pdf</code></a></td><td style="text-align: left">convert the svg content into pdf or png (or svg)</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#env.timeseries"><code>timeseries</code></a></td><td style="text-align: left">build timeseries from timeline and series</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#env.ts_timeline"><code>ts_timeline</code></a></td><td style="text-align: left">Get timeline of the timeseries as Series of strings</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.image"><code>image</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_open_multi"><code>svg_open_multi</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_open"><code>svg_open</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_settings"><code>svg_settings</code></a></td><td style="text-align: left">Generate the margins for the SVGs</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#env.count_data"><code>count_data</code></a></td><td style="text-align: left">Count the number of data in a column from a CSV file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#env.count_usgs_years"><code>count_usgs_years</code></a></td><td style="text-align: left">Count the number of data in a column from a CSV file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#env.schema"><code>schema</code></a></td><td style="text-align: left">List the columns in a CSV file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-16"><code>dss</code></a></td><td style="text-align: left"><a href="#env.list_catalog"><code>list_catalog</code></a></td><td style="text-align: left">List the catalog of the dss file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-16"><code>dss</code></a></td><td style="text-align: left"><a href="#env.load_series"><code>load_series</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-16"><code>dss</code></a></td><td style="text-align: left"><a href="#env.save_series"><code>save_series</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#env.features_count"><code>features_count</code></a></td><td style="text-align: left">Show the fields in the GIS file layer as a list</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#env.fields"><code>fields</code></a></td><td style="text-align: left">Show the fields in the GIS file layer as a list</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#env.layers"><code>layers</code></a></td><td style="text-align: left">Show the layers of the GIS file as a list</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#env.line-1"><code>line</code></a></td><td style="text-align: left">Show the layers of the GIS file as a list</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#env.values-1"><code>values</code></a></td><td style="text-align: left">Returns the values from a feature in a GIS file from its index</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-17"><code>typst</code></a></td><td style="text-align: left"><a href="#env.compile"><code>compile</code></a></td><td style="text-align: left">convert the typst content into pdf/svg/png</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-17"><code>typst</code></a></td><td style="text-align: left"><a href="#env.svg2pdf"><code>svg2pdf</code></a></td><td style="text-align: left">convert the svg content into pdf or png (or svg)</td></tr>
 </tbody>
 </table>
 </div>
@@ -4429,17 +4682,17 @@ false
 <tr><td style="text-align: left"><a href="#node-functions-8"><code>SERIES</code></a></td><td style="text-align: left"><a href="#node.sr_sort"><code>sr_sort</code></a></td><td style="text-align: left">Sort an series</td></tr>
 <tr><td style="text-align: left"><a href="#node-functions-8"><code>SERIES</code></a></td><td style="text-align: left"><a href="#node.sr_sum"><code>sr_sum</code></a></td><td style="text-align: left">Sum of the series values</td></tr>
 <tr><td style="text-align: left"><a href="#node-functions-8"><code>SERIES</code></a></td><td style="text-align: left"><a href="#node.sr_to_array"><code>sr_to_array</code></a></td><td style="text-align: left">Make an array from the series if it’s complete</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_complete"><code>ts_complete</code></a></td><td style="text-align: left">Convert the timeseries to complete if it doesn’t have gaps</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_count"><code>ts_count</code></a></td><td style="text-align: left">Number of timeseries in the node</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_delete"><code>ts_delete</code></a></td><td style="text-align: left">Delete the timeseries with the given name</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_dtype"><code>ts_dtype</code></a></td><td style="text-align: left">Type name of the timeseries</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_len"><code>ts_len</code></a></td><td style="text-align: left">Length of the timeseries</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_list"><code>ts_list</code></a></td><td style="text-align: left">List all timeseries in the node</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_print"><code>ts_print</code></a></td><td style="text-align: left">Print the given timeseries values in csv format</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#node.get_xy"><code>get_xy</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#node.set_xy"><code>set_xy</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>csv</code></a></td><td style="text-align: left"><a href="#node.column"><code>column</code></a></td><td style="text-align: left">read a single column from a CSV file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>csv</code></a></td><td style="text-align: left"><a href="#node.node_name"><code>node_name</code></a></td><td style="text-align: left">Example Node function for the plugin</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_complete"><code>ts_complete</code></a></td><td style="text-align: left">Convert the timeseries to complete if it doesn’t have gaps</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_count"><code>ts_count</code></a></td><td style="text-align: left">Number of timeseries in the node</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_delete"><code>ts_delete</code></a></td><td style="text-align: left">Delete the timeseries with the given name</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_dtype"><code>ts_dtype</code></a></td><td style="text-align: left">Type name of the timeseries</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_len"><code>ts_len</code></a></td><td style="text-align: left">Length of the timeseries</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_list"><code>ts_list</code></a></td><td style="text-align: left">List all timeseries in the node</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_print"><code>ts_print</code></a></td><td style="text-align: left">Print the given timeseries values in csv format</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#node.get_xy"><code>get_xy</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#node.set_xy"><code>set_xy</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#node.column"><code>column</code></a></td><td style="text-align: left">read a single column from a CSV file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#node.node_name"><code>node_name</code></a></td><td style="text-align: left">Example Node function for the plugin</td></tr>
 </tbody>
 </table>
 </div>
@@ -4449,49 +4702,50 @@ false
 <thead>
 <tr><th style="text-align: left">Plugin</th><th style="text-align: left">Function</th><th style="text-align: left">Help</th></tr>
 </thead>
-<tbody></tbody>
+<tbody>
+<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#network.nodemap"><code>nodemap</code></a></td><td style="text-align: left">Generate attribute map for the given attribute for the nodes</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#network.set_attrs_render"><code>set_attrs_render</code></a></td><td style="text-align: left">Set network attributes based on string templates</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#network.set_attrs"><code>set_attrs</code></a></td><td style="text-align: left">Set network attributes</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#network.set_node_attrs"><code>set_node_attrs</code></a></td><td style="text-align: left">Set node attributes in a network using a attrmap or array</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-2"><code>COMMAND</code></a></td><td style="text-align: left"><a href="#network.command"><code>command</code></a></td><td style="text-align: left">Run the given template as a shell command.</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-2"><code>COMMAND</code></a></td><td style="text-align: left"><a href="#network.parallel"><code>parallel</code></a></td><td style="text-align: left">Run the given template as a shell command for each nodes in the network in parallel.</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.load_edges"><code>load_edges</code></a></td><td style="text-align: left">Load the given edges as a network</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.load_file"><code>load_file</code></a></td><td style="text-align: left">Load the given file into the network</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.load_str"><code>load_str</code></a></td><td style="text-align: left">Load network from the given string</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.save_file"><code>save_file</code></a></td><td style="text-align: left">Save the network into the given file</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.subset_from"><code>subset_from</code></a></td><td style="text-align: left">Take a subset of network by taking the given node as a new outlet</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.subset_largest"><code>subset_largest</code></a></td><td style="text-align: left">Take a subset of network by only including the largest blob of connected nodes</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.subset"><code>subset</code></a></td><td style="text-align: left">Take a subset of network by only including the selected nodes</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#network.count"><code>count</code></a></td><td style="text-align: left">Count the number of nodes in the network</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#network.net_leaves"><code>net_leaves</code></a></td><td style="text-align: left">Get the name of the leaf nodes</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#network.net_roots"><code>net_roots</code></a></td><td style="text-align: left">Get the name of the outlet nodes</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#network.node_attr"><code>node_attr</code></a></td><td style="text-align: left">Get the attr of the provided node</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#network.node_map"><code>node_map</code></a></td><td style="text-align: left">Get a attrmap with node name and attributes</td></tr>
+<tr><td style="text-align: left"><a href="#network-functions-6"><code>GVIZ</code></a></td><td style="text-align: left"><a href="#network.load_positions"><code>load_positions</code></a></td><td style="text-align: left">Load Node positions from the graphviz file</td></tr>
+<tr><td style="text-align: left"><a href="#network-functions-6"><code>GVIZ</code></a></td><td style="text-align: left"><a href="#network.save_gv"><code>save_gv</code></a></td><td style="text-align: left">Save the network as a graphviz file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-11"><code>RENDER</code></a></td><td style="text-align: left"><a href="#network.render_nodes"><code>render_nodes</code></a></td><td style="text-align: left">Render each node of the network and combine to same variable</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-11"><code>RENDER</code></a></td><td style="text-align: left"><a href="#network.render_template"><code>render_template</code></a></td><td style="text-align: left">Render a File template for the nodes in the whole network</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-11"><code>RENDER</code></a></td><td style="text-align: left"><a href="#network.render"><code>render</code></a></td><td style="text-align: left">Render from network attributes</td></tr>
+<tr><td style="text-align: left"><a href="#network-functions-8"><code>TABLE</code></a></td><td style="text-align: left"><a href="#network.save_csv"><code>save_csv</code></a></td><td style="text-align: left">Save CSV</td></tr>
+<tr><td style="text-align: left"><a href="#network-functions-8"><code>TABLE</code></a></td><td style="text-align: left"><a href="#network.table_to_markdown"><code>table_to_markdown</code></a></td><td style="text-align: left">Render the Table as a rendered markdown</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#network.series_csv"><code>series_csv</code></a></td><td style="text-align: left">Write the given nodes to csv with given attributes and series</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#network.ts_print_csv"><code>ts_print_csv</code></a></td><td style="text-align: left">Save timeseries from all nodes into a single csv file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#network.flatten"><code>flatten</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#network.set_nodesize_attrs"><code>set_nodesize_attrs</code></a></td><td style="text-align: left">Set the node size of the nodes based on the attribute value</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#network.svg_save"><code>svg_save</code></a></td><td style="text-align: left">Exports the network as a svg</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#network.svg_ts_blocks"><code>svg_ts_blocks</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#network-functions-11"><code>cairo</code></a></td><td style="text-align: left"><a href="#network.network"><code>network</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
+<tr><td style="text-align: left"><a href="#network-functions-11"><code>cairo</code></a></td><td style="text-align: left"><a href="#network.table"><code>table</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#network.load_series"><code>load_series</code></a></td><td style="text-align: left">Load series values to nodes</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#network.load_timeseries"><code>load_timeseries</code></a></td><td style="text-align: left">Load timeseries values to nodes</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#network.load_attrs"><code>load_attrs</code></a></td><td style="text-align: left">Load node attributes from a GIS file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#network.load_network"><code>load_network</code></a></td><td style="text-align: left">Load network from a GIS file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#network.save_connections"><code>save_connections</code></a></td><td style="text-align: left">Save GIS file of the connections</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#network.save_nodes"><code>save_nodes</code></a></td><td style="text-align: left">Save GIS file of the nodes</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-17"><code>typst</code></a></td><td style="text-align: left"><a href="#network.table-1"><code>table</code></a></td><td style="text-align: left">Generate Typst code for given Table</td></tr>
+</tbody>
 </table>
 </div>
-<p>| <a href="#env-functions-1"><code>ATTRS</code></a>     | <a href="#network.nodemap"><code>nodemap</code></a>                         | Generate attribute map for the given attribute for the nodes                         |
-| <a href="#env-functions-1"><code>ATTRS</code></a>     | <a href="#network.set_attrs_render"><code>set_attrs_render</code></a>       | Set network attributes based on string templates                                     |
-| <a href="#env-functions-1"><code>ATTRS</code></a>     | <a href="#network.set_attrs"><code>set_attrs</code></a>                     | Set network attributes                                                               |
-| <a href="#env-functions-1"><code>ATTRS</code></a>     | <a href="#network.set_node_attrs"><code>set_node_attrs</code></a>           | Set node attributes in a network using a attrmap or array                            |
-| <a href="#env-functions-2"><code>COMMAND</code></a> | <a href="#network.command"><code>command</code></a>                       | Run the given template as a shell command.                                           |
-| <a href="#env-functions-2"><code>COMMAND</code></a> | <a href="#network.parallel"><code>parallel</code></a>                     | Run the given template as a shell command for each nodes in the network in parallel. |
-| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.load_edges"><code>load_edges</code></a>                    | Load the given edges as a network                                                    |
-| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.load_file"><code>load_file</code></a>                      | Load the given file into the network                                                 |
-| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.load_str"><code>load_str</code></a>                        | Load network from the given string                                                   |
-| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.save_file"><code>save_file</code></a>                      | Save the network into the given file                                                 |
-| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.subset_from"><code>subset_from</code></a>                  | Take a subset of network by taking the given node as a new outlet                    |
-| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.subset_largest"><code>subset_largest</code></a>            | Take a subset of network by only including the largest blob of connected nodes       |
-| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.subset"><code>subset</code></a>                            | Take a subset of network by only including the selected nodes                        |
-| <a href="#env-functions-3"><code>CORE</code></a>       | <a href="#network.count"><code>count</code></a>                              | Count the number of nodes in the network                                             |
-| <a href="#env-functions-3"><code>CORE</code></a>       | <a href="#network.net_leaves"><code>net_leaves</code></a>                    | Get the name of the leaf nodes                                                       |
-| <a href="#env-functions-3"><code>CORE</code></a>       | <a href="#network.net_roots"><code>net_roots</code></a>                      | Get the name of the outlet nodes                                                     |
-| <a href="#env-functions-3"><code>CORE</code></a>       | <a href="#network.node_attr"><code>node_attr</code></a>                      | Get the attr of the provided node                                                    |
-| <a href="#env-functions-3"><code>CORE</code></a>       | <a href="#network.node_map"><code>node_map</code></a>                        | Get a attrmap with node name and attributes                                          |
-| <a href="#network-functions-6"><code>GVIZ</code></a>       | <a href="#network.load_positions"><code>load_positions</code></a>            | Load Node positions from the graphviz file                                           |
-| <a href="#network-functions-6"><code>GVIZ</code></a>       | <a href="#network.save_gv"><code>save_gv</code></a>                          | Save the network as a graphviz file                                                  |
-| <a href="#env-functions-11"><code>RENDER</code></a>   | <a href="#network.render_nodes"><code>render_nodes</code></a>              | Render each node of the network and combine to same variable                         |
-| <a href="#env-functions-11"><code>RENDER</code></a>   | <a href="#network.render_template"><code>render_template</code></a>        | Render a File template for the nodes in the whole network                            |
-| <a href="#env-functions-11"><code>RENDER</code></a>   | <a href="#network.render"><code>render</code></a>                          | Render from network attributes                                                       |
-| <a href="#network-functions-8"><code>TABLE</code></a>     | <a href="#network.save_csv"><code>save_csv</code></a>                       | Save CSV                                                                             |
-| <a href="#network-functions-8"><code>TABLE</code></a>     | <a href="#network.table_to_markdown"><code>table_to_markdown</code></a>     | Render the Table as a rendered markdown                                              |
-| <a href="#node-functions-9"><code>TS</code></a>           | <a href="#network.series_csv"><code>series_csv</code></a>                      | Write the given nodes to csv with given attributes and series                        |
-| <a href="#node-functions-9"><code>TS</code></a>           | <a href="#network.ts_print_csv"><code>ts_print_csv</code></a>                  | Save timeseries from all nodes into a single csv file                                |
-| <a href="#env-functions-12"><code>VISUALS</code></a> | <a href="#network.flatten"><code>flatten</code></a>                       |                                                                                      |
-| <a href="#env-functions-12"><code>VISUALS</code></a> | <a href="#network.set_nodesize_attrs"><code>set_nodesize_attrs</code></a> | Set the node size of the nodes based on the attribute value                          |
-| <a href="#env-functions-12"><code>VISUALS</code></a> | <a href="#network.svg_save"><code>svg_save</code></a>                     | Exports the network as a svg                                                         |
-| <a href="#env-functions-12"><code>VISUALS</code></a> | <a href="#network.svg_ts_blocks"><code>svg_ts_blocks</code></a>           |                                                                                      |
-| <a href="#network-functions-11"><code>cairo</code></a>     | <a href="#network.network"><code>network</code></a>                         | Create a SVG file with the given network structure                                   |
-| <a href="#network-functions-11"><code>cairo</code></a>     | <a href="#network.table"><code>table</code></a>                             | Create a SVG file with the given network structure                                   |
-| <a href="#env-functions-13"><code>csv</code></a>         | <a href="#network.load_series"><code>load_series</code></a>                   | Load series values to nodes                                                          |
-| <a href="#env-functions-13"><code>csv</code></a>         | <a href="#network.load_timeseries"><code>load_timeseries</code></a>           | Load timeseries values to nodes                                                      |
-| <a href="#env-functions-14"><code>gis</code></a>         | <a href="#network.load_attrs"><code>load_attrs</code></a>                     | Load node attributes from a GIS file                                                 |
-| <a href="#env-functions-14"><code>gis</code></a>         | <a href="#network.load_network"><code>load_network</code></a>                 | Load network from a GIS file                                                         |
-| <a href="#env-functions-14"><code>gis</code></a>         | <a href="#network.save_connections"><code>save_connections</code></a>         | Save GIS file of the connections                                                     |
-| <a href="#env-functions-14"><code>gis</code></a>         | <a href="#network.save_nodes"><code>save_nodes</code></a>                     | Save GIS file of the nodes                                                           |
-| <a href="#env-functions-15"><code>typst</code></a>     | <a href="#network.table-1"><code>table</code></a>                             | Generate Typst code for given Table                                                  |</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="internal-plugins-1"><a class="header" href="#internal-plugins-1">Internal Plugins</a></h1>
 <p>There are some plugins that are provided with the <code>nadi_core</code>
@@ -4541,16 +4795,31 @@ nodesmap[WV04112 -&gt; WV04113] render("{NAME}")
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="env-functions-1"><a class="header" href="#env-functions-1">Env Functions</a></h1>
+<h2 id="env.none"><a class="header" href="#env.none">none</a></h2>
+<pre><code class="language-sig">env ATTRS.none()
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<p>None function that returns None</p>
+<h2 id="env.is_none"><a class="header" href="#env.is_none">is_none</a></h2>
+<pre><code class="language-sig">env ATTRS.is_none(inp: 'Option &lt; FunctionInput &gt;')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>inp: 'Option &lt; FunctionInput &gt;'</code> =&gt;</li>
+</ul>
+<p>check for none value</p>
+<pre><code class="language-task">assert_eq(is_none(none()), true)
+</code></pre>
 <h2 id="env.strmap"><a class="header" href="#env.strmap">strmap</a></h2>
 <pre><code class="language-sig">env ATTRS.strmap(
-    attr: '&amp; str',
+    attr: 'String',
     attrmap: '&amp; AttrMap',
     default: 'Option &lt; Attribute &gt;'
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; Value to transform the attribute</li>
+<li><code>attr: 'String'</code> =&gt; Value to transform the attribute</li>
 <li><code>attrmap: '&amp; AttrMap'</code> =&gt; Dictionary of key=value to map the data to</li>
 <li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if key not found in <code>attrmap</code></li>
 </ul>
@@ -4777,11 +5046,11 @@ nodes assert(has_attr("x"))
 nodes assert(!has_attr("y"))
 </code></pre>
 <h2 id="node.first_attr"><a class="header" href="#node.first_attr">first_attr</a></h2>
-<pre><code class="language-sig">node ATTRS.first_attr(attrs: '&amp; [String]', default: 'Option &lt; Attribute &gt;')
+<pre><code class="language-sig">node ATTRS.first_attr(attrs: 'Vec &lt; RString &gt;', default: 'Option &lt; Attribute &gt;')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attrs: '&amp; [String]'</code> =&gt; attribute names</li>
+<li><code>attrs: 'Vec &lt; RString &gt;'</code> =&gt; attribute names</li>
 <li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if not found</li>
 </ul>
 <p>Return the first Attribute that exists</p>
@@ -4820,11 +5089,11 @@ env assert_eq(nodes.val1, [1, 1])
 flexibility than this function in normal use cases. But this
 function is useful when you have to do something in a batch.</p>
 <h2 id="node.set_attrs_render"><a class="header" href="#node.set_attrs_render">set_attrs_render</a></h2>
-<pre><code class="language-sig">node ATTRS.set_attrs_render(**kwargs)
+<pre><code class="language-sig">node ATTRS.set_attrs_render(**values)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>**kwargs</code> =&gt; key value pair of attribute to set and the Template to render</li>
+<li><code>**values</code> =&gt; key value pair of attribute to set and the Template to render</li>
 </ul>
 <p>Set node attributes based on string templates</p>
 <p>This renders the template for each node, then it sets the
@@ -4834,11 +5103,11 @@ nodes set_attrs_render(val1 = "Node: {NAME}");
 node[a] assert_eq(val1, "Node: a")
 </code></pre>
 <h2 id="node.load_toml_render"><a class="header" href="#node.load_toml_render">load_toml_render</a></h2>
-<pre><code class="language-sig">node ATTRS.load_toml_render(toml: '&amp; Template', echo: 'bool' = false)
+<pre><code class="language-sig">node ATTRS.load_toml_render(toml: 'Template', echo: 'bool' = false)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>toml: '&amp; Template'</code> =&gt; String template to render and load as toml string</li>
+<li><code>toml: 'Template'</code> =&gt; String template to render and load as toml string</li>
 <li><code>echo: 'bool' = false</code> =&gt; Print the rendered toml or not</li>
 </ul>
 <p>Set node attributes by loading a toml from rendered template</p>
@@ -4855,11 +5124,11 @@ nodes assert_eq(label, render("Node: {NAME}"))
 </code></pre>
 <h1 id="network-functions-2"><a class="header" href="#network-functions-2">Network Functions</a></h1>
 <h2 id="network.set_attrs"><a class="header" href="#network.set_attrs">set_attrs</a></h2>
-<pre><code class="language-sig">network ATTRS.set_attrs(**attrs)
+<pre><code class="language-sig">network ATTRS.set_attrs(**values)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>**attrs</code> =&gt; key value pair of attributes to set</li>
+<li><code>**values</code> =&gt; key value pair of attributes to set</li>
 </ul>
 <p>Set network attributes</p>
 <h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
@@ -4916,23 +5185,23 @@ network assert_eq(val2, "23.405")
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="env-functions-2"><a class="header" href="#env-functions-2">Env Functions</a></h1>
 <h2 id="env.shell_env"><a class="header" href="#env.shell_env">shell_env</a></h2>
-<pre><code class="language-sig">env COMMAND.shell_env(var: 'String')
+<pre><code class="language-sig">env COMMAND.shell_env(var: '&amp; str')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>var: 'String'</code> =&gt;</li>
+<li><code>var: '&amp; str'</code> =&gt;</li>
 </ul>
 <p>Get environment variable from the shell</p>
 <pre><code class="language-task">### will error if "HOME" is empty, as it can't assign None
 env.home = shell_env("HOME")
 </code></pre>
 <h2 id="env.set_shell_env"><a class="header" href="#env.set_shell_env">set_shell_env</a></h2>
-<pre><code class="language-sig">env COMMAND.set_shell_env(var: 'String', val: 'String')
+<pre><code class="language-sig">env COMMAND.set_shell_env(var: '&amp; str', val: '&amp; str')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>var: 'String'</code> =&gt;</li>
-<li><code>val: 'String'</code> =&gt;</li>
+<li><code>var: '&amp; str'</code> =&gt;</li>
+<li><code>val: '&amp; str'</code> =&gt;</li>
 </ul>
 <p>Set environment variable in the shell</p>
 <pre><code class="language-task">env set_shell_env("testing", "true");
@@ -4960,14 +5229,14 @@ env assert_eq(outputs2.test, 12)
 <h1 id="node-functions-3"><a class="header" href="#node-functions-3">Node Functions</a></h1>
 <h2 id="node.command"><a class="header" href="#node.command">command</a></h2>
 <pre><code class="language-sig">node COMMAND.command(
-    cmd: '&amp; Template',
+    cmd: 'Template',
     verbose: 'bool' = true,
     echo: 'bool' = false
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
+<li><code>cmd: 'Template'</code> =&gt; String Command template to run</li>
 <li><code>verbose: 'bool' = true</code> =&gt; Show the rendered version of command, and other messages</li>
 <li><code>echo: 'bool' = false</code> =&gt; Echo the stdout from the command</li>
 </ul>
@@ -5018,7 +5287,7 @@ tasks with input files and output files.</p>
 <h1 id="network-functions-3"><a class="header" href="#network-functions-3">Network Functions</a></h1>
 <h2 id="network.parallel"><a class="header" href="#network.parallel">parallel</a></h2>
 <pre><code class="language-sig">network COMMAND.parallel(
-    cmd: '&amp; Template',
+    cmd: 'Template',
     workers: 'i64' = 16,
     verbose: 'bool' = true,
     echo: 'bool' = false
@@ -5026,7 +5295,7 @@ tasks with input files and output files.</p>
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
+<li><code>cmd: 'Template'</code> =&gt; String Command template to run</li>
 <li><code>workers: 'i64' = 16</code> =&gt; Number of workers to run in parallel</li>
 <li><code>verbose: 'bool' = true</code> =&gt; Print the command being run</li>
 <li><code>echo: 'bool' = false</code> =&gt; Show the output of the command</li>
@@ -5112,14 +5381,14 @@ env assert_eq(nodes.NAME, ["b", "a"])
 </code></pre>
 <h2 id="network.load_edges"><a class="header" href="#network.load_edges">load_edges</a></h2>
 <pre><code class="language-sig">network CONN.load_edges(
-    edges: '&amp; [(String, String)]',
+    edges: 'Vec &lt; (RString, RString) &gt;',
     append: 'bool' = false,
     force: 'bool' = false
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>edges: '&amp; [(String, String)]'</code> =&gt; String containing Network connections</li>
+<li><code>edges: 'Vec &lt; (RString, RString) &gt;'</code> =&gt; String containing Network connections</li>
 <li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
 <li><code>force: 'bool' = false</code> =&gt; Force overriding outputs if previous one is present</li>
 </ul>
@@ -5130,11 +5399,11 @@ file.</p>
 env assert_eq(nodes.NAME, ["c", "b", "a"])
 </code></pre>
 <h2 id="network.subset"><a class="header" href="#network.subset">subset</a></h2>
-<pre><code class="language-sig">network CONN.subset(filter: '&amp; [bool]', keep: 'bool' = true)
+<pre><code class="language-sig">network CONN.subset(filter: 'Vec &lt; bool &gt;', keep: 'bool' = true)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>filter: '&amp; [bool]'</code> =&gt;</li>
+<li><code>filter: 'Vec &lt; bool &gt;'</code> =&gt;</li>
 <li><code>keep: 'bool' = true</code> =&gt; Keep the selected nodes (false = removes the selected)</li>
 </ul>
 <p>Take a subset of network by only including the selected nodes</p>
@@ -5207,11 +5476,11 @@ env assert_eq(str_quote(true), "\"true\"")
 env assert_eq(str_quote(12), "\"12\"")
 </code></pre>
 <h2 id="env.count"><a class="header" href="#env.count">count</a></h2>
-<pre><code class="language-sig">env CORE.count(vars: '&amp; [bool]')
+<pre><code class="language-sig">env CORE.count(vars: 'Vec &lt; bool &gt;')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>vars: '&amp; [bool]'</code> =&gt;</li>
+<li><code>vars: 'Vec &lt; bool &gt;'</code> =&gt;</li>
 </ul>
 <p>Count the number of true values in the array</p>
 <pre><code class="language-task">env assert_eq(count([true, false, true, false]), 2)
@@ -5401,16 +5670,16 @@ single element array</p>
 <p>append a value to an array</p>
 <pre><code class="language-task">env assert_eq(append([4], 5), [4, 5])
 </code></pre>
-<h2 id="env.length"><a class="header" href="#env.length">length</a></h2>
-<pre><code class="language-sig">env CORE.length(value: '&amp; Attribute')
+<h2 id="env.len"><a class="header" href="#env.len">len</a></h2>
+<pre><code class="language-sig">env CORE.len(value: '&amp; FunctionInput')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>value: '&amp; Attribute'</code> =&gt; Array or a HashMap</li>
+<li><code>value: '&amp; FunctionInput'</code> =&gt; Array or a HashMap</li>
 </ul>
 <p>length of an array or hashmap</p>
-<pre><code class="language-task">env assert_eq(length([4, 5]), 2)
-env assert_eq(length({x=4, y=5}), 2)
+<pre><code class="language-task">env assert_eq(len([4, 5]), 2)
+env assert_eq(len({x=4, y=5}), 2)
 </code></pre>
 <h2 id="env.timediff"><a class="header" href="#env.timediff">timediff</a></h2>
 <pre><code class="language-sig">env CORE.timediff(start: 'DateTime', end: 'DateTime')
@@ -5590,6 +5859,22 @@ env assert_eq(sum([2, 3, 4], start=0.0), 9.0)
 <pre><code class="language-task">env assert_eq(prod([1, 2, 3]), 6)
 env assert_eq(prod([1.0, 2, 3]), 6.0)
 </code></pre>
+<h2 id="env.unique"><a class="header" href="#env.unique">unique</a></h2>
+<pre><code class="language-sig">env CORE.unique(vars: 'Vec &lt; HashableAttr &gt;')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>vars: 'Vec &lt; HashableAttr &gt;'</code> =&gt;</li>
+</ul>
+<p>Get a list of unique attribute values (only primitives)</p>
+<p>The order of the attributes returned is not guaranteed. This
+does not support array and attrmap values due to uniqueness
+ambiguity.</p>
+<pre><code class="language-task">env.uniq = unique(["hi", "me", "hi", "you"]);
+env assert_eq(len(uniq), 3)
+env.uniq = unique(["hi", true, true, nan, 1.0, 1, nan]);
+env assert_eq(len(uniq), 5)
+</code></pre>
 <h2 id="env.unique_str"><a class="header" href="#env.unique_str">unique_str</a></h2>
 <pre><code class="language-sig">env CORE.unique_str(vars: 'Vec &lt; String &gt;')
 </code></pre>
@@ -5600,7 +5885,7 @@ env assert_eq(prod([1.0, 2, 3]), 6.0)
 <p>Get a list of unique string values</p>
 <p>The order of the strings returned is not guaranteed</p>
 <pre><code class="language-task">env.uniq = unique_str(["hi", "me", "hi", "you"]);
-env assert_eq(length(uniq), 3)
+env assert_eq(len(uniq), 3)
 </code></pre>
 <h2 id="env.count_str"><a class="header" href="#env.count_str">count_str</a></h2>
 <pre><code class="language-sig">env CORE.count_str(vars: 'Vec &lt; String &gt;')
@@ -5627,15 +5912,16 @@ count_str(["Hi", "there", "Deliah", "Hi"]),
 <pre><code class="language-task">env assert_eq(concat("Hello", "World", join=" "), "Hello World")
 </code></pre>
 <h2 id="env.range"><a class="header" href="#env.range">range</a></h2>
-<pre><code class="language-sig">env CORE.range(start: 'i64', end: 'i64')
+<pre><code class="language-sig">env CORE.range(start: 'i64', end: 'Option &lt; i64 &gt;')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>start: 'i64'</code> =&gt;</li>
-<li><code>end: 'i64'</code> =&gt;</li>
+<li><code>end: 'Option &lt; i64 &gt;'</code> =&gt;</li>
 </ul>
 <p>Generate integer array, end is not included</p>
-<pre><code class="language-task">env assert_eq(range(1, 5), [1, 2, 3, 4])
+<pre><code class="language-task">env assert_eq(range(1, 5), [1, 2, 3, 4, 5])
+env assert_eq(range(2), [1, 2])
 </code></pre>
 <h2 id="env.assert"><a class="header" href="#env.assert">assert</a></h2>
 <pre><code class="language-sig">env CORE.assert(condition: 'bool', note: 'String' = "Condition False")
@@ -5687,7 +5973,7 @@ env assert_neq("string val", concat("string", "val"))
 <p><strong>Arguments:</strong></p>
 <p>Count the number of input nodes in the node</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
-nodes assert_eq(inputs_count(), length(inputs._))
+nodes assert_eq(inputs_count(), len(inputs._))
 </code></pre>
 <h2 id="node.inputs_attr"><a class="header" href="#node.inputs_attr">inputs_attr</a></h2>
 <pre><code class="language-sig">node CORE.inputs_attr(attr: 'String' = "NAME")
@@ -5933,8 +6219,8 @@ generation.</p>
     outfile: '&amp; Path',
     name: '&amp; str' = "network",
     global_attrs: '&amp; str' = "",
-    node_attr: 'Option &lt; &amp; Template &gt;',
-    edge_attr: 'Option &lt; &amp; Template &gt;'
+    node_attr: 'Option &lt; Template &gt;',
+    edge_attr: 'Option &lt; Template &gt;'
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
@@ -5942,8 +6228,8 @@ generation.</p>
 <li><code>outfile: '&amp; Path'</code> =&gt;</li>
 <li><code>name: '&amp; str' = "network"</code> =&gt;</li>
 <li><code>global_attrs: '&amp; str' = ""</code> =&gt;</li>
-<li><code>node_attr: 'Option &lt; &amp; Template &gt;'</code> =&gt;</li>
-<li><code>edge_attr: 'Option &lt; &amp; Template &gt;'</code> =&gt;</li>
+<li><code>node_attr: 'Option &lt; Template &gt;'</code> =&gt;</li>
+<li><code>edge_attr: 'Option &lt; Template &gt;'</code> =&gt;</li>
 </ul>
 <p>Save the network as a graphviz file</p>
 <h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments:</a></h3>
@@ -6030,7 +6316,7 @@ env assert_eq(eq(2.0, 2), 2.0 == 2)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>*conds</code> =&gt; List of attributes that can be cast to bool</li>
+<li><code>*conds</code> =&gt; List of bools</li>
 </ul>
 <p>Boolean and</p>
 <p>Similar to the operator <code>&amp;</code> but the values are cast to boolean</p>
@@ -6043,7 +6329,7 @@ env assert_eq(and(true, false), false &amp; true)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>*conds</code> =&gt; List of attributes that can be cast to bool</li>
+<li><code>*conds</code> =&gt; List of bools</li>
 </ul>
 <p>boolean or</p>
 <p>Similar to the operator <code>|</code> but the values are cast to boolean</p>
@@ -6066,30 +6352,30 @@ env assert_eq(not(true), !true)
 env assert_eq(not(false), !false)
 </code></pre>
 <h2 id="env.all"><a class="header" href="#env.all">all</a></h2>
-<pre><code class="language-sig">env LOGIC.all(vars: '&amp; [bool]')
+<pre><code class="language-sig">env LOGIC.all(*vars)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>vars: '&amp; [bool]'</code> =&gt;</li>
+<li><code>*vars</code> =&gt;</li>
 </ul>
 <p>check if all of the bool are true</p>
-<pre><code class="language-task">env assert_eq(all([true]), true)
-env assert_eq(all([false, true]), false)
-env assert_eq(all([true, true]), true)
-env assert_eq(all([false]), false)
+<pre><code class="language-task">env assert_eq(all(true), true)
+env assert_eq(all(false, true), false)
+env assert_eq(all(true, true), true)
+env assert_eq(all(false), false)
 </code></pre>
 <h2 id="env.any"><a class="header" href="#env.any">any</a></h2>
-<pre><code class="language-sig">env LOGIC.any(vars: '&amp; [bool]')
+<pre><code class="language-sig">env LOGIC.any(*vars)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>vars: '&amp; [bool]'</code> =&gt;</li>
+<li><code>*vars</code> =&gt;</li>
 </ul>
 <p>check if any of the bool are true</p>
-<pre><code class="language-task">env assert_eq(any([true]), true)
-env assert_eq(any([false, true]), true)
-env assert_eq(any([false, false]), false)
-env assert_eq(any([false]), false)
+<pre><code class="language-task">env assert_eq(any(true), true)
+env assert_eq(any(false, true), true)
+env assert_eq(any(false, false), false)
+env assert_eq(any(false), false)
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="env-functions-7"><a class="header" href="#env-functions-7">Env Functions</a></h1>
@@ -6196,7 +6482,7 @@ from one or the other parent.</p>
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Check if the given pattern matches the value or not</p>
@@ -6218,15 +6504,15 @@ env assert_eq(str_match("abc", "^a"), "abc" match "^a")
 <li><code>rep: '&amp; str'</code> =&gt; replacement string</li>
 </ul>
 <p>Replace the occurances of the given match</p>
-<pre><code class="language-task">env assert_eq(str_replace("abc", "^a", 2), "2bc")
-env assert_eq(str_replace("abc", "[abc]", 2), "222")
+<pre><code class="language-task">env assert_eq(str_replace("abc", "^a", "2"), "2bc")
+env assert_eq(str_replace("abc", "[abc]", "2"), "222")
 </code></pre>
 <h2 id="env.str_find"><a class="header" href="#env.str_find">str_find</a></h2>
 <pre><code class="language-sig">env REGEX.str_find(attr: '&amp; str', pattern: 'Regex')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Find the given pattern in the value</p>
@@ -6237,7 +6523,7 @@ env assert_eq(str_replace("abc", "[abc]", 2), "222")
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Find all the matches of the given pattern in the value</p>
@@ -6248,7 +6534,7 @@ env assert_eq(str_replace("abc", "[abc]", 2), "222")
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Count the number of matches of given pattern in the string</p>
@@ -6289,14 +6575,14 @@ env assert_eq(str_join(["abc", "de"], ", "), "abc, de")
 <h1 id="env-functions-11"><a class="header" href="#env-functions-11">Env Functions</a></h1>
 <h2 id="env.render"><a class="header" href="#env.render">render</a></h2>
 <pre><code class="language-sig">env RENDER.render(
-    template: '&amp; Template',
+    template: 'Template',
     safe: 'bool' = false,
     **keyval
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: '&amp; Template'</code> =&gt; String template to render</li>
+<li><code>template: 'Template'</code> =&gt; String template to render</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 <li><code>**keyval</code> =&gt;</li>
 </ul>
@@ -6317,11 +6603,11 @@ in the template without a value.</p>
 </code></pre>
 <h1 id="node-functions-7"><a class="header" href="#node-functions-7">Node Functions</a></h1>
 <h2 id="node.render"><a class="header" href="#node.render">render</a></h2>
-<pre><code class="language-sig">node RENDER.render(template: '&amp; Template', safe: 'bool' = false)
+<pre><code class="language-sig">node RENDER.render(template: 'Template', safe: 'bool' = false)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: '&amp; Template'</code> =&gt; String template to render</li>
+<li><code>template: 'Template'</code> =&gt; String template to render</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 </ul>
 <p>Render the template based on the node attributes</p>
@@ -6334,11 +6620,11 @@ nodes assert_eq(render("abc {x} {a}", safe=true), "abc {x} {a}")
 </code></pre>
 <h1 id="network-functions-7"><a class="header" href="#network-functions-7">Network Functions</a></h1>
 <h2 id="network.render"><a class="header" href="#network.render">render</a></h2>
-<pre><code class="language-sig">network RENDER.render(template: '&amp; Template', safe: 'bool' = false)
+<pre><code class="language-sig">network RENDER.render(template: 'Template', safe: 'bool' = false)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: '&amp; Template'</code> =&gt; Path to the template file</li>
+<li><code>template: 'Template'</code> =&gt; Path to the template file</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 </ul>
 <p>Render from network attributes</p>
@@ -6348,14 +6634,14 @@ network assert_eq(render("abc {x} {a}", safe=true), "abc {x} {a}")
 </code></pre>
 <h2 id="network.render_nodes"><a class="header" href="#network.render_nodes">render_nodes</a></h2>
 <pre><code class="language-sig">network RENDER.render_nodes(
-    template: '&amp; Template',
+    template: 'Template',
     safe: 'bool' = false,
     join: '&amp; str' = "\n"
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: '&amp; Template'</code> =&gt; Path to the template file</li>
+<li><code>template: 'Template'</code> =&gt; Path to the template file</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 <li><code>join: '&amp; str' = "\n"</code> =&gt; String to join the render results</li>
 </ul>
@@ -6529,14 +6815,14 @@ and <code>3:</code> is from line 3 to the end)</p>
 <h2 id="network.save_csv"><a class="header" href="#network.save_csv">save_csv</a></h2>
 <pre><code class="language-sig">network TABLE.save_csv(
     path: '&amp; Path',
-    fields: '&amp; [String]',
+    fields: 'Vec &lt; String &gt;',
     filter: 'Option &lt; Vec &lt; bool &gt; &gt;'
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>path: '&amp; Path'</code> =&gt;</li>
-<li><code>fields: '&amp; [String]'</code> =&gt;</li>
+<li><code>fields: 'Vec &lt; String &gt;'</code> =&gt;</li>
 <li><code>filter: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt;</li>
 </ul>
 <p>Save CSV</p>
@@ -6567,6 +6853,29 @@ and <code>3:</code> is from line 3 to the end)</p>
 <li>error while writing to the output file</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
+<h1 id="env-functions-12"><a class="header" href="#env-functions-12">Env Functions</a></h1>
+<h2 id="env.ts_timeline"><a class="header" href="#env.ts_timeline">ts_timeline</a></h2>
+<pre><code class="language-sig">env TS.ts_timeline(ts: 'TimeSeries')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>ts: 'TimeSeries'</code> =&gt;</li>
+</ul>
+<p>Get timeline of the timeseries as Series of strings</p>
+<h2 id="env.timeseries"><a class="header" href="#env.timeseries">timeseries</a></h2>
+<pre><code class="language-sig">env TS.timeseries(
+    timeline: '&amp; [RString]',
+    series: 'Series',
+    fmt: '&amp; str' = "%Y-%m-%d"
+)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>timeline: '&amp; [RString]'</code> =&gt;</li>
+<li><code>series: 'Series'</code> =&gt;</li>
+<li><code>fmt: '&amp; str' = "%Y-%m-%d"</code> =&gt;</li>
+</ul>
+<p>build timeseries from timeline and series</p>
 <h1 id="node-functions-9"><a class="header" href="#node-functions-9">Node Functions</a></h1>
 <h2 id="node.ts_count"><a class="header" href="#node.ts_count">ts_count</a></h2>
 <pre><code class="language-sig">node TS.ts_count()
@@ -6619,7 +6928,7 @@ and <code>3:</code> is from line 3 to the end)</p>
 <p>Convert the timeseries to complete if it doesn’t have gaps</p>
 <h2 id="node.ts_print"><a class="header" href="#node.ts_print">ts_print</a></h2>
 <pre><code class="language-sig">node TS.ts_print(
-    name: '&amp; String',
+    name: '&amp; str',
     header: 'bool' = true,
     head: 'Option &lt; i64 &gt;',
     missing: 'String' = ""
@@ -6627,7 +6936,7 @@ and <code>3:</code> is from line 3 to the end)</p>
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>name: '&amp; String'</code> =&gt; name of the timeseries</li>
+<li><code>name: '&amp; str'</code> =&gt; name of the timeseries</li>
 <li><code>header: 'bool' = true</code> =&gt; show header</li>
 <li><code>head: 'Option &lt; i64 &gt;'</code> =&gt; number of head rows to show (all by default)</li>
 <li><code>missing: 'String' = ""</code> =&gt; Show missing values as this string</li>
@@ -6640,18 +6949,18 @@ and <code>3:</code> is from line 3 to the end)</p>
 <h1 id="network-functions-9"><a class="header" href="#network-functions-9">Network Functions</a></h1>
 <h2 id="network.ts_print_csv"><a class="header" href="#network.ts_print_csv">ts_print_csv</a></h2>
 <pre><code class="language-sig">network TS.ts_print_csv(
-    name: 'String',
+    name: '&amp; str',
     head: 'Option &lt; usize &gt;',
     nodes: 'Option &lt; HashSet &lt; String &gt; &gt;',
-    missing: 'String' = ""
+    missing: '&amp; str' = ""
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>name: 'String'</code> =&gt; Name of the timeseries to save</li>
+<li><code>name: '&amp; str'</code> =&gt; Name of the timeseries to save</li>
 <li><code>head: 'Option &lt; usize &gt;'</code> =&gt; number of head rows to show (all by default)</li>
 <li><code>nodes: 'Option &lt; HashSet &lt; String &gt; &gt;'</code> =&gt; Include only these nodes (all by default)</li>
-<li><code>missing: 'String' = ""</code> =&gt; Show missing values as this string</li>
+<li><code>missing: '&amp; str' = ""</code> =&gt; Show missing values as this string</li>
 </ul>
 <p>Save timeseries from all nodes into a single csv file</p>
 <p>TODO: error/not on unqual length
@@ -6660,23 +6969,23 @@ TODO: output to <code>file: PathBuf</code></p>
 <h2 id="network.series_csv"><a class="header" href="#network.series_csv">series_csv</a></h2>
 <pre><code class="language-sig">network TS.series_csv(
     filter: 'Vec &lt; bool &gt;',
-    outfile: 'PathBuf',
+    outfile: '&amp; Path',
     attrs: 'Vec &lt; String &gt;',
     series: 'Vec &lt; String &gt;',
-    missing: 'String' = ""
+    missing: '&amp; str' = ""
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>filter: 'Vec &lt; bool &gt;'</code> =&gt;</li>
-<li><code>outfile: 'PathBuf'</code> =&gt; Path to the output csv</li>
+<li><code>outfile: '&amp; Path'</code> =&gt; Path to the output csv</li>
 <li><code>attrs: 'Vec &lt; String &gt;'</code> =&gt; list of attributes to write</li>
 <li><code>series: 'Vec &lt; String &gt;'</code> =&gt; list of series to write</li>
-<li><code>missing: 'String' = ""</code> =&gt; Show missing values as this string</li>
+<li><code>missing: '&amp; str' = ""</code> =&gt; Show missing values as this string</li>
 </ul>
 <p>Write the given nodes to csv with given attributes and series</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="env-functions-12"><a class="header" href="#env-functions-12">Env Functions</a></h1>
+<h1 id="env-functions-13"><a class="header" href="#env-functions-13">Env Functions</a></h1>
 <h2 id="env.image"><a class="header" href="#env.image">image</a></h2>
 <pre><code class="language-sig">env VISUALS.image(path: 'RString')
 </code></pre>
@@ -6740,14 +7049,14 @@ TODO: output to <code>file: PathBuf</code></p>
 <p><strong>Arguments:</strong></p>
 <h2 id="network.set_nodesize_attrs"><a class="header" href="#network.set_nodesize_attrs">set_nodesize_attrs</a></h2>
 <pre><code class="language-sig">network VISUALS.set_nodesize_attrs(
-    attrs: '&amp; [f64]',
+    attrs: 'Vec &lt; f64 &gt;',
     minsize: 'f64' = 4.0,
     maxsize: 'f64' = 12.0
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attrs: '&amp; [f64]'</code> =&gt; Attribute values to use for size scaling</li>
+<li><code>attrs: 'Vec &lt; f64 &gt;'</code> =&gt; Attribute values to use for size scaling</li>
 <li><code>minsize: 'f64' = 4.0</code> =&gt; minimum size of the node</li>
 <li><code>maxsize: 'f64' = 12.0</code> =&gt; maximum size of the node</li>
 </ul>
@@ -6838,7 +7147,7 @@ along side the NADI project due to various reasons.</p>
 </ul>
 <p>Create a SVG file with the given network structure</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="env-functions-13"><a class="header" href="#env-functions-13">Env Functions</a></h1>
+<h1 id="env-functions-14"><a class="header" href="#env-functions-14">Env Functions</a></h1>
 <h2 id="env.schema"><a class="header" href="#env.schema">schema</a></h2>
 <pre><code class="language-sig">env csv.schema(
     path: 'PathBuf',
@@ -6942,7 +7251,7 @@ along side the NADI project due to various reasons.</p>
 <pre><code class="language-task ignore">network csv.load_timeseries("/home/gaurav/work/nadi-project/codes/nadi_csv/test.csv", "date", "test")
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="env-functions-14"><a class="header" href="#env-functions-14">Env Functions</a></h1>
+<h1 id="env-functions-15"><a class="header" href="#env-functions-15">Env Functions</a></h1>
 <h2 id="env.layers"><a class="header" href="#env.layers">layers</a></h2>
 <pre><code class="language-sig">env gis.layers(file: 'PathBuf')
 </code></pre>
@@ -7000,6 +7309,10 @@ along side the NADI project due to various reasons.</p>
     source: 'String',
     destination: 'String',
     layer: 'Option &lt; String &gt;',
+    loadattrs: 'Option &lt; String &gt;',
+    outattrs: 'bool' = false,
+    ignore: 'String' = "",
+    sanitize: 'bool' = true,
     ignore_null: 'bool' = false,
     force: 'bool' = false
 )
@@ -7010,6 +7323,10 @@ along side the NADI project due to various reasons.</p>
 <li><code>source: 'String'</code> =&gt; Field in the GIS file corresponding to the input node name</li>
 <li><code>destination: 'String'</code> =&gt; layer of the GIS file corresponding to the output node name</li>
 <li><code>layer: 'Option &lt; String &gt;'</code> =&gt; layer of the GIS file, first one picked by default</li>
+<li><code>loadattrs: 'Option &lt; String &gt;'</code> =&gt; Load attributes from GIS file into this attribute</li>
+<li><code>outattrs: 'bool' = false</code> =&gt; attributes are for output instead of input node</li>
+<li><code>ignore: 'String' = ""</code> =&gt; Field names separated by comma, to ignore</li>
+<li><code>sanitize: 'bool' = true</code> =&gt; sanitize the name of the fields</li>
 <li><code>ignore_null: 'bool' = false</code> =&gt; Ignore feature if it has fields with null value</li>
 <li><code>force: 'bool' = false</code> =&gt; Force overwrite the output if already present</li>
 </ul>
@@ -7078,9 +7395,46 @@ JSON, etc) and loads their fields as attributes to the nodes.</p>
 </ul>
 <p>Save GIS file of the nodes</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="html"><a class="header" href="#html">HTML</a></h1>
+<h1 id="env-functions-16"><a class="header" href="#env-functions-16">Env Functions</a></h1>
+<h2 id="env.list_catalog"><a class="header" href="#env.list_catalog">list_catalog</a></h2>
+<pre><code class="language-sig">env dss.list_catalog(dssfile: 'String', paths: 'String' = "/*/*/*/*/*/*/")
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>dssfile: 'String'</code> =&gt;</li>
+<li><code>paths: 'String' = "/*/*/*/*/*/*/"</code> =&gt;</li>
+</ul>
+<p>List the catalog of the dss file</p>
+<p>env list_catalog(“dsslib/routed-main-stem.dss”)</p>
+<h2 id="env.load_series"><a class="header" href="#env.load_series">load_series</a></h2>
+<pre><code class="language-sig">env dss.load_series(dssfile: 'String', path: 'String')
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>dssfile: 'String'</code> =&gt;</li>
+<li><code>path: 'String'</code> =&gt;</li>
+</ul>
+<h2 id="env.save_series"><a class="header" href="#env.save_series">save_series</a></h2>
+<pre><code class="language-sig">env dss.save_series(
+    series: '&amp; Series',
+    dssfile: 'String',
+    path: 'String',
+    start_date: 'String' = "1990-01-01",
+    start_time: 'String' = "12:00",
+    delta_minute: 'i64' = 1440
+)
+</code></pre>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><code>series: '&amp; Series'</code> =&gt;</li>
+<li><code>dssfile: 'String'</code> =&gt;</li>
+<li><code>path: 'String'</code> =&gt;</li>
+<li><code>start_date: 'String' = "1990-01-01"</code> =&gt; start date of the series</li>
+<li><code>start_time: 'String' = "12:00"</code> =&gt; start time of the series</li>
+<li><code>delta_minute: 'i64' = 1440</code> =&gt; delta time in minutes</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="env-functions-15"><a class="header" href="#env-functions-15">Env Functions</a></h1>
+<h1 id="env-functions-17"><a class="header" href="#env-functions-17">Env Functions</a></h1>
 <h2 id="env.svg2pdf"><a class="header" href="#env.svg2pdf">svg2pdf</a></h2>
 <pre><code class="language-sig">env typst.svg2pdf(
     inpfile: 'PathBuf',
@@ -7305,21 +7659,35 @@ Hi my name is {name}.
 <p>Example:</p>
 <pre><code>```table run markdown
 !network load_file("./data/mississippi.net")
-&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
-^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&lt;Name =&gt; {NAME}
+^Ind =&gt; {INDEX}
 &gt;Order =&gt; {ORDER}
 ```
 </code></pre>
 <p>Becomes:</p>
 <hr>
 <pre><code class="language-table"><span class="boring">network load_file("./data/mississippi.net")
-</span>&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
-^Ind =&gt; =(+ (st+num 'INDEX) 1)
+</span>&lt;Name =&gt; {NAME}
+^Ind =&gt; {INDEX}
 &gt;Order =&gt; {ORDER}
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">FunctionError  at Line 3 Column 1: function table_to_markdown: TemplateError at pos 8: Invalid Character 'r'
-</code></pre>
+<p>Results:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left">lower-mississippi</td><td style="text-align: center">0</td><td style="text-align: right">3</td></tr>
+<tr><td style="text-align: left">red</td><td style="text-align: center">1</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">arkansas</td><td style="text-align: center">2</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">upper-mississippi</td><td style="text-align: center">4</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">ohio</td><td style="text-align: center">5</td><td style="text-align: right">2</td></tr>
+<tr><td style="text-align: left">tenessee</td><td style="text-align: center">6</td><td style="text-align: right">1</td></tr>
+</tbody>
+</table>
+</div>
 <hr>
 <p>I’d like to refine this further.</p>
 <p>Task can be used to generate markdown in the same way as the tables
@@ -7327,41 +7695,78 @@ can:</p>
 <p>For example <code>task run</code> of this:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net")
 network table_to_markdown(template="
-&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
-^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&lt;Name =&gt; {NAME}
+^Ind =&gt; {INDEX}
 &gt;Order =&gt; {ORDER}
 ")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-FunctionError  at Line 2 Column 1: function table_to_markdown: TemplateError at pos 8: Invalid Character 'r'
+<p>Results:</p>
+<pre><code class="language-output">| Name              | Ind | Order |
+|:------------------|:---:|------:|
+| lower-mississippi |  0  |     3 |
+| red               |  1  |     1 |
+| arkansas          |  2  |     1 |
+| missouri          |  3  |     1 |
+| upper-mississippi |  4  |     1 |
+| ohio              |  5  |     2 |
+| tenessee          |  6  |     1 |
 </code></pre>
 <p>If you do <code>task run markdown</code> then:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net")
 network table_to_markdown(template="
-&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
-^Ind =&gt; =(+ (st+num 'INDEX) 1)
+&lt;Name =&gt; {NAME}
+^Ind =&gt; {INDEX}
 &gt;Order =&gt; {ORDER}
 ")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-FunctionError  at Line 2 Column 1: function table_to_markdown: TemplateError at pos 8: Invalid Character 'r'
-</code></pre>
+<p>Results:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left">lower-mississippi</td><td style="text-align: center">0</td><td style="text-align: right">3</td></tr>
+<tr><td style="text-align: left">red</td><td style="text-align: center">1</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">arkansas</td><td style="text-align: center">2</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">upper-mississippi</td><td style="text-align: center">4</td><td style="text-align: right">1</td></tr>
+<tr><td style="text-align: left">ohio</td><td style="text-align: center">5</td><td style="text-align: right">2</td></tr>
+<tr><td style="text-align: left">tenessee</td><td style="text-align: center">6</td><td style="text-align: right">1</td></tr>
+</tbody>
+</table>
+</div>
 <p>Which means it can be used for other things:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net");
 network echo("**Details about the Nodes:**")
 network echo(render_nodes("
-=(+ (st+num 'INDEX) 1). {_NAME:repl(-, ):case(title)} River
+{INDEX}. {NAME}
 "))
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-**Details about the Nodes:**
-
-
-FunctionError  at Line 3 Column 1: function render_nodes: Argument 1 (template [Template]): TemplateError at pos 33: Invalid Character 'r'
-</code></pre>
+<p>Results:<br><strong>Details about the Nodes:</strong></p>
+<ol start="0">
+<li>
+<p>lower-mississippi</p>
+</li>
+<li>
+<p>red</p>
+</li>
+<li>
+<p>arkansas</p>
+</li>
+<li>
+<p>missouri</p>
+</li>
+<li>
+<p>upper-mississippi</p>
+</li>
+<li>
+<p>ohio</p>
+</li>
+<li>
+<p>tenessee</p>
+</li>
+</ol>
 <p>You can also use the same method to insert images like this, at the end of your tasks, so that the image generated by the tasks can be inserted here.</p>
 <pre><code class="language-task"># do some tasks
 network echo("Some other output form your tasks")

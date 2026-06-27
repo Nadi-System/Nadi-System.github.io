@@ -234,6 +234,10 @@
     source: 'String',
     destination: 'String',
     layer: 'Option &lt; String &gt;',
+    loadattrs: 'Option &lt; String &gt;',
+    outattrs: 'bool' = false,
+    ignore: 'String' = "",
+    sanitize: 'bool' = true,
     ignore_null: 'bool' = false,
     force: 'bool' = false
 )
@@ -244,6 +248,10 @@
 <li><code>source: 'String'</code> =&gt; Field in the GIS file corresponding to the input node name</li>
 <li><code>destination: 'String'</code> =&gt; layer of the GIS file corresponding to the output node name</li>
 <li><code>layer: 'Option &lt; String &gt;'</code> =&gt; layer of the GIS file, first one picked by default</li>
+<li><code>loadattrs: 'Option &lt; String &gt;'</code> =&gt; Load attributes from GIS file into this attribute</li>
+<li><code>outattrs: 'bool' = false</code> =&gt; attributes are for output instead of input node</li>
+<li><code>ignore: 'String' = ""</code> =&gt; Field names separated by comma, to ignore</li>
+<li><code>sanitize: 'bool' = true</code> =&gt; sanitize the name of the fields</li>
 <li><code>ignore_null: 'bool' = false</code> =&gt; Ignore feature if it has fields with null value</li>
 <li><code>force: 'bool' = false</code> =&gt; Force overwrite the output if already present</li>
 </ul>
@@ -320,7 +328,7 @@ JSON, etc) and loads their fields as attributes to the nodes.</p>
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../plugins/html.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../plugins/dss.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -334,7 +342,7 @@ JSON, etc) and loads their fields as attributes to the nodes.</p>
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../plugins/html.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../plugins/dss.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

@@ -220,14 +220,14 @@ env assert_eq(nodes.NAME, ["b", "a"])
 </code></pre>
 <h2 id="network.load_edges"><a class="header" href="#network.load_edges">load_edges</a></h2>
 <pre><code class="language-sig">network CONN.load_edges(
-    edges: '&amp; [(String, String)]',
+    edges: 'Vec &lt; (RString, RString) &gt;',
     append: 'bool' = false,
     force: 'bool' = false
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>edges: '&amp; [(String, String)]'</code> =&gt; String containing Network connections</li>
+<li><code>edges: 'Vec &lt; (RString, RString) &gt;'</code> =&gt; String containing Network connections</li>
 <li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
 <li><code>force: 'bool' = false</code> =&gt; Force overriding outputs if previous one is present</li>
 </ul>
@@ -238,11 +238,11 @@ file.</p>
 env assert_eq(nodes.NAME, ["c", "b", "a"])
 </code></pre>
 <h2 id="network.subset"><a class="header" href="#network.subset">subset</a></h2>
-<pre><code class="language-sig">network CONN.subset(filter: '&amp; [bool]', keep: 'bool' = true)
+<pre><code class="language-sig">network CONN.subset(filter: 'Vec &lt; bool &gt;', keep: 'bool' = true)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>filter: '&amp; [bool]'</code> =&gt;</li>
+<li><code>filter: 'Vec &lt; bool &gt;'</code> =&gt;</li>
 <li><code>keep: 'bool' = true</code> =&gt; Keep the selected nodes (false = removes the selected)</li>
 </ul>
 <p>Take a subset of network by only including the selected nodes</p>

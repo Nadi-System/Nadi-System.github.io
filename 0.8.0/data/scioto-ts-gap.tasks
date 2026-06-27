@@ -1,0 +1,59 @@
+network load_file("scioto/scioto.network")
+
+network csv.load_timeseries("scioto/scioto.csv", "date", "streamflow");
+
+nodes do ts_complete("streamflow")
+
+x = len(root$$streamflow) - 1
+s = x - 10
+root$$streamflow
+root$$streamflow[s:x]
+root$tl = ts_timeline($$streamflow)
+env$t = node[03229500]$$streamflow -> func(x=false) {if (x==false) {} else {float(x)}}
+env$t
+root$$y = timeseries(
+        $tl,
+        node[03229500]$$streamflow -> func(x=false) {if (x==false) {0.0} else {float(x)}}
+)
+root$$y[s:x]
+
+nodes.good = (ts_len("streamflow", valid=true) / ts_len("streamflow")) > 0.75
+nodes.visual = {};
+nodes.visual.nodeshape = "circle";
+nodes(good).visual.nodecolor = "darkgreen";
+nodes(good).visual.textcolor = "darkgreen";
+network svg_ts_blocks("../output/scioto-ts-gap-id.svg", "{NAME}", "streamflow", 620.0, 820.0, arr_width=500.0, bgcolor="#ffffffff")
+
+image("../output/scioto-ts-gap-id.svg")
+
+
+node[03229610]$sf_fix2 = ($$streamflow, im$$streamflow) -> func(a=false, b=false) {
+	if (a == false & b == false) {return}
+	if (a == false) {
+           if (len(b) == 0) {return}
+	  sum([float(i) for i in values(b)])
+	} else { float(a) }
+}
+
+
+nodes$$streamflow2 = $$streamflow
+
+node[03229610]$$streamflow2 = $sf_fix2
+network svg_ts_blocks("../output/scioto-ts-gap-id-2.svg", "{NAME}", "streamflow2", 620.0, 820.0, arr_width=500.0, bgcolor="#ffffff33")
+
+image("../output/scioto-ts-gap-id-2.svg")
+
+nodes(len(inputs._)>0)$sf_fix3 = ($$streamflow, im$$streamflow) -> func(a=false, b=false) {
+	if (a == false & b == false) {return}
+	if (a == false) {
+           if (len(b) == 0) {return}
+	  sum([float(i) for i in values(b)])
+	} else { float(a) }
+}
+
+nodes$$streamflow3 = $$streamflow
+
+nodes(len(inputs._)>0)$$streamflow3 = $sf_fix3
+network svg_ts_blocks("../output/scioto-ts-gap-id-3.svg", "{NAME}", "streamflow3", 620.0, 820.0, arr_width=500.0, bgcolor="#ffffffff")
+image("../output/scioto-ts-gap-id-3.svg")
+

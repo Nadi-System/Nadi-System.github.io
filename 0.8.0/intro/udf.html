@@ -209,7 +209,7 @@ for x in range(1, 20) {cakc(x)}
 <pre><code class="language-output">
 </code></pre>
 <p>In addition to that, you can also assign the function arguments dynamic values based on previous arguments, or environement/network context. These are similar to the local variables inside the function body, but they can be overridden with other values by the users.</p>
-<pre><code class="language-task">func last(vals, offset=1) { get(vals, length(vals) - offset) }
+<pre><code class="language-task">func last(vals, offset=1) { get(vals, len(vals) - offset) }
 
 last(["a", "b", "c", "d", "e"])
 last(["a", "b", "c", "d", "e"], 2)
@@ -244,7 +244,7 @@ test()
 </code></pre>
 <p>This can allow you to reduce the number of arguments required for the function call while also allowing the user to define that if needed.</p>
 <p>Since there is only immutable expression evaluation in the functions, anything requiring something like a loop has to be done through recursion.</p>
-<pre><code class="language-task">func sum_vals(vals, ind=length(vals) - 1) {
+<pre><code class="language-task">func sum_vals(vals, ind=len(vals) - 1) {
 	if (ind &lt; 0) { 0 } else {
 		get(vals, ind) + sum_vals(vals, ind - 1)
 	}
@@ -284,9 +284,9 @@ utils.settings()
 utils.settings(top=100)
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">{right = 10, left = 10, deltay = 10, deltax = 10, bottom = 10, fontsize = 10, top = 10}
+<pre><code class="language-output">{left = 10.0, bottom = 10.0, deltay = 10.0, fontsize = 10.0, right = 10.0, deltax = 10.0, top = 10.0}
 
-{right = 10, deltax = 10, left = 10, deltay = 10, fontsize = 10, top = 100, bottom = 10}
+{top = 100.0, bottom = 10.0, deltax = 10.0, deltay = 10.0, right = 10.0, fontsize = 10.0, left = 10.0}
 </code></pre>
 <p>While importing functions from a <code>.tasks</code> file, only the function definitions are imported, other tasks are not executed.</p>
 

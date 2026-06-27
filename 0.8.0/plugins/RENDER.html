@@ -179,14 +179,14 @@
                         <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
 <h2 id="env.render"><a class="header" href="#env.render">render</a></h2>
 <pre><code class="language-sig">env RENDER.render(
-    template: '&amp; Template',
+    template: 'Template',
     safe: 'bool' = false,
     **keyval
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: '&amp; Template'</code> =&gt; String template to render</li>
+<li><code>template: 'Template'</code> =&gt; String template to render</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 <li><code>**keyval</code> =&gt;</li>
 </ul>
@@ -207,11 +207,11 @@ in the template without a value.</p>
 </code></pre>
 <h1 id="node-functions"><a class="header" href="#node-functions">Node Functions</a></h1>
 <h2 id="node.render"><a class="header" href="#node.render">render</a></h2>
-<pre><code class="language-sig">node RENDER.render(template: '&amp; Template', safe: 'bool' = false)
+<pre><code class="language-sig">node RENDER.render(template: 'Template', safe: 'bool' = false)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: '&amp; Template'</code> =&gt; String template to render</li>
+<li><code>template: 'Template'</code> =&gt; String template to render</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 </ul>
 <p>Render the template based on the node attributes</p>
@@ -224,11 +224,11 @@ nodes assert_eq(render("abc {x} {a}", safe=true), "abc {x} {a}")
 </code></pre>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.render"><a class="header" href="#network.render">render</a></h2>
-<pre><code class="language-sig">network RENDER.render(template: '&amp; Template', safe: 'bool' = false)
+<pre><code class="language-sig">network RENDER.render(template: 'Template', safe: 'bool' = false)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: '&amp; Template'</code> =&gt; Path to the template file</li>
+<li><code>template: 'Template'</code> =&gt; Path to the template file</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 </ul>
 <p>Render from network attributes</p>
@@ -238,14 +238,14 @@ network assert_eq(render("abc {x} {a}", safe=true), "abc {x} {a}")
 </code></pre>
 <h2 id="network.render_nodes"><a class="header" href="#network.render_nodes">render_nodes</a></h2>
 <pre><code class="language-sig">network RENDER.render_nodes(
-    template: '&amp; Template',
+    template: 'Template',
     safe: 'bool' = false,
     join: '&amp; str' = "\n"
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: '&amp; Template'</code> =&gt; Path to the template file</li>
+<li><code>template: 'Template'</code> =&gt; Path to the template file</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 <li><code>join: '&amp; str' = "\n"</code> =&gt; String to join the render results</li>
 </ul>
