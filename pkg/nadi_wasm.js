@@ -1,6 +1,18 @@
 /* @ts-self-types="./nadi_wasm.d.ts" */
 
 /**
+ * check if the tasks have plugins, those can't be run from wasm
+ * @param {string} code
+ * @returns {boolean}
+ */
+export function can_run_in_wasm(code) {
+    const ptr0 = passStringToWasm0(code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.can_run_in_wasm(ptr0, len0);
+    return ret !== 0;
+}
+
+/**
  * @param {string} canvas_id
  * @param {string} net_id
  * @param {string} node_color
@@ -19,6 +31,37 @@ export function nadi_draw_network(canvas_id, net_id, node_color, edge_color, tex
     const ptr4 = passStringToWasm0(text_color, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     const len4 = WASM_VECTOR_LEN;
     wasm.nadi_draw_network(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3, ptr4, len4);
+}
+
+/**
+ * @param {string} code_id
+ * @param {string} response_id
+ */
+export function nadi_run_tasks(code_id, response_id) {
+    const ptr0 = passStringToWasm0(code_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passStringToWasm0(response_id, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len1 = WASM_VECTOR_LEN;
+    wasm.nadi_run_tasks(ptr0, len0, ptr1, len1);
+}
+
+/**
+ * @param {string} code
+ * @returns {string}
+ */
+export function run_tasks(code) {
+    let deferred2_0;
+    let deferred2_1;
+    try {
+        const ptr0 = passStringToWasm0(code, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.run_tasks(ptr0, len0);
+        deferred2_0 = ret[0];
+        deferred2_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
+    }
 }
 function __wbg_get_imports() {
     const import0 = {
@@ -69,6 +112,17 @@ function __wbg_get_imports() {
         __wbg_getElementById_4d387870cd6176ee: function(arg0, arg1, arg2) {
             const ret = arg0.getElementById(getStringFromWasm0(arg1, arg2));
             return isLikeNone(ret) ? 0 : addToExternrefTable0(ret);
+        },
+        __wbg_getRandomValues_cc7f052a444bb2ce: function() { return handleError(function (arg0, arg1) {
+            globalThis.crypto.getRandomValues(getArrayU8FromWasm0(arg0, arg1));
+        }, arguments); },
+        __wbg_getTime_ef2e115ede346a26: function(arg0) {
+            const ret = arg0.getTime();
+            return ret;
+        },
+        __wbg_getTimezoneOffset_3799ec941ff27e9c: function(arg0) {
+            const ret = arg0.getTimezoneOffset();
+            return ret;
         },
         __wbg_height_16941927eccda208: function(arg0) {
             const ret = arg0.height;
@@ -131,6 +185,14 @@ function __wbg_get_imports() {
         __wbg_moveTo_bef5a862af82e499: function(arg0, arg1, arg2) {
             arg0.moveTo(arg1, arg2);
         },
+        __wbg_new_0_878c6ec3a1c600f3: function() {
+            const ret = new Date();
+            return ret;
+        },
+        __wbg_new_a21cf41c5c809e4c: function(arg0) {
+            const ret = new Date(arg0);
+            return ret;
+        },
         __wbg_set_fillStyle_10211d4f453e526d: function(arg0, arg1, arg2) {
             arg0.fillStyle = getStringFromWasm0(arg1, arg2);
         },
@@ -145,6 +207,9 @@ function __wbg_get_imports() {
         },
         __wbg_set_textBaseline_05250735fee1eb09: function(arg0, arg1, arg2) {
             arg0.textBaseline = getStringFromWasm0(arg1, arg2);
+        },
+        __wbg_set_value_7d521a0c360cf2cd: function(arg0, arg1, arg2) {
+            arg0.value = getStringFromWasm0(arg1, arg2);
         },
         __wbg_set_width_5e8d872fae03f8b5: function(arg0, arg1) {
             arg0.width = arg1 >>> 0;
@@ -179,7 +244,12 @@ function __wbg_get_imports() {
             const ret = arg0.width;
             return ret;
         },
-        __wbindgen_cast_0000000000000001: function(arg0, arg1) {
+        __wbindgen_cast_0000000000000001: function(arg0) {
+            // Cast intrinsic for `F64 -> Externref`.
+            const ret = arg0;
+            return ret;
+        },
+        __wbindgen_cast_0000000000000002: function(arg0, arg1) {
             // Cast intrinsic for `Ref(String) -> Externref`.
             const ret = getStringFromWasm0(arg0, arg1);
             return ret;
@@ -269,6 +339,11 @@ function debugString(val) {
     }
     // TODO we could test for more things here, like `Set`s and `Map`s.
     return className;
+}
+
+function getArrayU8FromWasm0(ptr, len) {
+    ptr = ptr >>> 0;
+    return getUint8ArrayMemory0().subarray(ptr / 1, ptr / 1 + len);
 }
 
 let cachedDataViewMemory0 = null;

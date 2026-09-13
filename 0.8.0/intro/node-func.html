@@ -15,8 +15,8 @@
         <link rel="icon" href="../favicon-de23e50b.svg">
         <link rel="shortcut icon" href="../favicon-8114d1fc.png">
         <link rel="stylesheet" href="../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../css/general-2459343d.css">
-        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/general-e96d0476.css">
+        <link rel="stylesheet" href="../css/chrome-d279d366.css">
         <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
+            window.path_to_searchindex_js = "../searchindex-a53aa3b3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-613f6f39.js"></script>
+        <script src="../toc-1fe14bb7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -316,7 +316,7 @@ nm [val, ORDER]
 <p>You can selectively run only a few nodes based on a list, or a path.</p>
 <p>Given this network:</p>
 <center>
-<p><img src="../data/mississippi.svg" alt="Network Diagram"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../data/mississippi.svg" alt="Network Diagram"><span class="img-wrapper"><img src="../data/mississippi.svg" alt="Network Diagram"></span></label></p>
 </center>
 <h3 id="list-of-nodes"><a class="header" href="#list-of-nodes">List of Nodes</a></h3>
 <p>List of node contains a separated list of node names or quoted string if the name is not valid identifier/number inside <code>[]</code>.</p>
@@ -352,25 +352,23 @@ NAME = "upper-mississippi"
 <p>You can combine the three different types of propagations in a single task using the syntax <code>node&lt;...&gt;[...](...)</code>, they must come in that sequence as the order is decided first, then the list/path is taken, and finally the condition is evaluated to boolean before selecting the nodes.</p>
 <p>For example:</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>nodesmap[tenessee -&gt; "lower-mississippi"]("mississippi" in NAME) INDEX
+</span>nodesmap[tenessee -&gt; "lower-mississippi"](NAME match "mississippi").INDEX
 nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"] INDEX
 nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">{
-  "lower-mississippi" = 0
-}
+<p>ParseError:</p>
+<pre><code class="language-error">Error: Parse Error at Line 2 Column 1
+  nodesmap[tenessee -&gt; "lower-mississippi"](NAME match "mississippi").INDEX
+  ^ Unexpected Token
+</code></pre>
+<h2 id="playground-html-only"><a class="header" href="#playground-html-only">Playground: HTML only</a></h2>
+<p>Node functions can be used in any <code>node</code> context.</p>
+<pre><code class="language-task editable">net.load_str("a -&gt; b")
 
-{
-  "lower-mississippi" = 0,
-  ohio = 5,
-  tenessee = 6
-}
-
-{
-  "lower-mississippi" = 0,
-  ohio = 5
-}
+nodes.inputs_count()
+nodesmap[a -&gt; b].inputs_count()
+node[b].inputs_count()
+nodes.ts_count()
 </code></pre>
 
                     </main>
@@ -409,22 +407,31 @@ nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
         <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
+        <script>
+            window.playground_line_numbers = true;
+        </script>
 
         <script>
             window.playground_copyable = true;
         </script>
 
+        <script src="../ace-2a3cd908.js"></script>
+        <script src="../mode-rust-2c9d5c9a.js"></script>
+        <script src="../editor-16ca416c.js"></script>
+        <script src="../theme-dawn-4493f9c8.js"></script>
+        <script src="../theme-tomorrow_night-9dbe62a9.js"></script>
 
         <script src="../elasticlunr-ef4e11c1.min.js"></script>
         <script src="../mark-09e88c2c.min.js"></script>
-        <script src="../searcher-c2a407aa.js"></script>
+        <script src="../searcher-09f2665d.js"></script>
 
         <script src="../clipboard-1626706a.min.js"></script>
-        <script src="../highlight-abc7f01d.js"></script>
-        <script src="../book-a0b12cfe.js"></script>
+        <script src="../highlight-a4af0267.js"></script>
+        <script src="../book-9d8b8e83.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
+        <script src="../theme/load_nadi_global-0c6e62da.js"></script>
+        <script src="../theme/mode-task-88dcc689.js"></script>
 
 
 

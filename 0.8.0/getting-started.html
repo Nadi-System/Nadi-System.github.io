@@ -15,8 +15,8 @@
         <link rel="icon" href="favicon-de23e50b.svg">
         <link rel="shortcut icon" href="favicon-8114d1fc.png">
         <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-2459343d.css">
-        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
         <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-8aab83c6.js";
+            window.path_to_searchindex_js = "searchindex-a53aa3b3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-613f6f39.js"></script>
+        <script src="toc-1fe14bb7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -213,10 +213,10 @@ nodesmap array(LEVEL, ORDER)
 </ul>
 <h2 id="integrated-development-environment-ide"><a class="header" href="#integrated-development-environment-ide">Integrated Development Environment (IDE)</a></h2>
 <p>NADI IDE contains multiple components to make it easier to write, edit, and run tasks, as well as visualize the network and browse the function documentation.</p>
-<p><img src="./images/ide-screenshot.png" alt="IDE"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./images/ide-screenshot.png" alt="IDE"><span class="img-wrapper"><img src="./images/ide-screenshot.png" alt="IDE"></span></label></p>
 <p>As you can see, the main UI is divided into multiple panes, which are independent components that you can resize, arrange the way you want.</p>
 <p>First, when you start NADI IDE, you come up with this view:</p>
-<p><img src="./images/ide-start.png" alt="IDE Greeting"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./images/ide-start.png" alt="IDE Greeting"><span class="img-wrapper"><img src="./images/ide-start.png" alt="IDE Greeting"></span></label></p>
 <ol>
 <li>Different layout options</li>
 <li>Global options</li>
@@ -228,7 +228,7 @@ nodesmap array(LEVEL, ORDER)
 <p>The layout of each pane are similar, while each one will have their own contents. For example, “Function Help” contains the help for the plugin functions. We will go over each one in a separate chapter.</p>
 <p>You can choose a singular pane type here, or chose a combination of panes that feels more useful. Some panes like terminal/attribute views also spawn automatically (if not already in view) when you try to run tasks, or click nodes.</p>
 <p>Now, let’s choose “Text Editor” for now, then we’re greeted with this view:</p>
-<p><img src="./images/ide-editor.png" alt="IDE Editor"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./images/ide-editor.png" alt="IDE Editor"><span class="img-wrapper"><img src="./images/ide-editor.png" alt="IDE Editor"></span></label></p>
 <p>Now, aside from the global components, we have:</p>
 <ol start="6">
 <li>Editor Tools,</li>
@@ -259,7 +259,7 @@ nodesmap array(LEVEL, ORDER)
 </table>
 </div>
 <p>When yo run a line using “Run Line/Selection” it should spawn a terminal pane on the right side</p>
-<p><img src="./images/ide-term.png" alt="IDE Terminal"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./images/ide-term.png" alt="IDE Terminal"><span class="img-wrapper"><img src="./images/ide-term.png" alt="IDE Terminal"></span></label></p>
 <p>Here we have:</p>
 <ol>
 <li>Terminal Contents: tasks that were run, and their output,</li>
@@ -270,11 +270,11 @@ nodesmap array(LEVEL, ORDER)
 </ol>
 <p>Upto here will be enough to run tasks. But the advantage of the IDE with a Graphical User Interface (GUI) comes in the form of network visualization. If you open the Network Viewer pane, either through the dropdown to change one of the pane. Or split the panes and open Network Viewer there, you can see the network visualized.</p>
 <p>The figure below shows the network viewer, and the attribute viewer (it spawns when you click on a node in the network) on the bottom right.</p>
-<p><img src="./images/ide-screenshot.png" alt="IDE"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./images/ide-screenshot.png" alt="IDE"><span class="img-wrapper"><img src="./images/ide-screenshot.png" alt="IDE"></span></label></p>
 <p>You can click on the “&lt;” button on the right side of the network viewer to expand the sidebar that has details on how to change the visual attributes of the nodes. You can run the examples in the code for testing them out as well.</p>
 <p><strong>Extra components of the IDE</strong> includes the Function Help that you can use to browse the plugin functions’ documentation, and SVG viewer that you can use to open SVG files. The SVG viewer is very primitive and only meant to be a quick check/update while you’re fine tuning an exported SVG file, use dedicated softwares and web browsers for actual viewing.</p>
 <p>The function help looks like below:</p>
-<p><img src="./images/ide-help.png" alt="IDE Help"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./images/ide-help.png" alt="IDE Help"><span class="img-wrapper"><img src="./images/ide-help.png" alt="IDE Help"></span></label></p>
 <p>The figure contains,</p>
 <ol>
 <li>Buttons for Reset, and links to NADI Book and Github,</li>
@@ -344,22 +344,31 @@ nodes assert_eq(render("abc {x} {a}", safe=true), "abc {x} {a}")
         <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
+        <script>
+            window.playground_line_numbers = true;
+        </script>
 
         <script>
             window.playground_copyable = true;
         </script>
 
+        <script src="ace-2a3cd908.js"></script>
+        <script src="mode-rust-2c9d5c9a.js"></script>
+        <script src="editor-16ca416c.js"></script>
+        <script src="theme-dawn-4493f9c8.js"></script>
+        <script src="theme-tomorrow_night-9dbe62a9.js"></script>
 
         <script src="elasticlunr-ef4e11c1.min.js"></script>
         <script src="mark-09e88c2c.min.js"></script>
-        <script src="searcher-c2a407aa.js"></script>
+        <script src="searcher-09f2665d.js"></script>
 
         <script src="clipboard-1626706a.min.js"></script>
-        <script src="highlight-abc7f01d.js"></script>
-        <script src="book-a0b12cfe.js"></script>
+        <script src="highlight-a4af0267.js"></script>
+        <script src="book-9d8b8e83.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="theme/syntax-highlight-7e337cc0.js"></script>
+        <script src="theme/load_nadi_global-0c6e62da.js"></script>
+        <script src="theme/mode-task-88dcc689.js"></script>
 
 
 

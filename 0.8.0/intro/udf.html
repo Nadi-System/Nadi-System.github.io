@@ -15,8 +15,8 @@
         <link rel="icon" href="../favicon-de23e50b.svg">
         <link rel="shortcut icon" href="../favicon-8114d1fc.png">
         <link rel="stylesheet" href="../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../css/general-2459343d.css">
-        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/general-e96d0476.css">
+        <link rel="stylesheet" href="../css/chrome-d279d366.css">
         <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
+            window.path_to_searchindex_js = "../searchindex-a53aa3b3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-613f6f39.js"></script>
+        <script src="../toc-1fe14bb7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -209,15 +209,14 @@ for x in range(1, 20) {cakc(x)}
 <pre><code class="language-output">
 </code></pre>
 <p>In addition to that, you can also assign the function arguments dynamic values based on previous arguments, or environement/network context. These are similar to the local variables inside the function body, but they can be overridden with other values by the users.</p>
-<pre><code class="language-task">func last(vals, offset=1) { get(vals, len(vals) - offset) }
+<pre><code class="language-task">func last(vals, offset=1) { get(vals, length(vals) - offset) }
 
 last(["a", "b", "c", "d", "e"])
 last(["a", "b", "c", "d", "e"], 2)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">"e"
-
-"d"
+<p>*Error*:</p>
+<pre><code class="language-error">
+FunctionNotFoundError  at Line 3 Column 1: env function named "length" not found
 </code></pre>
 <p>While you can use <code>env</code>, <code>network</code> and <code>nodes</code> variables here as well, the expression is run in immutable context, so nothing can be changed.
 The variables are local to the function, hence, any assignment of the variable values inside the body of the functions does not affect the outside.</p>
@@ -244,7 +243,7 @@ test()
 </code></pre>
 <p>This can allow you to reduce the number of arguments required for the function call while also allowing the user to define that if needed.</p>
 <p>Since there is only immutable expression evaluation in the functions, anything requiring something like a loop has to be done through recursion.</p>
-<pre><code class="language-task">func sum_vals(vals, ind=len(vals) - 1) {
+<pre><code class="language-task">func sum_vals(vals, ind=length(vals) - 1) {
 	if (ind &lt; 0) { 0 } else {
 		get(vals, ind) + sum_vals(vals, ind - 1)
 	}
@@ -254,12 +253,9 @@ sum_vals([1,2,3])
 sum_vals([1, 3.5])
 sum_vals([1,2,3, 4, 5, 6])
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">6
-
-4.5
-
-21
+<p>*Error*:</p>
+<pre><code class="language-error">
+FunctionNotFoundError  at Line 7 Column 1: env function named "length" not found
 </code></pre>
 <p>Be careful of exit condition while working with recursion. This could lead into infinite loop. NADI will crash with stack overflow if that happens. This can also happen if there is too much recursion.</p>
 <p>Iteration through for loop can be used to generate arrays, but currently there is no syntax for reducing the iteration to single value like required in the sum case. In future, we plan to provide <code>reduce</code> system so that these things can be avoided. This is the first iteration of the user defined functions.</p>
@@ -276,19 +272,23 @@ func settings(top=10, bottom=10, left=10, right=10, deltax=10, deltay=10) {
 
 network cairo.table("Index =&gt; {INDEX}\n &lt;Name =&gt; {NAME}", "./output/svg-funcs.svg")
 </code></pre>
-<p>Results:<br><img src="../output/svg-funcs.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../output/svg-funcs.svg" alt="Output Image"><span class="img-wrapper"><img src="../output/svg-funcs.svg" alt="Output Image"></span></label></p>
 <p>You can save these functions in a file and import them later:</p>
 <pre><code class="language-task">import utils
 
 utils.settings()
 utils.settings(top=100)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">{left = 10.0, bottom = 10.0, deltay = 10.0, fontsize = 10.0, right = 10.0, deltax = 10.0, top = 10.0}
-
-{top = 100.0, bottom = 10.0, deltax = 10.0, deltay = 10.0, right = 10.0, fontsize = 10.0, left = 10.0}
+<p>*Error*:</p>
+<pre><code class="language-error">NotImplementedError  at Line 1 Column 1: import other than tasks, this feature is planned for future versions
 </code></pre>
 <p>While importing functions from a <code>.tasks</code> file, only the function definitions are imported, other tasks are not executed.</p>
+<h2 id="playground-html-only"><a class="header" href="#playground-html-only">Playground: HTML only</a></h2>
+<p>Try to define a function and use it in the playground below:</p>
+<pre><code class="language-task editable">func add(a,b) {a + b}
+
+add(1,2)
+</code></pre>
 
                     </main>
 
@@ -326,22 +326,31 @@ utils.settings(top=100)
         <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
+        <script>
+            window.playground_line_numbers = true;
+        </script>
 
         <script>
             window.playground_copyable = true;
         </script>
 
+        <script src="../ace-2a3cd908.js"></script>
+        <script src="../mode-rust-2c9d5c9a.js"></script>
+        <script src="../editor-16ca416c.js"></script>
+        <script src="../theme-dawn-4493f9c8.js"></script>
+        <script src="../theme-tomorrow_night-9dbe62a9.js"></script>
 
         <script src="../elasticlunr-ef4e11c1.min.js"></script>
         <script src="../mark-09e88c2c.min.js"></script>
-        <script src="../searcher-c2a407aa.js"></script>
+        <script src="../searcher-09f2665d.js"></script>
 
         <script src="../clipboard-1626706a.min.js"></script>
-        <script src="../highlight-abc7f01d.js"></script>
-        <script src="../book-a0b12cfe.js"></script>
+        <script src="../highlight-a4af0267.js"></script>
+        <script src="../book-9d8b8e83.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
+        <script src="../theme/load_nadi_global-0c6e62da.js"></script>
+        <script src="../theme/mode-task-88dcc689.js"></script>
 
 
 

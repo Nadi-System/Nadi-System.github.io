@@ -16,8 +16,8 @@
         <link rel="icon" href="favicon-de23e50b.svg">
         <link rel="shortcut icon" href="favicon-8114d1fc.png">
         <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-2459343d.css">
-        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
         <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-8aab83c6.js";
+            window.path_to_searchindex_js = "searchindex-a53aa3b3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-613f6f39.js"></script>
+        <script src="toc-1fe14bb7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -235,7 +235,7 @@ Refer to the book’s <a href="#learn-by-examples">Learn by Examples</a> chapter
 <h1 id="what-is-nadi-system"><a class="header" href="#what-is-nadi-system">What is NADI System?</a></h1>
 <p>Network Analysis amd Data Integration (NADI) System is a system of programs made to make network based data analysis easier and more accessible.</p>
 <p>It consists of multiple tools, that perform two important functions, network detection and network analysis. First part is done throuh the <strong>Geographic Information (GIS) Tool</strong>, while the second part is done using a <strong>Domain Specific Programming Language (DSPL)</strong> called NADI Task system.</p>
-<p><img src="images/nadi-workflow-simple.svg" alt="NADI System Workflow"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/nadi-workflow-simple.svg" alt="NADI System Workflow"><span class="img-wrapper"><img src="images/nadi-workflow-simple.svg" alt="NADI System Workflow"></span></label></p>
 <h1 id="why-use-nadi-system"><a class="header" href="#why-use-nadi-system">Why use NADI System?</a></h1>
 <p>Hydrologic modeling involves the integration of diverse data to
 simulate complex (and often poorly understood) hydrological
@@ -373,6 +373,19 @@ get the results, but hidden due to being irrelevant to the
 discussion. In those cases you can use the eye icon on the top right
 side of the code blocks to make them visible. Similarly use the copy
 icon to copy the visible code into clipboard.</p>
+<h2 id="code-execution-html-only"><a class="header" href="#code-execution-html-only">Code Execution: HTML only</a></h2>
+<p>If you are on HTML version of the user document, you can test codes in here by clicking the play button on the code. You can run it and verify you get the same result as the one shown in the documentation.</p>
+<p>Note that code execution in the browser is limited to only the basic function that do not depend on any plugins, and any system operations like file IO, terminal, etc. But this can be a good way to get familiar with the system.</p>
+<p>In some cases, there is editable code blocks as well, in those cases you can edit the NADI code in the box and run it to get different results. Try editing and running the code below</p>
+<pre><code class="language-task editable">net.load_str("a -&gt; b")
+nodesmap inputs.NAME
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  b = ["a"],
+  a = []
+}
+</code></pre>
 <h2 id="string-template-syntax-highlight"><a class="header" href="#string-template-syntax-highlight">String Template Syntax Highlight</a></h2>
 <p>The syntax highlight can help you detect the variables
 part (within <code>{}</code>). But remember, even if they are highlighted, it could be used as a normal string if they are passed to a function taking “String” instead of “Template”</p>
@@ -492,7 +505,7 @@ part (within <code>{}</code>). But remember, even if they are highlighted, it co
 </table>
 </div>
 <p>As seen in the figure below: as a user you only need to interact with a subset of the NADI architecture.</p>
-<p><img src="../images/architecture.svg" alt="Architecture"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../images/architecture.svg" alt="Architecture"><span class="img-wrapper"><img src="../images/architecture.svg" alt="Architecture"></span></label></p>
 <h2 id="workflow-for-rivers"><a class="header" href="#workflow-for-rivers">Workflow for Rivers</a></h2>
 <p>A Typical workflow in NADI System for river network related analysis consists of the follwing 4 processes:</p>
 <ol>
@@ -503,7 +516,7 @@ part (within <code>{}</code>). But remember, even if they are highlighted, it co
 <li>Post Process</li>
 </ol>
 <p>The figure below shows the order of how the components of the NADI System (blue) is used along side external tools (black).</p>
-<p><img src="images/venn-diagram.svg" alt="NADI System Workflow"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/venn-diagram.svg" alt="NADI System Workflow"><span class="img-wrapper"><img src="images/venn-diagram.svg" alt="NADI System Workflow"></span></label></p>
 <p>Here the numbers in red circles are the order of use for different tools. Here the “Run Tasks” step represents running the NADI DSL Code in the System, so it is further divided into the tasks inside the code. The numbers on the blue circles show a typical use case of the DSL to perform a research work.</p>
 <p>For exact details on what a typical research workflow involving the NADI DSL is, refer to the examples.</p>
 <h2 id="nadi-gis"><a class="header" href="#nadi-gis">NADI GIS</a></h2>
@@ -601,7 +614,7 @@ Options:
 <li>fullscreen current page/ restore layout if it’s fullscreen</li>
 <li>close current pane</li>
 </ul>
-<p><img src="images/ide-screenshot.png" alt="Screenshot of NADI IDE"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ide-screenshot.png" alt="Screenshot of NADI IDE"><span class="img-wrapper"><img src="images/ide-screenshot.png" alt="Screenshot of NADI IDE"></span></label></p>
 <p>It has the following components:</p>
 <h3 id="text-editor"><a class="header" href="#text-editor">Text Editor</a></h3>
 <p>Open text files, edit and save them.</p>
@@ -766,15 +779,14 @@ command("julia --version", echo=true);
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">$ python --version
-Python 3.14.4
+Python 3.14.7
 
 
 $ Rscript --version
-Rscript (R) version 4.6.0 (2026-04-24)
+Rscript (R) version 4.6.1 (2026-06-24)
 
 
 $ julia --version
-julia version 1.12.6
 </code></pre>
 <p>Here we can see, the commands that ran successfully and returned a version are valid.</p>
 <p>To write scripts and run them from nadi refer to <a href="#executable-plugins-1">Executable Plugins</a> section on Plugin Developer Guide.</p>
@@ -969,7 +981,9 @@ env$x_filled
 Series(len: 10, dtype: Floats) [0, 20, 0, 40, 0, 60, 0, 80, 0, 100]
 </code></pre>
 <p>You can also use other series to fill the gaps like:</p>
-<pre><code class="language-task">env$x_filled2 = ($x, $x_gap) -&gt; func(i, j = false) { if (j == false) {i} else {j}}
+<pre><code class="language-task"><span class="boring">env$x = 1:10
+</span><span class="boring">env$x_gap = $x -&gt; func(i) {if (i % 2 == 0) {return i * 10}}
+</span>env$x_filled2 = ($x, $x_gap) -&gt; func(i, j = false) { if (j == false) {i} else {j}}
 env$x_filled2
 </code></pre>
 <p>Results:</p>
@@ -1032,7 +1046,7 @@ Options:
 </code></pre>
 <h1 id="nadi-qgis"><a class="header" href="#nadi-qgis">NADI QGIS</a></h1>
 <p>The QGIS plugin for nadi has a subset of the CLI functionality. It can be accessed from the Processing Toolbox.</p>
-<p><img src="images/qgis-processing.png" alt="QGIS Processing Toolbox"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/qgis-processing.png" alt="QGIS Processing Toolbox"><span class="img-wrapper"><img src="images/qgis-processing.png" alt="QGIS Processing Toolbox"></span></label></p>
 <p>You can run the tools from there and use the layers in QGIS as inputs. The QGIS plugin will first try to find <code>nadi-gis</code> binary on your <code>PATH</code> and use it, if not it’ll try to use the binary provided with the plugins. It is preferred to have <code>nadi-gis</code> available in <code>PATH</code> and running without errors.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="example"><a class="header" href="#example">Example</a></h1>
@@ -1040,18 +1054,18 @@ Options:
 <p>If you want a video demostration, <a href="https://youtu.be/PIGoVnXb7ck">there is a Demo Video on YouTube</a>.</p>
 <h2 id="using-qgis-plugin"><a class="header" href="#using-qgis-plugin">Using QGIS Plugin</a></h2>
 <p>First <strong>downloading the data</strong> is done through the <code>Download USGS Data</code> tool. As shown in the screenshot below, input the USGS site ID and the data type you want to download.</p>
-<p><img src="images/qgis-download.png" alt="QGIS Download"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/qgis-download.png" alt="QGIS Download"><span class="img-wrapper"><img src="images/qgis-download.png" alt="QGIS Download"></span></label></p>
 <p>You will need, <code>tributaries</code> for the upstream tributaries for network, and <code>nwis-site</code> will download the USGS NWIS sites upstream of the location. We will use those two for the example. If you have national data from other sources, you can use the basin polygon to crop them.</p>
 <p><strong>Stream Order</strong> tool is mostly for visual purposes. The figure below shows the results from stream order on right compared to the raw download on left.</p>
-<p><img src="images/qgis-order.png" alt="Stream Order Result"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/qgis-order.png" alt="Stream Order Result"><span class="img-wrapper"><img src="images/qgis-order.png" alt="Stream Order Result"></span></label></p>
 <p>After you have streams (tributaries), you can use the <strong>Check Streams</strong> tool to see if there are any errors. It will give all the nodes and their categories, you can filter them to see if it has branches, or if it has more than one outlet. The figure below shows the branches with red dot. If we zoom in we can see how the bifurcation on the stream is detected, and how stream order calculation is confused there.</p>
-<p><img src="images/qgis-branch.png" alt="Check Streams Result"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/qgis-branch.png" alt="Check Streams Result"><span class="img-wrapper"><img src="images/qgis-branch.png" alt="Check Streams Result"></span></label></p>
 <p><strong>Find Connections</strong> tool will find the connection between the points using the stream network. The results below shows the tool being run on the NWIS points.</p>
-<p><img src="images/qgis-network.png" alt="Find Connections Result"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/qgis-network.png" alt="Find Connections Result"><span class="img-wrapper"><img src="images/qgis-network.png" alt="Find Connections Result"></span></label></p>
 <p>If we select <strong>simplify</strong> option, it’ll only save the start and end point of the connection instead of the whole stream.</p>
-<p><img src="images/qgis-network2.png" alt="Find Connections Result Alt"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/qgis-network2.png" alt="Find Connections Result Alt"><span class="img-wrapper"><img src="images/qgis-network2.png" alt="Find Connections Result Alt"></span></label></p>
 <p>Of course you can run <strong>Stream Order</strong> on the results to get a more aesthetically pleasing result.</p>
-<p><img src="images/qgis-network3.png" alt="Find Connections Result with Order"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/qgis-network3.png" alt="Find Connections Result with Order"><span class="img-wrapper"><img src="images/qgis-network3.png" alt="Find Connections Result with Order"></span></label></p>
 <h2 id="using-cli"><a class="header" href="#using-cli">Using CLI</a></h2>
 <p>An example of running <code>nadi-gis</code> using CLI can be done in the following steps:</p>
 <h3 id="download-data"><a class="header" href="#download-data">Download data</a></h3>
@@ -1158,10 +1172,10 @@ nodesmap array(LEVEL, ORDER)
 </ul>
 <h2 id="integrated-development-environment-ide"><a class="header" href="#integrated-development-environment-ide">Integrated Development Environment (IDE)</a></h2>
 <p>NADI IDE contains multiple components to make it easier to write, edit, and run tasks, as well as visualize the network and browse the function documentation.</p>
-<p><img src="images/ide-screenshot.png" alt="IDE"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ide-screenshot.png" alt="IDE"><span class="img-wrapper"><img src="images/ide-screenshot.png" alt="IDE"></span></label></p>
 <p>As you can see, the main UI is divided into multiple panes, which are independent components that you can resize, arrange the way you want.</p>
 <p>First, when you start NADI IDE, you come up with this view:</p>
-<p><img src="images/ide-start.png" alt="IDE Greeting"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ide-start.png" alt="IDE Greeting"><span class="img-wrapper"><img src="images/ide-start.png" alt="IDE Greeting"></span></label></p>
 <ol>
 <li>Different layout options</li>
 <li>Global options</li>
@@ -1173,7 +1187,7 @@ nodesmap array(LEVEL, ORDER)
 <p>The layout of each pane are similar, while each one will have their own contents. For example, “Function Help” contains the help for the plugin functions. We will go over each one in a separate chapter.</p>
 <p>You can choose a singular pane type here, or chose a combination of panes that feels more useful. Some panes like terminal/attribute views also spawn automatically (if not already in view) when you try to run tasks, or click nodes.</p>
 <p>Now, let’s choose “Text Editor” for now, then we’re greeted with this view:</p>
-<p><img src="images/ide-editor.png" alt="IDE Editor"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ide-editor.png" alt="IDE Editor"><span class="img-wrapper"><img src="images/ide-editor.png" alt="IDE Editor"></span></label></p>
 <p>Now, aside from the global components, we have:</p>
 <ol start="6">
 <li>Editor Tools,</li>
@@ -1204,7 +1218,7 @@ nodesmap array(LEVEL, ORDER)
 </table>
 </div>
 <p>When yo run a line using “Run Line/Selection” it should spawn a terminal pane on the right side</p>
-<p><img src="images/ide-term.png" alt="IDE Terminal"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ide-term.png" alt="IDE Terminal"><span class="img-wrapper"><img src="images/ide-term.png" alt="IDE Terminal"></span></label></p>
 <p>Here we have:</p>
 <ol>
 <li>Terminal Contents: tasks that were run, and their output,</li>
@@ -1215,11 +1229,11 @@ nodesmap array(LEVEL, ORDER)
 </ol>
 <p>Upto here will be enough to run tasks. But the advantage of the IDE with a Graphical User Interface (GUI) comes in the form of network visualization. If you open the Network Viewer pane, either through the dropdown to change one of the pane. Or split the panes and open Network Viewer there, you can see the network visualized.</p>
 <p>The figure below shows the network viewer, and the attribute viewer (it spawns when you click on a node in the network) on the bottom right.</p>
-<p><img src="images/ide-screenshot.png" alt="IDE"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ide-screenshot.png" alt="IDE"><span class="img-wrapper"><img src="images/ide-screenshot.png" alt="IDE"></span></label></p>
 <p>You can click on the “&lt;” button on the right side of the network viewer to expand the sidebar that has details on how to change the visual attributes of the nodes. You can run the examples in the code for testing them out as well.</p>
 <p><strong>Extra components of the IDE</strong> includes the Function Help that you can use to browse the plugin functions’ documentation, and SVG viewer that you can use to open SVG files. The SVG viewer is very primitive and only meant to be a quick check/update while you’re fine tuning an exported SVG file, use dedicated softwares and web browsers for actual viewing.</p>
 <p>The function help looks like below:</p>
-<p><img src="images/ide-help.png" alt="IDE Help"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ide-help.png" alt="IDE Help"><span class="img-wrapper"><img src="images/ide-help.png" alt="IDE Help"></span></label></p>
 <p>The figure contains,</p>
 <ol>
 <li>Buttons for Reset, and links to NADI Book and Github,</li>
@@ -1399,6 +1413,15 @@ nodes.NAME
   123 -&gt; node-1
              ^ Invalid Value: Invalid node name
 </code></pre>
+<h2 id="playground-html-only"><a class="header" href="#playground-html-only">Playground: HTML only</a></h2>
+<p>Try to load a network from string and see if you got it:</p>
+<pre><code class="language-task editable">network load_str("
+123 -&gt; something
+another -&gt; thing
+")
+
+nodesmap outputs.NAME
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="network"><a class="header" href="#network">Network</a></h1>
 <p>A Network is a collection of nodes. The network can also have
@@ -1432,7 +1455,7 @@ network cairo.table("Index =&gt; {INDEX}\n&lt;Name =&gt; {title}\n",
    "./output/network-mississippi.svg"
 )
 </code></pre>
-<p>Results:<br><img src="output/network-mississippi.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/network-mississippi.svg" alt="Output Image"><span class="img-wrapper"><img src="output/network-mississippi.svg" alt="Output Image"></span></label></p>
 <p>You can assign different graphical properties through node properties.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span>nodes.visual = {};
@@ -1443,7 +1466,14 @@ network cairo.table("Index =&gt; {INDEX}\n&lt;Name =&gt; {title}\n",
    "./output/network-mississippi-colors.svg"
 )
 </code></pre>
-<p>Results:<br><img src="output/network-mississippi-colors.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/network-mississippi-colors.svg" alt="Output Image"><span class="img-wrapper"><img src="output/network-mississippi-colors.svg" alt="Output Image"></span></label></p>
+<h2 id="playground-html-only-1"><a class="header" href="#playground-html-only-1">Playground: HTML only</a></h2>
+<p>Try it out below. Note that you can not load files in the playground, you can only load networks from string.</p>
+<pre><code class="language-task editable">net.load_str("
+b -&gt; c
+")
+nodes.NAME
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="attributes"><a class="header" href="#attributes">Attributes</a></h1>
 <p>Attributes are <a href="https://toml.io/en/">TOML</a> like values. They can be one of the following types:</p>
@@ -1526,6 +1556,12 @@ nodesmap.outlet
 }
 </code></pre>
 <p>With plugins, you can load attributes from different file types.</p>
+<h2 id="playground-html-only-2"><a class="header" href="#playground-html-only-2">Playground: HTML only</a></h2>
+<p>Try out some of your own attribute assignments in the code below and run to see what you get.</p>
+<pre><code class="language-task editable">"abc"
+
+true
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="expression"><a class="header" href="#expression">Expression</a></h1>
 <p>Expressions are airthmetic or logical operations. They can appear inside the conditional statements, or as input to a task, or nested in other expression or function calls.</p>
@@ -1619,6 +1655,13 @@ EmptyValueError  at Line 1 Column 1: the expression resulted in empty value
 </code></pre>
 <p>Special function types like <code>nodes</code>, <code>inputs</code>, <code>output</code> are available besides <code>env</code>, <code>network</code> and <code>node</code> based on what type of task the expression is on.</p>
 <p>You will learn more about this on <a href="#cross-context-functions-and-variables">Cross Context Functions and Variables</a> chapter.</p>
+<h2 id="playground-html-only-3"><a class="header" href="#playground-html-only-3">Playground: HTML only</a></h2>
+<p>Using expressions is basically like using a calculator with extra syntaxes for if,loop, etc. Try it out below to see what you can do:</p>
+<pre><code class="language-task editable">10 + 20 * 8
+
+x = 40
+true &amp; (123 &gt; x)
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="evaluation-context"><a class="header" href="#evaluation-context">Evaluation Context</a></h1>
 <p>The most important concept in NADI is the evaluation context. This determines how your expressions are evaluated, and how everything is understood.</p>
@@ -1834,6 +1877,20 @@ nodes.y
 <p>Results:</p>
 <pre><code class="language-output">[1, 0]
 </code></pre>
+<h2 id="playground-html-only-4"><a class="header" href="#playground-html-only-4">Playground: HTML only</a></h2>
+<p>Here is an example of multiple context stacked on top of another. Try out different contexts to see what you get, or change the network to see how it affects the values.</p>
+<pre><code class="language-task editable">network load_str(
+"
+a -&gt; b
+b -&gt; c
+c -&gt; d
+e -&gt; d
+f -&gt; g
+b -&gt; g
+")
+
+nodesmap outputsmap {inputs.NAME}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="task"><a class="header" href="#task">Task</a></h1>
 <p>Task is an execution body in the task system. Think of it like a line of code that is executed when you use any programming language.</p>
@@ -1997,15 +2054,14 @@ for x in range(1, 20) {cakc(x)}
 <pre><code class="language-output">
 </code></pre>
 <p>In addition to that, you can also assign the function arguments dynamic values based on previous arguments, or environement/network context. These are similar to the local variables inside the function body, but they can be overridden with other values by the users.</p>
-<pre><code class="language-task">func last(vals, offset=1) { get(vals, len(vals) - offset) }
+<pre><code class="language-task">func last(vals, offset=1) { get(vals, length(vals) - offset) }
 
 last(["a", "b", "c", "d", "e"])
 last(["a", "b", "c", "d", "e"], 2)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">"e"
-
-"d"
+<p>*Error*:</p>
+<pre><code class="language-error">
+FunctionNotFoundError  at Line 3 Column 1: env function named "length" not found
 </code></pre>
 <p>While you can use <code>env</code>, <code>network</code> and <code>nodes</code> variables here as well, the expression is run in immutable context, so nothing can be changed.
 The variables are local to the function, hence, any assignment of the variable values inside the body of the functions does not affect the outside.</p>
@@ -2032,7 +2088,7 @@ test()
 </code></pre>
 <p>This can allow you to reduce the number of arguments required for the function call while also allowing the user to define that if needed.</p>
 <p>Since there is only immutable expression evaluation in the functions, anything requiring something like a loop has to be done through recursion.</p>
-<pre><code class="language-task">func sum_vals(vals, ind=len(vals) - 1) {
+<pre><code class="language-task">func sum_vals(vals, ind=length(vals) - 1) {
 	if (ind &lt; 0) { 0 } else {
 		get(vals, ind) + sum_vals(vals, ind - 1)
 	}
@@ -2042,12 +2098,9 @@ sum_vals([1,2,3])
 sum_vals([1, 3.5])
 sum_vals([1,2,3, 4, 5, 6])
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">6
-
-4.5
-
-21
+<p>*Error*:</p>
+<pre><code class="language-error">
+FunctionNotFoundError  at Line 7 Column 1: env function named "length" not found
 </code></pre>
 <p>Be careful of exit condition while working with recursion. This could lead into infinite loop. NADI will crash with stack overflow if that happens. This can also happen if there is too much recursion.</p>
 <p>Iteration through for loop can be used to generate arrays, but currently there is no syntax for reducing the iteration to single value like required in the sum case. In future, we plan to provide <code>reduce</code> system so that these things can be avoided. This is the first iteration of the user defined functions.</p>
@@ -2064,19 +2117,23 @@ func settings(top=10, bottom=10, left=10, right=10, deltax=10, deltay=10) {
 
 network cairo.table("Index =&gt; {INDEX}\n &lt;Name =&gt; {NAME}", "./output/svg-funcs.svg")
 </code></pre>
-<p>Results:<br><img src="output/svg-funcs.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/svg-funcs.svg" alt="Output Image"><span class="img-wrapper"><img src="output/svg-funcs.svg" alt="Output Image"></span></label></p>
 <p>You can save these functions in a file and import them later:</p>
 <pre><code class="language-task">import utils
 
 utils.settings()
 utils.settings(top=100)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">{left = 10.0, bottom = 10.0, deltay = 10.0, fontsize = 10.0, right = 10.0, deltax = 10.0, top = 10.0}
-
-{top = 100.0, bottom = 10.0, deltax = 10.0, deltay = 10.0, right = 10.0, fontsize = 10.0, left = 10.0}
+<p>*Error*:</p>
+<pre><code class="language-error">NotImplementedError  at Line 1 Column 1: import other than tasks, this feature is planned for future versions
 </code></pre>
 <p>While importing functions from a <code>.tasks</code> file, only the function definitions are imported, other tasks are not executed.</p>
+<h2 id="playground-html-only-5"><a class="header" href="#playground-html-only-5">Playground: HTML only</a></h2>
+<p>Try to define a function and use it in the playground below:</p>
+<pre><code class="language-task editable">func add(a,b) {a + b}
+
+add(1,2)
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="string-template-1"><a class="header" href="#string-template-1">String Template</a></h1>
 <p>String templates are strings with dynamic components that can be
@@ -2278,7 +2335,7 @@ nm [val, ORDER]
 <p>You can selectively run only a few nodes based on a list, or a path.</p>
 <p>Given this network:</p>
 <center>
-<p><img src="data/mississippi.svg" alt="Network Diagram"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="data/mississippi.svg" alt="Network Diagram"><span class="img-wrapper"><img src="data/mississippi.svg" alt="Network Diagram"></span></label></p>
 </center>
 <h3 id="list-of-nodes"><a class="header" href="#list-of-nodes">List of Nodes</a></h3>
 <p>List of node contains a separated list of node names or quoted string if the name is not valid identifier/number inside <code>[]</code>.</p>
@@ -2314,25 +2371,23 @@ NAME = "upper-mississippi"
 <p>You can combine the three different types of propagations in a single task using the syntax <code>node&lt;...&gt;[...](...)</code>, they must come in that sequence as the order is decided first, then the list/path is taken, and finally the condition is evaluated to boolean before selecting the nodes.</p>
 <p>For example:</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
-</span>nodesmap[tenessee -&gt; "lower-mississippi"]("mississippi" in NAME) INDEX
+</span>nodesmap[tenessee -&gt; "lower-mississippi"](NAME match "mississippi").INDEX
 nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"] INDEX
 nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">{
-  "lower-mississippi" = 0
-}
+<p>ParseError:</p>
+<pre><code class="language-error">Error: Parse Error at Line 2 Column 1
+  nodesmap[tenessee -&gt; "lower-mississippi"](NAME match "mississippi").INDEX
+  ^ Unexpected Token
+</code></pre>
+<h2 id="playground-html-only-6"><a class="header" href="#playground-html-only-6">Playground: HTML only</a></h2>
+<p>Node functions can be used in any <code>node</code> context.</p>
+<pre><code class="language-task editable">net.load_str("a -&gt; b")
 
-{
-  "lower-mississippi" = 0,
-  ohio = 5,
-  tenessee = 6
-}
-
-{
-  "lower-mississippi" = 0,
-  ohio = 5
-}
+nodes.inputs_count()
+nodesmap[a -&gt; b].inputs_count()
+node[b].inputs_count()
+nodes.ts_count()
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="network-function"><a class="header" href="#network-function">Network Function</a></h1>
@@ -2346,7 +2401,7 @@ network cairo.table(
    "./output/network-mississippi-sdf.svg"
 )
 </code></pre>
-<p>Results:<br><img src="output/network-mississippi-sdf.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/network-mississippi-sdf.svg" alt="Output Image"><span class="img-wrapper"><img src="output/network-mississippi-sdf.svg" alt="Output Image"></span></label></p>
 <div class="warning">
 The examples below use the graphviz plugin to generate the graphviz file, and later graphviz program to visualize it. Make sure you have the plugin loaded in NADI and graphviz installed in your system if you want to replicate the results. Refer to the plugins section to learn how to load the plugins in to the NADI System.
 </div>
@@ -2387,7 +2442,17 @@ The examples below use the graphviz plugin to generate the graphviz file, and la
 </span><span class="boring"># the link path needs to be relative to this file
 </span><span class="boring">network echo("../output/test.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/test.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/test.svg" alt="Output Image"><span class="img-wrapper"><img src="output/test.svg" alt="Output Image"></span></label></p>
+<h2 id="playground-html-only-7"><a class="header" href="#playground-html-only-7">Playground: HTML only</a></h2>
+<p>Most network functions are for IO operations so there are very few you can try out to get values, but here are some examples. Note that you can get the results of these network functions using task keywords <code>nodesmap</code> and <code>roots</code></p>
+<pre><code class="language-task editable">network load_str("
+123 -&gt; something
+another -&gt; thing
+")
+
+net.nodemap("NAME") # nodesmap.NAME
+net.net_roots() # roots.NAME
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="cross-context-functions-and-variables"><a class="header" href="#cross-context-functions-and-variables">Cross Context Functions and Variables</a></h1>
 <p>You can access variable and call functions based on their default context (e.g. node variable/function in a node task). Additionally, you can also access the variables or call functions in select few other context.</p>
@@ -2457,17 +2522,10 @@ nodesmap inputs.NAME
 </span>nm[tenessee -&gt; "lower-mississippi"] inputs.render("{NAME}")
 nm[tenessee -&gt; "lower-mississippi"](output._?) output.render("{NAME}")
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">{
-  tenessee = [],
-  ohio = ["tenessee"],
-  "lower-mississippi" = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"]
-}
-
-{
-  tenessee = "ohio",
-  ohio = "lower-mississippi"
-}
+<p>ParseError:</p>
+<pre><code class="language-error">Error: Parse Error at Line 3 Column 1
+  nm[tenessee -&gt; "lower-mississippi"](output._?) output.render("{NAME}")
+  ^ Unexpected Token
 </code></pre>
 <p>You can also use <code>nodes</code> and <code>nodesmap</code>/<code>nm</code> keyword to call the function on each node, it can be used anywhere, but is useful for env and network context.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
@@ -2731,7 +2789,7 @@ nm inputs.NAME
 
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\nName =&gt; {NAME}\n", "./output/attrs-simp.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/attrs-simp.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/attrs-simp.svg" alt="Output Image"><span class="img-wrapper"><img src="output/attrs-simp.svg" alt="Output Image"></span></label></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h1>
 <p>Task has some basic control flow required to write programs. They are if-else branches and while loops.</p>
@@ -2832,7 +2890,7 @@ d4 -&gt; g3
 
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\nName =&gt; {NAME}\n", "./output/load-str.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/load-str.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/load-str.svg" alt="Output Image"><span class="img-wrapper"><img src="output/load-str.svg" alt="Output Image"></span></label></p>
 <h2 id="loading-network-from-a-file"><a class="header" href="#loading-network-from-a-file">Loading Network from a File</a></h2>
 <p>we can load a network from a file:</p>
 <pre><code class="language-task">command("rm output/ex-network-conn.svg")
@@ -2840,7 +2898,7 @@ network load_file("./data/mississippi.net");
 
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\nName =&gt; {NAME}\n", "./output/ex-network-conn.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/ex-network-conn.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/ex-network-conn.svg" alt="Output Image"><span class="img-wrapper"><img src="output/ex-network-conn.svg" alt="Output Image"></span></label></p>
 <h2 id="modifying-the-network"><a class="header" href="#modifying-the-network">Modifying the network</a></h2>
 <div class="warning">
 Modification of the network is currently unstable due to the expansion of support from river networks to any kind of directed networks. Further development is necessary to make sure the connections are preserved while subset of a network is taken, and enough functions are provided to modify the network from the DSL. If the results you get are not what you expected, please make an issue in the repository.
@@ -2860,7 +2918,7 @@ nodes(is_dam).visual = {nodecolor = "red"};
 
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\n&lt;Name =&gt; {NAME}\n", "./output/simple-count-before-subset.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/simple-count-before-subset.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/simple-count-before-subset.svg" alt="Output Image"><span class="img-wrapper"><img src="output/simple-count-before-subset.svg" alt="Output Image"></span></label></p>
 <pre><code class="language-task"><span class="boring">network load_str("
 </span><span class="boring">d1 -&gt; d2
 </span><span class="boring">d3 -&gt; g2
@@ -2874,7 +2932,7 @@ nodes(is_dam).visual = {nodecolor = "red"};
 network subset(nodes.is_dam);
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\n&lt;Name =&gt; {NAME}\n", "./output/simple-count-subset.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/simple-count-subset.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/simple-count-subset.svg" alt="Output Image"><span class="img-wrapper"><img src="output/simple-count-subset.svg" alt="Output Image"></span></label></p>
 <p>This can be useful when you want to remove nodes that do not satisfy some selection criteria for your analysis without having to redo the network detection part.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="counting-nodes"><a class="header" href="#counting-nodes">Counting Nodes</a></h1>
@@ -2890,7 +2948,7 @@ d4 -&gt; g3
 </span>
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\n Name =&gt; {NAME}", "./output/simple-count.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/simple-count.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/simple-count.svg" alt="Output Image"><span class="img-wrapper"><img src="output/simple-count.svg" alt="Output Image"></span></label></p>
 <p>Simply counting number of nodes, or certain types of nodes in a network is done through <code>count</code> function.</p>
 <pre><code class="language-task"><span class="boring">network load_str("
 </span><span class="boring">d1 -&gt; d2
@@ -2949,7 +3007,7 @@ nm.g_node
 
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\n &lt;Name =&gt; {NAME}\nNodes U/S =&gt; {nodes_us}", "./output/simple-count-1.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/simple-count-1.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/simple-count-1.svg" alt="Output Image"><span class="img-wrapper"><img src="output/simple-count-1.svg" alt="Output Image"></span></label></p>
 <p>We can add a condition and count the nodes that satisfy that condition only. Like counting the number of dams upstream of each node (including the node).</p>
 <pre><code class="language-task"><span class="boring">network load_str("
 </span><span class="boring">d1 -&gt; d2
@@ -2965,7 +3023,7 @@ nodes&lt;inputsfirst&gt;.dams_us = int(is_dam) + sum(inputs.dams_us);
 
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\n Name =&gt; {NAME}\nDams U/S =&gt; {dams_us}", "./output/simple-count-2.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/simple-count-2.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/simple-count-2.svg" alt="Output Image"><span class="img-wrapper"><img src="output/simple-count-2.svg" alt="Output Image"></span></label></p>
 <p>You can similarly count the number of gages downstream. Here we need a conditional unlike in previous cases as not all nodes have output. In case of inputs, a leaf node would have no inputs but <code>sum([])</code> would still be a valid output of <code>0</code>. But for node without output nodes, the variable type <code>output</code> fails with <code>NoOutputNode</code> error, so we add a conditional check to avoid that.</p>
 <pre><code class="language-task"><span class="boring">network load_str("
 </span><span class="boring">d1 -&gt; d2
@@ -2981,7 +3039,7 @@ nodes&lt;out&gt;.gages_ds = int(is_gage) + sum(outputs.gages_ds);
 
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\n Name =&gt; {NAME}\nGages D/S =&gt; {gages_ds}", "./output/simple-count-3.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/simple-count-3.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/simple-count-3.svg" alt="Output Image"><span class="img-wrapper"><img src="output/simple-count-3.svg" alt="Output Image"></span></label></p>
 <p>Here the condition <code>(output._?)</code> checks if there is output on the node or not by checking for the dummy variable <code>_</code> which is present in all nodes/network.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="cumulative-sum"><a class="header" href="#cumulative-sum">Cumulative Sum</a></h1>
@@ -2997,7 +3055,7 @@ nodes&lt;out&gt;.gages_ds = int(is_gage) + sum(outputs.gages_ds);
 </span>nodes&lt;inputsfirst&gt;.stream_ord = max(inputs.stream_ord, 1) + int(count(inputs._) &gt; 1);
 <span class="boring">network cairo.table("Name =&gt; {NAME}\nstream_ord =&gt; {stream_ord}", "./output/cumulative-1.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/cumulative-1.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/cumulative-1.svg" alt="Output Image"><span class="img-wrapper"><img src="output/cumulative-1.svg" alt="Output Image"></span></label></p>
 <p>The first part takes the maximum order of the input nodes, then the second part <code>int(count(inputs._?) &gt; 1)</code> checks if there are more than one input, adding one to the order when multiple streams combine into one. You can use the funciton <code>inputs_count()</code> instead of <code>count(inputs._?)</code> to do the same thing.</p>
 <p>That is the core of the NADI Task System, you can write functions that have their own logic and then load them into the system. You can then use the syntax and network based analysis methods of NADI using those functions.</p>
 <p>And of course, we can visualize the different order of streams for easier understanding.</p>
@@ -3019,7 +3077,7 @@ nodes(stream_ord == 3).visual.linecolor = "red";
 
 <span class="boring">network cairo.table("Name =&gt; {NAME}\nstream_ord =&gt; {stream_ord}", "./output/cumulative-2.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/cumulative-2.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/cumulative-2.svg" alt="Output Image"><span class="img-wrapper"><img src="output/cumulative-2.svg" alt="Output Image"></span></label></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="import-export-files"><a class="header" href="#import-export-files">Import Export Files</a></h1>
 <p>Similar to how you can load network files, you can load attributes from files as well. Direct load of TOML format is supported from the internal plugins, while you might need external plugins for other formats.</p>
@@ -3032,7 +3090,7 @@ network cairo.table("
 &gt;Area =&gt; {basin_area?:.2}
 ", "./output/ohio-import-export.svg")
 </code></pre>
-<p>Results:<br><img src="output/ohio-import-export.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/ohio-import-export.svg" alt="Output Image"><span class="img-wrapper"><img src="output/ohio-import-export.svg" alt="Output Image"></span></label></p>
 <p>You can use the render function to see if the files being loaded are correct. Here we can see the examples for the first 4 nodes:</p>
 <pre><code class="language-task"><span class="boring">network load_file("data/ohio.network")
 </span>nodes(INDEX&lt;4) r"data/attrs/{NAME}.toml"
@@ -3096,7 +3154,7 @@ network gis.save_connections(
   "geometry"
 )
 </code></pre>
-<p>Results:<br><img src="images/ohio-nodes.png" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ohio-nodes.png" alt="Output Image"><span class="img-wrapper"><img src="images/ohio-nodes.png" alt="Output Image"></span></label></p>
 <p>The geometry attributes should be <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">WKT String</a>.</p>
 <!-- node(output._?).out_lon = output.lon; -->
 <!-- node(output._?).out_lat = output.lat; -->
@@ -3113,7 +3171,7 @@ network cairo.table("
 ", "output/ohio-from-gis.svg"
 )
 </code></pre>
-<p>Results:<br><img src="output/ohio-from-gis.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/ohio-from-gis.svg" alt="Output Image"><span class="img-wrapper"><img src="output/ohio-from-gis.svg" alt="Output Image"></span></label></p>
 <p>As we can see the plugins make it easier to interoperate with a lot of different data formats. Here GIS plugin will support any file types supported by <code>gdal</code>. Similarly, other formats can be supported by writing plugins.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="string-templates"><a class="header" href="#string-templates">String Templates</a></h1>
@@ -3126,6 +3184,26 @@ network cairo.table("
 <li>Python Library</li>
 <li>Plugin System</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="nadi-playground"><a class="header" href="#nadi-playground">NADI Playground</a></h1>
+<p>NADI Playground is powered by webassembly. NADI was stripped of many of its desktop oriented features like file IO, plugins, etc and compiled into a version that can run in the web.</p>
+<p>You can try to run different nadi codes to see how it behaves in the code block below.</p>
+<pre><code class="language-task editable"># simple expressions
+1 + 2 
+true &amp; false
+
+# function definitions
+func add(x, y=0) {x + y}
+add(1)
+add(1,20)
+
+# load network
+net.load_str("
+a -&gt; {b, c, d}
+{c,d} -&gt; e
+e -&gt; {f,g}
+")
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="effects-of-dams"><a class="header" href="#effects-of-dams">Effects of Dams</a></h1>
 <p>Ohio River is one of the largest river basin in the USA. The development of the basin and its river system started early, so we have a problem where many streamgages never recorded the river in their natural state. In these examples, we’ll try to load a network, validate the network based on metadata, count the dams/gages, and get the year of earliest constructed dam upstream for further analysis.</p>
@@ -3184,22 +3262,8 @@ network gis.load_attrs("data/ohio-river/usgs-drainage.csv", "SiteNumber")
 nm(INDEX &lt; 5).yearCompleted # only NID dams have it
 nm(INDEX &lt; 5).GEOM # all nodes have it although from different sources
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">{
-  "03399800" = &lt;None&gt;,
-  IL50499 = 1980.0,
-  IL40055 = 1980.0,
-  IL00955 = 1977.0,
-  IL00070 = 1960.0
-}
-
-{
-  "03399800" = "POINT (-88.4234349499133 37.1612042742605 0)",
-  IL50499 = "POINT (-88.42921894 37.16622664)",
-  IL40055 = "POINT (-88.77145 37.401709)",
-  IL00955 = "POINT (-88.78582 37.38365)",
-  IL00070 = "POINT (-88.57139 37.21975)"
-}
+<p>*Error*:</p>
+<pre><code class="language-error">FunctionError  at Line 1 Column 1: function gis.load_attrs: GDAL method 'GDALOpenEx' returned a NULL pointer. Error msg: ''
 </code></pre>
 <p>Also note that, while loading GIS files it also loads the geometry into “GEOM” attribute (you can change it through <code>change</code> function argument).</p>
 <!-- Let's make them into same format to avoid future problems. -->
@@ -3228,7 +3292,7 @@ network count(nodes.is_dam)
 network count(nodes {ba?}) / count()
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">0.7561382996492401
+<pre><code class="language-output">0.0
 </code></pre>
 <p>Even then we only have 75% of the nodes with basin area. Since the <code>DrainageArea</code> is in sqmiles</p>
 <p>If we look at some examples here on two sources of basin area of USGS gages, we can see the problems:</p>
@@ -3236,9 +3300,7 @@ network count(nodes {ba?}) / count()
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  "03384450" = ["42.9", 111.1266],
-  "03383000" = ["255.0", 660.5415],
-  "03382100" = ["147.0", 367.272]
+  
 }
 </code></pre>
 <ol>
@@ -3249,8 +3311,8 @@ network count(nodes {ba?}) / count()
 <pre><code class="language-task">nodes(Drainage?).basin_area = float(Drainage);
 nodes(DRAIN_SQKM?).basin_area = DRAIN_SQKM * 0.38610216
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">FunctionError [410014081362600] at Line 1 Column 1: function float: cannot parse float from empty string
+<p>Results:</p>
+<pre><code class="language-output">
 </code></pre>
 <p>We got an error, seems like <code>Drainage</code> contains empty strings as well. That and the <code>String</code> part comes from loading a CSV without data types (<code>.csvt</code> file).</p>
 <p>Let’s fix the code for that, and also let’s get the <code>basin_area</code> for dams.</p>
@@ -3264,18 +3326,18 @@ network count(nodes {basin_area?}) / count()
 <p>Results:</p>
 <pre><code class="language-output">{
   "03399800" = &lt;None&gt;,
-  IL50499 = 144000.0,
-  IL40055 = 0.08,
+  IL50499 = &lt;None&gt;,
+  IL40055 = &lt;None&gt;,
   IL00955 = &lt;None&gt;,
   IL00070 = &lt;None&gt;,
   IL00039 = &lt;None&gt;,
-  "03386500" = 9.853134072120001,
-  IL00102 = 2.0,
+  "03386500" = &lt;None&gt;,
+  IL00102 = &lt;None&gt;,
   "03386000" = &lt;None&gt;,
   "03385500" = &lt;None&gt;
 }
 
-0.755971271087356
+0.0
 </code></pre>
 <h2 id="check-for-incorrect-basin-areas"><a class="header" href="#check-for-incorrect-basin-areas">Check for Incorrect Basin Areas</a></h2>
 <p>Now we have all the different variables combined into a single one with same data type and unit. Let’s do a quick analysis to see if there are points in the network where nodes have larger area than input nodes.</p>
@@ -3292,9 +3354,9 @@ network count(nodes.incorrect)
 network count(nodes.incorrect) / count()
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">547
+<pre><code class="language-output">0
 
-0.09136462335059295
+0.0
 </code></pre>
 <p>That’s around 10% error rate.</p>
 <p>Looking at the actual values, few of them seem to be due to minor errors in values, while most of them seem to be from large input area.</p>
@@ -3302,133 +3364,29 @@ network count(nodes.incorrect) / count()
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  IL00028 = [1.5, 30.036998660096],
-  IL50443 = [0.04, 141009.11000000002],
-  KY00192 = [0.07, 0.31],
-  IN04021 = [0.08, 0.2],
-  IN03653 = [0.04, 0.37],
-  IL50585 = [0.03, 0.16],
-  IL01085 = [240.0, 240.171142047264],
-  IL00606 = [0.6, 57.0],
-  IN00316 = [0.09, 0.15],
-  IN00317 = [0.15, 0.7000000000000001],
-  IN00319 = [0.7000000000000001, 43.053904369656],
-  IN03161 = [0.06, 0.07],
-  IN03160 = [0.07, 3.0100000000000002],
-  IN04048 = [0.4, 0.53],
-  IN00627 = [0.53, 1.1300000000000001],
-  IN03433 = [0.03, 1.82],
-  IN00617 = [0.27, 0.49],
-  IN00480 = [0.56, 21.637975860936002],
-  IN00618 = [0.41000000000000003, 1.2700000000000002],
-  IN00098 = [0.33, 263.021357392616],
-  IN00035 = [0.23, 168.12355234608],
-  "03343010" = [13732.0, 13755.171304576803],
-  IN00528 = [0.21, 0.32],
-  IN00151 = [1.18, 4.75],
-  IN03337 = [1.1500000000000001, 42.9097178978],
-  IN00107 = [0.55, 8.22],
-  IN00209 = [1.8, 8.48],
-  IN00091 = [0.6900000000000001, 0.87],
-  IN00092 = [0.87, 8.38],
-  IN00462 = [0.39, 1.1500000000000001],
-  IL40011 = [2.36, 11.4],
-  IN00726 = [0.01, 0.2],
-  IN00731 = [0.2, 3.73],
-  IN00729 = [0.16, 1.0],
-  IL00742 = [0.2, 21.7],
-  IN00722 = [0.29, 3.08],
-  IN00723 = [0.2, 1.0],
-  IN00437 = [0.2, 2.4],
-  IN00721 = [0.17, 0.39],
-  IN00431 = [0.39, 0.85],
-  IN03216 = [0.25, 0.5],
-  IN00728 = [0.66, 11167.3448859856],
-  IN00288 = [0.09, 0.34],
-  IN00505 = [0.03, 223.256539885312],
-  IN04020 = [0.13, 1.09],
-  IN03196 = [0.25, 677.48802118264],
-  IN00735 = [1.9000000000000001, 2.15],
-  IL50291 = [0.06, 69.89807631177601],
-  IN00753 = [0.3, 1868.7614815512],
-  IN00459 = [0.31, 1790.0],
-  "03332605" = [1790.0, 1793.0],
-  IN00240 = [1.6, 35.2],
-  IN03801 = [0.2, 809.0],
-  IN03355 = [0.0, 695.78422034768],
-  IN00321 = [0.23, 0.49],
-  IN03984 = [0.13, 8.620000000000001],
-  IN03462 = [0.0, 33.65716107796],
-  IN00763 = [0.09, 0.45],
-  IN00767 = [0.0, 768.8080807372801],
-  IN00441 = [0.38, 556.23730459968],
-  IN03434 = [0.0, 263.58341177426405],
-  IN03758 = [0.64, 578.7119252311201],
-  IN00445 = [0.37, 499.66125210536006],
-  IN00207 = [0.26, 0.28],
-  IN00257 = [0.28, 308.349756443952],
-  OH03208 = [0.02, 0.06],
-  OH00258 = [0.12, 12.49],
-  IN00188 = [0.79, 4.04],
-  IN00057 = [1.2, 14.2],
-  IN00120 = [0.44, 14.450000000000001],
-  IN03353 = [0.0, 0.25],
-  IN00166 = [0.22, 0.97],
-  IN00325 = [0.21, 0.63],
-  IN00460 = [0.15, 834.9862486900802],
-  IN03430 = [0.25, 0.78],
-  IN00708 = [0.16, 0.29],
-  IN03789 = [0.02, 0.11],
-  IN03788 = [0.11, 0.43],
-  IN00709 = [0.23, 0.36],
-  IN03956 = [0.13, 294.15926653704],
-  "03359000" = [294.15926653704, 295.0],
-  IN00663 = [0.0, 0.37],
-  IN00666 = [0.0, 0.85],
-  IN00704 = [0.35000000000000003, 10.75],
-  IN00702 = [0.0, 134.30289503066402],
-  IN00711 = [0.0, 2986.82183069928],
-  IN00695 = [0.15, 0.66],
-  IN03272 = [0.0, 1.75],
-  IN00691 = [0.22, 15.1],
-  IN00665 = [0.45, 0.63],
-  IN03503 = [0.02, 1.23],
-  IN00563 = [0.1, 3.1],
-  IN03189 = [0.1, 0.38],
-  IN04040 = [0.09, 0.48],
-  IN04043 = [0.48, 9.34],
-  IN03961 = [0.16, 0.34],
-  IN00363 = [0.92, 7.3],
-  IN00365 = [0.88, 1.67],
-  IN00361 = [1.67, 72.23],
-  IN00581 = [0.04, 0.09], ... 
+  
 }
 </code></pre>
 <p>This could be due to the error in snapping to the streamlines. It is also possible that some basin area that are missing are contributing to the unaccounted area.</p>
 <p>Let’s try to fix them, or avoid points without data.</p>
-<pre><code class="language-task">nodes.all_inputs_ba = node {
-	x = inputs {basin_area?}
-	all(*x)
-};
+<pre><code class="language-task">nodes.all_inputs_ba = all(inputs {basin_area?});
 nodes.incorrect = basin_area? &amp; all_inputs_ba &amp; (
 	basin_area &lt; (0.975 * sum(inputs.basin_area))
 );
 network count(nodes.incorrect)
 network count(nodes.incorrect) / count()
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">451
-
-0.07532988140972106
+<p>*Error*:</p>
+<pre><code class="language-error">FunctionError [03399800] at Line 1 Column 1: function all: Invalid Type: Array
 </code></pre>
 <p>Looks like 7.5% of the errors are reasonable errors from network detection.</p>
 <pre><code class="language-task">network count(nodes {incorrect &amp; is_usgs})
 network count(nodes {incorrect &amp; is_dam})
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">8
+<pre><code class="language-output">0
 
-443
+0
 </code></pre>
 <p>This shows that the majority of the errors come from the NID dams, which makes sense given the <code>GageLoc.shp</code> data has points indexed to the NHDPlus streamlines, while the NID Dams are not indexed to it. Furthermore, looking at the attributes in QGIS shows, many dams are in locations without streamlines, and even then sometimes they have unusually large basin area values for their location.</p>
 <h2 id="export-to-gis-for-visualization"><a class="header" href="#export-to-gis-for-visualization">Export to GIS for visualization</a></h2>
@@ -3444,8 +3402,8 @@ network count(nodes {incorrect &amp; is_dam})
 	}
 )
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">
+<p>*Error*:</p>
+<pre><code class="language-error">FunctionError  at Line 1 Column 1: function gis.save_nodes: Attribute for geometry not found
 </code></pre>
 <p>We also need connection information to cross reference, let’s make them through some string manipulation. NADI GIS plugin uses WKT format for geometries, which are string values, so we can manipulate them using string functions.</p>
 <p>Note: we should probably add a function for this in future. A WKT plugin to work with geometries.</p>
@@ -3463,11 +3421,11 @@ nodes(output._? &amp; (INDEX &lt; 10)).conn_geom
 
 network gis.save_connections("output/ohio-conn-all.gpkg", "conn_geom")
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">["LINESTRING (-88.42921894 37.16622664, -88.4234349499133 37.1612042742605)", "LINESTRING (-88.77145 37.401709, -88.42921894 37.16622664)", "LINESTRING (-88.78582 37.38365, -88.42921894 37.16622664)", "LINESTRING (-88.57139 37.21975, -88.42921894 37.16622664)", "LINESTRING (-88.68815 37.38965, -88.42921894 37.16622664)", "LINESTRING (-88.6736645 37.4156072, -88.68815 37.38965)", "LINESTRING (-88.66408 37.41518, -88.6736645 37.4156072)", "LINESTRING (-88.6637356477429 37.4140878122472, -88.66408 37.41518)", "LINESTRING (-88.6494395725886 37.4141446558289, -88.6637356477429 37.4140878122472)"]
+<p>*Error*:</p>
+<pre><code class="language-error">AttributeError [03399800] at Line 1 Column 1: Attribute node.GEOM not found
 </code></pre>
 <p>When we visualize the output in QGIS, we can see the nodes where the <code>basin_area</code> are not correct based on the network information.</p>
-<p><img src="images/ohio-correctness-qgis.png" alt="Correctness in QGIS"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ohio-correctness-qgis.png" alt="Correctness in QGIS"><span class="img-wrapper"><img src="images/ohio-correctness-qgis.png" alt="Correctness in QGIS"></span></label></p>
 <p>The zoomed in images at the bottom shows some of the reasons:</p>
 <ul>
 <li>[left] Incorrect Data in database (I think the dam coordinates are wrong on the blue dot with 277 basin area),</li>
@@ -3548,7 +3506,7 @@ nm(INDEX &lt; 10) array(ngage, ndam)
 )
 </code></pre>
 <p>After applying some filters and styles in QGIS, we can look at the numbers visually,</p>
-<p><img src="images/counts-combined.png" alt="Gage/Dam Count"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/counts-combined.png" alt="Gage/Dam Count"><span class="img-wrapper"><img src="images/counts-combined.png" alt="Gage/Dam Count"></span></label></p>
 <h2 id="extra-counting-large-dams"><a class="header" href="#extra-counting-large-dams">Extra: Counting Large Dams</a></h2>
 <p>The definition of large dam: https://www.icold-cigb.org/GB/dams/definition_of_a_large_dam.asp</p>
 <ul>
@@ -3578,19 +3536,8 @@ network count(nodes.is_dam)
 network count(nodes {dam_height? &amp; dam_storage?})
 nm(is_dam &amp; (INDEX &lt; 10)) array(dam_height, dam_storage)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">4181
-
-4181
-
-{
-  IL50499 = [56.0, 738700.0],
-  IL40055 = [28.0, 47.0],
-  IL00955 = [36.0, 366.0],
-  IL00070 = [24.0, 153.0],
-  IL00039 = [59.0, 633.0],
-  IL00102 = [38.0, 1814.0]
-}
+<p>*Error*:</p>
+<pre><code class="language-error">FunctionError  at Line 1 Column 1: function gis.load_attrs: GDAL method 'GDALOpenEx' returned a NULL pointer. Error msg: ''
 </code></pre>
 <p>Lot’s of basins do not have basin area.</p>
 <p>First, using the previous requirements for large dams:</p>
@@ -3598,28 +3545,15 @@ nm(is_dam &amp; (INDEX &lt; 10)) array(dam_height, dam_storage)
 network count(nodes.large_dam)
 network count(nodes.large_dam) / count(nodes.is_dam)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">1135
-
-0.27146615642190863
+<p>*Error*:</p>
+<pre><code class="language-error">EmptyValueError  at Line 1 Column 1: the expression resulted in empty value
 </code></pre>
 <p>This will allow us to run the same counting as before:</p>
 <pre><code class="language-task">nodes&lt;inp&gt;.nldam = int(large_dam) + sum(inputs.nldam);
 nm(INDEX &lt; 10) array(ndam, nldam)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">{
-  "03399800" = [4181, 1135],
-  IL50499 = [4181, 1135],
-  IL40055 = [1, 0],
-  IL00955 = [1, 0],
-  IL00070 = [1, 0],
-  IL00039 = [2, 2],
-  "03386500" = [1, 1],
-  IL00102 = [1, 1],
-  "03386000" = [0, 0],
-  "03385500" = [0, 0]
-}
+<p>*Error*:</p>
+<pre><code class="language-error">AttributeError [WV10707] at Line 1 Column 1: Attribute large_dam not found
 </code></pre>
 <p>Although not obivious, the numbers were quite large, so when I inspected the NID data, some dams seem to have very high height values that do not match.</p>
 <p>Let’s load basin area and flag any locations with more than 50ft of dam height, and less than 10 square miles of basin area.</p>
@@ -3631,153 +3565,28 @@ nodes.flag = large_dam &amp; ((dam_height &gt; 50) &amp; (basin_area &lt; 10));
 network count(nodes.flag)
 nm(flag &amp; (INDEX &lt; 1000)) array(dam_height, dam_storage, basin_area)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">3766
+<p>*Error*:</p>
+<pre><code class="language-error">
+0
 
 
-
-353
-
-{
-  IL50593 = [108.0, 10790.0, 0.27],
-  IL50678 = [110.0, 5250.0, 0.1],
-  IL50066 = [55.0, 1087.0, 0.7000000000000001],
-  IN00446 = [54.0, 7538.0, 4.75],
-  IL00688 = [52.0, 3474.0, 3.3000000000000003],
-  IN00439 = [56.0, 321.0, 0.52],
-  IN03920 = [55.0, 39.0, 0.02],
-  IN00505 = [56.0, 66.0, 0.03],
-  IN00036 = [63.0, 1595.0, 1.2],
-  IN00201 = [55.0, 2861.0, 4.69],
-  IN00181 = [55.0, 1380.0, 4.7],
-  IN00069 = [68.0, 6718.0, 5.8],
-  IN03731 = [57.0, 128.0, 0.8200000000000001],
-  IN03007 = [55.0, 29800.0, 0.0],
-  IN00197 = [62.0, 3555.0, 1.82],
-  IN00103 = [60.0, 1158.0, 0.36],
-  IN00133 = [82.0, 13000.0, 9.34],
-  IN00342 = [63.0, 198.0, 0.19],
-  IN00565 = [53.0, 109.0, 0.1]
-}
+EmptyValueError  at Line 5 Column 1: the expression resulted in empty value
 </code></pre>
 <p>We don’t have all basin areas, but from this we flagged around 300 dams. Looking at the values, <code>IL50678</code> basically says it has a dam with height of 110, but basin area of 0.1, which seems very unreasonable. To remove these from our identification process, let’s add another category.</p>
 <pre><code class="language-task">nodes.large_dam = is_dam &amp; (((dam_height &gt; 49) | ((dam_height &gt; 16) &amp; (dam_storage &gt; 811))) &amp; (basin_area &gt; 10));
 network count(nodes.large_dam)
 network count(nodes.large_dam) / count(nodes.is_dam)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">321
-
-0.07677589093518297
+<p>*Error*:</p>
+<pre><code class="language-error">EmptyValueError  at Line 1 Column 1: the expression resulted in empty value
 </code></pre>
 <p>The number of dams that are now categorized as large dams have been reduced significantly.</p>
 <h2 id="extra-looking-at-main-stem-of-the-river"><a class="header" href="#extra-looking-at-main-stem-of-the-river">Extra: Looking at Main Stem of the River</a></h2>
 <p>Let’s look at the values along the main stem. <code>LEVEL == 0</code> means the mainstem of the network.</p>
 <pre><code class="language-task">nm(LEVEL==0) array(ngage, ndam, nldam)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">{
-  "03399800" = [1806, 4181, 1135],
-  IL50499 = [1805, 4181, 1135],
-  "03384500" = [1801, 4169, 1129],
-  IL50443 = [1799, 4164, 1129],
-  "03381700" = [1785, 4065, 1097],
-  KY03060 = [1454, 3087, 905],
-  "03322420" = [1454, 3086, 904],
-  IN03661 = [1451, 3067, 897],
-  "03322190" = [1451, 3061, 897],
-  KY01059 = [1450, 3061, 897],
-  "03322000" = [1448, 3044, 894],
-  IN04061 = [1388, 2822, 826],
-  "03304300" = [1388, 2821, 826],
-  KY03059 = [1387, 2821, 826],
-  "03303500" = [1386, 2809, 823],
-  KY01255 = [1383, 2771, 815],
-  KY00842 = [1383, 2769, 814],
-  IN03297 = [1383, 2768, 813],
-  KY03058 = [1383, 2765, 813],
-  "03303280" = [1383, 2764, 812],
-  IN03192 = [1382, 2764, 812],
-  KY01272 = [1373, 2726, 807],
-  "03294600" = [1322, 2576, 789],
-  KY00597 = [1318, 2572, 788],
-  KY01022 = [1318, 2571, 788],
-  "03294500" = [1318, 2570, 788],
-  KY03034 = [1316, 2552, 780],
-  "03293600" = [1316, 2551, 779],
-  "03293551" = [1315, 2551, 779],
-  "03293550" = [1314, 2551, 779],
-  "03293548" = [1313, 2551, 779],
-  IN00643 = [1295, 2533, 775],
-  KY03033 = [1220, 2287, 689],
-  "03277200" = [1220, 2286, 688],
-  KY01215 = [1217, 2272, 685],
-  OH01690 = [1111, 2112, 657],
-  "03255000" = [1091, 2087, 648],
-  OH01350 = [1013, 1898, 616],
-  "03238680" = [1011, 1886, 612],
-  KY03032 = [1010, 1886, 612],
-  KY00938 = [1004, 1869, 609],
-  KY01093 = [1003, 1868, 609],
-  "03238000" = [1003, 1867, 608],
-  OH03181 = [1002, 1866, 607],
-  "03217200" = [883, 1700, 573],
-  KY03031 = [875, 1692, 572],
-  "03216600" = [875, 1691, 571],
-  "03216000" = [868, 1680, 568],
-  "03206000" = [788, 1596, 513],
-  WV05302 = [760, 1568, 503],
-  "03201500" = [622, 1335, 415],
-  "03160000" = [621, 1335, 415],
-  OH00971 = [619, 1327, 411],
-  WV05312 = [617, 1318, 408],
-  WV05313 = [617, 1317, 407],
-  WV05301 = [617, 1314, 407],
-  "03159870" = [617, 1313, 406],
-  WV10702 = [609, 1296, 399],
-  "03159530" = [609, 1295, 398],
-  "03151000" = [564, 1186, 358],
-  OH00943 = [563, 1185, 358],
-  OH00939 = [563, 1184, 358],
-  "03150700" = [563, 1182, 357],
-  WV07301 = [396, 842, 288],
-  WV10301 = [393, 836, 285],
-  "03114280" = [393, 835, 284],
-  "03114275" = [392, 835, 284],
-  WV05108 = [389, 827, 280],
-  "03113600" = [385, 805, 273],
-  "03112500" = [377, 798, 270],
-  "03111534" = [373, 769, 251],
-  WV06908 = [372, 769, 251],
-  "03111520" = [372, 768, 250],
-  "03111515" = [371, 768, 250],
-  OH03169 = [368, 742, 246],
-  WV02901 = [362, 704, 227],
-  "03110690" = [362, 703, 226],
-  OH03172 = [361, 703, 226],
-  "03110685" = [361, 702, 226],
-  "03108500" = [344, 661, 219],
-  PA00128 = [343, 661, 219],
-  "03108490" = [343, 660, 218],
-  PA00127 = [279, 528, 184],
-  "03086000" = [279, 527, 183],
-  PA00126 = [276, 519, 181],
-  "03085730" = [276, 518, 180],
-  PA01994 = [142, 265, 96],
-  PA00120 = [141, 264, 96],
-  "03085000" = [141, 263, 95],
-  "03075070" = [100, 192, 73],
-  "03075000" = [98, 172, 64],
-  PA00122 = [97, 172, 64],
-  PA00123 = [94, 156, 60],
-  PA01549 = [89, 135, 50],
-  PA01265 = [89, 133, 49],
-  PA00124 = [88, 121, 44],
-  "03072655" = [88, 120, 43],
-  "03072500" = [86, 118, 43],
-  PA00125 = [45, 90, 36],
-  "03063000" = [45, 89, 35], ... 
-}
+<p>*Error*:</p>
+<pre><code class="language-error">AttributeError [03399800] at Line 1 Column 1: Attribute nldam not found
 </code></pre>
 <p>If you want to be more accurate, we can load the <code>SiteName</code> from GIS file and match the node with “Ohio River” in its name with the lowest order to find the first Ohio River Node.</p>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -3791,10 +3600,9 @@ nodes.is_dam = !is_usgs;
 network count(nodes.is_usgs)
 network count(nodes.is_dam)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">1806
-
-4181
+<p>*Error*:</p>
+<pre><code class="language-error">
+FunctionError  at Line 2 Column 1: function gis.load_attrs: GDAL method 'GDALOpenEx' returned a NULL pointer. Error msg: ''
 </code></pre>
 <p>Counting the upstream dams again,</p>
 <pre><code class="language-task">nodes&lt;inp&gt;.ndam = int(is_dam) + sum(inputs.ndam);
@@ -3802,10 +3610,8 @@ nodes.no_dam_us = ndam == 0;
 network count(nodes {no_dam_us &amp; is_usgs})
 network count(nodes {no_dam_us &amp; is_usgs}) / count(nodes.is_usgs)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">605
-
-0.33499446290143964
+<p>*Error*:</p>
+<pre><code class="language-error">AttributeError [WV03333] at Line 1 Column 1: Attribute is_dam not found
 </code></pre>
 <p>We can see 33% of the USGS gages do not have dams upstream.</p>
 <p>And for those that do, let’s look at the construction year,</p>
@@ -3819,12 +3625,12 @@ network count(nodes.dam_affected &amp; nodes.is_usgs)
 network count(!nodes.no_dam_us &amp; nodes.is_usgs)
 network count(nodes.dam_affected &amp; nodes.is_usgs) / count(!nodes.no_dam_us &amp; nodes.is_usgs)
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">1152
+<p>*Error*:</p>
+<pre><code class="language-error">
 
-1201
 
-0.9592006661115737
+
+EmptyValueError  at Line 7 Column 1: the expression resulted in empty value
 </code></pre>
 <p>This shows we have the construction year for 95% of the USGS gages that were constructed after at least one upstream dams.</p>
 <!-- After exporting this result, and loading them in Python, we can use the following python script, we can load CSV files and see how much of the streamflow data was before, and after the dam. -->
@@ -3849,29 +3655,9 @@ echo("\\end{tabular}\n\\tikz[overlay, remember picture]{")
 echo(str_join(eds, "\n"))
 echo("}")
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">\begin{tabular}{llll}
-
-
-Connections &amp; Node &amp; Area &amp; Name \\[2mm]
-
-
-\Node[0]{0}{0} &amp; $N_0$ &amp; 400.00 &amp; mississippi \\[2mm]
-\Node[1]{1}{1} &amp; $N_1$ &amp; 200.00 &amp; red \\[2mm]
-\Node[0]{2}{2} &amp; $N_2$ &amp; 300.00 &amp; ohio \\[2mm]
-\Node[0]{3}{3} &amp; $N_3$ &amp; 200.00 &amp; tenesse \\[2mm]
-
-
-\end{tabular}
-\tikz[overlay, remember picture]{
-
-
-\path[-&gt;] (1) edge (0);
-\path[-&gt;] (2) edge (0);
-\path[-&gt;] (3) edge (2);
-
-
-}
+<p>*Error*:</p>
+<pre><code class="language-error">
+EmptyValueError  at Line 2 Column 1: the expression resulted in empty value
 </code></pre>
 <p>The latex file contains the <code>Node</code> command as follows:</p>
 <pre><code class="language-latex">
@@ -3883,7 +3669,7 @@ Connections &amp; Node &amp; Area &amp; Name \\[2mm]
   }}
 </code></pre>
 <p>The result of the compilation will result in the following table:</p>
-<p><img src="images/latex-table.png" alt="LaTeX Table"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/latex-table.png" alt="LaTeX Table"><span class="img-wrapper"><img src="images/latex-table.png" alt="LaTeX Table"></span></label></p>
 <p>This is just an example, you can use this method to generate, markdown, latex, typst, html, and other markups as well. The syntax is a bit hard for LaTeX due to its use of <code>\</code> and <code>{</code>, both of which are special syntax of template system and need to be escaped. but for others it should be simpler.</p>
 <p>This should become easier after the introduction of user defined functions.</p>
 <p>The full latex source code is shown below:</p>
@@ -3927,7 +3713,7 @@ In this example we will use `nadi_csv` plugin to load CSV files. The plugin is e
 
 <span class="boring">network cairo.table("&lt;Name =&gt; {NAME}", "output/scioto-net.svg")
 </span></code></pre>
-<p>Results:<br><img src="output/scioto-net.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/scioto-net.svg" alt="Output Image"><span class="img-wrapper"><img src="output/scioto-net.svg" alt="Output Image"></span></label></p>
 <p>Load timeseries data from CSV, and convert any timeseries without gaps into a complete one.</p>
 <p>We can see the number of valid data and number of total data to see that the timeseries have gaps on them.</p>
 <pre><code class="language-task">network csv.load_timeseries("data/scioto/scioto.csv", "date", "streamflow");
@@ -3968,10 +3754,10 @@ nodes(good).visual.textcolor = "darkgreen";
 node[03221646].visual.nodecolor = "red"; # for later
 network svg_ts_blocks("output/scioto-ts-gap-id.svg", "{NAME}", "streamflow", 620.0, 820.0, arr_width=500.0, bgcolor="#ffffff33")
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">
+<p>*Error*:</p>
+<pre><code class="language-error">EmptyValueError  at Line 1 Column 1: the expression resulted in empty value
 </code></pre>
-<p><img src="output/scioto-ts-gap-id.svg" alt="Plot Showing the Data Gaps in the CSV"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/scioto-ts-gap-id.svg" alt="Plot Showing the Data Gaps in the CSV"><span class="img-wrapper"><img src="output/scioto-ts-gap-id.svg" alt="Plot Showing the Data Gaps in the CSV"></span></label></p>
 <p>We can use the series map function in NADI to fill the gaps in timeseries using other nodes. The example below shows just two nodes using one to fill the other.</p>
 <pre><code class="language-task"># example to fill timeseries with a value from another node
 node[03229610]$sf_fix = ($$streamflow, node[03227500]$$streamflow) -&gt; func(a=false, b=false) {
@@ -4047,7 +3833,7 @@ network svg_ts_blocks("output/scioto-ts-gap-id-2.svg", "{NAME}", "streamflow2", 
 <p>Results:</p>
 <pre><code class="language-output">
 </code></pre>
-<p><img src="output/scioto-ts-gap-id-2.svg" alt="Plot Showing the Data Gaps in the CSV"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/scioto-ts-gap-id-2.svg" alt="Plot Showing the Data Gaps in the CSV"><span class="img-wrapper"><img src="output/scioto-ts-gap-id-2.svg" alt="Plot Showing the Data Gaps in the CSV"></span></label></p>
 <p>Now if we do the same with all the nodes with more than one input nodes, we get the following result.</p>
 <pre><code class="language-task">
 nodes(len(inputs._)&gt;0)$sf_fix3 = ($$streamflow, im$$streamflow) -&gt; func(a=false, b=false) {
@@ -4063,13 +3849,629 @@ nodes$$streamflow3 = $$streamflow
 nodes(len(inputs._)&gt;0)$$streamflow3 = $sf_fix3
 network svg_ts_blocks("../output/scioto-ts-gap-id-3.svg", "{NAME}", "streamflow3", 620.0, 820.0, arr_width=500.0, bgcolor="#ffffff33")
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">
+<p>*Error*:</p>
+<pre><code class="language-error">
+
+
+FunctionError  at Line 13 Column 1: function svg_ts_blocks: No such file or directory (os error 2)
 </code></pre>
-<p><img src="output/scioto-ts-gap-id-3.svg" alt="Plot Showing the Data Gaps in the CSV"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/scioto-ts-gap-id-3.svg" alt="Plot Showing the Data Gaps in the CSV"><span class="img-wrapper"><img src="output/scioto-ts-gap-id-3.svg" alt="Plot Showing the Data Gaps in the CSV"></span></label></p>
 <p>If you compare this with the previous image side by side, you can see that now we have timeseries data available for a lot more range. Look at the red node, and the root node, how the timeseries range is now the same as the longest input node.</p>
 <p>But it is still limited to when the data is available in the input nodes. We can run another step with output nodes to fill the gaps in the leaf nodes. We can also do that multiple times in a loop to propagate the values based on previous imputation, but of course that decreases the accuracy overall.</p>
 <p>Note: This is a simplified algorithm to fill the gaps, you can make it more complicated.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="flow-routing-in-river-network"><a class="header" href="#flow-routing-in-river-network">Flow routing in River Network</a></h1>
+<p>This example shows how you can build a basic routing model using NADI.</p>
+<p>Here is a random network that is a directed tree, without any bifurcations.</p>
+<pre><code class="language-task">net random_tree(25, 5, seed=10)
+net.cairo.network("./output/rm-routing-net.svg")
+</code></pre>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/rm-routing-net.svg" alt="Output Image"><span class="img-wrapper"><img src="output/rm-routing-net.svg" alt="Output Image"></span></label></p>
+<p>Lets do a simple streamflow routing, few assumptions,</p>
+<ul>
+<li>there is random precipitation of upto 50 units, precipitation only happens 20% of the days</li>
+<li>the evaporation/interception etc loss are 10% of the precip or 5 units, whichever is higher</li>
+<li>all the nodes represent basin area of 1 unit</li>
+</ul>
+<pre><code class="language-task">func rand_precip(s) {
+  if (random_bool(0.2, seed=s%7+node.INDEX)) {
+    v = random(seed=s+node.INDEX) * 50
+	int(v * 4) / 4
+  } else { 0.0 }
+}
+
+func precip_loss(p) {
+	min([max([p * 0.1, 5], 0), p], inf)
+}
+
+nodes$precip = [rand_precip(i*17) for i in 1:10]
+nodes$loss = $precip -&gt; @precip_loss
+
+nodes$runoff = ($precip, $loss) -&gt; func(p, l) {p - l}
+leaves$sf = $runoff
+
+nodes.inps = len(inputs._) &gt; 0
+
+nodes&lt;inp&gt;(inps)$sf = (inputs$sf, $runoff) -&gt; @sum
+
+nm $sf
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  "16" = Series(len: 10, dtype: Floats) [144.75, 82.75, 138.75, 119.75, 48.25, 131.5, 96.75, 102.25, 111.5, 120.25],
+  "7" = Series(len: 10, dtype: Floats) [0, 26.5, 40, 0, 0, 0, 0, 0, 20.25, 17.75],
+  "12" = Series(len: 10, dtype: Floats) [37, 0, 0, 9, 16.25, 4.5, 18.75, 0, 0, 0],
+  "5" = Series(len: 10, dtype: Floats) [37, 0, 0, 0, 0, 4.5, 18.75, 0, 0, 0],
+  "1" = Series(len: 10, dtype: Floats) [37, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "4" = Series(len: 10, dtype: Floats) [0, 25, 40.75, 74, 16.5, 69.5, 39.75, 27.5, 37.25, 67.75],
+  "15" = Series(len: 10, dtype: Floats) [0, 25, 33.75, 74, 16.5, 69.5, 39.75, 27.5, 37.25, 40],
+  "6" = Series(len: 10, dtype: Floats) [0, 21.5, 0, 0, 0, 0, 39.75, 0, 1.25, 0],
+  "0" = Series(len: 10, dtype: Floats) [0, 0, 0, 43.75, 0, 0, 0, 0, 0, 0],
+  "24" = Series(len: 10, dtype: Floats) [0, 3.5, 33.75, 30.25, 0, 69.5, 0, 27.5, 36, 40],
+  "18" = Series(len: 10, dtype: Floats) [0, 0, 33.75, 30.25, 0, 44, 0, 27.5, 0, 40],
+  "3" = Series(len: 10, dtype: Floats) [0, 0, 33.75, 0, 0, 44, 0, 0, 0, 40],
+  "10" = Series(len: 10, dtype: Floats) [69.5, 31.25, 58, 36.75, 15.5, 57.5, 38.25, 61, 54, 34.75],
+  "13" = Series(len: 10, dtype: Floats) [38.75, 31.25, 58, 36.75, 3.75, 57.5, 38.25, 41.5, 54, 34.75],
+  "22" = Series(len: 10, dtype: Floats) [38.75, 31.25, 36.25, 36.75, 3.75, 57.5, 25.75, 41.5, 54, 0],
+  "21" = Series(len: 10, dtype: Floats) [0, 0, 0, 0, 0, 0, 25.75, 0, 0, 0],
+  "11" = Series(len: 10, dtype: Floats) [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "2" = Series(len: 10, dtype: Floats) [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "17" = Series(len: 10, dtype: Floats) [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "23" = Series(len: 10, dtype: Floats) [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  "8" = Series(len: 10, dtype: Floats) [38.75, 31.25, 36.25, 36.75, 0, 57.5, 0, 41.5, 54, 0],
+  "14" = Series(len: 10, dtype: Floats) [38.75, 17.5, 36.25, 36.75, 0, 57.5, 0, 41.5, 39, 0],
+  "19" = Series(len: 10, dtype: Floats) [0, 0, 0, 30.5, 0, 18.5, 0, 0, 0, 0],
+  "20" = Series(len: 10, dtype: Floats) [17.25, 0, 0, 0, 0, 39, 0, 40.25, 0, 0],
+  "9" = Series(len: 10, dtype: Floats) [21.5, 0, 36.25, 0, 0, 0, 0, 1.25, 0, 0]
+}
+</code></pre>
+<p>We have the results but let’s visualize it</p>
+<pre><code class="language-task">env.progr = ["▁" ,"▂" ,"▃" ,"▄" ,"▅", "▇"]
+max_sf = max(nodes { max([v for v in $sf], 0) }, 0)
+max_pr = max(nodes { max([v for v in $precip], 0) }, 0)
+
+func get_bar(p, m) {get(env.progr, int(p * (len(env.progr) - 1) / m))}
+
+nodes.pvis = str_join([get_bar(p, max_pr) for p in $precip])
+
+nodes.svis = str_join([get_bar(p, max_sf) for p in $sf])
+nm&lt;inv&gt; [pvis, svis]
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  "9" = ["▄▁▅▁▁▁▁▂▁▁", "▂▁▂▁▁▁▁▁▁▁"],
+  "20" = ["▃▁▁▁▁▅▁▇▁▁", "▂▁▁▁▁▂▁▂▁▁"],
+  "19" = ["▁▁▁▅▁▃▁▁▁▁", "▁▁▁▂▁▂▁▁▁▁"],
+  "14" = ["▁▃▁▂▁▁▁▁▅▁", "▂▂▂▂▁▃▁▂▂▁"],
+  "8" = ["▁▃▁▁▁▁▁▁▃▁", "▂▂▂▂▁▃▁▂▃▁"],
+  "23" = ["▁▁▁▁▁▁▁▁▁▁", "▁▁▁▁▁▁▁▁▁▁"],
+  "17" = ["▁▁▁▁▁▁▁▁▁▁", "▁▁▁▁▁▁▁▁▁▁"],
+  "2" = ["▁▁▁▁▁▁▁▁▁▁", "▁▁▁▁▁▁▁▁▁▁"],
+  "11" = ["▁▁▁▁▁▁▁▁▁▁", "▁▁▁▁▁▁▁▁▁▁"],
+  "21" = ["▁▁▁▁▁▁▄▁▁▁", "▁▁▁▁▁▁▂▁▁▁"],
+  "22" = ["▁▁▁▁▂▁▁▁▁▁", "▂▂▂▂▁▃▂▂▃▁"],
+  "13" = ["▁▁▄▁▁▁▃▁▁▅", "▂▂▃▂▁▃▂▂▃▂"],
+  "10" = ["▅▁▁▁▃▁▁▄▁▁", "▃▂▃▂▂▃▂▃▃▂"],
+  "3" = ["▁▁▅▁▁▇▁▁▁▇", "▁▁▂▁▁▃▁▁▁▂"],
+  "18" = ["▁▁▁▅▁▁▁▄▁▁", "▁▁▂▂▁▃▁▂▁▂"],
+  "24" = ["▁▂▁▁▁▄▁▁▅▁", "▁▁▂▂▁▃▁▂▂▂"],
+  "0" = ["▁▁▁▇▁▁▁▁▁▁", "▁▁▁▃▁▁▁▁▁▁"],
+  "6" = ["▁▄▁▁▁▁▇▁▂▁", "▁▂▁▁▁▁▂▁▁▁"],
+  "15" = ["▁▁▁▁▃▁▁▁▁▁", "▁▂▂▄▂▃▂▂▂▂"],
+  "4" = ["▁▁▂▁▁▁▁▁▁▄", "▁▂▂▄▂▃▂▂▂▃"],
+  "1" = ["▅▁▁▁▁▁▁▁▁▁", "▂▁▁▁▁▁▁▁▁▁"],
+  "5" = ["▁▁▁▁▁▂▃▁▁▁", "▂▁▁▁▁▁▂▁▁▁"],
+  "12" = ["▁▁▁▂▃▁▁▁▁▁", "▂▁▁▁▂▁▂▁▁▁"],
+  "7" = ["▁▄▇▁▁▁▁▁▄▃", "▁▂▂▁▁▁▁▁▂▂"],
+  "16" = ["▅▁▁▁▁▁▁▃▁▁", "▇▄▇▅▃▇▄▅▅▅"]
+}
+</code></pre>
+<p>The first set of bars is pecipitation, and second set is the streamflow. Let’s draw it with network diagram.</p>
+<pre><code class="language-task">net.svg_save("./output/rm-prec2.svg", label="{pvis} -&gt; {svis}", width=200.0, height=325.0, bgcolor="white")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">
+</code></pre>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/rm-prec2.svg" alt="Output Image from svg"><span class="img-wrapper"><img src="output/rm-prec2.svg" alt="Output Image from svg"></span></label></p>
+<p>Because our precipitation was random, as we move downstream the streamflow starts to get more regular.</p>
+<p>We can also see how the streamflow is collected through the routing process.</p>
+<p>A better visualization could be done through future plugins, but this is just an example of how you can program things in NADI to do what you want.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="reservoir-operating-rules"><a class="header" href="#reservoir-operating-rules">Reservoir Operating Rules</a></h1>
+<p>This example shows an example of a simple network with a reservoir and how it impacts the downstream flows.</p>
+<p>First let us generate a random network</p>
+<pre><code class="language-task">net.random_tree(8, seed=1232434)
+nodes.reservoir = false
+# define two reservoirs
+nodes[7,1].reservoir = true
+
+# a function to generate flows
+func gen_flow(seed, ind){
+	random(seed+ind) * int(random_bool(0.3, seed+ind)) * (1 + int(random_bool(0.1, seed+ind)))
+}
+
+N = 40
+# define flows at the leaves
+nodes.noleaves = true;
+leaves.noleaves = false;
+leaves$flows = [gen_flow(INDEX, i) for i in 1:N]
+nodes(noleaves)$local_flows = [{gen_flow(INDEX,i)/2} for i in 1:N]
+nodes&lt;inp&gt;(noleaves)$flows = $local_flows + (inputs$flows -&gt; @sum)
+
+nodes.mean_flow = sr_mean("flows")
+nodes.max_flow = $flows -&gt;+ func(a, LAST=0) {max([a, LAST], 0)}
+
+# rudimentary visualization of the network with flow series
+nodes(reservoir).visual = {nodeshape="box", nodecolor="black"}
+net.cairo.plot("flows", "./output/ro-reservoir-table.svg", normalize=true)
+</code></pre>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/ro-reservoir-table.svg" alt="Output Image"><span class="img-wrapper"><img src="output/ro-reservoir-table.svg" alt="Output Image"></span></label></p>
+<pre><code class="language-task">nm&lt;inv&gt; {sr_min("flows")}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  "3" = 0.0,
+  "7" = 0.0,
+  "2" = 0.0,
+  "4" = 0.0,
+  "1" = 0.0,
+  "0" = 0.0,
+  "5" = 0.08524753881832114,
+  "6" = 0.08524753881832114
+}
+</code></pre>
+<p>Now let us have a simple rule, that reservoirs operate by providing flows at a constant if it is less than mean flow at that location</p>
+<pre><code class="language-task">nodes[7].low_flow_limit = 0.05
+nodes[1].low_flow_limit = 0.1
+leaves$c_flows = $flows
+nodes&lt;inp&gt;(noleaves)$c_flows = if (reservoir) {
+	($local_flows, inputs$c_flows) -&gt; func(l, i) {
+		x = l + sum(i);
+		# we can use node variables because it is a node context
+		max([x], node.low_flow_limit)
+	}
+} else {
+	$local_flows + (inputs$c_flows -&gt; @sum)
+}
+
+<span class="boring">net.cairo.plot("c_flows", "./output/ro-reservoir-table-2.svg", normalize=true)
+</span></code></pre>
+<p>Results:</p>
+<pre><code class="language-output">
+</code></pre>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/ro-reservoir-table-2.svg" alt="Output Image"><span class="img-wrapper"><img src="output/ro-reservoir-table-2.svg" alt="Output Image"></span></label></p>
+<p>If we look at the minimum flows, we can see how it has maintained the provided minimum flows from the reservoirs onwards.</p>
+<pre><code class="language-task">nm&lt;inv&gt; {[sr_min("flows"), sr_min("c_flows")]}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  "3" = [0.0, 0.0],
+  "7" = [0.0, 0.05],
+  "2" = [0.0, 0.0],
+  "4" = [0.0, 0.05],
+  "1" = [0.0, 0.1],
+  "0" = [0.0, 0.0],
+  "5" = [0.08524753881832114, 0.1244055736719738],
+  "6" = [0.08524753881832114, 0.13524753881832113]
+}
+</code></pre>
+<p>Of course we did not put any mass balance into the equation. We can’t simply provide the extra flow without taking it from somewhere, so we should make a storage value and save it.</p>
+<p>Let’s provide both reservoirs with storage values of 5 unit. And see how it changes when we provide the minimum flow by augmenting the flow using storage.</p>
+<pre><code class="language-task">nodes(reservoir).storage = 5.0
+
+leaves$c_flows = $flows
+nodes&lt;inp&gt;(noleaves)$c_flows = if (reservoir) {
+	($local_flows, inputs$c_flows) -&gt; func(l, i) {
+		x = l + sum(i);
+	    if (x &lt; node.low_flow_limit) {
+			aug = node.low_flow_limit - x
+			node.storage = node.storage - aug
+			node.low_flow_limit
+		} else {x}
+	}
+} else {
+	$local_flows + (inputs$c_flows -&gt; @sum)
+}
+nm&lt;inv&gt;.storage
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  "3" = &lt;None&gt;,
+  "7" = 4.090680944257121,
+  "2" = &lt;None&gt;,
+  "4" = &lt;None&gt;,
+  "1" = 4.902766460431184,
+  "0" = &lt;None&gt;,
+  "5" = &lt;None&gt;,
+  "6" = &lt;None&gt;
+}
+</code></pre>
+<p>The storage at the end shows how much of the water was used up to provide the minimum flows.</p>
+<p>Now, let’s try to maintain the storage at a certain level by taking excess values from the flows when it has more than the minimum.</p>
+<pre><code class="language-task">nodes(reservoir).storage = 5.0
+
+leaves$c_flows = $flows
+nodes&lt;inp&gt;(noleaves)$c_flows = if (reservoir) {
+	($local_flows, inputs$c_flows) -&gt; func(l, i) {
+		x = l + sum(i);
+	    if (x &lt; node.low_flow_limit) {
+			aug = node.low_flow_limit - x
+			node.storage = node.storage - aug
+			node.low_flow_limit
+		} else {
+			if (node.storage &gt;= 5.0) { x } else {
+				excess = x - node.low_flow_limit
+				take = excess * 0.8
+				node.storage = storage + take
+				x - take
+			}
+		}
+	}
+} else {
+	$local_flows + (inputs$c_flows -&gt; @sum)
+}
+nm&lt;inv&gt;.storage
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  "3" = &lt;None&gt;,
+  "7" = 4.87491229927272,
+  "2" = &lt;None&gt;,
+  "4" = &lt;None&gt;,
+  "1" = 5.142603270575256,
+  "0" = &lt;None&gt;,
+  "5" = &lt;None&gt;,
+  "6" = &lt;None&gt;
+}
+</code></pre>
+<p>While we have more water in storage here compared to the previous, we still did not recover the storage loss, this is because our minimum flow was arbritary</p>
+<pre><code class="language-task">net.cairo.plot("c_flows", "./output/ro-reservoirs-final.svg", normalize=true, config={delta_y=40.0})
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">
+</code></pre>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/ro-reservoirs-final.svg" alt="Output Image"><span class="img-wrapper"><img src="output/ro-reservoirs-final.svg" alt="Output Image"></span></label></p>
+<p>Let’s look at the mean, minimum and maximum flows at the nodes before and after the reservoir operation rules.</p>
+<pre><code class="language-task">nm&lt;inv&gt; {[sr_mean('flows'), sr_mean('c_flows')]}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  "3" = [0.05201108811624298, 0.05201108811624298],
+  "7" = [0.07940064308632276, 0.08252783560450483],
+  "2" = [0.054779109940159644, 0.054779109940159644],
+  "4" = [0.16521959389081808, 0.16834678640900014],
+  "1" = [0.19622891913238585, 0.19579102988618646],
+  "0" = [0.06038987573525525, 0.06038987573525525],
+  "5" = [0.2868137327352687, 0.2863758434890693],
+  "6" = [0.31700867060289634, 0.31657078135669703]
+}
+</code></pre>
+<pre><code class="language-task">nm&lt;inv&gt; {[sr_min('flows'), sr_min('c_flows')]}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  "3" = [0.0, 0.0],
+  "7" = [0.0, 0.05],
+  "2" = [0.0, 0.0],
+  "4" = [0.0, 0.05],
+  "1" = [0.0, 0.1],
+  "0" = [0.0, 0.0],
+  "5" = [0.08524753881832114, 0.1],
+  "6" = [0.08524753881832114, 0.13524753881832113]
+}
+</code></pre>
+<pre><code class="language-task">nm&lt;inv&gt; {[sr_max('flows'), sr_max('c_flows')]}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  "3" = [0.26922029023541016, 0.26922029023541016],
+  "7" = [0.26922029023541016, 0.26922029023541016],
+  "2" = [0.26922029023541016, 0.26922029023541016],
+  "4" = [0.4076741577386759, 0.4076741577386759],
+  "1" = [0.4076741577386759, 0.4076741577386759],
+  "0" = [0.29202287154046747, 0.29202287154046747],
+  "5" = [0.676894447974086, 0.676894447974086],
+  "6" = [0.676894447974086, 0.676894447974086]
+}
+</code></pre>
+<h1 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h1>
+<p>In this chapter we generated a sample network, assigned two nodes as reservoirs and defined rules to provide minimum flows as well as algorithms to recover storage volume.</p>
+<h1 id="bonus-hec-dss"><a class="header" href="#bonus-hec-dss">Bonus HEC-DSS</a></h1>
+<p>For bonus, let’s save the data into HEC-DSS format.</p>
+<pre><code class="language-task">nodes do dss.save_series($flows, "./output/ro-reservoir-test.dss", r"/{NAME}/Flow/1910Jan01//1Day/F/")
+nodes do dss.save_series($flows, "./output/ro-reservoir-test.dss", r"/{NAME}/ModFlow/1910Jan01//1Day/F/")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">
+</code></pre>
+<p>You can download the dss and test it <a href="output/ro-reservoir-test.dss">here</a></p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="graph-theory"><a class="header" href="#graph-theory">Graph Theory</a></h1>
+<h1 id="graph-theory-examples"><a class="header" href="#graph-theory-examples">Graph Theory Examples</a></h1>
+<p>This notebook shows example calculations of parameters from graph theory.</p>
+<pre><code class="language-task">net.load_str("
+a-&gt;b
+b-&gt;c
+c-&gt;d
+d-&gt;e
+c-&gt;e
+")
+<span class="boring">net.cairo.table("Node =&gt; {NAME}\n", "./output/gt-network.svg")
+</span></code></pre>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/gt-network.svg" alt="Output Image"><span class="img-wrapper"><img src="output/gt-network.svg" alt="Output Image"></span></label></p>
+<h2 id="adjacency-matrix"><a class="header" href="#adjacency-matrix">adjacency matrix</a></h2>
+<pre><code class="language-task">edge_mat = nodes {
+	loc.outs = outputs.NAME
+    nodes {str(int(NAME in outs))}
+}
+adj_mat = nodes {
+	loc.inps = inputs.NAME
+	loc.outs = outputs.NAME
+    nodes {str(int(NAME in inps | NAME in outs))}
+}
+
+for v in edge_mat {
+	echo(str_join(v, " "))
+}
+for v in adj_mat {
+	echo(str_join(v, " "))
+}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">0 0 0 0 0
+1 0 0 0 0
+1 1 0 0 0
+0 0 1 0 0
+0 0 0 1 0
+
+
+0 1 1 0 0
+1 0 1 0 0
+1 1 0 1 0
+0 0 1 0 1
+0 0 0 1 0
+</code></pre>
+<h2 id="degree-of-nodes"><a class="header" href="#degree-of-nodes">Degree of Nodes</a></h2>
+<pre><code class="language-task">nodes {
+	[len(inputs._), len(outputs._)]
+}
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">[[2, 0], [1, 1], [1, 2], [1, 1], [0, 1]]
+</code></pre>
+<h2 id="check-for-loops"><a class="header" href="#check-for-loops">Check for loops</a></h2>
+<pre><code class="language-task">nodes.self_loop = NAME in inputs.NAME;
+nodes(self_loop).NAME
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">[]
+</code></pre>
+<p>Let’s try one with self loop</p>
+<pre><code class="language-task">net.load_str("
+a-&gt;b
+b -&gt; c
+c -&gt; c
+c -&gt; d
+")
+nodes.self_loop = NAME in inputs.NAME;
+nodes(self_loop).NAME
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">["c"]
+</code></pre>
+<p>This doesn’t capture a cycle with multiple nodes though</p>
+<pre><code class="language-task">net.load_str("
+a -&gt; b
+b -&gt; c
+c -&gt; x
+x -&gt; b
+c -&gt; d
+")
+nodes.self_loop = NAME in inputs.NAME;
+nodes(self_loop).NAME
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">[]
+</code></pre>
+<p>So we have to check differently, below we check if any node has inputs with order greater or equal than its own, which should not happen in an acyclic directed graph.</p>
+<p>Order in NADI is calculated as “max of inputs + 1”, except when it has loops like this where we can not calculate that way.</p>
+<pre><code class="language-task">nodes.loop_back = node {
+  loc.ord = node.ORDER
+  odd = inputs { ORDER &gt;= loc.ord }
+  any(*odd)
+}
+nodes(loop_back).NAME
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">["x"]
+</code></pre>
+<p>The same logic will work for the previous self loop case.</p>
+<p>Note that, if we modify <code>ORDER &gt;= loc.ord</code> to have <code>=</code>, it will find self loop, if we replace by <code>&gt;</code> only, then it will find loops other than self loops.</p>
+<pre><code class="language-task">net.load_str("
+a-&gt;b
+b -&gt; c
+c -&gt; c
+c -&gt; d
+")
+nodes.loop_back = {
+  loc.ord = node.ORDER
+  odd = inputs { ORDER &gt;= loc.ord }
+  any(*odd)
+}
+nodes(loop_back).NAME
+</code></pre>
+<p>ParseError:</p>
+<pre><code class="language-error">Error: Parse Error at Line 2 Column 17
+  nodes.loop_back = {
+                  ^ Unexpected Token
+</code></pre>
+<h2 id="depth-of-nodes"><a class="header" href="#depth-of-nodes">Depth of nodes</a></h2>
+<p>Let’s get back to a simple network, and calculate depth</p>
+<pre><code class="language-task">net.load_str("
+a-&gt;b
+b-&gt;c
+c-&gt;d
+d-&gt;e
+c-&gt;e
+")
+nodes&lt;out&gt;.depth = {
+	if (len(outputs._) == 0) { 0 } 
+	else { min(outputs.depth, inf) + 1 }
+}
+<span class="boring">net.cairo.table("Node =&gt; {NAME}\nDepth =&gt; {depth}", "./output/gt-network-depth.svg")
+</span></code></pre>
+<p>ParseError:</p>
+<pre><code class="language-error">Error: Parse Error at Line 2 Column 18
+  nodes&lt;out&gt;.depth = {
+                   ^ Unexpected Token
+</code></pre>
+<h2 id="eccentricity"><a class="header" href="#eccentricity">Eccentricity</a></h2>
+<p>The eccentricity of a vertex is the farthest distance from it to any other vertex.</p>
+<pre><code class="language-task">nodes&lt;out&gt;.out_ecc = {
+	if (len(outputs._) == 0) { 0 } 
+	else { max(outputs.depth, 0) + 1 }
+}
+nodes&lt;inp&gt;.in_ecc = {
+	if (len(inputs._) == 0) { 0 } 
+	else { max(inputs.in_ecc, 0) + 1 }
+}
+
+nodes.ecc = {
+	max([max(inputs.in_ecc + 1, 0), max(outputs.out_ecc + 1, 0)], 0)
+}
+<span class="boring">net.cairo.table("Node =&gt; {NAME}\nIn E =&gt; {in_ecc}\nOut E =&gt; {out_ecc}\nEccentricity =&gt; {ecc}", "./output/gt-network-ecc.svg")
+</span></code></pre>
+<p>ParseError:</p>
+<pre><code class="language-error">Error: Parse Error at Line 1 Column 20
+  nodes&lt;out&gt;.out_ecc = {
+                     ^ Unexpected Token
+</code></pre>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/gt-network-ecc.svg" alt="Results of Eccectricity"><span class="img-wrapper"><img src="output/gt-network-ecc.svg" alt="Results of Eccectricity"></span></label></p>
+<p>I don’t know if we can take shortcuts or not, longest distance from <code>e</code> to <code>a</code> is through <code>d</code> (4), but it can be shorter (3).</p>
+<h2 id="shortest-path-length"><a class="header" href="#shortest-path-length">Shortest path length</a></h2>
+<p>Let’s see if we can find a shortest path between a and e</p>
+<pre><code class="language-task">func add_dist(nd) {
+    if (nd == "e") { return true }
+    loc.d = node[*nd].dist + 1
+	node[*nd] {
+		outputs{
+			node.dist = if (node.dist?) {
+				min([node.dist, loc.d], inf)
+			} else { loc.d }
+		}
+	}
+    false
+}
+
+node[a].dist = 0
+nodes&lt;inp&gt; do {
+ found = add_dist(node.NAME)	
+}
+
+node[e].dist
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">
+
+EmptyValueError [x] at Line 15 Column 1: the expression resulted in empty value
+</code></pre>
+<p>Now would it work on a more complex network? Probably not, because here we depended on the NADI ordering of input nodes before output nodes. A proper algorithm would have to work irrespective of that.</p>
+<p>So we have to write an algorithm that can seek the other point</p>
+<pre><code class="language-task">net.load_str("a -&gt; b\n c-&gt;d \n a-&gt;d \n b-&gt;d")
+
+nodes.visual = {nodesize=5}
+net.cairo.network("./output/gt-net2.svg")
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">
+</code></pre>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/gt-net2.svg" alt="Example complex network"><span class="img-wrapper"><img src="output/gt-net2.svg" alt="Example complex network"></span></label></p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="gene-regulatory-network"><a class="header" href="#gene-regulatory-network">Gene Regulatory network</a></h1>
+<p>I do not have any experience with this, so I went to wikipedia and grabbed the example network from it.</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="data/DG_Network_in_Hybrid_Rice.png" alt="Wikipedia Image"><span class="img-wrapper"><img src="data/DG_Network_in_Hybrid_Rice.png" alt="Wikipedia Image"></span></label></p>
+<p>Now let’s try to construct it in nadi</p>
+<pre><code class="language-task">to_file("
+PAT1 -&gt; CHS
+P1F3 -&gt; CHS
+P1F3 -&gt; LHY
+P1F3 -&gt; CAB1
+P1F3 -&gt; RBCS1A
+APRR -&gt; LHY
+GI -&gt; LHY
+LHY -&gt; GBSS
+LHY -&gt; CAT3
+STO -&gt; CHS
+HOG1 -&gt; CHS
+CAT3 -&gt; RCD1
+DND1 -&gt; RCD1
+", "./output/gene.network")
+
+net.load_file("./output/gene.network")
+net.cairo.network("./output/grn-gene-net.svg")
+</code></pre>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/grn-gene-net.svg" alt="Output Image"><span class="img-wrapper"><img src="output/grn-gene-net.svg" alt="Output Image"></span></label></p>
+<p>The image looks a bit weird because nadi is made for river networks, so let’s just place the nodes differently.</p>
+<pre><code class="language-task">net.load_file("./output/gene.network")
+nodes set_xy(random(), random())
+leaves set_xy(1, node.INDEX)
+roots set_xy(0, node.INDEX)
+net.cairo.draw("./output/grn-gene-net2.svg")
+</code></pre>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/grn-gene-net2.svg" alt="Output Image"><span class="img-wrapper"><img src="output/grn-gene-net2.svg" alt="Output Image"></span></label></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="example/output/grn-" alt="Output Network Visualization"><span class="img-wrapper"><img src="example/output/grn-" alt="Output Network Visualization"></span></label></p>
+<p>Let’s just give up and use graphviz</p>
+<pre><code class="language-task">net.load_file("./output/gene.network")
+# net save_gv("gene-net.gv", name="n")
+# command("dot gene-net.gv -o gene-net-pos.gv")
+# commenting out because we need to manually remove the label="\N" there because it is invalid string in nadi
+net load_positions("gene-net-pos.gv")
+net.cairo.draw("./output/grn-gene-net3.svg")
+</code></pre>
+<p>*Error*:</p>
+<pre><code class="language-error">
+FunctionError  at Line 5 Column 1: function load_positions: No such file or directory (os error 2)
+</code></pre>
+<p>It at least looks like something.</p>
+<p>We can see how visualization of graphs other than river is not something that is currently made well in NADI. But as shown here you can use graphviz, or write algorithms to positions the node yourself.</p>
+<pre><code class="language-task">nm inputs.NAME
+nm outputs.NAME
+</code></pre>
+<p>Results:</p>
+<pre><code class="language-output">{
+  CHS = ["PAT1", "P1F3", "STO", "HOG1"],
+  HOG1 = [],
+  STO = [],
+  P1F3 = [],
+  PAT1 = [],
+  RCD1 = ["DND1", "CAT3"],
+  CAT3 = ["LHY"],
+  LHY = ["P1F3", "APRR", "GI"],
+  GI = [],
+  APRR = [],
+  DND1 = [],
+  CAB1 = ["P1F3"],
+  GBSS = ["LHY"],
+  RBCS1A = ["P1F3"]
+}
+
+{
+  CHS = [],
+  HOG1 = ["CHS"],
+  STO = ["CHS"],
+  P1F3 = ["CHS", "LHY", "CAB1", "RBCS1A"],
+  PAT1 = ["CHS"],
+  RCD1 = [],
+  CAT3 = ["RCD1"],
+  LHY = ["GBSS", "CAT3"],
+  GI = ["LHY"],
+  APRR = ["LHY"],
+  DND1 = ["RCD1"],
+  CAB1 = [],
+  GBSS = [],
+  RBCS1A = []
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="nadi-python-library"><a class="header" href="#nadi-python-library">NADI Python Library</a></h1>
 <p>This can be installed from <code>pypi</code> with <code>pip install nadi-py</code> command.</p>
@@ -4098,9 +4500,9 @@ fn.network.svg_save(net, "test.svg")
 <pre><code class="language-task">network load_str("a -&gt; b\nc -&gt; b")
 nodes(output._?) do echo(env.render("{i} -&gt; {o}", i=node.INDEX, o=output.INDEX))
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-NotANodeContextError [c] at Line 2 Column 1: currently not inside a node context
+<p>Results:</p>
+<pre><code class="language-output">1 -&gt; 0
+2 -&gt; 0
 </code></pre>
 <p>Equivalent Python:</p>
 <pre><code class="language-python">import nadi
@@ -4335,7 +4737,9 @@ abi_stable = "0.11.3"
 nadi_core = "0.7.0"
 </code></pre>
 <p>src/lib.rs:</p>
-<pre><code class="language-rust">use nadi_core::nadi_plugin::nadi_plugin;
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use nadi_core::nadi_plugin::nadi_plugin;
 
 #[nadi_plugin]
 mod sample {
@@ -4383,7 +4787,8 @@ mod sample {
         }
         None
     }
-}</code></pre>
+}
+<span class="boring">}</span></code></pre>
 <p>The plugin can be compiled with the <code>cargo build</code> or <code>cargo build --release</code> command, it’ll generate the shared library in the <code>target/debug</code> or <code>target/release</code> folder. You can simply copy it to directory in <code>NADI_PLUGIN_DIRS</code> for it to be loaded.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
@@ -4425,7 +4830,9 @@ mod sample {
 <h2 id="examples-1"><a class="header" href="#examples-1">Examples</a></h2>
 <p>Refer to the nadi_core, and other plugin repositories for sample codes for plugin functions as they are always up to date with the current version.</p>
 <p>Here is an example containing render function that is available on all function types.</p>
-<pre><code class="language-rust">    /// Render the template based on the given attributes
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    /// Render the template based on the given attributes
     ///
     /// For more details on the template system. Refer to the String
     /// Template section of the NADI book.
@@ -4445,8 +4852,11 @@ mod sample {
             keyval.render(template).map_err(|e| e.to_string())?
         };
         Ok(text)
-    }</code></pre>
-<pre><code class="language-rust">    /// Render the template based on the node attributes
+    }
+<span class="boring">}</span></code></pre>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    /// Render the template based on the node attributes
     ///
     /// For more details on the template system. Refer to the String
     /// Template section of the NADI book.
@@ -4465,8 +4875,11 @@ mod sample {
             node.render(template).map_err(|e| e.to_string())?
         };
         Ok(text)
-    }</code></pre>
-<pre><code class="language-rust">    /// Render from network attributes
+    }
+<span class="boring">}</span></code></pre>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    /// Render from network attributes
     #[network_func(safe = false)]
     fn render(
         network: &amp;Network,
@@ -4483,13 +4896,16 @@ mod sample {
             network.render(template).map_err(|e| e.to_string())?
         };
         Ok(text)
-    }</code></pre>
+    }
+<span class="boring">}</span></code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="environment-functions"><a class="header" href="#environment-functions">Environment Functions</a></h1>
 <p>Environment functions are like any normal function on programming languages that take arguments and run code. In NADI environment functions can be called from any scope. For example, if a node function and environement function share the same name, then in a node task node function is called, but in network task env function is called.</p>
 <p>Environment functions are denoted in the plugins with <code>#[env_func]</code> macro. All the arguments this function takes need to be provided by user or through default values.</p>
 <p>Here is an example of a environment function <code>and</code> in plugin <code>logic</code>.</p>
-<pre><code class="language-rust">    /// Boolean and
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    /// Boolean and
     #[env_func]
     fn and(
         /// List of attributes that can be cast to bool
@@ -4501,7 +4917,8 @@ mod sample {
             ans = ans &amp;&amp; bool::from_attr_relaxed(c).unwrap();
         }
         ans
-    }</code></pre>
+    }
+<span class="boring">}</span></code></pre>
 <p>This function can be called inside the task system in different context like follows:</p>
 <pre><code class="language-task">env and(true, 12)
 env.something = false
@@ -4532,9 +4949,7 @@ network and(what?, and(true, true))
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.float_div"><code>float_div</code></a></td><td style="text-align: left">Float Division (same as / operator)</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.float_mult"><code>float_mult</code></a></td><td style="text-align: left">Float Multiplication (same as * operator)</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.get"><code>get</code></a></td><td style="text-align: left">get the choosen attribute from Array or AttrMap</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.is_none"><code>is_none</code></a></td><td style="text-align: left">check for none value</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.keys"><code>keys</code></a></td><td style="text-align: left">keys of the attribute map</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.none"><code>none</code></a></td><td style="text-align: left">None function that returns None</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.parse_attr"><code>parse_attr</code></a></td><td style="text-align: left">Parse attribute from string</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.parse_attrmap"><code>parse_attrmap</code></a></td><td style="text-align: left">Parse attribute map from string</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#env.strmap"><code>strmap</code></a></td><td style="text-align: left">map values from the attribute based on the given table</td></tr>
@@ -4561,7 +4976,7 @@ network and(what?, and(true, true))
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.isinf"><code>isinf</code></a></td><td style="text-align: left">check if a float is +/- infinity</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.isna"><code>isna</code></a></td><td style="text-align: left">check if a float is nan</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.json"><code>json</code></a></td><td style="text-align: left">format the attribute as a json string</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.len"><code>len</code></a></td><td style="text-align: left">length of an array or hashmap</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.length"><code>length</code></a></td><td style="text-align: left">length of an array or hashmap</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.max_num"><code>max_num</code></a></td><td style="text-align: left">Minimum of the variables</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.max"><code>max</code></a></td><td style="text-align: left">Maximum of the variables</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.min_num"><code>min_num</code></a></td><td style="text-align: left">Minimum of the variables</td></tr>
@@ -4581,7 +4996,6 @@ network and(what?, and(true, true))
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.today"><code>today</code></a></td><td style="text-align: left">get the current date</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.type_name"><code>type_name</code></a></td><td style="text-align: left">Type name of the arguments</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.unique_str"><code>unique_str</code></a></td><td style="text-align: left">Get a list of unique string values</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.unique"><code>unique</code></a></td><td style="text-align: left">Get a list of unique attribute values (only primitives)</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.year"><code>year</code></a></td><td style="text-align: left">year from date/datetime</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#env.zip"><code>zip</code></a></td><td style="text-align: left">make an array combining the arrays from arguments</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-4"><code>DEBUG</code></a></td><td style="text-align: left"><a href="#env.clip"><code>clip</code></a></td><td style="text-align: left">Echo the <code>----8&lt;----</code> line for clipping syntax</td></tr>
@@ -4617,25 +5031,20 @@ network and(what?, and(true, true))
 <tr><td style="text-align: left"><a href="#env-functions-10"><code>REGEX</code></a></td><td style="text-align: left"><a href="#env.str_replace"><code>str_replace</code></a></td><td style="text-align: left">Replace the occurances of the given match</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-10"><code>REGEX</code></a></td><td style="text-align: left"><a href="#env.str_split"><code>str_split</code></a></td><td style="text-align: left">Split the string with the given pattern</td></tr>
 <tr><td style="text-align: left"><a href="#env-functions-11"><code>RENDER</code></a></td><td style="text-align: left"><a href="#env.render"><code>render</code></a></td><td style="text-align: left">Render the template based on the node attributes</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#env.timeseries"><code>timeseries</code></a></td><td style="text-align: left">build timeseries from timeline and series</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#env.ts_timeline"><code>ts_timeline</code></a></td><td style="text-align: left">Get timeline of the timeseries as Series of strings</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.image"><code>image</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_open_multi"><code>svg_open_multi</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_open"><code>svg_open</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_settings"><code>svg_settings</code></a></td><td style="text-align: left">Generate the margins for the SVGs</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#env.count_data"><code>count_data</code></a></td><td style="text-align: left">Count the number of data in a column from a CSV file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#env.count_usgs_years"><code>count_usgs_years</code></a></td><td style="text-align: left">Count the number of data in a column from a CSV file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#env.schema"><code>schema</code></a></td><td style="text-align: left">List the columns in a CSV file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-16"><code>dss</code></a></td><td style="text-align: left"><a href="#env.list_catalog"><code>list_catalog</code></a></td><td style="text-align: left">List the catalog of the dss file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-16"><code>dss</code></a></td><td style="text-align: left"><a href="#env.load_series"><code>load_series</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-16"><code>dss</code></a></td><td style="text-align: left"><a href="#env.save_series"><code>save_series</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#env.features_count"><code>features_count</code></a></td><td style="text-align: left">Show the fields in the GIS file layer as a list</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#env.fields"><code>fields</code></a></td><td style="text-align: left">Show the fields in the GIS file layer as a list</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#env.layers"><code>layers</code></a></td><td style="text-align: left">Show the layers of the GIS file as a list</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#env.line-1"><code>line</code></a></td><td style="text-align: left">Show the layers of the GIS file as a list</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#env.values-1"><code>values</code></a></td><td style="text-align: left">Returns the values from a feature in a GIS file from its index</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-17"><code>typst</code></a></td><td style="text-align: left"><a href="#env.compile"><code>compile</code></a></td><td style="text-align: left">convert the typst content into pdf/svg/png</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-17"><code>typst</code></a></td><td style="text-align: left"><a href="#env.svg2pdf"><code>svg2pdf</code></a></td><td style="text-align: left">convert the svg content into pdf or png (or svg)</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.image"><code>image</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_open_multi"><code>svg_open_multi</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_open"><code>svg_open</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#env.svg_settings"><code>svg_settings</code></a></td><td style="text-align: left">Generate the margins for the SVGs</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>csv</code></a></td><td style="text-align: left"><a href="#env.count_data"><code>count_data</code></a></td><td style="text-align: left">Count the number of data in a column from a CSV file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>csv</code></a></td><td style="text-align: left"><a href="#env.count_usgs_years"><code>count_usgs_years</code></a></td><td style="text-align: left">Count the number of data in a column from a CSV file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>csv</code></a></td><td style="text-align: left"><a href="#env.schema"><code>schema</code></a></td><td style="text-align: left">List the columns in a CSV file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>gis</code></a></td><td style="text-align: left"><a href="#env.features_count"><code>features_count</code></a></td><td style="text-align: left">Show the fields in the GIS file layer as a list</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>gis</code></a></td><td style="text-align: left"><a href="#env.fields"><code>fields</code></a></td><td style="text-align: left">Show the fields in the GIS file layer as a list</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>gis</code></a></td><td style="text-align: left"><a href="#env.layers"><code>layers</code></a></td><td style="text-align: left">Show the layers of the GIS file as a list</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>gis</code></a></td><td style="text-align: left"><a href="#env.line-1"><code>line</code></a></td><td style="text-align: left">Show the layers of the GIS file as a list</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-14"><code>gis</code></a></td><td style="text-align: left"><a href="#env.values-1"><code>values</code></a></td><td style="text-align: left">Returns the values from a feature in a GIS file from its index</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>typst</code></a></td><td style="text-align: left"><a href="#env.compile"><code>compile</code></a></td><td style="text-align: left">convert the typst content into pdf/svg/png</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-15"><code>typst</code></a></td><td style="text-align: left"><a href="#env.svg2pdf"><code>svg2pdf</code></a></td><td style="text-align: left">convert the svg content into pdf or png (or svg)</td></tr>
 </tbody>
 </table>
 </div>
@@ -4682,17 +5091,17 @@ network and(what?, and(true, true))
 <tr><td style="text-align: left"><a href="#node-functions-8"><code>SERIES</code></a></td><td style="text-align: left"><a href="#node.sr_sort"><code>sr_sort</code></a></td><td style="text-align: left">Sort an series</td></tr>
 <tr><td style="text-align: left"><a href="#node-functions-8"><code>SERIES</code></a></td><td style="text-align: left"><a href="#node.sr_sum"><code>sr_sum</code></a></td><td style="text-align: left">Sum of the series values</td></tr>
 <tr><td style="text-align: left"><a href="#node-functions-8"><code>SERIES</code></a></td><td style="text-align: left"><a href="#node.sr_to_array"><code>sr_to_array</code></a></td><td style="text-align: left">Make an array from the series if it’s complete</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_complete"><code>ts_complete</code></a></td><td style="text-align: left">Convert the timeseries to complete if it doesn’t have gaps</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_count"><code>ts_count</code></a></td><td style="text-align: left">Number of timeseries in the node</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_delete"><code>ts_delete</code></a></td><td style="text-align: left">Delete the timeseries with the given name</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_dtype"><code>ts_dtype</code></a></td><td style="text-align: left">Type name of the timeseries</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_len"><code>ts_len</code></a></td><td style="text-align: left">Length of the timeseries</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_list"><code>ts_list</code></a></td><td style="text-align: left">List all timeseries in the node</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_print"><code>ts_print</code></a></td><td style="text-align: left">Print the given timeseries values in csv format</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#node.get_xy"><code>get_xy</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#node.set_xy"><code>set_xy</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#node.column"><code>column</code></a></td><td style="text-align: left">read a single column from a CSV file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#node.node_name"><code>node_name</code></a></td><td style="text-align: left">Example Node function for the plugin</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_complete"><code>ts_complete</code></a></td><td style="text-align: left">Convert the timeseries to complete if it doesn’t have gaps</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_count"><code>ts_count</code></a></td><td style="text-align: left">Number of timeseries in the node</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_delete"><code>ts_delete</code></a></td><td style="text-align: left">Delete the timeseries with the given name</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_dtype"><code>ts_dtype</code></a></td><td style="text-align: left">Type name of the timeseries</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_len"><code>ts_len</code></a></td><td style="text-align: left">Length of the timeseries</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_list"><code>ts_list</code></a></td><td style="text-align: left">List all timeseries in the node</td></tr>
+<tr><td style="text-align: left"><a href="#node-functions-9"><code>TS</code></a></td><td style="text-align: left"><a href="#node.ts_print"><code>ts_print</code></a></td><td style="text-align: left">Print the given timeseries values in csv format</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#node.get_xy"><code>get_xy</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-12"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#node.set_xy"><code>set_xy</code></a></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>csv</code></a></td><td style="text-align: left"><a href="#node.column"><code>column</code></a></td><td style="text-align: left">read a single column from a CSV file</td></tr>
+<tr><td style="text-align: left"><a href="#env-functions-13"><code>csv</code></a></td><td style="text-align: left"><a href="#node.node_name"><code>node_name</code></a></td><td style="text-align: left">Example Node function for the plugin</td></tr>
 </tbody>
 </table>
 </div>
@@ -4702,50 +5111,49 @@ network and(what?, and(true, true))
 <thead>
 <tr><th style="text-align: left">Plugin</th><th style="text-align: left">Function</th><th style="text-align: left">Help</th></tr>
 </thead>
-<tbody>
-<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#network.nodemap"><code>nodemap</code></a></td><td style="text-align: left">Generate attribute map for the given attribute for the nodes</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#network.set_attrs_render"><code>set_attrs_render</code></a></td><td style="text-align: left">Set network attributes based on string templates</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#network.set_attrs"><code>set_attrs</code></a></td><td style="text-align: left">Set network attributes</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-1"><code>ATTRS</code></a></td><td style="text-align: left"><a href="#network.set_node_attrs"><code>set_node_attrs</code></a></td><td style="text-align: left">Set node attributes in a network using a attrmap or array</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-2"><code>COMMAND</code></a></td><td style="text-align: left"><a href="#network.command"><code>command</code></a></td><td style="text-align: left">Run the given template as a shell command.</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-2"><code>COMMAND</code></a></td><td style="text-align: left"><a href="#network.parallel"><code>parallel</code></a></td><td style="text-align: left">Run the given template as a shell command for each nodes in the network in parallel.</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.load_edges"><code>load_edges</code></a></td><td style="text-align: left">Load the given edges as a network</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.load_file"><code>load_file</code></a></td><td style="text-align: left">Load the given file into the network</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.load_str"><code>load_str</code></a></td><td style="text-align: left">Load network from the given string</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.save_file"><code>save_file</code></a></td><td style="text-align: left">Save the network into the given file</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.subset_from"><code>subset_from</code></a></td><td style="text-align: left">Take a subset of network by taking the given node as a new outlet</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.subset_largest"><code>subset_largest</code></a></td><td style="text-align: left">Take a subset of network by only including the largest blob of connected nodes</td></tr>
-<tr><td style="text-align: left"><a href="#node-functions-4"><code>CONN</code></a></td><td style="text-align: left"><a href="#network.subset"><code>subset</code></a></td><td style="text-align: left">Take a subset of network by only including the selected nodes</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#network.count"><code>count</code></a></td><td style="text-align: left">Count the number of nodes in the network</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#network.net_leaves"><code>net_leaves</code></a></td><td style="text-align: left">Get the name of the leaf nodes</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#network.net_roots"><code>net_roots</code></a></td><td style="text-align: left">Get the name of the outlet nodes</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#network.node_attr"><code>node_attr</code></a></td><td style="text-align: left">Get the attr of the provided node</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-3"><code>CORE</code></a></td><td style="text-align: left"><a href="#network.node_map"><code>node_map</code></a></td><td style="text-align: left">Get a attrmap with node name and attributes</td></tr>
-<tr><td style="text-align: left"><a href="#network-functions-6"><code>GVIZ</code></a></td><td style="text-align: left"><a href="#network.load_positions"><code>load_positions</code></a></td><td style="text-align: left">Load Node positions from the graphviz file</td></tr>
-<tr><td style="text-align: left"><a href="#network-functions-6"><code>GVIZ</code></a></td><td style="text-align: left"><a href="#network.save_gv"><code>save_gv</code></a></td><td style="text-align: left">Save the network as a graphviz file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-11"><code>RENDER</code></a></td><td style="text-align: left"><a href="#network.render_nodes"><code>render_nodes</code></a></td><td style="text-align: left">Render each node of the network and combine to same variable</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-11"><code>RENDER</code></a></td><td style="text-align: left"><a href="#network.render_template"><code>render_template</code></a></td><td style="text-align: left">Render a File template for the nodes in the whole network</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-11"><code>RENDER</code></a></td><td style="text-align: left"><a href="#network.render"><code>render</code></a></td><td style="text-align: left">Render from network attributes</td></tr>
-<tr><td style="text-align: left"><a href="#network-functions-8"><code>TABLE</code></a></td><td style="text-align: left"><a href="#network.save_csv"><code>save_csv</code></a></td><td style="text-align: left">Save CSV</td></tr>
-<tr><td style="text-align: left"><a href="#network-functions-8"><code>TABLE</code></a></td><td style="text-align: left"><a href="#network.table_to_markdown"><code>table_to_markdown</code></a></td><td style="text-align: left">Render the Table as a rendered markdown</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#network.series_csv"><code>series_csv</code></a></td><td style="text-align: left">Write the given nodes to csv with given attributes and series</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-12"><code>TS</code></a></td><td style="text-align: left"><a href="#network.ts_print_csv"><code>ts_print_csv</code></a></td><td style="text-align: left">Save timeseries from all nodes into a single csv file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#network.flatten"><code>flatten</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#network.set_nodesize_attrs"><code>set_nodesize_attrs</code></a></td><td style="text-align: left">Set the node size of the nodes based on the attribute value</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#network.svg_save"><code>svg_save</code></a></td><td style="text-align: left">Exports the network as a svg</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-13"><code>VISUALS</code></a></td><td style="text-align: left"><a href="#network.svg_ts_blocks"><code>svg_ts_blocks</code></a></td><td style="text-align: left"></td></tr>
-<tr><td style="text-align: left"><a href="#network-functions-11"><code>cairo</code></a></td><td style="text-align: left"><a href="#network.network"><code>network</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
-<tr><td style="text-align: left"><a href="#network-functions-11"><code>cairo</code></a></td><td style="text-align: left"><a href="#network.table"><code>table</code></a></td><td style="text-align: left">Create a SVG file with the given network structure</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#network.load_series"><code>load_series</code></a></td><td style="text-align: left">Load series values to nodes</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-14"><code>csv</code></a></td><td style="text-align: left"><a href="#network.load_timeseries"><code>load_timeseries</code></a></td><td style="text-align: left">Load timeseries values to nodes</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#network.load_attrs"><code>load_attrs</code></a></td><td style="text-align: left">Load node attributes from a GIS file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#network.load_network"><code>load_network</code></a></td><td style="text-align: left">Load network from a GIS file</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#network.save_connections"><code>save_connections</code></a></td><td style="text-align: left">Save GIS file of the connections</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-15"><code>gis</code></a></td><td style="text-align: left"><a href="#network.save_nodes"><code>save_nodes</code></a></td><td style="text-align: left">Save GIS file of the nodes</td></tr>
-<tr><td style="text-align: left"><a href="#env-functions-17"><code>typst</code></a></td><td style="text-align: left"><a href="#network.table-1"><code>table</code></a></td><td style="text-align: left">Generate Typst code for given Table</td></tr>
-</tbody>
+<tbody></tbody>
 </table>
 </div>
+<p>| <a href="#env-functions-1"><code>ATTRS</code></a>     | <a href="#network.nodemap"><code>nodemap</code></a>                         | Generate attribute map for the given attribute for the nodes                         |
+| <a href="#env-functions-1"><code>ATTRS</code></a>     | <a href="#network.set_attrs_render"><code>set_attrs_render</code></a>       | Set network attributes based on string templates                                     |
+| <a href="#env-functions-1"><code>ATTRS</code></a>     | <a href="#network.set_attrs"><code>set_attrs</code></a>                     | Set network attributes                                                               |
+| <a href="#env-functions-1"><code>ATTRS</code></a>     | <a href="#network.set_node_attrs"><code>set_node_attrs</code></a>           | Set node attributes in a network using a attrmap or array                            |
+| <a href="#env-functions-2"><code>COMMAND</code></a> | <a href="#network.command"><code>command</code></a>                       | Run the given template as a shell command.                                           |
+| <a href="#env-functions-2"><code>COMMAND</code></a> | <a href="#network.parallel"><code>parallel</code></a>                     | Run the given template as a shell command for each nodes in the network in parallel. |
+| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.load_edges"><code>load_edges</code></a>                    | Load the given edges as a network                                                    |
+| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.load_file"><code>load_file</code></a>                      | Load the given file into the network                                                 |
+| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.load_str"><code>load_str</code></a>                        | Load network from the given string                                                   |
+| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.save_file"><code>save_file</code></a>                      | Save the network into the given file                                                 |
+| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.subset_from"><code>subset_from</code></a>                  | Take a subset of network by taking the given node as a new outlet                    |
+| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.subset_largest"><code>subset_largest</code></a>            | Take a subset of network by only including the largest blob of connected nodes       |
+| <a href="#node-functions-4"><code>CONN</code></a>       | <a href="#network.subset"><code>subset</code></a>                            | Take a subset of network by only including the selected nodes                        |
+| <a href="#env-functions-3"><code>CORE</code></a>       | <a href="#network.count"><code>count</code></a>                              | Count the number of nodes in the network                                             |
+| <a href="#env-functions-3"><code>CORE</code></a>       | <a href="#network.net_leaves"><code>net_leaves</code></a>                    | Get the name of the leaf nodes                                                       |
+| <a href="#env-functions-3"><code>CORE</code></a>       | <a href="#network.net_roots"><code>net_roots</code></a>                      | Get the name of the outlet nodes                                                     |
+| <a href="#env-functions-3"><code>CORE</code></a>       | <a href="#network.node_attr"><code>node_attr</code></a>                      | Get the attr of the provided node                                                    |
+| <a href="#env-functions-3"><code>CORE</code></a>       | <a href="#network.node_map"><code>node_map</code></a>                        | Get a attrmap with node name and attributes                                          |
+| <a href="#network-functions-6"><code>GVIZ</code></a>       | <a href="#network.load_positions"><code>load_positions</code></a>            | Load Node positions from the graphviz file                                           |
+| <a href="#network-functions-6"><code>GVIZ</code></a>       | <a href="#network.save_gv"><code>save_gv</code></a>                          | Save the network as a graphviz file                                                  |
+| <a href="#env-functions-11"><code>RENDER</code></a>   | <a href="#network.render_nodes"><code>render_nodes</code></a>              | Render each node of the network and combine to same variable                         |
+| <a href="#env-functions-11"><code>RENDER</code></a>   | <a href="#network.render_template"><code>render_template</code></a>        | Render a File template for the nodes in the whole network                            |
+| <a href="#env-functions-11"><code>RENDER</code></a>   | <a href="#network.render"><code>render</code></a>                          | Render from network attributes                                                       |
+| <a href="#network-functions-8"><code>TABLE</code></a>     | <a href="#network.save_csv"><code>save_csv</code></a>                       | Save CSV                                                                             |
+| <a href="#network-functions-8"><code>TABLE</code></a>     | <a href="#network.table_to_markdown"><code>table_to_markdown</code></a>     | Render the Table as a rendered markdown                                              |
+| <a href="#node-functions-9"><code>TS</code></a>           | <a href="#network.series_csv"><code>series_csv</code></a>                      | Write the given nodes to csv with given attributes and series                        |
+| <a href="#node-functions-9"><code>TS</code></a>           | <a href="#network.ts_print_csv"><code>ts_print_csv</code></a>                  | Save timeseries from all nodes into a single csv file                                |
+| <a href="#env-functions-12"><code>VISUALS</code></a> | <a href="#network.flatten"><code>flatten</code></a>                       |                                                                                      |
+| <a href="#env-functions-12"><code>VISUALS</code></a> | <a href="#network.set_nodesize_attrs"><code>set_nodesize_attrs</code></a> | Set the node size of the nodes based on the attribute value                          |
+| <a href="#env-functions-12"><code>VISUALS</code></a> | <a href="#network.svg_save"><code>svg_save</code></a>                     | Exports the network as a svg                                                         |
+| <a href="#env-functions-12"><code>VISUALS</code></a> | <a href="#network.svg_ts_blocks"><code>svg_ts_blocks</code></a>           |                                                                                      |
+| <a href="#network-functions-11"><code>cairo</code></a>     | <a href="#network.network"><code>network</code></a>                         | Create a SVG file with the given network structure                                   |
+| <a href="#network-functions-11"><code>cairo</code></a>     | <a href="#network.table"><code>table</code></a>                             | Create a SVG file with the given network structure                                   |
+| <a href="#env-functions-13"><code>csv</code></a>         | <a href="#network.load_series"><code>load_series</code></a>                   | Load series values to nodes                                                          |
+| <a href="#env-functions-13"><code>csv</code></a>         | <a href="#network.load_timeseries"><code>load_timeseries</code></a>           | Load timeseries values to nodes                                                      |
+| <a href="#env-functions-14"><code>gis</code></a>         | <a href="#network.load_attrs"><code>load_attrs</code></a>                     | Load node attributes from a GIS file                                                 |
+| <a href="#env-functions-14"><code>gis</code></a>         | <a href="#network.load_network"><code>load_network</code></a>                 | Load network from a GIS file                                                         |
+| <a href="#env-functions-14"><code>gis</code></a>         | <a href="#network.save_connections"><code>save_connections</code></a>         | Save GIS file of the connections                                                     |
+| <a href="#env-functions-14"><code>gis</code></a>         | <a href="#network.save_nodes"><code>save_nodes</code></a>                     | Save GIS file of the nodes                                                           |
+| <a href="#env-functions-15"><code>typst</code></a>     | <a href="#network.table-1"><code>table</code></a>                             | Generate Typst code for given Table                                                  |</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="internal-plugins-1"><a class="header" href="#internal-plugins-1">Internal Plugins</a></h1>
 <p>There are some plugins that are provided with the <code>nadi_core</code>
@@ -4795,31 +5203,16 @@ nodesmap[WV04112 -&gt; WV04113] render("{NAME}")
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="env-functions-1"><a class="header" href="#env-functions-1">Env Functions</a></h1>
-<h2 id="env.none"><a class="header" href="#env.none">none</a></h2>
-<pre><code class="language-sig">env ATTRS.none()
-</code></pre>
-<p><strong>Arguments:</strong></p>
-<p>None function that returns None</p>
-<h2 id="env.is_none"><a class="header" href="#env.is_none">is_none</a></h2>
-<pre><code class="language-sig">env ATTRS.is_none(inp: 'Option &lt; FunctionInput &gt;')
-</code></pre>
-<p><strong>Arguments:</strong></p>
-<ul>
-<li><code>inp: 'Option &lt; FunctionInput &gt;'</code> =&gt;</li>
-</ul>
-<p>check for none value</p>
-<pre><code class="language-task">assert_eq(is_none(none()), true)
-</code></pre>
 <h2 id="env.strmap"><a class="header" href="#env.strmap">strmap</a></h2>
 <pre><code class="language-sig">env ATTRS.strmap(
-    attr: 'String',
+    attr: '&amp; str',
     attrmap: '&amp; AttrMap',
     default: 'Option &lt; Attribute &gt;'
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: 'String'</code> =&gt; Value to transform the attribute</li>
+<li><code>attr: '&amp; str'</code> =&gt; Value to transform the attribute</li>
 <li><code>attrmap: '&amp; AttrMap'</code> =&gt; Dictionary of key=value to map the data to</li>
 <li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if key not found in <code>attrmap</code></li>
 </ul>
@@ -5046,11 +5439,11 @@ nodes assert(has_attr("x"))
 nodes assert(!has_attr("y"))
 </code></pre>
 <h2 id="node.first_attr"><a class="header" href="#node.first_attr">first_attr</a></h2>
-<pre><code class="language-sig">node ATTRS.first_attr(attrs: 'Vec &lt; RString &gt;', default: 'Option &lt; Attribute &gt;')
+<pre><code class="language-sig">node ATTRS.first_attr(attrs: '&amp; [String]', default: 'Option &lt; Attribute &gt;')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attrs: 'Vec &lt; RString &gt;'</code> =&gt; attribute names</li>
+<li><code>attrs: '&amp; [String]'</code> =&gt; attribute names</li>
 <li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if not found</li>
 </ul>
 <p>Return the first Attribute that exists</p>
@@ -5089,11 +5482,11 @@ env assert_eq(nodes.val1, [1, 1])
 flexibility than this function in normal use cases. But this
 function is useful when you have to do something in a batch.</p>
 <h2 id="node.set_attrs_render"><a class="header" href="#node.set_attrs_render">set_attrs_render</a></h2>
-<pre><code class="language-sig">node ATTRS.set_attrs_render(**values)
+<pre><code class="language-sig">node ATTRS.set_attrs_render(**kwargs)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>**values</code> =&gt; key value pair of attribute to set and the Template to render</li>
+<li><code>**kwargs</code> =&gt; key value pair of attribute to set and the Template to render</li>
 </ul>
 <p>Set node attributes based on string templates</p>
 <p>This renders the template for each node, then it sets the
@@ -5103,11 +5496,11 @@ nodes set_attrs_render(val1 = "Node: {NAME}");
 node[a] assert_eq(val1, "Node: a")
 </code></pre>
 <h2 id="node.load_toml_render"><a class="header" href="#node.load_toml_render">load_toml_render</a></h2>
-<pre><code class="language-sig">node ATTRS.load_toml_render(toml: 'Template', echo: 'bool' = false)
+<pre><code class="language-sig">node ATTRS.load_toml_render(toml: '&amp; Template', echo: 'bool' = false)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>toml: 'Template'</code> =&gt; String template to render and load as toml string</li>
+<li><code>toml: '&amp; Template'</code> =&gt; String template to render and load as toml string</li>
 <li><code>echo: 'bool' = false</code> =&gt; Print the rendered toml or not</li>
 </ul>
 <p>Set node attributes by loading a toml from rendered template</p>
@@ -5124,11 +5517,11 @@ nodes assert_eq(label, render("Node: {NAME}"))
 </code></pre>
 <h1 id="network-functions-2"><a class="header" href="#network-functions-2">Network Functions</a></h1>
 <h2 id="network.set_attrs"><a class="header" href="#network.set_attrs">set_attrs</a></h2>
-<pre><code class="language-sig">network ATTRS.set_attrs(**values)
+<pre><code class="language-sig">network ATTRS.set_attrs(**attrs)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>**values</code> =&gt; key value pair of attributes to set</li>
+<li><code>**attrs</code> =&gt; key value pair of attributes to set</li>
 </ul>
 <p>Set network attributes</p>
 <h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
@@ -5185,23 +5578,23 @@ network assert_eq(val2, "23.405")
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="env-functions-2"><a class="header" href="#env-functions-2">Env Functions</a></h1>
 <h2 id="env.shell_env"><a class="header" href="#env.shell_env">shell_env</a></h2>
-<pre><code class="language-sig">env COMMAND.shell_env(var: '&amp; str')
+<pre><code class="language-sig">env COMMAND.shell_env(var: 'String')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>var: '&amp; str'</code> =&gt;</li>
+<li><code>var: 'String'</code> =&gt;</li>
 </ul>
 <p>Get environment variable from the shell</p>
 <pre><code class="language-task">### will error if "HOME" is empty, as it can't assign None
 env.home = shell_env("HOME")
 </code></pre>
 <h2 id="env.set_shell_env"><a class="header" href="#env.set_shell_env">set_shell_env</a></h2>
-<pre><code class="language-sig">env COMMAND.set_shell_env(var: '&amp; str', val: '&amp; str')
+<pre><code class="language-sig">env COMMAND.set_shell_env(var: 'String', val: 'String')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>var: '&amp; str'</code> =&gt;</li>
-<li><code>val: '&amp; str'</code> =&gt;</li>
+<li><code>var: 'String'</code> =&gt;</li>
+<li><code>val: 'String'</code> =&gt;</li>
 </ul>
 <p>Set environment variable in the shell</p>
 <pre><code class="language-task">env set_shell_env("testing", "true");
@@ -5229,14 +5622,14 @@ env assert_eq(outputs2.test, 12)
 <h1 id="node-functions-3"><a class="header" href="#node-functions-3">Node Functions</a></h1>
 <h2 id="node.command"><a class="header" href="#node.command">command</a></h2>
 <pre><code class="language-sig">node COMMAND.command(
-    cmd: 'Template',
+    cmd: '&amp; Template',
     verbose: 'bool' = true,
     echo: 'bool' = false
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>cmd: 'Template'</code> =&gt; String Command template to run</li>
+<li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
 <li><code>verbose: 'bool' = true</code> =&gt; Show the rendered version of command, and other messages</li>
 <li><code>echo: 'bool' = false</code> =&gt; Echo the stdout from the command</li>
 </ul>
@@ -5287,7 +5680,7 @@ tasks with input files and output files.</p>
 <h1 id="network-functions-3"><a class="header" href="#network-functions-3">Network Functions</a></h1>
 <h2 id="network.parallel"><a class="header" href="#network.parallel">parallel</a></h2>
 <pre><code class="language-sig">network COMMAND.parallel(
-    cmd: 'Template',
+    cmd: '&amp; Template',
     workers: 'i64' = 16,
     verbose: 'bool' = true,
     echo: 'bool' = false
@@ -5295,7 +5688,7 @@ tasks with input files and output files.</p>
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>cmd: 'Template'</code> =&gt; String Command template to run</li>
+<li><code>cmd: '&amp; Template'</code> =&gt; String Command template to run</li>
 <li><code>workers: 'i64' = 16</code> =&gt; Number of workers to run in parallel</li>
 <li><code>verbose: 'bool' = true</code> =&gt; Print the command being run</li>
 <li><code>echo: 'bool' = false</code> =&gt; Show the output of the command</li>
@@ -5381,14 +5774,14 @@ env assert_eq(nodes.NAME, ["b", "a"])
 </code></pre>
 <h2 id="network.load_edges"><a class="header" href="#network.load_edges">load_edges</a></h2>
 <pre><code class="language-sig">network CONN.load_edges(
-    edges: 'Vec &lt; (RString, RString) &gt;',
+    edges: '&amp; [(String, String)]',
     append: 'bool' = false,
     force: 'bool' = false
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>edges: 'Vec &lt; (RString, RString) &gt;'</code> =&gt; String containing Network connections</li>
+<li><code>edges: '&amp; [(String, String)]'</code> =&gt; String containing Network connections</li>
 <li><code>append: 'bool' = false</code> =&gt; Append the connections in the current network</li>
 <li><code>force: 'bool' = false</code> =&gt; Force overriding outputs if previous one is present</li>
 </ul>
@@ -5399,11 +5792,11 @@ file.</p>
 env assert_eq(nodes.NAME, ["c", "b", "a"])
 </code></pre>
 <h2 id="network.subset"><a class="header" href="#network.subset">subset</a></h2>
-<pre><code class="language-sig">network CONN.subset(filter: 'Vec &lt; bool &gt;', keep: 'bool' = true)
+<pre><code class="language-sig">network CONN.subset(filter: '&amp; [bool]', keep: 'bool' = true)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>filter: 'Vec &lt; bool &gt;'</code> =&gt;</li>
+<li><code>filter: '&amp; [bool]'</code> =&gt;</li>
 <li><code>keep: 'bool' = true</code> =&gt; Keep the selected nodes (false = removes the selected)</li>
 </ul>
 <p>Take a subset of network by only including the selected nodes</p>
@@ -5476,11 +5869,11 @@ env assert_eq(str_quote(true), "\"true\"")
 env assert_eq(str_quote(12), "\"12\"")
 </code></pre>
 <h2 id="env.count"><a class="header" href="#env.count">count</a></h2>
-<pre><code class="language-sig">env CORE.count(vars: 'Vec &lt; bool &gt;')
+<pre><code class="language-sig">env CORE.count(vars: '&amp; [bool]')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>vars: 'Vec &lt; bool &gt;'</code> =&gt;</li>
+<li><code>vars: '&amp; [bool]'</code> =&gt;</li>
 </ul>
 <p>Count the number of true values in the array</p>
 <pre><code class="language-task">env assert_eq(count([true, false, true, false]), 2)
@@ -5670,16 +6063,16 @@ single element array</p>
 <p>append a value to an array</p>
 <pre><code class="language-task">env assert_eq(append([4], 5), [4, 5])
 </code></pre>
-<h2 id="env.len"><a class="header" href="#env.len">len</a></h2>
-<pre><code class="language-sig">env CORE.len(value: '&amp; FunctionInput')
+<h2 id="env.length"><a class="header" href="#env.length">length</a></h2>
+<pre><code class="language-sig">env CORE.length(value: '&amp; Attribute')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>value: '&amp; FunctionInput'</code> =&gt; Array or a HashMap</li>
+<li><code>value: '&amp; Attribute'</code> =&gt; Array or a HashMap</li>
 </ul>
 <p>length of an array or hashmap</p>
-<pre><code class="language-task">env assert_eq(len([4, 5]), 2)
-env assert_eq(len({x=4, y=5}), 2)
+<pre><code class="language-task">env assert_eq(length([4, 5]), 2)
+env assert_eq(length({x=4, y=5}), 2)
 </code></pre>
 <h2 id="env.timediff"><a class="header" href="#env.timediff">timediff</a></h2>
 <pre><code class="language-sig">env CORE.timediff(start: 'DateTime', end: 'DateTime')
@@ -5859,22 +6252,6 @@ env assert_eq(sum([2, 3, 4], start=0.0), 9.0)
 <pre><code class="language-task">env assert_eq(prod([1, 2, 3]), 6)
 env assert_eq(prod([1.0, 2, 3]), 6.0)
 </code></pre>
-<h2 id="env.unique"><a class="header" href="#env.unique">unique</a></h2>
-<pre><code class="language-sig">env CORE.unique(vars: 'Vec &lt; HashableAttr &gt;')
-</code></pre>
-<p><strong>Arguments:</strong></p>
-<ul>
-<li><code>vars: 'Vec &lt; HashableAttr &gt;'</code> =&gt;</li>
-</ul>
-<p>Get a list of unique attribute values (only primitives)</p>
-<p>The order of the attributes returned is not guaranteed. This
-does not support array and attrmap values due to uniqueness
-ambiguity.</p>
-<pre><code class="language-task">env.uniq = unique(["hi", "me", "hi", "you"]);
-env assert_eq(len(uniq), 3)
-env.uniq = unique(["hi", true, true, nan, 1.0, 1, nan]);
-env assert_eq(len(uniq), 5)
-</code></pre>
 <h2 id="env.unique_str"><a class="header" href="#env.unique_str">unique_str</a></h2>
 <pre><code class="language-sig">env CORE.unique_str(vars: 'Vec &lt; String &gt;')
 </code></pre>
@@ -5885,7 +6262,7 @@ env assert_eq(len(uniq), 5)
 <p>Get a list of unique string values</p>
 <p>The order of the strings returned is not guaranteed</p>
 <pre><code class="language-task">env.uniq = unique_str(["hi", "me", "hi", "you"]);
-env assert_eq(len(uniq), 3)
+env assert_eq(length(uniq), 3)
 </code></pre>
 <h2 id="env.count_str"><a class="header" href="#env.count_str">count_str</a></h2>
 <pre><code class="language-sig">env CORE.count_str(vars: 'Vec &lt; String &gt;')
@@ -5912,16 +6289,15 @@ count_str(["Hi", "there", "Deliah", "Hi"]),
 <pre><code class="language-task">env assert_eq(concat("Hello", "World", join=" "), "Hello World")
 </code></pre>
 <h2 id="env.range"><a class="header" href="#env.range">range</a></h2>
-<pre><code class="language-sig">env CORE.range(start: 'i64', end: 'Option &lt; i64 &gt;')
+<pre><code class="language-sig">env CORE.range(start: 'i64', end: 'i64')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>start: 'i64'</code> =&gt;</li>
-<li><code>end: 'Option &lt; i64 &gt;'</code> =&gt;</li>
+<li><code>end: 'i64'</code> =&gt;</li>
 </ul>
 <p>Generate integer array, end is not included</p>
-<pre><code class="language-task">env assert_eq(range(1, 5), [1, 2, 3, 4, 5])
-env assert_eq(range(2), [1, 2])
+<pre><code class="language-task">env assert_eq(range(1, 5), [1, 2, 3, 4])
 </code></pre>
 <h2 id="env.assert"><a class="header" href="#env.assert">assert</a></h2>
 <pre><code class="language-sig">env CORE.assert(condition: 'bool', note: 'String' = "Condition False")
@@ -5973,7 +6349,7 @@ env assert_neq("string val", concat("string", "val"))
 <p><strong>Arguments:</strong></p>
 <p>Count the number of input nodes in the node</p>
 <pre><code class="language-task">network load_str("a -&gt; b\n b -&gt; d\n c -&gt; d")
-nodes assert_eq(inputs_count(), len(inputs._))
+nodes assert_eq(inputs_count(), length(inputs._))
 </code></pre>
 <h2 id="node.inputs_attr"><a class="header" href="#node.inputs_attr">inputs_attr</a></h2>
 <pre><code class="language-sig">node CORE.inputs_attr(attr: 'String' = "NAME")
@@ -6219,8 +6595,8 @@ generation.</p>
     outfile: '&amp; Path',
     name: '&amp; str' = "network",
     global_attrs: '&amp; str' = "",
-    node_attr: 'Option &lt; Template &gt;',
-    edge_attr: 'Option &lt; Template &gt;'
+    node_attr: 'Option &lt; &amp; Template &gt;',
+    edge_attr: 'Option &lt; &amp; Template &gt;'
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
@@ -6228,8 +6604,8 @@ generation.</p>
 <li><code>outfile: '&amp; Path'</code> =&gt;</li>
 <li><code>name: '&amp; str' = "network"</code> =&gt;</li>
 <li><code>global_attrs: '&amp; str' = ""</code> =&gt;</li>
-<li><code>node_attr: 'Option &lt; Template &gt;'</code> =&gt;</li>
-<li><code>edge_attr: 'Option &lt; Template &gt;'</code> =&gt;</li>
+<li><code>node_attr: 'Option &lt; &amp; Template &gt;'</code> =&gt;</li>
+<li><code>edge_attr: 'Option &lt; &amp; Template &gt;'</code> =&gt;</li>
 </ul>
 <p>Save the network as a graphviz file</p>
 <h3 id="arguments-3"><a class="header" href="#arguments-3">Arguments:</a></h3>
@@ -6316,7 +6692,7 @@ env assert_eq(eq(2.0, 2), 2.0 == 2)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>*conds</code> =&gt; List of bools</li>
+<li><code>*conds</code> =&gt; List of attributes that can be cast to bool</li>
 </ul>
 <p>Boolean and</p>
 <p>Similar to the operator <code>&amp;</code> but the values are cast to boolean</p>
@@ -6329,7 +6705,7 @@ env assert_eq(and(true, false), false &amp; true)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>*conds</code> =&gt; List of bools</li>
+<li><code>*conds</code> =&gt; List of attributes that can be cast to bool</li>
 </ul>
 <p>boolean or</p>
 <p>Similar to the operator <code>|</code> but the values are cast to boolean</p>
@@ -6352,30 +6728,30 @@ env assert_eq(not(true), !true)
 env assert_eq(not(false), !false)
 </code></pre>
 <h2 id="env.all"><a class="header" href="#env.all">all</a></h2>
-<pre><code class="language-sig">env LOGIC.all(*vars)
+<pre><code class="language-sig">env LOGIC.all(vars: '&amp; [bool]')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>*vars</code> =&gt;</li>
+<li><code>vars: '&amp; [bool]'</code> =&gt;</li>
 </ul>
 <p>check if all of the bool are true</p>
-<pre><code class="language-task">env assert_eq(all(true), true)
-env assert_eq(all(false, true), false)
-env assert_eq(all(true, true), true)
-env assert_eq(all(false), false)
+<pre><code class="language-task">env assert_eq(all([true]), true)
+env assert_eq(all([false, true]), false)
+env assert_eq(all([true, true]), true)
+env assert_eq(all([false]), false)
 </code></pre>
 <h2 id="env.any"><a class="header" href="#env.any">any</a></h2>
-<pre><code class="language-sig">env LOGIC.any(*vars)
+<pre><code class="language-sig">env LOGIC.any(vars: '&amp; [bool]')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>*vars</code> =&gt;</li>
+<li><code>vars: '&amp; [bool]'</code> =&gt;</li>
 </ul>
 <p>check if any of the bool are true</p>
-<pre><code class="language-task">env assert_eq(any(true), true)
-env assert_eq(any(false, true), true)
-env assert_eq(any(false, false), false)
-env assert_eq(any(false), false)
+<pre><code class="language-task">env assert_eq(any([true]), true)
+env assert_eq(any([false, true]), true)
+env assert_eq(any([false, false]), false)
+env assert_eq(any([false]), false)
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="env-functions-7"><a class="header" href="#env-functions-7">Env Functions</a></h1>
@@ -6482,7 +6858,7 @@ from one or the other parent.</p>
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Check if the given pattern matches the value or not</p>
@@ -6504,15 +6880,15 @@ env assert_eq(str_match("abc", "^a"), "abc" match "^a")
 <li><code>rep: '&amp; str'</code> =&gt; replacement string</li>
 </ul>
 <p>Replace the occurances of the given match</p>
-<pre><code class="language-task">env assert_eq(str_replace("abc", "^a", "2"), "2bc")
-env assert_eq(str_replace("abc", "[abc]", "2"), "222")
+<pre><code class="language-task">env assert_eq(str_replace("abc", "^a", 2), "2bc")
+env assert_eq(str_replace("abc", "[abc]", 2), "222")
 </code></pre>
 <h2 id="env.str_find"><a class="header" href="#env.str_find">str_find</a></h2>
 <pre><code class="language-sig">env REGEX.str_find(attr: '&amp; str', pattern: 'Regex')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Find the given pattern in the value</p>
@@ -6523,7 +6899,7 @@ env assert_eq(str_replace("abc", "[abc]", "2"), "222")
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Find all the matches of the given pattern in the value</p>
@@ -6534,7 +6910,7 @@ env assert_eq(str_replace("abc", "[abc]", "2"), "222")
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: '&amp; str'</code> =&gt; string to check for pattern</li>
+<li><code>attr: '&amp; str'</code> =&gt; attribute to check for pattern</li>
 <li><code>pattern: 'Regex'</code> =&gt; Regex pattern to match</li>
 </ul>
 <p>Count the number of matches of given pattern in the string</p>
@@ -6575,14 +6951,14 @@ env assert_eq(str_join(["abc", "de"], ", "), "abc, de")
 <h1 id="env-functions-11"><a class="header" href="#env-functions-11">Env Functions</a></h1>
 <h2 id="env.render"><a class="header" href="#env.render">render</a></h2>
 <pre><code class="language-sig">env RENDER.render(
-    template: 'Template',
+    template: '&amp; Template',
     safe: 'bool' = false,
     **keyval
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: 'Template'</code> =&gt; String template to render</li>
+<li><code>template: '&amp; Template'</code> =&gt; String template to render</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 <li><code>**keyval</code> =&gt;</li>
 </ul>
@@ -6603,11 +6979,11 @@ in the template without a value.</p>
 </code></pre>
 <h1 id="node-functions-7"><a class="header" href="#node-functions-7">Node Functions</a></h1>
 <h2 id="node.render"><a class="header" href="#node.render">render</a></h2>
-<pre><code class="language-sig">node RENDER.render(template: 'Template', safe: 'bool' = false)
+<pre><code class="language-sig">node RENDER.render(template: '&amp; Template', safe: 'bool' = false)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: 'Template'</code> =&gt; String template to render</li>
+<li><code>template: '&amp; Template'</code> =&gt; String template to render</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 </ul>
 <p>Render the template based on the node attributes</p>
@@ -6620,11 +6996,11 @@ nodes assert_eq(render("abc {x} {a}", safe=true), "abc {x} {a}")
 </code></pre>
 <h1 id="network-functions-7"><a class="header" href="#network-functions-7">Network Functions</a></h1>
 <h2 id="network.render"><a class="header" href="#network.render">render</a></h2>
-<pre><code class="language-sig">network RENDER.render(template: 'Template', safe: 'bool' = false)
+<pre><code class="language-sig">network RENDER.render(template: '&amp; Template', safe: 'bool' = false)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: 'Template'</code> =&gt; Path to the template file</li>
+<li><code>template: '&amp; Template'</code> =&gt; Path to the template file</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 </ul>
 <p>Render from network attributes</p>
@@ -6634,14 +7010,14 @@ network assert_eq(render("abc {x} {a}", safe=true), "abc {x} {a}")
 </code></pre>
 <h2 id="network.render_nodes"><a class="header" href="#network.render_nodes">render_nodes</a></h2>
 <pre><code class="language-sig">network RENDER.render_nodes(
-    template: 'Template',
+    template: '&amp; Template',
     safe: 'bool' = false,
     join: '&amp; str' = "\n"
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>template: 'Template'</code> =&gt; Path to the template file</li>
+<li><code>template: '&amp; Template'</code> =&gt; Path to the template file</li>
 <li><code>safe: 'bool' = false</code> =&gt; if render fails keep it as it is instead of exiting</li>
 <li><code>join: '&amp; str' = "\n"</code> =&gt; String to join the render results</li>
 </ul>
@@ -6815,14 +7191,14 @@ and <code>3:</code> is from line 3 to the end)</p>
 <h2 id="network.save_csv"><a class="header" href="#network.save_csv">save_csv</a></h2>
 <pre><code class="language-sig">network TABLE.save_csv(
     path: '&amp; Path',
-    fields: 'Vec &lt; String &gt;',
+    fields: '&amp; [String]',
     filter: 'Option &lt; Vec &lt; bool &gt; &gt;'
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>path: '&amp; Path'</code> =&gt;</li>
-<li><code>fields: 'Vec &lt; String &gt;'</code> =&gt;</li>
+<li><code>fields: '&amp; [String]'</code> =&gt;</li>
 <li><code>filter: 'Option &lt; Vec &lt; bool &gt; &gt;'</code> =&gt;</li>
 </ul>
 <p>Save CSV</p>
@@ -6853,29 +7229,6 @@ and <code>3:</code> is from line 3 to the end)</p>
 <li>error while writing to the output file</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="env-functions-12"><a class="header" href="#env-functions-12">Env Functions</a></h1>
-<h2 id="env.ts_timeline"><a class="header" href="#env.ts_timeline">ts_timeline</a></h2>
-<pre><code class="language-sig">env TS.ts_timeline(ts: 'TimeSeries')
-</code></pre>
-<p><strong>Arguments:</strong></p>
-<ul>
-<li><code>ts: 'TimeSeries'</code> =&gt;</li>
-</ul>
-<p>Get timeline of the timeseries as Series of strings</p>
-<h2 id="env.timeseries"><a class="header" href="#env.timeseries">timeseries</a></h2>
-<pre><code class="language-sig">env TS.timeseries(
-    timeline: '&amp; [RString]',
-    series: 'Series',
-    fmt: '&amp; str' = "%Y-%m-%d"
-)
-</code></pre>
-<p><strong>Arguments:</strong></p>
-<ul>
-<li><code>timeline: '&amp; [RString]'</code> =&gt;</li>
-<li><code>series: 'Series'</code> =&gt;</li>
-<li><code>fmt: '&amp; str' = "%Y-%m-%d"</code> =&gt;</li>
-</ul>
-<p>build timeseries from timeline and series</p>
 <h1 id="node-functions-9"><a class="header" href="#node-functions-9">Node Functions</a></h1>
 <h2 id="node.ts_count"><a class="header" href="#node.ts_count">ts_count</a></h2>
 <pre><code class="language-sig">node TS.ts_count()
@@ -6928,7 +7281,7 @@ and <code>3:</code> is from line 3 to the end)</p>
 <p>Convert the timeseries to complete if it doesn’t have gaps</p>
 <h2 id="node.ts_print"><a class="header" href="#node.ts_print">ts_print</a></h2>
 <pre><code class="language-sig">node TS.ts_print(
-    name: '&amp; str',
+    name: '&amp; String',
     header: 'bool' = true,
     head: 'Option &lt; i64 &gt;',
     missing: 'String' = ""
@@ -6936,7 +7289,7 @@ and <code>3:</code> is from line 3 to the end)</p>
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>name: '&amp; str'</code> =&gt; name of the timeseries</li>
+<li><code>name: '&amp; String'</code> =&gt; name of the timeseries</li>
 <li><code>header: 'bool' = true</code> =&gt; show header</li>
 <li><code>head: 'Option &lt; i64 &gt;'</code> =&gt; number of head rows to show (all by default)</li>
 <li><code>missing: 'String' = ""</code> =&gt; Show missing values as this string</li>
@@ -6949,18 +7302,18 @@ and <code>3:</code> is from line 3 to the end)</p>
 <h1 id="network-functions-9"><a class="header" href="#network-functions-9">Network Functions</a></h1>
 <h2 id="network.ts_print_csv"><a class="header" href="#network.ts_print_csv">ts_print_csv</a></h2>
 <pre><code class="language-sig">network TS.ts_print_csv(
-    name: '&amp; str',
+    name: 'String',
     head: 'Option &lt; usize &gt;',
     nodes: 'Option &lt; HashSet &lt; String &gt; &gt;',
-    missing: '&amp; str' = ""
+    missing: 'String' = ""
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>name: '&amp; str'</code> =&gt; Name of the timeseries to save</li>
+<li><code>name: 'String'</code> =&gt; Name of the timeseries to save</li>
 <li><code>head: 'Option &lt; usize &gt;'</code> =&gt; number of head rows to show (all by default)</li>
 <li><code>nodes: 'Option &lt; HashSet &lt; String &gt; &gt;'</code> =&gt; Include only these nodes (all by default)</li>
-<li><code>missing: '&amp; str' = ""</code> =&gt; Show missing values as this string</li>
+<li><code>missing: 'String' = ""</code> =&gt; Show missing values as this string</li>
 </ul>
 <p>Save timeseries from all nodes into a single csv file</p>
 <p>TODO: error/not on unqual length
@@ -6969,23 +7322,23 @@ TODO: output to <code>file: PathBuf</code></p>
 <h2 id="network.series_csv"><a class="header" href="#network.series_csv">series_csv</a></h2>
 <pre><code class="language-sig">network TS.series_csv(
     filter: 'Vec &lt; bool &gt;',
-    outfile: '&amp; Path',
+    outfile: 'PathBuf',
     attrs: 'Vec &lt; String &gt;',
     series: 'Vec &lt; String &gt;',
-    missing: '&amp; str' = ""
+    missing: 'String' = ""
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><code>filter: 'Vec &lt; bool &gt;'</code> =&gt;</li>
-<li><code>outfile: '&amp; Path'</code> =&gt; Path to the output csv</li>
+<li><code>outfile: 'PathBuf'</code> =&gt; Path to the output csv</li>
 <li><code>attrs: 'Vec &lt; String &gt;'</code> =&gt; list of attributes to write</li>
 <li><code>series: 'Vec &lt; String &gt;'</code> =&gt; list of series to write</li>
-<li><code>missing: '&amp; str' = ""</code> =&gt; Show missing values as this string</li>
+<li><code>missing: 'String' = ""</code> =&gt; Show missing values as this string</li>
 </ul>
 <p>Write the given nodes to csv with given attributes and series</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="env-functions-13"><a class="header" href="#env-functions-13">Env Functions</a></h1>
+<h1 id="env-functions-12"><a class="header" href="#env-functions-12">Env Functions</a></h1>
 <h2 id="env.image"><a class="header" href="#env.image">image</a></h2>
 <pre><code class="language-sig">env VISUALS.image(path: 'RString')
 </code></pre>
@@ -7049,14 +7402,14 @@ TODO: output to <code>file: PathBuf</code></p>
 <p><strong>Arguments:</strong></p>
 <h2 id="network.set_nodesize_attrs"><a class="header" href="#network.set_nodesize_attrs">set_nodesize_attrs</a></h2>
 <pre><code class="language-sig">network VISUALS.set_nodesize_attrs(
-    attrs: 'Vec &lt; f64 &gt;',
+    attrs: '&amp; [f64]',
     minsize: 'f64' = 4.0,
     maxsize: 'f64' = 12.0
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attrs: 'Vec &lt; f64 &gt;'</code> =&gt; Attribute values to use for size scaling</li>
+<li><code>attrs: '&amp; [f64]'</code> =&gt; Attribute values to use for size scaling</li>
 <li><code>minsize: 'f64' = 4.0</code> =&gt; minimum size of the node</li>
 <li><code>maxsize: 'f64' = 12.0</code> =&gt; maximum size of the node</li>
 </ul>
@@ -7147,7 +7500,7 @@ along side the NADI project due to various reasons.</p>
 </ul>
 <p>Create a SVG file with the given network structure</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="env-functions-14"><a class="header" href="#env-functions-14">Env Functions</a></h1>
+<h1 id="env-functions-13"><a class="header" href="#env-functions-13">Env Functions</a></h1>
 <h2 id="env.schema"><a class="header" href="#env.schema">schema</a></h2>
 <pre><code class="language-sig">env csv.schema(
     path: 'PathBuf',
@@ -7251,7 +7604,7 @@ along side the NADI project due to various reasons.</p>
 <pre><code class="language-task ignore">network csv.load_timeseries("/home/gaurav/work/nadi-project/codes/nadi_csv/test.csv", "date", "test")
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="env-functions-15"><a class="header" href="#env-functions-15">Env Functions</a></h1>
+<h1 id="env-functions-14"><a class="header" href="#env-functions-14">Env Functions</a></h1>
 <h2 id="env.layers"><a class="header" href="#env.layers">layers</a></h2>
 <pre><code class="language-sig">env gis.layers(file: 'PathBuf')
 </code></pre>
@@ -7309,10 +7662,6 @@ along side the NADI project due to various reasons.</p>
     source: 'String',
     destination: 'String',
     layer: 'Option &lt; String &gt;',
-    loadattrs: 'Option &lt; String &gt;',
-    outattrs: 'bool' = false,
-    ignore: 'String' = "",
-    sanitize: 'bool' = true,
     ignore_null: 'bool' = false,
     force: 'bool' = false
 )
@@ -7323,10 +7672,6 @@ along side the NADI project due to various reasons.</p>
 <li><code>source: 'String'</code> =&gt; Field in the GIS file corresponding to the input node name</li>
 <li><code>destination: 'String'</code> =&gt; layer of the GIS file corresponding to the output node name</li>
 <li><code>layer: 'Option &lt; String &gt;'</code> =&gt; layer of the GIS file, first one picked by default</li>
-<li><code>loadattrs: 'Option &lt; String &gt;'</code> =&gt; Load attributes from GIS file into this attribute</li>
-<li><code>outattrs: 'bool' = false</code> =&gt; attributes are for output instead of input node</li>
-<li><code>ignore: 'String' = ""</code> =&gt; Field names separated by comma, to ignore</li>
-<li><code>sanitize: 'bool' = true</code> =&gt; sanitize the name of the fields</li>
 <li><code>ignore_null: 'bool' = false</code> =&gt; Ignore feature if it has fields with null value</li>
 <li><code>force: 'bool' = false</code> =&gt; Force overwrite the output if already present</li>
 </ul>
@@ -7395,46 +7740,9 @@ JSON, etc) and loads their fields as attributes to the nodes.</p>
 </ul>
 <p>Save GIS file of the nodes</p>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="env-functions-16"><a class="header" href="#env-functions-16">Env Functions</a></h1>
-<h2 id="env.list_catalog"><a class="header" href="#env.list_catalog">list_catalog</a></h2>
-<pre><code class="language-sig">env dss.list_catalog(dssfile: 'String', paths: 'String' = "/*/*/*/*/*/*/")
-</code></pre>
-<p><strong>Arguments:</strong></p>
-<ul>
-<li><code>dssfile: 'String'</code> =&gt;</li>
-<li><code>paths: 'String' = "/*/*/*/*/*/*/"</code> =&gt;</li>
-</ul>
-<p>List the catalog of the dss file</p>
-<p>env list_catalog(“dsslib/routed-main-stem.dss”)</p>
-<h2 id="env.load_series"><a class="header" href="#env.load_series">load_series</a></h2>
-<pre><code class="language-sig">env dss.load_series(dssfile: 'String', path: 'String')
-</code></pre>
-<p><strong>Arguments:</strong></p>
-<ul>
-<li><code>dssfile: 'String'</code> =&gt;</li>
-<li><code>path: 'String'</code> =&gt;</li>
-</ul>
-<h2 id="env.save_series"><a class="header" href="#env.save_series">save_series</a></h2>
-<pre><code class="language-sig">env dss.save_series(
-    series: '&amp; Series',
-    dssfile: 'String',
-    path: 'String',
-    start_date: 'String' = "1990-01-01",
-    start_time: 'String' = "12:00",
-    delta_minute: 'i64' = 1440
-)
-</code></pre>
-<p><strong>Arguments:</strong></p>
-<ul>
-<li><code>series: '&amp; Series'</code> =&gt;</li>
-<li><code>dssfile: 'String'</code> =&gt;</li>
-<li><code>path: 'String'</code> =&gt;</li>
-<li><code>start_date: 'String' = "1990-01-01"</code> =&gt; start date of the series</li>
-<li><code>start_time: 'String' = "12:00"</code> =&gt; start time of the series</li>
-<li><code>delta_minute: 'i64' = 1440</code> =&gt; delta time in minutes</li>
-</ul>
+<h1 id="html"><a class="header" href="#html">HTML</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="env-functions-17"><a class="header" href="#env-functions-17">Env Functions</a></h1>
+<h1 id="env-functions-15"><a class="header" href="#env-functions-15">Env Functions</a></h1>
 <h2 id="env.svg2pdf"><a class="header" href="#env.svg2pdf">svg2pdf</a></h2>
 <pre><code class="language-sig">env typst.svg2pdf(
     inpfile: 'PathBuf',
@@ -7503,7 +7811,7 @@ relationship between the data points in a river. Without it people
 need to be familiar with the names of the data points and their
 location, or consult a different image/map to understand the
 relationship.</p>
-<p><img src="images/ohio-low.svg" title="The table shows how a simple addition of the connection information can increase the readability of the table" alt="Table with Connection Information"></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ohio-low.svg" title="The table shows how a simple addition of the connection information can increase the readability of the table" alt="Table with Connection Information"><span class="img-wrapper"><img src="images/ohio-low.svg" title="The table shows how a simple addition of the connection information can increase the readability of the table" alt="Table with Connection Information"></span></label></p>
 <p>The inspiration on making this software package comes from many years
 of struggle with doing the same thing again and again in different
 projects like these. And the motivation to make something generic that
@@ -7659,35 +7967,21 @@ Hi my name is {name}.
 <p>Example:</p>
 <pre><code>```table run markdown
 !network load_file("./data/mississippi.net")
-&lt;Name =&gt; {NAME}
-^Ind =&gt; {INDEX}
+&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
 &gt;Order =&gt; {ORDER}
 ```
 </code></pre>
 <p>Becomes:</p>
 <hr>
 <pre><code class="language-table"><span class="boring">network load_file("./data/mississippi.net")
-</span>&lt;Name =&gt; {NAME}
-^Ind =&gt; {INDEX}
+</span>&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
 &gt;Order =&gt; {ORDER}
 </code></pre>
-<p>Results:</p>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th></tr>
-</thead>
-<tbody>
-<tr><td style="text-align: left">lower-mississippi</td><td style="text-align: center">0</td><td style="text-align: right">3</td></tr>
-<tr><td style="text-align: left">red</td><td style="text-align: center">1</td><td style="text-align: right">1</td></tr>
-<tr><td style="text-align: left">arkansas</td><td style="text-align: center">2</td><td style="text-align: right">1</td></tr>
-<tr><td style="text-align: left">missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td></tr>
-<tr><td style="text-align: left">upper-mississippi</td><td style="text-align: center">4</td><td style="text-align: right">1</td></tr>
-<tr><td style="text-align: left">ohio</td><td style="text-align: center">5</td><td style="text-align: right">2</td></tr>
-<tr><td style="text-align: left">tenessee</td><td style="text-align: center">6</td><td style="text-align: right">1</td></tr>
-</tbody>
-</table>
-</div>
+<p>*Error*:</p>
+<pre><code class="language-error">FunctionError  at Line 3 Column 1: function table_to_markdown: TemplateError at pos 8: Invalid Character 'r'
+</code></pre>
 <hr>
 <p>I’d like to refine this further.</p>
 <p>Task can be used to generate markdown in the same way as the tables
@@ -7695,85 +7989,48 @@ can:</p>
 <p>For example <code>task run</code> of this:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net")
 network table_to_markdown(template="
-&lt;Name =&gt; {NAME}
-^Ind =&gt; {INDEX}
+&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
 &gt;Order =&gt; {ORDER}
 ")
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">| Name              | Ind | Order |
-|:------------------|:---:|------:|
-| lower-mississippi |  0  |     3 |
-| red               |  1  |     1 |
-| arkansas          |  2  |     1 |
-| missouri          |  3  |     1 |
-| upper-mississippi |  4  |     1 |
-| ohio              |  5  |     2 |
-| tenessee          |  6  |     1 |
+<p>*Error*:</p>
+<pre><code class="language-error">
+FunctionError  at Line 2 Column 1: function table_to_markdown: TemplateError at pos 8: Invalid Character 'r'
 </code></pre>
 <p>If you do <code>task run markdown</code> then:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net")
 network table_to_markdown(template="
-&lt;Name =&gt; {NAME}
-^Ind =&gt; {INDEX}
+&lt;Name =&gt; {_NAME:repl(-, ):case(title)}
+^Ind =&gt; =(+ (st+num 'INDEX) 1)
 &gt;Order =&gt; {ORDER}
 ")
 </code></pre>
-<p>Results:</p>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th style="text-align: left">Name</th><th style="text-align: center">Ind</th><th style="text-align: right">Order</th></tr>
-</thead>
-<tbody>
-<tr><td style="text-align: left">lower-mississippi</td><td style="text-align: center">0</td><td style="text-align: right">3</td></tr>
-<tr><td style="text-align: left">red</td><td style="text-align: center">1</td><td style="text-align: right">1</td></tr>
-<tr><td style="text-align: left">arkansas</td><td style="text-align: center">2</td><td style="text-align: right">1</td></tr>
-<tr><td style="text-align: left">missouri</td><td style="text-align: center">3</td><td style="text-align: right">1</td></tr>
-<tr><td style="text-align: left">upper-mississippi</td><td style="text-align: center">4</td><td style="text-align: right">1</td></tr>
-<tr><td style="text-align: left">ohio</td><td style="text-align: center">5</td><td style="text-align: right">2</td></tr>
-<tr><td style="text-align: left">tenessee</td><td style="text-align: center">6</td><td style="text-align: right">1</td></tr>
-</tbody>
-</table>
-</div>
+<p>*Error*:</p>
+<pre><code class="language-error">
+FunctionError  at Line 2 Column 1: function table_to_markdown: TemplateError at pos 8: Invalid Character 'r'
+</code></pre>
 <p>Which means it can be used for other things:</p>
 <pre><code class="language-task">network load_file("./data/mississippi.net");
 network echo("**Details about the Nodes:**")
 network echo(render_nodes("
-{INDEX}. {NAME}
+=(+ (st+num 'INDEX) 1). {_NAME:repl(-, ):case(title)} River
 "))
 </code></pre>
-<p>Results:<br><strong>Details about the Nodes:</strong></p>
-<ol start="0">
-<li>
-<p>lower-mississippi</p>
-</li>
-<li>
-<p>red</p>
-</li>
-<li>
-<p>arkansas</p>
-</li>
-<li>
-<p>missouri</p>
-</li>
-<li>
-<p>upper-mississippi</p>
-</li>
-<li>
-<p>ohio</p>
-</li>
-<li>
-<p>tenessee</p>
-</li>
-</ol>
+<p>*Error*:</p>
+<pre><code class="language-error">
+**Details about the Nodes:**
+
+
+FunctionError  at Line 3 Column 1: function render_nodes: Argument template: type Template can not be obtained from type String
+</code></pre>
 <p>You can also use the same method to insert images like this, at the end of your tasks, so that the image generated by the tasks can be inserted here.</p>
 <pre><code class="language-task"># do some tasks
 network echo("Some other output form your tasks")
 network clip()
 network echo("../images/ohio-low.svg")
 </code></pre>
-<p>Results:<br><img src="images/ohio-low.svg" alt="Output Image"></p>
+<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ohio-low.svg" alt="Output Image"><span class="img-wrapper"><img src="images/ohio-low.svg" alt="Output Image"></span></label></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="optimization-algorithms"><a class="header" href="#optimization-algorithms">Optimization Algorithms</a></h1>
 <p>We can have input variables to change, and output variables to
@@ -7836,22 +8093,31 @@ plot along side the network information.</p>
         <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
+        <script>
+            window.playground_line_numbers = true;
+        </script>
 
         <script>
             window.playground_copyable = true;
         </script>
 
+        <script src="ace-2a3cd908.js"></script>
+        <script src="mode-rust-2c9d5c9a.js"></script>
+        <script src="editor-16ca416c.js"></script>
+        <script src="theme-dawn-4493f9c8.js"></script>
+        <script src="theme-tomorrow_night-9dbe62a9.js"></script>
 
         <script src="elasticlunr-ef4e11c1.min.js"></script>
         <script src="mark-09e88c2c.min.js"></script>
-        <script src="searcher-c2a407aa.js"></script>
+        <script src="searcher-09f2665d.js"></script>
 
         <script src="clipboard-1626706a.min.js"></script>
-        <script src="highlight-abc7f01d.js"></script>
-        <script src="book-a0b12cfe.js"></script>
+        <script src="highlight-a4af0267.js"></script>
+        <script src="book-9d8b8e83.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="theme/syntax-highlight-7e337cc0.js"></script>
+        <script src="theme/load_nadi_global-0c6e62da.js"></script>
+        <script src="theme/mode-task-88dcc689.js"></script>
 
         <script>
         window.addEventListener('load', function() {

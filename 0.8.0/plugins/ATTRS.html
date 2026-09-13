@@ -15,8 +15,8 @@
         <link rel="icon" href="../favicon-de23e50b.svg">
         <link rel="shortcut icon" href="../favicon-8114d1fc.png">
         <link rel="stylesheet" href="../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../css/general-2459343d.css">
-        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/general-e96d0476.css">
+        <link rel="stylesheet" href="../css/chrome-d279d366.css">
         <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-8aab83c6.js";
+            window.path_to_searchindex_js = "../searchindex-a53aa3b3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-613f6f39.js"></script>
+        <script src="../toc-1fe14bb7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -177,31 +177,16 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="env-functions"><a class="header" href="#env-functions">Env Functions</a></h1>
-<h2 id="env.none"><a class="header" href="#env.none">none</a></h2>
-<pre><code class="language-sig">env ATTRS.none()
-</code></pre>
-<p><strong>Arguments:</strong></p>
-<p>None function that returns None</p>
-<h2 id="env.is_none"><a class="header" href="#env.is_none">is_none</a></h2>
-<pre><code class="language-sig">env ATTRS.is_none(inp: 'Option &lt; FunctionInput &gt;')
-</code></pre>
-<p><strong>Arguments:</strong></p>
-<ul>
-<li><code>inp: 'Option &lt; FunctionInput &gt;'</code> =&gt;</li>
-</ul>
-<p>check for none value</p>
-<pre><code class="language-task">assert_eq(is_none(none()), true)
-</code></pre>
 <h2 id="env.strmap"><a class="header" href="#env.strmap">strmap</a></h2>
 <pre><code class="language-sig">env ATTRS.strmap(
-    attr: 'String',
+    attr: '&amp; str',
     attrmap: '&amp; AttrMap',
     default: 'Option &lt; Attribute &gt;'
 )
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attr: 'String'</code> =&gt; Value to transform the attribute</li>
+<li><code>attr: '&amp; str'</code> =&gt; Value to transform the attribute</li>
 <li><code>attrmap: '&amp; AttrMap'</code> =&gt; Dictionary of key=value to map the data to</li>
 <li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if key not found in <code>attrmap</code></li>
 </ul>
@@ -428,11 +413,11 @@ nodes assert(has_attr("x"))
 nodes assert(!has_attr("y"))
 </code></pre>
 <h2 id="node.first_attr"><a class="header" href="#node.first_attr">first_attr</a></h2>
-<pre><code class="language-sig">node ATTRS.first_attr(attrs: 'Vec &lt; RString &gt;', default: 'Option &lt; Attribute &gt;')
+<pre><code class="language-sig">node ATTRS.first_attr(attrs: '&amp; [String]', default: 'Option &lt; Attribute &gt;')
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>attrs: 'Vec &lt; RString &gt;'</code> =&gt; attribute names</li>
+<li><code>attrs: '&amp; [String]'</code> =&gt; attribute names</li>
 <li><code>default: 'Option &lt; Attribute &gt;'</code> =&gt; Default value if not found</li>
 </ul>
 <p>Return the first Attribute that exists</p>
@@ -471,11 +456,11 @@ env assert_eq(nodes.val1, [1, 1])
 flexibility than this function in normal use cases. But this
 function is useful when you have to do something in a batch.</p>
 <h2 id="node.set_attrs_render"><a class="header" href="#node.set_attrs_render">set_attrs_render</a></h2>
-<pre><code class="language-sig">node ATTRS.set_attrs_render(**values)
+<pre><code class="language-sig">node ATTRS.set_attrs_render(**kwargs)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>**values</code> =&gt; key value pair of attribute to set and the Template to render</li>
+<li><code>**kwargs</code> =&gt; key value pair of attribute to set and the Template to render</li>
 </ul>
 <p>Set node attributes based on string templates</p>
 <p>This renders the template for each node, then it sets the
@@ -485,11 +470,11 @@ nodes set_attrs_render(val1 = "Node: {NAME}");
 node[a] assert_eq(val1, "Node: a")
 </code></pre>
 <h2 id="node.load_toml_render"><a class="header" href="#node.load_toml_render">load_toml_render</a></h2>
-<pre><code class="language-sig">node ATTRS.load_toml_render(toml: 'Template', echo: 'bool' = false)
+<pre><code class="language-sig">node ATTRS.load_toml_render(toml: '&amp; Template', echo: 'bool' = false)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>toml: 'Template'</code> =&gt; String template to render and load as toml string</li>
+<li><code>toml: '&amp; Template'</code> =&gt; String template to render and load as toml string</li>
 <li><code>echo: 'bool' = false</code> =&gt; Print the rendered toml or not</li>
 </ul>
 <p>Set node attributes by loading a toml from rendered template</p>
@@ -506,11 +491,11 @@ nodes assert_eq(label, render("Node: {NAME}"))
 </code></pre>
 <h1 id="network-functions"><a class="header" href="#network-functions">Network Functions</a></h1>
 <h2 id="network.set_attrs"><a class="header" href="#network.set_attrs">set_attrs</a></h2>
-<pre><code class="language-sig">network ATTRS.set_attrs(**values)
+<pre><code class="language-sig">network ATTRS.set_attrs(**attrs)
 </code></pre>
 <p><strong>Arguments:</strong></p>
 <ul>
-<li><code>**values</code> =&gt; key value pair of attributes to set</li>
+<li><code>**attrs</code> =&gt; key value pair of attributes to set</li>
 </ul>
 <p>Set network attributes</p>
 <h3 id="arguments-2"><a class="header" href="#arguments-2">Arguments</a></h3>
@@ -601,22 +586,31 @@ network assert_eq(val2, "23.405")
         <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
+        <script>
+            window.playground_line_numbers = true;
+        </script>
 
         <script>
             window.playground_copyable = true;
         </script>
 
+        <script src="../ace-2a3cd908.js"></script>
+        <script src="../mode-rust-2c9d5c9a.js"></script>
+        <script src="../editor-16ca416c.js"></script>
+        <script src="../theme-dawn-4493f9c8.js"></script>
+        <script src="../theme-tomorrow_night-9dbe62a9.js"></script>
 
         <script src="../elasticlunr-ef4e11c1.min.js"></script>
         <script src="../mark-09e88c2c.min.js"></script>
-        <script src="../searcher-c2a407aa.js"></script>
+        <script src="../searcher-09f2665d.js"></script>
 
         <script src="../clipboard-1626706a.min.js"></script>
-        <script src="../highlight-abc7f01d.js"></script>
-        <script src="../book-a0b12cfe.js"></script>
+        <script src="../highlight-a4af0267.js"></script>
+        <script src="../book-9d8b8e83.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/syntax-highlight-7e337cc0.js"></script>
+        <script src="../theme/load_nadi_global-0c6e62da.js"></script>
+        <script src="../theme/mode-task-88dcc689.js"></script>
 
 
 
