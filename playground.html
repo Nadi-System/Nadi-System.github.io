@@ -619,11 +619,14 @@ somevar = true
              fontSize: "0.875em" // please adjust the font size of the code in general.css
          })
 	 editor.getCompletionRegex = () => /[a-zA-Z_0-9.\$\-\u00A2-\uFFFF]/;
-	 editor.setValue(`nodesmap.WEIGHT
+	 editor.setValue(`# by default it will load the network in the network tab
+# if you just want to generate a random tree graph, uncomment the line below
+# net.random_tree(100)
+
+nodesmap.WEIGHT
 # variables loaded form attribute tab
 nodes.someattr
-network.var_from_toml
-	 `);
+network.var_from_toml`);
 	 editor.clearSelection();
 	 editor.setTheme("ace/theme/monokai");
 	 editor.getSession().setMode("ace/mode/task");
@@ -775,7 +778,7 @@ network.var_from_toml
 		     if (document.getElementById('edge-attrs-file').files.length > 0) {
 			 fname = document.getElementById('edge-attrs-file').files[0].name;
 		     }
-		     download(fname, document._AttrsEditor.getValue());
+		     download(fname, document._EdgeAttrsEditor.getValue());
 		 })
 	 document.getElementById('tasks-download')
 		 .addEventListener('click', function () {
@@ -783,7 +786,7 @@ network.var_from_toml
 		     if (document.getElementById('tasks-file').files.length > 0) {
 			 fname = document.getElementById('tasks-file').files[0].name;
 		     }
-		     download(fname, document._NetworkEditor.getValue());
+		     download(fname, document._TasksEditor.getValue());
 		 })
 
 	</script>

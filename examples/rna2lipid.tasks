@@ -1,8 +1,60 @@
+# see attributes of lipids connected to this gene
 node[PLA2G2A] outputsmap.TotalModelWeight
 
-node["Cer(d18:1/16:0)"] inputs.NodeType
+# see attributes of a gene connected to this lipid 
+node["Cer(d18:1/16:0)"] inputs.TotalModelWeight
 
+# identify genes and mark them visually
 nodes.is_gene = NodeType == "Gene"
 nodes(is_gene).visual.nodecolor = "red"
 
-network.elastic_layout()
+# since nadi is written for river networks, we don't have a good Visualization
+# we can write our own
+env.gene_id = 1;
+env.lipid_id = 1;
+genes = count(nodes.is_gene)
+lipids = net.count() - genes 
+
+nodes do {
+    if (is_gene) {
+        node.nadi_id = env.gene_id
+        x = 30 * cos(pi() * 2 * env.gene_id / genes);
+        y = 30 * sin(pi() * 2 * env.gene_id / genes);
+        node.set_xy(x, y)
+        env.gene_id = env.gene_id + 1;
+    } else {
+        node.nadi_id = env.lipid_id
+        x = 50 * cos(pi() * 2 * env.lipid_id / lipids);
+        y = 50 * sin(pi() * 2 * env.lipid_id / lipids);
+        node.set_xy(x, y)
+        env.lipid_id = env.lipid_id + 1;
+    }
+}
+
+# now if we want to highlight a specific Gene
+nodes.visual.nodecolor = "gray"
+node[PLA2G2A].visual.nodecolor = "red"
+node[PLA2G2A] {outputs.visual.nodecolor = "blue"}
+
+# if we want to visualize based on correlation
+edges[PLA2G2A -> ] do {
+    if (Pearson_r > 0) {
+        node[*TO].visual.nodecolor = "green";
+    }else {
+        node[*TO].visual.nodecolor = "cyan";
+    }
+}
+# all of them seem to be negative here
+
+# if we want to go one step further and identify all the genes that have the
+# relationship with the same lipids, then we can nest the context
+nodes.visual.nodecolor = "gray"
+nodes.visual.linecolor = "gray"
+node[PLA2G2A] {outputs {inputs.visual.nodecolor = "blue"}}
+node[PLA2G2A] {outputs.visual.nodecolor = "green"}
+node[PLA2G2A].visual.nodecolor = "red"
+node[PLA2G2A].visual.linecolor = "green"
+
+# if we want to get their names
+node[PLA2G2A] {outputsmap {inputs.NAME}}
+

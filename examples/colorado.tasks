@@ -3,15 +3,17 @@
 # net.load_attrs_from_str(from_file("colorado.toml"))
 # net.load_edge_attrs_from_str(from_file("colorado-edges.toml"))
 
+# accessing edge attributes
 edges.edge_lengthkm
 
-nodes(INDEX < 10) edge["Point.1" -> "Point.2"].edge_lengthkm
+# edge attribute of a specific edge
+edge["Point.1" -> "Point.5"].edge_lengthkm
 
 # this network has multiple roots
 roots.NAME
 
 # see the attributes loaded form the Attributes tab, you can try to include more with autocomplete
-leavesmap.DIST_FROMHWKM
+leavesmap.dist_fromhwkm
 
 nodes.visual = {}
 nodes.visual.nodesize = 1 + ORDER / 25
@@ -36,5 +38,6 @@ node["Point.1038"] outputs.NAME
 
 nm(branch) {outputs.NAME}
 
+# using the real coordinates to place the nodes in the figure
 nodes {set_xy(longitude, -latitude)}
 
