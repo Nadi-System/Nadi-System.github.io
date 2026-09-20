@@ -38,7 +38,12 @@ function run_nadi(code, output) {
     if (typeof window.wasmRunTasks !== "function" ) {
 	output.innerHtml = "...NADI Context not available...Unable to run code...";
     }
-    output.innerText = window.wasmRunTasks(code);
+    if (window.can_run_nadi_in_wasm(code)){
+	output.innerText = window.wasmRunTasks(code);
+    } else {
+	output.innerText = "WARN: The code might have components that are not supported in the web version\n";
+	output.innerText += window.wasmRunTasks(code);
+    }
 }
 
 (function codeSnippets() {
@@ -172,20 +177,18 @@ aria-label="Show hidden lines"></button>';
             buttons.className = 'buttons';
             pre_block.insertBefore(buttons, pre_block.firstChild);
         }
+	
+        const runCodeButton = document.createElement('button');
+        runCodeButton.className = 'play-button';
+        runCodeButton.hidden = false;
+        runCodeButton.title = 'Run this code';
+        runCodeButton.setAttribute('aria-label', runCodeButton.title);
+        runCodeButton.innerHTML = document.getElementById('fa-play').innerHTML;
 
-	if (window.can_run_nadi_in_wasm(playground_text(pre_block))) {
-            const runCodeButton = document.createElement('button');
-            runCodeButton.className = 'play-button';
-            runCodeButton.hidden = false;
-            runCodeButton.title = 'Run this code';
-            runCodeButton.setAttribute('aria-label', runCodeButton.title);
-            runCodeButton.innerHTML = document.getElementById('fa-play').innerHTML;
-
-            buttons.insertBefore(runCodeButton, buttons.firstChild);
-            runCodeButton.addEventListener('click', () => {
-		run_nadi_code(pre_block);
-            });
-	}
+        buttons.insertBefore(runCodeButton, buttons.firstChild);
+        runCodeButton.addEventListener('click', () => {
+	    run_nadi_code(pre_block);
+        });
 	
         if (window.playground_copyable) {
             const copyCodeClipboardButton = document.createElement('button');
