@@ -37,7 +37,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-a53aa3b3.js";
+            window.path_to_searchindex_js = "../searchindex-e451adc0.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-1fe14bb7.js"></script>
@@ -199,9 +199,7 @@ nodes array(network.sth, env.var, node.NAME)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"this is true"
-
 "12"
-
 [[true, 12, "b"], [true, 12, "a"]]
 </code></pre>
 <p>Similary, env and network functions can be called anywhere. These functions cannot be mutable functions (change network internally).</p>
@@ -216,7 +214,6 @@ network sum(array(env.count(), 1))
   b = 2,
   a = 2
 }
-
 FunctionError  at Line 3 Column 1: function count: Argument 1 (vars [Vec &lt; bool &gt;]) is required
 </code></pre>
 <h2 id="node-variablesfunctions"><a class="header" href="#node-variablesfunctions">Node Variables/Functions</a></h2>
@@ -227,7 +224,6 @@ nodesmap inputs.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">7
-
 {
   "lower-mississippi" = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"],
   red = [],
@@ -245,9 +241,9 @@ nodesmap inputs.NAME
 nm[tenessee -&gt; "lower-mississippi"](output._?) output.render("{NAME}")
 </code></pre>
 <p>ParseError:</p>
-<pre><code class="language-error">Error: Parse Error at Line 3 Column 1
-  nm[tenessee -&gt; "lower-mississippi"](output._?) output.render("{NAME}")
-  ^ Unexpected Token
+<pre><code class="language-error">Error: Parse Error at Line 2 Column 13
+  nm[tenessee -&gt; "lower-mississippi"] inputs.render("{NAME}")
+              ^ Missing closing token "]"
 </code></pre>
 <p>You can also use <code>nodes</code> and <code>nodesmap</code>/<code>nm</code> keyword to call the function on each node, it can be used anywhere, but is useful for env and network context.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
@@ -322,10 +318,10 @@ network nm.render("Node [{INDEX}] {NAME}")
 
         <script src="../clipboard-1626706a.min.js"></script>
         <script src="../highlight-a4af0267.js"></script>
-        <script src="../book-9d8b8e83.js"></script>
+        <script src="../book-b2fed824.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/load_nadi_global-0c6e62da.js"></script>
+        <script src="../theme/load_nadi_global-b49fcbbd.js"></script>
         <script src="../theme/mode-task-88dcc689.js"></script>
 
 

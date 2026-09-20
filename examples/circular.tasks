@@ -1,0 +1,23 @@
+# this example loads colorado network without any attributes
+network.count()
+
+# let's make nodes small so we can see the edges
+nodes.visual.nodesize = 1
+
+# the code below calculates position for each node in a circular layout
+total = net.count()
+max_ord = max(nodes.ORDER, -inf)
+nodes do {
+    x = sin(pi() * 2 * INDEX / total) * (max_ord - ORDER);
+    y = cos(pi() * 2 * INDEX / total) * (max_ord - ORDER);
+    node.set_xy(x, y)
+}
+
+# it is similar to circular_layout, circular layout function uses
+# weight instead, and does a log transform
+network.circular_layout(log=false)
+
+# as an exercise you can try to modify the code above to replicate
+# the circular_layout position 
+
+network.circular_layout()

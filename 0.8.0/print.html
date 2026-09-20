@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-a53aa3b3.js";
+            window.path_to_searchindex_js = "searchindex-e451adc0.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-1fe14bb7.js"></script>
@@ -841,9 +841,7 @@ network {
 <p>Results:</p>
 <pre><code class="language-output">1
 
-
 2
-
 2
 </code></pre>
 <p>But because it is an expression context now, instead of just 3 task type, we can do a lot more:</p>
@@ -872,7 +870,6 @@ nodesmap.x
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">3
-
 3
 </code></pre>
 <p>Not only does this mean that users do not have to type redundant <code>env</code> keyword for simple calculations or evaluations to use the REPL as a calculator/debugger. This also means now users can nest expressions within themselves to create more complex expressions.</p>
@@ -913,7 +910,6 @@ help node exists
   b = false,
   a = false
 }
-
 node exists (path: 'Template', min_lines: 'Option &lt; usize &gt;')
 Checks if the given path exists when rendering the template
 # Arguments
@@ -932,7 +928,6 @@ env.somevar
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">10
-
 &lt;None&gt;
 </code></pre>
 <p>We can catch it,</p>
@@ -976,7 +971,6 @@ env$x_filled
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">MaskedSeries(len: 10, dtype: Integers, valid: 5) [-, 20, -, 40, -, 60, -, 80, -, 100]
-
 
 Series(len: 10, dtype: Floats) [0, 20, 0, 40, 0, 60, 0, 80, 0, 100]
 </code></pre>
@@ -1409,9 +1403,9 @@ If the node name `node-123` appearing on the output is unquoted, it's a bug that
 nodes.NAME
 </code></pre>
 <p>*Error*:</p>
-<pre><code class="language-error">FunctionError  at Line 1 Column 1: function load_str: Error: Parse Error at Line 1 Column 12
+<pre><code class="language-error">FunctionError  at Line 1 Column 1: function load_str: Error: Parse Error at Line 1 Column 5
   123 -&gt; node-1
-             ^ Invalid Value: Invalid node name
+      ^ Invalid Value: Invalid node name
 </code></pre>
 <h2 id="playground-html-only"><a class="header" href="#playground-html-only">Playground: HTML only</a></h2>
 <p>Try to load a network from string and see if you got it:</p>
@@ -1503,9 +1497,7 @@ nodes.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">true
-
 "string value"
-
 12.21
 </code></pre>
 <p>Please note that, the date and time by themselves are not valid in a tasks file. While they are valid attributes in a “.toml” file or while parsing attributes, in a task file they are interpreted as integer expression and integer range.</p>
@@ -1515,9 +1507,7 @@ nodes.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">1991
-
 [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
-
 [12, 16, 20, 24]
 </code></pre>
 <p>You can assign attribute values to variable names. We will discuss nodes and network later, but let’s assign environmental values:</p>
@@ -1572,7 +1562,6 @@ true
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">[1, true, "no maybe"]
-
 12.2
 </code></pre>
 <h2 id="variable"><a class="header" href="#variable">Variable</a></h2>
@@ -1589,7 +1578,6 @@ other_var?
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">true
-
 false
 </code></pre>
 <p>If you use variable that does not exist, then it will throw an error. You can use <code>try-catch</code> block to catch that error. This is computationally better than checking if a variable exists. But the checking is useful in case of filtering the node functions (explained later).</p>
@@ -1614,7 +1602,6 @@ network echo(json(value))
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">false
-
 -12.0
 </code></pre>
 <h2 id="binary-operator"><a class="header" href="#binary-operator">Binary Operator</a></h2>
@@ -1625,11 +1612,8 @@ network echo(json(value))
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">false
-
 true
-
 false
-
 true
 </code></pre>
 <h2 id="if-else"><a class="header" href="#if-else">If Else</a></h2>
@@ -1684,9 +1668,7 @@ x
 <p>Results:</p>
 <pre><code class="language-output">90
 
-
 9
-
 &lt;None&gt;
 </code></pre>
 <p>There are more varible types when you have access to a network, for example the <code>nodes</code>, <code>leaves</code> and <code>roots</code> are always accessible and refers to the attributes from all nodes, leaf nodes and root nodes.</p>
@@ -1697,9 +1679,7 @@ roots.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">["b", "a"]
-
 ["a"]
-
 ["b"]
 </code></pre>
 <p>And their map counterparts are also available</p>
@@ -1713,11 +1693,9 @@ rootsmap.NAME
   b = "b",
   a = "a"
 }
-
 {
   a = "a"
 }
-
 {
   b = "b"
 }
@@ -1733,13 +1711,9 @@ node[a] outputs.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"b"
-
 "a"
-
 "b"
-
 ["a"]
-
 ["b"]
 </code></pre>
 <p>the <code>inputs</code> and <code>outputs</code> also have map counterparts. The singular variable type <code>input</code> and <code>output</code> error out if there are more than one, or no inputs or outputs in a node.</p>
@@ -1763,9 +1737,7 @@ env x
 <p>Results:</p>
 <pre><code class="language-output">10
 
-
 100
-
 
 200
 </code></pre>
@@ -1781,13 +1753,9 @@ loc.x
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">&lt;None&gt;
-
 [&lt;None&gt;, &lt;None&gt;]
-
 &lt;None&gt;
-
 12
-
 12
 </code></pre>
 <p>but if we are trying to evaluate in terms of some context, then the local variable will be used.</p>
@@ -1803,13 +1771,9 @@ loc x
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">12
-
 [12, 12]
-
 12
-
 12
-
 12
 </code></pre>
 <h2 id="setting-variables"><a class="header" href="#setting-variables">Setting variables</a></h2>
@@ -1837,7 +1801,6 @@ nodes do {
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">[&lt;None&gt;, &lt;None&gt;]
-
 "no output"
 </code></pre>
 <h2 id="multiple-context-expressions"><a class="header" href="#multiple-context-expressions">Multiple Context Expressions</a></h2>
@@ -1909,7 +1872,6 @@ env.x
 <p>Results:</p>
 <pre><code class="language-output">6
 
-
 true
 </code></pre>
 <p>There are different types of tasks, specially environment, network and node type tasks, and there can be conditional tasks that only execute based on a condition or loops.</p>
@@ -1929,9 +1891,7 @@ env.x
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">17
-
 "my name is John"
-
 
 true
 </code></pre>
@@ -1943,9 +1903,7 @@ x
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">17
-
 "my name is John"
-
 
 true
 </code></pre>
@@ -2039,7 +1997,6 @@ add_numbers(1, 2)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">2
-
 3
 </code></pre>
 <p>You can assign variables locally and use them in the final expression that is returned from the function. If you need to prematurely return a value, you can use a return statement. The semicolons at the end of the expressions have no significance inside the function body. The local variables are useful to save temporary results so that they don’t need to be recalculated.</p>
@@ -2080,9 +2037,7 @@ test()
 <p>Results:</p>
 <pre><code class="language-output">2
 
-
 13
-
 
 11
 </code></pre>
@@ -2188,9 +2143,7 @@ network {r"Network y = {y}"}
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"Some {x}"
-
 "Some 12"
-
 
 "Network y = 10"
 </code></pre>
@@ -2247,7 +2200,6 @@ node[b] {[NAME, ORDER]}
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"a"
-
 ["b", 2]
 </code></pre>
 <p>But this does not allow more than one node, and returns a value instead of a list, or a map that <code>nodes</code> or <code>nodesmap</code> keywords do.</p>
@@ -2278,7 +2230,6 @@ nodes&lt;inv&gt; array(INDEX, ORDER)
   b = [3, 2],
   a = [4, 1]
 }
-
 [[4, 1], [3, 2], [2, 1], [1, 3], [0, 4]]
 </code></pre>
 <p>Currently, <code>inp</code> and <code>inv</code> are equivalent, while <code>seq</code> and <code>out</code> are also equivalent. But when the parallization is added in the future versions, they will be implemented differently. So for backward compatibility, if you function needs to be run in a certain way, always use that one.</p>
@@ -2351,10 +2302,10 @@ NAME = "lower-mississippi"
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span>nodes[tenessee -&gt; "lower-mississippi"] do print_attrs("NAME")
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">NAME = "tenessee"
-NAME = "ohio"
-NAME = "lower-mississippi"
+<p>ParseError:</p>
+<pre><code class="language-error">Error: Parse Error at Line 2 Column 16
+  nodes[tenessee -&gt; "lower-mississippi"] do print_attrs("NAME")
+                 ^ Missing closing token "]"
 </code></pre>
 <p>As we can see in the diagram, the path from tenessee to lower
 mississippi includes the ohio node.</p>
@@ -2376,9 +2327,9 @@ nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"] INDEX
 nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
 </code></pre>
 <p>ParseError:</p>
-<pre><code class="language-error">Error: Parse Error at Line 2 Column 1
+<pre><code class="language-error">Error: Parse Error at Line 2 Column 19
   nodesmap[tenessee -&gt; "lower-mississippi"](NAME match "mississippi").INDEX
-  ^ Unexpected Token
+                    ^ Missing closing token "]"
 </code></pre>
 <h2 id="playground-html-only-6"><a class="header" href="#playground-html-only-6">Playground: HTML only</a></h2>
 <p>Node functions can be used in any <code>node</code> context.</p>
@@ -2477,9 +2428,7 @@ nodes array(network.sth, env.var, node.NAME)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"this is true"
-
 "12"
-
 [[true, 12, "b"], [true, 12, "a"]]
 </code></pre>
 <p>Similary, env and network functions can be called anywhere. These functions cannot be mutable functions (change network internally).</p>
@@ -2494,7 +2443,6 @@ network sum(array(env.count(), 1))
   b = 2,
   a = 2
 }
-
 FunctionError  at Line 3 Column 1: function count: Argument 1 (vars [Vec &lt; bool &gt;]) is required
 </code></pre>
 <h2 id="node-variablesfunctions"><a class="header" href="#node-variablesfunctions">Node Variables/Functions</a></h2>
@@ -2505,7 +2453,6 @@ nodesmap inputs.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">7
-
 {
   "lower-mississippi" = ["ohio", "upper-mississippi", "missouri", "arkansas", "red"],
   red = [],
@@ -2523,9 +2470,9 @@ nodesmap inputs.NAME
 nm[tenessee -&gt; "lower-mississippi"](output._?) output.render("{NAME}")
 </code></pre>
 <p>ParseError:</p>
-<pre><code class="language-error">Error: Parse Error at Line 3 Column 1
-  nm[tenessee -&gt; "lower-mississippi"](output._?) output.render("{NAME}")
-  ^ Unexpected Token
+<pre><code class="language-error">Error: Parse Error at Line 2 Column 13
+  nm[tenessee -&gt; "lower-mississippi"] inputs.render("{NAME}")
+              ^ Missing closing token "]"
 </code></pre>
 <p>You can also use <code>nodes</code> and <code>nodesmap</code>/<code>nm</code> keyword to call the function on each node, it can be used anywhere, but is useful for env and network context.</p>
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
@@ -2562,9 +2509,7 @@ env.x + env$x
 <p>Results:</p>
 <pre><code class="language-output">[1, 2, 3]
 
-
 Series(len: 3, dtype: Integers) [1, 2, 3]
-
 [2, 4, 6]
 </code></pre>
 <p>The main thing to keep in mind is that they are stored separately, and the inter-operability is just there to make things easier.</p>
@@ -2577,7 +2522,6 @@ env$xg
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">Series(len: 10, dtype: Integers) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
 
 MaskedSeries(len: 10, dtype: Integers, valid: 7) [1, 2, -, 4, 5, -, 7, 8, -, 10]
 </code></pre>
@@ -2604,7 +2548,6 @@ node[b] $xf
   b = MaskedSeries(len: 8, dtype: Integers, valid: 6) [10, 20, -, 40, 50, -, 70, 80],
   a = Series(len: 8, dtype: Integers) [1, 2, 3, 4, 5, 6, 7, 8]
 }
-
 
 Series(len: 8, dtype: Integers) [10, 20, 3, 40, 50, 6, 70, 80]
 </code></pre>
@@ -2735,9 +2678,7 @@ nm.someattr
 <p>Results:</p>
 <pre><code class="language-output">[123, 1965]
 
-
 true
-
 
 {
   d = "string val",
@@ -2768,7 +2709,6 @@ network nodes.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">[true, 1965]
-
 ["d", "c", "b", "a"]
 </code></pre>
 <p>Similarly inputs:</p>
@@ -2848,7 +2788,6 @@ try { 1 + "s" } catch { 2 }
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">13
-
 2
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -2868,7 +2807,6 @@ network nodes.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">0
-
 []
 </code></pre>
 <p>Trying to run node functions on the empty network means nothing is run</p>
@@ -2932,7 +2870,12 @@ nodes(is_dam).visual = {nodecolor = "red"};
 network subset(nodes.is_dam);
 <span class="boring">network cairo.table("Index =&gt; {INDEX}\n&lt;Name =&gt; {NAME}\n", "./output/simple-count-subset.svg")
 </span></code></pre>
-<p>Results:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="output/simple-count-subset.svg" alt="Output Image"><span class="img-wrapper"><img src="output/simple-count-subset.svg" alt="Output Image"></span></label></p>
+<p>*Error*:</p>
+<pre><code class="language-error">
+
+
+FunctionNotFoundError  at Line 4 Column 1: env function named "subset" not found
+</code></pre>
 <p>This can be useful when you want to remove nodes that do not satisfy some selection criteria for your analysis without having to redo the network detection part.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="counting-nodes"><a class="header" href="#counting-nodes">Counting Nodes</a></h1>
@@ -2965,9 +2908,7 @@ network count(nodes.g_node) / count()
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">7
-
 3
-
 0.42857142857142855
 </code></pre>
 <p>when you call a network function, you get one output, while a node function will give you the output for each node like here:</p>
@@ -3108,7 +3049,6 @@ somevalue.length
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">371802.16
-
 1675.95
 </code></pre>
 <p>You can export csv files</p>
@@ -3244,13 +3184,10 @@ network count(nodes.is_dam)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">5987
-
 ["03399800"]
 
 
-
 1806
-
 4181
 </code></pre>
 <p>Then we load the node attributes from the gis files, we can see some of the variables are loaded from NID website.</p>
@@ -3262,8 +3199,21 @@ network gis.load_attrs("data/ohio-river/usgs-drainage.csv", "SiteNumber")
 nm(INDEX &lt; 5).yearCompleted # only NID dams have it
 nm(INDEX &lt; 5).GEOM # all nodes have it although from different sources
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">FunctionError  at Line 1 Column 1: function gis.load_attrs: GDAL method 'GDALOpenEx' returned a NULL pointer. Error msg: ''
+<p>Results:</p>
+<pre><code class="language-output">{
+  "03399800" = &lt;None&gt;,
+  IL50499 = 1980.0,
+  IL40055 = 1980.0,
+  IL00955 = 1977.0,
+  IL00070 = 1960.0
+}
+{
+  "03399800" = "POINT (-88.4234349499133 37.1612042742605 0)",
+  IL50499 = "POINT (-88.42921894 37.16622664)",
+  IL40055 = "POINT (-88.77145 37.401709)",
+  IL00955 = "POINT (-88.78582 37.38365)",
+  IL00070 = "POINT (-88.57139 37.21975)"
+}
 </code></pre>
 <p>Also note that, while loading GIS files it also loads the geometry into “GEOM” attribute (you can change it through <code>change</code> function argument).</p>
 <!-- Let's make them into same format to avoid future problems. -->
@@ -3280,7 +3230,6 @@ network count(nodes.is_dam)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">1806
-
 4181
 </code></pre>
 <p>The basin area is stored as different variable in each dataset, we want to combine them into a single one.</p>
@@ -3292,7 +3241,7 @@ network count(nodes.is_dam)
 network count(nodes {ba?}) / count()
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">0.0
+<pre><code class="language-output">0.7561382996492401
 </code></pre>
 <p>Even then we only have 75% of the nodes with basin area. Since the <code>DrainageArea</code> is in sqmiles</p>
 <p>If we look at some examples here on two sources of basin area of USGS gages, we can see the problems:</p>
@@ -3300,7 +3249,9 @@ network count(nodes {ba?}) / count()
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  
+  "03384450" = ["42.9", 111.1266],
+  "03383000" = ["255.0", 660.5415],
+  "03382100" = ["147.0", 367.272]
 }
 </code></pre>
 <ol>
@@ -3311,8 +3262,8 @@ network count(nodes {ba?}) / count()
 <pre><code class="language-task">nodes(Drainage?).basin_area = float(Drainage);
 nodes(DRAIN_SQKM?).basin_area = DRAIN_SQKM * 0.38610216
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">
+<p>*Error*:</p>
+<pre><code class="language-error">FunctionError [410014081362600] at Line 1 Column 1: function float: cannot parse float from empty string
 </code></pre>
 <p>We got an error, seems like <code>Drainage</code> contains empty strings as well. That and the <code>String</code> part comes from loading a CSV without data types (<code>.csvt</code> file).</p>
 <p>Let’s fix the code for that, and also let’s get the <code>basin_area</code> for dams.</p>
@@ -3326,18 +3277,17 @@ network count(nodes {basin_area?}) / count()
 <p>Results:</p>
 <pre><code class="language-output">{
   "03399800" = &lt;None&gt;,
-  IL50499 = &lt;None&gt;,
-  IL40055 = &lt;None&gt;,
+  IL50499 = 144000.0,
+  IL40055 = 0.08,
   IL00955 = &lt;None&gt;,
   IL00070 = &lt;None&gt;,
   IL00039 = &lt;None&gt;,
-  "03386500" = &lt;None&gt;,
-  IL00102 = &lt;None&gt;,
+  "03386500" = 9.853134072120001,
+  IL00102 = 2.0,
   "03386000" = &lt;None&gt;,
   "03385500" = &lt;None&gt;
 }
-
-0.0
+0.755971271087356
 </code></pre>
 <h2 id="check-for-incorrect-basin-areas"><a class="header" href="#check-for-incorrect-basin-areas">Check for Incorrect Basin Areas</a></h2>
 <p>Now we have all the different variables combined into a single one with same data type and unit. Let’s do a quick analysis to see if there are points in the network where nodes have larger area than input nodes.</p>
@@ -3354,9 +3304,8 @@ network count(nodes.incorrect)
 network count(nodes.incorrect) / count()
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">0
-
-0.0
+<pre><code class="language-output">547
+0.09136462335059295
 </code></pre>
 <p>That’s around 10% error rate.</p>
 <p>Looking at the actual values, few of them seem to be due to minor errors in values, while most of them seem to be from large input area.</p>
@@ -3364,7 +3313,106 @@ network count(nodes.incorrect) / count()
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  
+  IL00028 = [1.5, 30.036998660096],
+  IL50443 = [0.04, 141009.11000000002],
+  KY00192 = [0.07, 0.31],
+  IN04021 = [0.08, 0.2],
+  IN03653 = [0.04, 0.37],
+  IL50585 = [0.03, 0.16],
+  IL01085 = [240.0, 240.171142047264],
+  IL00606 = [0.6, 57.0],
+  IN00316 = [0.09, 0.15],
+  IN00317 = [0.15, 0.7000000000000001],
+  IN00319 = [0.7000000000000001, 43.053904369656],
+  IN03161 = [0.06, 0.07],
+  IN03160 = [0.07, 3.0100000000000002],
+  IN04048 = [0.4, 0.53],
+  IN00627 = [0.53, 1.1300000000000001],
+  IN03433 = [0.03, 1.82],
+  IN00617 = [0.27, 0.49],
+  IN00480 = [0.56, 21.637975860936002],
+  IN00618 = [0.41000000000000003, 1.2700000000000002],
+  IN00098 = [0.33, 263.021357392616],
+  IN00035 = [0.23, 168.12355234608],
+  "03343010" = [13732.0, 13755.171304576803],
+  IN00528 = [0.21, 0.32],
+  IN00151 = [1.18, 4.75],
+  IN03337 = [1.1500000000000001, 42.9097178978],
+  IN00107 = [0.55, 8.22],
+  IN00209 = [1.8, 8.48],
+  IN00091 = [0.6900000000000001, 0.87],
+  IN00092 = [0.87, 8.38],
+  IN00462 = [0.39, 1.1500000000000001],
+  IL40011 = [2.36, 11.4],
+  IN00726 = [0.01, 0.2],
+  IN00731 = [0.2, 3.73],
+  IN00729 = [0.16, 1.0],
+  IL00742 = [0.2, 21.7],
+  IN00722 = [0.29, 3.08],
+  IN00723 = [0.2, 1.0],
+  IN00437 = [0.2, 2.4],
+  IN00721 = [0.17, 0.39],
+  IN00431 = [0.39, 0.85],
+  IN03216 = [0.25, 0.5],
+  IN00728 = [0.66, 11167.3448859856],
+  IN00288 = [0.09, 0.34],
+  IN00505 = [0.03, 223.256539885312],
+  IN04020 = [0.13, 1.09],
+  IN03196 = [0.25, 677.48802118264],
+  IN00735 = [1.9000000000000001, 2.15],
+  IL50291 = [0.06, 69.89807631177601],
+  IN00753 = [0.3, 1868.7614815512],
+  IN00459 = [0.31, 1790.0],
+  "03332605" = [1790.0, 1793.0],
+  IN00240 = [1.6, 35.2],
+  IN03801 = [0.2, 809.0],
+  IN03355 = [0.0, 695.78422034768],
+  IN00321 = [0.23, 0.49],
+  IN03984 = [0.13, 8.620000000000001],
+  IN03462 = [0.0, 33.65716107796],
+  IN00763 = [0.09, 0.45],
+  IN00767 = [0.0, 768.8080807372801],
+  IN00441 = [0.38, 556.23730459968],
+  IN03434 = [0.0, 263.58341177426405],
+  IN03758 = [0.64, 578.7119252311201],
+  IN00445 = [0.37, 499.66125210536006],
+  IN00207 = [0.26, 0.28],
+  IN00257 = [0.28, 308.349756443952],
+  OH03208 = [0.02, 0.06],
+  OH00258 = [0.12, 12.49],
+  IN00188 = [0.79, 4.04],
+  IN00057 = [1.2, 14.2],
+  IN00120 = [0.44, 14.450000000000001],
+  IN03353 = [0.0, 0.25],
+  IN00166 = [0.22, 0.97],
+  IN00325 = [0.21, 0.63],
+  IN00460 = [0.15, 834.9862486900802],
+  IN03430 = [0.25, 0.78],
+  IN00708 = [0.16, 0.29],
+  IN03789 = [0.02, 0.11],
+  IN03788 = [0.11, 0.43],
+  IN00709 = [0.23, 0.36],
+  IN03956 = [0.13, 294.15926653704],
+  "03359000" = [294.15926653704, 295.0],
+  IN00663 = [0.0, 0.37],
+  IN00666 = [0.0, 0.85],
+  IN00704 = [0.35000000000000003, 10.75],
+  IN00702 = [0.0, 134.30289503066402],
+  IN00711 = [0.0, 2986.82183069928],
+  IN00695 = [0.15, 0.66],
+  IN03272 = [0.0, 1.75],
+  IN00691 = [0.22, 15.1],
+  IN00665 = [0.45, 0.63],
+  IN03503 = [0.02, 1.23],
+  IN00563 = [0.1, 3.1],
+  IN03189 = [0.1, 0.38],
+  IN04040 = [0.09, 0.48],
+  IN04043 = [0.48, 9.34],
+  IN03961 = [0.16, 0.34],
+  IN00363 = [0.92, 7.3],
+  IN00365 = [0.88, 1.67],
+  IN00361 = [1.67, 72.23],
+  IN00581 = [0.04, 0.09], ... 
 }
 </code></pre>
 <p>This could be due to the error in snapping to the streamlines. It is also possible that some basin area that are missing are contributing to the unaccounted area.</p>
@@ -3384,9 +3432,8 @@ network count(nodes.incorrect) / count()
 network count(nodes {incorrect &amp; is_dam})
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">0
-
-0
+<pre><code class="language-output">33
+514
 </code></pre>
 <p>This shows that the majority of the errors come from the NID dams, which makes sense given the <code>GageLoc.shp</code> data has points indexed to the NHDPlus streamlines, while the NID Dams are not indexed to it. Furthermore, looking at the attributes in QGIS shows, many dams are in locations without streamlines, and even then sometimes they have unusually large basin area values for their location.</p>
 <h2 id="export-to-gis-for-visualization"><a class="header" href="#export-to-gis-for-visualization">Export to GIS for visualization</a></h2>
@@ -3402,8 +3449,8 @@ network count(nodes {incorrect &amp; is_dam})
 	}
 )
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">FunctionError  at Line 1 Column 1: function gis.save_nodes: Attribute for geometry not found
+<p>Results:</p>
+<pre><code class="language-output">
 </code></pre>
 <p>We also need connection information to cross reference, let’s make them through some string manipulation. NADI GIS plugin uses WKT format for geometries, which are string values, so we can manipulate them using string functions.</p>
 <p>Note: we should probably add a function for this in future. A WKT plugin to work with geometries.</p>
@@ -3421,8 +3468,8 @@ nodes(output._? &amp; (INDEX &lt; 10)).conn_geom
 
 network gis.save_connections("output/ohio-conn-all.gpkg", "conn_geom")
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">AttributeError [03399800] at Line 1 Column 1: Attribute node.GEOM not found
+<p>Results:</p>
+<pre><code class="language-output">["LINESTRING (-88.42921894 37.16622664, -88.4234349499133 37.1612042742605)", "LINESTRING (-88.77145 37.401709, -88.42921894 37.16622664)", "LINESTRING (-88.78582 37.38365, -88.42921894 37.16622664)", "LINESTRING (-88.57139 37.21975, -88.42921894 37.16622664)", "LINESTRING (-88.68815 37.38965, -88.42921894 37.16622664)", "LINESTRING (-88.6736645 37.4156072, -88.68815 37.38965)", "LINESTRING (-88.66408 37.41518, -88.6736645 37.4156072)", "LINESTRING (-88.6637356477429 37.4140878122472, -88.66408 37.41518)", "LINESTRING (-88.6494395725886 37.4141446558289, -88.6637356477429 37.4140878122472)"]
 </code></pre>
 <p>When we visualize the output in QGIS, we can see the nodes where the <code>basin_area</code> are not correct based on the network information.</p>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/ohio-correctness-qgis.png" alt="Correctness in QGIS"><span class="img-wrapper"><img src="images/ohio-correctness-qgis.png" alt="Correctness in QGIS"></span></label></p>
@@ -3454,7 +3501,6 @@ roots.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">5987
-
 ["03399800"]
 </code></pre>
 <h2 id="identify-dams-and-gages"><a class="header" href="#identify-dams-and-gages">Identify Dams and Gages</a></h2>
@@ -3466,7 +3512,6 @@ network count(nodes.is_dam)
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">1806
-
 4181
 </code></pre>
 <h2 id="count-damsgages-upstream"><a class="header" href="#count-damsgages-upstream">Count Dams/Gages Upstream</a></h2>
@@ -3536,8 +3581,17 @@ network count(nodes.is_dam)
 network count(nodes {dam_height? &amp; dam_storage?})
 nm(is_dam &amp; (INDEX &lt; 10)) array(dam_height, dam_storage)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">FunctionError  at Line 1 Column 1: function gis.load_attrs: GDAL method 'GDALOpenEx' returned a NULL pointer. Error msg: ''
+<p>Results:</p>
+<pre><code class="language-output">4181
+4181
+{
+  IL50499 = [56.0, 738700.0],
+  IL40055 = [28.0, 47.0],
+  IL00955 = [36.0, 366.0],
+  IL00070 = [24.0, 153.0],
+  IL00039 = [59.0, 633.0],
+  IL00102 = [38.0, 1814.0]
+}
 </code></pre>
 <p>Lot’s of basins do not have basin area.</p>
 <p>First, using the previous requirements for large dams:</p>
@@ -3545,15 +3599,27 @@ nm(is_dam &amp; (INDEX &lt; 10)) array(dam_height, dam_storage)
 network count(nodes.large_dam)
 network count(nodes.large_dam) / count(nodes.is_dam)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">EmptyValueError  at Line 1 Column 1: the expression resulted in empty value
+<p>Results:</p>
+<pre><code class="language-output">1135
+0.27146615642190863
 </code></pre>
 <p>This will allow us to run the same counting as before:</p>
 <pre><code class="language-task">nodes&lt;inp&gt;.nldam = int(large_dam) + sum(inputs.nldam);
 nm(INDEX &lt; 10) array(ndam, nldam)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">AttributeError [WV10707] at Line 1 Column 1: Attribute large_dam not found
+<p>Results:</p>
+<pre><code class="language-output">{
+  "03399800" = [4181, 1135],
+  IL50499 = [4181, 1135],
+  IL40055 = [1, 0],
+  IL00955 = [1, 0],
+  IL00070 = [1, 0],
+  IL00039 = [2, 2],
+  "03386500" = [1, 1],
+  IL00102 = [1, 1],
+  "03386000" = [0, 0],
+  "03385500" = [0, 0]
+}
 </code></pre>
 <p>Although not obivious, the numbers were quite large, so when I inspected the NID data, some dams seem to have very high height values that do not match.</p>
 <p>Let’s load basin area and flag any locations with more than 50ft of dam height, and less than 10 square miles of basin area.</p>
@@ -3565,28 +3631,150 @@ nodes.flag = large_dam &amp; ((dam_height &gt; 50) &amp; (basin_area &lt; 10));
 network count(nodes.flag)
 nm(flag &amp; (INDEX &lt; 1000)) array(dam_height, dam_storage, basin_area)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-0
+<p>Results:</p>
+<pre><code class="language-output">3766
 
 
-EmptyValueError  at Line 5 Column 1: the expression resulted in empty value
+353
+{
+  IL50593 = [108.0, 10790.0, 0.27],
+  IL50678 = [110.0, 5250.0, 0.1],
+  IL50066 = [55.0, 1087.0, 0.7000000000000001],
+  IN00446 = [54.0, 7538.0, 4.75],
+  IL00688 = [52.0, 3474.0, 3.3000000000000003],
+  IN00439 = [56.0, 321.0, 0.52],
+  IN03920 = [55.0, 39.0, 0.02],
+  IN00505 = [56.0, 66.0, 0.03],
+  IN00036 = [63.0, 1595.0, 1.2],
+  IN00201 = [55.0, 2861.0, 4.69],
+  IN00181 = [55.0, 1380.0, 4.7],
+  IN00069 = [68.0, 6718.0, 5.8],
+  IN03731 = [57.0, 128.0, 0.8200000000000001],
+  IN03007 = [55.0, 29800.0, 0.0],
+  IN00197 = [62.0, 3555.0, 1.82],
+  IN00103 = [60.0, 1158.0, 0.36],
+  IN00133 = [82.0, 13000.0, 9.34],
+  IN00342 = [63.0, 198.0, 0.19],
+  IN00565 = [53.0, 109.0, 0.1]
+}
 </code></pre>
 <p>We don’t have all basin areas, but from this we flagged around 300 dams. Looking at the values, <code>IL50678</code> basically says it has a dam with height of 110, but basin area of 0.1, which seems very unreasonable. To remove these from our identification process, let’s add another category.</p>
 <pre><code class="language-task">nodes.large_dam = is_dam &amp; (((dam_height &gt; 49) | ((dam_height &gt; 16) &amp; (dam_storage &gt; 811))) &amp; (basin_area &gt; 10));
 network count(nodes.large_dam)
 network count(nodes.large_dam) / count(nodes.is_dam)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">EmptyValueError  at Line 1 Column 1: the expression resulted in empty value
+<p>Results:</p>
+<pre><code class="language-output">321
+0.07677589093518297
 </code></pre>
 <p>The number of dams that are now categorized as large dams have been reduced significantly.</p>
 <h2 id="extra-looking-at-main-stem-of-the-river"><a class="header" href="#extra-looking-at-main-stem-of-the-river">Extra: Looking at Main Stem of the River</a></h2>
 <p>Let’s look at the values along the main stem. <code>LEVEL == 0</code> means the mainstem of the network.</p>
 <pre><code class="language-task">nm(LEVEL==0) array(ngage, ndam, nldam)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">AttributeError [03399800] at Line 1 Column 1: Attribute nldam not found
+<p>Results:</p>
+<pre><code class="language-output">{
+  "03399800" = [1806, 4181, 1135],
+  IL50499 = [1805, 4181, 1135],
+  "03384500" = [1801, 4169, 1129],
+  IL50443 = [1799, 4164, 1129],
+  "03381700" = [1785, 4065, 1097],
+  KY03060 = [1454, 3087, 905],
+  "03322420" = [1454, 3086, 904],
+  IN03661 = [1451, 3067, 897],
+  "03322190" = [1451, 3061, 897],
+  KY01059 = [1450, 3061, 897],
+  "03322000" = [1448, 3044, 894],
+  IN04061 = [1388, 2822, 826],
+  "03304300" = [1388, 2821, 826],
+  KY03059 = [1387, 2821, 826],
+  "03303500" = [1386, 2809, 823],
+  KY01255 = [1383, 2771, 815],
+  KY00842 = [1383, 2769, 814],
+  IN03297 = [1383, 2768, 813],
+  KY03058 = [1383, 2765, 813],
+  "03303280" = [1383, 2764, 812],
+  IN03192 = [1382, 2764, 812],
+  KY01272 = [1373, 2726, 807],
+  "03294600" = [1322, 2576, 789],
+  KY00597 = [1318, 2572, 788],
+  KY01022 = [1318, 2571, 788],
+  "03294500" = [1318, 2570, 788],
+  KY03034 = [1316, 2552, 780],
+  "03293600" = [1316, 2551, 779],
+  "03293551" = [1315, 2551, 779],
+  "03293550" = [1314, 2551, 779],
+  "03293548" = [1313, 2551, 779],
+  IN00643 = [1295, 2533, 775],
+  KY03033 = [1220, 2287, 689],
+  "03277200" = [1220, 2286, 688],
+  KY01215 = [1217, 2272, 685],
+  OH01690 = [1111, 2112, 657],
+  "03255000" = [1091, 2087, 648],
+  OH01350 = [1013, 1898, 616],
+  "03238680" = [1011, 1886, 612],
+  KY03032 = [1010, 1886, 612],
+  KY00938 = [1004, 1869, 609],
+  KY01093 = [1003, 1868, 609],
+  "03238000" = [1003, 1867, 608],
+  OH03181 = [1002, 1866, 607],
+  "03217200" = [883, 1700, 573],
+  KY03031 = [875, 1692, 572],
+  "03216600" = [875, 1691, 571],
+  "03216000" = [868, 1680, 568],
+  "03206000" = [788, 1596, 513],
+  WV05302 = [760, 1568, 503],
+  "03201500" = [622, 1335, 415],
+  "03160000" = [621, 1335, 415],
+  OH00971 = [619, 1327, 411],
+  WV05312 = [617, 1318, 408],
+  WV05313 = [617, 1317, 407],
+  WV05301 = [617, 1314, 407],
+  "03159870" = [617, 1313, 406],
+  WV10702 = [609, 1296, 399],
+  "03159530" = [609, 1295, 398],
+  "03151000" = [564, 1186, 358],
+  OH00943 = [563, 1185, 358],
+  OH00939 = [563, 1184, 358],
+  "03150700" = [563, 1182, 357],
+  WV07301 = [396, 842, 288],
+  WV10301 = [393, 836, 285],
+  "03114280" = [393, 835, 284],
+  "03114275" = [392, 835, 284],
+  WV05108 = [389, 827, 280],
+  "03113600" = [385, 805, 273],
+  "03112500" = [377, 798, 270],
+  "03111534" = [373, 769, 251],
+  WV06908 = [372, 769, 251],
+  "03111520" = [372, 768, 250],
+  "03111515" = [371, 768, 250],
+  OH03169 = [368, 742, 246],
+  WV02901 = [362, 704, 227],
+  "03110690" = [362, 703, 226],
+  OH03172 = [361, 703, 226],
+  "03110685" = [361, 702, 226],
+  "03108500" = [344, 661, 219],
+  PA00128 = [343, 661, 219],
+  "03108490" = [343, 660, 218],
+  PA00127 = [279, 528, 184],
+  "03086000" = [279, 527, 183],
+  PA00126 = [276, 519, 181],
+  "03085730" = [276, 518, 180],
+  PA01994 = [142, 265, 96],
+  PA00120 = [141, 264, 96],
+  "03085000" = [141, 263, 95],
+  "03075070" = [100, 192, 73],
+  "03075000" = [98, 172, 64],
+  PA00122 = [97, 172, 64],
+  PA00123 = [94, 156, 60],
+  PA01549 = [89, 135, 50],
+  PA01265 = [89, 133, 49],
+  PA00124 = [88, 121, 44],
+  "03072655" = [88, 120, 43],
+  "03072500" = [86, 118, 43],
+  PA00125 = [45, 90, 36],
+  "03063000" = [45, 89, 35], ... 
+}
 </code></pre>
 <p>If you want to be more accurate, we can load the <code>SiteName</code> from GIS file and match the node with “Ohio River” in its name with the lowest order to find the first Ohio River Node.</p>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -3600,9 +3788,9 @@ nodes.is_dam = !is_usgs;
 network count(nodes.is_usgs)
 network count(nodes.is_dam)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-FunctionError  at Line 2 Column 1: function gis.load_attrs: GDAL method 'GDALOpenEx' returned a NULL pointer. Error msg: ''
+<p>Results:</p>
+<pre><code class="language-output">1806
+4181
 </code></pre>
 <p>Counting the upstream dams again,</p>
 <pre><code class="language-task">nodes&lt;inp&gt;.ndam = int(is_dam) + sum(inputs.ndam);
@@ -3610,8 +3798,9 @@ nodes.no_dam_us = ndam == 0;
 network count(nodes {no_dam_us &amp; is_usgs})
 network count(nodes {no_dam_us &amp; is_usgs}) / count(nodes.is_usgs)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">AttributeError [WV03333] at Line 1 Column 1: Attribute is_dam not found
+<p>Results:</p>
+<pre><code class="language-output">605
+0.33499446290143964
 </code></pre>
 <p>We can see 33% of the USGS gages do not have dams upstream.</p>
 <p>And for those that do, let’s look at the construction year,</p>
@@ -3625,12 +3814,10 @@ network count(nodes.dam_affected &amp; nodes.is_usgs)
 network count(!nodes.no_dam_us &amp; nodes.is_usgs)
 network count(nodes.dam_affected &amp; nodes.is_usgs) / count(!nodes.no_dam_us &amp; nodes.is_usgs)
 </code></pre>
-<p>*Error*:</p>
-<pre><code class="language-error">
-
-
-
-EmptyValueError  at Line 7 Column 1: the expression resulted in empty value
+<p>Results:</p>
+<pre><code class="language-output">1152
+1201
+0.9592006661115737
 </code></pre>
 <p>This shows we have the construction year for 95% of the USGS gages that were constructed after at least one upstream dams.</p>
 <!-- After exporting this result, and loading them in Python, we can use the following python script, we can load CSV files and see how much of the streamflow data was before, and after the dam. -->
@@ -3770,7 +3957,6 @@ node[03229610]$sf_fix
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">TimeSeries([1920-10-01, 1920-10-02, ..., 2024-12-31], values: MaskedSeries(len: 38078, dtype: Strings, valid: 7032) [-, -, -, -, -, -, -, -, -, -, ...])
-
 MaskedSeries(len: 38078, dtype: Floats, valid: 38067) [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, ...]
 </code></pre>
 <p>We can see the data is filled here, in the beginning the data comes from the node <code>03227500</code>, while at the end we can see the data comes from the node itself.</p>
@@ -3784,16 +3970,13 @@ nm[03229610,03227500] {$$streamflow[s:l]}
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">Series(len: 101, dtype: Floats) [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, ...]
-
 {
   "03229610" = MaskedSeries(len: 101, dtype: Attributes, valid: 0) [-, -, -, -, -, -, -, -, -, -, ...],
   "03227500" = Series(len: 101, dtype: Floats) [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, ...]
 }
 
 
-
 Series(len: 501, dtype: Floats) [574, 485, 465, 439, 421, 5170, 5360, 5300, 4260, 3620, ...]
-
 {
   "03229610" = Series(len: 501, dtype: Strings) ["574.0", "485.0", "465.0", "439.0", "421.0", "5170.0", "5360.0", "5300.0", "4260.0", "3620.0", ...],
   "03227500" = Series(len: 501, dtype: Floats) [191, 176, 165, 159, 134, 3500, 3690, 4520, 3530, 2970, ...]
@@ -3820,9 +4003,7 @@ node[03229610] {[sr_mean("sf_org"), sr_mean("sf_fix"), sr_mean("sf_fix2")]}
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">Series(len: 201, dtype: Floats) [271, 271, 231, 194, 177, 194, 194, 271, 231, 360, ...]
-
 Series(len: 201, dtype: Floats) [405, 389, 345, 276, 252, 3304, 904, 891, 422, 528, ...]
-
 
 [2781.179749715586, 1701.8723040954108, 2077.1651452282154]
 </code></pre>
@@ -4219,17 +4400,17 @@ for v in adj_mat {
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">0 0 0 0 0
-1 0 0 0 0
-1 1 0 0 0
+1 0 0 0 1
+0 1 0 0 0
 0 0 1 0 0
-0 0 0 1 0
+1 0 0 0 0
 
 
-0 1 1 0 0
-1 0 1 0 0
-1 1 0 1 0
-0 0 1 0 1
-0 0 0 1 0
+0 1 0 0 1
+1 0 1 0 1
+0 1 0 1 0
+0 0 1 0 0
+1 1 0 0 0
 </code></pre>
 <h2 id="degree-of-nodes"><a class="header" href="#degree-of-nodes">Degree of Nodes</a></h2>
 <pre><code class="language-task">nodes {
@@ -4237,7 +4418,7 @@ for v in adj_mat {
 }
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">[[2, 0], [1, 1], [1, 2], [1, 1], [0, 1]]
+<pre><code class="language-output">[[2, 0], [1, 2], [1, 1], [0, 1], [1, 1]]
 </code></pre>
 <h2 id="check-for-loops"><a class="header" href="#check-for-loops">Check for loops</a></h2>
 <pre><code class="language-task">nodes.self_loop = NAME in inputs.NAME;
@@ -4439,37 +4620,36 @@ nm outputs.NAME
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">{
-  CHS = ["PAT1", "P1F3", "STO", "HOG1"],
-  HOG1 = [],
-  STO = [],
-  P1F3 = [],
-  PAT1 = [],
-  RCD1 = ["DND1", "CAT3"],
+  RCD1 = ["CAT3", "DND1"],
+  DND1 = [],
   CAT3 = ["LHY"],
   LHY = ["P1F3", "APRR", "GI"],
   GI = [],
   APRR = [],
-  DND1 = [],
-  CAB1 = ["P1F3"],
+  P1F3 = [],
+  CHS = ["PAT1", "P1F3", "STO", "HOG1"],
+  HOG1 = [],
+  STO = [],
+  PAT1 = [],
   GBSS = ["LHY"],
-  RBCS1A = ["P1F3"]
+  RBCS1A = ["P1F3"],
+  CAB1 = ["P1F3"]
 }
-
 {
-  CHS = [],
-  HOG1 = ["CHS"],
-  STO = ["CHS"],
-  P1F3 = ["CHS", "LHY", "CAB1", "RBCS1A"],
-  PAT1 = ["CHS"],
   RCD1 = [],
+  DND1 = ["RCD1"],
   CAT3 = ["RCD1"],
   LHY = ["GBSS", "CAT3"],
   GI = ["LHY"],
   APRR = ["LHY"],
-  DND1 = ["RCD1"],
-  CAB1 = [],
+  P1F3 = ["CHS", "LHY", "CAB1", "RBCS1A"],
+  CHS = [],
+  HOG1 = ["CHS"],
+  STO = ["CHS"],
+  PAT1 = ["CHS"],
   GBSS = [],
-  RBCS1A = []
+  RBCS1A = [],
+  CAB1 = []
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -8113,10 +8293,10 @@ plot along side the network information.</p>
 
         <script src="clipboard-1626706a.min.js"></script>
         <script src="highlight-a4af0267.js"></script>
-        <script src="book-9d8b8e83.js"></script>
+        <script src="book-b2fed824.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="theme/load_nadi_global-0c6e62da.js"></script>
+        <script src="theme/load_nadi_global-b49fcbbd.js"></script>
         <script src="theme/mode-task-88dcc689.js"></script>
 
         <script>

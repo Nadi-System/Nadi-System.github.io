@@ -1,0 +1,40 @@
+# these 3 lines happen behind the scenes in the web version
+# net.load_file("colorado.net")
+# net.load_attrs_from_str(from_file("colorado.toml"))
+# net.load_edge_attrs_from_str(from_file("colorado-edges.toml"))
+
+edges.edge_lengthkm
+
+nodes(INDEX < 10) edge["Point.1" -> "Point.2"].edge_lengthkm
+
+# this network has multiple roots
+roots.NAME
+
+# see the attributes loaded form the Attributes tab, you can try to include more with autocomplete
+leavesmap.DIST_FROMHWKM
+
+nodes.visual = {}
+nodes.visual.nodesize = 1 + ORDER / 25
+nodes(ORDER < 2).visual.linecolor = "gray"
+
+
+# this line lets us know which roots have more nodes in them
+rootsmap.WEIGHT
+
+# it also has nodes with branches
+nodes.branch = count(outputs._) > 1
+count(nodes.branch)
+
+# we can visually identify the branches, but there are too many nodes to see anything clearly
+nodes(branch).visual.linecolor="red";
+
+# manually inspecting some nodes
+node["Point.457"] [outputs.NAME, branch]
+node["Point.1038"] inputs.NAME # 730 coming here
+node["Point.1038"] outputs.NAME
+
+
+nm(branch) {outputs.NAME}
+
+nodes {set_xy(longitude, -latitude)}
+

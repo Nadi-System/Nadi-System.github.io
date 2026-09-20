@@ -1,0 +1,2265 @@
+[PLA2G2A]
+ID = "PLA2G2A"
+Label = "PLA2G2A"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 39
+TotalModelWeight = 7.763016847072194
+BestFDR = 2.2924625925373747e-11
+BestGlobalFDR = 1.446622946325309e-9
+NegLog10BestFDR = 10.63969774223903
+
+[ABCA8]
+ID = "ABCA8"
+Label = "ABCA8"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 2
+TotalModelWeight = 0.9645806242373426
+BestFDR = 4.987077567066487e-5
+BestGlobalFDR = 0.0001774787543854
+NegLog10BestFDR = 4.302153876881501
+
+[GPAM]
+ID = "GPAM"
+Label = "GPAM"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 43
+TotalModelWeight = 8.40051587607121
+BestFDR = 2.1695193576491787e-6
+BestGlobalFDR = 9.362638805356729e-6
+NegLog10BestFDR = 5.6636364705024045
+
+[EPHX1]
+ID = "EPHX1"
+Label = "EPHX1"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 8
+TotalModelWeight = 1.861448076284479
+BestFDR = 6.464453613057543e-7
+BestGlobalFDR = 4.143590231837235e-6
+NegLog10BestFDR = 6.189468176562707
+
+[TMEM97]
+ID = "TMEM97"
+Label = "TMEM97"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 3
+TotalModelWeight = 0.7880118330626483
+BestFDR = 4.6022511244709255e-8
+BestGlobalFDR = 2.372428044445576e-7
+NegLog10BestFDR = 7.337029687493445
+
+[SLC51B]
+ID = "SLC51B"
+Label = "SLC51B"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 6
+TotalModelWeight = 1.288015343460393
+BestFDR = 7.75376671119686e-9
+BestGlobalFDR = 6.724830844308177e-8
+NegLog10BestFDR = 8.110487269818883
+
+[GGT5]
+ID = "GGT5"
+Label = "GGT5"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 30
+TotalModelWeight = 6.0450137380729485
+BestFDR = 4.3228814896098286e-5
+BestGlobalFDR = 8.75569153625276e-5
+NegLog10BestFDR = 4.364226670345134
+
+[HSD17B14]
+ID = "HSD17B14"
+Label = "HSD17B14"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 4
+TotalModelWeight = 1.0939237049677302
+BestFDR = 2.958475246994877e-5
+BestGlobalFDR = 2.41804810272471e-5
+NegLog10BestFDR = 4.528932060031893
+
+[APOL4]
+ID = "APOL4"
+Label = "APOL4"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 4
+TotalModelWeight = 0.9276555913895436
+BestFDR = 0.0009069070332898
+BestGlobalFDR = 0.0016902174409891
+NegLog10BestFDR = 3.0424372300276348
+
+[HEXA]
+ID = "HEXA"
+Label = "HEXA"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 4
+TotalModelWeight = 0.9321503917338948
+BestFDR = 3.289863788834993e-6
+BestGlobalFDR = 9.007862480669188e-6
+NegLog10BestFDR = 5.4828220828956
+
+[PER2]
+ID = "PER2"
+Label = "PER2"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 14
+TotalModelWeight = 2.4329489729833544
+BestFDR = 4.446442515550184e-6
+BestGlobalFDR = 6.108851203796424e-6
+NegLog10BestFDR = 5.351987317953226
+
+[PLA2G5]
+ID = "PLA2G5"
+Label = "PLA2G5"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 6
+TotalModelWeight = 1.0995326109736738
+BestFDR = 1.2093928433323705e-7
+BestGlobalFDR = 4.498351429467963e-7
+NegLog10BestFDR = 6.917432605690766
+
+[HDLBP]
+ID = "HDLBP"
+Label = "HDLBP"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 15
+TotalModelWeight = 3.682069007192862
+BestFDR = 0.0070294575609665
+BestGlobalFDR = 0.0013158661350827
+NegLog10BestFDR = 2.1530781866968383
+
+[ZC3H12A]
+ID = "ZC3H12A"
+Label = "ZC3H12A"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 5
+TotalModelWeight = 0.9741640393061066
+BestFDR = 0.0005877850664391
+BestGlobalFDR = 0.0008961588551637
+NegLog10BestFDR = 3.2307814520256746
+
+[ACSS3]
+ID = "ACSS3"
+Label = "ACSS3"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 10
+TotalModelWeight = 2.0420539753541824
+BestFDR = 4.085991867591104e-5
+BestGlobalFDR = 0.0003143385012233
+NegLog10BestFDR = 4.388702502085319
+
+[CD274]
+ID = "CD274"
+Label = "CD274"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 5
+TotalModelWeight = 1.2997525114130026
+BestFDR = 0.0094718418113871
+BestGlobalFDR = 0.0078484099883674
+NegLog10BestFDR = 2.0235655636844307
+
+[VAPB]
+ID = "VAPB"
+Label = "VAPB"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 5
+TotalModelWeight = 0.8911396412874649
+BestFDR = 0.0001376910859322
+BestGlobalFDR = 0.0003990952990741
+NegLog10BestFDR = 3.8610941748902223
+
+[NR1D1]
+ID = "NR1D1"
+Label = "NR1D1"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 6
+TotalModelWeight = 0.8965556696697105
+BestFDR = 0.0006133588683516
+BestGlobalFDR = 0.0003710567699449
+NegLog10BestFDR = 3.2122853510252805
+
+[HSD11B2]
+ID = "HSD11B2"
+Label = "HSD11B2"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 13
+TotalModelWeight = 2.3119392094351974
+BestFDR = 0.0008616917082989
+BestGlobalFDR = 0.0009195525556925
+NegLog10BestFDR = 3.0646480860695644
+
+[C1QTNF3]
+ID = "C1QTNF3"
+Label = "C1QTNF3"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 4
+TotalModelWeight = 0.8047235807106199
+BestFDR = 0.0017219969672608
+BestGlobalFDR = 0.0019860905950764
+NegLog10BestFDR = 2.76396761775056
+
+[ABCA10]
+ID = "ABCA10"
+Label = "ABCA10"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 17
+TotalModelWeight = 2.1750827659586336
+BestFDR = 0.0001608484317872
+BestGlobalFDR = 0.0005167209556688
+NegLog10BestFDR = 3.793583168951952
+
+[C1D]
+ID = "C1D"
+Label = "C1D"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 9
+TotalModelWeight = 0.9928589200730492
+BestFDR = 0.0028396348616666
+BestGlobalFDR = 0.0011317721434933
+NegLog10BestFDR = 2.5467375007129425
+
+[PPT2]
+ID = "PPT2"
+Label = "PPT2"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 8
+TotalModelWeight = 1.4977928360602504
+BestFDR = 0.0002472699939438
+BestGlobalFDR = 0.0003164917565428
+NegLog10BestFDR = 3.606828581799907
+
+[MOGAT1]
+ID = "MOGAT1"
+Label = "MOGAT1"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 8
+TotalModelWeight = 1.2193816148805166
+BestFDR = 4.978593158623814e-6
+BestGlobalFDR = 2.838330114351287e-5
+NegLog10BestFDR = 5.302893362012116
+
+[LPIN1]
+ID = "LPIN1"
+Label = "LPIN1"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 14
+TotalModelWeight = 2.099660163450742
+BestFDR = 0.0078389345460519
+BestGlobalFDR = 0.0023340791114993
+NegLog10BestFDR = 2.105742961832786
+
+[PIK3CA]
+ID = "PIK3CA"
+Label = "PIK3CA"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 4
+TotalModelWeight = 1.0897822402616109
+BestFDR = 0.0068684585189093
+BestGlobalFDR = 0.0034755368697923
+NegLog10BestFDR = 2.163140720269237
+
+[BCL2]
+ID = "BCL2"
+Label = "BCL2"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 6
+TotalModelWeight = 0.9174009119516232
+BestFDR = 0.0008466702016587
+BestGlobalFDR = 0.0003535837140254
+NegLog10BestFDR = 3.072285724842633
+
+[FABP4]
+ID = "FABP4"
+Label = "FABP4"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 7
+TotalModelWeight = 0.9730929387376016
+BestFDR = 0.0002154018443965
+BestGlobalFDR = 0.0002512519760477
+NegLog10BestFDR = 3.666750582338844
+
+[GGTLC1]
+ID = "GGTLC1"
+Label = "GGTLC1"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 9
+TotalModelWeight = 1.4132755287243035
+BestFDR = 0.0050992217513923
+BestGlobalFDR = 0.0032947342865075
+NegLog10BestFDR = 2.292496101326897
+
+[CYP51A1]
+ID = "CYP51A1"
+Label = "CYP51A1"
+NodeType = "Gene"
+LipidClass = nan
+Degree = 5
+TotalModelWeight = 0.7990105334195559
+BestFDR = 0.0004512054783273
+BestGlobalFDR = 0.0002771914211628
+NegLog10BestFDR = 3.345625635990795
+
+["Cer(d18:1/16:0)"]
+ID = "Cer(d18:1/16:0)"
+Label = "Cer(d18:1/16:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 2
+TotalModelWeight = 0.9850881743313566
+BestFDR = 5.224928399109029e-8
+BestGlobalFDR = 1.6628902557164386e-6
+NegLog10BestFDR = 7.281919656620719
+
+["LacCer(d18:1/24:1)"]
+ID = "LacCer(d18:1/24:1)"
+Label = "LacCer(d18:1/24:1)"
+NodeType = "Lipid"
+LipidClass = "GLYCOSPHINGOLIPID"
+Degree = 2
+TotalModelWeight = 0.5130489536018964
+BestFDR = 3.131195750218231e-9
+BestGlobalFDR = 9.590105812383872e-8
+NegLog10BestFDR = 8.504289781127191
+
+["HexCer(d18:1/24:1)"]
+ID = "HexCer(d18:1/24:1)"
+Label = "HexCer(d18:1/24:1)"
+NodeType = "Lipid"
+LipidClass = "GLYCOSPHINGOLIPID"
+Degree = 3
+TotalModelWeight = 1.542300246361909
+BestFDR = 1.8273945827442125e-8
+BestGlobalFDR = 6.714721852399376e-7
+NegLog10BestFDR = 7.738167666875153
+
+["PE(18:0/18:2)"]
+ID = "PE(18:0/18:2)"
+Label = "PE(18:0/18:2)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 3
+TotalModelWeight = 0.8249528156186307
+BestFDR = 4.896004364139427e-9
+BestGlobalFDR = 1.46400130496326e-7
+NegLog10BestFDR = 8.310158203746314
+
+["PC(18:0/18:1)"]
+ID = "PC(18:0/18:1)"
+Label = "PC(18:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.739442234811725
+BestFDR = 4.014451268194042e-6
+BestGlobalFDR = 2.3227245142531925e-5
+NegLog10BestFDR = 5.396373809658502
+
+["PI(16:0/22:6)"]
+ID = "PI(16:0/22:6)"
+Label = "PI(16:0/22:6)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.5297241151314429
+BestFDR = 3.680282551318267e-10
+BestGlobalFDR = 1.3605893068509956e-8
+NegLog10BestFDR = 9.434118837367857
+
+["TG(16:0/18:0/20:4)"]
+ID = "TG(16:0/18:0/20:4)"
+Label = "TG(16:0/18:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 2
+TotalModelWeight = 0.8608453755841154
+BestFDR = 2.541617899441226e-5
+BestGlobalFDR = 0.0001798901882414
+NegLog10BestFDR = 4.594889739634646
+
+["TG(17:0/18:1/18:1)"]
+ID = "TG(17:0/18:1/18:1)"
+Label = "TG(17:0/18:1/18:1)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.5468937535069157
+BestFDR = 4.849501561035604e-5
+BestGlobalFDR = 0.0003565284709753
+NegLog10BestFDR = 4.314302896535043
+
+["PS(18:0/18:1)"]
+ID = "PS(18:0/18:1)"
+Label = "PS(18:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "PS"
+Degree = 1
+TotalModelWeight = 0.3365944088547079
+BestFDR = 4.864766084530952e-8
+BestGlobalFDR = 3.829041692340491e-7
+NegLog10BestFDR = 7.312938037335972
+
+["PI(16:0/22:4)"]
+ID = "PI(16:0/22:4)"
+Label = "PI(16:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.4154982043853024
+BestFDR = 2.2924625925373747e-11
+BestGlobalFDR = 1.446622946325309e-9
+NegLog10BestFDR = 10.63969774223903
+
+["PC(18:2/20:4)"]
+ID = "PC(18:2/20:4)"
+Label = "PC(18:2/20:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.6370424416436818
+BestFDR = 7.944521414897762e-6
+BestGlobalFDR = 0.0001396879178348
+NegLog10BestFDR = 5.099932259958091
+
+["PG(18:0/0:0)"]
+ID = "PG(18:0/0:0)"
+Label = "PG(18:0/0:0)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 2
+TotalModelWeight = 0.6508177330491225
+BestFDR = 7.805048220140486e-8
+BestGlobalFDR = 2.727452528786781e-6
+NegLog10BestFDR = 7.107624409491219
+
+["PC(16:1/0:0)"]
+ID = "PC(16:1/0:0)"
+Label = "PC(16:1/0:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.4655430423849727
+BestFDR = 6.04705580113129e-7
+BestGlobalFDR = 1.6817799568495836e-5
+NegLog10BestFDR = 6.218456023785064
+
+["HexCer(d18:1/24:0)"]
+ID = "HexCer(d18:1/24:0)"
+Label = "HexCer(d18:1/24:0)"
+NodeType = "Lipid"
+LipidClass = "GLYCOSPHINGOLIPID"
+Degree = 1
+TotalModelWeight = 0.3034825027230511
+BestFDR = 1.621226006128074e-7
+BestGlobalFDR = 5.365673725013888e-6
+NegLog10BestFDR = 6.790156438345512
+
+["Cer(d18:1/24:1)"]
+ID = "Cer(d18:1/24:1)"
+Label = "Cer(d18:1/24:1)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 1
+TotalModelWeight = 0.2452204949445647
+BestFDR = 7.75376671119686e-9
+BestGlobalFDR = 6.724830844308177e-8
+NegLog10BestFDR = 8.110487269818883
+
+["PC(18:1/18:1)"]
+ID = "PC(18:1/18:1)"
+Label = "PC(18:1/18:1)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3893904886300968
+BestFDR = 5.3236671996241765e-8
+BestGlobalFDR = 1.767277474048484e-6
+NegLog10BestFDR = 7.27378910156031
+
+["PI(18:1/18:1)"]
+ID = "PI(18:1/18:1)"
+Label = "PI(18:1/18:1)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 1
+TotalModelWeight = 0.3536044786443126
+BestFDR = 7.575238254841499e-6
+BestGlobalFDR = 5.122255494456144e-5
+NegLog10BestFDR = 5.1206037032697855
+
+["PC(16:0/18:3)"]
+ID = "PC(16:0/18:3)"
+Label = "PC(16:0/18:3)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.3894461454400396
+BestFDR = 2.899489155796033e-5
+BestGlobalFDR = 0.0002137387776478
+NegLog10BestFDR = 4.5376785111912445
+
+["PI(16:0/16:0)"]
+ID = "PI(16:0/16:0)"
+Label = "PI(16:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.4630303796372901
+BestFDR = 5.86094429114893e-8
+BestGlobalFDR = 1.9725109062625367e-6
+NegLog10BestFDR = 7.232032406610464
+
+["PG(17:0/18:1)"]
+ID = "PG(17:0/18:1)"
+Label = "PG(17:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 1
+TotalModelWeight = 0.2128452078827951
+BestFDR = 3.131195750218231e-9
+BestGlobalFDR = 9.480212819848545e-8
+NegLog10BestFDR = 8.504289781127191
+
+["PE(18:1/18:1)"]
+ID = "PE(18:1/18:1)"
+Label = "PE(18:1/18:1)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.4853962319022291
+BestFDR = 4.978593158623814e-6
+BestGlobalFDR = 3.31623476023251e-5
+NegLog10BestFDR = 5.302893362012116
+
+["PC(18:1/20:3)"]
+ID = "PC(18:1/20:3)"
+Label = "PC(18:1/20:3)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.4093372328670663
+BestFDR = 1.461811645535592e-7
+BestGlobalFDR = 4.688850614297182e-6
+NegLog10BestFDR = 6.835108582627377
+
+["SM(d18:0/20:0)"]
+ID = "SM(d18:0/20:0)"
+Label = "SM(d18:0/20:0)"
+NodeType = "Lipid"
+LipidClass = "SM"
+Degree = 2
+TotalModelWeight = 0.5793219967236395
+BestFDR = 0.0004512054783273
+BestGlobalFDR = 0.0002771914211628
+NegLog10BestFDR = 3.345625635990795
+
+["PC(20:0/20:4)"]
+ID = "PC(20:0/20:4)"
+Label = "PC(20:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.4665771795885359
+BestFDR = 3.034775170197043e-7
+BestGlobalFDR = 2.6574213056165848e-6
+NegLog10BestFDR = 6.517873477886778
+
+["PC(18:0/18:2)"]
+ID = "PC(18:0/18:2)"
+Label = "PC(18:0/18:2)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.4154773251926301
+BestFDR = 2.1695193576491787e-6
+BestGlobalFDR = 9.362638805356729e-6
+NegLog10BestFDR = 5.6636364705024045
+
+["PE(18:0/22:6)"]
+ID = "PE(18:0/22:6)"
+Label = "PE(18:0/22:6)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.3836693425847746
+BestFDR = 1.4713447953842546e-7
+BestGlobalFDR = 4.856279192018021e-6
+NegLog10BestFDR = 6.832285542645673
+
+["CE(20:4)"]
+ID = "CE(20:4)"
+Label = "CE(20:4)"
+NodeType = "Lipid"
+LipidClass = "CE"
+Degree = 3
+TotalModelWeight = 0.6523360819885424
+BestFDR = 3.260881753684051e-6
+BestGlobalFDR = 6.670522765617736e-5
+NegLog10BestFDR = 5.486664949324557
+
+["PC(18:2/18:3)"]
+ID = "PC(18:2/18:3)"
+Label = "PC(18:2/18:3)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3703867861132131
+BestFDR = 0.0001216715496907
+BestGlobalFDR = 0.00030525367939
+NegLog10BestFDR = 3.914810960445264
+
+["Cer(d18:1/23:0)"]
+ID = "Cer(d18:1/23:0)"
+Label = "Cer(d18:1/23:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 1
+TotalModelWeight = 0.2272538326427133
+BestFDR = 5.700789404948442e-6
+BestGlobalFDR = 4.425535033390066e-5
+NegLog10BestFDR = 5.244065002138846
+
+["PI(20:4/20:4)"]
+ID = "PI(20:4/20:4)"
+Label = "PI(20:4/20:4)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.3877003624833384
+BestFDR = 4.446442515550184e-6
+BestGlobalFDR = 6.108851203796424e-6
+NegLog10BestFDR = 5.351987317953226
+
+["PS(18:0/20:4)"]
+ID = "PS(18:0/20:4)"
+Label = "PS(18:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PS"
+Degree = 2
+TotalModelWeight = 0.5265857756300932
+BestFDR = 1.1831471579492794e-5
+BestGlobalFDR = 9.373472443814772e-5
+NegLog10BestFDR = 4.926961235160175
+
+["PE(18:0/0:0)"]
+ID = "PE(18:0/0:0)"
+Label = "PE(18:0/0:0)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.4893852429947971
+BestFDR = 2.8296269042541244e-8
+BestGlobalFDR = 9.98765935492665e-7
+NegLog10BestFDR = 7.54827082387695
+
+["PE(16:0/22:6)"]
+ID = "PE(16:0/22:6)"
+Label = "PE(16:0/22:6)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 3
+TotalModelWeight = 0.888836593600449
+BestFDR = 1.1999848903055232e-5
+BestGlobalFDR = 0.0001927626593526
+NegLog10BestFDR = 4.920824222367582
+
+["PI(18:1/22:6)"]
+ID = "PI(18:1/22:6)"
+Label = "PI(18:1/22:6)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 1
+TotalModelWeight = 0.220489675498795
+BestFDR = 9.27710150024362e-6
+BestGlobalFDR = 3.8236702129382485e-5
+NegLog10BestFDR = 5.032587691785133
+
+["SM(d18:1/22:0)"]
+ID = "SM(d18:1/22:0)"
+Label = "SM(d18:1/22:0)"
+NodeType = "Lipid"
+LipidClass = "SM"
+Degree = 1
+TotalModelWeight = 0.2447046213040204
+BestFDR = 4.085991867591104e-5
+BestGlobalFDR = 0.0003143385012233
+NegLog10BestFDR = 4.388702502085319
+
+["TG(16:0/18:0/22:6)"]
+ID = "TG(16:0/18:0/22:6)"
+Label = "TG(16:0/18:0/22:6)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 2
+TotalModelWeight = 0.4290418155574607
+BestFDR = 0.0003736993402843
+BestGlobalFDR = 0.002471581966988
+NegLog10BestFDR = 3.427477668837906
+
+["PG(18:2/18:2)"]
+ID = "PG(18:2/18:2)"
+Label = "PG(18:2/18:2)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 2
+TotalModelWeight = 0.3823636832171229
+BestFDR = 8.353313005950722e-7
+BestGlobalFDR = 2.192814583878262e-5
+NegLog10BestFDR = 6.078141244894832
+
+["PC(18:0/22:4)"]
+ID = "PC(18:0/22:4)"
+Label = "PC(18:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.5170618325971638
+BestFDR = 0.0026101666684693
+BestGlobalFDR = 0.0072046845674163
+NegLog10BestFDR = 2.58333176052166
+
+["Cer(d18:1/24:0)"]
+ID = "Cer(d18:1/24:0)"
+Label = "Cer(d18:1/24:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 1
+TotalModelWeight = 0.2382827766430282
+BestFDR = 4.3228814896098286e-5
+BestGlobalFDR = 8.75569153625276e-5
+NegLog10BestFDR = 4.364226670345134
+
+["PI(18:0/20:4)"]
+ID = "PI(18:0/20:4)"
+Label = "PI(18:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 3
+TotalModelWeight = 0.4652381927600437
+BestFDR = 2.443647925568775e-6
+BestGlobalFDR = 1.4325282553521168e-5
+NegLog10BestFDR = 5.611961365940602
+
+["PE(18:0/20:3)"]
+ID = "PE(18:0/20:3)"
+Label = "PE(18:0/20:3)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.3860120160880812
+BestFDR = 1.8389646976606417e-7
+BestGlobalFDR = 6.344274284493605e-6
+NegLog10BestFDR = 6.735426607770264
+
+["TG(17:0/18:1/18:2)"]
+ID = "TG(17:0/18:1/18:2)"
+Label = "TG(17:0/18:1/18:2)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.1738664390523936
+BestFDR = 6.464453613057543e-7
+BestGlobalFDR = 4.143590231837235e-6
+NegLog10BestFDR = 6.189468176562707
+
+["Cer(d18:0/24:0)"]
+ID = "Cer(d18:0/24:0)"
+Label = "Cer(d18:0/24:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 2
+TotalModelWeight = 0.5822768452299536
+BestFDR = 0.0002779572499162
+BestGlobalFDR = 0.0017594344765318
+NegLog10BestFDR = 3.5560219938413806
+
+["PI(18:0/0:0)"]
+ID = "PI(18:0/0:0)"
+Label = "PI(18:0/0:0)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.6289345915824021
+BestFDR = 0.0021902215388445
+BestGlobalFDR = 0.0053657814259528
+NegLog10BestFDR = 2.659511954460516
+
+["PC(20:3/20:4)"]
+ID = "PC(20:3/20:4)"
+Label = "PC(20:3/20:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.5741884746068753
+BestFDR = 0.0004880400570844
+BestGlobalFDR = 0.0011317721434933
+NegLog10BestFDR = 3.311544530749796
+
+["Cer(d18:1/18:0)"]
+ID = "Cer(d18:1/18:0)"
+Label = "Cer(d18:1/18:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 3
+TotalModelWeight = 0.6630853374119265
+BestFDR = 1.8273945827442125e-8
+BestGlobalFDR = 6.058846497335648e-7
+NegLog10BestFDR = 7.738167666875153
+
+["PE(18:1/20:3)"]
+ID = "PE(18:1/20:3)"
+Label = "PE(18:1/20:3)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.2088416692320286
+BestFDR = 2.958475246994877e-5
+BestGlobalFDR = 2.41804810272471e-5
+NegLog10BestFDR = 4.528932060031893
+
+["PI(18:0/22:6)"]
+ID = "PI(18:0/22:6)"
+Label = "PI(18:0/22:6)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.5457238444832337
+BestFDR = 0.0008968941960622
+BestGlobalFDR = 0.0025643710028237
+NegLog10BestFDR = 3.047258786361165
+
+["PI(18:1/20:3)"]
+ID = "PI(18:1/20:3)"
+Label = "PI(18:1/20:3)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 1
+TotalModelWeight = 0.1489168464487891
+BestFDR = 3.034775170197043e-7
+BestGlobalFDR = 1.968949982541683e-6
+NegLog10BestFDR = 6.517873477886778
+
+["PE(16:0/0:0)"]
+ID = "PE(16:0/0:0)"
+Label = "PE(16:0/0:0)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.5318044665839375
+BestFDR = 0.0006133588683516
+BestGlobalFDR = 0.0003710567699449
+NegLog10BestFDR = 3.2122853510252805
+
+["GM3(d42:2)"]
+ID = "GM3(d42:2)"
+Label = "GM3(d42:2)"
+NodeType = "Lipid"
+LipidClass = "GLYCOSPHINGOLIPID"
+Degree = 2
+TotalModelWeight = 0.4163774053416059
+BestFDR = 0.0012070510085775
+BestGlobalFDR = 0.0062195752650733
+NegLog10BestFDR = 2.918274376733072
+
+["PC(17:0/20:4)"]
+ID = "PC(17:0/20:4)"
+Label = "PC(17:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3603937247584467
+BestFDR = 2.8517930898974104e-5
+BestGlobalFDR = 0.0001501005478158
+NegLog10BestFDR = 4.544881987647519
+
+["PS(18:0/22:4)"]
+ID = "PS(18:0/22:4)"
+Label = "PS(18:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PS"
+Degree = 2
+TotalModelWeight = 0.546888265410182
+BestFDR = 0.000205766506219
+BestGlobalFDR = 0.0007494174146734
+NegLog10BestFDR = 3.6866253163960634
+
+["PE(P-18:0/16:0)"]
+ID = "PE(P-18:0/16:0)"
+Label = "PE(P-18:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.345970838339404
+BestFDR = 0.0002353662437024
+BestGlobalFDR = 0.0014780471822278
+NegLog10BestFDR = 3.628255823671722
+
+["PC(16:1/18:2)"]
+ID = "PC(16:1/18:2)"
+Label = "PC(16:1/18:2)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.5509365863633562
+BestFDR = 0.0012992557321613
+BestGlobalFDR = 0.0043387554559402
+NegLog10BestFDR = 2.886305358445416
+
+["PG(16:0/16:0)"]
+ID = "PG(16:0/16:0)"
+Label = "PG(16:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 2
+TotalModelWeight = 0.59468849573023
+BestFDR = 0.0017963313512843
+BestGlobalFDR = 0.0025669892026006
+NegLog10BestFDR = 2.7456135503183323
+
+["PC(18:2/22:6)"]
+ID = "PC(18:2/22:6)"
+Label = "PC(18:2/22:6)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.341963120886699
+BestFDR = 0.0002215340730466
+BestGlobalFDR = 0.0014640505556929
+NegLog10BestFDR = 3.6545594676437134
+
+["PG(18:0/20:4)"]
+ID = "PG(18:0/20:4)"
+Label = "PG(18:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 2
+TotalModelWeight = 0.4432151084470013
+BestFDR = 0.0007998977050253
+BestGlobalFDR = 0.0023673667409024
+NegLog10BestFDR = 3.0969655492375807
+
+["PE(P-18:0/18:2)"]
+ID = "PE(P-18:0/18:2)"
+Label = "PE(P-18:0/18:2)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 3
+TotalModelWeight = 0.5190226978564906
+BestFDR = 0.0038519128033121
+BestGlobalFDR = 0.0174144946117352
+NegLog10BestFDR = 2.414323552666138
+
+["TG(16:0/16:0/20:4)"]
+ID = "TG(16:0/16:0/20:4)"
+Label = "TG(16:0/16:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.2259458446487613
+BestFDR = 0.0002736828695818
+BestGlobalFDR = 0.0004598362476972
+NegLog10BestFDR = 3.5627523851944987
+
+["TG(16:0/16:0/18:1)"]
+ID = "TG(16:0/16:0/18:1)"
+Label = "TG(16:0/16:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.2227870881003461
+BestFDR = 0.0002472699939438
+BestGlobalFDR = 0.0003164917565428
+NegLog10BestFDR = 3.606828581799907
+
+["TG(49:0)"]
+ID = "TG(49:0)"
+Label = "TG(49:0)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.1282226365094633
+BestFDR = 1.2093928433323705e-7
+BestGlobalFDR = 4.498351429467963e-7
+NegLog10BestFDR = 6.917432605690766
+
+["TG(48:2)"]
+ID = "TG(48:2)"
+Label = "TG(48:2)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.143365055645138
+BestFDR = 8.598466653038939e-7
+BestGlobalFDR = 5.946785326931693e-6
+NegLog10BestFDR = 6.065578988697937
+
+["PI(16:0/18:2)"]
+ID = "PI(16:0/18:2)"
+Label = "PI(16:0/18:2)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.4404482889687825
+BestFDR = 1.8389646976606417e-7
+BestGlobalFDR = 6.16925510398798e-6
+NegLog10BestFDR = 6.735426607770264
+
+["PI(16:1/18:1)"]
+ID = "PI(16:1/18:1)"
+Label = "PI(16:1/18:1)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 3
+TotalModelWeight = 0.6866729146445554
+BestFDR = 7.429681939580122e-7
+BestGlobalFDR = 3.7013569735294806e-6
+NegLog10BestFDR = 6.129029777739007
+
+["PC(14:1/16:0)"]
+ID = "PC(14:1/16:0)"
+Label = "PC(14:1/16:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.4377768458697578
+BestFDR = 0.0006640706638575
+BestGlobalFDR = 0.0044537824493565
+NegLog10BestFDR = 3.17778570483296
+
+["Cer(d18:1/0:0)"]
+ID = "Cer(d18:1/0:0)"
+Label = "Cer(d18:1/0:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 2
+TotalModelWeight = 0.4203201755364144
+BestFDR = 0.0001777546472824
+BestGlobalFDR = 0.00115861879648
+NegLog10BestFDR = 3.750179036096134
+
+["PC(O-16:0/0:0)"]
+ID = "PC(O-16:0/0:0)"
+Label = "PC(O-16:0/0:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3349791391770909
+BestFDR = 0.0007312851748241
+BestGlobalFDR = 0.0041219256773968
+NegLog10BestFDR = 3.135913230838475
+
+["SM(d18:1/23:0)"]
+ID = "SM(d18:1/23:0)"
+Label = "SM(d18:1/23:0)"
+NodeType = "Lipid"
+LipidClass = "SM"
+Degree = 2
+TotalModelWeight = 0.4255921094422135
+BestFDR = 0.0007212211872099
+BestGlobalFDR = 0.0017047409185643
+NegLog10BestFDR = 3.141931523556395
+
+["DG(18:1/18:2/0:0)"]
+ID = "DG(18:1/18:2/0:0)"
+Label = "DG(18:1/18:2/0:0)"
+NodeType = "Lipid"
+LipidClass = "DG"
+Degree = 3
+TotalModelWeight = 0.2700384173992529
+BestFDR = 1.4437119890110776e-7
+BestGlobalFDR = 4.500839761312218e-6
+NegLog10BestFDR = 6.840519437001048
+
+["Cer(d18:1/20:0)"]
+ID = "Cer(d18:1/20:0)"
+Label = "Cer(d18:1/20:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 2
+TotalModelWeight = 0.4845529436429728
+BestFDR = 0.002725464357231
+BestGlobalFDR = 0.0098498969672263
+NegLog10BestFDR = 2.5645594931663176
+
+["DG(18:0/0:0/18:0)"]
+ID = "DG(18:0/0:0/18:0)"
+Label = "DG(18:0/0:0/18:0)"
+NodeType = "Lipid"
+LipidClass = "DG"
+Degree = 3
+TotalModelWeight = 0.5102992686790746
+BestFDR = 0.0002998599936831
+BestGlobalFDR = 0.001891885409226
+NegLog10BestFDR = 3.523081472491989
+
+["TG(18:1/20:4/22:6)"]
+ID = "TG(18:1/20:4/22:6)"
+Label = "TG(18:1/20:4/22:6)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 2
+TotalModelWeight = 0.4764485990817322
+BestFDR = 0.0001011778921003
+BestGlobalFDR = 0.0007065186211354
+NegLog10BestFDR = 3.994914372750383
+
+["SM(d18:2/24:0)"]
+ID = "SM(d18:2/24:0)"
+Label = "SM(d18:2/24:0)"
+NodeType = "Lipid"
+LipidClass = "SM"
+Degree = 2
+TotalModelWeight = 0.5375273959718816
+BestFDR = 8.001474948720823e-5
+BestGlobalFDR = 0.0008779189945693
+NegLog10BestFDR = 4.096829950127052
+
+["Cer(d18:1/26:1)"]
+ID = "Cer(d18:1/26:1)"
+Label = "Cer(d18:1/26:1)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 1
+TotalModelWeight = 0.1606483792898285
+BestFDR = 2.351799217978667e-5
+BestGlobalFDR = 3.3702369372756154e-5
+NegLog10BestFDR = 4.628599758380788
+
+["TG(18:0/20:4/22:6)"]
+ID = "TG(18:0/20:4/22:6)"
+Label = "TG(18:0/20:4/22:6)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 2
+TotalModelWeight = 0.3403420216615391
+BestFDR = 2.3746395532934272e-5
+BestGlobalFDR = 0.0001708246929143
+NegLog10BestFDR = 4.624402302626775
+
+["CE(18:2)"]
+ID = "CE(18:2)"
+Label = "CE(18:2)"
+NodeType = "Lipid"
+LipidClass = "CE"
+Degree = 3
+TotalModelWeight = 0.5280848205303488
+BestFDR = 0.0024538855594278
+BestGlobalFDR = 0.0056050003231628
+NegLog10BestFDR = 2.610145695100423
+
+["PI(16:0/20:4)"]
+ID = "PI(16:0/20:4)"
+Label = "PI(16:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.5408439036626804
+BestFDR = 0.0032277508746326
+BestGlobalFDR = 0.0166652124295182
+NegLog10BestFDR = 2.4910999925210806
+
+["PI(18:0/18:1)"]
+ID = "PI(18:0/18:1)"
+Label = "PI(18:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 3
+TotalModelWeight = 0.4033375871894584
+BestFDR = 0.0001376910859322
+BestGlobalFDR = 0.0004042590843188
+NegLog10BestFDR = 3.8610941748902223
+
+["PC(16:0/18:0)"]
+ID = "PC(16:0/18:0)"
+Label = "PC(16:0/18:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 3
+TotalModelWeight = 0.4797846330552901
+BestFDR = 0.0016257463524029
+BestGlobalFDR = 0.0096380338695976
+NegLog10BestFDR = 2.7889472117214384
+
+["PI(18:0/22:4)"]
+ID = "PI(18:0/22:4)"
+Label = "PI(18:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 1
+TotalModelWeight = 0.269111662456424
+BestFDR = 0.0063878947283047
+BestGlobalFDR = 0.0209655931793764
+NegLog10BestFDR = 2.1946422495925844
+
+["TG(18:2/20:4/22:4)"]
+ID = "TG(18:2/20:4/22:4)"
+Label = "TG(18:2/20:4/22:4)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.2293854040153206
+BestFDR = 0.0018725616979625
+BestGlobalFDR = 0.0033127501058012
+NegLog10BestFDR = 2.727563864072681
+
+["PC(P-16:0/16:0)"]
+ID = "PC(P-16:0/16:0)"
+Label = "PC(P-16:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.3219984348022761
+BestFDR = 0.025489487024447
+BestGlobalFDR = 0.0723385152283713
+NegLog10BestFDR = 1.5936389046128712
+
+["PE(16:0/18:0)"]
+ID = "PE(16:0/18:0)"
+Label = "PE(16:0/18:0)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.4551556496268921
+BestFDR = 0.003268515880719
+BestGlobalFDR = 0.0149361685952924
+NegLog10BestFDR = 2.4856494005888727
+
+["PC(18:2/20:3)"]
+ID = "PC(18:2/20:3)"
+Label = "PC(18:2/20:3)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3076450575421749
+BestFDR = 4.6022511244709255e-8
+BestGlobalFDR = 2.372428044445576e-7
+NegLog10BestFDR = 7.337029687493445
+
+["PC(O-16:0/16:1)"]
+ID = "PC(O-16:0/16:1)"
+Label = "PC(O-16:0/16:1)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3524506399306478
+BestFDR = 6.985858221196394e-5
+BestGlobalFDR = 0.0001631974777298
+NegLog10BestFDR = 4.155780232665861
+
+["PG(16:0/18:2)"]
+ID = "PG(16:0/18:2)"
+Label = "PG(16:0/18:2)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 2
+TotalModelWeight = 0.3347939338225495
+BestFDR = 8.115675015420161e-5
+BestGlobalFDR = 0.0005818485907235
+NegLog10BestFDR = 4.090675352204928
+
+["TG(14:0/16:0/20:4)"]
+ID = "TG(14:0/16:0/20:4)"
+Label = "TG(14:0/16:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 2
+TotalModelWeight = 0.4079361562302721
+BestFDR = 0.0018696147832081
+BestGlobalFDR = 0.0028297252320285
+NegLog10BestFDR = 2.728247866597686
+
+["Cer(d18:1/25:0)"]
+ID = "Cer(d18:1/25:0)"
+Label = "Cer(d18:1/25:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 2
+TotalModelWeight = 0.3360667614979727
+BestFDR = 0.0002656868304477
+BestGlobalFDR = 0.0008342807447079
+NegLog10BestFDR = 3.575629972144512
+
+["PC(P-18:0/22:6)"]
+ID = "PC(P-18:0/22:6)"
+Label = "PC(P-18:0/22:6)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.2471563146754728
+BestFDR = 0.0068684585189093
+BestGlobalFDR = 0.0034755368697923
+NegLog10BestFDR = 2.163140720269237
+
+["PC(18:0/22:6)"]
+ID = "PC(18:0/22:6)"
+Label = "PC(18:0/22:6)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.4056394123694591
+BestFDR = 0.0076507517032924
+BestGlobalFDR = 0.0343726091103879
+NegLog10BestFDR = 2.116295892355707
+
+["PE(18:0/22:4)"]
+ID = "PE(18:0/22:4)"
+Label = "PE(18:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.1005703900778225
+BestFDR = 1.855542241298541e-7
+BestGlobalFDR = 6.638837229729248e-6
+NegLog10BestFDR = 6.731529154517004
+
+["GM3(d42:1)"]
+ID = "GM3(d42:1)"
+Label = "GM3(d42:1)"
+NodeType = "Lipid"
+LipidClass = "GLYCOSPHINGOLIPID"
+Degree = 3
+TotalModelWeight = 0.2986481438006626
+BestFDR = 0.0009993723416739
+BestGlobalFDR = 0.0053678303780172
+NegLog10BestFDR = 3.000272674129582
+
+["Cer(d18:1/26:0)"]
+ID = "Cer(d18:1/26:0)"
+Label = "Cer(d18:1/26:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 1
+TotalModelWeight = 0.1566033630212714
+BestFDR = 0.0001158865797785
+BestGlobalFDR = 0.0006629177034272
+NegLog10BestFDR = 3.935966854507373
+
+["TG(56:3)"]
+ID = "TG(56:3)"
+Label = "TG(56:3)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 2
+TotalModelWeight = 0.2548625107511694
+BestFDR = 4.072034950973621e-5
+BestGlobalFDR = 0.0003136509558869
+NegLog10BestFDR = 4.390188503031357
+
+["PE(P-18:0/22:5)"]
+ID = "PE(P-18:0/22:5)"
+Label = "PE(P-18:0/22:5)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.482940636512933
+BestFDR = 0.0177116844520984
+BestGlobalFDR = 0.051355611303544
+NegLog10BestFDR = 1.751740133701867
+
+["Cer(d18:1/22:0)"]
+ID = "Cer(d18:1/22:0)"
+Label = "Cer(d18:1/22:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 2
+TotalModelWeight = 0.2663040949631076
+BestFDR = 2.1845947728896564e-6
+BestGlobalFDR = 4.9036151154334095e-5
+NegLog10BestFDR = 5.660629109823626
+
+["Cer(d18:0/16:0)"]
+ID = "Cer(d18:0/16:0)"
+Label = "Cer(d18:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "CER"
+Degree = 3
+TotalModelWeight = 0.6209082932620599
+BestFDR = 0.0024569185664245
+BestGlobalFDR = 0.0118723782692639
+NegLog10BestFDR = 2.609609237796901
+
+["SM(d18:2/22:0)"]
+ID = "SM(d18:2/22:0)"
+Label = "SM(d18:2/22:0)"
+NodeType = "Lipid"
+LipidClass = "SM"
+Degree = 1
+TotalModelWeight = 0.1053956994916857
+BestFDR = 9.791225920870907e-7
+BestGlobalFDR = 2.515902544652042e-5
+NegLog10BestFDR = 6.009162928489245
+
+["TG(54:4)"]
+ID = "TG(54:4)"
+Label = "TG(54:4)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 2
+TotalModelWeight = 0.3563972567911136
+BestFDR = 0.0042624843231446
+BestGlobalFDR = 0.0092001907138097
+NegLog10BestFDR = 2.3703372052743545
+
+["TG(47:1)"]
+ID = "TG(47:1)"
+Label = "TG(47:1)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.1063969522904863
+BestFDR = 1.4747954572213905e-6
+BestGlobalFDR = 9.934511730239795e-6
+NegLog10BestFDR = 5.831268208811189
+
+["PI(18:2/20:4)"]
+ID = "PI(18:2/20:4)"
+Label = "PI(18:2/20:4)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 3
+TotalModelWeight = 0.496899347219765
+BestFDR = 0.0009631634475078
+BestGlobalFDR = 0.0051640370002909
+NegLog10BestFDR = 3.016300007447211
+
+["PG(16:1/18:1)"]
+ID = "PG(16:1/18:1)"
+Label = "PG(16:1/18:1)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 3
+TotalModelWeight = 0.6349767306112277
+BestFDR = 0.0067773783483869
+BestGlobalFDR = 0.0311795340238121
+NegLog10BestFDR = 2.1689382691142667
+
+["PG(18:1/22:4)"]
+ID = "PG(18:1/22:4)"
+Label = "PG(18:1/22:4)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 3
+TotalModelWeight = 0.3505804533876002
+BestFDR = 0.002356775948527
+BestGlobalFDR = 0.011281875897097
+NegLog10BestFDR = 2.6276817025598613
+
+["PG(14:0/16:0)"]
+ID = "PG(14:0/16:0)"
+Label = "PG(14:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 1
+TotalModelWeight = 0.2486723444273889
+BestFDR = 0.0142303274600651
+BestGlobalFDR = 0.0212051043078577
+NegLog10BestFDR = 1.846785106067294
+
+["PI(16:0/18:0)"]
+ID = "PI(16:0/18:0)"
+Label = "PI(16:0/18:0)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.4030197939470389
+BestFDR = 0.0039249685258724
+BestGlobalFDR = 0.01133268870032
+NegLog10BestFDR = 2.406163821490628
+
+["PC(16:0/26:0)"]
+ID = "PC(16:0/26:0)"
+Label = "PC(16:0/26:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.2443441361431602
+BestFDR = 6.657801029477496e-6
+BestGlobalFDR = 0.0001203335889772
+NegLog10BestFDR = 5.176669188015517
+
+["GM3(d40:1)"]
+ID = "GM3(d40:1)"
+Label = "GM3(d40:1)"
+NodeType = "Lipid"
+LipidClass = "GLYCOSPHINGOLIPID"
+Degree = 2
+TotalModelWeight = 0.3700777570581522
+BestFDR = 0.0183626455575491
+BestGlobalFDR = 0.0250313684691111
+NegLog10BestFDR = 1.7360647486099994
+
+["TG(18:0/18:1/22:5)"]
+ID = "TG(18:0/18:1/22:5)"
+Label = "TG(18:0/18:1/22:5)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.1895531236700893
+BestFDR = 0.0030744052153206
+BestGlobalFDR = 0.0104916480906507
+NegLog10BestFDR = 2.512238891820101
+
+["PC(20:4/22:4)"]
+ID = "PC(20:4/22:4)"
+Label = "PC(20:4/22:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3450024947742537
+BestFDR = 0.0064314977604703
+BestGlobalFDR = 0.0259573008838903
+NegLog10BestFDR = 2.191687877252868
+
+["PC(18:1/20:5)"]
+ID = "PC(18:1/20:5)"
+Label = "PC(18:1/20:5)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3363261721312903
+BestFDR = 0.0002450981763385
+BestGlobalFDR = 0.0005694409598384
+NegLog10BestFDR = 3.610659920119088
+
+["PC(17:0/18:1)"]
+ID = "PC(17:0/18:1)"
+Label = "PC(17:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3379171481541154
+BestFDR = 0.0007944148604839
+BestGlobalFDR = 0.0044344609399649
+NegLog10BestFDR = 3.0999526404368662
+
+["PC(22:6/0:0)"]
+ID = "PC(22:6/0:0)"
+Label = "PC(22:6/0:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3088259539904226
+BestFDR = 0.001541458242965
+BestGlobalFDR = 0.0079165035035712
+NegLog10BestFDR = 2.812068235514511
+
+["PE(16:0/18:1)"]
+ID = "PE(16:0/18:1)"
+Label = "PE(16:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.1921366016105807
+BestFDR = 0.005222895276134
+BestGlobalFDR = 0.0159927809000068
+NegLog10BestFDR = 2.282088682080497
+
+["PC(15:0/20:4)"]
+ID = "PC(15:0/20:4)"
+Label = "PC(15:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 3
+TotalModelWeight = 0.4159813316726126
+BestFDR = 0.0001608484317872
+BestGlobalFDR = 0.0005167209556688
+NegLog10BestFDR = 3.793583168951952
+
+["PE(O-16:0/22:4)"]
+ID = "PE(O-16:0/22:4)"
+Label = "PE(O-16:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.1491160097607921
+BestFDR = 0.000759701668555
+BestGlobalFDR = 0.0053634491611409
+NegLog10BestFDR = 3.119356919740961
+
+["PE(16:0/18:2)"]
+ID = "PE(16:0/18:2)"
+Label = "PE(16:0/18:2)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.2592265525627361
+BestFDR = 0.044305690141269
+BestGlobalFDR = 0.1184508542457056
+NegLog10BestFDR = 1.3535404941322184
+
+["PE(16:0/22:4)"]
+ID = "PE(16:0/22:4)"
+Label = "PE(16:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.4234556819617948
+BestFDR = 0.0074751057644948
+BestGlobalFDR = 0.0261874101250137
+NegLog10BestFDR = 2.126382658172556
+
+["PC(18:0/20:4)"]
+ID = "PC(18:0/20:4)"
+Label = "PC(18:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.3351858320842718
+BestFDR = 0.0110710807648764
+BestGlobalFDR = 0.035479122034836
+NegLog10BestFDR = 1.9558099809901817
+
+["TG(16:0/20:4/22:6)"]
+ID = "TG(16:0/20:4/22:6)"
+Label = "TG(16:0/20:4/22:6)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.1056585629364147
+BestFDR = 2.6825882310696277e-5
+BestGlobalFDR = 0.0002161316833757
+NegLog10BestFDR = 4.571445985061353
+
+["SM(d18:2/18:0)"]
+ID = "SM(d18:2/18:0)"
+Label = "SM(d18:2/18:0)"
+NodeType = "Lipid"
+LipidClass = "SM"
+Degree = 3
+TotalModelWeight = 0.409548181967266
+BestFDR = 0.0007362609558793
+BestGlobalFDR = 0.0049765380706582
+NegLog10BestFDR = 3.1329682296682844
+
+["PE(16:0/16:0)"]
+ID = "PE(16:0/16:0)"
+Label = "PE(16:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.26709793817257
+BestFDR = 0.0002661551792483
+BestGlobalFDR = 0.0016739728883543
+NegLog10BestFDR = 3.574865078252841
+
+["PE(18:2/20:4)"]
+ID = "PE(18:2/20:4)"
+Label = "PE(18:2/20:4)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 3
+TotalModelWeight = 0.4312575745592262
+BestFDR = 0.0070294575609665
+BestGlobalFDR = 0.0013158661350827
+NegLog10BestFDR = 2.1530781866968383
+
+["PE(18:0/18:1)"]
+ID = "PE(18:0/18:1)"
+Label = "PE(18:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.1424879851215492
+BestFDR = 0.0008697054766063
+BestGlobalFDR = 0.0008378058849164
+NegLog10BestFDR = 3.0606277951289336
+
+["PI(16:0/18:1)"]
+ID = "PI(16:0/18:1)"
+Label = "PI(16:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.218997430489853
+BestFDR = 0.0058996094079756
+BestGlobalFDR = 0.0105877525255487
+NegLog10BestFDR = 2.229176740489396
+
+["TG(18:0/18:1/22:6)"]
+ID = "TG(18:0/18:1/22:6)"
+Label = "TG(18:0/18:1/22:6)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.128668294601756
+BestFDR = 0.0005877850664391
+BestGlobalFDR = 0.0008961588551637
+NegLog10BestFDR = 3.2307814520256746
+
+["PE(16:1/18:1)"]
+ID = "PE(16:1/18:1)"
+Label = "PE(16:1/18:1)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 3
+TotalModelWeight = 0.3965594897961583
+BestFDR = 4.183631632088407e-5
+BestGlobalFDR = 0.0005230907932489
+NegLog10BestFDR = 4.378446561997909
+
+["SM(d18:2/20:0)"]
+ID = "SM(d18:2/20:0)"
+Label = "SM(d18:2/20:0)"
+NodeType = "Lipid"
+LipidClass = "SM"
+Degree = 3
+TotalModelWeight = 0.4227014447847901
+BestFDR = 0.0017793689251415
+BestGlobalFDR = 0.0022353128793413
+NegLog10BestFDR = 2.7497339982104854
+
+["PC(18:1/22:6)"]
+ID = "PC(18:1/22:6)"
+Label = "PC(18:1/22:6)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 3
+TotalModelWeight = 0.3029661684286351
+BestFDR = 0.0007642092213628
+BestGlobalFDR = 0.0009195525556925
+NegLog10BestFDR = 3.116787726183304
+
+["PE(P-18:0/18:1)"]
+ID = "PE(P-18:0/18:1)"
+Label = "PE(P-18:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.2286421181786083
+BestFDR = 0.044305690141269
+BestGlobalFDR = 0.1189320363689048
+NegLog10BestFDR = 1.3535404941322184
+
+["PC(14:0/20:4)"]
+ID = "PC(14:0/20:4)"
+Label = "PC(14:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.2020790482583019
+BestFDR = 0.0217717410901769
+BestGlobalFDR = 0.0562225781714464
+NegLog10BestFDR = 1.6621068389597795
+
+["PE(P-16:0/22:6)"]
+ID = "PE(P-16:0/22:6)"
+Label = "PE(P-16:0/22:6)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.1918259499242716
+BestFDR = 3.921765543040873e-7
+BestGlobalFDR = 1.1669643810999671e-5
+NegLog10BestFDR = 6.406518373546157
+
+["PC(15:0/18:2)"]
+ID = "PC(15:0/18:2)"
+Label = "PC(15:0/18:2)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.1370965312297329
+BestFDR = 0.0020850035520222
+BestGlobalFDR = 0.0105793274117239
+NegLog10BestFDR = 2.6808932008233946
+
+["TG(18:0/18:1/22:4)"]
+ID = "TG(18:0/18:1/22:4)"
+Label = "TG(18:0/18:1/22:4)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.1174455298562824
+BestFDR = 0.0005392100570679
+BestGlobalFDR = 0.0015198328136041
+NegLog10BestFDR = 3.268242016160475
+
+["DG(18:0/20:4/0:0)"]
+ID = "DG(18:0/20:4/0:0)"
+Label = "DG(18:0/20:4/0:0)"
+NodeType = "Lipid"
+LipidClass = "DG"
+Degree = 2
+TotalModelWeight = 0.3324264445500893
+BestFDR = 0.0208999124216162
+BestGlobalFDR = 0.0222692435308776
+NegLog10BestFDR = 1.679855533740069
+
+["CE(20:2)"]
+ID = "CE(20:2)"
+Label = "CE(20:2)"
+NodeType = "Lipid"
+LipidClass = "CE"
+Degree = 2
+TotalModelWeight = 0.27626380435953
+BestFDR = 0.0024990708263973
+BestGlobalFDR = 0.0077210937609671
+NegLog10BestFDR = 2.6022214353190587
+
+["TG(16:0/18:0/18:1)"]
+ID = "TG(16:0/18:0/18:1)"
+Label = "TG(16:0/18:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.1283362548756408
+BestFDR = 0.0014546647156355
+BestGlobalFDR = 0.0072443666380638
+NegLog10BestFDR = 2.8372370952891304
+
+["PG(18:0/18:2)"]
+ID = "PG(18:0/18:2)"
+Label = "PG(18:0/18:2)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 1
+TotalModelWeight = 0.187752521286634
+BestFDR = 0.0260283739084741
+BestGlobalFDR = 0.0387755890119935
+NegLog10BestFDR = 1.5845529630715514
+
+["TG(16:0/16:0/16:0)"]
+ID = "TG(16:0/16:0/16:0)"
+Label = "TG(16:0/16:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 2
+TotalModelWeight = 0.2542743152244344
+BestFDR = 0.0008466702016587
+BestGlobalFDR = 0.0003535837140254
+NegLog10BestFDR = 3.072285724842633
+
+["PC(14:0/16:1)"]
+ID = "PC(14:0/16:1)"
+Label = "PC(14:0/16:1)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.1930568276511723
+BestFDR = 0.0084504316952109
+BestGlobalFDR = 0.0146153137732659
+NegLog10BestFDR = 2.073121104297756
+
+["PG(16:0/18:0)"]
+ID = "PG(16:0/18:0)"
+Label = "PG(16:0/18:0)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 1
+TotalModelWeight = 0.1524684727818416
+BestFDR = 0.0092324527062286
+BestGlobalFDR = 0.0047189148343861
+NegLog10BestFDR = 2.0346829083698106
+
+["PE(20:4/22:0)"]
+ID = "PE(20:4/22:0)"
+Label = "PE(20:4/22:0)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.178966199652759
+BestFDR = 0.0271754806551556
+BestGlobalFDR = 0.0285342546879134
+NegLog10BestFDR = 1.565822765768412
+
+["PE(P-18:0/22:6)"]
+ID = "PE(P-18:0/22:6)"
+Label = "PE(P-18:0/22:6)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.1769313042070643
+BestFDR = 0.0317000379550882
+BestGlobalFDR = 0.0880027796660679
+NegLog10BestFDR = 1.4989402177924844
+
+["PC(20:4/20:4)"]
+ID = "PC(20:4/20:4)"
+Label = "PC(20:4/20:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.1385683415660701
+BestFDR = 0.0075387410857972
+BestGlobalFDR = 0.0079757275407263
+NegLog10BestFDR = 2.122701172053254
+
+["PE(P-16:0/18:2)"]
+ID = "PE(P-16:0/18:2)"
+Label = "PE(P-16:0/18:2)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.2205110054812423
+BestFDR = 0.0315853950711713
+BestGlobalFDR = 0.0725934267106714
+NegLog10BestFDR = 1.500513686565826
+
+["PI(18:0/18:2)"]
+ID = "PI(18:0/18:2)"
+Label = "PI(18:0/18:2)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.2508209723429053
+BestFDR = 0.0058231888151187
+BestGlobalFDR = 0.0276264350890087
+NegLog10BestFDR = 2.2348391277977404
+
+["PC(15:0/16:0)"]
+ID = "PC(15:0/16:0)"
+Label = "PC(15:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.2869921694675922
+BestFDR = 0.0052233991060085
+BestGlobalFDR = 0.0220621946799706
+NegLog10BestFDR = 2.2820467896109857
+
+["PE(20:0/20:4)"]
+ID = "PE(20:0/20:4)"
+Label = "PE(20:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.2098030468530356
+BestFDR = 0.0054617630327232
+BestGlobalFDR = 0.0176518218664478
+NegLog10BestFDR = 2.262667146344431
+
+["PC(16:2/16:0)"]
+ID = "PC(16:2/16:0)"
+Label = "PC(16:2/16:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.1365680105037495
+BestFDR = 0.0092324527062286
+BestGlobalFDR = 0.0117071110954928
+NegLog10BestFDR = 2.0346829083698106
+
+["PG(18:1/22:6)"]
+ID = "PG(18:1/22:6)"
+Label = "PG(18:1/22:6)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 2
+TotalModelWeight = 0.2287240223617637
+BestFDR = 0.0092324527062286
+BestGlobalFDR = 0.0121968569422934
+NegLog10BestFDR = 2.0346829083698106
+
+["PE(22:6/0:0)"]
+ID = "PE(22:6/0:0)"
+Label = "PE(22:6/0:0)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.1346856239798115
+BestFDR = 0.0092324527062286
+BestGlobalFDR = 0.0125494810974255
+NegLog10BestFDR = 2.0346829083698106
+
+["CE(20:3)"]
+ID = "CE(20:3)"
+Label = "CE(20:3)"
+NodeType = "Lipid"
+LipidClass = "CE"
+Degree = 1
+TotalModelWeight = 0.1090277885264425
+BestFDR = 0.002092177351356
+BestGlobalFDR = 0.0043362375455248
+NegLog10BestFDR = 2.6794015036237684
+
+["PS(18:0/22:6)"]
+ID = "PS(18:0/22:6)"
+Label = "PS(18:0/22:6)"
+NodeType = "Lipid"
+LipidClass = "PS"
+Degree = 2
+TotalModelWeight = 0.1780711245879262
+BestFDR = 0.0018526766108503
+BestGlobalFDR = 0.0064858706739669
+NegLog10BestFDR = 2.732200381210025
+
+["CE(22:4)"]
+ID = "CE(22:4)"
+Label = "CE(22:4)"
+NodeType = "Lipid"
+LipidClass = "CE"
+Degree = 2
+TotalModelWeight = 0.1836132876095823
+BestFDR = 0.0121943778074009
+BestGlobalFDR = 0.0461029872117202
+NegLog10BestFDR = 1.9138403537517177
+
+["PE(O-18:0/16:0)"]
+ID = "PE(O-18:0/16:0)"
+Label = "PE(O-18:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 2
+TotalModelWeight = 0.2369281198510933
+BestFDR = 0.0170761758344229
+BestGlobalFDR = 0.0409183317931739
+NegLog10BestFDR = 1.7676093818883274
+
+["PI(17:0/20:4)"]
+ID = "PI(17:0/20:4)"
+Label = "PI(17:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PI"
+Degree = 2
+TotalModelWeight = 0.178718006595739
+BestFDR = 0.0013082832410798
+BestGlobalFDR = 0.0069836254478809
+NegLog10BestFDR = 2.883298221821118
+
+["PG(18:2/20:4)"]
+ID = "PG(18:2/20:4)"
+Label = "PG(18:2/20:4)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 1
+TotalModelWeight = 0.1460730319049685
+BestFDR = 0.0343481722027582
+BestGlobalFDR = 0.0496455889282773
+NegLog10BestFDR = 1.4640963684552717
+
+["PG(18:1/0:0)"]
+ID = "PG(18:1/0:0)"
+Label = "PG(18:1/0:0)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 3
+TotalModelWeight = 0.329830172028994
+BestFDR = 0.0024854235799342
+BestGlobalFDR = 0.0129859629532326
+NegLog10BestFDR = 2.6045995857026445
+
+["PC(20:4/P-18:1)"]
+ID = "PC(20:4/P-18:1)"
+Label = "PC(20:4/P-18:1)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.1135310678221301
+BestFDR = 0.0120730296816136
+BestGlobalFDR = 0.028846944882926
+NegLog10BestFDR = 1.9181837316508985
+
+["PG(16:0/20:4)"]
+ID = "PG(16:0/20:4)"
+Label = "PG(16:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 1
+TotalModelWeight = 0.1304926664990879
+BestFDR = 0.0330930860824555
+BestGlobalFDR = 0.1053418651891158
+NegLog10BestFDR = 1.480262730994088
+
+["PE(P-16:0/22:4)"]
+ID = "PE(P-16:0/22:4)"
+Label = "PE(P-16:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.1057226657537917
+BestFDR = 0.0095873594176571
+BestGlobalFDR = 0.0377615768148107
+NegLog10BestFDR = 2.018300991187254
+
+["PC(20:4/22:6)"]
+ID = "PC(20:4/22:6)"
+Label = "PC(20:4/22:6)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.1239943416368738
+BestFDR = 0.0050992217513923
+BestGlobalFDR = 0.0028282435640112
+NegLog10BestFDR = 2.292496101326897
+
+["TG(56:2)"]
+ID = "TG(56:2)"
+Label = "TG(56:2)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.1143827405082137
+BestFDR = 0.0219698316227488
+BestGlobalFDR = 0.0277706545812681
+NegLog10BestFDR = 1.6581732715087696
+
+["PE(P-18:0/22:4)"]
+ID = "PE(P-18:0/22:4)"
+Label = "PE(P-18:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.0982728490777121
+BestFDR = 0.0092324527062286
+BestGlobalFDR = 0.0094367496036492
+NegLog10BestFDR = 2.0346829083698106
+
+["PC(O-18:1/0:0)"]
+ID = "PC(O-18:1/0:0)"
+Label = "PC(O-18:1/0:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.1091615985404692
+BestFDR = 0.0210070803944336
+BestGlobalFDR = 0.0407783514563993
+NegLog10BestFDR = 1.6776343025057607
+
+["PC(O-18:0/16:0)"]
+ID = "PC(O-18:0/16:0)"
+Label = "PC(O-18:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.0906700064081584
+BestFDR = 0.0084800311404531
+BestGlobalFDR = 0.0115050959992803
+NegLog10BestFDR = 2.07160255291992
+
+["PC(O-16:0/22:4)"]
+ID = "PC(O-16:0/22:4)"
+Label = "PC(O-16:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 2
+TotalModelWeight = 0.180300169346554
+BestFDR = 0.0084800311404531
+BestGlobalFDR = 0.009667192362862
+NegLog10BestFDR = 2.07160255291992
+
+["PE(P-16:0/20:4)"]
+ID = "PE(P-16:0/20:4)"
+Label = "PE(P-16:0/20:4)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.0918535029841259
+BestFDR = 0.016394847223515
+BestGlobalFDR = 0.0137411108365478
+NegLog10BestFDR = 1.7852926259780566
+
+["PE(P-16:0/16:0)"]
+ID = "PE(P-16:0/16:0)"
+Label = "PE(P-16:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.0929741138753719
+BestFDR = 0.0214261606350772
+BestGlobalFDR = 0.0265454717938672
+NegLog10BestFDR = 1.6690556434417694
+
+["PC(14:0/16:0)"]
+ID = "PC(14:0/16:0)"
+Label = "PC(14:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.0840944522556753
+BestFDR = 0.0149808546755459
+BestGlobalFDR = 0.0097008751865326
+NegLog10BestFDR = 1.824463408913917
+
+["PC(16:0/22:4)"]
+ID = "PC(16:0/22:4)"
+Label = "PC(16:0/22:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.0848585511150684
+BestFDR = 0.0210070803944336
+BestGlobalFDR = 0.0392924459747312
+NegLog10BestFDR = 1.6776343025057607
+
+["PC(20:2/20:4)"]
+ID = "PC(20:2/20:4)"
+Label = "PC(20:2/20:4)"
+NodeType = "Lipid"
+LipidClass = "PC"
+Degree = 1
+TotalModelWeight = 0.0774041301940362
+BestFDR = 0.0256048420995988
+BestGlobalFDR = 0.0437515431799019
+NegLog10BestFDR = 1.5916778980363548
+
+["DG(18:0/18:1/0:0)"]
+ID = "DG(18:0/18:1/0:0)"
+Label = "DG(18:0/18:1/0:0)"
+NodeType = "Lipid"
+LipidClass = "DG"
+Degree = 1
+TotalModelWeight = 0.0727119025064886
+BestFDR = 0.0434083874473061
+BestGlobalFDR = 0.0650758352530568
+NegLog10BestFDR = 1.3624263472123133
+
+["PG(22:6/22:6)"]
+ID = "PG(22:6/22:6)"
+Label = "PG(22:6/22:6)"
+NodeType = "Lipid"
+LipidClass = "PG"
+Degree = 2
+TotalModelWeight = 0.0601157299873489
+BestFDR = 0.0195970366981954
+BestGlobalFDR = 0.0184661628639168
+NegLog10BestFDR = 1.7078095940985072
+
+["TG(14:0/16:0/16:0)"]
+ID = "TG(14:0/16:0/16:0)"
+Label = "TG(14:0/16:0/16:0)"
+NodeType = "Lipid"
+LipidClass = "TG"
+Degree = 1
+TotalModelWeight = 0.0486754555175098
+BestFDR = 0.0446508456745133
+BestGlobalFDR = 0.1217746695658629
+NegLog10BestFDR = 1.35017031128167
+
+["PE(P-16:0/18:1)"]
+ID = "PE(P-16:0/18:1)"
+Label = "PE(P-16:0/18:1)"
+NodeType = "Lipid"
+LipidClass = "PE"
+Degree = 1
+TotalModelWeight = 0.0418437828960586
+BestFDR = 0.0326143309368469
+BestGlobalFDR = 0.0486280562117513
+NegLog10BestFDR = 1.4865915263371343

@@ -1,0 +1,44 @@
+# just to make it a bit visually pleasing
+nodes.visual = {nodesize = node.ORDER / 25 + 1}
+# number of nodes here is huge, so the processing might be slower
+network.count()
+
+# checking if they have drain_sqkm attribute
+network count(nodes {drain_sqkm?}) / count()
+
+# directly checking if basin area is >= sum of inputs
+nodes.correct = node.drain_sqkm >= sum(inputs.drain_sqkm)
+network count(nodes.correct) / count()
+# so we failed for around 2% of the nodes
+
+# we can visualize the error locations
+nodes(!correct).visual.nodecolor = "red"
+
+# we can manually inspect the values to see what happened
+nodesmap(!correct) [drain_sqkm, sum(inputs.drain_sqkm), inputs.drain_sqkm]
+
+# you can try to find some of these locations in a map, or use 
+# the USGS website to see what should the correct connection should be
+nodesmap(!correct) [geometry, featuredet]
+
+# for example:
+node[03238140] [outputs.NAME, inputs.NAME]
+node[03238140] len(inputs.NAME)
+# this node should output to 03255000 and should not have any inputs let alone 50,
+# it was probably incorrectly snapped to the ohio river
+
+# here we do a recursive sum of all the gages area upstream
+nodes<inp>.re_inp_area = node.drain_sqkm + sum(inputs.re_inp_area);
+# this gives us a metric about how gaged a certain basin is
+nodes.gage_ratio = node.re_inp_area / node.drain_sqkm;
+
+# looking at the values at each root of the network
+rootsmap.gage_ratio
+
+# All the attributes from gages-II dataset is included in case you want
+# to play around with your own analysis
+
+# example: try setting the node locations to their actual coordinates
+# uncomment and run the line below: -latitude is because in higher y is lower pixel
+# nodes {set_xy(lng_gage,-lat_gage)}
+# nodes(lng_gage < -79).visual.nodecolor = "blue"

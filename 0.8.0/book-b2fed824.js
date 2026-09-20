@@ -173,18 +173,20 @@ aria-label="Show hidden lines"></button>';
             pre_block.insertBefore(buttons, pre_block.firstChild);
         }
 
-        const runCodeButton = document.createElement('button');
-        runCodeButton.className = 'play-button';
-        runCodeButton.hidden = false;
-        runCodeButton.title = 'Run this code';
-        runCodeButton.setAttribute('aria-label', runCodeButton.title);
-        runCodeButton.innerHTML = document.getElementById('fa-play').innerHTML;
+	if (window.can_run_nadi_in_wasm(playground_text(pre_block))) {
+            const runCodeButton = document.createElement('button');
+            runCodeButton.className = 'play-button';
+            runCodeButton.hidden = false;
+            runCodeButton.title = 'Run this code';
+            runCodeButton.setAttribute('aria-label', runCodeButton.title);
+            runCodeButton.innerHTML = document.getElementById('fa-play').innerHTML;
 
-        buttons.insertBefore(runCodeButton, buttons.firstChild);
-        runCodeButton.addEventListener('click', () => {
-            run_nadi_code(pre_block);
-        });
-
+            buttons.insertBefore(runCodeButton, buttons.firstChild);
+            runCodeButton.addEventListener('click', () => {
+		run_nadi_code(pre_block);
+            });
+	}
+	
         if (window.playground_copyable) {
             const copyCodeClipboardButton = document.createElement('button');
             copyCodeClipboardButton.className = 'clip-button';

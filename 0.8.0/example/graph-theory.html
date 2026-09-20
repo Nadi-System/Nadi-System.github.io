@@ -37,7 +37,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-a53aa3b3.js";
+            window.path_to_searchindex_js = "../searchindex-e451adc0.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-1fe14bb7.js"></script>
@@ -209,17 +209,17 @@ for v in adj_mat {
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">0 0 0 0 0
-1 0 0 0 0
-1 1 0 0 0
+1 0 0 0 1
+0 1 0 0 0
 0 0 1 0 0
-0 0 0 1 0
+1 0 0 0 0
 
 
-0 1 1 0 0
-1 0 1 0 0
-1 1 0 1 0
-0 0 1 0 1
-0 0 0 1 0
+0 1 0 0 1
+1 0 1 0 1
+0 1 0 1 0
+0 0 1 0 0
+1 1 0 0 0
 </code></pre>
 <h2 id="degree-of-nodes"><a class="header" href="#degree-of-nodes">Degree of Nodes</a></h2>
 <pre><code class="language-task">nodes {
@@ -227,7 +227,7 @@ for v in adj_mat {
 }
 </code></pre>
 <p>Results:</p>
-<pre><code class="language-output">[[2, 0], [1, 1], [1, 2], [1, 1], [0, 1]]
+<pre><code class="language-output">[[2, 0], [1, 2], [1, 1], [0, 1], [1, 1]]
 </code></pre>
 <h2 id="check-for-loops"><a class="header" href="#check-for-loops">Check for loops</a></h2>
 <pre><code class="language-task">nodes.self_loop = NAME in inputs.NAME;
@@ -433,10 +433,10 @@ net.cairo.network("./output/gt-net2.svg")
 
         <script src="../clipboard-1626706a.min.js"></script>
         <script src="../highlight-a4af0267.js"></script>
-        <script src="../book-9d8b8e83.js"></script>
+        <script src="../book-b2fed824.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/load_nadi_global-0c6e62da.js"></script>
+        <script src="../theme/load_nadi_global-b49fcbbd.js"></script>
         <script src="../theme/mode-task-88dcc689.js"></script>
 
 

@@ -1,0 +1,8 @@
+node[PLA2G2A] outputsmap.TotalModelWeight
+
+node["Cer(d18:1/16:0)"] inputs.NodeType
+
+nodes.is_gene = NodeType == "Gene"
+nodes(is_gene).visual.nodecolor = "red"
+
+network.elastic_layout()

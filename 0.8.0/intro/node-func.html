@@ -37,7 +37,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-a53aa3b3.js";
+            window.path_to_searchindex_js = "../searchindex-e451adc0.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-1fe14bb7.js"></script>
@@ -228,7 +228,6 @@ node[b] {[NAME, ORDER]}
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">"a"
-
 ["b", 2]
 </code></pre>
 <p>But this does not allow more than one node, and returns a value instead of a list, or a map that <code>nodes</code> or <code>nodesmap</code> keywords do.</p>
@@ -259,7 +258,6 @@ nodes&lt;inv&gt; array(INDEX, ORDER)
   b = [3, 2],
   a = [4, 1]
 }
-
 [[4, 1], [3, 2], [2, 1], [1, 3], [0, 4]]
 </code></pre>
 <p>Currently, <code>inp</code> and <code>inv</code> are equivalent, while <code>seq</code> and <code>out</code> are also equivalent. But when the parallization is added in the future versions, they will be implemented differently. So for backward compatibility, if you function needs to be run in a certain way, always use that one.</p>
@@ -332,10 +330,10 @@ NAME = "lower-mississippi"
 <pre><code class="language-task"><span class="boring">network load_file("./data/mississippi.net")
 </span>nodes[tenessee -&gt; "lower-mississippi"] do print_attrs("NAME")
 </code></pre>
-<p>Results:</p>
-<pre><code class="language-output">NAME = "tenessee"
-NAME = "ohio"
-NAME = "lower-mississippi"
+<p>ParseError:</p>
+<pre><code class="language-error">Error: Parse Error at Line 2 Column 16
+  nodes[tenessee -&gt; "lower-mississippi"] do print_attrs("NAME")
+                 ^ Missing closing token "]"
 </code></pre>
 <p>As we can see in the diagram, the path from tenessee to lower
 mississippi includes the ohio node.</p>
@@ -357,9 +355,9 @@ nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"] INDEX
 nm&lt;inv&gt;[tenessee -&gt; "lower-mississippi"](ORDER &gt; 1) INDEX
 </code></pre>
 <p>ParseError:</p>
-<pre><code class="language-error">Error: Parse Error at Line 2 Column 1
+<pre><code class="language-error">Error: Parse Error at Line 2 Column 19
   nodesmap[tenessee -&gt; "lower-mississippi"](NAME match "mississippi").INDEX
-  ^ Unexpected Token
+                    ^ Missing closing token "]"
 </code></pre>
 <h2 id="playground-html-only"><a class="header" href="#playground-html-only">Playground: HTML only</a></h2>
 <p>Node functions can be used in any <code>node</code> context.</p>
@@ -427,10 +425,10 @@ nodes.ts_count()
 
         <script src="../clipboard-1626706a.min.js"></script>
         <script src="../highlight-a4af0267.js"></script>
-        <script src="../book-9d8b8e83.js"></script>
+        <script src="../book-b2fed824.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/load_nadi_global-0c6e62da.js"></script>
+        <script src="../theme/load_nadi_global-b49fcbbd.js"></script>
         <script src="../theme/mode-task-88dcc689.js"></script>
 
 

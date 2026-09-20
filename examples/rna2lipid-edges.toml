@@ -1,0 +1,6259 @@
+[PLA2G2A."Cer(d18:1/16:0)"]
+Source = "PLA2G2A"
+Target = "Cer(d18:1/16:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "Cer(d18:1/16:0)"
+LipidClass = "CER"
+Coefficient = -0.4531830658991603
+Abs_Coefficient = 0.4531830658991603
+RelativeModelWeight = 0.7069942479561323
+Direction = "Negative"
+Pearson_r = -0.7206171338885341
+Pearson_p = 3.6212375043329902e-9
+GeneWise_FDR = 5.224928399109029e-8
+Global_FDR = 1.6628902557164386e-6
+NegLog10FDR = 7.281919656620719
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 5.8552695592656745
+
+[PLA2G2A."LacCer(d18:1/24:1)"]
+Source = "PLA2G2A"
+Target = "LacCer(d18:1/24:1)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "LacCer(d18:1/24:1)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.3806869178733911
+Abs_Coefficient = 0.3806869178733911
+RelativeModelWeight = 0.5938956714426844
+Direction = "Negative"
+Pearson_r = -0.7701799792608222
+Pearson_p = 6.200387624194517e-11
+GeneWise_FDR = 3.131195750218231e-9
+Global_FDR = 9.590105812383872e-8
+NegLog10FDR = 8.504289781127191
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 5.644556561148377
+
+[PLA2G2A."HexCer(d18:1/24:1)"]
+Source = "PLA2G2A"
+Target = "HexCer(d18:1/24:1)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "HexCer(d18:1/24:1)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.394233816318036
+Abs_Coefficient = 0.394233816318036
+RelativeModelWeight = 0.6150296898972508
+Direction = "Negative"
+Pearson_r = -0.7365029285486097
+Pearson_p = 1.0855809402440867e-9
+GeneWise_FDR = 1.8273945827442125e-8
+Global_FDR = 6.714721852399376e-7
+NegLog10FDR = 7.738167666875153
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 5.374232550428409
+
+[PLA2G2A."PE(18:0/18:2)"]
+Source = "PLA2G2A"
+Target = "PE(18:0/18:2)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PE(18:0/18:2)"
+LipidClass = "PE"
+Coefficient = -0.3447581559190725
+Abs_Coefficient = 0.3447581559190725
+RelativeModelWeight = 0.5378445301947442
+Direction = "Negative"
+Pearson_r = -0.7627681345520729
+Pearson_p = 1.2118822683513434e-10
+GeneWise_FDR = 4.896004364139427e-9
+Global_FDR = 1.46400130496326e-7
+NegLog10FDR = 8.310158203746314
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 5.00741766513268
+
+[PLA2G2A."PI(16:0/22:6)"]
+Source = "PLA2G2A"
+Target = "PI(16:0/22:6)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PI(16:0/22:6)"
+LipidClass = "PI"
+Coefficient = -0.2840786327850081
+Abs_Coefficient = 0.2840786327850081
+RelativeModelWeight = 0.4431806359484168
+Direction = "Negative"
+Pearson_r = -0.7987337943305404
+Pearson_p = 3.643844110216106e-12
+GeneWise_FDR = 3.680282551318267e-10
+Global_FDR = 1.3605893068509956e-8
+NegLog10FDR = 9.434118837367857
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 4.624199421906041
+
+[PLA2G2A."PI(16:0/22:4)"]
+Source = "PLA2G2A"
+Target = "PI(16:0/22:4)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PI(16:0/22:4)"
+LipidClass = "PI"
+Coefficient = -0.239070812115944
+Abs_Coefficient = 0.239070812115944
+RelativeModelWeight = 0.3729655888284745
+Direction = "Negative"
+Pearson_r = -0.828401847046847
+Pearson_p = 1.134882471553156e-13
+GeneWise_FDR = 2.2924625925373747e-11
+Global_FDR = 1.446622946325309e-9
+NegLog10FDR = 10.63969774223903
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 4.341206722219645
+
+[PLA2G2A."PC(18:2/20:4)"]
+Source = "PLA2G2A"
+Target = "PC(18:2/20:4)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PC(18:2/20:4)"
+LipidClass = "PC"
+Coefficient = -0.4546317073537675
+Abs_Coefficient = 0.4546317073537675
+RelativeModelWeight = 0.7092542202561256
+Direction = "Negative"
+Pearson_r = -0.619507516304946
+Pearson_p = 1.6125018713406349e-6
+GeneWise_FDR = 7.944521414897762e-6
+Global_FDR = 0.0001396879178348
+NegLog10FDR = 5.099932259958091
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 4.326402698651762
+
+[PLA2G2A."PG(18:0/0:0)"]
+Source = "PLA2G2A"
+Target = "PG(18:0/0:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PG(18:0/0:0)"
+LipidClass = "PG"
+Coefficient = -0.327236759387833
+Abs_Coefficient = 0.327236759387833
+RelativeModelWeight = 0.51051004332647
+Direction = "Negative"
+Pearson_r = -0.7107650349377667
+Pearson_p = 7.341381989241051e-9
+GeneWise_FDR = 7.805048220140486e-8
+Global_FDR = 2.727452528786781e-6
+NegLog10FDR = 7.107624409491219
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 4.139023688564108
+
+[PLA2G2A."PC(16:1/0:0)"]
+Source = "PLA2G2A"
+Target = "PC(16:1/0:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PC(16:1/0:0)"
+LipidClass = "PC"
+Coefficient = -0.3554130765457283
+Abs_Coefficient = 0.3554130765457283
+RelativeModelWeight = 0.5544668803271983
+Direction = "Negative"
+Pearson_r = -0.6722684849636708
+Pearson_p = 8.980775942274193e-8
+GeneWise_FDR = 6.04705580113129e-7
+Global_FDR = 1.6817799568495836e-5
+NegLog10FDR = 6.218456023785064
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 4.002394792287177
+
+[PLA2G2A."HexCer(d18:1/24:0)"]
+Source = "PLA2G2A"
+Target = "HexCer(d18:1/24:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "HexCer(d18:1/24:0)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.3034825027230511
+Abs_Coefficient = 0.3034825027230511
+RelativeModelWeight = 0.4734519004032493
+Direction = "Negative"
+Pearson_r = -0.6972711823297562
+Pearson_p = 1.845950403017114e-8
+GeneWise_FDR = 1.621226006128074e-7
+Global_FDR = 5.365673725013888e-6
+NegLog10FDR = 6.790156438345512
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 3.6882643701732905
+
+[PLA2G2A."PC(18:1/18:1)"]
+Source = "PLA2G2A"
+Target = "PC(18:1/18:1)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PC(18:1/18:1)"
+LipidClass = "PC"
+Coefficient = -0.2656095935489888
+Abs_Coefficient = 0.2656095935489888
+RelativeModelWeight = 0.4143677665195152
+Direction = "Negative"
+Pearson_r = -0.7194164970064386
+Pearson_p = 3.953218217542705e-9
+GeneWise_FDR = 5.3236671996241765e-8
+Global_FDR = 1.767277474048484e-6
+NegLog10FDR = 7.27378910156031
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 3.4283915106670526
+
+[PLA2G2A."PI(16:0/16:0)"]
+Source = "PLA2G2A"
+Target = "PI(16:0/16:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PI(16:0/16:0)"
+LipidClass = "PI"
+Coefficient = -0.2471038005871775
+Abs_Coefficient = 0.2471038005871775
+RelativeModelWeight = 0.3854975589535976
+Direction = "Negative"
+Pearson_r = -0.7172009115614009
+Pearson_p = 4.642332111801133e-9
+GeneWise_FDR = 5.86094429114893e-8
+Global_FDR = 1.9725109062625367e-6
+NegLog10FDR = 7.232032406610464
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 3.173428397975244
+
+[PLA2G2A."PG(17:0/18:1)"]
+Source = "PLA2G2A"
+Target = "PG(17:0/18:1)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PG(17:0/18:1)"
+LipidClass = "PG"
+Coefficient = -0.2128452078827951
+Abs_Coefficient = 0.2128452078827951
+RelativeModelWeight = 0.3320519873786445
+Direction = "Negative"
+Pearson_r = -0.7704421322420979
+Pearson_p = 6.052400112222735e-11
+GeneWise_FDR = 3.131195750218231e-9
+Global_FDR = 9.480212819848545e-8
+NegLog10FDR = 8.504289781127191
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 3.155918310445826
+
+[PLA2G2A."PC(18:1/20:3)"]
+Source = "PLA2G2A"
+Target = "PC(18:1/20:3)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PC(18:1/20:3)"
+LipidClass = "PC"
+Coefficient = -0.2467152293931546
+Abs_Coefficient = 0.2467152293931546
+RelativeModelWeight = 0.3848913633126581
+Direction = "Negative"
+Pearson_r = -0.7001799943589531
+Pearson_p = 1.519705176051853e-8
+GeneWise_FDR = 1.461811645535592e-7
+Global_FDR = 4.688850614297182e-6
+NegLog10FDR = 6.835108582627377
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 3.0156656240701603
+
+[PLA2G2A."PE(18:0/22:6)"]
+Source = "PLA2G2A"
+Target = "PE(18:0/22:6)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PE(18:0/22:6)"
+LipidClass = "PE"
+Coefficient = -0.199666936376647
+Abs_Coefficient = 0.199666936376647
+RelativeModelWeight = 0.3114930502648643
+Direction = "Negative"
+Pearson_r = -0.6993903654904029
+Pearson_p = 1.6024547276462178e-8
+GeneWise_FDR = 1.4713447953842546e-7
+Global_FDR = 4.856279192018021e-6
+NegLog10FDR = 6.832285542645673
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.439702514224099
+
+[PLA2G2A."CE(20:4)"]
+Source = "PLA2G2A"
+Target = "CE(20:4)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "CE(20:4)"
+LipidClass = "CE"
+Coefficient = -0.2338564018278055
+Abs_Coefficient = 0.2338564018278055
+RelativeModelWeight = 0.3648307789522874
+Direction = "Negative"
+Pearson_r = -0.6388108478775497
+Pearson_p = 5.972902222094548e-7
+GeneWise_FDR = 3.260881753684051e-6
+Global_FDR = 6.670522765617736e-5
+NegLog10FDR = 5.486664949324557
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.3665350262645783
+
+[PLA2G2A."PE(16:0/22:6)"]
+Source = "PLA2G2A"
+Target = "PE(16:0/22:6)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PE(16:0/22:6)"
+LipidClass = "PE"
+Coefficient = -0.2243576178230905
+Abs_Coefficient = 0.2243576178230905
+RelativeModelWeight = 0.3500120750790815
+Direction = "Negative"
+Pearson_r = -0.6105927078364642
+Pearson_p = 2.495018088754058e-6
+GeneWise_FDR = 1.1999848903055232e-5
+Global_FDR = 0.0001927626593526
+NegLog10FDR = 4.920824222367582
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.0723599722493664
+
+[PLA2G2A."PG(18:2/18:2)"]
+Source = "PLA2G2A"
+Target = "PG(18:2/18:2)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PG(18:2/18:2)"
+LipidClass = "PG"
+Coefficient = -0.1813576584606169
+Abs_Coefficient = 0.1813576584606169
+RelativeModelWeight = 0.2829294186005165
+Direction = "Negative"
+Pearson_r = -0.666294191403565
+Pearson_p = 1.2819440751706553e-7
+GeneWise_FDR = 8.353313005950722e-7
+Global_FDR = 2.192814583878262e-5
+NegLog10FDR = 6.078141244894832
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.002614387190431
+
+[PLA2G2A."PE(18:0/20:3)"]
+Source = "PLA2G2A"
+Target = "PE(18:0/20:3)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PE(18:0/20:3)"
+LipidClass = "PE"
+Coefficient = -0.1619414340765674
+Abs_Coefficient = 0.1619414340765674
+RelativeModelWeight = 0.2526388804284589
+Direction = "Negative"
+Pearson_r = -0.6937719270071143
+Pearson_p = 2.3255130810714805e-8
+GeneWise_FDR = 1.8389646976606417e-7
+Global_FDR = 6.344274284493605e-6
+NegLog10FDR = 6.735426607770264
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.9542695178235916
+
+[PLA2G2A."Cer(d18:1/18:0)"]
+Source = "PLA2G2A"
+Target = "Cer(d18:1/18:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "Cer(d18:1/18:0)"
+LipidClass = "CER"
+Coefficient = -0.1362546767101014
+Abs_Coefficient = 0.1362546767101014
+RelativeModelWeight = 0.2125659141742934
+Direction = "Negative"
+Pearson_r = -0.7384287476161496
+Pearson_p = 9.326093320846141e-10
+GeneWise_FDR = 1.8273945827442125e-8
+Global_FDR = 6.058846497335648e-7
+NegLog10FDR = 7.738167666875153
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.85743659831757
+
+[PLA2G2A."PE(18:0/0:0)"]
+Source = "PLA2G2A"
+Target = "PE(18:0/0:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PE(18:0/0:0)"
+LipidClass = "PE"
+Coefficient = -0.1354918922016242
+Abs_Coefficient = 0.1354918922016242
+RelativeModelWeight = 0.2113759220927194
+Direction = "Negative"
+Pearson_r = -0.7298167994118409
+Pearson_p = 1.821047017589288e-9
+GeneWise_FDR = 2.8296269042541244e-8
+Global_FDR = 9.98765935492665e-7
+NegLog10FDR = 7.54827082387695
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.806898627695281
+
+[PLA2G2A."PC(18:2/22:6)"]
+Source = "PLA2G2A"
+Target = "PC(18:2/22:6)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PC(18:2/22:6)"
+LipidClass = "PC"
+Coefficient = -0.2251613371089078
+Abs_Coefficient = 0.2251613371089078
+RelativeModelWeight = 0.3512659280025504
+Direction = "Negative"
+Pearson_r = -0.535989139301065
+Pearson_p = 6.031868325526263e-5
+GeneWise_FDR = 0.0002215340730466
+Global_FDR = 0.0019509497289474
+NegLog10FDR = 3.6545594676437134
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.6349881508449269
+
+[PLA2G2A."PI(16:0/18:2)"]
+Source = "PLA2G2A"
+Target = "PI(16:0/18:2)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PI(16:0/18:2)"
+LipidClass = "PI"
+Coefficient = -0.1294019715012935
+Abs_Coefficient = 0.1294019715012935
+RelativeModelWeight = 0.2018752605949202
+Direction = "Negative"
+Pearson_r = -0.6944134372432985
+Pearson_p = 2.2296501701368666e-8
+GeneWise_FDR = 1.8389646976606417e-7
+Global_FDR = 6.16925510398798e-6
+NegLog10FDR = 6.735426607770264
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.5615912622565022
+
+[PLA2G2A."DG(18:1/18:2/0:0)"]
+Source = "PLA2G2A"
+Target = "DG(18:1/18:2/0:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "DG(18:1/18:2/0:0)"
+LipidClass = "DG"
+Coefficient = -0.1218986147192952
+Abs_Coefficient = 0.1218986147192952
+RelativeModelWeight = 0.1901695494057562
+Direction = "Negative"
+Pearson_r = -0.701089027098689
+Pearson_p = 1.4294178109020573e-8
+GeneWise_FDR = 1.4437119890110776e-7
+Global_FDR = 4.500839761312218e-6
+NegLog10FDR = 6.840519437001048
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.4910280484415632
+
+[PLA2G2A."PI(16:0/20:4)"]
+Source = "PLA2G2A"
+Target = "PI(16:0/20:4)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PI(16:0/20:4)"
+LipidClass = "PI"
+Coefficient = -0.2507241386511822
+Abs_Coefficient = 0.2507241386511822
+RelativeModelWeight = 0.3911455153304087
+Direction = "Negative"
+Pearson_r = -0.4425847529232968
+Pearson_p = 0.0012891840664472
+GeneWise_FDR = 0.0032277508746326
+Global_FDR = 0.0166652124295182
+NegLog10FDR = 2.4910999925210806
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.365528105644644
+
+[PLA2G2A."PE(18:0/22:4)"]
+Source = "PLA2G2A"
+Target = "PE(18:0/22:4)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PE(18:0/22:4)"
+LipidClass = "PE"
+Coefficient = -0.1005703900778225
+Abs_Coefficient = 0.1005703900778225
+RelativeModelWeight = 0.1568961698925141
+Direction = "Negative"
+Pearson_r = -0.6927874643431639
+Pearson_p = 2.480180223517852e-8
+GeneWise_FDR = 1.855542241298541e-7
+Global_FDR = 6.638837229729248e-6
+NegLog10FDR = 6.731529154517004
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.2130473117560256
+
+[PLA2G2A."SM(d18:2/22:0)"]
+Source = "PLA2G2A"
+Target = "SM(d18:2/22:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "SM(d18:2/22:0)"
+LipidClass = "SM"
+Coefficient = -0.1053956994916857
+Abs_Coefficient = 0.1053956994916857
+RelativeModelWeight = 0.164423957793064
+Direction = "Negative"
+Pearson_r = -0.6630384735855691
+Pearson_p = 1.5510852943953916e-7
+GeneWise_FDR = 9.791225920870907e-7
+Global_FDR = 2.515902544652042e-5
+NegLog10FDR = 6.009162928489245
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1524743095186247
+
+[PLA2G2A."SM(d18:2/24:0)"]
+Source = "PLA2G2A"
+Target = "SM(d18:2/24:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "SM(d18:2/24:0)"
+LipidClass = "SM"
+Coefficient = -0.1412222532712501
+Abs_Coefficient = 0.1412222532712501
+RelativeModelWeight = 0.2203156478234217
+Direction = "Negative"
+Pearson_r = -0.564186075692864
+Pearson_p = 1.9805631061190155e-5
+GeneWise_FDR = 8.001474948720823e-5
+Global_FDR = 0.0008779189945693
+NegLog10FDR = 4.096829950127052
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1229113923080598
+
+[PLA2G2A."PC(16:0/26:0)"]
+Source = "PLA2G2A"
+Target = "PC(16:0/26:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PC(16:0/26:0)"
+LipidClass = "PC"
+Coefficient = -0.1102854903677531
+Abs_Coefficient = 0.1102854903677531
+RelativeModelWeight = 0.1720523408532935
+Direction = "Negative"
+Pearson_r = -0.623529266790311
+Pearson_p = 1.3183764414806924e-6
+GeneWise_FDR = 6.657801029477496e-6
+Global_FDR = 0.0001203335889772
+NegLog10FDR = 5.176669188015517
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0627103924744816
+
+[PLA2G2A."PE(O-16:0/22:4)"]
+Source = "PLA2G2A"
+Target = "PE(O-16:0/22:4)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PE(O-16:0/22:4)"
+LipidClass = "PE"
+Coefficient = -0.1491160097607921
+Abs_Coefficient = 0.1491160097607921
+RelativeModelWeight = 0.2326304072502763
+Direction = "Negative"
+Pearson_r = -0.4956806297674891
+Pearson_p = 0.0002519802564019
+GeneWise_FDR = 0.000759701668555
+Global_FDR = 0.0053634491611409
+NegLog10FDR = 3.119356919740961
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9582876778485836
+
+[PLA2G2A."PE(P-16:0/22:6)"]
+Source = "PLA2G2A"
+Target = "PE(P-16:0/22:6)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PE(P-16:0/22:6)"
+LipidClass = "PE"
+Coefficient = -0.0722117619801443
+Abs_Coefficient = 0.0722117619801443
+RelativeModelWeight = 0.1126549162940246
+Direction = "Negative"
+Pearson_r = -0.6804704211767372
+Pearson_p = 5.4361106537200227e-8
+GeneWise_FDR = 3.921765543040873e-7
+Global_FDR = 1.1669643810999671e-5
+NegLog10FDR = 6.406518373546157
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8343807074019981
+
+[PLA2G2A."TG(16:0/18:0/22:6)"]
+Source = "PLA2G2A"
+Target = "TG(16:0/18:0/22:6)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "TG(16:0/18:0/22:6)"
+LipidClass = "TG"
+Coefficient = -0.1065019144204674
+Abs_Coefficient = 0.1065019144204674
+RelativeModelWeight = 0.1661497230532909
+Direction = "Negative"
+Pearson_r = -0.5194087708232488
+Pearson_p = 0.0001109998040448
+GeneWise_FDR = 0.0003736993402843
+Global_FDR = 0.0030128634674511
+NegLog10FDR = 3.427477668837906
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7356241885020481
+
+[PLA2G2A."Cer(d18:1/22:0)"]
+Source = "PLA2G2A"
+Target = "Cer(d18:1/22:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "Cer(d18:1/22:0)"
+LipidClass = "CER"
+Coefficient = -0.0633983811560649
+Abs_Coefficient = 0.0633983811560649
+RelativeModelWeight = 0.0989054847363647
+Direction = "Negative"
+Pearson_r = -0.6467361615476899
+Pearson_p = 3.893337219011269e-7
+GeneWise_FDR = 2.1845947728896564e-6
+Global_FDR = 4.9036151154334095e-5
+NegLog10FDR = 5.660629109823626
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.658772750756247
+
+[PLA2G2A."PE(16:1/18:1)"]
+Source = "PLA2G2A"
+Target = "PE(16:1/18:1)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PE(16:1/18:1)"
+LipidClass = "PE"
+Coefficient = -0.0737537363826752
+Abs_Coefficient = 0.0737537363826752
+RelativeModelWeight = 0.1150604938963606
+Direction = "Negative"
+Pearson_r = -0.580915773839852
+Pearson_p = 9.734192411294809e-6
+GeneWise_FDR = 4.183631632088407e-5
+Global_FDR = 0.0005230907932489
+NegLog10FDR = 4.378446561997909
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6188467178186624
+
+[PLA2G2A."PC(18:1/22:6)"]
+Source = "PLA2G2A"
+Target = "PC(18:1/22:6)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PC(18:1/22:6)"
+LipidClass = "PC"
+Coefficient = -0.0905714552852498
+Abs_Coefficient = 0.0905714552852498
+RelativeModelWeight = 0.1412971991542509
+Direction = "Negative"
+Pearson_r = -0.4336334320523829
+Pearson_p = 0.0016557683490627
+GeneWise_FDR = 0.0040788439818376
+Global_FDR = 0.0197663227310595
+NegLog10FDR = 2.3894629063825543
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4789216153090818
+
+[PLA2G2A."PC(16:0/18:0)"]
+Source = "PLA2G2A"
+Target = "PC(16:0/18:0)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PC(16:0/18:0)"
+LipidClass = "PC"
+Coefficient = -0.0697777349362731
+Abs_Coefficient = 0.0697777349362731
+RelativeModelWeight = 0.108857680146261
+Direction = "Negative"
+Pearson_r = -0.4692158577312002
+Pearson_p = 0.0005875221966604
+GeneWise_FDR = 0.0016257463524029
+Global_FDR = 0.0096380338695976
+NegLog10FDR = 2.7889472117214384
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.41245600366464
+
+[PLA2G2A."PC(O-16:0/22:4)"]
+Source = "PLA2G2A"
+Target = "PC(O-16:0/22:4)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "PC(O-16:0/22:4)"
+LipidClass = "PC"
+Coefficient = -0.0915567159804666
+Abs_Coefficient = 0.0915567159804666
+RelativeModelWeight = 0.1428342681594077
+Direction = "Negative"
+Pearson_r = -0.3265520714066798
+Pearson_p = 0.0206393056486027
+GeneWise_FDR = 0.0356336730001518
+Global_FDR = 0.1075808418909249
+NegLog10FDR = 1.4481394097151348
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.3496782009388657
+
+[PLA2G2A."GM3(d42:1)"]
+Source = "PLA2G2A"
+Target = "GM3(d42:1)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "GM3(d42:1)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.0517786384584261
+Abs_Coefficient = 0.0517786384584261
+RelativeModelWeight = 0.0807779511453613
+Direction = "Negative"
+Pearson_r = -0.4587452168798047
+Pearson_p = 0.000806309996082
+GeneWise_FDR = 0.0021430870948495
+Global_FDR = 0.0120423640722264
+NegLog10FDR = 2.6689601789143262
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.2963710860866176
+
+[PLA2G2A."CE(22:4)"]
+Source = "PLA2G2A"
+Target = "CE(22:4)"
+Interaction = "predicts"
+Gene = "PLA2G2A"
+Lipid = "CE(22:4)"
+LipidClass = "CE"
+Coefficient = -0.0277147077128809
+Abs_Coefficient = 0.0277147077128809
+RelativeModelWeight = 0.0432366970683592
+Direction = "Negative"
+Pearson_r = -0.3850623012764864
+Pearson_p = 0.0057573234828075
+GeneWise_FDR = 0.0121943778074009
+Global_FDR = 0.0461029872117202
+NegLog10FDR = 1.9138403537517177
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.1259848326807237
+
+[ABCA8."HexCer(d18:1/24:1)"]
+Source = "ABCA8"
+Target = "HexCer(d18:1/24:1)"
+Interaction = "predicts"
+Gene = "ABCA8"
+Lipid = "HexCer(d18:1/24:1)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = 0.6409996505760531
+Abs_Coefficient = 0.6409996505760531
+RelativeModelWeight = 1.0
+Direction = "Positive"
+Pearson_r = -0.612986683932499
+Pearson_p = 2.2219652526533854e-6
+GeneWise_FDR = 4.987077567066487e-5
+Global_FDR = 0.0001774787543854
+NegLog10FDR = 4.302153876881501
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 5.302153876881501
+
+[ABCA8."PG(18:0/0:0)"]
+Source = "ABCA8"
+Target = "PG(18:0/0:0)"
+Interaction = "predicts"
+Gene = "ABCA8"
+Lipid = "PG(18:0/0:0)"
+LipidClass = "PG"
+Coefficient = 0.3235809736612894
+Abs_Coefficient = 0.3235809736612894
+RelativeModelWeight = 0.5048067863539301
+Direction = "Positive"
+Pearson_r = -0.5438165844606111
+Pearson_p = 4.472191432542797e-5
+GeneWise_FDR = 0.0003100121421467
+Global_FDR = 0.001569534116542
+NegLog10FDR = 3.5086212959590304
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.2759826272999697
+
+[GPAM."PC(18:0/18:1)"]
+Source = "GPAM"
+Target = "PC(18:0/18:1)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(18:0/18:1)"
+LipidClass = "PC"
+Coefficient = -0.4702171399199562
+Abs_Coefficient = 0.4702171399199562
+RelativeModelWeight = 0.7335684808835414
+Direction = "Negative"
+Pearson_r = -0.664902494124101
+Pearson_p = 1.3911464790771436e-7
+GeneWise_FDR = 4.014451268194042e-6
+Global_FDR = 2.3227245142531925e-5
+NegLog10FDR = 5.396373809658502
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 4.692178218714457
+
+[GPAM."PC(16:0/18:3)"]
+Source = "GPAM"
+Target = "PC(16:0/18:3)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(16:0/18:3)"
+LipidClass = "PC"
+Coefficient = -0.3894461454400396
+Abs_Coefficient = 0.3894461454400396
+RelativeModelWeight = 0.6075606204934002
+Direction = "Negative"
+Pearson_r = -0.6076685210672004
+Pearson_p = 2.870781342372309e-6
+GeneWise_FDR = 2.899489155796033e-5
+Global_FDR = 0.0002137387776478
+NegLog10FDR = 4.5376785111912445
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 3.3644753923523214
+
+[GPAM."PC(18:0/18:2)"]
+Source = "GPAM"
+Target = "PC(18:0/18:2)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(18:0/18:2)"
+LipidClass = "PC"
+Coefficient = -0.2380179816777322
+Abs_Coefficient = 0.2380179816777322
+RelativeModelWeight = 0.3713231067502616
+Direction = "Negative"
+Pearson_r = -0.6852786440389398
+Pearson_p = 4.019865869016021e-8
+GeneWise_FDR = 2.1695193576491787e-6
+Global_FDR = 9.362638805356729e-6
+NegLog10FDR = 5.6636364705024045
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.474362196481301
+
+[GPAM."PS(18:0/20:4)"]
+Source = "GPAM"
+Target = "PS(18:0/20:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PS(18:0/20:4)"
+LipidClass = "PS"
+Coefficient = -0.2352545523834089
+Abs_Coefficient = 0.2352545523834089
+RelativeModelWeight = 0.3670119822561377
+Direction = "Negative"
+Pearson_r = -0.6302186498170956
+Pearson_p = 9.371462637222016e-7
+GeneWise_FDR = 1.1831471579492794e-5
+Global_FDR = 9.373472443814772e-5
+NegLog10FDR = 4.926961235160175
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.175265791671422
+
+[GPAM."PC(20:3/20:4)"]
+Source = "GPAM"
+Target = "PC(20:3/20:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(20:3/20:4)"
+LipidClass = "PC"
+Coefficient = -0.2798999812287223
+Abs_Coefficient = 0.2798999812287223
+RelativeModelWeight = 0.436661675208687
+Direction = "Negative"
+Pearson_r = -0.5206122034333559
+Pearson_p = 0.0001063057550084
+GeneWise_FDR = 0.0004880400570844
+Global_FDR = 0.0029189265983087
+NegLog10FDR = 3.311544530749796
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.882686257534058
+
+[GPAM."GM3(d42:2)"]
+Source = "GPAM"
+Target = "GM3(d42:2)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "GM3(d42:2)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.2816654622201909
+Abs_Coefficient = 0.2816654622201909
+RelativeModelWeight = 0.4394159372272107
+Direction = "Negative"
+Pearson_r = -0.4891738902932493
+Pearson_p = 0.0003122742977865
+GeneWise_FDR = 0.0012070510085775
+Global_FDR = 0.0062195752650733
+NegLog10FDR = 2.918274376733072
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.7217522075655274
+
+[GPAM."PE(P-18:0/16:0)"]
+Source = "GPAM"
+Target = "PE(P-18:0/16:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PE(P-18:0/16:0)"
+LipidClass = "PE"
+Coefficient = -0.233185520666774
+Abs_Coefficient = 0.233185520666774
+RelativeModelWeight = 0.3637841619058841
+Direction = "Negative"
+Pearson_r = -0.5460296035946033
+Pearson_p = 4.103897778509356e-5
+GeneWise_FDR = 0.0002353662437024
+Global_FDR = 0.0014780471822278
+NegLog10FDR = 3.628255823671722
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.683686165900445
+
+[GPAM."PG(16:0/16:0)"]
+Source = "GPAM"
+Target = "PG(16:0/16:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PG(16:0/16:0)"
+LipidClass = "PG"
+Coefficient = -0.448757925083476
+Abs_Coefficient = 0.448757925083476
+RelativeModelWeight = 0.700090748380575
+Direction = "Negative"
+Pearson_r = -0.3204173853430102
+Pearson_p = 0.0232948682463266
+GeneWise_FDR = 0.0423924629347565
+Global_FDR = 0.116341548271429
+NegLog10FDR = 1.3727113508792592
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 1.6611132653281455
+
+[GPAM."PG(18:0/20:4)"]
+Source = "GPAM"
+Target = "PG(18:0/20:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PG(18:0/20:4)"
+LipidClass = "PG"
+Coefficient = -0.2646252917210358
+Abs_Coefficient = 0.2646252917210358
+RelativeModelWeight = 0.4128321934079411
+Direction = "Negative"
+Pearson_r = -0.4887423398234112
+Pearson_p = 0.0003167015022505
+GeneWise_FDR = 0.0012070510085775
+Global_FDR = 0.0062823652976623
+NegLog10FDR = 2.918274376733072
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.6175898053208473
+
+[GPAM."PE(P-18:0/18:2)"]
+Source = "GPAM"
+Target = "PE(P-18:0/18:2)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PE(P-18:0/18:2)"
+LipidClass = "PE"
+Coefficient = -0.3028113590364503
+Abs_Coefficient = 0.3028113590364503
+RelativeModelWeight = 0.4724048738003523
+Direction = "Negative"
+Pearson_r = -0.440355454354474
+Pearson_p = 0.0013729590190023
+GeneWise_FDR = 0.0038519128033121
+Global_FDR = 0.0174144946117352
+NegLog10FDR = 2.414323552666138
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.6129430870108177
+
+[GPAM."CE(20:4)"]
+Source = "GPAM"
+Target = "CE(20:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "CE(20:4)"
+LipidClass = "CE"
+Coefficient = -0.2387659788050937
+Abs_Coefficient = 0.2387659788050937
+RelativeModelWeight = 0.3724900295819501
+Direction = "Negative"
+Pearson_r = -0.508809583984041
+Pearson_p = 0.0001612868793967
+GeneWise_FDR = 0.0006991716306683
+Global_FDR = 0.0039109978389753
+NegLog10FDR = 3.1554162017897616
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.547851103929983
+
+[GPAM."Cer(d18:1/0:0)"]
+Source = "GPAM"
+Target = "Cer(d18:1/0:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "Cer(d18:1/0:0)"
+LipidClass = "CER"
+Coefficient = -0.2030480644965389
+Abs_Coefficient = 0.2030480644965389
+RelativeModelWeight = 0.3167678239981313
+Direction = "Negative"
+Pearson_r = -0.5547813888390963
+Pearson_p = 2.9039125546143337e-5
+GeneWise_FDR = 0.0001777546472824
+Global_FDR = 0.00115861879648
+NegLog10FDR = 3.750179036096134
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.5047038768657133
+
+[GPAM."PC(O-16:0/0:0)"]
+Source = "GPAM"
+Target = "PC(O-16:0/0:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(O-16:0/0:0)"
+LipidClass = "PC"
+Coefficient = -0.2330819775755451
+Abs_Coefficient = 0.2330819775755451
+RelativeModelWeight = 0.3636226281341639
+Direction = "Negative"
+Pearson_r = -0.5066524868904869
+Pearson_p = 0.0001737707346116
+GeneWise_FDR = 0.0007312851748241
+Global_FDR = 0.0041219256773968
+NegLog10FDR = 3.135913230838475
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.5039116387323472
+
+[GPAM."DG(18:0/0:0/18:0)"]
+Source = "GPAM"
+Target = "DG(18:0/0:0/18:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "DG(18:0/0:0/18:0)"
+LipidClass = "DG"
+Coefficient = -0.210065401304618
+Abs_Coefficient = 0.210065401304618
+RelativeModelWeight = 0.3277153132857976
+Direction = "Negative"
+Pearson_r = -0.5370742138490338
+Pearson_p = 5.789376115664488e-5
+GeneWise_FDR = 0.0002998599936831
+Global_FDR = 0.001891885409226
+NegLog10FDR = 3.523081472491989
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.4822830617748988
+
+[GPAM."TG(18:1/20:4/22:6)"]
+Source = "GPAM"
+Target = "TG(18:1/20:4/22:6)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "TG(18:1/20:4/22:6)"
+LipidClass = "TG"
+Coefficient = -0.1867827404765868
+Abs_Coefficient = 0.1867827404765868
+RelativeModelWeight = 0.291392889697723
+Direction = "Negative"
+Pearson_r = -0.5713599126716646
+Pearson_p = 1.467470100383687e-5
+GeneWise_FDR = 0.0001011778921003
+Global_FDR = 0.0007065186211354
+NegLog10FDR = 3.994914372750383
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.4554825328684236
+
+[GPAM."TG(18:0/20:4/22:6)"]
+Source = "GPAM"
+Target = "TG(18:0/20:4/22:6)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "TG(18:0/20:4/22:6)"
+LipidClass = "TG"
+Coefficient = -0.1575196568989433
+Abs_Coefficient = 0.1575196568989433
+RelativeModelWeight = 0.2457406283410352
+Direction = "Negative"
+Pearson_r = -0.6139899416326997
+Pearson_p = 2.1160154435287963e-6
+GeneWise_FDR = 2.3746395532934272e-5
+Global_FDR = 0.0001708246929143
+NegLog10FDR = 4.624402302626775
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.3821441558902694
+
+[GPAM."PC(16:0/18:0)"]
+Source = "GPAM"
+Target = "PC(16:0/18:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(16:0/18:0)"
+LipidClass = "PC"
+Coefficient = -0.3410118925180658
+Abs_Coefficient = 0.3410118925180658
+RelativeModelWeight = 0.5320001223270645
+Direction = "Negative"
+Pearson_r = -0.3441675830126253
+Pearson_p = 0.0143907993816867
+GeneWise_FDR = 0.0276851569057211
+Global_FDR = 0.0847707381112648
+NegLog10FDR = 1.5577530107796165
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 1.3607249146171734
+
+[GPAM."PC(17:0/20:4)"]
+Source = "GPAM"
+Target = "PC(17:0/20:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(17:0/20:4)"
+LipidClass = "PC"
+Coefficient = -0.1470334737909739
+Abs_Coefficient = 0.1470334737909739
+RelativeModelWeight = 0.2293815194108732
+Direction = "Negative"
+Pearson_r = -0.6090870762567455
+Pearson_p = 2.682379639012416e-6
+GeneWise_FDR = 2.8517930898974104e-5
+Global_FDR = 0.0002035409564832
+NegLog10FDR = 4.544881987647519
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.271893455280571
+
+[GPAM."PG(16:0/18:2)"]
+Source = "GPAM"
+Target = "PG(16:0/18:2)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PG(16:0/18:2)"
+LipidClass = "PG"
+Coefficient = -0.1583974396821125
+Abs_Coefficient = 0.1583974396821125
+RelativeModelWeight = 0.2471100250051057
+Direction = "Negative"
+Pearson_r = -0.5775819165388366
+Pearson_p = 1.1249450516423983e-5
+GeneWise_FDR = 8.115675015420161e-5
+Global_FDR = 0.0005818485907235
+NegLog10FDR = 4.090675352204928
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.2579569135762354
+
+[GPAM."Cer(d18:0/24:0)"]
+Source = "GPAM"
+Target = "Cer(d18:0/24:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "Cer(d18:0/24:0)"
+LipidClass = "CER"
+Coefficient = -0.1701993233968028
+Abs_Coefficient = 0.1701993233968028
+RelativeModelWeight = 0.2655217101036611
+Direction = "Negative"
+Pearson_r = -0.5397509183536161
+Pearson_p = 5.228898760801395e-5
+GeneWise_FDR = 0.0002779572499162
+Global_FDR = 0.0017594344765318
+NegLog10FDR = 3.5560219938413806
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.209722751074655
+
+[GPAM."GM3(d42:1)"]
+Source = "GPAM"
+Target = "GM3(d42:1)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "GM3(d42:1)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.1936671911031359
+Abs_Coefficient = 0.1936671911031359
+RelativeModelWeight = 0.302133068136763
+Direction = "Negative"
+Pearson_r = -0.4956405496721289
+Pearson_p = 0.0002523167793335
+GeneWise_FDR = 0.0009993723416739
+Global_FDR = 0.0053678303780172
+NegLog10FDR = 3.000272674129582
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.2086146564184244
+
+[GPAM."PG(16:1/18:1)"]
+Source = "GPAM"
+Target = "PG(16:1/18:1)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PG(16:1/18:1)"
+LipidClass = "PG"
+Coefficient = -0.2550103693963425
+Abs_Coefficient = 0.2550103693963425
+RelativeModelWeight = 0.3978323064094808
+Direction = "Negative"
+Pearson_r = -0.3729976386100604
+Pearson_p = 0.0076346339610082
+GeneWise_FDR = 0.015898928454883
+Global_FDR = 0.0556617712961027
+NegLog10FDR = 1.798632144975979
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 1.1133862810275064
+
+[GPAM."PG(18:1/22:4)"]
+Source = "GPAM"
+Target = "PG(18:1/22:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PG(18:1/22:4)"
+LipidClass = "PG"
+Coefficient = -0.1955303832892951
+Abs_Coefficient = 0.1955303832892951
+RelativeModelWeight = 0.3050397657995227
+Direction = "Negative"
+Pearson_r = -0.4618410727660997
+Pearson_p = 0.0007350340829564
+GeneWise_FDR = 0.002356775948527
+Global_FDR = 0.011281875897097
+NegLog10FDR = 2.6276817025598613
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.106587176944074
+
+[GPAM."PI(18:0/20:4)"]
+Source = "GPAM"
+Target = "PI(18:0/20:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PI(18:0/20:4)"
+LipidClass = "PI"
+Coefficient = -0.1138802250228313
+Abs_Coefficient = 0.1138802250228313
+RelativeModelWeight = 0.1776603542926889
+Direction = "Negative"
+Pearson_r = -0.6365371237183498
+Pearson_p = 6.738090490632084e-7
+GeneWise_FDR = 9.073961860717872e-6
+Global_FDR = 7.30226482194974e-5
+NegLog10FDR = 5.042203050473857
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.073459934655551
+
+[GPAM."Cer(d18:0/16:0)"]
+Source = "GPAM"
+Target = "Cer(d18:0/16:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "Cer(d18:0/16:0)"
+LipidClass = "CER"
+Coefficient = -0.1804760971904487
+Abs_Coefficient = 0.1804760971904487
+RelativeModelWeight = 0.2815541272577271
+Direction = "Negative"
+Pearson_r = -0.459406133950423
+Pearson_p = 0.0007905926080079
+GeneWise_FDR = 0.0024569185664245
+Global_FDR = 0.0118723782692639
+NegLog10FDR = 2.609609237796901
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.016300378689336
+
+[GPAM."PC(22:6/0:0)"]
+Source = "GPAM"
+Target = "PC(22:6/0:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(22:6/0:0)"
+LipidClass = "PC"
+Coefficient = -0.1663605549708149
+Abs_Coefficient = 0.1663605549708149
+RelativeModelWeight = 0.2595329885457973
+Direction = "Negative"
+Pearson_r = -0.4783108178539982
+Pearson_p = 0.0004425969212473
+GeneWise_FDR = 0.001541458242965
+Global_FDR = 0.0079165035035712
+NegLog10FDR = 2.812068235514511
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9893574617035856
+
+[GPAM."SM(d18:2/18:0)"]
+Source = "GPAM"
+Target = "SM(d18:2/18:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "SM(d18:2/18:0)"
+LipidClass = "SM"
+Coefficient = -0.1882751545237197
+Abs_Coefficient = 0.1882751545237197
+RelativeModelWeight = 0.2937211500108007
+Direction = "Negative"
+Pearson_r = -0.4094324983327174
+Pearson_p = 0.0031519000215302
+GeneWise_FDR = 0.0075795690993941
+Global_FDR = 0.0307657934028376
+NegLog10FDR = 2.1203554834279323
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9165144010349602
+
+[GPAM."PE(16:0/16:0)"]
+Source = "GPAM"
+Target = "PE(16:0/16:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PE(16:0/16:0)"
+LipidClass = "PE"
+Coefficient = -0.1273319342607154
+Abs_Coefficient = 0.1273319342607154
+RelativeModelWeight = 0.1986458715637128
+Direction = "Negative"
+Pearson_r = -0.5415794402017727
+Pearson_p = 4.8751196198956375e-5
+GeneWise_FDR = 0.0002661551792483
+Global_FDR = 0.0016739728883543
+NegLog10FDR = 3.574865078252841
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9087780607559292
+
+[GPAM."PE(16:0/22:4)"]
+Source = "GPAM"
+Target = "PE(16:0/22:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PE(16:0/22:4)"
+LipidClass = "PE"
+Coefficient = -0.1804101010708411
+Abs_Coefficient = 0.1804101010708411
+RelativeModelWeight = 0.2814511691366919
+Direction = "Negative"
+Pearson_r = -0.410439264709427
+Pearson_p = 0.0030714543487775
+GeneWise_FDR = 0.0074751057644948
+Global_FDR = 0.0302183433467949
+NegLog10FDR = 2.126382658172556
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8799240543113445
+
+[GPAM."PE(16:1/18:1)"]
+Source = "GPAM"
+Target = "PE(16:1/18:1)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PE(16:1/18:1)"
+LipidClass = "PE"
+Coefficient = -0.2032571444076757
+Abs_Coefficient = 0.2032571444076757
+RelativeModelWeight = 0.3170940018844203
+Direction = "Negative"
+Pearson_r = -0.3593160828756032
+Pearson_p = 0.0103861585453127
+GeneWise_FDR = 0.0210286824924615
+Global_FDR = 0.068216256846955
+NegLog10FDR = 1.6771879362617532
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.8489202365059316
+
+[GPAM."TG(56:3)"]
+Source = "GPAM"
+Target = "TG(56:3)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "TG(56:3)"
+LipidClass = "TG"
+Coefficient = -0.0986831001733223
+Abs_Coefficient = 0.0986831001733223
+RelativeModelWeight = 0.1539518782648912
+Direction = "Negative"
+Pearson_r = -0.5965262793647249
+Pearson_p = 4.838061327889451e-6
+GeneWise_FDR = 4.072034950973621e-5
+Global_FDR = 0.0003136509558869
+NegLog10FDR = 4.390188503031357
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8298296442434998
+
+[GPAM."PC(17:0/18:1)"]
+Source = "GPAM"
+Target = "PC(17:0/18:1)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(17:0/18:1)"
+LipidClass = "PC"
+Coefficient = -0.1282865902229014
+Abs_Coefficient = 0.1282865902229014
+RelativeModelWeight = 0.2001351952495027
+Direction = "Negative"
+Pearson_r = -0.5036360629012149
+Pearson_p = 0.0001927045948698
+GeneWise_FDR = 0.0007944148604839
+Global_FDR = 0.0044344609399649
+NegLog10FDR = 3.0999526404368662
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8205448222075464
+
+[GPAM."PI(18:2/20:4)"]
+Source = "GPAM"
+Target = "PI(18:2/20:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PI(18:2/20:4)"
+LipidClass = "PI"
+Coefficient = -0.1076600637976556
+Abs_Coefficient = 0.1076600637976556
+RelativeModelWeight = 0.1679565093380375
+Direction = "Negative"
+Pearson_r = -0.4973391811579883
+Pearson_p = 0.0002384067939375
+GeneWise_FDR = 0.0009631634475078
+Global_FDR = 0.0051640370002909
+NegLog10FDR = 3.016300007447211
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6745637297051676
+
+[GPAM."CE(18:2)"]
+Source = "GPAM"
+Target = "CE(18:2)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "CE(18:2)"
+LipidClass = "CE"
+Coefficient = -0.119506690746812
+Abs_Coefficient = 0.119506690746812
+RelativeModelWeight = 0.1864379967125003
+Direction = "Negative"
+Pearson_r = -0.4599671017082199
+Pearson_p = 0.0007774686920959
+GeneWise_FDR = 0.0024538855594278
+Global_FDR = 0.0117353645047034
+NegLog10FDR = 2.610145695100423
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6730683312347799
+
+[GPAM."PE(16:0/18:0)"]
+Source = "GPAM"
+Target = "PE(16:0/18:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PE(16:0/18:0)"
+LipidClass = "PE"
+Coefficient = -0.122504217480994
+Abs_Coefficient = 0.122504217480994
+RelativeModelWeight = 0.191114328020151
+Direction = "Negative"
+Pearson_r = -0.4481292057674739
+Pearson_p = 0.0011002924746974
+GeneWise_FDR = 0.003268515880719
+Global_FDR = 0.0149361685952924
+NegLog10FDR = 2.4856494005888727
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6661575429073845
+
+[GPAM."PC(15:0/16:0)"]
+Source = "GPAM"
+Target = "PC(15:0/16:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(15:0/16:0)"
+LipidClass = "PC"
+Coefficient = -0.1300936382786117
+Abs_Coefficient = 0.1300936382786117
+RelativeModelWeight = 0.2029543045174818
+Direction = "Negative"
+Pearson_r = -0.4278511345056148
+Pearson_p = 0.0019393808561912
+GeneWise_FDR = 0.0052233991060085
+Global_FDR = 0.0220621946799706
+NegLog10FDR = 2.2820467896109857
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6661055235793315
+
+[GPAM."CE(22:4)"]
+Source = "GPAM"
+Target = "CE(22:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "CE(22:4)"
+LipidClass = "CE"
+Coefficient = -0.1558985798967014
+Abs_Coefficient = 0.1558985798967014
+RelativeModelWeight = 0.2432116456796795
+Direction = "Negative"
+Pearson_r = -0.3394334168324986
+Pearson_p = 0.0158859696281729
+GeneWise_FDR = 0.0299903351858966
+Global_FDR = 0.0905323575677891
+NegLog10FDR = 1.5230186803367771
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.6136275253252809
+
+[GPAM."PE(O-18:0/16:0)"]
+Source = "GPAM"
+Target = "PE(O-18:0/16:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PE(O-18:0/16:0)"
+LipidClass = "PE"
+Coefficient = -0.1466400468857518
+Abs_Coefficient = 0.1466400468857518
+RelativeModelWeight = 0.2287677485533251
+Direction = "Negative"
+Pearson_r = -0.3495185874319126
+Pearson_p = 0.0128470944230468
+GeneWise_FDR = 0.0249530103216872
+Global_FDR = 0.0785383496134072
+NegLog10FDR = 1.6028770537586567
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.5954543233494801
+
+[GPAM."PE(18:2/20:4)"]
+Source = "GPAM"
+Target = "PE(18:2/20:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PE(18:2/20:4)"
+LipidClass = "PE"
+Coefficient = -0.105951379606111
+Abs_Coefficient = 0.105951379606111
+RelativeModelWeight = 0.1652908539199588
+Direction = "Negative"
+Pearson_r = -0.4107939243805671
+Pearson_p = 0.0030435501072103
+GeneWise_FDR = 0.0074751057644948
+Global_FDR = 0.0300207682621492
+NegLog10FDR = 2.126382658172556
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.5167624592498926
+
+[GPAM."PE(P-16:0/22:4)"]
+Source = "GPAM"
+Target = "PE(P-16:0/22:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PE(P-16:0/22:4)"
+LipidClass = "PE"
+Coefficient = -0.1057226657537917
+Abs_Coefficient = 0.1057226657537917
+RelativeModelWeight = 0.1649340458435211
+Direction = "Negative"
+Pearson_r = -0.3973603364286412
+Pearson_p = 0.0042715957801442
+GeneWise_FDR = 0.0095873594176571
+Global_FDR = 0.0377615768148107
+NegLog10FDR = 2.018300991187254
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4978205940500239
+
+[GPAM."PC(18:2/18:3)"]
+Source = "GPAM"
+Target = "PC(18:2/18:3)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(18:2/18:3)"
+LipidClass = "PC"
+Coefficient = -0.0618744000107811
+Abs_Coefficient = 0.0618744000107811
+RelativeModelWeight = 0.0965279777534603
+Direction = "Negative"
+Pearson_r = -0.5457379573466385
+Pearson_p = 4.150786211457572e-5
+GeneWise_FDR = 0.0002353662437024
+Global_FDR = 0.0014896889620654
+NegLog10FDR = 3.628255823671722
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4467561751847075
+
+[GPAM."PC(20:4/22:4)"]
+Source = "GPAM"
+Target = "PC(20:4/22:4)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "PC(20:4/22:4)"
+LipidClass = "PC"
+Coefficient = -0.0750325841413792
+Abs_Coefficient = 0.0750325841413792
+RelativeModelWeight = 0.1170555772907973
+Direction = "Negative"
+Pearson_r = -0.4188845834553621
+Pearson_p = 0.0024649064267998
+GeneWise_FDR = 0.0064314977604703
+Global_FDR = 0.0259573008838903
+NegLog10FDR = 2.191687877252868
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3736048670038739
+
+[GPAM."TG(14:0/16:0/16:0)"]
+Source = "GPAM"
+Target = "TG(14:0/16:0/16:0)"
+Interaction = "predicts"
+Gene = "GPAM"
+Lipid = "TG(14:0/16:0/16:0)"
+LipidClass = "TG"
+Coefficient = -0.0486754555175098
+Abs_Coefficient = 0.0486754555175098
+RelativeModelWeight = 0.0759367894721411
+Direction = "Negative"
+Pearson_r = -0.3168276022425934
+Pearson_p = 0.0249779483228713
+GeneWise_FDR = 0.0446508456745133
+Global_FDR = 0.1217746695658629
+NegLog10FDR = 1.35017031128167
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.1784643881514727
+
+[EPHX1."TG(16:0/18:0/20:4)"]
+Source = "EPHX1"
+Target = "TG(16:0/18:0/20:4)"
+Interaction = "predicts"
+Gene = "EPHX1"
+Lipid = "TG(16:0/18:0/20:4)"
+LipidClass = "TG"
+Coefficient = -0.5245690222489845
+Abs_Coefficient = 0.5245690222489845
+RelativeModelWeight = 0.8183608552322379
+Direction = "Negative"
+Pearson_r = -0.6125935730239591
+Pearson_p = 2.264808029205053e-6
+GeneWise_FDR = 2.541617899441226e-5
+Global_FDR = 0.0001798901882414
+NegLog10FDR = 4.594889739634646
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 4.578638752257482
+
+[EPHX1."TG(17:0/18:1/18:1)"]
+Source = "EPHX1"
+Target = "TG(17:0/18:1/18:1)"
+Interaction = "predicts"
+Gene = "EPHX1"
+Lipid = "TG(17:0/18:1/18:1)"
+LipidClass = "TG"
+Coefficient = -0.5468937535069157
+Abs_Coefficient = 0.5468937535069157
+RelativeModelWeight = 0.8531888480991114
+Direction = "Negative"
+Pearson_r = -0.5927003563113489
+Pearson_p = 5.761784032913588e-6
+GeneWise_FDR = 4.849501561035604e-5
+Global_FDR = 0.0003565284709753
+NegLog10FDR = 4.314302896535043
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 4.534103966744505
+
+[EPHX1."TG(17:0/18:1/18:2)"]
+Source = "EPHX1"
+Target = "TG(17:0/18:1/18:2)"
+Interaction = "predicts"
+Gene = "EPHX1"
+Lipid = "TG(17:0/18:1/18:2)"
+LipidClass = "TG"
+Coefficient = -0.1738664390523936
+Abs_Coefficient = 0.1738664390523936
+RelativeModelWeight = 0.2712426424821659
+Direction = "Negative"
+Pearson_r = -0.7027181406476402
+Pearson_p = 1.2800898243678305e-8
+GeneWise_FDR = 6.464453613057543e-7
+Global_FDR = 4.143590231837235e-6
+NegLog10FDR = 6.189468176562707
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.950090346252308
+
+[EPHX1."TG(48:2)"]
+Source = "EPHX1"
+Target = "TG(48:2)"
+Interaction = "predicts"
+Gene = "EPHX1"
+Lipid = "TG(48:2)"
+LipidClass = "TG"
+Coefficient = -0.143365055645138
+Abs_Coefficient = 0.143365055645138
+RelativeModelWeight = 0.2236585550651997
+Direction = "Negative"
+Pearson_r = -0.6951202297580901
+Pearson_p = 2.1283333299601333e-8
+GeneWise_FDR = 8.598466653038939e-7
+Global_FDR = 5.946785326931693e-6
+NegLog10FDR = 6.065578988697937
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.580277187311216
+
+[EPHX1."TG(47:1)"]
+Source = "EPHX1"
+Target = "TG(47:1)"
+Interaction = "predicts"
+Gene = "EPHX1"
+Lipid = "TG(47:1)"
+LipidClass = "TG"
+Coefficient = -0.1063969522904863
+Abs_Coefficient = 0.1063969522904863
+RelativeModelWeight = 0.1659859754913588
+Direction = "Negative"
+Pearson_r = -0.683918835348435
+Pearson_p = 4.38058056600413e-8
+GeneWise_FDR = 1.4747954572213905e-6
+Global_FDR = 9.934511730239795e-6
+NegLog10FDR = 5.831268208811189
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1338947174826326
+
+[EPHX1."TG(16:0/20:4/22:6)"]
+Source = "EPHX1"
+Target = "TG(16:0/20:4/22:6)"
+Interaction = "predicts"
+Gene = "EPHX1"
+Lipid = "TG(16:0/20:4/22:6)"
+LipidClass = "TG"
+Coefficient = -0.1056585629364147
+Abs_Coefficient = 0.1056585629364147
+RelativeModelWeight = 0.1648340413937224
+Direction = "Negative"
+Pearson_r = -0.6073004771707868
+Pearson_p = 2.921630746709495e-6
+GeneWise_FDR = 2.6825882310696277e-5
+Global_FDR = 0.0002161316833757
+NegLog10FDR = 4.571445985061353
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9183639581244916
+
+[EPHX1."LacCer(d18:1/24:1)"]
+Source = "EPHX1"
+Target = "LacCer(d18:1/24:1)"
+Interaction = "predicts"
+Gene = "EPHX1"
+Lipid = "LacCer(d18:1/24:1)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.1323620357285052
+Abs_Coefficient = 0.1323620357285052
+RelativeModelWeight = 0.2064931480220842
+Direction = "Negative"
+Pearson_r = -0.5184473706687481
+Pearson_p = 0.0001148849314618
+GeneWise_FDR = 0.000504494699028
+Global_FDR = 0.0030904063283494
+NegLog10FDR = 3.2971433927471425
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.887330666670657
+
+[EPHX1."TG(16:0/18:0/18:1)"]
+Source = "EPHX1"
+Target = "TG(16:0/18:0/18:1)"
+Interaction = "predicts"
+Gene = "EPHX1"
+Lipid = "TG(16:0/18:0/18:1)"
+LipidClass = "TG"
+Coefficient = -0.1283362548756408
+Abs_Coefficient = 0.1283362548756408
+RelativeModelWeight = 0.2002126752492106
+Direction = "Negative"
+Pearson_r = -0.4823836912796047
+Pearson_p = 0.0003888707655659
+GeneWise_FDR = 0.0014546647156355
+Global_FDR = 0.0072443666380638
+NegLog10FDR = 2.8372370952891304
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7682635044133469
+
+[TMEM97."PS(18:0/18:1)"]
+Source = "TMEM97"
+Target = "PS(18:0/18:1)"
+Interaction = "predicts"
+Gene = "TMEM97"
+Lipid = "PS(18:0/18:1)"
+LipidClass = "PS"
+Coefficient = -0.3365944088547079
+Abs_Coefficient = 0.3365944088547079
+RelativeModelWeight = 0.5251085683934734
+Direction = "Negative"
+Pearson_r = -0.7466161884659187
+Pearson_p = 4.816600083694011e-10
+GeneWise_FDR = 4.864766084530952e-8
+Global_FDR = 3.829041692340491e-7
+NegLog10FDR = 7.312938037335972
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 4.365194991929143
+
+[TMEM97."PI(18:1/18:1)"]
+Source = "TMEM97"
+Target = "PI(18:1/18:1)"
+Interaction = "predicts"
+Gene = "TMEM97"
+Lipid = "PI(18:1/18:1)"
+LipidClass = "PI"
+Coefficient = -0.3536044786443126
+Abs_Coefficient = 0.3536044786443126
+RelativeModelWeight = 0.5516453532018865
+Direction = "Negative"
+Pearson_r = -0.6456784106846034
+Pearson_p = 4.125129742735471e-7
+GeneWise_FDR = 7.575238254841499e-6
+Global_FDR = 5.122255494456144e-5
+NegLog10FDR = 5.1206037032697855
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 3.3764025916990352
+
+[TMEM97."PC(18:2/20:3)"]
+Source = "TMEM97"
+Target = "PC(18:2/20:3)"
+Interaction = "predicts"
+Gene = "TMEM97"
+Lipid = "PC(18:2/20:3)"
+LipidClass = "PC"
+Coefficient = -0.0978129455636277
+Abs_Coefficient = 0.0978129455636277
+RelativeModelWeight = 0.1525943820339454
+Direction = "Negative"
+Pearson_r = -0.7555323626218835
+Pearson_p = 2.278342140827191e-10
+GeneWise_FDR = 4.6022511244709255e-8
+Global_FDR = 2.372428044445576e-7
+NegLog10FDR = 7.337029687493445
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.272183893161719
+
+[SLC51B."Cer(d18:1/24:1)"]
+Source = "SLC51B"
+Target = "Cer(d18:1/24:1)"
+Interaction = "predicts"
+Gene = "SLC51B"
+Lipid = "Cer(d18:1/24:1)"
+LipidClass = "CER"
+Coefficient = -0.2452204949445647
+Abs_Coefficient = 0.2452204949445647
+RelativeModelWeight = 0.3825594830265354
+Direction = "Negative"
+Pearson_r = -0.7753202300906031
+Pearson_p = 3.8384983718796334e-11
+GeneWise_FDR = 7.75376671119686e-9
+Global_FDR = 6.724830844308177e-8
+NegLog10FDR = 8.110487269818883
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 3.485303300061744
+
+[SLC51B."PC(20:0/20:4)"]
+Source = "SLC51B"
+Target = "PC(20:0/20:4)"
+Interaction = "predicts"
+Gene = "SLC51B"
+Lipid = "PC(20:0/20:4)"
+LipidClass = "PC"
+Coefficient = -0.205251060282779
+Abs_Coefficient = 0.205251060282779
+RelativeModelWeight = 0.3202046367705882
+Direction = "Negative"
+Pearson_r = -0.7113800938769091
+Pearson_p = 7.030525811912045e-9
+GeneWise_FDR = 3.034775170197043e-7
+Global_FDR = 2.6574213056165848e-6
+NegLog10FDR = 6.517873477886778
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.4072579462739747
+
+[SLC51B."Cer(d18:1/23:0)"]
+Source = "SLC51B"
+Target = "Cer(d18:1/23:0)"
+Interaction = "predicts"
+Gene = "SLC51B"
+Lipid = "Cer(d18:1/23:0)"
+LipidClass = "CER"
+Coefficient = -0.2272538326427133
+Abs_Coefficient = 0.2272538326427133
+RelativeModelWeight = 0.3545303533917452
+Direction = "Negative"
+Pearson_r = -0.6492699131444493
+Pearson_p = 3.386607567296104e-7
+GeneWise_FDR = 5.700789404948442e-6
+Global_FDR = 4.425535033390066e-5
+NegLog10FDR = 5.244065002138846
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.213710571809314
+
+[SLC51B."PC(18:0/18:1)"]
+Source = "SLC51B"
+Target = "PC(18:0/18:1)"
+Interaction = "predicts"
+Gene = "SLC51B"
+Lipid = "PC(18:0/18:1)"
+LipidClass = "PC"
+Coefficient = -0.2692250948917688
+Abs_Coefficient = 0.2692250948917688
+RelativeModelWeight = 0.420008177305279
+Direction = "Negative"
+Pearson_r = -0.5627686392230784
+Pearson_p = 2.099718237987452e-5
+GeneWise_FDR = 0.0001087546369419
+Global_FDR = 0.0009140153601677
+NegLog10FDR = 3.963552217082707
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.0847325196564843
+
+[SLC51B."PI(18:0/20:4)"]
+Source = "SLC51B"
+Target = "PI(18:0/20:4)"
+Interaction = "predicts"
+Gene = "SLC51B"
+Lipid = "PI(18:0/20:4)"
+LipidClass = "PI"
+Coefficient = -0.1921480142497778
+Abs_Coefficient = 0.1921480142497778
+RelativeModelWeight = 0.2997630561531483
+Direction = "Negative"
+Pearson_r = -0.6757790387544943
+Pearson_p = 7.258360174956757e-8
+GeneWise_FDR = 2.443647925568775e-6
+Global_FDR = 1.4325282553521168e-5
+NegLog10FDR = 5.611961365940602
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.9820217462209
+
+[SLC51B."PI(18:1/20:3)"]
+Source = "SLC51B"
+Target = "PI(18:1/20:3)"
+Interaction = "predicts"
+Gene = "SLC51B"
+Lipid = "PI(18:1/20:3)"
+LipidClass = "PI"
+Coefficient = -0.1489168464487891
+Abs_Coefficient = 0.1489168464487891
+RelativeModelWeight = 0.2323196998858901
+Direction = "Negative"
+Pearson_r = -0.7172812990216719
+Pearson_p = 4.615467449997982e-9
+GeneWise_FDR = 3.034775170197043e-7
+Global_FDR = 1.968949982541683e-6
+NegLog10FDR = 6.517873477886778
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.7465501101627496
+
+[GGT5."Cer(d18:1/16:0)"]
+Source = "GGT5"
+Target = "Cer(d18:1/16:0)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "Cer(d18:1/16:0)"
+LipidClass = "CER"
+Coefficient = -0.5319051084321963
+Abs_Coefficient = 0.5319051084321963
+RelativeModelWeight = 0.8298056137069407
+Direction = "Negative"
+Pearson_r = -0.5353336749191057
+Pearson_p = 6.18282493863619e-5
+GeneWise_FDR = 0.0007805816485028
+Global_FDR = 0.0019853865699301
+NegLog10FDR = 3.1075816632106075
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 3.4084943228918547
+
+[GGT5."TG(16:0/18:0/22:6)"]
+Source = "GGT5"
+Target = "TG(16:0/18:0/22:6)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "TG(16:0/18:0/22:6)"
+LipidClass = "TG"
+Coefficient = -0.3225399011369932
+Abs_Coefficient = 0.3225399011369932
+RelativeModelWeight = 0.5031826473651481
+Direction = "Negative"
+Pearson_r = -0.5270172968263819
+Pearson_p = 8.423351118367006e-5
+GeneWise_FDR = 0.0008955352241632
+Global_FDR = 0.002471581966988
+NegLog10FDR = 3.047917327337156
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.036841757084765
+
+[GGT5."Cer(d18:1/24:0)"]
+Source = "GGT5"
+Target = "Cer(d18:1/24:0)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "Cer(d18:1/24:0)"
+LipidClass = "CER"
+Coefficient = -0.2382827766430282
+Abs_Coefficient = 0.2382827766430282
+RelativeModelWeight = 0.3717362036451789
+Direction = "Negative"
+Pearson_r = -0.6319671386277924
+Pearson_p = 8.560161365564017e-7
+GeneWise_FDR = 4.3228814896098286e-5
+Global_FDR = 8.75569153625276e-5
+NegLog10FDR = 4.364226670345134
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.9940772579263188
+
+[GGT5."PI(18:0/22:6)"]
+Source = "GGT5"
+Target = "PI(18:0/22:6)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PI(18:0/22:6)"
+LipidClass = "PI"
+Coefficient = -0.2770559892301231
+Abs_Coefficient = 0.2770559892301231
+RelativeModelWeight = 0.432224867800066
+Direction = "Negative"
+Pearson_r = -0.5255750879229882
+Pearson_p = 8.880140555071843e-5
+GeneWise_FDR = 0.0008968941960622
+Global_FDR = 0.0025643710028237
+NegLog10FDR = 3.047258786361165
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.7493258938876102
+
+[GGT5."Cer(d18:1/18:0)"]
+Source = "GGT5"
+Target = "Cer(d18:1/18:0)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "Cer(d18:1/18:0)"
+LipidClass = "CER"
+Coefficient = -0.258006587644306
+Abs_Coefficient = 0.258006587644306
+RelativeModelWeight = 0.4025065963958652
+Direction = "Negative"
+Pearson_r = -0.510300406604606
+Pearson_p = 0.0001531423912521
+GeneWise_FDR = 0.0011897985781894
+Global_FDR = 0.00376876481927
+NegLog10FDR = 2.9245265543930987
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.5796478258739586
+
+[GGT5."PI(18:0/22:4)"]
+Source = "GGT5"
+Target = "PI(18:0/22:4)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PI(18:0/22:4)"
+LipidClass = "PI"
+Coefficient = -0.269111662456424
+Abs_Coefficient = 0.269111662456424
+RelativeModelWeight = 0.4198312155312081
+Direction = "Negative"
+Pearson_r = -0.4305400853981794
+Pearson_p = 0.0018025247500661
+GeneWise_FDR = 0.0063878947283047
+Global_FDR = 0.0209655931793764
+NegLog10FDR = 2.1946422495925844
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.3412105388338078
+
+[GGT5."PC(P-16:0/16:0)"]
+Source = "GGT5"
+Target = "PC(P-16:0/16:0)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PC(P-16:0/16:0)"
+LipidClass = "PC"
+Coefficient = -0.3219984348022761
+Abs_Coefficient = 0.3219984348022761
+RelativeModelWeight = 0.502337925633661
+Direction = "Negative"
+Pearson_r = -0.3552357347280607
+Pearson_p = 0.0113567021396051
+GeneWise_FDR = 0.025489487024447
+Global_FDR = 0.0723385152283713
+NegLog10FDR = 1.5936389046128712
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 1.3028831871859905
+
+[GGT5."PE(P-18:0/22:5)"]
+Source = "GGT5"
+Target = "PE(P-18:0/22:5)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PE(P-18:0/22:5)"
+LipidClass = "PE"
+Coefficient = -0.2743627044442869
+Abs_Coefficient = 0.2743627044442869
+RelativeModelWeight = 0.4280231731760273
+Direction = "Negative"
+Pearson_r = -0.3740447263687289
+Pearson_p = 0.0074529365268731
+GeneWise_FDR = 0.0177116844520984
+Global_FDR = 0.0547800393001792
+NegLog10FDR = 1.751740133701867
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 1.177808543782899
+
+[GGT5."Cer(d18:1/22:0)"]
+Source = "GGT5"
+Target = "Cer(d18:1/22:0)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "Cer(d18:1/22:0)"
+LipidClass = "CER"
+Coefficient = -0.2029057138070426
+Abs_Coefficient = 0.2029057138070426
+RelativeModelWeight = 0.3165457479184201
+Direction = "Negative"
+Pearson_r = -0.4853817726022698
+Pearson_p = 0.000353170843721
+GeneWise_FDR = 0.0019038902029742
+Global_FDR = 0.006770374635166
+NegLog10FDR = 2.720358100918652
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1776635375796478
+
+[GGT5."CE(20:4)"]
+Source = "GGT5"
+Target = "CE(20:4)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "CE(20:4)"
+LipidClass = "CE"
+Coefficient = -0.1797137013556432
+Abs_Coefficient = 0.1797137013556432
+RelativeModelWeight = 0.2803647415316658
+Direction = "Negative"
+Pearson_r = -0.5038461281558574
+Pearson_p = 0.0001913276214042
+GeneWise_FDR = 0.0012244326920429
+Global_FDR = 0.0044136903577234
+NegLog10FDR = 2.9120650833671715
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0968051159532917
+
+[GGT5."PC(18:1/20:5)"]
+Source = "GGT5"
+Target = "PC(18:1/20:5)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PC(18:1/20:5)"
+LipidClass = "PC"
+Coefficient = -0.1418889224986539
+Abs_Coefficient = 0.1418889224986539
+RelativeModelWeight = 0.2213556939869488
+Direction = "Negative"
+Pearson_r = -0.5782693932453676
+Pearson_p = 1.092021577745792e-5
+GeneWise_FDR = 0.0002450981763385
+Global_FDR = 0.0005694409598384
+NegLog10FDR = 3.610659920119088
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0205958263557706
+
+[GGT5."PC(17:0/18:1)"]
+Source = "GGT5"
+Target = "PC(17:0/18:1)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PC(17:0/18:1)"
+LipidClass = "PC"
+Coefficient = -0.209630557931214
+Abs_Coefficient = 0.209630557931214
+RelativeModelWeight = 0.3270369301181731
+Direction = "Negative"
+Pearson_r = -0.4192952327365508
+Pearson_p = 0.0024383295132737
+GeneWise_FDR = 0.0080744682242835
+Global_FDR = 0.0257667155377126
+NegLog10FDR = 2.0928860702184178
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0114879656094915
+
+[GGT5."PE(16:0/18:2)"]
+Source = "GGT5"
+Target = "PE(16:0/18:2)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PE(16:0/18:2)"
+LipidClass = "PE"
+Coefficient = -0.2592265525627361
+Abs_Coefficient = 0.2592265525627361
+RelativeModelWeight = 0.4044098188349627
+Direction = "Negative"
+Pearson_r = -0.3189976359790504
+Pearson_p = 0.0239487593882751
+GeneWise_FDR = 0.044305690141269
+Global_FDR = 0.1184508542457056
+NegLog10FDR = 1.3535404941322184
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.9517948848527592
+
+[GGT5."PC(18:0/20:4)"]
+Source = "GGT5"
+Target = "PC(18:0/20:4)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PC(18:0/20:4)"
+LipidClass = "PC"
+Coefficient = -0.2047987125935801
+Abs_Coefficient = 0.2047987125935801
+RelativeModelWeight = 0.3194989457631245
+Direction = "Negative"
+Pearson_r = -0.4011101331768095
+Pearson_p = 0.0038913204668625
+GeneWise_FDR = 0.0110710807648764
+Global_FDR = 0.035479122034836
+NegLog10FDR = 1.9558099809901817
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9443781728024844
+
+[GGT5."PE(P-18:0/18:1)"]
+Source = "GGT5"
+Target = "PE(P-18:0/18:1)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PE(P-18:0/18:1)"
+LipidClass = "PE"
+Coefficient = -0.2286421181786083
+Abs_Coefficient = 0.2286421181786083
+RelativeModelWeight = 0.3566961666408592
+Direction = "Negative"
+Pearson_r = -0.3186608552902067
+Pearson_p = 0.0241061110872309
+GeneWise_FDR = 0.044305690141269
+Global_FDR = 0.1189320363689048
+NegLog10FDR = 1.3535404941322184
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.839498872290996
+
+[GGT5."PI(16:0/18:0)"]
+Source = "GGT5"
+Target = "PI(16:0/18:0)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PI(16:0/18:0)"
+LipidClass = "PI"
+Coefficient = -0.1954901739398115
+Abs_Coefficient = 0.1954901739398115
+RelativeModelWeight = 0.3049770366709693
+Direction = "Negative"
+Pearson_r = -0.3713660902764352
+Pearson_p = 0.0079254120633302
+GeneWise_FDR = 0.0186155027534035
+Global_FDR = 0.0570314935435205
+NegLog10FDR = 1.7301252301906618
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.8326255024441962
+
+[GGT5."Cer(d18:1/20:0)"]
+Source = "GGT5"
+Target = "Cer(d18:1/20:0)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "Cer(d18:1/20:0)"
+LipidClass = "CER"
+Coefficient = -0.1380044081573449
+Abs_Coefficient = 0.1380044081573449
+RelativeModelWeight = 0.2152956059076213
+Direction = "Negative"
+Pearson_r = -0.468200082764148
+Pearson_p = 0.0006061126611304
+GeneWise_FDR = 0.002725464357231
+Global_FDR = 0.0098498969672263
+NegLog10FDR = 2.5645594931663176
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.767433995875006
+
+[GGT5."PC(18:1/18:1)"]
+Source = "GGT5"
+Target = "PC(18:1/18:1)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PC(18:1/18:1)"
+LipidClass = "PC"
+Coefficient = -0.1237808950811079
+Abs_Coefficient = 0.1237808950811079
+RelativeModelWeight = 0.1931060258299183
+Direction = "Negative"
+Pearson_r = -0.5107882511645233
+Pearson_p = 0.0001505597650149
+GeneWise_FDR = 0.0011897985781894
+Global_FDR = 0.0037274780318573
+NegLog10FDR = 2.9245265543930987
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7578497261828343
+
+[GGT5."PC(15:0/20:4)"]
+Source = "GGT5"
+Target = "PC(15:0/20:4)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PC(15:0/20:4)"
+LipidClass = "PC"
+Coefficient = -0.1192152687733414
+Abs_Coefficient = 0.1192152687733414
+RelativeModelWeight = 0.1859833600005945
+Direction = "Negative"
+Pearson_r = -0.5025760222562206
+Pearson_p = 0.0001997916459658
+GeneWise_FDR = 0.0012244326920429
+Global_FDR = 0.0045533279807475
+NegLog10FDR = 2.9120650833671715
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7275790087456326
+
+[GGT5."PE(P-18:0/22:6)"]
+Source = "GGT5"
+Target = "PE(P-18:0/22:6)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PE(P-18:0/22:6)"
+LipidClass = "PE"
+Coefficient = -0.1769313042070643
+Abs_Coefficient = 0.1769313042070643
+RelativeModelWeight = 0.2760240259851309
+Direction = "Negative"
+Pearson_r = -0.3414857551524969
+Pearson_p = 0.0152222954536809
+GeneWise_FDR = 0.0317000379550882
+Global_FDR = 0.0880027796660679
+NegLog10FDR = 1.4989402177924844
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.6897675396112415
+
+[GGT5."PE(P-16:0/18:2)"]
+Source = "GGT5"
+Target = "PE(P-16:0/18:2)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PE(P-16:0/18:2)"
+LipidClass = "PE"
+Coefficient = -0.1728457236758338
+Abs_Coefficient = 0.1728457236758338
+RelativeModelWeight = 0.2696502619315017
+Direction = "Negative"
+Pearson_r = -0.3427795038100986
+Pearson_p = 0.0148161950674375
+GeneWise_FDR = 0.0316270427125261
+Global_FDR = 0.0864377423516714
+NegLog10FDR = 1.4999414149029695
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.6741098573419949
+
+[GGT5."PI(18:0/18:2)"]
+Source = "GGT5"
+Target = "PI(18:0/18:2)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PI(18:0/18:2)"
+LipidClass = "PI"
+Coefficient = -0.1418499304278677
+Abs_Coefficient = 0.1418499304278677
+RelativeModelWeight = 0.2212948638901599
+Direction = "Negative"
+Pearson_r = -0.4120528079718004
+Pearson_p = 0.0029463012582984
+GeneWise_FDR = 0.0090174674875194
+Global_FDR = 0.0293789718547035
+NegLog10FDR = 2.044915414855605
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6738241422875209
+
+[GGT5."Cer(d18:0/16:0)"]
+Source = "GGT5"
+Target = "Cer(d18:0/16:0)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "Cer(d18:0/16:0)"
+LipidClass = "CER"
+Coefficient = -0.1401729314481171
+Abs_Coefficient = 0.1401729314481171
+RelativeModelWeight = 0.2186786394066621
+Direction = "Negative"
+Pearson_r = -0.4105709757111425
+Pearson_p = 0.0030610652163555
+GeneWise_FDR = 0.0090931643191738
+Global_FDR = 0.0301482260378333
+NegLog10FDR = 2.0412849608685386
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6650640572906756
+
+[GGT5."PE(20:0/20:4)"]
+Source = "GGT5"
+Target = "PE(20:0/20:4)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PE(20:0/20:4)"
+LipidClass = "PE"
+Coefficient = -0.1290658668297558
+Abs_Coefficient = 0.1290658668297558
+RelativeModelWeight = 0.2013509160477186
+Direction = "Negative"
+Pearson_r = -0.4396526165246224
+Pearson_p = 0.0014003606775292
+GeneWise_FDR = 0.0054617630327232
+Global_FDR = 0.0176518218664478
+NegLog10FDR = 2.262667146344431
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6569410186752472
+
+[GGT5."PC(18:0/22:6)"]
+Source = "GGT5"
+Target = "PC(18:0/22:6)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PC(18:0/22:6)"
+LipidClass = "PC"
+Coefficient = -0.1560551038812782
+Abs_Coefficient = 0.1560551038812782
+RelativeModelWeight = 0.2434558329962188
+Direction = "Negative"
+Pearson_r = -0.3600815964202781
+Pearson_p = 0.0102122678921023
+GeneWise_FDR = 0.0234417967523258
+Global_FDR = 0.0674540685963469
+NegLog10FDR = 1.6300091038435809
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.6402910571638781
+
+[GGT5."PC(16:0/26:0)"]
+Source = "GGT5"
+Target = "PC(16:0/26:0)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PC(16:0/26:0)"
+LipidClass = "PC"
+Coefficient = -0.134058645775407
+Abs_Coefficient = 0.134058645775407
+RelativeModelWeight = 0.2091399670107952
+Direction = "Negative"
+Pearson_r = -0.4110508571154886
+Pearson_p = 0.003023474966177
+GeneWise_FDR = 0.0090931643191738
+Global_FDR = 0.0298990865947137
+NegLog10FDR = 2.0412849608685386
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.636054236386474
+
+[GGT5."CE(20:2)"]
+Source = "GGT5"
+Target = "CE(20:2)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "CE(20:2)"
+LipidClass = "CE"
+Coefficient = -0.1071550798278759
+Abs_Coefficient = 0.1071550798278759
+RelativeModelWeight = 0.1671687024034691
+Direction = "Negative"
+Pearson_r = -0.4739651811749874
+Pearson_p = 0.0005072371479321
+GeneWise_FDR = 0.0024990708263973
+Global_FDR = 0.0087029605061311
+NegLog10FDR = 2.6022214353190587
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6021786831122491
+
+[GGT5."PE(18:2/20:4)"]
+Source = "GGT5"
+Target = "PE(18:2/20:4)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PE(18:2/20:4)"
+LipidClass = "PE"
+Coefficient = -0.1417835859982546
+Abs_Coefficient = 0.1417835859982546
+RelativeModelWeight = 0.2211913623834843
+Direction = "Negative"
+Pearson_r = -0.3390939337828723
+Pearson_p = 0.0159980903223601
+GeneWise_FDR = 0.0329756555624159
+Global_FDR = 0.090972573239246
+NegLog10FDR = 1.4818065618374048
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.5489541745850869
+
+[GGT5."PG(18:1/22:4)"]
+Source = "GGT5"
+Target = "PG(18:1/22:4)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "PG(18:1/22:4)"
+LipidClass = "PG"
+Coefficient = -0.1417472470065246
+Abs_Coefficient = 0.1417472470065246
+RelativeModelWeight = 0.2211346712578381
+Direction = "Negative"
+Pearson_r = -0.3328701605826205
+Pearson_p = 0.0181761509901144
+GeneWise_FDR = 0.0359959068627756
+Global_FDR = 0.0989062160511932
+NegLog10FDR = 1.4437468805653348
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.5403971630711827
+
+[GGT5."CE(18:2)"]
+Source = "GGT5"
+Target = "CE(18:2)"
+Interaction = "predicts"
+Gene = "GGT5"
+Lipid = "CE(18:2)"
+LipidClass = "CE"
+Coefficient = -0.106788129326252
+Abs_Coefficient = 0.106788129326252
+RelativeModelWeight = 0.1665962364102442
+Direction = "Negative"
+Pearson_r = -0.4229444665060535
+Pearson_p = 0.0022130818668509
+GeneWise_FDR = 0.0074507089517314
+Global_FDR = 0.0241001454852078
+NegLog10FDR = 2.127802401187807
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.5210801082728135
+
+[HSD17B14."PE(18:1/18:1)"]
+Source = "HSD17B14"
+Target = "PE(18:1/18:1)"
+Interaction = "predicts"
+Gene = "HSD17B14"
+Lipid = "PE(18:1/18:1)"
+LipidClass = "PE"
+Coefficient = 0.3728922250241554
+Abs_Coefficient = 0.3728922250241554
+RelativeModelWeight = 0.5817354575607723
+Direction = "Positive"
+Pearson_r = 0.6393574912439248
+Pearson_p = 5.801435188066378e-7
+GeneWise_FDR = 5.859449539947042e-5
+Global_FDR = 6.536295433162503e-5
+NegLog10FDR = 4.232143181420879
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 3.04372320766735
+
+[HSD17B14."PE(18:1/20:3)"]
+Source = "HSD17B14"
+Target = "PE(18:1/20:3)"
+Interaction = "predicts"
+Gene = "HSD17B14"
+Lipid = "PE(18:1/20:3)"
+LipidClass = "PE"
+Coefficient = 0.2088416692320286
+Abs_Coefficient = 0.2088416692320286
+RelativeModelWeight = 0.3258062138479279
+Direction = "Positive"
+Pearson_r = 0.6640228974943349
+Pearson_p = 1.4645917064331076e-7
+GeneWise_FDR = 2.958475246994877e-5
+Global_FDR = 2.41804810272471e-5
+NegLog10FDR = 4.528932060031893
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.8013604211014156
+
+[HSD17B14."TG(18:1/20:4/22:6)"]
+Source = "HSD17B14"
+Target = "TG(18:1/20:4/22:6)"
+Interaction = "predicts"
+Gene = "HSD17B14"
+Lipid = "TG(18:1/20:4/22:6)"
+LipidClass = "TG"
+Coefficient = 0.2896658586051454
+Abs_Coefficient = 0.2896658586051454
+RelativeModelWeight = 0.4518970616361939
+Direction = "Positive"
+Pearson_r = 0.4850319665030504
+Pearson_p = 0.0003571774887142
+GeneWise_FDR = 0.0109719875346371
+Global_FDR = 0.0068259437769801
+NegLog10FDR = 1.959714694472665
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.3374863737136629
+
+[HSD17B14."PC(O-16:0/16:1)"]
+Source = "HSD17B14"
+Target = "PC(O-16:0/16:1)"
+Interaction = "predicts"
+Gene = "HSD17B14"
+Lipid = "PC(O-16:0/16:1)"
+LipidClass = "PC"
+Coefficient = 0.2225239521064007
+Abs_Coefficient = 0.2225239521064007
+RelativeModelWeight = 0.3471514405763296
+Direction = "Positive"
+Pearson_r = 0.5500360704651542
+Pearson_p = 3.507131664456245e-5
+GeneWise_FDR = 0.0023614686540672
+Global_FDR = 0.0013222297716296
+NegLog10FDR = 2.6268178148368024
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.259055029128492
+
+[APOL4."SM(d18:0/20:0)"]
+Source = "APOL4"
+Target = "SM(d18:0/20:0)"
+Interaction = "predicts"
+Gene = "APOL4"
+Lipid = "SM(d18:0/20:0)"
+LipidClass = "SM"
+Coefficient = 0.4247460213923236
+Abs_Coefficient = 0.4247460213923236
+RelativeModelWeight = 0.6626306597992887
+Direction = "Positive"
+Pearson_r = 0.5412425499737173
+Pearson_p = 4.9386026565287165e-5
+GeneWise_FDR = 0.0009069070332898
+Global_FDR = 0.0016902174409891
+NegLog10FDR = 3.0424372300276348
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.6786428489304206
+
+[APOL4."PI(18:0/0:0)"]
+Source = "APOL4"
+Target = "PI(18:0/0:0)"
+Interaction = "predicts"
+Gene = "APOL4"
+Lipid = "PI(18:0/0:0)"
+LipidClass = "PI"
+Coefficient = 0.3406618392740155
+Abs_Coefficient = 0.3406618392740155
+RelativeModelWeight = 0.5314540171244553
+Direction = "Positive"
+Pearson_r = 0.4956572009615386
+Pearson_p = 0.0002521769212602
+GeneWise_FDR = 0.00243274847388
+Global_FDR = 0.0053657814259528
+NegLog10FDR = 2.6139027912141946
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.920623155888065
+
+[APOL4."SM(d18:2/18:0)"]
+Source = "APOL4"
+Target = "SM(d18:2/18:0)"
+Interaction = "predicts"
+Gene = "APOL4"
+Lipid = "SM(d18:2/18:0)"
+LipidClass = "SM"
+Coefficient = 0.1570590576825336
+Abs_Coefficient = 0.1570590576825336
+RelativeModelWeight = 0.2450220644291894
+Direction = "Positive"
+Pearson_r = 0.4377721832505993
+Pearson_p = 0.0014760890103622
+GeneWise_FDR = 0.0090354539422175
+Global_FDR = 0.018288345072078
+NegLog10FDR = 2.044050023551545
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7458594209963223
+
+[APOL4."PG(22:6/22:6)"]
+Source = "APOL4"
+Target = "PG(22:6/22:6)"
+Interaction = "predicts"
+Gene = "APOL4"
+Lipid = "PG(22:6/22:6)"
+LipidClass = "PG"
+Coefficient = 0.0051886730406706
+Abs_Coefficient = 0.0051886730406706
+RelativeModelWeight = 0.0080946581421811
+Direction = "Positive"
+Pearson_r = 0.3630633740313879
+Pearson_p = 0.0095586464324971
+GeneWise_FDR = 0.0301694778025692
+Global_FDR = 0.0645661886532345
+NegLog10FDR = 1.5204322068759006
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.0204020370852035
+
+[HEXA."PC(20:0/20:4)"]
+Source = "HEXA"
+Target = "PC(20:0/20:4)"
+Interaction = "predicts"
+Gene = "HEXA"
+Lipid = "PC(20:0/20:4)"
+LipidClass = "PC"
+Coefficient = 0.2613261193057568
+Abs_Coefficient = 0.2613261193057568
+RelativeModelWeight = 0.407685275757808
+Direction = "Positive"
+Pearson_r = 0.6861277066709387
+Pearson_p = 3.8089705336024086e-8
+GeneWise_FDR = 3.289863788834993e-6
+Global_FDR = 9.007862480669188e-6
+NegLog10FDR = 5.4828220828956
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.6429511085541004
+
+[HEXA."PC(18:0/18:2)"]
+Source = "HEXA"
+Target = "PC(18:0/18:2)"
+Interaction = "predicts"
+Gene = "HEXA"
+Lipid = "PC(18:0/18:2)"
+LipidClass = "PC"
+Coefficient = 0.1774593435148979
+Abs_Coefficient = 0.1774593435148979
+RelativeModelWeight = 0.2768478007053809
+Direction = "Positive"
+Pearson_r = 0.682180649419244
+Pearson_p = 4.88593632005197e-8
+GeneWise_FDR = 3.289863788834993e-6
+Global_FDR = 1.0782896836241262e-5
+NegLog10FDR = 5.4828220828956
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.7947550360139235
+
+[HEXA."PS(18:0/22:4)"]
+Source = "HEXA"
+Target = "PS(18:0/22:4)"
+Interaction = "predicts"
+Gene = "HEXA"
+Lipid = "PS(18:0/22:4)"
+LipidClass = "PS"
+Coefficient = 0.2246970736601294
+Abs_Coefficient = 0.2246970736601294
+RelativeModelWeight = 0.3505416476564361
+Direction = "Positive"
+Pearson_r = 0.5694834772442654
+Pearson_p = 1.5882706119231386e-5
+GeneWise_FDR = 0.000205766506219
+Global_FDR = 0.0007494174146734
+NegLog10FDR = 3.6866253163960634
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.6428573603578418
+
+[HEXA."PI(18:0/22:6)"]
+Source = "HEXA"
+Target = "PI(18:0/22:6)"
+Interaction = "predicts"
+Gene = "HEXA"
+Lipid = "PI(18:0/22:6)"
+LipidClass = "PI"
+Coefficient = 0.2686678552531107
+Abs_Coefficient = 0.2686678552531107
+RelativeModelWeight = 0.4191388482219366
+Direction = "Positive"
+Pearson_r = 0.4857479928230999
+Pearson_p = 0.0003490198279057
+GeneWise_FDR = 0.0025179287584631
+Global_FDR = 0.0067133069231529
+NegLog10FDR = 2.598956561854864
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.5084625081366283
+
+[PER2."PC(18:2/18:3)"]
+Source = "PER2"
+Target = "PC(18:2/18:3)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PC(18:2/18:3)"
+LipidClass = "PC"
+Coefficient = -0.308512386102432
+Abs_Coefficient = 0.308512386102432
+RelativeModelWeight = 0.4812988366299081
+Direction = "Negative"
+Pearson_r = -0.5973880207381782
+Pearson_p = 4.649903880986529e-6
+GeneWise_FDR = 0.0001216715496907
+Global_FDR = 0.00030525367939
+NegLog10FDR = 3.914810960445264
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.365492797518227
+
+[PER2."PI(20:4/20:4)"]
+Source = "PER2"
+Target = "PI(20:4/20:4)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PI(20:4/20:4)"
+LipidClass = "PI"
+Coefficient = -0.2206931521027196
+Abs_Coefficient = 0.2206931521027196
+RelativeModelWeight = 0.3442952767671359
+Direction = "Negative"
+Pearson_r = -0.6946087482730265
+Pearson_p = 2.2012091661139525e-8
+GeneWise_FDR = 4.446442515550184e-6
+Global_FDR = 6.108851203796424e-6
+NegLog10FDR = 5.351987317953226
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.186959231656043
+
+[PER2."PC(17:0/20:4)"]
+Source = "PER2"
+Target = "PC(17:0/20:4)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PC(17:0/20:4)"
+LipidClass = "PC"
+Coefficient = -0.2133602509674728
+Abs_Coefficient = 0.2133602509674728
+RelativeModelWeight = 0.3328554871687221
+Direction = "Negative"
+Pearson_r = -0.6175857442305799
+Pearson_p = 1.7736276385313947e-6
+GeneWise_FDR = 6.985858221196394e-5
+Global_FDR = 0.0001501005478158
+NegLog10FDR = 4.155780232665861
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.7161297410788623
+
+[PER2."PC(16:1/18:2)"]
+Source = "PER2"
+Target = "PC(16:1/18:2)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PC(16:1/18:2)"
+LipidClass = "PC"
+Coefficient = -0.275179216876301
+Abs_Coefficient = 0.275179216876301
+RelativeModelWeight = 0.429296984216767
+Direction = "Negative"
+Pearson_r = -0.5045894357363929
+Pearson_p = 0.000186526813033
+GeneWise_FDR = 0.0012992557321613
+Global_FDR = 0.0043387554559402
+NegLog10FDR = 2.886305358445416
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.6683791701260788
+
+[PER2."Cer(d18:1/26:1)"]
+Source = "PER2"
+Target = "Cer(d18:1/26:1)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "Cer(d18:1/26:1)"
+LipidClass = "CER"
+Coefficient = -0.1606483792898285
+Abs_Coefficient = 0.1606483792898285
+RelativeModelWeight = 0.2506216331716517
+Direction = "Negative"
+Pearson_r = -0.6559625559128386
+Pearson_p = 2.328514077206601e-7
+GeneWise_FDR = 2.351799217978667e-5
+Global_FDR = 3.3702369372756154e-5
+NegLog10FDR = 4.628599758380788
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.4106488639149573
+
+[PER2."PI(18:0/18:1)"]
+Source = "PER2"
+Target = "PI(18:0/18:1)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PI(18:0/18:1)"
+LipidClass = "PI"
+Coefficient = -0.1869566864803531
+Abs_Coefficient = 0.1869566864803531
+RelativeModelWeight = 0.2916642564661916
+Direction = "Negative"
+Pearson_r = -0.5728143330200032
+Pearson_p = 1.3797341732903672e-5
+GeneWise_FDR = 0.0002143894638497
+Global_FDR = 0.0006761666903069
+NegLog10FDR = 3.6687965618167566
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.3617210777941962
+
+[PER2."Cer(d18:1/25:0)"]
+Source = "PER2"
+Target = "Cer(d18:1/25:0)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "Cer(d18:1/25:0)"
+LipidClass = "CER"
+Coefficient = -0.1730718556192157
+Abs_Coefficient = 0.1730718556192157
+RelativeModelWeight = 0.2700030420666839
+Direction = "Negative"
+Pearson_r = -0.5659446936267488
+Pearson_p = 1.8413938743905477e-5
+GeneWise_FDR = 0.0002656868304477
+Global_FDR = 0.0008342807447079
+NegLog10FDR = 3.575629972144512
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.2354340118505145
+
+[PER2."PG(16:0/18:2)"]
+Source = "PER2"
+Target = "PG(16:0/18:2)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PG(16:0/18:2)"
+LipidClass = "PG"
+Coefficient = -0.1763964941404369
+Abs_Coefficient = 0.1763964941404369
+RelativeModelWeight = 0.2751896884528924
+Direction = "Negative"
+Pearson_r = -0.5051753585851756
+Pearson_p = 0.0001828200391929
+GeneWise_FDR = 0.0012992557321613
+Global_FDR = 0.0042778361620508
+NegLog10FDR = 2.886305358445416
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0694711608234004
+
+[PER2."PC(O-16:0/16:1)"]
+Source = "PER2"
+Target = "PC(O-16:0/16:1)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PC(O-16:0/16:1)"
+LipidClass = "PC"
+Coefficient = -0.1299266878242471
+Abs_Coefficient = 0.1299266878242471
+RelativeModelWeight = 0.2026938512485688
+Direction = "Negative"
+Pearson_r = -0.615216743922997
+Pearson_p = 1.9928404871300456e-6
+GeneWise_FDR = 6.985858221196394e-5
+Global_FDR = 0.0001631974777298
+NegLog10FDR = 4.155780232665861
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0450449515502855
+
+[PER2."PC(22:6/0:0)"]
+Source = "PER2"
+Target = "PC(22:6/0:0)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PC(22:6/0:0)"
+LipidClass = "PC"
+Coefficient = -0.1424653990196077
+Abs_Coefficient = 0.1424653990196077
+RelativeModelWeight = 0.2222550338234615
+Direction = "Negative"
+Pearson_r = -0.4567095805745189
+Pearson_p = 0.0008564988305892
+GeneWise_FDR = 0.0046760206426764
+Global_FDR = 0.0125585402290913
+NegLog10FDR = 2.330123580277373
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7401367289708544
+
+[PER2."TG(54:4)"]
+Source = "PER2"
+Target = "TG(54:4)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "TG(54:4)"
+LipidClass = "TG"
+Coefficient = -0.1400221621717225
+Abs_Coefficient = 0.1400221621717225
+RelativeModelWeight = 0.2184434297988891
+Direction = "Negative"
+Pearson_r = -0.4184065217630798
+Pearson_p = 0.0024961691975555
+GeneWise_FDR = 0.0112050261756938
+Global_FDR = 0.0261894787718442
+NegLog10FDR = 1.950587124586652
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6445363714151505
+
+[PER2."PC(O-16:0/0:0)"]
+Source = "PER2"
+Target = "PC(O-16:0/0:0)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PC(O-16:0/0:0)"
+LipidClass = "PC"
+Coefficient = -0.1018971616015457
+Abs_Coefficient = 0.1018971616015457
+RelativeModelWeight = 0.1589660173916988
+Direction = "Negative"
+Pearson_r = -0.4757294344789664
+Pearson_p = 0.0004800320418467
+GeneWise_FDR = 0.0030104484725765
+Global_FDR = 0.0083654839048204
+NegLog10FDR = 2.5213688018623124
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.5597779741994302
+
+[PER2."PC(20:4/P-18:1)"]
+Source = "PER2"
+Target = "PC(20:4/P-18:1)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PC(20:4/P-18:1)"
+LipidClass = "PC"
+Coefficient = -0.1135310678221301
+Abs_Coefficient = 0.1135310678221301
+RelativeModelWeight = 0.1771156469743816
+Direction = "Negative"
+Pearson_r = -0.413082099992938
+Pearson_p = 0.002868838736225
+GeneWise_FDR = 0.0120730296816136
+Global_FDR = 0.028846944882926
+NegLog10FDR = 1.9181837316508985
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.516855999621464
+
+[PER2."PE(O-18:0/16:0)"]
+Source = "PER2"
+Target = "PE(O-18:0/16:0)"
+Interaction = "predicts"
+Gene = "PER2"
+Lipid = "PE(O-18:0/16:0)"
+LipidClass = "PE"
+Coefficient = -0.0902880729653415
+Abs_Coefficient = 0.0902880729653415
+RelativeModelWeight = 0.140855104810434
+Direction = "Negative"
+Pearson_r = -0.3924512398009447
+Pearson_p = 0.0048185248641688
+GeneWise_FDR = 0.0170761758344229
+Global_FDR = 0.0409183317931739
+NegLog10FDR = 1.7676093818883274
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3898319095602209
+
+[PLA2G5."PI(16:0/22:6)"]
+Source = "PLA2G5"
+Target = "PI(16:0/22:6)"
+Interaction = "predicts"
+Gene = "PLA2G5"
+Lipid = "PI(16:0/22:6)"
+LipidClass = "PI"
+Coefficient = -0.2456454823464348
+Abs_Coefficient = 0.2456454823464348
+RelativeModelWeight = 0.383222490255148
+Direction = "Negative"
+Pearson_r = -0.6599212931527724
+Pearson_p = 1.8575416555958038e-7
+GeneWise_FDR = 9.27710150024362e-6
+Global_FDR = 2.856318005023065e-5
+NegLog10FDR = 5.032587691785133
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.311823277928453
+
+[PLA2G5."PI(18:1/22:6)"]
+Source = "PLA2G5"
+Target = "PI(18:1/22:6)"
+Interaction = "predicts"
+Gene = "PLA2G5"
+Lipid = "PI(18:1/22:6)"
+LipidClass = "PI"
+Coefficient = -0.220489675498795
+Abs_Coefficient = 0.220489675498795
+RelativeModelWeight = 0.3439778403945237
+Direction = "Negative"
+Pearson_r = -0.652974336574731
+Pearson_p = 2.75557470304266e-7
+GeneWise_FDR = 9.27710150024362e-6
+Global_FDR = 3.8236702129382485e-5
+NegLog10FDR = 5.032587691785133
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.075076486210835
+
+[PLA2G5."TG(49:0)"]
+Source = "PLA2G5"
+Target = "TG(49:0)"
+Interaction = "predicts"
+Gene = "PLA2G5"
+Lipid = "TG(49:0)"
+LipidClass = "TG"
+Coefficient = -0.1282226365094633
+Abs_Coefficient = 0.1282226365094633
+RelativeModelWeight = 0.20003542341128
+Direction = "Negative"
+Pearson_r = -0.7439543424584603
+Pearson_p = 5.987093283823616e-10
+GeneWise_FDR = 1.2093928433323705e-7
+Global_FDR = 4.498351429467963e-7
+NegLog10FDR = 6.917432605690766
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.5837669836096266
+
+[PLA2G5."PI(16:0/20:4)"]
+Source = "PLA2G5"
+Target = "PI(16:0/20:4)"
+Interaction = "predicts"
+Gene = "PLA2G5"
+Lipid = "PI(16:0/20:4)"
+LipidClass = "PI"
+Coefficient = -0.2901197650114983
+Abs_Coefficient = 0.2901197650114983
+RelativeModelWeight = 0.4526051843410111
+Direction = "Negative"
+Pearson_r = -0.3638168911871762
+Pearson_p = 0.0093993053807271
+GeneWise_FDR = 0.0171050422243862
+Global_FDR = 0.0638725249783446
+NegLog10FDR = 1.7668758494066987
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 1.2523023538694107
+
+[PLA2G5."PI(16:1/18:1)"]
+Source = "PLA2G5"
+Target = "PI(16:1/18:1)"
+Interaction = "predicts"
+Gene = "PLA2G5"
+Lipid = "PI(16:1/18:1)"
+LipidClass = "PI"
+Coefficient = -0.1060840096924448
+Abs_Coefficient = 0.1060840096924448
+RelativeModelWeight = 0.1654977652438801
+Direction = "Negative"
+Pearson_r = -0.7048939607066754
+Pearson_p = 1.103418109838632e-8
+GeneWise_FDR = 7.429681939580122e-7
+Global_FDR = 3.7013569735294806e-6
+NegLog10FDR = 6.129029777739007
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1798384965728808
+
+[PLA2G5."PI(18:0/18:2)"]
+Source = "PLA2G5"
+Target = "PI(18:0/18:2)"
+Interaction = "predicts"
+Gene = "PLA2G5"
+Lipid = "PI(18:0/18:2)"
+LipidClass = "PI"
+Coefficient = -0.1089710419150375
+Abs_Coefficient = 0.1089710419150375
+RelativeModelWeight = 0.1700017181243508
+Direction = "Negative"
+Pearson_r = -0.4154514865908281
+Pearson_p = 0.002697325367182
+GeneWise_FDR = 0.0058231888151187
+Global_FDR = 0.0276264350890087
+NegLog10FDR = 2.2348391277977404
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.5499282095814922
+
+[HDLBP."HexCer(d18:1/24:1)"]
+Source = "HDLBP"
+Target = "HexCer(d18:1/24:1)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "HexCer(d18:1/24:1)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.50706677946782
+Abs_Coefficient = 0.50706677946782
+RelativeModelWeight = 0.7910562494256113
+Direction = "Negative"
+Pearson_r = -0.467678131908416
+Pearson_p = 0.0006158699132075
+GeneWise_FDR = 0.0124405722467932
+Global_FDR = 0.0099672725413211
+NegLog10FDR = 1.9051596423213544
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.298144690637381
+
+[HDLBP."Cer(d18:1/20:0)"]
+Source = "HDLBP"
+Target = "Cer(d18:1/20:0)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "Cer(d18:1/20:0)"
+LipidClass = "CER"
+Coefficient = -0.3465485354856278
+Abs_Coefficient = 0.3465485354856278
+RelativeModelWeight = 0.540637635565311
+Direction = "Negative"
+Pearson_r = -0.4369792707771975
+Pearson_p = 0.0015091010207952
+GeneWise_FDR = 0.0179316709529786
+Global_FDR = 0.0185672918404781
+NegLog10FDR = 1.7463792390576849
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.4847959781698048
+
+[HDLBP."SM(d18:2/24:0)"]
+Source = "HDLBP"
+Target = "SM(d18:2/24:0)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "SM(d18:2/24:0)"
+LipidClass = "SM"
+Coefficient = -0.3963051427006314
+Abs_Coefficient = 0.3963051427006314
+RelativeModelWeight = 0.6182610900715472
+Direction = "Negative"
+Pearson_r = -0.3665219998696741
+Pearson_p = 0.0088460254424119
+GeneWise_FDR = 0.047023608930716
+Global_FDR = 0.0613316909248831
+NegLog10FDR = 1.327684043042862
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 1.4391164737938262
+
+[HDLBP."CE(18:2)"]
+Source = "HDLBP"
+Target = "CE(18:2)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "CE(18:2)"
+LipidClass = "CE"
+Coefficient = -0.3017900004572846
+Abs_Coefficient = 0.3017900004572846
+RelativeModelWeight = 0.4708114898129385
+Direction = "Negative"
+Pearson_r = -0.4937612895997046
+Pearson_p = 0.0002685611166183
+GeneWise_FDR = 0.0118766667204384
+Global_FDR = 0.0056050003231628
+NegLog10FDR = 1.925305430402372
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.3772674078456202
+
+[HDLBP."Cer(d18:1/18:0)"]
+Source = "HDLBP"
+Target = "Cer(d18:1/18:0)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "Cer(d18:1/18:0)"
+LipidClass = "CER"
+Coefficient = -0.268824073057519
+Abs_Coefficient = 0.268824073057519
+RelativeModelWeight = 0.4193825578780463
+Direction = "Negative"
+Pearson_r = -0.4829586684730905
+Pearson_p = 0.0003817812119624
+GeneWise_FDR = 0.0118766667204384
+Global_FDR = 0.0071490422376792
+NegLog10FDR = 1.925305430402372
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.226822073976686
+
+[HDLBP."PI(16:1/18:1)"]
+Source = "HDLBP"
+Target = "PI(16:1/18:1)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "PI(16:1/18:1)"
+LipidClass = "PI"
+Coefficient = -0.2633866254528349
+Abs_Coefficient = 0.2633866254528349
+RelativeModelWeight = 0.4108997956802859
+Direction = "Negative"
+Pearson_r = -0.4476687351637432
+Pearson_p = 0.0011149786867832
+GeneWise_FDR = 0.0160875496235869
+Global_FDR = 0.015072150272665
+NegLog10FDR = 1.793510100462583
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1478527295108905
+
+[HDLBP."PE(18:0/18:2)"]
+Source = "HDLBP"
+Target = "PE(18:0/18:2)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "PE(18:0/18:2)"
+LipidClass = "PE"
+Coefficient = -0.285029899062945
+Abs_Coefficient = 0.285029899062945
+RelativeModelWeight = 0.4446646715123706
+Direction = "Negative"
+Pearson_r = -0.4148728040804703
+Pearson_p = 0.0027383552805832
+GeneWise_FDR = 0.0271754806551556
+Global_FDR = 0.0279228846138253
+NegLog10FDR = 1.565822765768412
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.140930737299373
+
+[HDLBP."PE(18:2/20:4)"]
+Source = "HDLBP"
+Target = "PE(18:2/20:4)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "PE(18:2/20:4)"
+LipidClass = "PE"
+Coefficient = -0.1835226089548605
+Abs_Coefficient = 0.1835226089548605
+RelativeModelWeight = 0.2863068783109829
+Direction = "Negative"
+Pearson_r = -0.5502332714260973
+Pearson_p = 3.479929485627017e-5
+GeneWise_FDR = 0.0070294575609665
+Global_FDR = 0.0013158661350827
+NegLog10FDR = 2.1530781866968383
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9027479727036264
+
+[HDLBP."PE(18:0/22:6)"]
+Source = "HDLBP"
+Target = "PE(18:0/22:6)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "PE(18:0/22:6)"
+LipidClass = "PE"
+Coefficient = -0.1840024062081276
+Abs_Coefficient = 0.1840024062081276
+RelativeModelWeight = 0.287055392374658
+Direction = "Negative"
+Pearson_r = -0.4537523533615063
+Pearson_p = 0.0009344100209739
+GeneWise_FDR = 0.0157292353530617
+Global_FDR = 0.0133506850183803
+NegLog10FDR = 1.8032923892659385
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8047001967416266
+
+[HDLBP."CE(20:2)"]
+Source = "HDLBP"
+Target = "CE(20:2)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "CE(20:2)"
+LipidClass = "CE"
+Coefficient = -0.169108724531654
+Abs_Coefficient = 0.169108724531654
+RelativeModelWeight = 0.2638203068904632
+Direction = "Negative"
+Pearson_r = -0.4794301569091967
+Pearson_p = 0.0004272004722709
+GeneWise_FDR = 0.0118766667204384
+Global_FDR = 0.0077210937609671
+NegLog10FDR = 1.925305430402372
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7717549763970926
+
+[HDLBP."PE(20:4/22:0)"]
+Source = "HDLBP"
+Target = "PE(20:4/22:0)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "PE(20:4/22:0)"
+LipidClass = "PE"
+Coefficient = -0.178966199652759
+Abs_Coefficient = 0.178966199652759
+RelativeModelWeight = 0.279198591593499
+Direction = "Negative"
+Pearson_r = -0.4136731778739321
+Pearson_p = 0.0028251737314765
+GeneWise_FDR = 0.0271754806551556
+Global_FDR = 0.0285342546879134
+NegLog10FDR = 1.565822765768412
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.716374102481077
+
+[HDLBP."PC(18:1/20:3)"]
+Source = "HDLBP"
+Target = "PC(18:1/20:3)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "PC(18:1/20:3)"
+LipidClass = "PC"
+Coefficient = -0.1626220034739117
+Abs_Coefficient = 0.1626220034739117
+RelativeModelWeight = 0.2537006117363196
+Direction = "Negative"
+Pearson_r = -0.4032815907783433
+Pearson_p = 0.0036850010617057
+GeneWise_FDR = 0.0297748085785828
+Global_FDR = 0.0342105955213763
+NegLog10FDR = 1.5261510219033687
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6408860595952134
+
+[HDLBP."PC(15:0/20:4)"]
+Source = "HDLBP"
+Target = "PC(15:0/20:4)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "PC(15:0/20:4)"
+LipidClass = "PC"
+Coefficient = -0.1668658142977804
+Abs_Coefficient = 0.1668658142977804
+RelativeModelWeight = 0.2603212250549928
+Direction = "Negative"
+Pearson_r = -0.3762709808727462
+Pearson_p = 0.0070790588868704
+GeneWise_FDR = 0.0408562827185096
+Global_FDR = 0.0529115172396332
+NegLog10FDR = 1.3887411498983595
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.621840022480813
+
+[HDLBP."TG(16:0/16:0/16:0)"]
+Source = "HDLBP"
+Target = "TG(16:0/16:0/16:0)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "TG(16:0/16:0/16:0)"
+LipidClass = "TG"
+Coefficient = -0.1376430748984143
+Abs_Coefficient = 0.1376430748984143
+RelativeModelWeight = 0.2147319031683049
+Direction = "Negative"
+Pearson_r = -0.4446027915348877
+Pearson_p = 0.0012173186039555
+GeneWise_FDR = 0.0162684654310157
+Global_FDR = 0.0160140211792951
+NegLog10FDR = 1.788653411185673
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.5988128542606851
+
+[HDLBP."PC(18:0/20:4)"]
+Source = "HDLBP"
+Target = "PC(18:0/20:4)"
+Interaction = "predicts"
+Gene = "HDLBP"
+Lipid = "PC(18:0/20:4)"
+LipidClass = "PC"
+Coefficient = -0.1303871194906915
+Abs_Coefficient = 0.1303871194906915
+RelativeModelWeight = 0.2034121537718708
+Direction = "Negative"
+Pearson_r = -0.3739431011054218
+Pearson_p = 0.0074704051237949
+GeneWise_FDR = 0.0416874036429581
+Global_FDR = 0.0548622475263793
+NegLog10FDR = 1.379995152574577
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.4841199399518069
+
+[ZC3H12A."PE(18:0/0:0)"]
+Source = "ZC3H12A"
+Target = "PE(18:0/0:0)"
+Interaction = "predicts"
+Gene = "ZC3H12A"
+Lipid = "PE(18:0/0:0)"
+LipidClass = "PE"
+Coefficient = -0.3538933507931729
+Abs_Coefficient = 0.3538933507931729
+RelativeModelWeight = 0.5520960120261162
+Direction = "Negative"
+Pearson_r = -0.5383740692881314
+Pearson_p = 5.510661818527278e-5
+GeneWise_FDR = 0.0011723001189604
+Global_FDR = 0.0018254962342833
+NegLog10FDR = 2.930961190943416
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.1702679969492924
+
+[ZC3H12A."PE(16:0/22:6)"]
+Source = "ZC3H12A"
+Target = "PE(16:0/22:6)"
+Interaction = "predicts"
+Gene = "ZC3H12A"
+Lipid = "PE(16:0/22:6)"
+LipidClass = "PE"
+Coefficient = -0.2567208514378501
+Abs_Coefficient = 0.2567208514378501
+RelativeModelWeight = 0.400500766587221
+Direction = "Negative"
+Pearson_r = -0.5115853785726107
+Pearson_p = 0.0001464250877117
+GeneWise_FDR = 0.0021127048369838
+Global_FDR = 0.0036594887379842
+NegLog10FDR = 2.675161173379887
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.4719048672702355
+
+[ZC3H12A."TG(18:0/18:1/22:6)"]
+Source = "ZC3H12A"
+Target = "TG(18:0/18:1/22:6)"
+Interaction = "predicts"
+Gene = "ZC3H12A"
+Lipid = "TG(18:0/18:1/22:6)"
+LipidClass = "TG"
+Coefficient = -0.128668294601756
+Abs_Coefficient = 0.128668294601756
+RelativeModelWeight = 0.2007306782244335
+Direction = "Negative"
+Pearson_r = -0.5635066402885331
+Pearson_p = 2.036878943105949e-5
+GeneWise_FDR = 0.0005877850664391
+Global_FDR = 0.0008961588551637
+NegLog10FDR = 3.2307814520256746
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8492476302844671
+
+[ZC3H12A."PE(18:0/18:2)"]
+Source = "ZC3H12A"
+Target = "PE(18:0/18:2)"
+Interaction = "predicts"
+Gene = "ZC3H12A"
+Lipid = "PE(18:0/18:2)"
+LipidClass = "PE"
+Coefficient = -0.1951647606366131
+Abs_Coefficient = 0.1951647606366131
+RelativeModelWeight = 0.3044693713346375
+Direction = "Negative"
+Pearson_r = -0.4009723577265864
+Pearson_p = 0.003904747224246
+GeneWise_FDR = 0.0219099705360474
+Global_FDR = 0.0355603177777044
+NegLog10FDR = 1.6593582064667085
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8096931212765277
+
+[ZC3H12A."DG(18:1/18:2/0:0)"]
+Source = "ZC3H12A"
+Target = "DG(18:1/18:2/0:0)"
+Interaction = "predicts"
+Gene = "ZC3H12A"
+Lipid = "DG(18:1/18:2/0:0)"
+LipidClass = "DG"
+Coefficient = -0.0397167818367144
+Abs_Coefficient = 0.0397167818367144
+RelativeModelWeight = 0.0619606918678064
+Direction = "Negative"
+Pearson_r = -0.4555440380118464
+Pearson_p = 0.00088648145504
+GeneWise_FDR = 0.0093439580826138
+Global_FDR = 0.0128695257695526
+NegLog10FDR = 2.0294691184904883
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.1877080025738244
+
+[ACSS3."PE(16:0/22:6)"]
+Source = "ACSS3"
+Target = "PE(16:0/22:6)"
+Interaction = "predicts"
+Gene = "ACSS3"
+Lipid = "PE(16:0/22:6)"
+LipidClass = "PE"
+Coefficient = -0.4077581243395083
+Abs_Coefficient = 0.4077581243395083
+RelativeModelWeight = 0.6361284658627576
+Direction = "Negative"
+Pearson_r = -0.4327999871537576
+Pearson_p = 0.0016942228370457
+GeneWise_FDR = 0.0041232893142558
+Global_FDR = 0.0200835817708545
+NegLog10FDR = 2.3847561914715785
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.1531397634002856
+
+[ACSS3."SM(d18:1/22:0)"]
+Source = "ACSS3"
+Target = "SM(d18:1/22:0)"
+Interaction = "predicts"
+Gene = "ACSS3"
+Lipid = "SM(d18:1/22:0)"
+LipidClass = "SM"
+Coefficient = -0.2447046213040204
+Abs_Coefficient = 0.2447046213040204
+RelativeModelWeight = 0.3817546875167708
+Direction = "Negative"
+Pearson_r = -0.5964518299648246
+Pearson_p = 4.854643803078539e-6
+GeneWise_FDR = 4.085991867591104e-5
+Global_FDR = 0.0003143385012233
+NegLog10FDR = 4.388702502085319
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.057162439804422
+
+[ACSS3."PC(18:0/22:4)"]
+Source = "ACSS3"
+Target = "PC(18:0/22:4)"
+Interaction = "predicts"
+Gene = "ACSS3"
+Lipid = "PC(18:0/22:4)"
+LipidClass = "PC"
+Coefficient = -0.3580466209677924
+Abs_Coefficient = 0.3580466209677924
+RelativeModelWeight = 0.5585753762050001
+Direction = "Negative"
+Pearson_r = -0.4529649214260061
+Pearson_p = 0.0009561996706274
+GeneWise_FDR = 0.0026101666684693
+Global_FDR = 0.0135663035392634
+NegLog10FDR = 2.58333176052166
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 2.0015608862007115
+
+[ACSS3."PI(16:0/16:0)"]
+Source = "ACSS3"
+Target = "PI(16:0/16:0)"
+Interaction = "predicts"
+Gene = "ACSS3"
+Lipid = "PI(16:0/16:0)"
+LipidClass = "PI"
+Coefficient = -0.2159265790501126
+Abs_Coefficient = 0.2159265790501126
+RelativeModelWeight = 0.3368591213053921
+Direction = "Negative"
+Pearson_r = -0.5514512369327164
+Pearson_p = 3.316173939190114e-5
+GeneWise_FDR = 0.0001588576653599
+Global_FDR = 0.0012726919210558
+NegLog10FDR = 3.7989918243169223
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.616584169091159
+
+[ACSS3."PC(14:1/16:0)"]
+Source = "ACSS3"
+Target = "PC(14:1/16:0)"
+Interaction = "predicts"
+Gene = "ACSS3"
+Lipid = "PC(14:1/16:0)"
+LipidClass = "PC"
+Coefficient = -0.2317065387564724
+Abs_Coefficient = 0.2317065387564724
+RelativeModelWeight = 0.3614768565758851
+Direction = "Negative"
+Pearson_r = -0.5034455435750439
+Pearson_p = 0.0001939612335029
+GeneWise_FDR = 0.0006640706638575
+Global_FDR = 0.0044537824493565
+NegLog10FDR = 3.17778570483296
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.5101728440306872
+
+[ACSS3."TG(14:0/16:0/20:4)"]
+Source = "ACSS3"
+Target = "TG(14:0/16:0/20:4)"
+Interaction = "predicts"
+Gene = "ACSS3"
+Lipid = "TG(14:0/16:0/20:4)"
+LipidClass = "TG"
+Coefficient = -0.1928616316860996
+Abs_Coefficient = 0.1928616316860996
+RelativeModelWeight = 0.3008763444921989
+Direction = "Negative"
+Pearson_r = -0.4546957542644368
+Pearson_p = 0.0009088914487751
+GeneWise_FDR = 0.0025426139506886
+Global_FDR = 0.0130935624689874
+NegLog10FDR = 2.594719574473515
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.081566085042144
+
+[ACSS3."PI(18:0/18:1)"]
+Source = "ACSS3"
+Target = "PI(18:0/18:1)"
+Interaction = "predicts"
+Gene = "ACSS3"
+Lipid = "PI(18:0/18:1)"
+LipidClass = "PI"
+Coefficient = -0.1515176478102919
+Abs_Coefficient = 0.1515176478102919
+RelativeModelWeight = 0.236377114518122
+Direction = "Negative"
+Pearson_r = -0.5294468179998428
+Pearson_p = 7.702182792667376e-5
+GeneWise_FDR = 0.0003050668478664
+Global_FDR = 0.0023227189518171
+NegLog10FDR = 3.5156049853138667
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0673856767321384
+
+[ACSS3."PG(16:0/20:4)"]
+Source = "ACSS3"
+Target = "PG(16:0/20:4)"
+Interaction = "predicts"
+Gene = "ACSS3"
+Lipid = "PG(16:0/20:4)"
+LipidClass = "PG"
+Coefficient = -0.1304926664990879
+Abs_Coefficient = 0.1304926664990879
+RelativeModelWeight = 0.2035768137811258
+Direction = "Negative"
+Pearson_r = -0.3281606052314803
+Pearson_p = 0.0199869133765325
+GeneWise_FDR = 0.0330930860824555
+Global_FDR = 0.1053418651891158
+NegLog10FDR = 1.480262730994088
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.50492398411585
+
+[ACSS3."SM(d18:2/18:0)"]
+Source = "ACSS3"
+Target = "SM(d18:2/18:0)"
+Interaction = "predicts"
+Gene = "ACSS3"
+Lipid = "SM(d18:2/18:0)"
+LipidClass = "SM"
+Coefficient = -0.0642139697610127
+Abs_Coefficient = 0.0642139697610127
+RelativeModelWeight = 0.1001778545484462
+Direction = "Negative"
+Pearson_r = -0.4989344633743456
+Pearson_p = 0.0002259810854679
+GeneWise_FDR = 0.0007362609558793
+Global_FDR = 0.0049765380706582
+NegLog10FDR = 3.1329682296682844
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4140318901650588
+
+[ACSS3."PI(16:0/18:1)"]
+Source = "ACSS3"
+Target = "PI(16:0/18:1)"
+Interaction = "predicts"
+Gene = "ACSS3"
+Lipid = "PI(16:0/18:1)"
+LipidClass = "PI"
+Coefficient = -0.044825575179784
+Abs_Coefficient = 0.044825575179784
+RelativeModelWeight = 0.0699307326291055
+Direction = "Negative"
+Pearson_r = -0.3832412656801433
+Pearson_p = 0.0060118652557077
+GeneWise_FDR = 0.0113495026322707
+Global_FDR = 0.0474784983324376
+NegLog10FDR = 1.9450231700825908
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.2059476278935663
+
+[CD274."Cer(d18:0/24:0)"]
+Source = "CD274"
+Target = "Cer(d18:0/24:0)"
+Interaction = "predicts"
+Gene = "CD274"
+Lipid = "Cer(d18:0/24:0)"
+LipidClass = "CER"
+Coefficient = 0.4120775218331506
+Abs_Coefficient = 0.4120775218331506
+RelativeModelWeight = 0.6428669991673555
+Direction = "Positive"
+Pearson_r = 0.4787161933276699
+Pearson_p = 0.0004369640371438
+GeneWise_FDR = 0.0094718418113871
+Global_FDR = 0.0078484099883674
+NegLog10FDR = 2.0235655636844307
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.9437505207115635
+
+[CD274."Cer(d18:0/16:0)"]
+Source = "CD274"
+Target = "Cer(d18:0/16:0)"
+Interaction = "predicts"
+Gene = "CD274"
+Lipid = "Cer(d18:0/16:0)"
+LipidClass = "CER"
+Coefficient = 0.300259264623494
+Abs_Coefficient = 0.300259264623494
+RelativeModelWeight = 0.4684234450887099
+Direction = "Positive"
+Pearson_r = 0.3801825101625703
+Pearson_p = 0.0064615373450733
+GeneWise_FDR = 0.0343481722027582
+Global_FDR = 0.0498169206619769
+NegLog10FDR = 1.4640963684552717
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1542405099423976
+
+[CD274."Cer(d18:1/0:0)"]
+Source = "CD274"
+Target = "Cer(d18:1/0:0)"
+Interaction = "predicts"
+Gene = "CD274"
+Lipid = "Cer(d18:1/0:0)"
+LipidClass = "CER"
+Coefficient = 0.2172721110398754
+Abs_Coefficient = 0.2172721110398754
+RelativeModelWeight = 0.3389582363182531
+Direction = "Positive"
+Pearson_r = 0.4609104692624133
+Pearson_p = 0.0007558393207517
+GeneWise_FDR = 0.0117445802147586
+Global_FDR = 0.0115075602680852
+NegLog10FDR = 1.9301625015489556
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9932027136509144
+
+[CD274."PE(18:0/20:3)"]
+Source = "CD274"
+Target = "PE(18:0/20:3)"
+Interaction = "predicts"
+Gene = "CD274"
+Lipid = "PE(18:0/20:3)"
+LipidClass = "PE"
+Coefficient = 0.2240705820115137
+Abs_Coefficient = 0.2240705820115137
+RelativeModelWeight = 0.3495642810571677
+Direction = "Positive"
+Pearson_r = 0.4094442517441484
+Pearson_p = 0.0031509502414142
+GeneWise_FDR = 0.0212535952266055
+Global_FDR = 0.0307638335598014
+NegLog10FDR = 1.672567594789783
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9342341698493744
+
+[CD274."PG(18:2/20:4)"]
+Source = "CD274"
+Target = "PG(18:2/20:4)"
+Interaction = "predicts"
+Gene = "CD274"
+Lipid = "PG(18:2/20:4)"
+LipidClass = "PG"
+Coefficient = 0.1460730319049685
+Abs_Coefficient = 0.1460730319049685
+RelativeModelWeight = 0.2278831693179485
+Direction = "Positive"
+Pearson_r = 0.3804186201100045
+Pearson_p = 0.0064258122706116
+GeneWise_FDR = 0.0343481722027582
+Global_FDR = 0.0496455889282773
+NegLog10FDR = 1.4640963684552717
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.5615260899484348
+
+[VAPB."TG(16:0/18:0/20:4)"]
+Source = "VAPB"
+Target = "TG(16:0/18:0/20:4)"
+Interaction = "predicts"
+Gene = "VAPB"
+Lipid = "TG(16:0/18:0/20:4)"
+LipidClass = "TG"
+Coefficient = -0.3362763533351309
+Abs_Coefficient = 0.3362763533351309
+RelativeModelWeight = 0.5246123816649921
+Direction = "Negative"
+Pearson_r = -0.4869039828792391
+Pearson_p = 0.00033620509069
+GeneWise_FDR = 0.0027165371327756
+Global_FDR = 0.0065414797528547
+NegLog10FDR = 2.565984354149734
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.8707595450105907
+
+[VAPB."TG(56:3)"]
+Source = "VAPB"
+Target = "TG(56:3)"
+Interaction = "predicts"
+Gene = "VAPB"
+Lipid = "TG(56:3)"
+LipidClass = "TG"
+Coefficient = -0.156179410577847
+Abs_Coefficient = 0.156179410577847
+RelativeModelWeight = 0.243649759305628
+Direction = "Negative"
+Pearson_r = -0.5894249816356417
+Pearson_p = 6.679658646788147e-6
+GeneWise_FDR = 0.0001376910859322
+Global_FDR = 0.0003990952990741
+NegLog10FDR = 3.8610941748902223
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1844044256739934
+
+[VAPB."TG(54:4)"]
+Source = "VAPB"
+Target = "TG(54:4)"
+Interaction = "predicts"
+Gene = "VAPB"
+Lipid = "TG(54:4)"
+LipidClass = "TG"
+Coefficient = -0.2163750946193911
+Abs_Coefficient = 0.2163750946193911
+RelativeModelWeight = 0.3375588339633872
+Direction = "Negative"
+Pearson_r = -0.4714377670419624
+Pearson_p = 0.0005486365960483
+GeneWise_FDR = 0.0042624843231446
+Global_FDR = 0.0092001907138097
+NegLog10FDR = 2.3703372052743545
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1376870970758326
+
+[VAPB."TG(18:0/18:1/22:4)"]
+Source = "VAPB"
+Target = "TG(18:0/18:1/22:4)"
+Interaction = "predicts"
+Gene = "VAPB"
+Lipid = "TG(18:0/18:1/22:4)"
+LipidClass = "TG"
+Coefficient = -0.1174455298562824
+Abs_Coefficient = 0.1174455298562824
+RelativeModelWeight = 0.1832224553488236
+Direction = "Negative"
+Pearson_r = -0.545004000409268
+Pearson_p = 4.270970749052872e-5
+GeneWise_FDR = 0.0005392100570679
+Global_FDR = 0.0015198328136041
+NegLog10FDR = 3.268242016160475
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7820377822239355
+
+[VAPB."PI(18:0/18:1)"]
+Source = "VAPB"
+Target = "PI(18:0/18:1)"
+Interaction = "predicts"
+Gene = "VAPB"
+Lipid = "PI(18:0/18:1)"
+LipidClass = "PI"
+Coefficient = -0.0648632528988133
+Abs_Coefficient = 0.0648632528988133
+RelativeModelWeight = 0.1011907773124713
+Direction = "Negative"
+Pearson_r = -0.5889731867351119
+Pearson_p = 6.816390392683893e-6
+GeneWise_FDR = 0.0001376910859322
+Global_FDR = 0.0004042590843188
+NegLog10FDR = 3.8610941748902223
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4918978981462683
+
+[NR1D1."PE(16:0/0:0)"]
+Source = "NR1D1"
+Target = "PE(16:0/0:0)"
+Interaction = "predicts"
+Gene = "NR1D1"
+Lipid = "PE(16:0/0:0)"
+LipidClass = "PE"
+Coefficient = -0.2648755540346513
+Abs_Coefficient = 0.2648755540346513
+RelativeModelWeight = 0.4132226184470041
+Direction = "Negative"
+Pearson_r = -0.5915393439620119
+Pearson_p = 6.072860082689575e-6
+GeneWise_FDR = 0.0006133588683516
+Global_FDR = 0.0003710567699449
+NegLog10FDR = 3.2122853510252805
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.7406115823966242
+
+[NR1D1."PG(14:0/16:0)"]
+Source = "NR1D1"
+Target = "PG(14:0/16:0)"
+Interaction = "predicts"
+Gene = "NR1D1"
+Lipid = "PG(14:0/16:0)"
+LipidClass = "PG"
+Coefficient = -0.2486723444273889
+Abs_Coefficient = 0.2486723444273889
+RelativeModelWeight = 0.3879445865593097
+Direction = "Negative"
+Pearson_r = -0.4299534538500932
+Pearson_p = 0.001831626306741
+GeneWise_FDR = 0.0142303274600651
+Global_FDR = 0.0212051043078577
+NegLog10FDR = 1.846785106067294
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1043948709964773
+
+[NR1D1."PI(17:0/20:4)"]
+Source = "NR1D1"
+Target = "PI(17:0/20:4)"
+Interaction = "predicts"
+Gene = "NR1D1"
+Lipid = "PI(17:0/20:4)"
+LipidClass = "PI"
+Coefficient = -0.1261901812393882
+Abs_Coefficient = 0.1261901812393882
+RelativeModelWeight = 0.1968646646312267
+Direction = "Negative"
+Pearson_r = -0.4457665930742358
+Pearson_p = 0.0011775222920287
+GeneWise_FDR = 0.0113266429995145
+Global_FDR = 0.0156501251201421
+NegLog10FDR = 1.9458987876490517
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.579943376868068
+
+[NR1D1."PC(O-18:0/16:0)"]
+Source = "NR1D1"
+Target = "PC(O-18:0/16:0)"
+Interaction = "predicts"
+Gene = "NR1D1"
+Lipid = "PC(O-18:0/16:0)"
+LipidClass = "PC"
+Coefficient = -0.0906700064081584
+Abs_Coefficient = 0.0906700064081584
+RelativeModelWeight = 0.1414509451396348
+Direction = "Negative"
+Pearson_r = -0.460918994827025
+Pearson_p = 0.0007556463392483
+GeneWise_FDR = 0.0084800311404531
+Global_FDR = 0.0115050959992803
+NegLog10FDR = 2.07160255291992
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4344810842038379
+
+[NR1D1."PC(O-16:0/22:4)"]
+Source = "NR1D1"
+Target = "PC(O-16:0/22:4)"
+Interaction = "predicts"
+Gene = "NR1D1"
+Lipid = "PC(O-16:0/22:4)"
+LipidClass = "PC"
+Coefficient = -0.0887434533660873
+Abs_Coefficient = 0.0887434533660873
+RelativeModelWeight = 0.1384454005338934
+Direction = "Negative"
+Pearson_r = -0.4690611754586663
+Pearson_p = 0.0005903195725988
+GeneWise_FDR = 0.0084800311404531
+Global_FDR = 0.009667192362862
+NegLog10FDR = 2.07160255291992
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4252492457199278
+
+[NR1D1."PC(20:2/20:4)"]
+Source = "NR1D1"
+Target = "PC(20:2/20:4)"
+Interaction = "predicts"
+Gene = "NR1D1"
+Lipid = "PC(20:2/20:4)"
+LipidClass = "PC"
+Coefficient = -0.0774041301940362
+Abs_Coefficient = 0.0774041301940362
+RelativeModelWeight = 0.1207553391401613
+Direction = "Negative"
+Pearson_r = -0.3883324252828721
+Pearson_p = 0.0053237790504116
+GeneWise_FDR = 0.0256048420995988
+Global_FDR = 0.0437515431799019
+NegLog10FDR = 1.5916778980363548
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3129589435194405
+
+[HSD11B2."PS(18:0/22:4)"]
+Source = "HSD11B2"
+Target = "PS(18:0/22:4)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "PS(18:0/22:4)"
+LipidClass = "PS"
+Coefficient = -0.3221911917500525
+Abs_Coefficient = 0.3221911917500525
+RelativeModelWeight = 0.5026386386646325
+Direction = "Negative"
+Pearson_r = -0.4532363151797949
+Pearson_p = 0.0009486388088291
+GeneWise_FDR = 0.0042583342085219
+Global_FDR = 0.0134879734632786
+NegLog10FDR = 2.3707602566550925
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.694274346669963
+
+[HSD11B2."PC(18:2/20:3)"]
+Source = "HSD11B2"
+Target = "PC(18:2/20:3)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "PC(18:2/20:3)"
+LipidClass = "PC"
+Coefficient = -0.2098321119785472
+Abs_Coefficient = 0.2098321119785472
+RelativeModelWeight = 0.3273513671808953
+Direction = "Negative"
+Pearson_r = -0.5295361966907801
+Pearson_p = 7.676763270883917e-5
+GeneWise_FDR = 0.001309644318413
+Global_FDR = 0.0023177025727936
+NegLog10FDR = 2.882846636805827
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.271055155112129
+
+[HSD11B2."PI(18:2/20:4)"]
+Source = "HSD11B2"
+Target = "PI(18:2/20:4)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "PI(18:2/20:4)"
+LipidClass = "PI"
+Coefficient = -0.2880546947360902
+Abs_Coefficient = 0.2880546947360902
+RelativeModelWeight = 0.449383544089644
+Direction = "Negative"
+Pearson_r = -0.3464005522792768
+Pearson_p = 0.0137283634476421
+GeneWise_FDR = 0.0322456908886479
+Global_FDR = 0.082175445819927
+NegLog10FDR = 1.491528313534734
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 1.1196518237359323
+
+[HSD11B2."PC(18:2/20:4)"]
+Source = "HSD11B2"
+Target = "PC(18:2/20:4)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "PC(18:2/20:4)"
+LipidClass = "PC"
+Coefficient = -0.1824107342899143
+Abs_Coefficient = 0.1824107342899143
+RelativeModelWeight = 0.2845722835043444
+Direction = "Negative"
+Pearson_r = -0.4914416754263997
+Pearson_p = 0.0002899177376157
+GeneWise_FDR = 0.0025495881687166
+Global_FDR = 0.0059089701101079
+NegLog10FDR = 2.593529964859464
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0226190279413443
+
+[HSD11B2."SM(d18:2/20:0)"]
+Source = "HSD11B2"
+Target = "SM(d18:2/20:0)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "SM(d18:2/20:0)"
+LipidClass = "SM"
+Coefficient = -0.1680483463871127
+Abs_Coefficient = 0.1680483463871127
+RelativeModelWeight = 0.2621660499129619
+Direction = "Negative"
+Pearson_r = -0.4364234874593334
+Pearson_p = 0.0015326312901603
+GeneWise_FDR = 0.0059536830886998
+Global_FDR = 0.0187528410364948
+NegLog10FDR = 2.225214286332207
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8455416895705673
+
+[HSD11B2."PC(18:1/22:6)"]
+Source = "HSD11B2"
+Target = "PC(18:1/22:6)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "PC(18:1/22:6)"
+LipidClass = "PC"
+Coefficient = -0.1331191834376528
+Abs_Coefficient = 0.1331191834376528
+RelativeModelWeight = 0.20767434634016
+Direction = "Negative"
+Pearson_r = -0.5625559167600824
+Pearson_p = 2.118159933918199e-5
+GeneWise_FDR = 0.0008616917082989
+Global_FDR = 0.0009195525556925
+NegLog10FDR = 3.0646480860695644
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8441231343772791
+
+[HSD11B2."PC(14:0/20:4)"]
+Source = "HSD11B2"
+Target = "PC(14:0/20:4)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "PC(14:0/20:4)"
+LipidClass = "PC"
+Coefficient = -0.2020790482583019
+Abs_Coefficient = 0.2020790482583019
+RelativeModelWeight = 0.3152560973733724
+Direction = "Negative"
+Pearson_r = -0.3722864529941682
+Pearson_p = 0.0077602245469937
+GeneWise_FDR = 0.0217717410901769
+Global_FDR = 0.0562225781714464
+NegLog10FDR = 1.6621068389597795
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.8392454128414248
+
+[HSD11B2."PG(16:1/18:1)"]
+Source = "HSD11B2"
+Target = "PG(16:1/18:1)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "PG(16:1/18:1)"
+LipidClass = "PG"
+Coefficient = -0.2199992692302803
+Abs_Coefficient = 0.2199992692302803
+RelativeModelWeight = 0.3432127755960109
+Direction = "Negative"
+Pearson_r = -0.3338106791197679
+Pearson_p = 0.0178317147223972
+GeneWise_FDR = 0.0400222930436027
+Global_FDR = 0.0976529483160454
+NegLog10FDR = 1.3976980324500687
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.8229205967582823
+
+[HSD11B2."CE(20:3)"]
+Source = "HSD11B2"
+Target = "CE(20:3)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "CE(20:3)"
+LipidClass = "CE"
+Coefficient = -0.1090277885264425
+Abs_Coefficient = 0.1090277885264425
+RelativeModelWeight = 0.1700902464275316
+Direction = "Negative"
+Pearson_r = -0.5046169373901719
+Pearson_p = 0.0001863513090434
+GeneWise_FDR = 0.002092177351356
+Global_FDR = 0.0043362375455248
+NegLog10FDR = 2.6794015036237684
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6258303084571972
+
+[HSD11B2."GM3(d42:2)"]
+Source = "HSD11B2"
+Target = "GM3(d42:2)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "GM3(d42:2)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.1347119431214149
+Abs_Coefficient = 0.1347119431214149
+RelativeModelWeight = 0.2101591521935341
+Direction = "Negative"
+Pearson_r = -0.396332298225834
+Pearson_p = 0.0043813895617307
+GeneWise_FDR = 0.0138287608042125
+Global_FDR = 0.0384325486542968
+NegLog10FDR = 1.8592167352923328
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6008905650266012
+
+[HSD11B2."PG(18:1/0:0)"]
+Source = "HSD11B2"
+Target = "PG(18:1/0:0)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "PG(18:1/0:0)"
+LipidClass = "PG"
+Coefficient = -0.1307074351623305
+Abs_Coefficient = 0.1307074351623305
+RelativeModelWeight = 0.20391186648053
+Direction = "Negative"
+Pearson_r = -0.3504532000056524
+Pearson_p = 0.0125925690685711
+GeneWise_FDR = 0.0306660906758033
+Global_FDR = 0.0774934011069001
+NegLog10FDR = 1.5133415845046323
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.5125001735994724
+
+[HSD11B2."PE(16:1/18:1)"]
+Source = "HSD11B2"
+Target = "PE(16:1/18:1)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "PE(16:1/18:1)"
+LipidClass = "PE"
+Coefficient = -0.1195486090058073
+Abs_Coefficient = 0.1195486090058073
+RelativeModelWeight = 0.1865033918479853
+Direction = "Negative"
+Pearson_r = -0.3647430404673057
+Pearson_p = 0.0092066057869327
+GeneWise_FDR = 0.025131545526492
+Global_FDR = 0.0630194490500592
+NegLog10FDR = 1.5997808025738487
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.4848679377413003
+
+[HSD11B2."PG(18:1/22:6)"]
+Source = "HSD11B2"
+Target = "PG(18:1/22:6)"
+Interaction = "predicts"
+Gene = "HSD11B2"
+Lipid = "PG(18:1/22:6)"
+LipidClass = "PG"
+Coefficient = -0.0922088535512498
+Abs_Coefficient = 0.0922088535512498
+RelativeModelWeight = 0.1438516440194368
+Direction = "Negative"
+Pearson_r = -0.359375743812414
+Pearson_p = 0.0103725151810401
+GeneWise_FDR = 0.0269361208100559
+Global_FDR = 0.0681654037657477
+NegLog10FDR = 1.5696649487797911
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.3696505274610949
+
+[C1QTNF3."PS(18:0/20:4)"]
+Source = "C1QTNF3"
+Target = "PS(18:0/20:4)"
+Interaction = "predicts"
+Gene = "C1QTNF3"
+Lipid = "PS(18:0/20:4)"
+LipidClass = "PS"
+Coefficient = -0.2913312232466843
+Abs_Coefficient = 0.2913312232466843
+RelativeModelWeight = 0.4544951358161756
+Direction = "Negative"
+Pearson_r = -0.508734547357534
+Pearson_p = 0.0001617070504801
+GeneWise_FDR = 0.0020005278145286
+Global_FDR = 0.0039182373020768
+NegLog10FDR = 2.698855405988387
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.6811117901090873
+
+[C1QTNF3."TG(18:2/20:4/22:4)"]
+Source = "C1QTNF3"
+Target = "TG(18:2/20:4/22:4)"
+Interaction = "predicts"
+Gene = "C1QTNF3"
+Lipid = "TG(18:2/20:4/22:4)"
+LipidClass = "TG"
+Coefficient = -0.2293854040153206
+Abs_Coefficient = 0.2293854040153206
+RelativeModelWeight = 0.3578557395611319
+Direction = "Negative"
+Pearson_r = -0.5155566058298852
+Pearson_p = 0.0001273266068907
+GeneWise_FDR = 0.0018725616979625
+Global_FDR = 0.0033127501058012
+NegLog10FDR = 2.727563864072681
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.33393012333908
+
+[C1QTNF3."TG(18:0/20:4/22:6)"]
+Source = "C1QTNF3"
+Target = "TG(18:0/20:4/22:6)"
+Interaction = "predicts"
+Gene = "C1QTNF3"
+Lipid = "TG(18:0/20:4/22:6)"
+LipidClass = "TG"
+Coefficient = -0.1828223647625957
+Abs_Coefficient = 0.1828223647625957
+RelativeModelWeight = 0.285214453078558
+Direction = "Negative"
+Pearson_r = -0.5353213558973401
+Pearson_p = 6.1856949187376e-5
+GeneWise_FDR = 0.0017219969672608
+Global_FDR = 0.0019860905950764
+NegLog10FDR = 2.76396761775056
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0735379655021289
+
+[C1QTNF3."PI(18:2/20:4)"]
+Source = "C1QTNF3"
+Target = "PI(18:2/20:4)"
+Interaction = "predicts"
+Gene = "C1QTNF3"
+Lipid = "PI(18:2/20:4)"
+LipidClass = "PI"
+Coefficient = -0.1011845886860192
+Abs_Coefficient = 0.1011845886860192
+RelativeModelWeight = 0.1578543585711579
+Direction = "Negative"
+Pearson_r = -0.4626361578457121
+Pearson_p = 0.0007176680485477
+GeneWise_FDR = 0.0044118943082039
+Global_FDR = 0.0110968825375898
+NegLog10FDR = 2.3553749001107214
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.5296605526227409
+
+[ABCA10."PI(18:0/0:0)"]
+Source = "ABCA10"
+Target = "PI(18:0/0:0)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PI(18:0/0:0)"
+LipidClass = "PI"
+Coefficient = -0.2882727523083865
+Abs_Coefficient = 0.2882727523083865
+RelativeModelWeight = 0.4497237276952051
+Direction = "Negative"
+Pearson_r = -0.4609637265811813
+Pearson_p = 0.0007546345335127
+GeneWise_FDR = 0.0021902215388445
+Global_FDR = 0.0114952680865157
+NegLog10FDR = 2.659511954460516
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.6457693577051489
+
+[ABCA10."PG(18:2/18:2)"]
+Source = "ABCA10"
+Target = "PG(18:2/18:2)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PG(18:2/18:2)"
+LipidClass = "PG"
+Coefficient = -0.2010060247565059
+Abs_Coefficient = 0.2010060247565059
+RelativeModelWeight = 0.3135821128386981
+Direction = "Negative"
+Pearson_r = -0.5451924194814753
+Pearson_p = 4.23981627647744e-5
+GeneWise_FDR = 0.0003172010695734
+Global_FDR = 0.0015118071619201
+NegLog10FDR = 3.498665356950005
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.4107009875866383
+
+[ABCA10."PC(18:0/22:6)"]
+Source = "ABCA10"
+Target = "PC(18:0/22:6)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PC(18:0/22:6)"
+LipidClass = "PC"
+Coefficient = -0.2495843084881808
+Abs_Coefficient = 0.2495843084881808
+RelativeModelWeight = 0.3893673081785374
+Direction = "Negative"
+Pearson_r = -0.4029941093877217
+Pearson_p = 0.0037117508263497
+GeneWise_FDR = 0.0076507517032924
+Global_FDR = 0.0343726091103879
+NegLog10FDR = 2.116295892355707
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.2133837430943748
+
+[ABCA10."DG(18:0/0:0/18:0)"]
+Source = "ABCA10"
+Target = "DG(18:0/0:0/18:0)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "DG(18:0/0:0/18:0)"
+LipidClass = "DG"
+Coefficient = -0.1937879493804945
+Abs_Coefficient = 0.1937879493804945
+RelativeModelWeight = 0.3023214586877564
+Direction = "Negative"
+Pearson_r = -0.4166522770550836
+Pearson_p = 0.0026139175219699
+GeneWise_FDR = 0.0058098546476339
+Global_FDR = 0.0270294835612848
+NegLog10FDR = 2.2358347327594386
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.97826227648034
+
+[ABCA10."PC(15:0/20:4)"]
+Source = "ABCA10"
+Target = "PC(15:0/20:4)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PC(15:0/20:4)"
+LipidClass = "PC"
+Coefficient = -0.1299002486014907
+Abs_Coefficient = 0.1299002486014907
+RelativeModelWeight = 0.2026526043887108
+Direction = "Negative"
+Pearson_r = -0.5813404428757544
+Pearson_p = 9.555352383402632e-6
+GeneWise_FDR = 0.0001608484317872
+Global_FDR = 0.0005167209556688
+NegLog10FDR = 3.793583168951952
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9714321135420024
+
+[ABCA10."PC(18:2/22:6)"]
+Source = "ABCA10"
+Target = "PC(18:2/22:6)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PC(18:2/22:6)"
+LipidClass = "PC"
+Coefficient = -0.1168017837777911
+Abs_Coefficient = 0.1168017837777911
+RelativeModelWeight = 0.1822181707475562
+Direction = "Negative"
+Pearson_r = -0.5463909622592995
+Pearson_p = 4.046476364095287e-5
+GeneWise_FDR = 0.0003143800867489
+Global_FDR = 0.0014640505556929
+NegLog10FDR = 3.5025449705491067
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8204455082420676
+
+[ABCA10."PG(16:1/18:1)"]
+Source = "ABCA10"
+Target = "PG(16:1/18:1)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PG(16:1/18:1)"
+LipidClass = "PG"
+Coefficient = -0.1599670919846048
+Abs_Coefficient = 0.1599670919846048
+RelativeModelWeight = 0.2495587818820894
+Direction = "Negative"
+Pearson_r = -0.4086547317802422
+Pearson_p = 0.0032153147017927
+GeneWise_FDR = 0.0067773783483869
+Global_FDR = 0.0311795340238121
+NegLog10FDR = 2.1689382691142667
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7908363742996933
+
+[ABCA10."PC(15:0/18:2)"]
+Source = "ABCA10"
+Target = "PC(15:0/18:2)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PC(15:0/18:2)"
+LipidClass = "PC"
+Coefficient = -0.1370965312297329
+Abs_Coefficient = 0.1370965312297329
+RelativeModelWeight = 0.2138792604746774
+Direction = "Negative"
+Pearson_r = -0.4648659260110931
+Pearson_p = 0.0006709169845616
+GeneWise_FDR = 0.0020850035520222
+Global_FDR = 0.0105793274117239
+NegLog10FDR = 2.6808932008233946
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.787266715678376
+
+[ABCA10."PC(16:1/0:0)"]
+Source = "ABCA10"
+Target = "PC(16:1/0:0)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PC(16:1/0:0)"
+LipidClass = "PC"
+Coefficient = -0.1101299658392443
+Abs_Coefficient = 0.1101299658392443
+RelativeModelWeight = 0.1718097127514388
+Direction = "Negative"
+Pearson_r = -0.5236361083317719
+Pearson_p = 9.52998010149489e-5
+GeneWise_FDR = 0.0005661929354417
+Global_FDR = 0.0026970237668952
+NegLog10FDR = 3.2470355537589826
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7296819585364787
+
+[ABCA10."PS(18:0/22:6)"]
+Source = "ABCA10"
+Target = "PS(18:0/22:6)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PS(18:0/22:6)"
+LipidClass = "PS"
+Coefficient = -0.1073000173109889
+Abs_Coefficient = 0.1073000173109889
+RelativeModelWeight = 0.1673948140448448
+Direction = "Negative"
+Pearson_r = -0.4702774751856665
+Pearson_p = 0.0005686433162015
+GeneWise_FDR = 0.0018526766108503
+Global_FDR = 0.0094266419241705
+NegLog10FDR = 2.732200381210025
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6247509887907511
+
+[ABCA10."DG(18:0/20:4/0:0)"]
+Source = "ABCA10"
+Target = "DG(18:0/20:4/0:0)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "DG(18:0/20:4/0:0)"
+LipidClass = "DG"
+Coefficient = -0.1477582768294697
+Abs_Coefficient = 0.1477582768294697
+RelativeModelWeight = 0.2305122579968373
+Direction = "Negative"
+Pearson_r = -0.3083965355433289
+Pearson_p = 0.0293351642680811
+GeneWise_FDR = 0.0452343754362777
+Global_FDR = 0.1348880435061869
+NegLog10FDR = 1.3445314017317365
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.5404432273576728
+
+[ABCA10."PC(18:1/22:6)"]
+Source = "ABCA10"
+Target = "PC(18:1/22:6)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PC(18:1/22:6)"
+LipidClass = "PC"
+Coefficient = -0.0792755297057324
+Abs_Coefficient = 0.0792755297057324
+RelativeModelWeight = 0.1236748407498962
+Direction = "Negative"
+Pearson_r = -0.5072985315787346
+Pearson_p = 0.0001699426113097
+GeneWise_FDR = 0.0007642092213628
+Global_FDR = 0.0040598869565639
+NegLog10FDR = 3.116787726183304
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.5091430664368475
+
+[ABCA10."PG(18:1/0:0)"]
+Source = "ABCA10"
+Target = "PG(18:1/0:0)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PG(18:1/0:0)"
+LipidClass = "PG"
+Coefficient = -0.0661743174578276
+Abs_Coefficient = 0.0661743174578276
+RelativeModelWeight = 0.1032361209531989
+Direction = "Negative"
+Pearson_r = -0.4550981773302527
+Pearson_p = 0.0008981976303722
+GeneWise_FDR = 0.0024854235799342
+Global_FDR = 0.0129859629532326
+NegLog10FDR = 2.6045995857026445
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3721248788174491
+
+[ABCA10."PC(16:0/18:0)"]
+Source = "ABCA10"
+Target = "PC(16:0/18:0)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PC(16:0/18:0)"
+LipidClass = "PC"
+Coefficient = -0.0689950056009511
+Abs_Coefficient = 0.0689950056009511
+RelativeModelWeight = 0.1076365728732407
+Direction = "Negative"
+Pearson_r = -0.4166027687578226
+Pearson_p = 0.0026173107571024
+GeneWise_FDR = 0.0058098546476339
+Global_FDR = 0.0270497398364593
+NegLog10FDR = 2.2358347327594386
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3482941610184247
+
+[ABCA10."PI(17:0/20:4)"]
+Source = "ABCA10"
+Target = "PI(17:0/20:4)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PI(17:0/20:4)"
+LipidClass = "PI"
+Coefficient = -0.0525278253563508
+Abs_Coefficient = 0.0525278253563508
+RelativeModelWeight = 0.0819467300943848
+Direction = "Negative"
+Pearson_r = -0.4840058491491058
+Pearson_p = 0.000369169033374
+GeneWise_FDR = 0.0013082832410798
+Global_FDR = 0.0069836254478809
+NegLog10FDR = 2.883298221821118
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3182235912595796
+
+[ABCA10."GM3(d42:1)"]
+Source = "ABCA10"
+Target = "GM3(d42:1)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "GM3(d42:1)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.0532023142391005
+Abs_Coefficient = 0.0532023142391005
+RelativeModelWeight = 0.0829989754148676
+Direction = "Negative"
+Pearson_r = -0.463125297250918
+Pearson_p = 0.0007071686027668
+GeneWise_FDR = 0.0021320605635656
+Global_FDR = 0.0109851275284962
+NegLog10FDR = 2.671200462849596
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3047058769591041
+
+[ABCA10."PG(18:1/22:4)"]
+Source = "ABCA10"
+Target = "PG(18:1/22:4)"
+Interaction = "predicts"
+Gene = "ABCA10"
+Lipid = "PG(18:1/22:4)"
+LipidClass = "PG"
+Coefficient = -0.0133028230917804
+Abs_Coefficient = 0.0133028230917804
+RelativeModelWeight = 0.0207532454656184
+Direction = "Negative"
+Pearson_r = -0.4077431167649205
+Pearson_p = 0.0032910731866667
+GeneWise_FDR = 0.0068535750897595
+Global_FDR = 0.0316635811301655
+NegLog10FDR = 2.1640828246060457
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.0656649875325966
+
+[C1D."PC(20:3/20:4)"]
+Source = "C1D"
+Target = "PC(20:3/20:4)"
+Interaction = "predicts"
+Gene = "C1D"
+Lipid = "PC(20:3/20:4)"
+LipidClass = "PC"
+Coefficient = -0.2942884933781529
+Abs_Coefficient = 0.2942884933781529
+RelativeModelWeight = 0.4591086642772456
+Direction = "Negative"
+Pearson_r = -0.5555871367685908
+Pearson_p = 2.811519665016441e-5
+GeneWise_FDR = 0.0028396348616666
+Global_FDR = 0.0011317721434933
+NegLog10FDR = 2.5467375007129425
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.6283379164943357
+
+[C1D."PE(16:0/16:0)"]
+Source = "C1D"
+Target = "PE(16:0/16:0)"
+Interaction = "predicts"
+Gene = "C1D"
+Lipid = "PE(16:0/16:0)"
+LipidClass = "PE"
+Coefficient = -0.1397660039118545
+Abs_Coefficient = 0.1397660039118545
+RelativeModelWeight = 0.2180438067107365
+Direction = "Negative"
+Pearson_r = -0.5256889099807412
+Pearson_p = 8.843283164912468e-5
+GeneWise_FDR = 0.0051375894358821
+Global_FDR = 0.0025565556364391
+NegLog10FDR = 2.2892406047904217
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7171985426560288
+
+[C1D."PC(20:4/22:6)"]
+Source = "C1D"
+Target = "PC(20:4/22:6)"
+Interaction = "predicts"
+Gene = "C1D"
+Lipid = "PC(20:4/22:6)"
+LipidClass = "PC"
+Coefficient = -0.0952272471730079
+Abs_Coefficient = 0.0952272471730079
+RelativeModelWeight = 0.148560528991598
+Direction = "Negative"
+Pearson_r = -0.5218317525909463
+Pearson_p = 0.0001017344442748
+GeneWise_FDR = 0.0051375894358821
+Global_FDR = 0.0028282435640112
+NegLog10FDR = 2.2892406047904217
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4886513242283087
+
+[C1D."TG(56:2)"]
+Source = "C1D"
+Target = "TG(56:2)"
+Interaction = "predicts"
+Gene = "C1D"
+Lipid = "TG(56:2)"
+LipidClass = "TG"
+Coefficient = -0.1143827405082137
+Abs_Coefficient = 0.1143827405082137
+RelativeModelWeight = 0.1784443102354586
+Direction = "Negative"
+Pearson_r = -0.4151442831004823
+Pearson_p = 0.0027190385671718
+GeneWise_FDR = 0.0219698316227488
+Global_FDR = 0.0277706545812681
+NegLog10FDR = 1.6581732715087696
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4743358959207149
+
+[C1D."PE(P-16:0/20:4)"]
+Source = "C1D"
+Target = "PE(P-16:0/20:4)"
+Interaction = "predicts"
+Gene = "C1D"
+Lipid = "PE(P-16:0/20:4)"
+LipidClass = "PE"
+Coefficient = -0.0918535029841259
+Abs_Coefficient = 0.0918535029841259
+RelativeModelWeight = 0.1432972746577616
+Direction = "Negative"
+Pearson_r = -0.4523352184050288
+Pearson_p = 0.0009739513202088
+GeneWise_FDR = 0.016394847223515
+Global_FDR = 0.0137411108365478
+NegLog10FDR = 1.7852926259780566
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3991248424270157
+
+[C1D."PE(P-16:0/16:0)"]
+Source = "C1D"
+Target = "PE(P-16:0/16:0)"
+Interaction = "predicts"
+Gene = "C1D"
+Lipid = "PE(P-16:0/16:0)"
+LipidClass = "PE"
+Coefficient = -0.0929741138753719
+Abs_Coefficient = 0.0929741138753719
+RelativeModelWeight = 0.1450454985300195
+Direction = "Negative"
+Pearson_r = -0.4176601192010266
+Pearson_p = 0.0025456824516923
+GeneWise_FDR = 0.0214261606350772
+Global_FDR = 0.0265454717938672
+NegLog10FDR = 1.6690556434417694
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3871345064073736
+
+[C1D."PC(14:0/16:0)"]
+Source = "C1D"
+Target = "PC(14:0/16:0)"
+Interaction = "predicts"
+Gene = "C1D"
+Lipid = "PC(14:0/16:0)"
+LipidClass = "PC"
+Coefficient = -0.0840944522556753
+Abs_Coefficient = 0.0840944522556753
+RelativeModelWeight = 0.1311926647387427
+Direction = "Negative"
+Pearson_r = -0.4688970317392003
+Pearson_p = 0.0005933011752691
+GeneWise_FDR = 0.0149808546755459
+Global_FDR = 0.0097008751865326
+NegLog10FDR = 1.824463408913917
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3705488810724899
+
+[C1D."PG(22:6/22:6)"]
+Source = "C1D"
+Target = "PG(22:6/22:6)"
+Interaction = "predicts"
+Gene = "C1D"
+Lipid = "PG(22:6/22:6)"
+LipidClass = "PG"
+Coefficient = -0.0549270569466782
+Abs_Coefficient = 0.0549270569466782
+RelativeModelWeight = 0.0856896831337059
+Direction = "Negative"
+Pearson_r = -0.4372852260424431
+Pearson_p = 0.0014962857119052
+GeneWise_FDR = 0.0195970366981954
+Global_FDR = 0.0184661628639168
+NegLog10FDR = 1.7078095940985072
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.2320313461047099
+
+[C1D."PE(P-18:0/18:2)"]
+Source = "C1D"
+Target = "PE(P-18:0/18:2)"
+Interaction = "predicts"
+Gene = "C1D"
+Lipid = "PE(P-18:0/18:2)"
+LipidClass = "PE"
+Coefficient = -0.0253453090399685
+Abs_Coefficient = 0.0253453090399685
+RelativeModelWeight = 0.0395402852672248
+Direction = "Negative"
+Pearson_r = -0.4205500981088932
+Pearson_p = 0.0023586818651666
+GeneWise_FDR = 0.0214261606350772
+Global_FDR = 0.0251946235812839
+NegLog10FDR = 1.6690556434417694
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.1055352215357838
+
+[PPT2."TG(16:0/16:0/20:4)"]
+Source = "PPT2"
+Target = "TG(16:0/16:0/20:4)"
+Interaction = "predicts"
+Gene = "PPT2"
+Lipid = "TG(16:0/16:0/20:4)"
+LipidClass = "TG"
+Coefficient = -0.2259458446487613
+Abs_Coefficient = 0.2259458446487613
+RelativeModelWeight = 0.3524898093871167
+Direction = "Negative"
+Pearson_r = -0.5850172010902417
+Pearson_p = 8.129194145996722e-6
+GeneWise_FDR = 0.0002736828695818
+Global_FDR = 0.0004598362476972
+NegLog10FDR = 3.5627523851944987
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.6083237185378207
+
+[PPT2."TG(16:0/16:0/18:1)"]
+Source = "PPT2"
+Target = "TG(16:0/16:0/18:1)"
+Interaction = "predicts"
+Gene = "PPT2"
+Lipid = "TG(16:0/16:0/18:1)"
+LipidClass = "TG"
+Coefficient = -0.2227870881003461
+Abs_Coefficient = 0.2227870881003461
+RelativeModelWeight = 0.3475619493710051
+Direction = "Negative"
+Pearson_r = -0.5962652403662816
+Pearson_p = 4.896435523640217e-6
+GeneWise_FDR = 0.0002472699939438
+Global_FDR = 0.0003164917565428
+NegLog10FDR = 3.606828581799907
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.6011583223084385
+
+[PPT2."SM(d18:1/23:0)"]
+Source = "PPT2"
+Target = "SM(d18:1/23:0)"
+Interaction = "predicts"
+Gene = "PPT2"
+Lipid = "SM(d18:1/23:0)"
+LipidClass = "SM"
+Coefficient = -0.2314095275645715
+Abs_Coefficient = 0.2314095275645715
+RelativeModelWeight = 0.3610135003296938
+Direction = "Negative"
+Pearson_r = -0.5409279841511353
+Pearson_p = 4.9985626836332125e-5
+GeneWise_FDR = 0.0007212211872099
+Global_FDR = 0.0017047409185643
+NegLog10FDR = 3.141931523556395
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.495293197444996
+
+[PPT2."PG(18:0/20:4)"]
+Source = "PPT2"
+Target = "PG(18:0/20:4)"
+Interaction = "predicts"
+Gene = "PPT2"
+Lipid = "PG(18:0/20:4)"
+LipidClass = "PG"
+Coefficient = -0.1785898167259655
+Abs_Coefficient = 0.1785898167259655
+RelativeModelWeight = 0.2786114104203809
+Direction = "Negative"
+Pearson_r = -0.5286925734031829
+Pearson_p = 7.919779257676651e-5
+GeneWise_FDR = 0.0007998977050253
+Global_FDR = 0.0023673667409024
+NegLog10FDR = 3.0969655492375807
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.141461350116793
+
+[PPT2."PI(16:0/18:0)"]
+Source = "PPT2"
+Target = "PI(16:0/18:0)"
+Interaction = "predicts"
+Gene = "PPT2"
+Lipid = "PI(16:0/18:0)"
+LipidClass = "PI"
+Coefficient = -0.2075296200072273
+Abs_Coefficient = 0.2075296200072273
+RelativeModelWeight = 0.3237593340662897
+Direction = "Negative"
+Pearson_r = -0.4616195751727509
+Pearson_p = 0.0007399387936777
+GeneWise_FDR = 0.0039249685258724
+Global_FDR = 0.01133268870032
+NegLog10FDR = 2.406163821490628
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.102777330566494
+
+[PPT2."PE(16:0/18:1)"]
+Source = "PPT2"
+Target = "PE(16:0/18:1)"
+Interaction = "predicts"
+Gene = "PPT2"
+Lipid = "PE(16:0/18:1)"
+LipidClass = "PE"
+Coefficient = -0.1921366016105807
+Abs_Coefficient = 0.1921366016105807
+RelativeModelWeight = 0.299745251714118
+Direction = "Negative"
+Pearson_r = -0.4446630731177725
+Pearson_p = 0.0012152281088034
+GeneWise_FDR = 0.005222895276134
+Global_FDR = 0.0159927809000068
+NegLog10FDR = 2.282088682080497
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9837904981582762
+
+[PPT2."DG(18:0/0:0/18:0)"]
+Source = "PPT2"
+Target = "DG(18:0/0:0/18:0)"
+Interaction = "predicts"
+Gene = "PPT2"
+Lipid = "DG(18:0/0:0/18:0)"
+LipidClass = "DG"
+Coefficient = -0.1064459179939619
+Abs_Coefficient = 0.1064459179939619
+RelativeModelWeight = 0.1660623650860047
+Direction = "Negative"
+Pearson_r = -0.4988364501766231
+Pearson_p = 0.0002267272060298
+GeneWise_FDR = 0.0018319558247215
+Global_FDR = 0.0049879175731126
+NegLog10FDR = 2.73708500299948
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6205891741255326
+
+[PPT2."PG(18:1/0:0)"]
+Source = "PPT2"
+Target = "PG(18:1/0:0)"
+Interaction = "predicts"
+Gene = "PPT2"
+Lipid = "PG(18:1/0:0)"
+LipidClass = "PG"
+Coefficient = -0.1329484194088358
+Abs_Coefficient = 0.1329484194088358
+RelativeModelWeight = 0.2074079436538815
+Direction = "Negative"
+Pearson_r = -0.3453662667404901
+Pearson_p = 0.014031881324245
+GeneWise_FDR = 0.0314937780833055
+Global_FDR = 0.0833886669504753
+NegLog10FDR = 1.5017752370354072
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.5188880573977159
+
+[MOGAT1."PI(18:0/20:4)"]
+Source = "MOGAT1"
+Target = "PI(18:0/20:4)"
+Interaction = "predicts"
+Gene = "MOGAT1"
+Lipid = "PI(18:0/20:4)"
+LipidClass = "PI"
+Coefficient = 0.1592099534874345
+Abs_Coefficient = 0.1592099534874345
+RelativeModelWeight = 0.248377597935281
+Direction = "Positive"
+Pearson_r = 0.6600818168088054
+Pearson_p = 1.840468886030416e-7
+GeneWise_FDR = 4.978593158623814e-6
+Global_FDR = 2.838330114351287e-5
+NegLog10FDR = 5.302893362012116
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.565497513298797
+
+[MOGAT1."Cer(d18:1/26:0)"]
+Source = "MOGAT1"
+Target = "Cer(d18:1/26:0)"
+Interaction = "predicts"
+Gene = "MOGAT1"
+Lipid = "Cer(d18:1/26:0)"
+LipidClass = "CER"
+Coefficient = 0.1566033630212714
+Abs_Coefficient = 0.1566033630212714
+RelativeModelWeight = 0.2443111519336012
+Direction = "Positive"
+Pearson_r = 0.573473622876516
+Pearson_p = 1.3415807334684736e-5
+GeneWise_FDR = 0.0001158865797785
+Global_FDR = 0.0006629177034272
+NegLog10FDR = 3.935966854507373
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.2059117481307706
+
+[MOGAT1."PE(18:1/18:1)"]
+Source = "MOGAT1"
+Target = "PE(18:1/18:1)"
+Interaction = "predicts"
+Gene = "MOGAT1"
+Lipid = "PE(18:1/18:1)"
+LipidClass = "PE"
+Coefficient = 0.1125040068780737
+Abs_Coefficient = 0.1125040068780737
+RelativeModelWeight = 0.175513366937047
+Direction = "Positive"
+Pearson_r = 0.6563379640676238
+Pearson_p = 2.2794703686682167e-7
+GeneWise_FDR = 4.978593158623814e-6
+Global_FDR = 3.31623476023251e-5
+NegLog10FDR = 5.302893362012116
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.1062420354119102
+
+[MOGAT1."TG(18:0/18:1/22:5)"]
+Source = "MOGAT1"
+Target = "TG(18:0/18:1/22:5)"
+Interaction = "predicts"
+Gene = "MOGAT1"
+Lipid = "TG(18:0/18:1/22:5)"
+LipidClass = "TG"
+Coefficient = 0.1895531236700893
+Abs_Coefficient = 0.1895531236700893
+RelativeModelWeight = 0.2957148627144209
+Direction = "Positive"
+Pearson_r = 0.4652868862977164
+Pearson_p = 0.0006624048444183
+GeneWise_FDR = 0.0030744052153206
+Global_FDR = 0.0104916480906507
+NegLog10FDR = 2.512238891820101
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.038621241714831
+
+[MOGAT1."Cer(d18:1/25:0)"]
+Source = "MOGAT1"
+Target = "Cer(d18:1/25:0)"
+Interaction = "predicts"
+Gene = "MOGAT1"
+Lipid = "Cer(d18:1/25:0)"
+LipidClass = "CER"
+Coefficient = 0.162994905878757
+Abs_Coefficient = 0.162994905878757
+RelativeModelWeight = 0.2542823630750451
+Direction = "Positive"
+Pearson_r = 0.4918653546574457
+Pearson_p = 0.0002859055836293
+GeneWise_FDR = 0.001480844304952
+Global_FDR = 0.0058510689278874
+NegLog10FDR = 2.829490600529886
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9737719192764132
+
+[MOGAT1."SM(d18:1/23:0)"]
+Source = "MOGAT1"
+Target = "SM(d18:1/23:0)"
+Interaction = "predicts"
+Gene = "MOGAT1"
+Lipid = "SM(d18:1/23:0)"
+LipidClass = "SM"
+Coefficient = 0.1941825818776419
+Abs_Coefficient = 0.1941825818776419
+RelativeModelWeight = 0.3029371103449651
+Direction = "Positive"
+Pearson_r = 0.3411784953788106
+Pearson_p = 0.0153201249047603
+GeneWise_FDR = 0.0396751952661741
+Global_FDR = 0.0883679587481658
+NegLog10FDR = 1.4014809271361068
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.72749769261516
+
+[MOGAT1."SM(d18:2/20:0)"]
+Source = "MOGAT1"
+Target = "SM(d18:2/20:0)"
+Interaction = "predicts"
+Gene = "MOGAT1"
+Lipid = "SM(d18:2/20:0)"
+LipidClass = "SM"
+Coefficient = 0.1315483623946187
+Abs_Coefficient = 0.1315483623946187
+RelativeModelWeight = 0.2052237661540049
+Direction = "Positive"
+Pearson_r = 0.368547451190944
+Pearson_p = 0.0084504129428843
+GeneWise_FDR = 0.0247388900646758
+Global_FDR = 0.0594741160240607
+NegLog10FDR = 1.6066197893309873
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.5349403300980641
+
+[MOGAT1."PE(P-18:0/16:0)"]
+Source = "MOGAT1"
+Target = "PE(P-18:0/16:0)"
+Interaction = "predicts"
+Gene = "MOGAT1"
+Lipid = "PE(P-18:0/16:0)"
+LipidClass = "PE"
+Coefficient = 0.1127853176726299
+Abs_Coefficient = 0.1127853176726299
+RelativeModelWeight = 0.1759522295702847
+Direction = "Positive"
+Pearson_r = 0.3288857780465535
+Pearson_p = 0.019698545980436
+GeneWise_FDR = 0.048247153011199
+Global_FDR = 0.1043501835305378
+NegLog10FDR = 1.316528308600096
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.4075983207608674
+
+[LPIN1."PI(16:1/18:1)"]
+Source = "LPIN1"
+Target = "PI(16:1/18:1)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PI(16:1/18:1)"
+LipidClass = "PI"
+Coefficient = -0.3172022794992757
+Abs_Coefficient = 0.3172022794992757
+RelativeModelWeight = 0.4948556199901398
+Direction = "Negative"
+Pearson_r = -0.5292399184175031
+Pearson_p = 7.761321332724665e-5
+GeneWise_FDR = 0.0078389345460519
+Global_FDR = 0.0023340791114993
+NegLog10FDR = 2.105742961832786
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.5368943589077764
+
+[LPIN1."PI(16:0/18:2)"]
+Source = "LPIN1"
+Target = "PI(16:0/18:2)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PI(16:0/18:2)"
+LipidClass = "PI"
+Coefficient = -0.3110463174674889
+Abs_Coefficient = 0.3110463174674889
+RelativeModelWeight = 0.4852519298379618
+Direction = "Negative"
+Pearson_r = -0.4592341478037417
+Pearson_p = 0.0007946559218625
+GeneWise_FDR = 0.0092324527062286
+Global_FDR = 0.0119154872865665
+NegLog10FDR = 2.0346829083698106
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.4725857377327292
+
+[LPIN1."PC(18:1/20:5)"]
+Source = "LPIN1"
+Target = "PC(18:1/20:5)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PC(18:1/20:5)"
+LipidClass = "PC"
+Coefficient = -0.1944372496326364
+Abs_Coefficient = 0.1944372496326364
+RelativeModelWeight = 0.3033344081512364
+Direction = "Negative"
+Pearson_r = -0.4562426562866705
+Pearson_p = 0.0008683990169224
+GeneWise_FDR = 0.0092324527062286
+Global_FDR = 0.0126762556582574
+NegLog10FDR = 2.0346829083698106
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9205237439370296
+
+[LPIN1."PI(16:0/22:4)"]
+Source = "LPIN1"
+Target = "PI(16:0/22:4)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PI(16:0/22:4)"
+LipidClass = "PI"
+Coefficient = -0.1764273922693583
+Abs_Coefficient = 0.1764273922693583
+RelativeModelWeight = 0.2752378914884066
+Direction = "Negative"
+Pearson_r = -0.486389147662389
+Pearson_p = 0.0003418587220698
+GeneWise_FDR = 0.0092324527062286
+Global_FDR = 0.0066152017831605
+NegLog10FDR = 2.0346829083698106
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8352597250356123
+
+[LPIN1."PG(16:0/18:0)"]
+Source = "LPIN1"
+Target = "PG(16:0/18:0)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PG(16:0/18:0)"
+LipidClass = "PG"
+Coefficient = -0.1524684727818416
+Abs_Coefficient = 0.1524684727818416
+RelativeModelWeight = 0.237860461616198
+Direction = "Negative"
+Pearson_r = -0.5010677997428621
+Pearson_p = 0.0002102839196197
+GeneWise_FDR = 0.0092324527062286
+Global_FDR = 0.0047189148343861
+NegLog10FDR = 2.0346829083698106
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7218310774436295
+
+[LPIN1."PC(16:2/16:0)"]
+Source = "LPIN1"
+Target = "PC(16:2/16:0)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PC(16:2/16:0)"
+LipidClass = "PC"
+Coefficient = -0.1365680105037495
+Abs_Coefficient = 0.1365680105037495
+RelativeModelWeight = 0.2130547347116628
+Direction = "Negative"
+Pearson_r = -0.4600819895178828
+Pearson_p = 0.0007748051532522
+GeneWise_FDR = 0.0092324527062286
+Global_FDR = 0.0117071110954928
+NegLog10FDR = 2.0346829083698106
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6465535619767473
+
+[LPIN1."PG(18:1/22:6)"]
+Source = "LPIN1"
+Target = "PG(18:1/22:6)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PG(18:1/22:6)"
+LipidClass = "PG"
+Coefficient = -0.1365151688105139
+Abs_Coefficient = 0.1365151688105139
+RelativeModelWeight = 0.2129722983278237
+Direction = "Negative"
+Pearson_r = -0.4581361368416777
+Pearson_p = 0.0008210425476168
+GeneWise_FDR = 0.0092324527062286
+Global_FDR = 0.0121968569422934
+NegLog10FDR = 2.0346829083698106
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6463033936916832
+
+[LPIN1."PE(22:6/0:0)"]
+Source = "LPIN1"
+Target = "PE(22:6/0:0)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PE(22:6/0:0)"
+LipidClass = "PE"
+Coefficient = -0.1346856239798115
+Abs_Coefficient = 0.1346856239798115
+RelativeModelWeight = 0.2101180926678701
+Direction = "Negative"
+Pearson_r = -0.4567406877144335
+Pearson_p = 0.0008557112496394
+GeneWise_FDR = 0.0092324527062286
+Global_FDR = 0.0125494810974255
+NegLog10FDR = 2.0346829083698106
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6376417845584494
+
+[LPIN1."PE(P-16:0/22:6)"]
+Source = "LPIN1"
+Target = "PE(P-16:0/22:6)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PE(P-16:0/22:6)"
+LipidClass = "PE"
+Coefficient = -0.1196141879441273
+Abs_Coefficient = 0.1196141879441273
+RelativeModelWeight = 0.186605699139824
+Direction = "Negative"
+Pearson_r = -0.5152334657417267
+Pearson_p = 0.0001287911664316
+GeneWise_FDR = 0.008671938539729
+Global_FDR = 0.0033372313600948
+NegLog10FDR = 2.061883808752081
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.5713649688170894
+
+[LPIN1."PE(P-18:0/22:4)"]
+Source = "LPIN1"
+Target = "PE(P-18:0/22:4)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PE(P-18:0/22:4)"
+LipidClass = "PE"
+Coefficient = -0.0982728490777121
+Abs_Coefficient = 0.0982728490777121
+RelativeModelWeight = 0.1533118606061585
+Direction = "Negative"
+Pearson_r = -0.4702195071936722
+Pearson_p = 0.0005696598806551
+GeneWise_FDR = 0.0092324527062286
+Global_FDR = 0.0094367496036492
+NegLog10FDR = 2.0346829083698106
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4652528830318841
+
+[LPIN1."PC(O-18:1/0:0)"]
+Source = "LPIN1"
+Target = "PC(O-18:1/0:0)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PC(O-18:1/0:0)"
+LipidClass = "PC"
+Coefficient = -0.1091615985404692
+Abs_Coefficient = 0.1091615985404692
+RelativeModelWeight = 0.1702989985132877
+Direction = "Negative"
+Pearson_r = -0.3926607402815077
+Pearson_p = 0.0047939879824492
+GeneWise_FDR = 0.0210070803944336
+Global_FDR = 0.0407783514563993
+NegLog10FDR = 1.6776343025057607
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.4559984401015569
+
+[LPIN1."PC(16:0/22:4)"]
+Source = "LPIN1"
+Target = "PC(16:0/22:4)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PC(16:0/22:4)"
+LipidClass = "PC"
+Coefficient = -0.0848585511150684
+Abs_Coefficient = 0.0848585511150684
+RelativeModelWeight = 0.132384707290882
+Direction = "Negative"
+Pearson_r = -0.3949780047549137
+Pearson_p = 0.0045298027313183
+GeneWise_FDR = 0.0210070803944336
+Global_FDR = 0.0392924459747312
+NegLog10FDR = 1.6776343025057607
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3544778333692502
+
+[LPIN1."PE(20:0/20:4)"]
+Source = "LPIN1"
+Target = "PE(20:0/20:4)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PE(20:0/20:4)"
+LipidClass = "PE"
+Coefficient = -0.0807371800232797
+Abs_Coefficient = 0.0807371800232797
+RelativeModelWeight = 0.1259551076989245
+Direction = "Negative"
+Pearson_r = -0.3882251322481255
+Pearson_p = 0.0053375373839788
+GeneWise_FDR = 0.0215636510312744
+Global_FDR = 0.0438153936503535
+NegLog10FDR = 1.6662777050579345
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3358312954958134
+
+[LPIN1."PE(P-16:0/18:2)"]
+Source = "LPIN1"
+Target = "PE(P-16:0/18:2)"
+Interaction = "predicts"
+Gene = "LPIN1"
+Lipid = "PE(P-16:0/18:2)"
+LipidClass = "PE"
+Coefficient = -0.0476652818054084
+Abs_Coefficient = 0.0476652818054084
+RelativeModelWeight = 0.0743608545848233
+Direction = "Negative"
+Pearson_r = -0.355002237828996
+Pearson_p = 0.0114145239613638
+GeneWise_FDR = 0.0315853950711713
+Global_FDR = 0.0725934267106714
+NegLog10FDR = 1.500513686565826
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.1859403346340819
+
+[PIK3CA."PE(16:0/18:0)"]
+Source = "PIK3CA"
+Target = "PE(16:0/18:0)"
+Interaction = "predicts"
+Gene = "PIK3CA"
+Lipid = "PE(16:0/18:0)"
+LipidClass = "PE"
+Coefficient = -0.3326514321458981
+Abs_Coefficient = 0.3326514321458981
+RelativeModelWeight = 0.5189572753229291
+Direction = "Negative"
+Pearson_r = -0.4009306660794594
+Pearson_p = 0.003908818259045
+GeneWise_FDR = 0.0336625082863239
+Global_FDR = 0.0355860337601332
+NegLog10FDR = 1.472853526674995
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.2833053284759517
+
+[PIK3CA."PC(P-18:0/22:6)"]
+Source = "PIK3CA"
+Target = "PC(P-18:0/22:6)"
+Interaction = "predicts"
+Gene = "PIK3CA"
+Lipid = "PC(P-18:0/22:6)"
+LipidClass = "PC"
+Coefficient = -0.2471563146754728
+Abs_Coefficient = 0.2471563146754728
+RelativeModelWeight = 0.3855794842530078
+Direction = "Negative"
+Pearson_r = -0.5136882825014709
+Pearson_p = 0.0001360090795823
+GeneWise_FDR = 0.0068684585189093
+Global_FDR = 0.0034755368697923
+NegLog10FDR = 2.163140720269237
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.2196421675411002
+
+[PIK3CA."PE(16:0/0:0)"]
+Source = "PIK3CA"
+Target = "PE(16:0/0:0)"
+Interaction = "predicts"
+Gene = "PIK3CA"
+Lipid = "PE(16:0/0:0)"
+LipidClass = "PE"
+Coefficient = -0.2669289125492862
+Abs_Coefficient = 0.2669289125492862
+RelativeModelWeight = 0.4164259876107619
+Direction = "Negative"
+Pearson_r = -0.4455784398934112
+Pearson_p = 0.0011838762824328
+GeneWise_FDR = 0.0298928761314306
+Global_FDR = 0.0157123557060072
+NegLog10FDR = 1.5244322974760292
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0512392126329602
+
+[PIK3CA."PE(16:0/22:4)"]
+Source = "PIK3CA"
+Target = "PE(16:0/22:4)"
+Interaction = "predicts"
+Gene = "PIK3CA"
+Lipid = "PE(16:0/22:4)"
+LipidClass = "PE"
+Coefficient = -0.2430455808909536
+Abs_Coefficient = 0.2430455808909536
+RelativeModelWeight = 0.3791664795332316
+Direction = "Negative"
+Pearson_r = -0.4184138297329654
+Pearson_p = 0.0024956886633503
+GeneWise_FDR = 0.0315080693747987
+Global_FDR = 0.0261874101250137
+NegLog10FDR = 1.501578206967507
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.9485146020129236
+
+[BCL2."TG(14:0/16:0/20:4)"]
+Source = "BCL2"
+Target = "TG(14:0/16:0/20:4)"
+Interaction = "predicts"
+Gene = "BCL2"
+Lipid = "TG(14:0/16:0/20:4)"
+LipidClass = "TG"
+Coefficient = -0.2150745245441724
+Abs_Coefficient = 0.2150745245441724
+RelativeModelWeight = 0.3355298623811876
+Direction = "Negative"
+Pearson_r = -0.5218110001327425
+Pearson_p = 0.0001018107060162
+GeneWise_FDR = 0.0018696147832081
+Global_FDR = 0.0028297252320285
+NegLog10FDR = 2.728247866597686
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.250938493602478
+
+[BCL2."PE(18:0/18:1)"]
+Source = "BCL2"
+Target = "PE(18:0/18:1)"
+Interaction = "predicts"
+Gene = "BCL2"
+Lipid = "PE(18:0/18:1)"
+LipidClass = "PE"
+Coefficient = -0.1424879851215492
+Abs_Coefficient = 0.1424879851215492
+RelativeModelWeight = 0.2222902695711273
+Direction = "Negative"
+Pearson_r = -0.5658166469904582
+Pearson_p = 1.8512142152242107e-5
+GeneWise_FDR = 0.0008697054766063
+Global_FDR = 0.0008378058849164
+NegLog10FDR = 3.0606277951289336
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.902638047207223
+
+[BCL2."PI(16:0/18:1)"]
+Source = "BCL2"
+Target = "PI(16:0/18:1)"
+Interaction = "predicts"
+Gene = "BCL2"
+Lipid = "PI(16:0/18:1)"
+LipidClass = "PI"
+Coefficient = -0.174171855310069
+Abs_Coefficient = 0.174171855310069
+RelativeModelWeight = 0.2717191111626104
+Direction = "Negative"
+Pearson_r = -0.4648255924776218
+Pearson_p = 0.0006717377048685
+GeneWise_FDR = 0.0058996094079756
+Global_FDR = 0.0105877525255487
+NegLog10FDR = 2.229176740489396
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8774290337127542
+
+[BCL2."PG(16:0/16:0)"]
+Source = "BCL2"
+Target = "PG(16:0/16:0)"
+Interaction = "predicts"
+Gene = "BCL2"
+Lipid = "PG(16:0/16:0)"
+LipidClass = "PG"
+Coefficient = -0.1459305706467538
+Abs_Coefficient = 0.1459305706467538
+RelativeModelWeight = 0.2276609207440426
+Direction = "Negative"
+Pearson_r = -0.5255363101263515
+Pearson_p = 8.89272946180379e-5
+GeneWise_FDR = 0.0017963313512843
+Global_FDR = 0.0025669892026006
+NegLog10FDR = 2.7456135503183323
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8527298296168342
+
+[BCL2."TG(16:0/16:0/16:0)"]
+Source = "BCL2"
+Target = "TG(16:0/16:0/16:0)"
+Interaction = "predicts"
+Gene = "BCL2"
+Lipid = "TG(16:0/16:0/16:0)"
+LipidClass = "TG"
+Coefficient = -0.1166312403260201
+Abs_Coefficient = 0.1166312403260201
+RelativeModelWeight = 0.1819521121754217
+Direction = "Negative"
+Pearson_r = -0.5929569167187594
+Pearson_p = 5.695064203071571e-6
+GeneWise_FDR = 0.0008466702016587
+Global_FDR = 0.0003535837140254
+NegLog10FDR = 3.072285724842633
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7409609890169352
+
+[BCL2."SM(d18:2/20:0)"]
+Source = "BCL2"
+Target = "SM(d18:2/20:0)"
+Interaction = "predicts"
+Gene = "BCL2"
+Lipid = "SM(d18:2/20:0)"
+LipidClass = "SM"
+Coefficient = -0.1231047360030586
+Abs_Coefficient = 0.1231047360030586
+RelativeModelWeight = 0.1920511748991235
+Direction = "Negative"
+Pearson_r = -0.5308986628461801
+Pearson_p = 7.298659972312261e-5
+GeneWise_FDR = 0.0017793689251415
+Global_FDR = 0.0022353128793413
+NegLog10FDR = 2.7497339982104854
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7201408199155117
+
+[FABP4."PI(20:4/20:4)"]
+Source = "FABP4"
+Target = "PI(20:4/20:4)"
+Interaction = "predicts"
+Gene = "FABP4"
+Lipid = "PI(20:4/20:4)"
+LipidClass = "PI"
+Coefficient = 0.1670072103806187
+Abs_Coefficient = 0.1670072103806187
+RelativeModelWeight = 0.260541811887936
+Direction = "Positive"
+Pearson_r = 0.6030598265060764
+Pearson_p = 3.5710595740816503e-6
+GeneWise_FDR = 0.0002154018443965
+Global_FDR = 0.0002512519760477
+NegLog10FDR = 3.666750582338844
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.215883652351643
+
+[FABP4."GM3(d40:1)"]
+Source = "FABP4"
+Target = "GM3(d40:1)"
+Interaction = "predicts"
+Gene = "FABP4"
+Lipid = "GM3(d40:1)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = -0.243373845742423
+Abs_Coefficient = 0.243373845742423
+RelativeModelWeight = 0.3796785934652352
+Direction = "Negative"
+Pearson_r = -0.4125463062335797
+Pearson_p = 0.0029089339497107
+GeneWise_FDR = 0.0183626455575491
+Global_FDR = 0.0291303170572162
+NegLog10FDR = 1.7360647486099994
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.038825215382057
+
+[FABP4."PG(18:0/18:2)"]
+Source = "FABP4"
+Target = "PG(18:0/18:2)"
+Interaction = "predicts"
+Gene = "FABP4"
+Lipid = "PG(18:0/18:2)"
+LipidClass = "PG"
+Coefficient = -0.187752521286634
+Abs_Coefficient = 0.187752521286634
+RelativeModelWeight = 0.2929058091028673
+Direction = "Negative"
+Pearson_r = -0.3957792234404546
+Pearson_p = 0.0044414759236753
+GeneWise_FDR = 0.0260283739084741
+Global_FDR = 0.0387755890119935
+NegLog10FDR = 1.5845529630715514
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7570305768176858
+
+[FABP4."PC(14:0/16:1)"]
+Source = "FABP4"
+Target = "PC(14:0/16:1)"
+Interaction = "predicts"
+Gene = "FABP4"
+Lipid = "PC(14:0/16:1)"
+LipidClass = "PC"
+Coefficient = -0.1519806550821354
+Abs_Coefficient = 0.1519806550821354
+RelativeModelWeight = 0.2370994351487611
+Direction = "Negative"
+Pearson_r = -0.449278798739803
+Pearson_p = 0.0010643804092682
+GeneWise_FDR = 0.0084504316952109
+Global_FDR = 0.0146153137732659
+NegLog10FDR = 2.073121104297756
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7286352779727352
+
+[FABP4."DG(18:1/18:2/0:0)"]
+Source = "FABP4"
+Target = "DG(18:1/18:2/0:0)"
+Interaction = "predicts"
+Gene = "FABP4"
+Lipid = "DG(18:1/18:2/0:0)"
+LipidClass = "DG"
+Coefficient = -0.1084230208432431
+Abs_Coefficient = 0.1084230208432431
+RelativeModelWeight = 0.1691467705884171
+Direction = "Negative"
+Pearson_r = -0.3647600113204495
+Pearson_p = 0.0092031068299022
+GeneWise_FDR = 0.0422506268100059
+Global_FDR = 0.0630075110250909
+NegLog10FDR = 1.3741668436821586
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.4015826544469325
+
+[FABP4."DG(18:0/18:1/0:0)"]
+Source = "FABP4"
+Target = "DG(18:0/18:1/0:0)"
+Interaction = "predicts"
+Gene = "FABP4"
+Lipid = "DG(18:0/18:1/0:0)"
+LipidClass = "DG"
+Coefficient = -0.0727119025064886
+Abs_Coefficient = 0.0727119025064886
+RelativeModelWeight = 0.1134351671504718
+Direction = "Negative"
+Pearson_r = -0.3625423373874398
+Pearson_p = 0.0096701853224196
+GeneWise_FDR = 0.0434083874473061
+Global_FDR = 0.0650758352530568
+NegLog10FDR = 1.3624263472123133
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.2679822275767074
+
+[FABP4."PE(P-16:0/18:1)"]
+Source = "FABP4"
+Target = "PE(P-16:0/18:1)"
+Interaction = "predicts"
+Gene = "FABP4"
+Lipid = "PE(P-16:0/18:1)"
+LipidClass = "PE"
+Coefficient = -0.0418437828960586
+Abs_Coefficient = 0.0418437828960586
+RelativeModelWeight = 0.0652789480594169
+Direction = "Negative"
+Pearson_r = -0.3817084859403811
+Pearson_p = 0.0062336679643625
+GeneWise_FDR = 0.0326143309368469
+Global_FDR = 0.0486280562117513
+NegLog10FDR = 1.4865915263371343
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.1623220790927481
+
+[GGTLC1."PC(16:1/18:2)"]
+Source = "GGTLC1"
+Target = "PC(16:1/18:2)"
+Interaction = "predicts"
+Gene = "GGTLC1"
+Lipid = "PC(16:1/18:2)"
+LipidClass = "PC"
+Coefficient = 0.2757573694870551
+Abs_Coefficient = 0.2757573694870551
+RelativeModelWeight = 0.4301989388593857
+Direction = "Positive"
+Pearson_r = 0.4190291885072046
+Pearson_p = 0.0024555185715698
+GeneWise_FDR = 0.0212680276581314
+Global_FDR = 0.0258937953263873
+NegLog10FDR = 1.6722727835766835
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.149608915837506
+
+[GGTLC1."PC(20:4/22:4)"]
+Source = "GGTLC1"
+Target = "PC(20:4/22:4)"
+Interaction = "predicts"
+Gene = "GGTLC1"
+Lipid = "PC(20:4/22:4)"
+LipidClass = "PC"
+Coefficient = 0.2699699106328744
+Abs_Coefficient = 0.2699699106328744
+RelativeModelWeight = 0.4211701369731763
+Direction = "Positive"
+Pearson_r = 0.3787991435097637
+Pearson_p = 0.0066743461739789
+GeneWise_FDR = 0.0373648595941894
+Global_FDR = 0.0508855918548254
+NegLog10FDR = 1.4275366453516982
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 1.0224059414301798
+
+[GGTLC1."DG(18:0/20:4/0:0)"]
+Source = "GGTLC1"
+Target = "DG(18:0/20:4/0:0)"
+Interaction = "predicts"
+Gene = "GGTLC1"
+Lipid = "DG(18:0/20:4/0:0)"
+LipidClass = "DG"
+Coefficient = 0.1846681677206196
+Abs_Coefficient = 0.1846681677206196
+RelativeModelWeight = 0.288094022445507
+Direction = "Positive"
+Pearson_r = 0.4273509450789314
+Pearson_p = 0.0019658333465876
+GeneWise_FDR = 0.0208999124216162
+Global_FDR = 0.0222692435308776
+NegLog10FDR = 1.679855533740069
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7720503602880276
+
+[GGTLC1."PE(P-18:0/18:2)"]
+Source = "GGTLC1"
+Target = "PE(P-18:0/18:2)"
+Interaction = "predicts"
+Gene = "GGTLC1"
+Lipid = "PE(P-18:0/18:2)"
+LipidClass = "PE"
+Coefficient = 0.1908660297800717
+Abs_Coefficient = 0.1908660297800717
+RelativeModelWeight = 0.2977630792911422
+Direction = "Positive"
+Pearson_r = 0.4072517679267547
+Pearson_p = 0.0033325553219132
+GeneWise_FDR = 0.0257697095011893
+Global_FDR = 0.0319384427691684
+NegLog10FDR = 1.588890477170538
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.7708760004298139
+
+[GGTLC1."PC(20:4/20:4)"]
+Source = "GGTLC1"
+Target = "PC(20:4/20:4)"
+Interaction = "predicts"
+Gene = "GGTLC1"
+Lipid = "PC(20:4/20:4)"
+LipidClass = "PC"
+Coefficient = 0.1385683415660701
+Abs_Coefficient = 0.1385683415660701
+RelativeModelWeight = 0.216175377695669
+Direction = "Positive"
+Pearson_r = 0.4779372369316378
+Pearson_p = 0.0004478460050968
+GeneWise_FDR = 0.0075387410857972
+Global_FDR = 0.0079757275407263
+NegLog10FDR = 2.122701172053254
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6750511052993206
+
+[GGTLC1."PC(15:0/16:0)"]
+Source = "GGTLC1"
+Target = "PC(15:0/16:0)"
+Interaction = "predicts"
+Gene = "GGTLC1"
+Lipid = "PC(15:0/16:0)"
+LipidClass = "PC"
+Coefficient = 0.1568985311889804
+Abs_Coefficient = 0.1568985311889804
+RelativeModelWeight = 0.2447716329454766
+Direction = "Positive"
+Pearson_r = 0.409145775928027
+Pearson_p = 0.003175148128207
+GeneWise_FDR = 0.0256551968759128
+Global_FDR = 0.0309208687550518
+NegLog10FDR = 1.5908246482549615
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.6341603798287571
+
+[GGTLC1."GM3(d40:1)"]
+Source = "GGTLC1"
+Target = "GM3(d40:1)"
+Interaction = "predicts"
+Gene = "GGTLC1"
+Lipid = "GM3(d40:1)"
+LipidClass = "GLYCOSPHINGOLIPID"
+Coefficient = 0.1267039113157292
+Abs_Coefficient = 0.1267039113157292
+RelativeModelWeight = 0.1976661160452474
+Direction = "Positive"
+Pearson_r = 0.4209053107381454
+Pearson_p = 0.0023365590012312
+GeneWise_FDR = 0.0212680276581314
+Global_FDR = 0.0250313684691111
+NegLog10FDR = 1.6722727835766835
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.5282177821430252
+
+[GGTLC1."PC(14:0/16:1)"]
+Source = "GGTLC1"
+Target = "PC(14:0/16:1)"
+Interaction = "predicts"
+Gene = "GGTLC1"
+Lipid = "PC(14:0/16:1)"
+LipidClass = "PC"
+Coefficient = 0.0410761725690368
+Abs_Coefficient = 0.0410761725690368
+RelativeModelWeight = 0.0640814273956662
+Direction = "Positive"
+Pearson_r = 0.387744520951835
+Pearson_p = 0.0053995490343487
+GeneWise_FDR = 0.0340846532793262
+Global_FDR = 0.0441748693351041
+NegLog10FDR = 1.467441119434081
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.1581171489480966
+
+[GGTLC1."PC(20:4/22:6)"]
+Source = "GGTLC1"
+Target = "PC(20:4/22:6)"
+Interaction = "predicts"
+Gene = "GGTLC1"
+Lipid = "PC(20:4/22:6)"
+LipidClass = "PC"
+Coefficient = 0.0287670944638659
+Abs_Coefficient = 0.0287670944638659
+RelativeModelWeight = 0.0448784869664336
+Direction = "Positive"
+Pearson_r = 0.5158033905447138
+Pearson_p = 0.0001262183601829
+GeneWise_FDR = 0.0050992217513923
+Global_FDR = 0.0032947342865075
+NegLog10FDR = 2.292496101326897
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.1477622433704328
+
+[CYP51A1."SM(d18:0/20:0)"]
+Source = "CYP51A1"
+Target = "SM(d18:0/20:0)"
+Interaction = "predicts"
+Gene = "CYP51A1"
+Lipid = "SM(d18:0/20:0)"
+LipidClass = "SM"
+Coefficient = -0.1545759753313158
+Abs_Coefficient = 0.1545759753313158
+RelativeModelWeight = 0.2411482988990737
+Direction = "Negative"
+Pearson_r = -0.6001321869935645
+Pearson_p = 4.094958477981114e-6
+GeneWise_FDR = 0.0004512054783273
+Global_FDR = 0.0002771914211628
+NegLog10FDR = 3.345625635990795
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 1.0479402297713856
+
+[CYP51A1."PC(18:0/22:4)"]
+Source = "CYP51A1"
+Target = "PC(18:0/22:4)"
+Interaction = "predicts"
+Gene = "CYP51A1"
+Lipid = "PC(18:0/22:4)"
+LipidClass = "PC"
+Coefficient = -0.1590152116293713
+Abs_Coefficient = 0.1590152116293713
+RelativeModelWeight = 0.2480737883187106
+Direction = "Negative"
+Pearson_r = -0.482616938800139
+Pearson_p = 0.0003859805582781
+GeneWise_FDR = 0.0029715688438204
+Global_FDR = 0.0072046845674163
+NegLog10FDR = 2.527014203771914
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.8749597749835996
+
+[CYP51A1."PC(14:1/16:0)"]
+Source = "CYP51A1"
+Target = "PC(14:1/16:0)"
+Interaction = "predicts"
+Gene = "CYP51A1"
+Lipid = "PC(14:1/16:0)"
+LipidClass = "PC"
+Coefficient = -0.2060703071132854
+Abs_Coefficient = 0.2060703071132854
+RelativeModelWeight = 0.3214827136459345
+Direction = "Negative"
+Pearson_r = -0.387194556275685
+Pearson_p = 0.0054712808968531
+GeneWise_FDR = 0.0190551507097299
+Global_FDR = 0.0445788102401494
+NegLog10FDR = 1.7199876119852144
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.874428998584332
+
+[CYP51A1."PE(P-18:0/22:5)"]
+Source = "CYP51A1"
+Target = "PE(P-18:0/22:5)"
+Interaction = "predicts"
+Gene = "CYP51A1"
+Lipid = "PE(P-18:0/22:5)"
+LipidClass = "PE"
+Coefficient = -0.208577932068646
+Abs_Coefficient = 0.208577932068646
+RelativeModelWeight = 0.3253947671909047
+Direction = "Negative"
+Pearson_r = -0.3781929428990019
+Pearson_p = 0.0067695061301841
+GeneWise_FDR = 0.0217054006078921
+Global_FDR = 0.051355611303544
+NegLog10FDR = 1.6634321941518702
+Significant_FDR005 = true
+Significant_GlobalFDR005 = false
+VisualizationScore = 0.8666668987448082
+
+[CYP51A1."PS(18:0/22:6)"]
+Source = "CYP51A1"
+Target = "PS(18:0/22:6)"
+Interaction = "predicts"
+Gene = "CYP51A1"
+Lipid = "PS(18:0/22:6)"
+LipidClass = "PS"
+Coefficient = -0.0707711072769373
+Abs_Coefficient = 0.0707711072769373
+RelativeModelWeight = 0.1104074038314011
+Direction = "Negative"
+Pearson_r = -0.4872907616249834
+Pearson_p = 0.0003320135550599
+GeneWise_FDR = 0.0027944474217549
+Global_FDR = 0.0064858706739669
+NegLog10FDR = 2.5537040573332868
+Significant_FDR005 = true
+Significant_GlobalFDR005 = true
+VisualizationScore = 0.3923552389552848

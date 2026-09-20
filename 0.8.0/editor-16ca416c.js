@@ -14,7 +14,7 @@ window.editors = [];
             showPrintMargin: false,
             showLineNumbers: display_line_numbers,
             showGutter: display_line_numbers,
-            maxLines: 25,
+            maxLines: Infinity,
             fontSize: "0.875em" // please adjust the font size of the code in general.css
         });
 

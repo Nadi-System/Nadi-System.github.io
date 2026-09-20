@@ -37,7 +37,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-a53aa3b3.js";
+            window.path_to_searchindex_js = "../searchindex-e451adc0.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-1fe14bb7.js"></script>
@@ -244,7 +244,6 @@ node[03229610]$sf_fix
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">TimeSeries([1920-10-01, 1920-10-02, ..., 2024-12-31], values: MaskedSeries(len: 38078, dtype: Strings, valid: 7032) [-, -, -, -, -, -, -, -, -, -, ...])
-
 MaskedSeries(len: 38078, dtype: Floats, valid: 38067) [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, ...]
 </code></pre>
 <p>We can see the data is filled here, in the beginning the data comes from the node <code>03227500</code>, while at the end we can see the data comes from the node itself.</p>
@@ -258,16 +257,13 @@ nm[03229610,03227500] {$$streamflow[s:l]}
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">Series(len: 101, dtype: Floats) [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, ...]
-
 {
   "03229610" = MaskedSeries(len: 101, dtype: Attributes, valid: 0) [-, -, -, -, -, -, -, -, -, -, ...],
   "03227500" = Series(len: 101, dtype: Floats) [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, ...]
 }
 
 
-
 Series(len: 501, dtype: Floats) [574, 485, 465, 439, 421, 5170, 5360, 5300, 4260, 3620, ...]
-
 {
   "03229610" = Series(len: 501, dtype: Strings) ["574.0", "485.0", "465.0", "439.0", "421.0", "5170.0", "5360.0", "5300.0", "4260.0", "3620.0", ...],
   "03227500" = Series(len: 501, dtype: Floats) [191, 176, 165, 159, 134, 3500, 3690, 4520, 3530, 2970, ...]
@@ -294,9 +290,7 @@ node[03229610] {[sr_mean("sf_org"), sr_mean("sf_fix"), sr_mean("sf_fix2")]}
 </code></pre>
 <p>Results:</p>
 <pre><code class="language-output">Series(len: 201, dtype: Floats) [271, 271, 231, 194, 177, 194, 194, 271, 231, 360, ...]
-
 Series(len: 201, dtype: Floats) [405, 389, 345, 276, 252, 3304, 904, 891, 422, 528, ...]
-
 
 [2781.179749715586, 1701.8723040954108, 2077.1651452282154]
 </code></pre>
@@ -390,10 +384,10 @@ FunctionError  at Line 13 Column 1: function svg_ts_blocks: No such file or dire
 
         <script src="../clipboard-1626706a.min.js"></script>
         <script src="../highlight-a4af0267.js"></script>
-        <script src="../book-9d8b8e83.js"></script>
+        <script src="../book-b2fed824.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../theme/load_nadi_global-0c6e62da.js"></script>
+        <script src="../theme/load_nadi_global-b49fcbbd.js"></script>
         <script src="../theme/mode-task-88dcc689.js"></script>
 
 

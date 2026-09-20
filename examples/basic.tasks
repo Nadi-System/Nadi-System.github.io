@@ -1,0 +1,10 @@
+# simple expressions
+1 + 2 
+true & false
+
+# function definitions
+func add(x, y=0) {x + y}
+add(1)
+add(1,20)
+
+nodes {set_xy(INDEX, ORDER)}

@@ -1,124 +1,792 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Network Analysis and Data Integration (NADI) System</title>
-  <link rel="stylesheet" href="proj-root.css">
-  
-  <style>
-   #playground-container {
-       width: 100%;
-       height: 50vh; /* take the whole viewport height */
-       display: flex;
-       flex-direction: row;
-       justify-content: center;
-       align-items: center;
-   }
-   #code-column, #result-column {
-       width: 45%;
-       margin: 20px;
-       padding: 20px;
-       border: 1px solid #ddd;
-       border-radius: 5px;
-       background-color: #f9f9f9;
-       box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-   }
-   
-   #code-column {
-       margin-right: 20px;
-   }
-   
-   #source-code, #results {
-       width: 100%;
-       height: 50vh; /* take most of the height */
-       padding: 10px;
-       font-size: 14px;
-       border: none;
-       resize: vertical;
-   }
-   
-   #btn-sync {
-       margin-top: 4px;
-       background-color: #4CAF50;
-       padding: 5px 8px;
-   }
-   
-   #btn-sync:hover {
-       background-color: #3e8e41;
-   }
-  </style>
-</head>
-<body>
+<html>
+    <head>
+	<title>Nadi Network Playground</title>
+	<style>
+	 body {
+	     font-family: Arial, sans-serif;
+	     margin: 0;
+	     padding: 0;
+	     background-color: #f0f0f0;
+	 }
+	 
+	 #container {
+	     width: 100%;
+	     height: 80%; /* take the whole viewport height */
+	     display: flex;
+	     flex-direction: row;
+	     justify-content: center;
+	     align-items: center;
+	     background-color: #fff;
+	     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	 }
+	 
+	 #button-container {
+	     display:inline;
+	     flex-direction: row;
+	     align-items: center;
+	 }
+	 
+	 #code-column, #result-column {
+	     height: 100%;
+	     margin: 20px;
+	     padding: 20px;
+	     background-color: #f9f9f9;
+	 }
+	 
+	 #code-column {
+	     margin-right: 20px;
+	     width: 50%;
+	     min-width: 500px;
+	 }
 
-    <header>
-	<image src="./logo.svg" height="100px" />
-	<h1>Network Analysis and Data Integration (NADI) System</h1>
-    </header>
+	 #result-column {
+	     flex-grow: 1;
+	 }
+	 
+	</style>
+	
+	<style type="text/css" media="screen">
+	 #nadi-network { 
+             position: relative;
+             width: 100%;
+	 }
+	 
+	 #nadi-tasks { 
+             position: relative;
+             width: 100%;
+	 }
 
-<nav>
-    <a href="/index.html">Home</a>
-    <a href="/publications.html">Publications</a>
-    <a href="/user-guide.html">User Manual</a>
-    <a href="/playground.html">Playground</a>
-    <a href="/developer-guide.html">Developer Guide</a>
-    <a href="/api-reference.html">API Reference</a>
-    <a href="/tutorials.html">Tutorials</a>
-</nav>
+	 #nadi-output {
+             height: 120px;
+	     padding: 10px;
+	     overflow: scroll;
+	     background-color: gray;
+	 }
+	</style>
 
-<!-- the content only changes from here below -->
-<div class="container">
-    <p>
-	The playground here allows you to input a Network and visualize it. If you want to test out the playground for the NADI DSL where you can run NADI code, refer to the <a href="/latest/playground.html">NADI Playground in the Nadi Book</a>.
-    </p>
-    <div id="playground-container">
+	<style>
+	 /* Style the tab */
+	 .tab {
+	     overflow: hidden;
+	     border: 1px solid #ccc;
+	     background-color: #f1f1f1;
+	 }
+
+	 /* Style the buttons that are used to open the tab content */
+	 .tab button {
+	     background-color: inherit;
+	     float: left;
+	     border: none;
+	     outline: none;
+	     cursor: pointer;
+	     padding: 14px 16px;
+	     transition: 0.3s;
+	 }
+
+	 /* Change background color of buttons on hover */
+	 .tab button:hover {
+	     background-color: #ddd;
+	 }
+
+	 /* Create an active/current tablink class */
+	 .tab button.active {
+	     background-color: #ccc;
+	 }
+
+	 /* Style the tab content */
+	 .tabcontent {
+	     display: none;
+	     padding: 6px 12px;
+	     border: 1px solid #ccc;
+	     border-top: none;
+	     height: 80vh;
+	     overflow:scroll;
+	 }
+	 input[type=text] {
+	     float: none;
+	     display: block;
+	     text-align: left;
+	     width: 70%;
+	     margin: 0;
+	     padding: 2px;
+	 }
+	</style>
+	<style>
+	 .nadi-syn-fty {
+	     color: #F27;
+	 }
+	 .nadi-syn-fname {
+	     color: #6DE;
+	 }
+	 .nadi-syn-arg {
+	     color: #008;
+	 }
+	 .nadi-syn-ty {
+	     color: #888;
+	 }
+	 .nadi-syn-optarg {
+	     color: #2b2;
+	 }
+	 .nadi-syn-value {
+	     color: #2a7;
+	 }
+	 .nadi-syn-sym {
+	     color: #821;
+	 }
+
+	 .nadi-toolip {
+	     padding: 5px;
+	 }
+	</style>
+	
+	<link rel="stylesheet" href="proj-root.css">
+    </head>
+    <body>
+	<h2 style="padding: 10px;height:20px;">
+	    <image src="./logo.svg" height="50px" style="float:left;">
+	    <div style="text-align: center;height:50px; top:0px;">Nadi Playground</div>
+	</h2>
+	<nav>
+	    <a href="/index.html">Home</a>
+	    <a href="/publications.html">Publications</a>
+	    <a href="/user-guide.html">User Manual</a>
+	    <a href="/developer-guide.html">Developer Guide</a>
+	    <a href="/api-reference.html">API Reference</a>
+	    <a href="/tutorials.html">Tutorials</a>
+	    <a href="/playground.html">Playground</a>
+	</nav>
+
+
+	<div id="container">
 	    <div id="code-column">
-		<div class="button-container">
-		    <div>
-			Colors:
-			<label><input id="node-color" type="color" value="#5522ff" style="width: 20px;height: 20px;">Node</label>
-			    <label><input id="edge-color" type="color" value="#5588aa" style="width: 20px;height: 20px;">Edge</label>
-			    <label><input id="text-color" type="color" style="width: 20px;height: 20px;">Text</label>
-			</div>
+		<!-- Tab links -->
+		<div class="tab">
+		    <button class="tablinks leftTab" onclick="openTab(event, 'Network', true)">Network</button>
+		    <button class="tablinks leftTab" onclick="openTab(event, 'Attrs', true)">Attributes</button>
+		    <button class="tablinks leftTab" onclick="openTab(event, 'EdgeAttrs', true)">Edge Attributes</button>
+		    <button id="open-Tasks" class="tablinks leftTab" onclick="openTab(event, 'Tasks', true)">NADI DSL</button>
+		    <button class="tablinks leftTab" onclick="openTab(event, 'Functions', true)">Functions</button>
+		    <button class="tablinks leftTab" onclick="openTab(event, 'Help', true)">Help</button>
 		</div>
-		<textarea id="nadi-network" rows="20" cols="30" style="height: 40vh;width:30vh;">
-A -> B
-C -> D
-B -> D
-D -> E
-F -> G
-E -> G
-G -> H
-I -> J
-K -> L
-J -> L
-</textarea>
+
+		<!-- Tab content -->
+		<div id="Network" class="tabcontent leftTab">
+		    <h4><input type="file" id="network-file"/>
+			<button id="network-download" style="float:right;">Download</button>
+		    </h4>
+		    <div id="nadi-network">a -> b</div>
+		    <div>
+			<pre><code id="network-error">
+			</code></pre>
+		    </div>
+		</div>
+		<div id="Attrs" class="tabcontent leftTab">
+		    <h4><input type="file" id="attrs-file"/>
+			<button id="attrs-download" style="float:right;">Download</button>
+		    </h4>
+		    <div id="nadi-attrs">[network]</div>
+		    <div>
+			<pre><code id="attrs-error">
+			</code></pre>
+		    </div>
+		</div>
+		<div id="EdgeAttrs" class="tabcontent leftTab">
+		    <h4><input type="file" id="edge-attrs-file"/>
+			<button id="edge-attrs-download" style="float:right;">Download</button>
+		    </h4>
+		    <div id="nadi-edge-attrs">[a.b]</div>
+		    <div>
+			<pre><code id="edge-attrs-error">
+			</code></pre>
+		    </div>
+		</div>
+		<div id="Tasks" class="tabcontent leftTab">
+		    <h4><input type="file" id="tasks-file"/>
+			<button id="tasks-download" style="float:right;">Download</button></h4>
+		    <div id="nadi-tasks">a -> b</div>
+		    <h4>Output</h4>
+		    <div id="nadi-output">
+			<pre><code id="nadi-response">
+			</code></pre>
+		    </div>
+		</div>
+		
+		<div id="Functions" class="tabcontent leftTab">
+		    <p>Search for functions and their help, multiple results will load as clickable buttons.</p>
+		    <div>
+			<input type="text" id="func-search" placeholder="Search.." onchange="document._search_function()">
+		    </div>
+		    <div id="search-results">
+		    </div>
+		    <div id="function-help">
+		    </div>
+		</div>
+
+		<div id="Help" class="tabcontent leftTab">
+		    <h3>Help</h3>
+		    <p>NADI System has two main components, this playground only deals with the network analysis part using the NADI DSL (Domain Specific Language). The DSL is also called the task system.</p>
+
+		    <p>
+			In this playground you can load network through the Network tab, and you can work with the DSL through the NADI DSL tab. You can also load networks from the DSL using the corresponding network functions.
+		    </p>
+
+		    <p>
+			The playground provides you with an online editor for NADI DSL with autocompletion, syntax highlighting and code execution. Although it is not exact 1:1 match with the desktop application, the online version of NADI is a powerful tool in itself that can help you with your network analysis problems.
+		    </p>
+
+		    
+		    <p>You can learn about why NADI System might be useful to your use case in <a href="https://nadi-system.github.io/latest/why-nadi.html">Why NADI? page of the NADI Book</a>.
+
+			Most important features of NADI are:
+			<ol>
+			    <li>Language Keywords to support:
+				<ul>
+				    <li>Implicit loop while running functions/expressions in the <code>nodes</code> vs single <code>node</code>,</li>
+				    <li>Implicit array and map (dictionary) for variables, expressions, function calls,</li>
+				    <li>Easier access to <code>input</code> vs <code>output</code> nodes as well as <code>root</code> and <code>leaf</code> nodes of the networks for analysis,</li>
+				    <li>and more</li>
+				</ul>
+			    </li>
+			    <li>Features that are present in other languages like <code>if-else</code>, <code>while</code>, <code>for</code>, <code>loop</code>, <code>try-catch</code>, <code>function</code>, <code>import</code>, allowing users to write their own logic, reuse code, and handle errors.</li>
+			    <li><b>[Only for Desktop Application]</b> The ability to load functions from shared libraries (<code>.dll</code>, <code>.so</code>, <code>.dynlib</code>) through the NADI plugin system, allowing advanced users to write functions that are computationally efficient and use them as if they are native to the language itself.</li>
+			</ol>
+		    </p>
+
+		    
+		    <p>
+			For more details on the DSL and the system as a whole, refer to the NADI Book located here: <a href="https://nadi-system.github.io/latest/">https://nadi-system.github.io/latest/</a>.
+		 Refer to the book’s <a href="./learn-examples.html">Learn by Examples</a> chapter to see specific features of NADI that are related to the programming language.
+		    </p>
+		</div>
 	    </div>
 	    <div id="result-column">
-		<div>
-		    <button id="btn-sync" onclick="document._nadi_refresh()">Draw</button>
+		<!-- Tab links -->
+		<div class="tab">
+		    <button id="open-NetworkView" class="tablinks rightTab" onclick="openTab(event, 'NetworkView', false)">Network View</button>
+		    <button id="open-Examples" class="tablinks rightTab" onclick="openTab(event, 'ExampleProjects', false)">Example Projects</button>
 		</div>
-		<canvas id="nadi-canvas" style="height: 40vh;width:30vw;overflow-y:scroll;"></canvas>
-	    </div>
-    </div>
-    <p> Warning: The syntax here is simplified for demonstration purposes, this is not the same as NADI full network parsing.</p>
-    
+		<div id="NetworkView" class="tabcontent rightTab">
+		<div>
+		    <button id="btn-tasks" onclick="document._nadi_load_network()">Load Network</button>
+		    <button id="btn-tasks" onclick="document._nadi_run_selection()">Run Selection</button>
+		    <button id="btn-tasks" onclick="document._nadi_run_tasks()">Run All Tasks</button>
+		    <button id="btn-tasks" onclick="document._refresh()" style="float:right;">Refresh All</button>
+		</div>
+		<canvas id="nadi-canvas" style="height: 50vh;width:30vw;overflow-y:scroll;"></canvas>
+		</div>
+		
+		<div id="ExampleProjects" class="tabcontent rightTab">
+		    Each Example project consists of a network and tasks file. You can click the curresponding "Load Example" button to load them into the playground. You can choose to only load the network or run the code from the Network View tab.
+		    
+		    <div style="padding: 10px;">
+			<h3>Basic Example
+			    <button onclick='load_example("basic")' style="float:right;"> Load Example</button>
+			</h3>
+			This example has a basic network and a basic tasks for example.
+		    </div>
+		    <div style="padding: 10px;">
+			<h3>Colorado River Network
+			    <button onclick='load_example("colorado")' style="float:right;"> Load Example</button>
+			</h3>
+
+			This example has a network consisting of 3 thousands nodes from the following paper:
+			<p>
+			    Mukhopadhyay, S., A. Sankarasubramanian, and C. Awasthi. 2020. “Developing the hydrological dependency structure between streamgage and reservoir networks.” Scientific Data, 7 (1): 319. Nature Publishing Group. https://doi.org/10.1038/s41597-020-00660-6.
+			</p>
+
+			The tasks code is simple and only shows the nodes that have multiple output nodes.
+
+		    </div>
+		    <div style="padding: 10px;">
+			<h3>USGS Streamgage Network
+			    <button onclick='load_example("usgs")' style="float:right;"> Load Example</button>
+			</h3>
+
+			This example uses a network of nodes in the GAGES-II dataset. The network was detected using nadi-gis utility using the NHDPlus streamlines.
+
+			This example shows you how you can look and validate networks using basin area attribute.
+		    </div>
+		</div>
+		</div>
+	</div>
 	<script type="module">
-	 import init, {nadi_draw_network} from '/pkg/nadi_wasm.js';
+	 import init, {WasmTaskCtx, nadi_list_functions, nadi_function_help, nadi_autocomplete_list} from './pkg/nadi_wasm.js';
 
 	 await init();
 	 
-	 function refresh() {
-	     var nd = document.getElementById("node-color").value;
-	     var ed = document.getElementById("edge-color").value;
-	     var tx = document.getElementById("text-color").value;
-	     nadi_draw_network("nadi-canvas", "nadi-network", nd, ed, tx);
+	 async function refresh() {
+	     document.getElementById("network-error").innerText = "";
+	     document.getElementById("attrs-error").innerText = "";
+	     document.getElementById("edge-attrs-error").innerText = "";
+     	     document._nadi_ctx = new WasmTaskCtx();
+	     var err = document._nadi_ctx.load_network(document._NetworkEditor.getValue());
+	     if (err != null) {
+		 document.getElementById("network-error").innerText = err;
+	     }
+	     var err = document._nadi_ctx.load_network_attrs(document._AttrsEditor.getValue());
+	     if (err != null) {
+		 document.getElementById("attrs-error").innerText = err;
+	     }
+	     var err = document._nadi_ctx.load_edge_attrs(document._EdgeAttrsEditor.getValue());
+	     if (err != null) {
+		 document.getElementById("edge-attrs-error").innerText = err;
+	     }
+	     var output = document._nadi_ctx.run_tasks(document._TasksEditor.getValue())
+	     output.paste("nadi-response")
+	     document._nadi_ctx.draw_on_canvas("nadi-canvas")
+	 }
+	 
+	 async function load_network() {
+	     document.getElementById("network-error").innerText = "";
+	     document.getElementById("attrs-error").innerText = "";
+	     document.getElementById("edge-attrs-error").innerText = "";
+     	     document._nadi_ctx = new WasmTaskCtx();
+	     var err = document._nadi_ctx.load_network(document._NetworkEditor.getValue());
+	     if (err != null) {
+		 document.getElementById("network-error").innerText = err;
+	     }
+	     var err = document._nadi_ctx.load_network_attrs(document._AttrsEditor.getValue());
+	     if (err != null) {
+		 document.getElementById("attrs-error").innerText = err;
+	     }
+	     var err = document._nadi_ctx.load_edge_attrs(document._EdgeAttrsEditor.getValue());
+	     if (err != null) {
+		 document.getElementById("edge-attrs-error").innerText = err;
+	     }
+	     document._nadi_ctx.draw_on_canvas("nadi-canvas")
+	 }
+	 
+	 async function run_tasks() {
+	     document._nadi_ctx.reset_changed();
+	     var output = document._nadi_ctx.run_tasks(document._TasksEditor.getValue())
+	     output.paste("nadi-response")
+	     if (document._nadi_ctx.changed()) {
+		 document._nadi_ctx.draw_on_canvas("nadi-canvas")
+	     }
+	 }
+	 
+	 async function run_selection() {
+     	     var text = document._TasksEditor.getSelectedText();
+	     if (text === null || text === "") {
+		 text = document._TasksEditor.getSession().getLine(document._TasksEditor.getSelectionRange().start.row);
+	     }
+	     document._nadi_ctx.reset_changed();
+	     var output = document._nadi_ctx.run_tasks(text)
+	     output.paste("nadi-response")
+	     if (document._nadi_ctx.changed()) {
+		 document._nadi_ctx.draw_on_canvas("nadi-canvas")
+	     }
 	 }
 
-	 document._nadi_refresh = refresh;
-	 
-	 refresh();
-	</script>
-</div>
+	 async function search_function() {
+	     var list = document.getElementById("search-results");
+	     list.innerHTML = "";
+	     let funcs = nadi_list_functions(document.getElementById("func-search").value);
+	     if (funcs.length == 1) {
+		 document.getElementById("function-help").innerHTML = nadi_function_help(funcs[0]);
+		 return;
+	     }
+	     for (var i=0; i< funcs.length; i++) {
+		 var button = document.createElement("input");
+		 button.type = "button";
+		 button.value = funcs[i];
+		 button.class = "function-btn" ;
+		 button.onclick = function() {document._show_function(this.value)};
+		 list.appendChild(button);
+	     }
+	     return funcs
+	 }
 
-</body>
+	 async function show_function(name) {
+	     document.getElementById("function-help").innerHTML = nadi_function_help(name);
+	 }
+
+	 document._nadi_ctx = new WasmTaskCtx();
+	 document._refresh = refresh;
+	 document._search_function = search_function;
+	 document._show_function = show_function;
+	 document._nadi_function_help = nadi_function_help;
+	 document._nadi_all_functions = nadi_list_functions("");
+	 document._nadi_autocomplete_list = nadi_autocomplete_list;
+	 document._nadi_run_tasks = run_tasks;
+	 document._nadi_run_selection = run_selection;
+	 document._nadi_load_network = load_network;
+	 document._WasmTaskCtx = WasmTaskCtx;
+	 
+	 var params = new URLSearchParams(window.document.location.search)
+	 if (params.has("example")) {
+	     load_example(params.get("example"))
+	 }
+	</script>
+	<script>
+	 function load_example(proj) {
+	     
+	     var url = new URL(window.document.location.href)
+	     url.searchParams.set("example", proj)
+	     window.history.pushState(null, "", url.toString());
+	     
+	     document._NetworkEditor.setValue("");
+	     document._TasksEditor.setValue("");
+	     document._AttrsEditor.setValue("");
+	     document._EdgeAttrsEditor.setValue("");
+	     fetch('/examples/'+proj+'.net').then((response) => {
+		 if (response.ok === true){
+		     return response.text()
+		 } else {
+		     throw new Error(`HTTP error! Status: ${response.status}`);
+		 }
+	     }).then(
+		 text => {
+		     document._NetworkEditor.setValue(text);
+		     document._NetworkEditor.clearSelection();
+		 }
+	     ).catch((error) => {
+		 console.log(error)
+	     });
+	     fetch('/examples/'+proj+'.tasks').then((response) => {
+		 if (response.ok === true){
+		     return response.text()
+		 } else {
+		     throw new Error(`HTTP error! Status: ${response.status}`);
+		 }
+	     }).then(text => {
+		 document._TasksEditor.setValue(text);
+		 document._TasksEditor.clearSelection();
+	     }
+	     ).catch((error) => {
+		 console.log(error)
+	     });
+	     fetch('/examples/'+proj+'.toml').then((response) => {
+		 if (response.ok === true){
+		     return response.text()
+		 } else {
+		     throw new Error(`HTTP error! Status: ${response.status}`);
+		 }
+	     }).then(text => {
+		 document._AttrsEditor.setValue(text);
+		 document._AttrsEditor.clearSelection();
+	     }
+	     ).catch((error) => {
+		 console.log(error)
+	     });
+	     fetch('/examples/'+proj+'-edges.toml').then((response) => {
+		 if (response.ok === true){
+		     return response.text()
+		 } else {
+		     throw new Error(`HTTP error! Status: ${response.status}`);
+		 }
+	     }).then(text => {
+		 document._EdgeAttrsEditor.setValue(text);
+		 document._EdgeAttrsEditor.clearSelection();
+	     }
+	     ).catch((error) => {
+		 console.log(error)
+	     });
+	     
+	     document.getElementById("open-Tasks").click();
+	     document.getElementById("open-NetworkView").click();
+	 }
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.44.0/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script src=https://cdnjs.cloudflare.com/ajax/libs/ace/1.44.0/ext-language_tools.js></script>
+	<script src="editor.js"></script>
+	<script>
+	 var editor = ace.edit("nadi-network");
+	 editor.setOptions({
+             highlightActiveLine: true,
+             showPrintMargin: false,
+             showLineNumbers: true,
+             showGutter: true,
+	     minLines: 25,
+             maxLines: 25,
+             fontSize: "0.875em" // please adjust the font size of the code in general.css
+         })
+	 editor.$blockScrolling = Infinity;
+	 editor.setTheme("ace/theme/monokai");
+	 editor.getSession().setMode("ace/mode/task");
+	 editor.setValue("a -> b");
+	 editor.clearSelection();
+	 editor.commands.addCommand({
+	     name: 'run',
+	     bindKey: {
+		 win: 'Ctrl-Enter',
+		 mac: 'Ctrl-Enter',
+	     },
+             exec: _editor => document._nadi_load_network(),
+	 });
+	 document._NetworkEditor = editor;
+	 
+	 var editor = ace.edit("nadi-attrs");
+	 editor.setOptions({
+             highlightActiveLine: true,
+             showPrintMargin: false,
+             showLineNumbers: true,
+             showGutter: true,
+	     minLines: 25,
+             maxLines: 25,
+             fontSize: "0.875em" // please adjust the font size of the code in general.css
+         })
+	 editor.$blockScrolling = Infinity;
+	 editor.setTheme("ace/theme/monokai");
+	 editor.getSession().setMode("ace/mode/toml");
+	 editor.setValue(`# network attributes are in this group
+[network]
+var_from_toml = "I am here"
+
+# any other group after this will be node attributes,
+# the group id should be a node's name,
+# if the node is not found, it will be ignored
+[a]
+someattr = "Node A Attribute from toml"`);
+	 editor.clearSelection();
+	 editor.commands.addCommand({
+	     name: 'run',
+	     bindKey: {
+		 win: 'Ctrl-Enter',
+		 mac: 'Ctrl-Enter',
+	     },
+             exec: _editor => document._nadi_load_network(),
+	 });
+	 document._AttrsEditor = editor;
+	 
+	 var editor = ace.edit("nadi-edge-attrs");
+	 editor.setOptions({
+             highlightActiveLine: true,
+             showPrintMargin: false,
+             showLineNumbers: true,
+             showGutter: true,
+	     minLines: 25,
+             maxLines: 25,
+             fontSize: "0.875em" // please adjust the font size of the code in general.css
+         })
+	 editor.$blockScrolling = Infinity;
+	 editor.setTheme("ace/theme/monokai");
+	 editor.getSession().setMode("ace/mode/toml");
+	 editor.setValue(`
+[a.b]
+somevar = true
+	 `);
+	 editor.clearSelection();
+	 editor.commands.addCommand({
+	     name: 'run',
+	     bindKey: {
+		 win: 'Ctrl-Enter',
+		 mac: 'Ctrl-Enter',
+	     },
+             exec: _editor => document._nadi_load_network(),
+	 });
+	 document._EdgeAttrsEditor = editor;
+	 
+	 ace.require("ace/ext/language_tools");
+	 var editor = ace.edit("nadi-tasks");
+	 var staticWordCompleter = {
+	     getCompletions: function(editor, session, pos, prefix, callback) {
+		 var keywords = ["clear", "import", "exec", "from", "node", "network", "net", "networks", "networksmap",
+				 "netm", "env", "exit", "end", "help", "input", "inputs", "inputsmap", "im", "output",
+				 "outputs", "outputsmap", "om", "edge", "edges", "edgesmap", "em", "nodes", "nodesmap",
+				 "nm", "root", "roots", "rootsmap", "rm", "leaf", "leaves", "leavesmap", "lm", "if",
+				 "else", "while", "try", "catch", "in", "match", "hook", "local", "loc", "struct",
+				 "function", "func", "return", "break", "continue", "error", "for", "map", "attrs",
+				 "loop", "progress", "prog", "do", "par", "dopar"];
+		 var ctx_vars = document._nadi_ctx.autocomplete();
+		 var wordList = keywords.map(function(w) {return {caption: w, value: w, meta: "keyword", score: 20};}).concat(
+		     document._nadi_all_functions.map(function(w) {return {caption: w, value: w, meta: "function", score: 10};}),
+		     document._nadi_all_functions.map(function(w) {
+			 var f = w.split('.')[1];
+			 return {caption: f, value: f, meta: "Method", score: 1};
+		     }),
+		     ctx_vars.map(function(a) {
+			 var w = a.split(".")[1];
+			 return {caption: w, value: w, meta: "attribute", score: 5};
+		     }),
+		     ctx_vars.map(function(w) {return {caption: w, value: w, meta: "attribute", score: 1};})
+		 );
+		 callback(null, wordList);
+	     }
+	 }
+	 editor.completers = [staticWordCompleter]
+	 editor.setOptions({
+             enableBasicAutocompletion: true,
+             enableLiveAutocompletion: true,
+             highlightActiveLine: true,
+             showPrintMargin: false,
+             showLineNumbers: true,
+             showGutter: true,
+	     minLines: 25,
+             maxLines: 25,
+             fontSize: "0.875em" // please adjust the font size of the code in general.css
+         })
+	 editor.getCompletionRegex = () => /[a-zA-Z_0-9.\$\-\u00A2-\uFFFF]/;
+	 editor.setValue(`nodesmap.WEIGHT
+# variables loaded form attribute tab
+nodes.someattr
+network.var_from_toml
+	 `);
+	 editor.clearSelection();
+	 editor.setTheme("ace/theme/monokai");
+	 editor.getSession().setMode("ace/mode/task");
+	 
+	 editor.commands.addCommand({
+	     name: 'run',
+	     bindKey: {
+		 win: 'Ctrl-Enter',
+		 mac: 'Ctrl-Enter',
+	     },
+             exec: _editor => document._nadi_run_selection(),
+	 });
+
+	 document._TasksEditor = editor;
+	 
+	 const tooltip = ace.require("ace/tooltip");
+	 const docTooltip = new tooltip.HoverTooltip();
+	 const hoverNode = document.createElement('div');
+	 hoverNode.classList.add("nadi-toolip");
+	 docTooltip.setDataProvider(function (e, editor) {
+	     const docPos = e.getDocumentPosition();
+	     const text = document._nadi_ctx.tooltip(editor.getValue(), docPos.row, docPos.column, true);
+	     if (text == null) {
+		 return;
+	     }
+	     hoverNode.innerHTML = text;
+	     docTooltip.showForRange(editor, editor.session.getWordRange(docPos.row, docPos.column), hoverNode, e);
+	 })
+	 docTooltip.addToEditor(document._TasksEditor);
+	 
+	</script>
+	<script type="text/javascript">
+	 function openTab(evt, tabName, left) {
+	     // Declare all variables
+	     var i, tabcontent, tablinks;
+
+	     // Get all elements with class="tabcontent" and hide them
+	     tabcontent = document.getElementsByClassName("tabcontent "+(left?"leftTab":"rightTab"));
+	     for (i = 0; i < tabcontent.length; i++) {
+		 tabcontent[i].style.display = "none";
+	     }
+
+	     // Get all elements with class="tablinks" and remove the class "active"
+	     tablinks = document.getElementsByClassName("tablinks "+(left?"leftTab":"rightTab"));
+	     for (i = 0; i < tablinks.length; i++) {
+		 tablinks[i].className = tablinks[i].className.replace(" active", "");
+	     }
+
+	     // Show the current tab, and add an "active" class to the button that opened the tab
+	     document.getElementById(tabName).style.display = "block";
+	     evt.currentTarget.className += " active";
+
+	     switch (tabName) {
+		 case "Network":
+		     document._NetworkEditor.resize();
+		     document._NetworkEditor.focus();
+		     break;
+		 case "Attrs":
+		     document._AttrsEditor.resize();
+		     document._AttrsEditor.focus();
+		     break;
+		 case "EdgeAttrs":
+		     document._EdgeAttrsEditor.resize();
+		     document._EdgeAttrsEditor.focus();
+		     break;
+		 case "Tasks":
+		     document._TasksEditor.resize();
+		     document._TasksEditor.focus();
+		     break;
+		 default:
+	     }
+	 }
+
+	 document.getElementById("open-Tasks").click();
+	 document.getElementById("open-Examples").click();
+	</script>
+	<script type="text/javascript">
+	 document.getElementById('network-file')
+		 .addEventListener('change', function () {
+
+		     let fr = new FileReader();
+		     fr.onload = function () {
+			 document._NetworkEditor.setValue(fr.result);
+		     }
+		     fr.readAsText(this.files[0]);
+		 })
+	 document.getElementById('attrs-file')
+		 .addEventListener('change', function () {
+
+		     let fr = new FileReader();
+		     fr.onload = function () {
+			 document._AttrsEditor.setValue(fr.result);
+		     }
+		     fr.readAsText(this.files[0]);
+		 })
+
+	 document.getElementById('edge-attrs-file')
+		 .addEventListener('change', function () {
+
+		     let fr = new FileReader();
+		     fr.onload = function () {
+			 document._EdgeAttrsEditor.setValue(fr.result);
+		     }
+		     fr.readAsText(this.files[0]);
+		 })
+
+	 document.getElementById('tasks-file')
+		 .addEventListener('change', function () {
+
+		     let fr = new FileReader();
+		     fr.onload = function () {
+			 document._TasksEditor.setValue(fr.result);
+		     }
+		     fr.readAsText(this.files[0]);
+		 })
+
+	 function download(filename, text) {
+	     var element = document.createElement('a');
+	     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	     element.setAttribute('download', filename);
+
+	     element.style.display = 'none';
+	     document.body.appendChild(element);
+
+	     element.click();
+
+	     document.body.removeChild(element);
+	 }
+
+	 document.getElementById('network-download')
+		 .addEventListener('click', function () {
+		     var fname = "network.net";
+		     if (document.getElementById('network-file').files.length > 0) {
+			 fname = document.getElementById('network-file').files[0].name;
+		     }
+		     download(fname, document._NetworkEditor.getValue());
+		 })
+	 document.getElementById('attrs-download')
+		 .addEventListener('click', function () {
+		     var fname = "attrs.toml";
+		     if (document.getElementById('attrs-file').files.length > 0) {
+			 fname = document.getElementById('attrs-file').files[0].name;
+		     }
+		     download(fname, document._AttrsEditor.getValue());
+		 })
+	 document.getElementById('edge-attrs-download')
+		 .addEventListener('click', function () {
+		     var fname = "edge-attrs.toml";
+		     if (document.getElementById('edge-attrs-file').files.length > 0) {
+			 fname = document.getElementById('edge-attrs-file').files[0].name;
+		     }
+		     download(fname, document._AttrsEditor.getValue());
+		 })
+	 document.getElementById('tasks-download')
+		 .addEventListener('click', function () {
+		     var fname = "nadi.tasks";
+		     if (document.getElementById('tasks-file').files.length > 0) {
+			 fname = document.getElementById('tasks-file').files[0].name;
+		     }
+		     download(fname, document._NetworkEditor.getValue());
+		 })
+
+	</script>
+	
+    </body>
 </html>
