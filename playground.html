@@ -145,7 +145,7 @@
     <body>
 	<h2 style="padding: 10px;height:20px;">
 	    <image src="./logo.svg" height="50px" style="float:left;">
-	    <div style="text-align: center;height:50px; top:0px;">Nadi Playground</div>
+		<div style="text-align: center;height:50px; top:0px;">Nadi Playground</div>
 	</h2>
 	<nav>
 	    <a href="/index.html">Home</a>
@@ -235,6 +235,38 @@
 			The playground provides you with an online editor for NADI DSL with autocompletion, syntax highlighting and code execution. Although it is not exact 1:1 match with the desktop application, the online version of NADI is a powerful tool in itself that can help you with your network analysis problems.
 		    </p>
 
+		    <p>The playground contains multiple tabs, in the left are the tabs related to network information, network/node attributes, edge attributes and NADI DSL code. On the right are the network view and examples tab.</p>
+		    <h3> Network and Attributes</h3>
+		    NADI network consists of nodes and their connections with each other. The connection is shown using the <code>-&gt;</code> symbol with one node before and one after showing a directed edge. You can group multiple nodes together within braces <code>{}</code> in newer versions of NADI.
+
+		    <p> Attributes in NADI can be loaded in different ways. NADI Playground uses the <a href="https://toml.io/en/"> TOML format </a> for both Node and Edge attributes. The Attributes tab can be used to load network attributes as key=val pairs, and node attributes as key=val pairs inside a group named after the name. Similarly, the Edge Attributes tab contains the edge attributes with nested format where the attributes are grouped under <code>[FROM.TO]</code> group where FROM is the starting node and TO is end ending node of the edge. Load some examples from the Examples tab to see them in effect.
+		    </p>
+		    
+		    <h3>NADI DSL Editor</h3>
+		    <p>NADI DSL tab is the main point of entry for any analysis, it comes with syntax highlighting, autocomplete, tooltips etc. The autocomplete shows you the attributes or functions related to the current context. It is not perfect, so I am erroring on the side of caution by showing things that might not exist or vice versa.
+			<img src="images/editor-autocomplete.png" width="100%">
+
+			Similarly, the tooltip helps you understand what a function does and what arguments it does. Ideally the tooltip should appear when you are typing the function arguments, but I'm figuring out how to do that :).
+			<img src="images/editor-hover.png" width="100%">
+		    </p>
+
+		    <h5> Running code and Network View</h5>
+		    <p>
+			You can run NADI DSL code multiple ways, you can use Ctrl+Enter on network or attributes tab to load network and attributes. And you can use Ctrl+Enter on NADI DSL tab to run the selected lines (or current line if nothing is selected). Or you can use the buttons on the top of Network View tab on the right.
+
+			<img src="images/network-view.png" width="100%">
+			The Network View tab contains the following buttons:
+			<ol>
+			    <li>Load Network: loads the network and attributes</li>
+			    <li>Run Selection: Runs the selected code, or current line in NADI DSL editor</li>
+			    <li>Run All Tasks: Runs all the code in the NADI DSL editor</li>
+			    <li>Refresh All: Reloads the network, attributes and runs all tasks</li>
+			</ol>
+			The network is updated whenever you run an expression that can mutate the context. Which requires redrawing of the network and that might be expensive for some examples.
+		    </p>
+		    
+		    <h3>Further Reading</h3>
+
 		    
 		    <p>You can learn about why NADI System might be useful to your use case in <a href="https://nadi-system.github.io/latest/why-nadi.html">Why NADI? page of the NADI Book</a>.
 
@@ -256,7 +288,7 @@
 		    
 		    <p>
 			For more details on the DSL and the system as a whole, refer to the NADI Book located here: <a href="https://nadi-system.github.io/latest/">https://nadi-system.github.io/latest/</a>.
-		 Refer to the book’s <a href="./learn-examples.html">Learn by Examples</a> chapter to see specific features of NADI that are related to the programming language.
+			Refer to the book’s <a href="./learn-examples.html">Learn by Examples</a> chapter to see specific features of NADI that are related to the programming language.
 		    </p>
 		</div>
 	    </div>
@@ -267,13 +299,13 @@
 		    <button id="open-Examples" class="tablinks rightTab" onclick="openTab(event, 'ExampleProjects', false)">Example Projects</button>
 		</div>
 		<div id="NetworkView" class="tabcontent rightTab">
-		<div>
-		    <button id="btn-tasks" onclick="document._nadi_load_network()">Load Network</button>
-		    <button id="btn-tasks" onclick="document._nadi_run_selection()">Run Selection</button>
-		    <button id="btn-tasks" onclick="document._nadi_run_tasks()">Run All Tasks</button>
-		    <button id="btn-tasks" onclick="document._refresh()" style="float:right;">Refresh All</button>
-		</div>
-		<canvas id="nadi-canvas" style="height: 50vh;width:30vw;overflow-y:scroll;"></canvas>
+		    <div>
+			<button id="btn-tasks" onclick="document._nadi_load_network()">Load Network</button>
+			<button id="btn-tasks" onclick="document._nadi_run_selection()">Run Selection</button>
+			<button id="btn-tasks" onclick="document._nadi_run_tasks()">Run All Tasks</button>
+			<button id="btn-tasks" onclick="document._refresh()" style="float:right;">Refresh All</button>
+		    </div>
+		    <canvas id="nadi-canvas" style="height: 50vh;width:30vw;overflow-y:scroll;"></canvas>
 		</div>
 		
 		<div id="ExampleProjects" class="tabcontent rightTab">
@@ -284,6 +316,18 @@
 			    <button onclick='load_example("basic")' style="float:right;"> Load Example</button>
 			</h3>
 			This example has a basic network and a basic tasks for example.
+		    </div>
+		    <div style="padding: 10px;">
+			<h3>Ohio River USGS Gage Analsis
+			    <button onclick='load_example("ohio")' style="float:right;"> Load Example</button>
+			</h3>
+			This example contains a network of USGS gages and NID dams in the Ohio River basin, the code analyses the gages that are affected and not affected by any dams upstream based on their network and year constructed.
+
+			This example is a modified version from the analysis that was done for the following paper:
+			<p>
+			    Atreya, G., T. Steissberg, D. McAvoy, X. Chen, and P. Ray. 2026. “Towards an improved language for river data analysis: Demonstration for the highly-regulated Ohio River basin.” Environmental Modelling & Software, 106866. https://doi.org/10.1016/j.envsoft.2026.106866.
+			</p>
+
 		    </div>
 		    <div style="padding: 10px;">
 			<h3>Colorado River Network
@@ -299,16 +343,23 @@
 
 		    </div>
 		    <div style="padding: 10px;">
+			<h3>Colorado River Network (Visualization)
+			    <button onclick='load_example("circular")' style="float:right;"> Load Example</button>
+			</h3>
+
+			This example uses the same network as the colorado example above but only focuses on making a circular layout from scratch. This example shows how to write your own layout algorithm for network visualization.
+		    </div>
+		    <div style="padding: 10px;">
 			<h3>USGS Streamgage Network
 			    <button onclick='load_example("usgs")' style="float:right;"> Load Example</button>
 			</h3>
 
-			This example uses a network of nodes in the GAGES-II dataset. The network was detected using nadi-gis utility using the NHDPlus streamlines.
+			This example uses a network of nodes in the GAGES-II dataset. The network was detected using nadi-gis utility using the NHDPlus streamlines. The overall network is pretty huge and might be slow to run in your computer. Use it as an example of NADI's capabilities in dealing with large networks.
 
-			This example shows you how you can look and validate networks using basin area attribute.
+			This example shows you how you can look and validate networks using basin area attribute. But all the attributes in the Gages-II dataset is included with the network for you to play around with.
 		    </div>
 		</div>
-		</div>
+	    </div>
 	</div>
 	<script type="module">
 	 import init, {WasmTaskCtx, nadi_list_functions, nadi_function_help, nadi_autocomplete_list} from './pkg/nadi_wasm.js';

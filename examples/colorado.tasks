@@ -15,11 +15,6 @@ roots.NAME
 # see the attributes loaded form the Attributes tab, you can try to include more with autocomplete
 leavesmap.dist_fromhwkm
 
-nodes.visual = {}
-nodes.visual.nodesize = 1 + ORDER / 25
-nodes(ORDER < 2).visual.linecolor = "gray"
-
-
 # this line lets us know which roots have more nodes in them
 rootsmap.WEIGHT
 
@@ -29,6 +24,11 @@ count(nodes.branch)
 
 # we can visually identify the branches, but there are too many nodes to see anything clearly
 nodes(branch).visual.linecolor="red";
+
+# let's make the network visualization pretty (definitions of pretty might vary)
+nodes.visual.nodesize = 1 + ORDER / 25
+nodes(ORDER < 2).visual.linecolor = "gray"
+network.circular_layout()
 
 # manually inspecting some nodes
 node["Point.457"] [outputs.NAME, branch]
@@ -41,3 +41,65 @@ nm(branch) {outputs.NAME}
 # using the real coordinates to place the nodes in the figure
 nodes {set_xy(longitude, -latitude)}
 
+
+# Ok real analysis now:
+
+# 1. Check if there are self loops
+count(nodes {NAME in outputs.NAME})
+# none, good
+
+# check for bifurcations
+nodes.bifurcates = len(outputs._) > 1
+count(nodes.bifurcates) / net.count()
+unique(nodes len(outputs._))
+# 5% of the nodes have bifurcation, upto 4 outputs in a single node
+
+# we can check how many of those bifurcations immediately connect back.
+# in this function we look to see if outputs of the outputs have common node
+func connects_back() {
+    out_out = flatten(outputs { outputs.NAME });
+    if (len(out_out) == 1) {
+            # all the outputs goto a single node
+            node.comes_back = true;
+            return true;
+        }
+    for o in outputs.NAME {
+        if (o in out_out) {
+            # the output of output is same as the output of the original node
+            node.comes_back = true;
+            return true;
+        }
+    }
+    node.comes_back = false;
+    false
+}
+
+nodes(bifurcates) connects_back()
+nodes(bifurcates & comes_back).visual.linecolor = "blue"
+count(nodes(bifurcates).comes_back) / count(nodes.bifurcates)
+# 72% of the nodes bifurcates temporarily, immediately merging back
+
+
+# We have edge lengths, and we have distance from headwaters for each node,
+# let's validate those values
+nodes.hw_correct = node.dist_fromhwkm >= max(inputs.dist_fromhwkm, 0)
+count(nodes.hw_correct) / net.count()
+# there is errors
+nodesmap(!hw_correct) [dist_fromhwkm, inputs.dist_fromhwkm]
+# here, the point Point.09507900 has dist_fromhwkm 18.5, while one of its input
+# has the distance as 21, which should be an error.
+
+# we can look at each of the edges that comes to this point, to see
+# how dist_fromhwkm is calculated
+edgesmap[ -> "Point.09507900"] [edge_lengthkm, node[*FROM].dist_fromhwkm]
+# weird, non of those seem to sum up to 18.5
+
+# normally it should go like this, the following two lines should have same value
+edgesmap[ ->  "Point.537" ] edge_lengthkm + node[*FROM].dist_fromhwkm
+node["Point.537" ].dist_fromhwkm
+# I guess there is minor errors here, but still the last one is weird
+
+
+# This concludes the NADI DSL use case showing how to validate network attributes
+# you can play around with more validation algorithms, look into the Attributes
+# tab to see what other parameters are available

@@ -21,3 +21,19 @@ network.circular_layout(log=false)
 # the circular_layout position 
 
 network.circular_layout()
+
+# a different approach to circular layout, not as pretty
+nodes.outord = ORDER # needs this because there are bifurcations
+nodes<out>.outord = if (len(outputs._) == 0) {ORDER} else {max(outputs.outord, 1) - 1}
+
+total = net.count()
+max_ord = max(nodes.ORDER, -inf)
+nodes do {
+    x = sin(pi() * 2 * INDEX / total) * (max_ord - outord);
+    y = cos(pi() * 2 * INDEX / total) * (max_ord - outord);
+    node.set_xy(x, y)
+}
+
+# in case someone runs Refresh All
+network.circular_layout()
+

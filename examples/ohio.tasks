@@ -1,0 +1,130 @@
+# The codes in this example is from the linked paper, a more detailed 
+# descriptions of the steps is available here: 
+# https://nadi-system.github.io/latest/example/ohio-dams-intro.html
+# this example code is modified to run it in a browser, so only a select 
+# attributes are available from the datasets listed in the page above
+
+# we have around 6,000 nodes in this network
+network count()
+# the network only has one root node because when this paper was published
+# NADI could only handle single root directed tree network
+roots.NAME
+
+# the network has two types of node, we can detect them based on their name
+nodes.is_usgs = NAME match "^[0-9]+";
+nodes.is_dam = !is_usgs;
+network count(nodes.is_usgs)
+network count(nodes.is_dam)
+nodes(is_usgs).visual.nodecolor = "blue"
+
+# let's try to extract position from geometry 
+# all the nodes have geometry, and it is WKT string
+count(nodes {GEOM?}) / net.count()
+# and geometry looks like this:
+nm(INDEX < 5).GEOM
+# the block below extracts the coordinates from the WKT string
+nodes do {
+    node.data = str_split(get(str_split(GEOM, "[(]"), 1), "[ )]");
+    node.x = float(node.data.0);
+    node.y = float(node.data.1);
+    node.set_xy(x, -y)
+}
+# make the nodes smaller so we can see
+nodes.visual.nodesize = ORDER / 40 + 0.4
+
+# next we extract drainage area for the nodes, the attributes come from
+# several sources so we need to process it a bit
+nodes do {
+  try {
+      node.ba = first_attr(["drainageArea", "DRAIN_SQKM", "Drainage"])
+    } catch {}
+  }
+network count(nodes {ba?}) / count()
+# we have 75% of the nodes with basin area now, 
+
+# because they are from different sources they are also different units
+nm(is_usgs & Drainage? & DRAIN_SQKM? & INDEX < 100) [Drainage, DRAIN_SQKM]
+
+# we need to convert Drainage to float, and convert everything to same units
+# uncomment and run the code below:
+# nodes(Drainage?).basin_area = float(Drainage);
+
+# we get an error from the code above becase some of the Drainage fields
+# are empty, so we need to filter them out
+nodes(Drainage? & Drainage match "[0-9]+(.[0-9]+)?").basin_area = float(Drainage);
+nodes(DRAIN_SQKM?).basin_area = DRAIN_SQKM * 0.38610216;
+nodes(drainageArea?).basin_area = float(drainageArea);
+
+# looking at some of the nodes
+nm(INDEX < 10).basin_area
+# we have 75% coverage of the basin area attributes again
+network count(nodes {basin_area?}) / count()
+
+# now we can run a simple network validator using basin area,
+# since not all nodes have basin area, let's set NA values to 0 for now
+nodes.temp_ba = basin_area ? 0.0;
+nodes.incorrect = basin_area? & (basin_area < sum(inputs.temp_ba));
+network count(nodes.incorrect)
+network count(nodes.incorrect) / count()
+
+# that is close to 10% error, let's only check on nodes that have
+# all basin areas, and allow a tolerance upto 2.5% error
+nodes.all_inputs_ba = !(false in inputs {basin_area?});
+nodes.incorrect = basin_area? & all_inputs_ba & (
+    basin_area < (0.975 * sum(inputs.basin_area))
+);
+network count(nodes.incorrect)
+network count(nodes.incorrect) / count()
+# so we have 7.5% errors
+# the errors are more prevalent in dams than in gages
+# refer to the paper for possible causes for these errors
+network count(nodes {incorrect & is_usgs}) / count(nodes.is_usgs)
+network count(nodes {incorrect & is_dam}) / count(nodes.is_dam)
+
+
+
+# NEXT: we calculate the number of dams up to a node with a simple recursive count
+nodes<inp>.ngage = sum(inputs.ngage) + if (is_usgs) {1} else {0}
+nodes<inp>.ndam = sum(inputs.ndam) + if (is_dam) {1} else {0}
+
+nm(INDEX < 10) [ngage, ndam]
+# counting all the gages without any dams upstream
+count(nodes(is_usgs) { ndam == 0})
+
+# now let's only consider large dams, how do we define large dams? 
+nodes(is_dam).dam_height = float(nidHeight);
+nodes(is_dam).dam_storage = float(nidStorage);
+nm(is_dam & (INDEX < 10)) array(dam_height, dam_storage)
+
+# Large dam definition from here: https://www.icold-cigb.org/GB/dams/definition_of_a_large_dam.asp
+nodes.large_dam = is_dam & ((dam_height > 49) | ((dam_height > 16) & (dam_storage > 811)));
+network count(nodes.large_dam)
+network count(nodes.large_dam) / count(nodes.is_dam)
+
+# only 27% of the total dams are large dams, now let's do the same counting as before
+# and get gages not-affected by large dams
+nodes<inp>.nldam = sum(inputs.nldam) + if (large_dam) {1} else {0}
+count(nodes(is_usgs) { nldam == 0})
+# that's almost half of the gages
+
+# last analysis we'll do is, we'll get the construction years of all the dams
+# and then propagate them downstream to get the year of earliest dam constructed
+# upstream of any usgs gage 
+nodes(yearCompleted?).dam_year = int(yearCompleted);
+# some of the year values seem to be 0
+nodes(yearCompleted? & dam_year == 0) do del_attrs(["dam_year"])
+nodes<inp>.dam_aff_yr = min_num(inputs.dam_aff_yr, dam_year?9999);
+nodes<inp>.dam_affected = dam_aff_yr < 9999;
+
+count(nodes.dam_affected & nodes.is_usgs)
+count(nodes {(ndam > 0) & is_usgs})
+count(nodes {dam_affected & is_usgs}) / count(nodes {(ndam > 0) & is_usgs})
+# we have the affected year for 96% of USGS gages with dams upstream
+
+nodesmap(is_usgs & dam_affected) dam_aff_yr
+
+# if you want to know about some specific gage, use the node syntax
+node[03325000] [ndam, nldam, dam_aff_yr]
+
+# as an exercise try to do the same analysis but only propagage the yearCompleted
+# for the large dam category only.
