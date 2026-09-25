@@ -362,7 +362,7 @@
 	    </div>
 	</div>
 	<script type="module">
-	 import init, {WasmTaskCtx, nadi_list_functions, nadi_function_help, nadi_autocomplete_list} from './pkg/nadi_wasm.js';
+	 import init, {WasmTaskCtx, nadi_list_functions, nadi_function_help, nadi_autocomplete_list, get_one_task_at} from './pkg/nadi_wasm.js';
 
 	 await init();
 	 
@@ -419,11 +419,19 @@
 	 
 	 async function run_selection() {
      	     var text = document._TasksEditor.getSelectedText();
-	     if (text === null || text === "") {
-		 text = document._TasksEditor.getSession().getLine(document._TasksEditor.getSelectionRange().start.row);
-	     }
 	     document._nadi_ctx.reset_changed();
-	     var output = document._nadi_ctx.run_tasks(text)
+	     var output;
+	     if (text === null || text === "") {
+		 var pos = document._TasksEditor.getSelectionRange().start;
+		 var task = get_one_task_at(document._TasksEditor.getValue(), pos.row +1, pos.column+1);
+		 if (task.line > 0) {
+		     document._TasksEditor.moveCursorTo(task.line-1, task.col-1)
+		 }
+		 document._TasksEditor.clearSelection();
+		 output = task.run(document._nadi_ctx);
+	     } else {
+		 output = document._nadi_ctx.run_tasks(text);
+	     }
 	     output.paste("nadi-response")
 	     if (document._nadi_ctx.changed()) {
 		 document._nadi_ctx.draw_on_canvas("nadi-canvas")
@@ -464,6 +472,7 @@
 	 document._nadi_run_selection = run_selection;
 	 document._nadi_load_network = load_network;
 	 document._WasmTaskCtx = WasmTaskCtx;
+	 document._get_one_task_at = get_one_task_at;
 	 
 	 var params = new URLSearchParams(window.document.location.search)
 	 if (params.has("example")) {
@@ -634,6 +643,10 @@ somevar = true
 	 var editor = ace.edit("nadi-tasks");
 	 var staticWordCompleter = {
 	     getCompletions: function(editor, session, pos, prefix, callback) {
+		 let line = session.getLine(editor.getSelectionRange().start.row);
+		 if (line.startsWith("#")) {
+		     return;
+		 }
 		 var keywords = ["clear", "import", "exec", "from", "node", "network", "net", "networks", "networksmap",
 				 "netm", "env", "exit", "end", "help", "input", "inputs", "inputsmap", "im", "output",
 				 "outputs", "outputsmap", "om", "edge", "edges", "edgesmap", "em", "nodes", "nodesmap",

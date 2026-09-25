@@ -17,6 +17,16 @@ export class JsNode {
     readonly name: string;
 }
 
+export class NadiTask {
+    private constructor();
+    free(): void;
+    [Symbol.dispose](): void;
+    error(): string | undefined;
+    run(ctx: WasmTaskCtx): TaskResponse;
+    col: number;
+    line: number;
+}
+
 export class TaskResponse {
     private constructor();
     free(): void;
@@ -52,6 +62,8 @@ export class WasmTaskCtx {
  */
 export function can_run_in_wasm(code: string): boolean;
 
+export function get_one_task_at(tasks: string, line: number, col: number): NadiTask;
+
 /**
  * autocomplete based on the given prefix
  */
@@ -70,19 +82,27 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
     readonly memory: WebAssembly.Memory;
     readonly __wbg_edge_free: (a: number, b: number) => void;
+    readonly __wbg_get_naditask_col: (a: number) => number;
+    readonly __wbg_get_naditask_line: (a: number) => number;
     readonly __wbg_jsnode_free: (a: number, b: number) => void;
+    readonly __wbg_naditask_free: (a: number, b: number) => void;
+    readonly __wbg_set_naditask_col: (a: number, b: number) => void;
+    readonly __wbg_set_naditask_line: (a: number, b: number) => void;
     readonly __wbg_taskresponse_free: (a: number, b: number) => void;
     readonly __wbg_wasmtaskctx_free: (a: number, b: number) => void;
     readonly can_run_in_wasm: (a: number, b: number) => number;
     readonly edge_end: (a: number) => [number, number];
     readonly edge_new: (a: number, b: number, c: number, d: number) => number;
     readonly edge_start: (a: number) => [number, number];
+    readonly get_one_task_at: (a: number, b: number, c: number, d: number) => number;
     readonly jsnode_attr: (a: number, b: number, c: number) => any;
     readonly jsnode_name: (a: number) => [number, number];
     readonly nadi_autocomplete_list: (a: number, b: number) => [number, number];
     readonly nadi_draw_network: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number) => void;
     readonly nadi_function_help: (a: number, b: number) => [number, number];
     readonly nadi_list_functions: (a: number, b: number) => [number, number];
+    readonly naditask_error: (a: number) => [number, number];
+    readonly naditask_run: (a: number, b: number) => number;
     readonly run_tasks: (a: number, b: number) => [number, number];
     readonly taskresponse_paste: (a: number, b: number, c: number) => void;
     readonly wasmtaskctx_autocomplete: (a: number) => [number, number];

@@ -2,19 +2,27 @@
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
 export const __wbg_edge_free: (a: number, b: number) => void;
+export const __wbg_get_naditask_col: (a: number) => number;
+export const __wbg_get_naditask_line: (a: number) => number;
 export const __wbg_jsnode_free: (a: number, b: number) => void;
+export const __wbg_naditask_free: (a: number, b: number) => void;
+export const __wbg_set_naditask_col: (a: number, b: number) => void;
+export const __wbg_set_naditask_line: (a: number, b: number) => void;
 export const __wbg_taskresponse_free: (a: number, b: number) => void;
 export const __wbg_wasmtaskctx_free: (a: number, b: number) => void;
 export const can_run_in_wasm: (a: number, b: number) => number;
 export const edge_end: (a: number) => [number, number];
 export const edge_new: (a: number, b: number, c: number, d: number) => number;
 export const edge_start: (a: number) => [number, number];
+export const get_one_task_at: (a: number, b: number, c: number, d: number) => number;
 export const jsnode_attr: (a: number, b: number, c: number) => any;
 export const jsnode_name: (a: number) => [number, number];
 export const nadi_autocomplete_list: (a: number, b: number) => [number, number];
 export const nadi_draw_network: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number) => void;
 export const nadi_function_help: (a: number, b: number) => [number, number];
 export const nadi_list_functions: (a: number, b: number) => [number, number];
+export const naditask_error: (a: number) => [number, number];
+export const naditask_run: (a: number, b: number) => number;
 export const run_tasks: (a: number, b: number) => [number, number];
 export const taskresponse_paste: (a: number, b: number, c: number) => void;
 export const wasmtaskctx_autocomplete: (a: number) => [number, number];

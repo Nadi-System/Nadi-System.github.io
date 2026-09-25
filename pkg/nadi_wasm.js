@@ -109,6 +109,74 @@ export class JsNode {
 }
 if (Symbol.dispose) JsNode.prototype[Symbol.dispose] = JsNode.prototype.free;
 
+export class NadiTask {
+    static __wrap(ptr) {
+        const obj = Object.create(NadiTask.prototype);
+        obj.__wbg_ptr = ptr;
+        NadiTaskFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        NadiTaskFinalization.unregister(this);
+        return ptr;
+    }
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_naditask_free(ptr, 0);
+    }
+    /**
+     * @returns {number}
+     */
+    get col() {
+        const ret = wasm.__wbg_get_naditask_col(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    get line() {
+        const ret = wasm.__wbg_get_naditask_line(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {string | undefined}
+     */
+    error() {
+        const ret = wasm.naditask_error(this.__wbg_ptr);
+        let v1;
+        if (ret[0] !== 0) {
+            v1 = getStringFromWasm0(ret[0], ret[1]);
+            wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+        }
+        return v1;
+    }
+    /**
+     * @param {WasmTaskCtx} ctx
+     * @returns {TaskResponse}
+     */
+    run(ctx) {
+        const ptr = this.__destroy_into_raw();
+        _assertClass(ctx, WasmTaskCtx);
+        const ret = wasm.naditask_run(ptr, ctx.__wbg_ptr);
+        return TaskResponse.__wrap(ret);
+    }
+    /**
+     * @param {number} arg0
+     */
+    set col(arg0) {
+        wasm.__wbg_set_naditask_col(this.__wbg_ptr, arg0);
+    }
+    /**
+     * @param {number} arg0
+     */
+    set line(arg0) {
+        wasm.__wbg_set_naditask_line(this.__wbg_ptr, arg0);
+    }
+}
+if (Symbol.dispose) NadiTask.prototype[Symbol.dispose] = NadiTask.prototype.free;
+
 export class TaskResponse {
     static __wrap(ptr) {
         const obj = Object.create(TaskResponse.prototype);
@@ -316,6 +384,19 @@ export function can_run_in_wasm(code) {
     const len0 = WASM_VECTOR_LEN;
     const ret = wasm.can_run_in_wasm(ptr0, len0);
     return ret !== 0;
+}
+
+/**
+ * @param {string} tasks
+ * @param {number} line
+ * @param {number} col
+ * @returns {NadiTask}
+ */
+export function get_one_task_at(tasks, line, col) {
+    const ptr0 = passStringToWasm0(tasks, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.get_one_task_at(ptr0, len0, line, col);
+    return NadiTask.__wrap(ret);
 }
 
 /**
@@ -648,7 +729,7 @@ function __wbg_get_imports() {
             return ret;
         },
         __wbindgen_generic_0000000000000001: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [Externref], shim_idx: 1985, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
+            // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [Externref], shim_idx: 2027, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
             const ret = makeMutClosure(arg0, arg1, wasm_bindgen_85c0e06f67b82c55___convert__closures_____invoke___wasm_bindgen_85c0e06f67b82c55___JsValue__core_f0fd674eaa06beef___result__Result_____wasm_bindgen_85c0e06f67b82c55___JsError___true_);
             return ret;
         },
@@ -707,6 +788,9 @@ const EdgeFinalization = (typeof FinalizationRegistry === 'undefined')
 const JsNodeFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_jsnode_free(ptr, 1));
+const NadiTaskFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_naditask_free(ptr, 1));
 const TaskResponseFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_taskresponse_free(ptr, 1));
@@ -718,6 +802,12 @@ function addToExternrefTable0(obj) {
     const idx = wasm.__externref_table_alloc();
     wasm.__wbindgen_externrefs.set(idx, obj);
     return idx;
+}
+
+function _assertClass(instance, klass) {
+    if (!(instance instanceof klass)) {
+        throw new Error(`expected instance of ${klass.name}`);
+    }
 }
 
 const CLOSURE_DTORS = (typeof FinalizationRegistry === 'undefined')
